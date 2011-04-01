@@ -23,18 +23,25 @@ namespace Simulations
             set { m_steps = value; }
         }
 
+        abstract protected void InitParameters();
+        abstract public void Run();
+
         protected void AddParameter(fsParameterIdentifier identifier)
         {
             m_parameters[identifier] = new fsSimulationParameter(identifier);
         }
-
-        abstract protected void InitParameters();
-
-        public fsSimulation()
+        protected fsSimulation()
         {
             InitParameters();
         }
-
-        abstract public void Run();
+        public override string ToString()
+        {
+            string res = "";
+            foreach (fsSimulationParameter parameter in Parameters.Values)
+            {
+                res += parameter.Identifier.Name + " = " + parameter.Value.ToString() + "; ";
+            }
+            return res;
+        }
     }
 }

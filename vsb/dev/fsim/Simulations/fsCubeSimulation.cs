@@ -15,25 +15,14 @@ namespace Simulations
             AddParameter(fsParameterIdentifier.length);
             AddParameter(fsParameterIdentifier.width);
         }
-
         override public void Run()
         {
             for (int i = 0; i < Steps.Count; ++i)
             {
-                Steps[i].SetInputParametersDependingFromPreviousStep(Parameters.Values);
+                Steps[i].SetValuesOfInputParametersDependingFromPreviousStep(Parameters.Values);
                 Steps[i].Calculate();
                 Steps[i].GetParameters(Parameters.Values);
             }
-        }
-
-        public string GetDataString()
-        {
-            string res = "";
-            foreach (fsSimulationParameter parameter in Parameters.Values)
-            {
-                res += parameter.Identifier.Name + " = " + parameter.Value.ToString() + "; ";
-            }
-            return res;
         }
     }
 }
