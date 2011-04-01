@@ -5,6 +5,7 @@ using System.Text;
 using Simulations;
 using SimulationSteps.CubeSteps;
 using Value;
+using Parameters;
 
 namespace ConsoleSampleCalculator
 {
@@ -14,29 +15,27 @@ namespace ConsoleSampleCalculator
         {
             fsCubeSimulation cube = new fsCubeSimulation();
             fsCubeFormationStep formationStep = new fsCubeFormationStep();
-            formationStep.volume.IsInputed = true;
-            formationStep.volume.Value = new fsValue(8);
             cube.Steps.Add(formationStep);
             fsCubeHeightFromWidthScalingStep heightDefStep = new fsCubeHeightFromWidthScalingStep();
-            heightDefStep.width.IsInputed = true;
-            heightDefStep.length.IsInputed = true;
-            heightDefStep.coefficient.IsInputed = true;
-            heightDefStep.coefficient.Value = new fsValue(0.5);
             cube.Steps.Add(heightDefStep);
 
+            formationStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.volume, new fsValue(8));
+            heightDefStep.SetParameterInputedFlag(fsParameterIdentifier.width, true);
+            heightDefStep.SetParameterInputedFlag(fsParameterIdentifier.length, true);
+            heightDefStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.coefficient, new fsValue(0.5));
+            
             cube.Run();
-            Console.WriteLine(cube.GetDataString());
+            Console.WriteLine(cube.ToString());
 
-            heightDefStep.coefficient.IsInputed = true;
-            heightDefStep.coefficient.Value = new fsValue(2.0);
+            heightDefStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.coefficient, new fsValue(2));
 
             cube.Run();
-            Console.WriteLine(cube.GetDataString());
+            Console.WriteLine(cube.ToString());
 
             formationStep.volume.Value = new fsValue(27);
 
             cube.Run();
-            Console.WriteLine(cube.GetDataString());
+            Console.WriteLine(cube.ToString());
         }
     }
 }

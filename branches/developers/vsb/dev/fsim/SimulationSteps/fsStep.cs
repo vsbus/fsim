@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Parameters;
 using SimulationSteps.StepsEquations;
+using Value;
 
 namespace SimulationSteps
 {
@@ -62,7 +63,20 @@ namespace SimulationSteps
             }
         }
 
-        public void SetInputParametersDependingFromPreviousStep(IEnumerable<fsSimulationParameter> parameters)
+        public void SetParameterInputedAndAssignValue(fsParameterIdentifier identifier, fsValue value)
+        {
+            fsStepParameter parameter = this.m_parameters[identifier];
+            parameter.IsInputed = true;
+            parameter.Value = value;
+        }
+
+        public void SetParameterInputedFlag(fsParameterIdentifier identifier, bool isInputed)
+        {
+            fsStepParameter parameter = this.m_parameters[identifier];
+            parameter.IsInputed = isInputed;
+        }
+
+        public void SetValuesOfInputParametersDependingFromPreviousStep(IEnumerable<fsSimulationParameter> parameters)
         {
             foreach (fsSimulationParameter srcParameter in parameters)
             {

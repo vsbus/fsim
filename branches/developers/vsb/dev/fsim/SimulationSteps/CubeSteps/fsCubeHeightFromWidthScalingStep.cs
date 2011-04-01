@@ -9,11 +9,11 @@ namespace SimulationSteps.CubeSteps
 {
     public class fsCubeHeightFromWidthScalingStep : fsStep
     {
-        public fsStepParameter width;
-        public fsStepParameter length;
+        private fsStepParameter width;
+        private fsStepParameter length;
         private fsStepParameter height;
         private fsStepParameter volume;
-        public fsStepParameter coefficient;
+        private fsStepParameter coefficient;
 
         protected override void DefineParameters()
         {
@@ -23,7 +23,6 @@ namespace SimulationSteps.CubeSteps
             width = InitParameter(fsParameterIdentifier.width, true);
             length = InitParameter(fsParameterIdentifier.length, true);
         }
-
         protected override void DefineEquations()
         {
             Equations.Add(new fsScaleEquation(height, width, coefficient));
