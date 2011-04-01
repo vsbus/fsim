@@ -19,23 +19,29 @@ namespace ConsoleSampleCalculator
             fsCubeHeightFromWidthScalingStep heightDefStep = new fsCubeHeightFromWidthScalingStep();
             cube.Steps.Add(heightDefStep);
 
-            formationStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.volume, new fsValue(8));
-            heightDefStep.SetParameterInputedFlag(fsParameterIdentifier.width, true);
-            heightDefStep.SetParameterInputedFlag(fsParameterIdentifier.length, true);
-            heightDefStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.coefficient, new fsValue(0.5));
-            
-            cube.Run();
-            Console.WriteLine(cube.ToString());
+            DateTime startTime = DateTime.Now;
+            for (int it = 0; it < 50000; ++it)
+            {
+                formationStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.volume, new fsValue(8));
+                heightDefStep.SetParameterInputedFlag(fsParameterIdentifier.width, true);
+                heightDefStep.SetParameterInputedFlag(fsParameterIdentifier.length, true);
+                heightDefStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.coefficient, new fsValue(0.5));
 
-            heightDefStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.coefficient, new fsValue(2));
+                cube.Run();
+                //Console.WriteLine(cube.ToString());
 
-            cube.Run();
-            Console.WriteLine(cube.ToString());
+                heightDefStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.coefficient, new fsValue(2));
 
-            formationStep.volume.Value = new fsValue(27);
+                cube.Run();
+                //Console.WriteLine(cube.ToString());
 
-            cube.Run();
-            Console.WriteLine(cube.ToString());
+                formationStep.volume.Value = new fsValue(27);
+
+                cube.Run();
+                //Console.WriteLine(cube.ToString());
+            }
+            DateTime endTime = DateTime.Now;
+            Console.WriteLine((endTime - startTime).TotalMilliseconds);
         }
     }
 }
