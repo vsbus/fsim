@@ -30,5 +30,12 @@ namespace Parameters
         public static fsParameterIdentifier side = new fsParameterIdentifier("side");
         public static fsParameterIdentifier volume = new fsParameterIdentifier("volume");
         public static fsParameterIdentifier coefficient = new fsParameterIdentifier("coefficient");
+
+        public static fsParameterIdentifier q = new fsParameterIdentifier("q");
+        public static fsParameterIdentifier a1 = new fsParameterIdentifier("a1");
+        public static fsParameterIdentifier a2 = new fsParameterIdentifier("a2");
+        public static fsParameterIdentifier a3 = new fsParameterIdentifier("a3");
+        public static fsParameterIdentifier a4 = new fsParameterIdentifier("a4");
+        public static fsParameterIdentifier a5 = new fsParameterIdentifier("a5");
     }
 }

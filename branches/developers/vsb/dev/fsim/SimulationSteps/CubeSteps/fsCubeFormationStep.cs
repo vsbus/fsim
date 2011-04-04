@@ -10,7 +10,7 @@ namespace SimulationSteps.CubeSteps
     public class fsCubeFormationStep : fsStep
     {
         private fsStepParameter side;
-        public fsStepParameter volume;
+        private fsStepParameter volume;
         private fsStepParameter height;
         private fsStepParameter length;
         private fsStepParameter width;

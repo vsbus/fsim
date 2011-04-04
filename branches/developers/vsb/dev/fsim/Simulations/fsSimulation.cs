@@ -7,7 +7,7 @@ using SimulationSteps;
 
 namespace Simulations
 {
-    abstract public class fsSimulation
+    public class fsSimulation
     {
         private Dictionary<fsParameterIdentifier, fsSimulationParameter> m_parameters = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
         public Dictionary<fsParameterIdentifier, fsSimulationParameter> Parameters
@@ -23,16 +23,26 @@ namespace Simulations
             set { m_steps = value; }
         }
 
-        abstract protected void InitParameters();
-        abstract public void Run();
-
-        protected void AddParameter(fsParameterIdentifier identifier)
+        public fsSimulation(params fsParameterIdentifier[] parameters)
+        {
+            foreach (fsParameterIdentifier parameter in parameters)
+            {
+                AddParameter(parameter);
+            }
+        }
+        public void Run()
+        {
+            for (int i = 0; i < Steps.Count; ++i)
+            {
+                Steps[i].SetValuesOfInputParametersDependingFromPreviousStep(Parameters.Values);
+                Steps[i].Calculate();
+                Steps[i].GetParameters(Parameters.Values);
+            }
+        }
+        
+        private void AddParameter(fsParameterIdentifier identifier)
         {
             m_parameters[identifier] = new fsSimulationParameter(identifier);
-        }
-        protected fsSimulation()
-        {
-            InitParameters();
         }
         public override string ToString()
         {
