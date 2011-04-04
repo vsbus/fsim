@@ -48,7 +48,11 @@
     <Compile Include="CubeSteps\fsCubeFormationStep.cs" />
     <Compile Include="CubeSteps\fsCubeHeightFromWidthScalingStep.cs" />
     <Compile Include="fsStep.cs" />
+    <Compile Include="GeometryProgressionSteps\fsGProgressionInitStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StepsEquations\BasicEquations\fsDivisionEquation.cs" />
+    <Compile Include="StepsEquations\BasicEquations\fsOneOperationEquation.cs" />
+    <Compile Include="StepsEquations\BasicEquations\fsProductEquation.cs" />
     <Compile Include="StepsEquations\CubeEquations\fsCopyEquation.cs" />
     <Compile Include="StepsEquations\CubeEquations\fsScaleEquation.cs" />
     <Compile Include="StepsEquations\CubeEquations\fsSideFromVolumeEquation.cs" />
