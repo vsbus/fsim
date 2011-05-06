@@ -7,6 +7,7 @@ using SimulationSteps.CubeSteps;
 using Value;
 using Parameters;
 using SimulationSteps.GeometryProgressionSteps;
+using System.Threading;
 
 namespace ConsoleSampleCalculator
 {
@@ -18,10 +19,26 @@ namespace ConsoleSampleCalculator
             GeomericalProgressionSimulationSample();
         }
 
+        class fsSimTracker
+        {
+            private fsSimulation m_simulation;
+            public fsSimTracker (fsSimulation simulation)
+            {
+                m_simulation = simulation;
+            }
+            public void Out()
+            {
+                while (true)
+                {
+                    Console.WriteLine(m_simulation.ToString());
+                    Thread.Sleep(50);
+                }
+            }
+        }
+
         private static void GeomericalProgressionSimulationSample()
         {
             fsSimulation gpSim = new fsSimulation(
-                fsParameterIdentifier.q,
                 fsParameterIdentifier.a1,
                 fsParameterIdentifier.a2,
                 fsParameterIdentifier.a3,
@@ -30,22 +47,49 @@ namespace ConsoleSampleCalculator
             fsGProgressionInitStep initStep = new fsGProgressionInitStep();
             gpSim.Steps.Add(initStep);
 
-            initStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.q, new fsValue(2));
-            initStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.a1, new fsValue(2));
+            fsSimTracker simTracker = new fsSimTracker(gpSim);
+            Thread trackThread = new Thread(simTracker.Out);
+            trackThread.Start();
 
             DateTime startTime = DateTime.Now;
-            for (int it = 0; it < 1; ++it)
+            for (int it = 0; it < 2; ++it)
             {
-                gpSim.Run();
-                Console.WriteLine(gpSim.ToString());
+                // first call
+                {
+                    gpSim.StopCalculations();
+                    initStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.q, new fsValue(2));
+                    initStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.a1, new fsValue(2));
+                    gpSim.RunCalculations();
+                }
+                int j = 0;
+                for (int i = 0; i < 10000000; ++i)
+                {
+                    j += i * i;
+                }
+                //while (gpSim.IsCalculating()) ;
+                //simTracker.Out();
 
-                initStep.SetParameterInputedFlag(fsParameterIdentifier.q, false);
-                initStep.SetParameterInputedFlag(fsParameterIdentifier.a1, false);
-                initStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.a3, new fsValue(10));
-                initStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.a2, new fsValue(20));
-                gpSim.Run();
-                Console.WriteLine(gpSim.ToString());
+                // second call
+                {
+                    gpSim.StopCalculations();
+                    initStep.SetParameterInputedFlag(fsParameterIdentifier.q, false);
+                    initStep.SetParameterInputedFlag(fsParameterIdentifier.a1, false);
+                    initStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.a3, new fsValue(10));
+                    initStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.a2, new fsValue(20));
+                    gpSim.RunCalculations();
+                }
+                //while (gpSim.IsCalculating()) ;
+                //simTracker.Out();
             }
+            while (gpSim.IsCalculating()) ;
+            {
+                int j = 0;
+                for (int i = 0; i < 100000000; ++i)
+                {
+                    j += i * i;
+                }
+            }
+            trackThread.Abort();
             DateTime endTime = DateTime.Now;
             Console.WriteLine((endTime - startTime).TotalSeconds);
         }
@@ -70,16 +114,16 @@ namespace ConsoleSampleCalculator
                 heightDefStep.SetParameterInputedFlag(fsParameterIdentifier.length, true);
                 heightDefStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.coefficient, new fsValue(0.5));
 
-                cube.Run();
+                cube.RunCalculations();
                 Console.WriteLine(cube.ToString());
 
                 heightDefStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.coefficient, new fsValue(2));
 
-                cube.Run();
+                cube.RunCalculations();
                 Console.WriteLine(cube.ToString());
 
                 formationStep.SetParameterInputedAndAssignValue(fsParameterIdentifier.volume, new fsValue(27));
-                cube.Run();
+                cube.RunCalculations();
                 Console.WriteLine(cube.ToString());
             }
             DateTime endTime = DateTime.Now;
