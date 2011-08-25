@@ -13,7 +13,7 @@ namespace ConsoleCakeFormationSample
         {
             StepCalculators.fsCakeFormationDpConstCalculator calculator = new StepCalculators.fsCakeFormationDpConstCalculator();
             fsSimulationParameter[] a = {
-                new fsSimulationParameter(fsParameterIdentifier.FilterArea, /*true, new fsValue(1)*/ false),
+                new fsSimulationParameter(fsParameterIdentifier.FilterArea, true, new fsValue(2)),
                 new fsSimulationParameter(fsParameterIdentifier.Pressure, true, new fsValue(2)),
                 new fsSimulationParameter(fsParameterIdentifier.FormationTime, false),
                 new fsSimulationParameter(fsParameterIdentifier.CakeHeight, true, new fsValue(4)),

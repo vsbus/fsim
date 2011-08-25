@@ -45,13 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fsEquationParameter.cs" />
-    <Compile Include="newConcept\fsCalculatorParameter.cs" />
-    <Compile Include="newConcept\fsJustValueParameter.cs" />
+    <Compile Include="fsCalculatorParameter.cs" />
+    <Compile Include="fsJustValueParameter.cs" />
     <Compile Include="Identifiers\fsParameterIdentifier.cs" />
-    <Compile Include="newConcept\fsSimulationParameter.cs" />
-    <Compile Include="fsStepParameter.cs" />
-    <Compile Include="newConcept\fsNamedValueParameter.cs" />
+    <Compile Include="fsSimulationParameter.cs" />
+    <Compile Include="fsNamedValueParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
