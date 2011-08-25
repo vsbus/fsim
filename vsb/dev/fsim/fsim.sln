@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulations", "Simulations\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleSampleCalculator", "ConsoleSampleCalculator\ConsoleSampleCalculator.csproj", "{5129D296-07FE-4B5C-9D63-31167422AF03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StepCalculators", "StepCalculators\StepCalculators.csproj", "{95DCD086-DBE7-4361-BE61-C62FB904659E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCakeFormationSample", "ConsoleCakeFormationSample\ConsoleCakeFormationSample.csproj", "{29690520-285F-4A59-A36C-1CE0D0EAC2ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{5129D296-07FE-4B5C-9D63-31167422AF03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5129D296-07FE-4B5C-9D63-31167422AF03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5129D296-07FE-4B5C-9D63-31167422AF03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95DCD086-DBE7-4361-BE61-C62FB904659E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95DCD086-DBE7-4361-BE61-C62FB904659E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95DCD086-DBE7-4361-BE61-C62FB904659E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95DCD086-DBE7-4361-BE61-C62FB904659E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29690520-285F-4A59-A36C-1CE0D0EAC2ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29690520-285F-4A59-A36C-1CE0D0EAC2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29690520-285F-4A59-A36C-1CE0D0EAC2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29690520-285F-4A59-A36C-1CE0D0EAC2ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

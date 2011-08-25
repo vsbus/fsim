@@ -9,8 +9,8 @@ namespace SimulationSteps.StepsEquations.CubeEquations
 {
     public class fsSideFromVolumeEquation : fsStepEquation
     {
-        fsEquationParameter side;
-        fsEquationParameter volume;
+        fsJustValueParameter side;
+        fsJustValueParameter volume;
 
         public fsSideFromVolumeEquation(
             fsStepParameter side,
