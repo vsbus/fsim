@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Simulations;
-using SimulationSteps.CubeSteps;
 using Value;
 using Parameters;
-using SimulationSteps.GeometryProgressionSteps;
 using System.Threading;
 
 namespace ConsoleSampleCalculator

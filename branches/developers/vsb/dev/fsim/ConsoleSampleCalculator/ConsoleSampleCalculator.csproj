@@ -53,14 +53,6 @@
       <Project>{67A1D000-12E6-439C-BC89-23C4059BC855}</Project>
       <Name>Parameters</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SimulationSteps\SimulationSteps.csproj">
-      <Project>{E445D8ED-FF06-4AAC-A53B-B821B548303B}</Project>
-      <Name>SimulationSteps</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Simulations\Simulations.csproj">
-      <Project>{D1290B9F-3F5B-46CF-AA02-155CBFA14A74}</Project>
-      <Name>Simulations</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Value\Value.csproj">
       <Project>{CD1BD2A7-AB61-4A58-B1F9-9A3DF9A0E9F2}</Project>
       <Name>Value</Name>
