@@ -8,8 +8,8 @@ namespace SimulationSteps.StepsEquations.CubeEquations
 {
     public class fsCopyEquation : fsStepEquation
     {
-        fsEquationParameter destination;
-        fsEquationParameter source;
+        fsJustValueParameter destination;
+        fsJustValueParameter source;
 
         public fsCopyEquation(
             fsStepParameter destination,

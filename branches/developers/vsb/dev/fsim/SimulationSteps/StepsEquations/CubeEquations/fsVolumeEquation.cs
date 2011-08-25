@@ -8,10 +8,10 @@ namespace SimulationSteps.StepsEquations.CubeEquations
 {
     public class fsVolumeEquation : fsStepEquation
     {
-        fsEquationParameter volume;
-        fsEquationParameter height;
-        fsEquationParameter width;
-        fsEquationParameter length;
+        fsJustValueParameter volume;
+        fsJustValueParameter height;
+        fsJustValueParameter width;
+        fsJustValueParameter length;
 
         public fsVolumeEquation(
             fsStepParameter volume,

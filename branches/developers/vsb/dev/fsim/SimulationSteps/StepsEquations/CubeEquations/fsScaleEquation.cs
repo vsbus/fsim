@@ -8,9 +8,9 @@ namespace SimulationSteps.StepsEquations.CubeEquations
 {
     public class fsScaleEquation : fsStepEquation
     {
-        fsEquationParameter resultValue;
-        fsEquationParameter value;
-        fsEquationParameter scale;
+        fsJustValueParameter resultValue;
+        fsJustValueParameter value;
+        fsJustValueParameter scale;
 
         public fsScaleEquation(
             fsStepParameter resultValue,

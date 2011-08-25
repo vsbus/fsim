@@ -37,5 +37,11 @@ namespace Parameters
         public static fsParameterIdentifier a3 = new fsParameterIdentifier("a3");
         public static fsParameterIdentifier a4 = new fsParameterIdentifier("a4");
         public static fsParameterIdentifier a5 = new fsParameterIdentifier("a5");
+
+        public static fsParameterIdentifier FilterArea = new fsParameterIdentifier("A");
+        public static fsParameterIdentifier Pressure = new fsParameterIdentifier("Dp");
+        public static fsParameterIdentifier CycleTime = new fsParameterIdentifier("tc");
+        public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc");
+        public static fsParameterIdentifier FormationTime = new fsParameterIdentifier("tf");
     }
 }

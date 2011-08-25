@@ -7,13 +7,6 @@ namespace Parameters
 {
     public class fsStepParameter : fsSimulationParameter
     {
-        private bool m_isInputed;
-        public bool IsInputed
-        {
-            get { return m_isInputed; }
-            set { m_isInputed = value; }
-        }
-
         private bool m_isProcessed;
         public bool IsProcessed
         {
@@ -34,7 +27,6 @@ namespace Parameters
             : base(identifier)
         {
             m_isDependFromPreviousStep = isDependingFromPreviousStep;
-            m_isInputed = false;
             m_isProcessed = false;
         }
     }

@@ -20,13 +20,13 @@ namespace SimulationSteps.StepsEquations
             get { return m_outputParameter; }
         }
 
-        protected fsEquationParameter InitInputParameter(fsStepParameter parameter)
+        protected fsJustValueParameter InitInputParameter(fsStepParameter parameter)
         {
             m_inputParameters.Add(parameter);
             return parameter;
         }
 
-        protected fsEquationParameter InitOutputParameter(fsStepParameter parameter)
+        protected fsJustValueParameter InitOutputParameter(fsStepParameter parameter)
         {
             m_outputParameter = parameter;
             return parameter;
