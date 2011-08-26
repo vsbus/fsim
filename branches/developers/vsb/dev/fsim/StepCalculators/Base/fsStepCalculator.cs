@@ -9,6 +9,7 @@ namespace StepCalculators
     public abstract class fsStepCalculator
     {
         private Dictionary<fsParameterIdentifier, fsCalculatorParameter> m_parameters = new Dictionary<fsParameterIdentifier, fsCalculatorParameter>();
+        
         private List<fsCalculatorEquation> m_equations = new List<fsCalculatorEquation>();
         protected List<fsCalculatorEquation> Equations
         {
@@ -35,6 +36,10 @@ namespace StepCalculators
 
         public void Calculate()
         {
+            foreach (var p in m_parameters.Values)
+            {
+                p.IsProcessed = false;
+            }
             bool somethingChanged = true;
             while (somethingChanged)
             {
@@ -48,6 +53,27 @@ namespace StepCalculators
                     }
                 }
             }
+        }
+
+        public string GetStatusMessage()
+        {
+            string message = "";
+            foreach (var p in m_parameters.Values)
+            {
+                if (!p.IsInputed && !p.IsProcessed)
+                {
+                    message += "     - Unable to calculate " + p.Identifier.Name + "\n";
+                }
+            }
+            if (message.Length == 0)
+            {
+                message = " + All parameters was calculated successfully.\n";
+            }
+            else
+            {
+                message = " - Some parameters impossible to calculate:\n" + message;
+            }
+            return message;
         }
 
         public void ReadParametersValues(Dictionary<fsParameterIdentifier, fsSimulationParameter> target)
