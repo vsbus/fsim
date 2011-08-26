@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fsim", "fsim\fsim.csproj", "{340165D4-F3D3-415A-8EEA-2B45C794A2C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parameters", "ParametersIdentifiers\Parameters.csproj", "{67A1D000-12E6-439C-BC89-23C4059BC855}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parameters", "Parameters\Parameters.csproj", "{67A1D000-12E6-439C-BC89-23C4059BC855}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Value", "Value\Value.csproj", "{CD1BD2A7-AB61-4A58-B1F9-9A3DF9A0E9F2}"
 EndProject
