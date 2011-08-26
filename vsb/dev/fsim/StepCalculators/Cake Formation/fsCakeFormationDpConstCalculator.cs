@@ -9,25 +9,55 @@ namespace StepCalculators
 {
     public class fsCakeFormationDpConstCalculator : fsStepCalculator
     {
-        fsCalculatorParameter Area;
+        fsCalculatorParameter FilterArea;
+        
         fsCalculatorParameter Pressure;
+        
         fsCalculatorParameter CycleTime;
-        fsCalculatorParameter CakeHeight;
-        fsCalculatorParameter FormationTime;
+        fsCalculatorParameter RotationalSpeed;
 
+        fsCalculatorParameter FormationRelativeTime;
+        fsCalculatorParameter FormationTime;
+        fsCalculatorParameter CakeHeight;
+        fsCalculatorParameter SuspensionMass;
+        fsCalculatorParameter SuspensionVolume;
+
+        fsCalculatorParameter SuspensionDensity;
+        fsCalculatorParameter etaf;
+        fsCalculatorParameter hce0;
+        fsCalculatorParameter Pc;
+        fsCalculatorParameter kappa;
+        
         protected override void InitParameters()
         {
-            Area = InitParameter(fsParameterIdentifier.FilterArea);
+            FilterArea = InitParameter(fsParameterIdentifier.FilterArea);
+
             Pressure = InitParameter(fsParameterIdentifier.Pressure);
+
             CycleTime = InitParameter(fsParameterIdentifier.CycleTime);
-            CakeHeight = InitParameter(fsParameterIdentifier.CakeHeight);
+            RotationalSpeed = InitParameter(fsParameterIdentifier.RotationalSpeed);
+
+            FormationRelativeTime = InitParameter(fsParameterIdentifier.FormationRelativeTime);
             FormationTime = InitParameter(fsParameterIdentifier.FormationTime);
+            CakeHeight = InitParameter(fsParameterIdentifier.CakeHeight);
+            SuspensionMass = InitParameter(fsParameterIdentifier.SuspensionMass);
+            SuspensionVolume = InitParameter(fsParameterIdentifier.SuspensionVolume);
+
+            SuspensionDensity = InitParameter(fsParameterIdentifier.SuspensionDensity);
+            etaf = InitParameter(fsParameterIdentifier.etaf);
+            hce0 = InitParameter(fsParameterIdentifier.hce0);
+            Pc = InitParameter(fsParameterIdentifier.Pc);
+            kappa = InitParameter(fsParameterIdentifier.kappa);
         }
 
         protected override void InitEquations()
         {
-            Equations.Add(new fsFakeEquation(Area, Pressure, CycleTime, CakeHeight, FormationTime));
-            Equations.Add(new fsFake2Equation(Area, Pressure));
+            Equations.Add(new fsDivisionInverseEquation(CycleTime, RotationalSpeed));
+            Equations.Add(new fsDivisionInverseEquation(RotationalSpeed, CycleTime));
+            Equations.Add(new fsProductEquation(FormationTime, FormationRelativeTime, CycleTime));
+            Equations.Add(new fsCakeHeightFrom_Dp_tf(CakeHeight, hce0, Pc, kappa, Pressure, FormationTime, etaf));
+            Equations.Add(new fsVsusFromAreaAndCakeHeightEquation(SuspensionVolume, FilterArea, CakeHeight, kappa));
+            Equations.Add(new fsProductEquation(SuspensionMass, SuspensionDensity, SuspensionVolume));
         }
     }
 }

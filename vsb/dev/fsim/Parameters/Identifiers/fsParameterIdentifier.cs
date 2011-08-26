@@ -41,7 +41,17 @@ namespace Parameters
         public static fsParameterIdentifier FilterArea = new fsParameterIdentifier("A");
         public static fsParameterIdentifier Pressure = new fsParameterIdentifier("Dp");
         public static fsParameterIdentifier CycleTime = new fsParameterIdentifier("tc");
-        public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc");
+        public static fsParameterIdentifier RotationalSpeed = new fsParameterIdentifier("n");
+        public static fsParameterIdentifier FormationRelativeTime = new fsParameterIdentifier("sf");
         public static fsParameterIdentifier FormationTime = new fsParameterIdentifier("tf");
+        public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc");
+        public static fsParameterIdentifier SuspensionMass = new fsParameterIdentifier("Msus");
+        public static fsParameterIdentifier SuspensionVolume = new fsParameterIdentifier("Vsus");
+
+        public static fsParameterIdentifier SuspensionDensity = new fsParameterIdentifier("SuspensionDensity");
+        public static fsParameterIdentifier etaf = new fsParameterIdentifier("etaf");
+        public static fsParameterIdentifier hce0 = new fsParameterIdentifier("hce");
+        public static fsParameterIdentifier Pc  = new fsParameterIdentifier("Pc ");
+        public static fsParameterIdentifier kappa = new fsParameterIdentifier("kappa");
     }
 }

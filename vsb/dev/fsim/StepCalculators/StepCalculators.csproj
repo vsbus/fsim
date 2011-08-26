@@ -47,7 +47,11 @@
   <ItemGroup>
     <Compile Include="Base\fsCalculatorEquation.cs" />
     <Compile Include="Base\fsStepCalculator.cs" />
+    <Compile Include="Cake Formation\DPConstEquations\fsCakeHeightFrom_Dp_tfEquation.cs" />
+    <Compile Include="Cake Formation\DPConstEquations\fsDivisionInverseEquation.cs" />
     <Compile Include="Cake Formation\DPConstEquations\fsFakeEquation.cs" />
+    <Compile Include="Cake Formation\DPConstEquations\fsProductEquation.cs" />
+    <Compile Include="Cake Formation\DPConstEquations\fsVsusFromAreaAndCakeHeightEquation.cs" />
     <Compile Include="Cake Formation\fsCakeFormationDpConstCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

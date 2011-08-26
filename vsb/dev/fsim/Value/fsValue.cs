@@ -472,5 +472,8 @@ namespace Value
             }
             return x < y ? -1 : 1;
         }
+
+        public static fsValue One = new fsValue(1);
+        public static fsValue Zero = new fsValue(0);
     }
 }
