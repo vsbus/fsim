@@ -34,17 +34,6 @@ namespace fmDataGrid
             e.Control.TextChanged += fmDataGridTextChanged;
         }
 
-        private void fmDataGridSortCompare(object sender, DataGridViewSortCompareEventArgs e)
-        {
-            if (e.Column.GetType() == typeof(fmDataGridViewNumericalTextBoxColumn))
-            {
-                fmCalculationLibrary.fmValue val1 = fmCalculationLibrary.fmValue.ObjectToValue(e.CellValue1);
-                fmCalculationLibrary.fmValue val2 = fmCalculationLibrary.fmValue.ObjectToValue(e.CellValue2);
-                e.SortResult = val1 < val2 ? -1 : val1 > val2 ? 1 : 0;
-                e.Handled = true;
-            }
-        }
-
         private void InitializeComponent()
         {
             #region Activate Immediate Writing text to cells
@@ -64,8 +53,6 @@ namespace fmDataGrid
             RowTemplate.Height = 18;
             Font = new Font(Font.FontFamily, 8.25f, FontStyle.Regular);
             #endregion
-
-            SortCompare += fmDataGridSortCompare;
         }
 
         void fmKeyDown(object sender, KeyEventArgs e)
