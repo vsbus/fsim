@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Parameters;
 using Value;
+using StepCalculators;
 
 namespace WinFormsCakeFormationSample
 {
@@ -25,11 +26,21 @@ namespace WinFormsCakeFormationSample
         private void Form1_Load(object sender, EventArgs e)
         {
             fsParameterIdentifier[] MaterialParameters = new fsParameterIdentifier[] {
-                fsParameterIdentifier.etaf,
+                fsParameterIdentifier.FiltrateViscosity,
+                fsParameterIdentifier.FiltrateDensity,
+                fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity,
+                fsParameterIdentifier.MassConcentration,
+                fsParameterIdentifier.VolumeConcentration,
+                fsParameterIdentifier.Concentration,
+                fsParameterIdentifier.Porosity0,
+                fsParameterIdentifier.kappa0,
+                fsParameterIdentifier.ne,
+                fsParameterIdentifier.Pc0,
+                fsParameterIdentifier.rc0,
+                fsParameterIdentifier.alpha0,
                 fsParameterIdentifier.hce0,
-                fsParameterIdentifier.kappa,
-                fsParameterIdentifier.Pc,
+                fsParameterIdentifier.Rm0,
             };
 
             fsParameterIdentifier[] CakeFormationParameters = new fsParameterIdentifier[] {
@@ -47,6 +58,7 @@ namespace WinFormsCakeFormationSample
                 var cell = MaterialParametersDataGrid.Rows[MaterialParametersDataGrid.Rows.Count - 1].Cells[1];
                 parameterCell[p] = cell;
                 cellParameter[cell] = p;
+                parameterValue[p] = new fsSimulationParameter(p);
             }
 
             foreach (var p in CakeFormationParameters)
@@ -55,9 +67,15 @@ namespace WinFormsCakeFormationSample
                 var cell = CakeFormationDataGrid.Rows[CakeFormationDataGrid.Rows.Count - 1].Cells[1];
                 parameterCell[p] = cell;
                 cellParameter[cell] = p;
+                parameterValue[p] = new fsSimulationParameter(p);
             }
 
-            
+            parameterValue[fsParameterIdentifier.FiltrateDensity].IsInputed = true;
+            parameterValue[fsParameterIdentifier.SolidsDensity].IsInputed = true;
+            parameterValue[fsParameterIdentifier.SuspensionDensity].IsInputed = true;
+            parameterCell[fsParameterIdentifier.MassConcentration].ReadOnly = true;
+            parameterCell[fsParameterIdentifier.VolumeConcentration].ReadOnly = true;
+            parameterCell[fsParameterIdentifier.Concentration].ReadOnly = true;
         }
 
         private void MaterialParametersDataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
@@ -70,15 +88,30 @@ namespace WinFormsCakeFormationSample
             if (cellParameter.ContainsKey(cell))
             {
                 var id = cellParameter[cell];
-                if (parameterValue.ContainsKey(id) == false)
-                {
-                    parameterValue[id] = new fsSimulationParameter(id);
-                }
                 var param = parameterValue[id];
                 fsValue oldValue = param.Value;
                 fsValue newValue = fsValue.ObjectToValue(cell.Value);
                 param.Value = newValue;
                 Text = param.Identifier.Name + " changed from " + oldValue.ToString() + " to " + newValue.ToString();
+
+                Recalculate();
+            }
+        }
+
+        private void Recalculate()
+        {
+            var c1 = new fsDensityConcentrationCalculator();
+            c1.WriteParametersData(parameterValue);
+            c1.Calculate();
+            c1.ReadParametersValues(parameterValue);
+
+            foreach (var p in parameterValue.Keys)
+            {
+                var value = parameterValue[p];
+                if (value.IsInputed == false)
+                {
+                    parameterCell[p].Value = value.Value.ToString();
+                }
             }
         }
 

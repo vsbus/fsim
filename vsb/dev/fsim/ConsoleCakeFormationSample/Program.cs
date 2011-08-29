@@ -15,7 +15,7 @@ namespace ConsoleCakeFormationSample
             fsSimulationParameter[] paramsArray = {
                 new fsSimulationParameter(fsParameterIdentifier.SuspensionDensity),
                 new fsSimulationParameter(fsParameterIdentifier.hce0),
-                new fsSimulationParameter(fsParameterIdentifier.etaf),
+                new fsSimulationParameter(fsParameterIdentifier.FiltrateViscosity),
                 new fsSimulationParameter(fsParameterIdentifier.Pc),
                 new fsSimulationParameter(fsParameterIdentifier.kappa),
                 new fsSimulationParameter(fsParameterIdentifier.FilterArea),
@@ -54,7 +54,7 @@ namespace ConsoleCakeFormationSample
 
             ResetAllPArameters(data);
             SetParameter(data, fsParameterIdentifier.SuspensionDensity, 1070);
-            SetParameter(data, fsParameterIdentifier.etaf, 1e-3);
+            SetParameter(data, fsParameterIdentifier.FiltrateViscosity, 1e-3);
             SetParameter(data, fsParameterIdentifier.hce0, 10e-3);
             SetParameter(data, fsParameterIdentifier.Pc, 0.885e-13);
             SetParameter(data, fsParameterIdentifier.kappa, 0.396);
@@ -84,7 +84,7 @@ namespace ConsoleCakeFormationSample
             
             ResetAllPArameters(data);
             SetParameter(data, fsParameterIdentifier.SuspensionDensity, 1070);
-            SetParameter(data, fsParameterIdentifier.etaf, 1e-3);
+            SetParameter(data, fsParameterIdentifier.FiltrateViscosity, 1e-3);
             SetParameter(data, fsParameterIdentifier.hce0, 10e-3);
             SetParameter(data, fsParameterIdentifier.Pc, 0.885e-13);
             SetParameter(data, fsParameterIdentifier.kappa, 0.396);

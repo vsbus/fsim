@@ -53,6 +53,10 @@
     <Compile Include="Cake Formation\DPConstEquations\fsProductEquation.cs" />
     <Compile Include="Cake Formation\DPConstEquations\fsVsusFromAreaAndCakeHeightEquation.cs" />
     <Compile Include="Cake Formation\fsCakeFormationDpConstCalculator.cs" />
+    <Compile Include="Material Calculators\Densily Concentration Equations\Concentration Calculators\fsBaseConcentrationEquation.cs" />
+    <Compile Include="Material Calculators\Densily Concentration Equations\Concentration Calculators\fsMassConcentrationEquation.cs" />
+    <Compile Include="Material Calculators\Densily Concentration Equations\Concentration Calculators\fsVolumeConcentrationEquation.cs" />
+    <Compile Include="Material Calculators\fsDensityConcentrationCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

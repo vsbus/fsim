@@ -48,7 +48,7 @@
             this.materialDataGroupBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.materialDataGroupBox.Location = new System.Drawing.Point(0, 0);
             this.materialDataGroupBox.Name = "materialDataGroupBox";
-            this.materialDataGroupBox.Size = new System.Drawing.Size(273, 294);
+            this.materialDataGroupBox.Size = new System.Drawing.Size(273, 559);
             this.materialDataGroupBox.TabIndex = 0;
             this.materialDataGroupBox.TabStop = false;
             this.materialDataGroupBox.Text = "Material Data";
@@ -68,7 +68,7 @@
             this.MaterialParametersDataGrid.Name = "MaterialParametersDataGrid";
             this.MaterialParametersDataGrid.RowHeadersVisible = false;
             this.MaterialParametersDataGrid.RowTemplate.Height = 18;
-            this.MaterialParametersDataGrid.Size = new System.Drawing.Size(267, 275);
+            this.MaterialParametersDataGrid.Size = new System.Drawing.Size(267, 540);
             this.MaterialParametersDataGrid.TabIndex = 0;
             this.MaterialParametersDataGrid.CellValueChangedByUser += new System.Windows.Forms.DataGridViewCellEventHandler(this.MaterialParametersDataGrid_CellValueChangedByUser);
             // 
@@ -91,7 +91,7 @@
             this.cakeFormationGroupBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.cakeFormationGroupBox.Location = new System.Drawing.Point(273, 0);
             this.cakeFormationGroupBox.Name = "cakeFormationGroupBox";
-            this.cakeFormationGroupBox.Size = new System.Drawing.Size(289, 294);
+            this.cakeFormationGroupBox.Size = new System.Drawing.Size(289, 559);
             this.cakeFormationGroupBox.TabIndex = 1;
             this.cakeFormationGroupBox.TabStop = false;
             this.cakeFormationGroupBox.Text = "Cake Formation";
@@ -111,7 +111,7 @@
             this.CakeFormationDataGrid.Name = "CakeFormationDataGrid";
             this.CakeFormationDataGrid.RowHeadersVisible = false;
             this.CakeFormationDataGrid.RowTemplate.Height = 18;
-            this.CakeFormationDataGrid.Size = new System.Drawing.Size(283, 275);
+            this.CakeFormationDataGrid.Size = new System.Drawing.Size(283, 540);
             this.CakeFormationDataGrid.TabIndex = 0;
             this.CakeFormationDataGrid.CellValueChangedByUser += new System.Windows.Forms.DataGridViewCellEventHandler(this.CakeFormationDataGrid_CellValueChangedByUser);
             // 
@@ -129,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 294);
+            this.ClientSize = new System.Drawing.Size(574, 559);
             this.Controls.Add(this.cakeFormationGroupBox);
             this.Controls.Add(this.materialDataGroupBox);
             this.Name = "Form1";

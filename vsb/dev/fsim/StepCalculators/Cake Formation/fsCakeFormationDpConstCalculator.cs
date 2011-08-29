@@ -44,7 +44,7 @@ namespace StepCalculators
             SuspensionVolume = InitParameter(fsParameterIdentifier.SuspensionVolume);
 
             SuspensionDensity = InitParameter(fsParameterIdentifier.SuspensionDensity);
-            etaf = InitParameter(fsParameterIdentifier.etaf);
+            etaf = InitParameter(fsParameterIdentifier.FiltrateViscosity);
             hce0 = InitParameter(fsParameterIdentifier.hce0);
             Pc = InitParameter(fsParameterIdentifier.Pc);
             kappa = InitParameter(fsParameterIdentifier.kappa);
