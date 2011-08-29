@@ -48,7 +48,7 @@ namespace Parameters
         public static fsParameterIdentifier SuspensionMass = new fsParameterIdentifier("Msus");
         public static fsParameterIdentifier SuspensionVolume = new fsParameterIdentifier("Vsus");
 
-        public static fsParameterIdentifier SuspensionDensity = new fsParameterIdentifier("SuspensionDensity");
+        public static fsParameterIdentifier SuspensionDensity = new fsParameterIdentifier("rho_sus");
         public static fsParameterIdentifier etaf = new fsParameterIdentifier("etaf");
         public static fsParameterIdentifier hce0 = new fsParameterIdentifier("hce");
         public static fsParameterIdentifier Pc  = new fsParameterIdentifier("Pc ");
