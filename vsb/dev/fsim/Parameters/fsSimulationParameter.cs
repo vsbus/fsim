@@ -8,40 +8,40 @@ namespace Parameters
 {
     public class fsSimulationParameter : fsCalculatorConstant
     {
-        private bool m_isInputed;
-        public bool IsInputed
+        private bool m_isInput;
+        public bool isInput
         {
-            get { return m_isInputed; }
-            set { m_isInputed = value; }
+            get { return m_isInput; }
+            set { m_isInput = value; }
         }
 
         public fsSimulationParameter(fsParameterIdentifier identifier)
             : base(identifier)
         {
-            m_isInputed = false;
+            m_isInput = false;
         }
 
-        public fsSimulationParameter(fsParameterIdentifier identifier, bool isInputed)
+        public fsSimulationParameter(fsParameterIdentifier identifier, bool isInput)
             : base(identifier)
         {
-            m_isInputed = isInputed;
+            m_isInput = isInput;
         }
 
         public fsSimulationParameter(fsParameterIdentifier identifier, fsValue value)
             : base(identifier, value)
         {
-            m_isInputed = false;
+            m_isInput = false;
         }
 
-        public fsSimulationParameter(fsParameterIdentifier identifier, bool isInputed, fsValue value)
+        public fsSimulationParameter(fsParameterIdentifier identifier, bool isInput, fsValue value)
             : base(identifier, value)
         {
-            m_isInputed = isInputed;
+            m_isInput = isInput;
         }
 
         public override string ToString()
         {
-            return Identifier.Name + "(" + (m_isInputed ? "Inputed" : "Calculated") + ")" + " = " + Value.ToString();
+            return Identifier.Name + "(" + (m_isInput ? "Inputed" : "Calculated") + ")" + " = " + Value.ToString();
         }
     }
 }

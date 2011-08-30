@@ -68,7 +68,7 @@ namespace StepCalculators
             string message = "";
             foreach (var p in m_parameters.Values)
             {
-                if (!p.IsInputed && !p.IsProcessed)
+                if (!p.isInput && !p.IsProcessed)
                 {
                     message += "     - Unable to calculate " + p.Identifier.Name + "\n";
                 }
@@ -84,7 +84,7 @@ namespace StepCalculators
             return message;
         }
 
-        public void ReadParametersValues(Dictionary<fsParameterIdentifier, fsSimulationParameter> target)
+        public void CopyValuesToStorage(Dictionary<fsParameterIdentifier, fsSimulationParameter> target)
         {
             foreach (fsParameterIdentifier p in target.Keys)
             {
@@ -95,14 +95,14 @@ namespace StepCalculators
             }
         }
 
-        public void WriteParametersData(Dictionary<fsParameterIdentifier, fsSimulationParameter> source)
+        public void ReadDataFromStorage(Dictionary<fsParameterIdentifier, fsSimulationParameter> source)
         {
             foreach (fsParameterIdentifier p in source.Keys)
             {
                 if (m_parameters.ContainsKey(p))
                 {
                     m_parameters[p].Value = source[p].Value;
-                    m_parameters[p].IsInputed = source[p].IsInputed;
+                    m_parameters[p].isInput = source[p].isInput;
                 }
                 if (m_constants.ContainsKey(p))
                 {

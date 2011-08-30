@@ -63,10 +63,10 @@ namespace ConsoleCakeFormationSample
             SetParameter(data, fsParameterIdentifier.CycleTime, 0.5);
             SetParameter(data, fsParameterIdentifier.FormationRelativeTime, 0.75);
 
-            calculator.WriteParametersData(data);
+            calculator.ReadDataFromStorage(data);
             calculator.Calculate();
             System.Console.WriteLine("Calculator message: " + calculator.GetStatusMessage());
-            calculator.ReadParametersValues(data);
+            calculator.CopyValuesToStorage(data);
             foreach (var p in data)
             {
                 System.Console.WriteLine(p.ToString());
@@ -93,10 +93,10 @@ namespace ConsoleCakeFormationSample
             SetParameter(data, fsParameterIdentifier.RotationalSpeed, 2);
             SetParameter(data, fsParameterIdentifier.FormationRelativeTime, 0.75);
             
-            calculator.WriteParametersData(data);
+            calculator.ReadDataFromStorage(data);
             calculator.Calculate();
             System.Console.WriteLine("Calculator message: " + calculator.GetStatusMessage());
-            calculator.ReadParametersValues(data);
+            calculator.CopyValuesToStorage(data);
             foreach (var p in data)
             {
                 System.Console.WriteLine(p.ToString());
@@ -105,7 +105,7 @@ namespace ConsoleCakeFormationSample
 
         private static void SetParameter(Dictionary<fsParameterIdentifier, fsSimulationParameter> data, fsParameterIdentifier identifier, double value)
         {
-            data[identifier].IsInputed = true;
+            data[identifier].isInput = true;
             data[identifier].Value = new fsValue(value);
         }
 
@@ -113,7 +113,7 @@ namespace ConsoleCakeFormationSample
         {
             foreach (var p in data.Values)
             {
-                p.IsInputed = false;
+                p.isInput = false;
                 p.Value = new fsValue();
             }
         }
