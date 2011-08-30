@@ -20,8 +20,8 @@ namespace Parameters
             m_isProcessed = false;
         }
 
-        public fsCalculatorParameter(fsParameterIdentifier identifier, bool isInputed)
-            : base(identifier, isInputed)
+        public fsCalculatorParameter(fsParameterIdentifier identifier, bool isInput)
+            : base(identifier, isInput)
         {
             m_isProcessed = false;
         }
@@ -29,7 +29,7 @@ namespace Parameters
         public override string ToString()
         {
             return Identifier.Name 
-                + "(" + (IsInputed ? "Inputed" : "Calculated") + ", " + (m_isProcessed == false ? "Not " : "") + "Processed" + ")" 
+                + "(" + (isInput ? "Inputed" : "Calculated") + ", " + (m_isProcessed == false ? "Not " : "") + "Processed" + ")" 
                 + " = " + Value.ToString();
         }
     }

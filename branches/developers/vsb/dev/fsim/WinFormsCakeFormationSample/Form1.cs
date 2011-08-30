@@ -70,9 +70,9 @@ namespace WinFormsCakeFormationSample
                 parameterValue[p] = new fsSimulationParameter(p);
             }
 
-            parameterValue[fsParameterIdentifier.FiltrateDensity].IsInputed = true;
-            parameterValue[fsParameterIdentifier.SolidsDensity].IsInputed = true;
-            parameterValue[fsParameterIdentifier.SuspensionDensity].IsInputed = true;
+            parameterValue[fsParameterIdentifier.FiltrateDensity].isInput = true;
+            parameterValue[fsParameterIdentifier.SolidsDensity].isInput = true;
+            parameterValue[fsParameterIdentifier.SuspensionDensity].isInput = true;
             parameterCell[fsParameterIdentifier.MassConcentration].ReadOnly = true;
             parameterCell[fsParameterIdentifier.VolumeConcentration].ReadOnly = true;
             parameterCell[fsParameterIdentifier.Concentration].ReadOnly = true;
@@ -89,20 +89,21 @@ namespace WinFormsCakeFormationSample
             {
                 var id = cellParameter[cell];
                 var param = parameterValue[id];
+                
                 fsValue oldValue = param.Value;
                 fsValue newValue = fsValue.ObjectToValue(cell.Value);
-                param.Value = newValue;
                 Text = param.Identifier.Name + " changed from " + oldValue.ToString() + " to " + newValue.ToString();
-
+                param.Value = newValue;
+                
                 if (cell == parameterCell[fsParameterIdentifier.Porosity0])
                 {
-                    parameterValue[fsParameterIdentifier.Porosity0].IsInputed = true;
-                    parameterValue[fsParameterIdentifier.kappa0].IsInputed = false;
+                    parameterValue[fsParameterIdentifier.Porosity0].isInput = true;
+                    parameterValue[fsParameterIdentifier.kappa0].isInput = false;
                 }
                 if (cell == parameterCell[fsParameterIdentifier.kappa0])
                 {
-                    parameterValue[fsParameterIdentifier.Porosity0].IsInputed = false;
-                    parameterValue[fsParameterIdentifier.kappa0].IsInputed = true;
+                    parameterValue[fsParameterIdentifier.Porosity0].isInput = false;
+                    parameterValue[fsParameterIdentifier.kappa0].isInput = true;
                 }
 
                 Recalculate();
@@ -117,7 +118,7 @@ namespace WinFormsCakeFormationSample
             foreach (var p in parameterValue.Keys)
             {
                 var value = parameterValue[p];
-                if (value.IsInputed == false)
+                if (value.isInput == false)
                 {
                     parameterCell[p].Value = value.Value.ToString();
                 }
@@ -126,9 +127,9 @@ namespace WinFormsCakeFormationSample
 
         private void ApplyCalculator(fsStepCalculator calculator)
         {
-            calculator.WriteParametersData(parameterValue);
+            calculator.ReadDataFromStorage(parameterValue);
             calculator.Calculate();
-            calculator.ReadParametersValues(parameterValue);
+            calculator.CopyValuesToStorage(parameterValue);
         }
         private void CakeFormationDataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
         {

@@ -24,10 +24,10 @@ namespace StepCalculators
 
         public bool CanBeCalculated()
         {
-            if (m_result.IsInputed || m_result.IsProcessed)
+            if (m_result.isInput || m_result.IsProcessed)
                 return false;
             foreach (var p in m_inputs)
-                if (!p.IsInputed && !p.IsProcessed)
+                if (!p.isInput && !p.IsProcessed)
                     return false;
             return true;
         }
