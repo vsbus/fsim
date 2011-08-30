@@ -6,40 +6,27 @@ using Parameters;
 
 namespace StepCalculators
 {
-    public abstract class fsStepCalculator
+    /*
+     * fsStepCalculator is a base abstract class for all calculators
+     * it consists of three main components
+     *     m_constants:     values that calculated before and used in current calculator like constants
+     *     m_parameters:    input by user/calculated or just calculated parameters
+     *     m_equations:     set of equations that can be used for calculating values from m_parameters
+     *     
+     * In derivative classes user must override 
+     *     InitParametersAndConstants():    here he must to initialize all constants and parameters
+     *     InitEquations():                 here he must to add all corresponding equations
+     *     
+     * Then calculator can be used with public methods
+     * 
+     * */
+    public abstract class fsCalculator
     {
         private Dictionary<fsParameterIdentifier, fsCalculatorParameter> m_parameters = new Dictionary<fsParameterIdentifier, fsCalculatorParameter>();
         private Dictionary<fsParameterIdentifier, fsCalculatorConstant> m_constants = new Dictionary<fsParameterIdentifier, fsCalculatorConstant>();
-        
         private List<fsCalculatorEquation> m_equations = new List<fsCalculatorEquation>();
 
-        public fsStepCalculator()
-        {
-            InitParametersAndConstants();
-            InitEquations();
-        }
-
-        protected fsCalculatorParameter InitParameter(fsParameterIdentifier identifier)
-        {
-            var p = new fsCalculatorParameter(identifier);
-            m_parameters[identifier] = p;
-            return p;
-        }
-
-        protected fsCalculatorConstant InitConstant(fsParameterIdentifier identifier)
-        {
-            var c = new fsCalculatorConstant(identifier);
-            m_constants[identifier] = c;
-            return c;
-        }
-
         protected abstract void InitParametersAndConstants();
-
-        protected void AddEquation(fsCalculatorEquation equation)
-        {
-            m_equations.Add(equation);
-        }
-
         protected abstract void InitEquations();
 
         public void Calculate()
@@ -62,7 +49,6 @@ namespace StepCalculators
                 }
             }
         }
-
         public string GetStatusMessage()
         {
             string message = "";
@@ -83,7 +69,6 @@ namespace StepCalculators
             }
             return message;
         }
-
         public void CopyValuesToStorage(Dictionary<fsParameterIdentifier, fsSimulationParameter> target)
         {
             foreach (fsParameterIdentifier p in target.Keys)
@@ -94,7 +79,6 @@ namespace StepCalculators
                 }
             }
         }
-
         public void ReadDataFromStorage(Dictionary<fsParameterIdentifier, fsSimulationParameter> source)
         {
             foreach (fsParameterIdentifier p in source.Keys)
@@ -109,6 +93,28 @@ namespace StepCalculators
                     m_constants[p].Value = source[p].Value;
                 }
             }
+        }
+        public fsCalculator()
+        {
+            InitParametersAndConstants();
+            InitEquations();
+        }
+
+        protected fsCalculatorParameter InitParameter(fsParameterIdentifier identifier)
+        {
+            var p = new fsCalculatorParameter(identifier);
+            m_parameters[identifier] = p;
+            return p;
+        }
+        protected fsCalculatorConstant InitConstant(fsParameterIdentifier identifier)
+        {
+            var c = new fsCalculatorConstant(identifier);
+            m_constants[identifier] = c;
+            return c;
+        }
+        protected void AddEquation(fsCalculatorEquation equation)
+        {
+            m_equations.Add(equation);
         }
     }
 }

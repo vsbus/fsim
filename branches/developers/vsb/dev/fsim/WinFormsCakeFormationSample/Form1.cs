@@ -125,7 +125,7 @@ namespace WinFormsCakeFormationSample
             }
         }
 
-        private void ApplyCalculator(fsStepCalculator calculator)
+        private void ApplyCalculator(fsCalculator calculator)
         {
             calculator.ReadDataFromStorage(parameterValue);
             calculator.Calculate();
