@@ -36,5 +36,35 @@ namespace StepCalculators
         {
             m_result.IsProcessed = true;
         }
+
+        public double GetWeight()
+        {
+            List<fsCalculatorParameter> oldInputs = new List<fsCalculatorParameter>();
+            foreach (var p in Inputs)
+            {
+                var np = new fsCalculatorParameter(p.Identifier, p.IsInputed);
+                np.IsProcessed = p.IsProcessed;
+                np.Value = p.Value;
+                oldInputs.Add(np);
+                p.IsProcessed = false;
+                p.IsInputed = true;
+                p.Value = fsValue.One;
+            }
+            fsCalculatorParameter oldResult = new fsCalculatorParameter(Result.Identifier, Result.IsInputed);
+            oldResult.IsProcessed = Result.IsProcessed;
+            oldResult.Value = Result.Value;
+            Result.IsInputed = false;
+
+            double startTime = DateTime.Now.TimeOfDay.TotalSeconds;
+            int iterationsCount = 0;
+            while (DateTime.Now.TimeOfDay.TotalSeconds - startTime <= 1)
+            {
+                ++iterationsCount;
+                Calculate();
+            }
+            double result = (DateTime.Now.TimeOfDay.TotalSeconds - startTime) / iterationsCount;
+            // todo: restore old values
+            return result;
+        }
     }
 }
