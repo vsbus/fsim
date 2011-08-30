@@ -59,6 +59,16 @@
     <Compile Include="Math\fsProductEquation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Parameters\Parameters.csproj">
+      <Project>{67A1D000-12E6-439C-BC89-23C4059BC855}</Project>
+      <Name>Parameters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Value\Value.csproj">
+      <Project>{CD1BD2A7-AB61-4A58-B1F9-9A3DF9A0E9F2}</Project>
+      <Name>Value</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
