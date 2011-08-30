@@ -8,6 +8,10 @@ namespace StepCalculators
 {
     public class fsCakeFormationDpConstCalculator : fsCalculator
     {
+        fsCalculatorConstant SuspensionDensity;
+        fsCalculatorConstant etaf;
+        fsCalculatorConstant hce0;
+
         fsCalculatorParameter FilterArea;
 
         fsCalculatorParameter Pressure;
@@ -21,14 +25,15 @@ namespace StepCalculators
         fsCalculatorParameter SuspensionMass;
         fsCalculatorParameter SuspensionVolume;
 
-        fsCalculatorParameter SuspensionDensity;
-        fsCalculatorParameter etaf;
-        fsCalculatorParameter hce0;
         fsCalculatorParameter Pc;
         fsCalculatorParameter kappa;
 
         protected override void InitParametersAndConstants()
         {
+            SuspensionDensity = InitConstant(fsParameterIdentifier.SuspensionDensity);
+            etaf = InitConstant(fsParameterIdentifier.FiltrateViscosity);
+            hce0 = InitConstant(fsParameterIdentifier.hce0);
+
             FilterArea = InitParameter(fsParameterIdentifier.FilterArea);
 
             Pressure = InitParameter(fsParameterIdentifier.Pressure);
@@ -42,9 +47,6 @@ namespace StepCalculators
             SuspensionMass = InitParameter(fsParameterIdentifier.SuspensionMass);
             SuspensionVolume = InitParameter(fsParameterIdentifier.SuspensionVolume);
 
-            SuspensionDensity = InitParameter(fsParameterIdentifier.SuspensionDensity);
-            etaf = InitParameter(fsParameterIdentifier.FiltrateViscosity);
-            hce0 = InitParameter(fsParameterIdentifier.hce0);
             Pc = InitParameter(fsParameterIdentifier.Pc);
             kappa = InitParameter(fsParameterIdentifier.kappa);
         }
