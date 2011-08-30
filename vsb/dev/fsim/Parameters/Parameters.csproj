@@ -52,10 +52,6 @@
     <Compile Include="Identifiers\fsParameterIdentifier.cs" />
     <Compile Include="fsSimulationParameter.cs" />
     <Compile Include="fsNamedValueParameter.cs" />
-    <Compile Include="Interfaces\fsIIdentified.cs" />
-    <Compile Include="Interfaces\fsIInputCalculated.cs" />
-    <Compile Include="Interfaces\fsIProcessedStatus.cs" />
-    <Compile Include="Interfaces\fsIValuable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
