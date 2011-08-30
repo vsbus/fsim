@@ -6,7 +6,7 @@ using Parameters;
 
 namespace StepCalculators
 {
-    public class fsEps0Kappa0Calculator : fsStepCalculator
+    public class fsEps0Kappa0Calculator : fsCalculator
     {
         private fsCalculatorParameter Porosity0;
         private fsCalculatorParameter Kappa0;

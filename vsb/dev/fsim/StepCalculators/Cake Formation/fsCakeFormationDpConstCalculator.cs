@@ -6,7 +6,7 @@ using Parameters;
 
 namespace StepCalculators
 {
-    public class fsCakeFormationDpConstCalculator : fsStepCalculator
+    public class fsCakeFormationDpConstCalculator : fsCalculator
     {
         fsCalculatorParameter FilterArea;
 

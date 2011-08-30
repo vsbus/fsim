@@ -6,7 +6,7 @@ using Parameters;
 
 namespace StepCalculators
 {
-    public class fsDensityConcentrationCalculator : fsStepCalculator
+    public class fsDensityConcentrationCalculator : fsCalculator
     {
         private fsCalculatorParameter FiltrateDensity;
         private fsCalculatorParameter SolidsDensity;
