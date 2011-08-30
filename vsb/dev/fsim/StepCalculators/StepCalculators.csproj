@@ -45,8 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\fsStepCalculator.cs" />
     <Compile Include="Cake Formation\fsCakeFormationDpConstCalculator.cs" />
+    <Compile Include="fsCalculator.cs" />
     <Compile Include="Material Calculators\fsDensityConcentrationCalculator.cs" />
     <Compile Include="Material Calculators\fsEps0Kapp0Calculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
