@@ -15,7 +15,7 @@ namespace StepCalculators
         private fsCalculatorParameter VolumeConcentration;
         private fsCalculatorParameter Concentration;
 
-        protected override void InitParameters()
+        protected override void InitParametersAndConstants()
         {
             FiltrateDensity = InitParameter(fsParameterIdentifier.FiltrateDensity);
             SolidsDensity = InitParameter(fsParameterIdentifier.SolidsDensity);
@@ -27,9 +27,9 @@ namespace StepCalculators
 
         protected override void InitEquations()
         {
-            Equations.Add(new fsMassConcentrationEquation(MassConcentration, FiltrateDensity, SolidsDensity, SuspensionDensity));
-            Equations.Add(new fsVolumeConcentrationEquation(MassConcentration, FiltrateDensity, SolidsDensity, SuspensionDensity));
-            Equations.Add(new fsConcentrationEquation(MassConcentration, FiltrateDensity, SolidsDensity, SuspensionDensity));
+            AddEquation(new fsMassConcentrationEquation(MassConcentration, FiltrateDensity, SolidsDensity, SuspensionDensity));
+            AddEquation(new fsVolumeConcentrationEquation(VolumeConcentration, FiltrateDensity, SolidsDensity, SuspensionDensity));
+            AddEquation(new fsConcentrationEquation(Concentration, FiltrateDensity, SolidsDensity, SuspensionDensity));
         }
     }
 }

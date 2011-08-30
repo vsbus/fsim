@@ -45,7 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fsCalculatorParameter.cs" />
+    <Compile Include="For Calculators\fsCalculatorConstant.cs" />
+    <Compile Include="For Calculators\fsCalculatorParameter.cs" />
     <Compile Include="fsJustValueParameter.cs" />
     <Compile Include="Identifiers\fsParameterIdentifier.cs" />
     <Compile Include="fsSimulationParameter.cs" />
