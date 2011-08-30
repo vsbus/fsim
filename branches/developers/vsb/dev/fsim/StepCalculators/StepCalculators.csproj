@@ -45,26 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\fsCalculatorEquation.cs" />
     <Compile Include="Base\fsStepCalculator.cs" />
-    <Compile Include="Cake Formation\DPConstEquations\fsCakeHeightFrom_Dp_tfEquation.cs" />
-    <Compile Include="Cake Formation\DPConstEquations\fsDivisionInverseEquation.cs" />
-    <Compile Include="Cake Formation\DPConstEquations\fsFakeEquation.cs" />
-    <Compile Include="Cake Formation\DPConstEquations\fsProductEquation.cs" />
-    <Compile Include="Cake Formation\DPConstEquations\fsVsusFromAreaAndCakeHeightEquation.cs" />
     <Compile Include="Cake Formation\fsCakeFormationDpConstCalculator.cs" />
-    <Compile Include="Material Calculators\Densily Concentration Equations\Concentration Calculators\fsBaseConcentrationEquation.cs" />
-    <Compile Include="Material Calculators\Densily Concentration Equations\Concentration Calculators\fsConcentrationEquation.cs" />
-    <Compile Include="Material Calculators\Densily Concentration Equations\Concentration Calculators\fsMassConcentrationEquation.cs" />
-    <Compile Include="Material Calculators\Densily Concentration Equations\Concentration Calculators\fsVolumeConcentrationEquation.cs" />
-    <Compile Include="Material Calculators\Eps Kappa Equations\fsEpsFromKappaCvEquation.cs" />
-    <Compile Include="Material Calculators\Eps Kappa Equations\fsEpsKappaCvEquation.cs" />
-    <Compile Include="Material Calculators\Eps Kappa Equations\fsKappaFromEpsCvEquation.cs" />
     <Compile Include="Material Calculators\fsDensityConcentrationCalculator.cs" />
-    <Compile Include="Material Calculators\fsEps0Kappa0Calculator.cs" />
+    <Compile Include="Material Calculators\fsEps0Kapp0Calculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Equations\Equations.csproj">
+      <Project>{98183315-59DF-4FFC-98EA-71E8BE950DE7}</Project>
+      <Name>Equations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Parameters\Parameters.csproj">
       <Project>{67A1D000-12E6-439C-BC89-23C4059BC855}</Project>
       <Name>Parameters</Name>
