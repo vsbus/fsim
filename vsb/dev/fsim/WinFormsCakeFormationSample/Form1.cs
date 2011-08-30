@@ -94,17 +94,26 @@ namespace WinFormsCakeFormationSample
                 param.Value = newValue;
                 Text = param.Identifier.Name + " changed from " + oldValue.ToString() + " to " + newValue.ToString();
 
+                if (cell == parameterCell[fsParameterIdentifier.Porosity0])
+                {
+                    parameterValue[fsParameterIdentifier.Porosity0].IsInputed = true;
+                    parameterValue[fsParameterIdentifier.kappa0].IsInputed = false;
+                }
+                if (cell == parameterCell[fsParameterIdentifier.kappa0])
+                {
+                    parameterValue[fsParameterIdentifier.Porosity0].IsInputed = false;
+                    parameterValue[fsParameterIdentifier.kappa0].IsInputed = true;
+                }
+
                 Recalculate();
             }
         }
 
         private void Recalculate()
         {
-            var c1 = new fsDensityConcentrationCalculator();
-            c1.WriteParametersData(parameterValue);
-            c1.Calculate();
-            c1.ReadParametersValues(parameterValue);
-
+            ApplyCalculator(new fsDensityConcentrationCalculator());
+            ApplyCalculator(new fsEps0Kappa0Calculator());
+            
             foreach (var p in parameterValue.Keys)
             {
                 var value = parameterValue[p];
@@ -115,6 +124,12 @@ namespace WinFormsCakeFormationSample
             }
         }
 
+        private void ApplyCalculator(fsStepCalculator calculator)
+        {
+            calculator.WriteParametersData(parameterValue);
+            calculator.Calculate();
+            calculator.ReadParametersValues(parameterValue);
+        }
         private void CakeFormationDataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
         {
             ProcessParameterChange((sender as DataGridView)[e.ColumnIndex, e.RowIndex]);

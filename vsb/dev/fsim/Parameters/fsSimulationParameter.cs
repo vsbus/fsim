@@ -6,7 +6,7 @@ using Value;
 
 namespace Parameters
 {
-    public class fsSimulationParameter : fsNamedValueParameter
+    public class fsSimulationParameter : fsCalculatorConstant
     {
         private bool m_isInputed;
         public bool IsInputed

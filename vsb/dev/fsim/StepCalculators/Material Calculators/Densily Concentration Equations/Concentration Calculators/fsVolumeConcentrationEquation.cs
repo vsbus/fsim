@@ -2,10 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Parameters;
+using Value;
 
-namespace StepCalculators.Material_Calculators.Densily_Concentration_Equations.Concentration_Calculators
+namespace StepCalculators
 {
-    class fsVolumeConcentrationEquation
+    public class fsVolumeConcentrationEquation : fsBaseConcentrationEquation
     {
+        private fsCalculatorParameter VolumeConcentration;
+
+        public fsVolumeConcentrationEquation(
+            fsCalculatorParameter VolumeConcentration,
+            fsCalculatorParameter FiltrateDensity,
+            fsCalculatorParameter SolidsDensity,
+            fsCalculatorParameter SuspensionDensity)
+            : base(
+                FiltrateDensity,
+                SolidsDensity,
+                SuspensionDensity)
+        {
+            this.VolumeConcentration = VolumeConcentration;
+
+            Result = VolumeConcentration;
+        }
+
+        public override void Calculate()
+        {
+            fsValue rho_f = FiltrateDensity.Value;
+            VolumeConcentration.Value = (rho_f - SuspensionDensity.Value) / (rho_f - SolidsDensity.Value);
+            base.Calculate();
+        }
     }
 }

@@ -9,28 +9,36 @@ namespace StepCalculators
     public abstract class fsStepCalculator
     {
         private Dictionary<fsParameterIdentifier, fsCalculatorParameter> m_parameters = new Dictionary<fsParameterIdentifier, fsCalculatorParameter>();
+        private Dictionary<fsParameterIdentifier, fsCalculatorConstant> m_constants = new Dictionary<fsParameterIdentifier, fsCalculatorConstant>();
         
         private List<fsCalculatorEquation> m_equations = new List<fsCalculatorEquation>();
-        protected List<fsCalculatorEquation> Equations
-        {
-            get { return m_equations; }
-            set { m_equations = value; }
-        }
 
         public fsStepCalculator()
         {
-            InitParameters();
+            InitParametersAndConstants();
             InitEquations();
         }
 
         protected fsCalculatorParameter InitParameter(fsParameterIdentifier identifier)
         {
-            fsCalculatorParameter p = new fsCalculatorParameter(identifier);
+            var p = new fsCalculatorParameter(identifier);
             m_parameters[identifier] = p;
             return p;
         }
 
-        protected abstract void InitParameters();
+        protected fsCalculatorConstant InitConstant(fsParameterIdentifier identifier)
+        {
+            var c = new fsCalculatorConstant(identifier);
+            m_constants[identifier] = c;
+            return c;
+        }
+
+        protected abstract void InitParametersAndConstants();
+
+        protected void AddEquation(fsCalculatorEquation equation)
+        {
+            m_equations.Add(equation);
+        }
 
         protected abstract void InitEquations();
 
@@ -95,6 +103,10 @@ namespace StepCalculators
                 {
                     m_parameters[p].Value = source[p].Value;
                     m_parameters[p].IsInputed = source[p].IsInputed;
+                }
+                if (m_constants.ContainsKey(p))
+                {
+                    m_constants[p].Value = source[p].Value;
                 }
             }
         }
