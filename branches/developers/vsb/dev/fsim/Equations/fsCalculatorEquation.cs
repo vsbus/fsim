@@ -62,6 +62,13 @@ namespace Equations
 
         private bool Calculate(fsIEquationParameter result)
         {
+            int sum = 0;
+            for (int i = 0; i < 50000000; ++i)
+            {
+                sum += i;
+            }
+            sum -= 10;
+
             if (m_formulas == null)
             {
                 m_formulas = new List<KeyValuePair<fsIEquationParameter, Formula>>();
