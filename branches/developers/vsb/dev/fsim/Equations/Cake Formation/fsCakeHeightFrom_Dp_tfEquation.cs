@@ -9,6 +9,8 @@ namespace Equations
 {
     public class fsCakeHeightFrom_Dp_tf : fsCalculatorEquation
     {
+        #region Parameters
+
         fsIEquationParameter CakeHeight;
         fsIEquationParameter hce;
         fsIEquationParameter Pc;
@@ -16,6 +18,8 @@ namespace Equations
         fsIEquationParameter Pressure;
         fsIEquationParameter FormationTime;
         fsIEquationParameter etaf;
+
+        #endregion
 
         public fsCakeHeightFrom_Dp_tf(
             fsIEquationParameter CakeHeight,
@@ -46,12 +50,16 @@ namespace Equations
 
         protected override void InitFormulas()
         {
-            AddFormula(CakeHeight, CalculateCakeHeight);
+            AddFormula(CakeHeight, CakeHeightFormula);
         }
 
-        private void CalculateCakeHeight()
+        #region Formulas
+
+        private void CakeHeightFormula()
         {
             CakeHeight.Value = fsValue.Sqrt(hce.Value * hce.Value + 2 * Pc.Value * kappa.Value * Pressure.Value * FormationTime.Value / etaf.Value) - hce.Value;
         }
+
+        #endregion
     }
 }
