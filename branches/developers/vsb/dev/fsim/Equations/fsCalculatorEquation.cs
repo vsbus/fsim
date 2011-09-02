@@ -4,40 +4,67 @@ using System.Linq;
 using System.Text;
 using Parameters;
 
-namespace StepCalculators
+namespace Equations
 {
     public abstract class fsCalculatorEquation
     {
-        private List<fsIEquationParameter> m_inputs = new List<fsIEquationParameter>();
+        protected delegate void Formula();
+        private List<KeyValuePair<fsIEquationParameter, Formula>> m_formulas = null;
 
-        private fsIEquationParameter m_result;
-        protected fsIEquationParameter Result
-        {
-            get { return m_result; }
-            set { m_result = value; }
-        }
+        private List<fsIEquationParameter> m_parameters = new List<fsIEquationParameter>();
 
         protected fsCalculatorEquation(params fsIEquationParameter[] parameters)
         {
             foreach (var p in parameters)
             {
-                m_inputs.Add(p);
+                m_parameters.Add(p);
             }
         }
 
-        public bool CanBeCalculated()
+        public bool Calculate()
         {
-            if (m_result.IsProcessed)
+            fsIEquationParameter result = null;
+            foreach (var p in m_parameters)
+            {
+                if (p.IsProcessed == false)
+                    if (result == null)
+                        result = p;
+                    else
+                        return false;
+            }
+            if (result == null)
                 return false;
-            foreach (var p in m_inputs)
-                if (p != m_result && !p.IsProcessed)
-                    return false;
-            return true;
+            if (Calculate(result))
+            {
+                result.IsProcessed = true;
+                return true;
+            }
+            return false;
         }
 
-        public virtual void Calculate()
+        private bool Calculate(fsIEquationParameter result)
         {
-            m_result.IsProcessed = true;
+            if (m_formulas == null)
+            {
+                m_formulas = new List<KeyValuePair<fsIEquationParameter, Formula>>();
+                InitFormulas();
+            }
+            foreach (var f in m_formulas)
+            {
+                if (f.Key == result)
+                {
+                    f.Value();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        protected abstract void InitFormulas();
+
+        protected void AddFormula(fsIEquationParameter result, Formula formula)
+        {
+            m_formulas.Add(new KeyValuePair<fsIEquationParameter,Formula>(result, formula));
         }
 
         public double GetWeight()

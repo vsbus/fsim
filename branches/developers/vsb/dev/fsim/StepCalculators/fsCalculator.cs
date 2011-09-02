@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Parameters;
+using Equations;
 
 namespace StepCalculators
 {
@@ -74,13 +75,8 @@ namespace StepCalculators
             {
                 somethingChanged = false;
                 foreach (var equation in m_equations)
-                {
-                    if (equation.CanBeCalculated())
-                    {
-                        equation.Calculate();
+                    if (equation.Calculate())
                         somethingChanged = true;
-                    }
-                }
             }
         }
         public string GetStatusMessage()

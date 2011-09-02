@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Parameters;
 
-namespace StepCalculators
+namespace Equations
 {
-    public abstract class fsEpsKappaCvEquation : fsCalculatorEquation
+    public class fsEpsKappaCvEquation : fsCalculatorEquation
     {
         protected fsIEquationParameter Porosity;
         protected fsIEquationParameter Kappa;
@@ -24,6 +24,22 @@ namespace StepCalculators
             this.Porosity = Porosity;
             this.Kappa = Kappa;
             this.VolumeConcentration = VolumeConcentration;
+        }
+
+        protected override void InitFormulas()
+        {
+            AddFormula(Porosity, CalculatePorosity);
+            AddFormula(Kappa, CalculateKappa);
+        }
+
+        private void CalculateKappa()
+        {
+            Kappa.Value = VolumeConcentration.Value / (1 - Porosity.Value - VolumeConcentration.Value);
+        }
+
+        private void CalculatePorosity()
+        {
+            Porosity.Value = 1 - VolumeConcentration.Value * (Kappa.Value + 1) / Kappa.Value;
         }
     }
 }

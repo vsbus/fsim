@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Parameters;
+using Equations;
 
 namespace StepCalculators
 {
@@ -21,8 +22,7 @@ namespace StepCalculators
 
         protected override void InitEquations()
         {
-            AddEquation(new fsKappaFromEpsCvEquation(Kappa0, Porosity0, VolumeConcentration));
-            AddEquation(new fsEpsFromKappaCvEquation(Porosity0, Kappa0, VolumeConcentration));
+            AddEquation(new fsEpsKappaCvEquation(Porosity0, Kappa0, VolumeConcentration));
         }
     }
 }
