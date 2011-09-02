@@ -8,10 +8,14 @@ namespace Equations
 {
     public class fsVsusFromAreaAndCakeHeightEquation : fsCalculatorEquation
     {
+        #region Parameters
+
         private fsIEquationParameter SuspensionVolume;
         private fsIEquationParameter Area;
         private fsIEquationParameter CakeHeight;
         private fsIEquationParameter kappa;
+
+        #endregion
 
         public fsVsusFromAreaAndCakeHeightEquation(
             fsIEquationParameter SuspensionVolume,
@@ -32,13 +36,17 @@ namespace Equations
 
         protected override void InitFormulas()
         {
-            AddFormula(SuspensionVolume, CalculateSuspensionVolume);
+            AddFormula(SuspensionVolume, SuspensionVolumeFormula);
         }
-        
-        private void CalculateSuspensionVolume()
+
+        #region Formulas
+
+        private void SuspensionVolumeFormula()
         {
             SuspensionVolume.Value = Area.Value * CakeHeight.Value * (1 + kappa.Value) / kappa.Value;
             base.Calculate();
         }
+
+        #endregion
     }
 }

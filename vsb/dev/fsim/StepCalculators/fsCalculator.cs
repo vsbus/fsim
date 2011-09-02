@@ -129,15 +129,6 @@ namespace StepCalculators
             InitParametersAndConstants();
             InitEquations();
         }
-        public string GetEquationWeights()
-        {
-            string res = "";
-            foreach (var e in m_equations)
-            {
-                res += e.ToString() + ": " + e.GetWeight() + "\n";
-            }
-            return res;
-        }
 
         protected fsCalculatorVariable InitVariable(fsParameterIdentifier identifier)
         {
