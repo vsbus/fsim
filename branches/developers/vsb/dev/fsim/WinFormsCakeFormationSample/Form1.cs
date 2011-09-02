@@ -135,8 +135,9 @@ namespace WinFormsCakeFormationSample
         {
             calculationIndicatorButton.BackColor = System.Drawing.Color.Red;
 
-            ApplyCalculator(new fsDensityConcentrationCalculator());
-            ApplyCalculator(new fsEps0Kappa0Calculator());
+            fsCalculatorUpdateHandler uh = new fsCalculatorUpdateHandler(calculationIndicatorButton);
+            ApplyCalculator(new fsDensityConcentrationCalculator(uh.CreateSubHandler(0, 0.5)));
+            ApplyCalculator(new fsEps0Kappa0Calculator(uh.CreateSubHandler(0.5, 1)));
 
             foreach (var p in parameterValue.Keys)
             {

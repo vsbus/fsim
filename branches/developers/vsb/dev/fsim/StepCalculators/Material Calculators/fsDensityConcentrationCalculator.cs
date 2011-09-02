@@ -16,6 +16,16 @@ namespace StepCalculators
         private fsCalculatorVariable VolumeConcentration;
         private fsCalculatorVariable Concentration;
 
+        public fsDensityConcentrationCalculator()
+            : base()
+        {
+        }
+
+        public fsDensityConcentrationCalculator(fsCalculatorUpdateHandler updateHandler)
+            : base(updateHandler)
+        {
+        }
+
         protected override void InitParametersAndConstants()
         {
             FiltrateDensity = InitVariable(fsParameterIdentifier.FiltrateDensity);

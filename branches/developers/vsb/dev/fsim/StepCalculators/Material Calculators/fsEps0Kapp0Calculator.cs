@@ -13,6 +13,16 @@ namespace StepCalculators
         private fsCalculatorVariable Kappa0;
         private fsCalculatorConstant VolumeConcentration;
 
+        public fsEps0Kappa0Calculator()
+            : base()
+        {
+        }
+
+        public fsEps0Kappa0Calculator(fsCalculatorUpdateHandler updateHandler)
+            : base(updateHandler)
+        {
+        }
+
         protected override void InitParametersAndConstants()
         {
             Porosity0 = InitVariable(fsParameterIdentifier.Porosity0);
