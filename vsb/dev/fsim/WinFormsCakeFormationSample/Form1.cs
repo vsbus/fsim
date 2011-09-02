@@ -9,11 +9,14 @@ using System.Windows.Forms;
 using Parameters;
 using Value;
 using StepCalculators;
+using System.Threading;
 
 namespace WinFormsCakeFormationSample
 {
     public partial class Form1 : Form
     {
+        private Thread m_currentCalculation = null;
+
         private Dictionary<fsParameterIdentifier, DataGridViewCell> parameterCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
         private Dictionary<DataGridViewCell, fsParameterIdentifier> cellParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
         private Dictionary<fsParameterIdentifier, fsSimulationParameter> parameterValue = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
@@ -112,9 +115,29 @@ namespace WinFormsCakeFormationSample
 
         private void Recalculate()
         {
+            if (useMultiThreadingFlag.Checked)
+            {
+                if (m_currentCalculation != null)
+                {
+                    m_currentCalculation.Abort();
+                    m_currentCalculation = null;
+                }
+                m_currentCalculation = new Thread(new ThreadStart(CalculateInThread));
+                m_currentCalculation.Start();
+            }
+            else
+            {
+                CalculateInThread();
+            }
+        }
+
+        private void CalculateInThread()
+        {
+            calculationIndicatorButton.BackColor = System.Drawing.Color.Red;
+
             ApplyCalculator(new fsDensityConcentrationCalculator());
             ApplyCalculator(new fsEps0Kappa0Calculator());
-            
+
             foreach (var p in parameterValue.Keys)
             {
                 var value = parameterValue[p];
@@ -123,8 +146,9 @@ namespace WinFormsCakeFormationSample
                     parameterCell[p].Value = value.Value.ToString();
                 }
             }
-        }
 
+            calculationIndicatorButton.BackColor = System.Drawing.Color.FromKnownColor(System.Drawing.KnownColor.ButtonFace);
+        }
         private void ApplyCalculator(fsCalculator calculator)
         {
             calculator.ReadDataFromStorage(parameterValue);

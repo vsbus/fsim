@@ -36,6 +36,8 @@
             this.CakeFormationDataGrid = new fmDataGrid.fmDataGrid();
             this.CakeFormationParameterNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CakeFormationParameterValueColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
+            this.calculationIndicatorButton = new System.Windows.Forms.Button();
+            this.useMultiThreadingFlag = new System.Windows.Forms.CheckBox();
             this.materialDataGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaterialParametersDataGrid)).BeginInit();
             this.cakeFormationGroupBox.SuspendLayout();
@@ -125,11 +127,31 @@
             this.CakeFormationParameterValueColumn.HeaderText = "Value";
             this.CakeFormationParameterValueColumn.Name = "CakeFormationParameterValueColumn";
             // 
+            // calculationIndicatorButton
+            // 
+            this.calculationIndicatorButton.Location = new System.Drawing.Point(568, 52);
+            this.calculationIndicatorButton.Name = "calculationIndicatorButton";
+            this.calculationIndicatorButton.Size = new System.Drawing.Size(41, 23);
+            this.calculationIndicatorButton.TabIndex = 2;
+            this.calculationIndicatorButton.UseVisualStyleBackColor = true;
+            // 
+            // useMultiThreadingFlag
+            // 
+            this.useMultiThreadingFlag.AutoSize = true;
+            this.useMultiThreadingFlag.Location = new System.Drawing.Point(568, 29);
+            this.useMultiThreadingFlag.Name = "useMultiThreadingFlag";
+            this.useMultiThreadingFlag.Size = new System.Drawing.Size(118, 17);
+            this.useMultiThreadingFlag.TabIndex = 3;
+            this.useMultiThreadingFlag.Text = "Use MultiThreading";
+            this.useMultiThreadingFlag.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 559);
+            this.ClientSize = new System.Drawing.Size(691, 559);
+            this.Controls.Add(this.useMultiThreadingFlag);
+            this.Controls.Add(this.calculationIndicatorButton);
             this.Controls.Add(this.cakeFormationGroupBox);
             this.Controls.Add(this.materialDataGroupBox);
             this.Name = "Form1";
@@ -140,6 +162,7 @@
             this.cakeFormationGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CakeFormationDataGrid)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -153,6 +176,8 @@
         private fmDataGrid.fmDataGrid CakeFormationDataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn CakeFormationParameterNameColumn;
         private fmDataGrid.fmDataGridViewNumericalTextBoxColumn CakeFormationParameterValueColumn;
+        private System.Windows.Forms.Button calculationIndicatorButton;
+        private System.Windows.Forms.CheckBox useMultiThreadingFlag;
     }
 }
 
