@@ -11,8 +11,12 @@ namespace Equations
     {
         // first * second = 1
 
+        #region Parameters
+
         private fsIEquationParameter first;
         private fsIEquationParameter second;
+
+        #endregion
 
         public fsDivisionInverseEquation(
             fsIEquationParameter first,
@@ -25,18 +29,22 @@ namespace Equations
 
         protected override void InitFormulas()
         {
-            AddFormula(first, CalculateFirst);
-            AddFormula(second, CalculateSecond);
+            AddFormula(first, FirstFormula);
+            AddFormula(second, SecondFormula);
         }
 
-        private void CalculateFirst()
+        #region Formulas
+
+        private void FirstFormula()
         {
             first.Value = 1 / second.Value;
         }
 
-        private void CalculateSecond()
+        private void SecondFormula()
         {
             second.Value = 1 / first.Value;
         }
+
+        #endregion
     }
 }
