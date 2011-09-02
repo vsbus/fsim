@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Parameters;
 
-namespace StepCalculators
+namespace Equations
 {
     public class fsVsusFromAreaAndCakeHeightEquation : fsCalculatorEquation
     {
@@ -28,11 +28,14 @@ namespace StepCalculators
             this.Area = Area;
             this.CakeHeight = CakeHeight;
             this.kappa = kappa;
-
-            Result = SuspensionVolume;
         }
 
-        public override void Calculate()
+        protected override void InitFormulas()
+        {
+            AddFormula(SuspensionVolume, CalculateSuspensionVolume);
+        }
+        
+        private void CalculateSuspensionVolume()
         {
             SuspensionVolume.Value = Area.Value * CakeHeight.Value * (1 + kappa.Value) / kappa.Value;
             base.Calculate();

@@ -5,28 +5,38 @@ using System.Text;
 using Parameters;
 using Value;
 
-namespace StepCalculators
+namespace Equations
 {
     public class fsDivisionInverseEquation : fsCalculatorEquation
     {
-        private fsIEquationParameter result;
-        private fsIEquationParameter denominator;
+        // first * second = 1
+
+        private fsIEquationParameter first;
+        private fsIEquationParameter second;
 
         public fsDivisionInverseEquation(
-            fsIEquationParameter result,
-            fsIEquationParameter denominator)
-            : base(result, denominator)
+            fsIEquationParameter first,
+            fsIEquationParameter second)
+            : base(first, second)
         {
-            this.result = result;
-            this.denominator = denominator;
-        
-            Result = result;
+            this.first = first;
+            this.second = second;
         }
 
-        public override void Calculate()
+        protected override void InitFormulas()
         {
-            result.Value = fsValue.One / denominator.Value;
-            base.Calculate();
+            AddFormula(first, CalculateFirst);
+            AddFormula(second, CalculateSecond);
+        }
+
+        private void CalculateFirst()
+        {
+            first.Value = 1 / second.Value;
+        }
+
+        private void CalculateSecond()
+        {
+            second.Value = 1 / first.Value;
         }
     }
 }

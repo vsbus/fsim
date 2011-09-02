@@ -5,7 +5,7 @@ using System.Text;
 using Parameters;
 using Value;
 
-namespace StepCalculators
+namespace Equations
 {
     public class fsCakeHeightFrom_Dp_tf : fsCalculatorEquation
     {
@@ -42,14 +42,16 @@ namespace StepCalculators
             this.FormationTime = FormationTime;
             this.etaf = etaf;
 
-            Result = CakeHeight;
-
         }
 
-        public override void Calculate()
+        protected override void InitFormulas()
+        {
+            AddFormula(CakeHeight, CalculateCakeHeight);
+        }
+
+        private void CalculateCakeHeight()
         {
             CakeHeight.Value = fsValue.Sqrt(hce.Value * hce.Value + 2 * Pc.Value * kappa.Value * Pressure.Value * FormationTime.Value / etaf.Value) - hce.Value;
-            base.Calculate();
         }
     }
 }

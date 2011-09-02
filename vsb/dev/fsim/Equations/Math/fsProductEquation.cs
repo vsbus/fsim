@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using Parameters;
 
-namespace StepCalculators
+namespace Equations
 {
     public class fsProductEquation : fsCalculatorEquation
     {
+        // product = firstFactor * secondFactor
+
         private fsIEquationParameter product;
         private fsIEquationParameter firstFactor;
         private fsIEquationParameter secondFactor;
@@ -21,14 +23,28 @@ namespace StepCalculators
             this.product = product;
             this.firstFactor = firstFactor;
             this.secondFactor = secondFactor;
-        
-            Result = product;
         }
 
-        public override void Calculate()
+        protected override void InitFormulas()
+        {
+            AddFormula(product, CalculateProduct);
+            AddFormula(firstFactor, CalculateFirstFactor);
+            AddFormula(secondFactor, CalculateSecondFactor);
+        }
+       
+        private void CalculateSecondFactor()
+        {
+            firstFactor.Value = product.Value / secondFactor.Value;
+        }
+
+        private void CalculateFirstFactor()
+        {
+            secondFactor.Value = product.Value / firstFactor.Value;
+        }
+
+        private void CalculateProduct()
         {
             product.Value = firstFactor.Value * secondFactor.Value;
-            base.Calculate();
         }
     }
 }
