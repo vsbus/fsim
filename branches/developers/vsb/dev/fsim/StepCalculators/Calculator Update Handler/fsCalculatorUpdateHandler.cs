@@ -11,11 +11,11 @@ namespace StepCalculators
         private fsCalculatorUpdateHandler m_parentHandler = null;
         private double m_startValue = 0;
         private double m_endValue = 1;
-        private Control m_statusControl = null;
+        private ProgressBar m_progressBar = null;
 
-        public fsCalculatorUpdateHandler(Control statusControl)
+        public fsCalculatorUpdateHandler(ProgressBar statusControl)
         {
-            m_statusControl = statusControl;
+            m_progressBar = statusControl;
         }
 
         private fsCalculatorUpdateHandler(
@@ -32,8 +32,10 @@ namespace StepCalculators
         {
             if (m_parentHandler == null)
             {
-                m_statusControl.Text = ((int)(progress * 100 + 0.5)).ToString() + "%";
-                m_statusControl.Refresh();
+                //m_progressBar.Text = ((int)(progress * 100 + 0.5)).ToString() + "%";
+                int intProgress = (int)(progress * m_progressBar.Maximum + 0.5);
+                m_progressBar.Value = intProgress;
+                m_progressBar.Refresh();
             }
             else
             {
