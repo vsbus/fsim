@@ -8,22 +8,21 @@ namespace StepCalculators
 {
     public class fsProductEquation : fsCalculatorEquation
     {
-        private fsCalculatorParameter product;
-        private fsCalculatorParameter firstFactor;
-        private fsCalculatorParameter secondFactor;
+        private fsIEquationParameter product;
+        private fsIEquationParameter firstFactor;
+        private fsIEquationParameter secondFactor;
 
         public fsProductEquation(
-            fsCalculatorParameter product,
-            fsCalculatorParameter firstFactor,
-            fsCalculatorParameter secondFactor)
+            fsIEquationParameter product,
+            fsIEquationParameter firstFactor,
+            fsIEquationParameter secondFactor)
+            : base (product, firstFactor, secondFactor)
         {
             this.product = product;
             this.firstFactor = firstFactor;
             this.secondFactor = secondFactor;
-
+        
             Result = product;
-            Inputs.Add(firstFactor);
-            Inputs.Add(secondFactor);
         }
 
         public override void Calculate()

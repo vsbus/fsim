@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Parameters;
 
 namespace Parameters
 {
-    public class fsEquationParameter : fsJustValueParameter
+    public interface fsIProcessedParameter
     {
+        bool IsProcessed { get; set; }
     }
 }

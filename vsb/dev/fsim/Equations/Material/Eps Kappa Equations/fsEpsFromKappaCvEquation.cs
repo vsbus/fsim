@@ -9,13 +9,15 @@ namespace StepCalculators
     public class fsEpsFromKappaCvEquation : fsEpsKappaCvEquation
     {
         public fsEpsFromKappaCvEquation(
-            fsCalculatorParameter Porosity,
-            fsCalculatorParameter Kappa,
-            fsCalculatorConstant VolumeConcentration)
-            : base(Porosity, Kappa, VolumeConcentration)
+            fsIEquationParameter Porosity,
+            fsIEquationParameter Kappa,
+            fsIEquationParameter VolumeConcentration)
+            : base(
+                Porosity, 
+                Kappa, 
+                VolumeConcentration)
         {
             Result = Porosity;
-            Inputs.Add(Kappa);
         }
 
         public override void Calculate()

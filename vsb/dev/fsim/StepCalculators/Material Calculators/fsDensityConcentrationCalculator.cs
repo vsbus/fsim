@@ -8,21 +8,21 @@ namespace StepCalculators
 {
     public class fsDensityConcentrationCalculator : fsCalculator
     {
-        private fsCalculatorParameter FiltrateDensity;
-        private fsCalculatorParameter SolidsDensity;
-        private fsCalculatorParameter SuspensionDensity;
-        private fsCalculatorParameter MassConcentration;
-        private fsCalculatorParameter VolumeConcentration;
-        private fsCalculatorParameter Concentration;
+        private fsCalculatorVariable FiltrateDensity;
+        private fsCalculatorVariable SolidsDensity;
+        private fsCalculatorVariable SuspensionDensity;
+        private fsCalculatorVariable MassConcentration;
+        private fsCalculatorVariable VolumeConcentration;
+        private fsCalculatorVariable Concentration;
 
         protected override void InitParametersAndConstants()
         {
-            FiltrateDensity = InitParameter(fsParameterIdentifier.FiltrateDensity);
-            SolidsDensity = InitParameter(fsParameterIdentifier.SolidsDensity);
-            SuspensionDensity = InitParameter(fsParameterIdentifier.SuspensionDensity);
-            MassConcentration = InitParameter(fsParameterIdentifier.MassConcentration);
-            VolumeConcentration = InitParameter(fsParameterIdentifier.VolumeConcentration);
-            Concentration = InitParameter(fsParameterIdentifier.Concentration);
+            FiltrateDensity = InitVariable(fsParameterIdentifier.FiltrateDensity);
+            SolidsDensity = InitVariable(fsParameterIdentifier.SolidsDensity);
+            SuspensionDensity = InitVariable(fsParameterIdentifier.SuspensionDensity);
+            MassConcentration = InitVariable(fsParameterIdentifier.MassConcentration);
+            VolumeConcentration = InitVariable(fsParameterIdentifier.VolumeConcentration);
+            Concentration = InitVariable(fsParameterIdentifier.Concentration);
         }
 
         protected override void InitEquations()

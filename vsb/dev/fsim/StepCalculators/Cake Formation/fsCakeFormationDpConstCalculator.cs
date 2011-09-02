@@ -12,21 +12,21 @@ namespace StepCalculators
         fsCalculatorConstant etaf;
         fsCalculatorConstant hce0;
 
-        fsCalculatorParameter FilterArea;
+        fsCalculatorVariable FilterArea;
 
-        fsCalculatorParameter Pressure;
+        fsCalculatorVariable Pressure;
 
-        fsCalculatorParameter CycleTime;
-        fsCalculatorParameter RotationalSpeed;
+        fsCalculatorVariable CycleTime;
+        fsCalculatorVariable RotationalSpeed;
 
-        fsCalculatorParameter FormationRelativeTime;
-        fsCalculatorParameter FormationTime;
-        fsCalculatorParameter CakeHeight;
-        fsCalculatorParameter SuspensionMass;
-        fsCalculatorParameter SuspensionVolume;
+        fsCalculatorVariable FormationRelativeTime;
+        fsCalculatorVariable FormationTime;
+        fsCalculatorVariable CakeHeight;
+        fsCalculatorVariable SuspensionMass;
+        fsCalculatorVariable SuspensionVolume;
 
-        fsCalculatorParameter Pc;
-        fsCalculatorParameter kappa;
+        fsCalculatorVariable Pc;
+        fsCalculatorVariable kappa;
 
         protected override void InitParametersAndConstants()
         {
@@ -34,21 +34,21 @@ namespace StepCalculators
             etaf = InitConstant(fsParameterIdentifier.FiltrateViscosity);
             hce0 = InitConstant(fsParameterIdentifier.hce0);
 
-            FilterArea = InitParameter(fsParameterIdentifier.FilterArea);
+            FilterArea = InitVariable(fsParameterIdentifier.FilterArea);
 
-            Pressure = InitParameter(fsParameterIdentifier.Pressure);
+            Pressure = InitVariable(fsParameterIdentifier.Pressure);
 
-            CycleTime = InitParameter(fsParameterIdentifier.CycleTime);
-            RotationalSpeed = InitParameter(fsParameterIdentifier.RotationalSpeed);
+            CycleTime = InitVariable(fsParameterIdentifier.CycleTime);
+            RotationalSpeed = InitVariable(fsParameterIdentifier.RotationalSpeed);
 
-            FormationRelativeTime = InitParameter(fsParameterIdentifier.FormationRelativeTime);
-            FormationTime = InitParameter(fsParameterIdentifier.FormationTime);
-            CakeHeight = InitParameter(fsParameterIdentifier.CakeHeight);
-            SuspensionMass = InitParameter(fsParameterIdentifier.SuspensionMass);
-            SuspensionVolume = InitParameter(fsParameterIdentifier.SuspensionVolume);
+            FormationRelativeTime = InitVariable(fsParameterIdentifier.FormationRelativeTime);
+            FormationTime = InitVariable(fsParameterIdentifier.FormationTime);
+            CakeHeight = InitVariable(fsParameterIdentifier.CakeHeight);
+            SuspensionMass = InitVariable(fsParameterIdentifier.SuspensionMass);
+            SuspensionVolume = InitVariable(fsParameterIdentifier.SuspensionVolume);
 
-            Pc = InitParameter(fsParameterIdentifier.Pc);
-            kappa = InitParameter(fsParameterIdentifier.kappa);
+            Pc = InitVariable(fsParameterIdentifier.Pc);
+            kappa = InitVariable(fsParameterIdentifier.kappa);
         }
 
         protected override void InitEquations()
