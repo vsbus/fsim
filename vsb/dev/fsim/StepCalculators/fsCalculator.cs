@@ -32,20 +32,13 @@ namespace StepCalculators
         
         public fsCalculator()
         {
-            InitParametersAndConstants();
-            InitEquations();
-        }
-
-        public fsCalculator(fsCalculatorUpdateHandler updateHandler)
-        {
-            m_updateHandler = updateHandler;
-            InitParametersAndConstants();
+            InitParameters();
             InitEquations();
         }
 
         #endregion
 
-        protected abstract void InitParametersAndConstants();
+        protected abstract void InitParameters();
         protected abstract void InitEquations();
 
         #region Service Methods
@@ -70,6 +63,11 @@ namespace StepCalculators
         }
 
         #endregion
+
+        public void SetUpdateHandler(fsCalculatorUpdateHandler updateHandler)
+        {
+            m_updateHandler = updateHandler;
+        }
         
         public void Calculate()
         {

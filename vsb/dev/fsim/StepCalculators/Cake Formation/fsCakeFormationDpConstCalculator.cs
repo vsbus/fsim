@@ -29,7 +29,7 @@ namespace StepCalculators
         fsCalculatorVariable Pc;
         fsCalculatorVariable kappa;
 
-        protected override void InitParametersAndConstants()
+        protected override void InitParameters()
         {
             SuspensionDensity = InitConstant(fsParameterIdentifier.SuspensionDensity);
             etaf = InitConstant(fsParameterIdentifier.FiltrateViscosity);

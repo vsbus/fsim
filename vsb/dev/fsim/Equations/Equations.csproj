@@ -52,6 +52,8 @@
     <Compile Include="Material\Densily Concentration Equations\Concentration Calculators\fsMassConcentrationEquation.cs" />
     <Compile Include="Material\Densily Concentration Equations\Concentration Calculators\fsVolumeConcentrationEquation.cs" />
     <Compile Include="Material\Eps Kappa Equations\fsEpsKappaCvEquation.cs" />
+    <Compile Include="Material\Pc rc alpha Equations\fsAlphaPcEquation.cs" />
+    <Compile Include="Material\Pc rc alpha Equations\fsPcrcEquation.cs" />
     <Compile Include="Math\fsDivisionInverseEquation.cs" />
     <Compile Include="Math\fsProductEquation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
