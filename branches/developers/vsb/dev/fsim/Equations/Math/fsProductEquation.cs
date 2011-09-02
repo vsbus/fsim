@@ -10,9 +10,13 @@ namespace Equations
     {
         // product = firstFactor * secondFactor
 
+        #region Parameters
+        
         private fsIEquationParameter product;
         private fsIEquationParameter firstFactor;
         private fsIEquationParameter secondFactor;
+        
+        #endregion
 
         public fsProductEquation(
             fsIEquationParameter product,
@@ -27,24 +31,28 @@ namespace Equations
 
         protected override void InitFormulas()
         {
-            AddFormula(product, CalculateProduct);
-            AddFormula(firstFactor, CalculateFirstFactor);
-            AddFormula(secondFactor, CalculateSecondFactor);
+            AddFormula(product, ProductFormula);
+            AddFormula(firstFactor, FirstFactorFormula);
+            AddFormula(secondFactor, SecondFactorFormula);
         }
-       
-        private void CalculateSecondFactor()
+
+        #region Formulas
+
+        private void SecondFactorFormula()
         {
             firstFactor.Value = product.Value / secondFactor.Value;
         }
 
-        private void CalculateFirstFactor()
+        private void FirstFactorFormula()
         {
             secondFactor.Value = product.Value / firstFactor.Value;
         }
 
-        private void CalculateProduct()
+        private void ProductFormula()
         {
             product.Value = firstFactor.Value * secondFactor.Value;
         }
+
+        #endregion
     }
 }

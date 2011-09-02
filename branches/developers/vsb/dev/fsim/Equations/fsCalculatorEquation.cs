@@ -8,10 +8,26 @@ namespace Equations
 {
     public abstract class fsCalculatorEquation
     {
-        protected delegate void Formula();
-        private List<KeyValuePair<fsIEquationParameter, Formula>> m_formulas = null;
+        #region Parameters
 
         private List<fsIEquationParameter> m_parameters = new List<fsIEquationParameter>();
+
+        #endregion
+
+        #region Formulas
+
+        protected delegate void Formula();
+
+        private List<KeyValuePair<fsIEquationParameter, Formula>> m_formulas = null;
+
+        protected void AddFormula(fsIEquationParameter result, Formula formula)
+        {
+            m_formulas.Add(new KeyValuePair<fsIEquationParameter, Formula>(result, formula));
+        }
+
+        protected abstract void InitFormulas();
+
+        #endregion
 
         protected fsCalculatorEquation(params fsIEquationParameter[] parameters)
         {
@@ -20,6 +36,8 @@ namespace Equations
                 m_parameters.Add(p);
             }
         }
+
+        #region Calculate
 
         public bool Calculate()
         {
@@ -60,42 +78,6 @@ namespace Equations
             return false;
         }
 
-        protected abstract void InitFormulas();
-
-        protected void AddFormula(fsIEquationParameter result, Formula formula)
-        {
-            m_formulas.Add(new KeyValuePair<fsIEquationParameter,Formula>(result, formula));
-        }
-
-        public double GetWeight()
-        {
-            return 0;
-//             List<fsCalculatorParameter> oldInputs = new List<fsCalculatorParameter>();
-//             foreach (var p in Inputs)
-//             {
-//                 var np = new fsCalculatorParameter(p.Identifier, p.IsInputed);
-//                 np.IsProcessed = p.IsProcessed;
-//                 np.Value = p.Value;
-//                 oldInputs.Add(np);
-//                 p.IsProcessed = false;
-//                 p.IsInputed = true;
-//                 p.Value = fsValue.One;
-//             }
-//             fsCalculatorParameter oldResult = new fsCalculatorParameter(Result.Identifier, Result.IsInputed);
-//             oldResult.IsProcessed = Result.IsProcessed;
-//             oldResult.Value = Result.Value;
-//             Result.IsInputed = false;
-// 
-//             double startTime = DateTime.Now.TimeOfDay.TotalSeconds;
-//             int iterationsCount = 0;
-//             while (DateTime.Now.TimeOfDay.TotalSeconds - startTime <= 1)
-//             {
-//                 ++iterationsCount;
-//                 Calculate();
-//             }
-//             double result = (DateTime.Now.TimeOfDay.TotalSeconds - startTime) / iterationsCount;
-//             // todo: restore old values
-//             return result;
-        }
+        #endregion
     }
 }
