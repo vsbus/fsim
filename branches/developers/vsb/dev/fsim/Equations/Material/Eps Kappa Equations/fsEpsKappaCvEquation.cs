@@ -8,17 +8,21 @@ namespace Equations
 {
     public class fsEpsKappaCvEquation : fsCalculatorEquation
     {
+        #region Parameters
+
         protected fsIEquationParameter Porosity;
         protected fsIEquationParameter Kappa;
         protected fsIEquationParameter VolumeConcentration;
+
+        #endregion
 
         public fsEpsKappaCvEquation(
             fsIEquationParameter Porosity,
             fsIEquationParameter Kappa,
             fsIEquationParameter VolumeConcentration)
             : base(
-                Porosity, 
-                Kappa, 
+                Porosity,
+                Kappa,
                 VolumeConcentration)
         {
             this.Porosity = Porosity;
@@ -28,18 +32,22 @@ namespace Equations
 
         protected override void InitFormulas()
         {
-            AddFormula(Porosity, CalculatePorosity);
-            AddFormula(Kappa, CalculateKappa);
+            AddFormula(Porosity, PorosityFormula);
+            AddFormula(Kappa, KappaFormula);
         }
 
-        private void CalculateKappa()
+        #region Formulas
+
+        private void KappaFormula()
         {
             Kappa.Value = VolumeConcentration.Value / (1 - Porosity.Value - VolumeConcentration.Value);
         }
 
-        private void CalculatePorosity()
+        private void PorosityFormula()
         {
             Porosity.Value = 1 - VolumeConcentration.Value * (Kappa.Value + 1) / Kappa.Value;
         }
+
+        #endregion
     }
 }

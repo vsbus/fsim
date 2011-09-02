@@ -9,10 +9,14 @@ namespace Equations
 {
     public class fsConcentrationEquation : fsCalculatorEquation
     {
+        #region Parameters
+
         private fsIEquationParameter Concentration;
         private fsIEquationParameter FiltrateDensity;
         private fsIEquationParameter SolidsDensity;
         private fsIEquationParameter SuspensionDensity;
+
+        #endregion
 
         public fsConcentrationEquation(
             fsIEquationParameter Concentration,
@@ -33,15 +37,19 @@ namespace Equations
 
         protected override void InitFormulas()
         {
-            AddFormula(Concentration, CalculateConcentration);
+            AddFormula(Concentration, ConcentrationFormula);
         }
 
-        private void CalculateConcentration()
+        #region Formulas
+
+        private void ConcentrationFormula()
         {
             fsValue rho_s = SolidsDensity.Value;
             fsValue rho_f = FiltrateDensity.Value;
             fsValue rho_sus = SuspensionDensity.Value;
             Concentration.Value = rho_s * (rho_f - rho_sus) / (rho_f - rho_s); ;
         }
+
+        #endregion
     }
 }
