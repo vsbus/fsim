@@ -9,22 +9,30 @@ namespace StepCalculators
 {
     public class fsCakeHeightFrom_Dp_tf : fsCalculatorEquation
     {
-        fsCalculatorParameter CakeHeight;
-        fsCalculatorParameter hce;
-        fsCalculatorParameter Pc;
-        fsCalculatorParameter kappa;
-        fsCalculatorParameter Pressure;
-        fsCalculatorParameter FormationTime;
-        fsCalculatorParameter etaf;
+        fsIEquationParameter CakeHeight;
+        fsIEquationParameter hce;
+        fsIEquationParameter Pc;
+        fsIEquationParameter kappa;
+        fsIEquationParameter Pressure;
+        fsIEquationParameter FormationTime;
+        fsIEquationParameter etaf;
 
         public fsCakeHeightFrom_Dp_tf(
-            fsCalculatorParameter CakeHeight,
-            fsCalculatorParameter hce,
-            fsCalculatorParameter Pc,
-            fsCalculatorParameter kappa,
-            fsCalculatorParameter Pressure,
-            fsCalculatorParameter FormationTime,
-            fsCalculatorParameter etaf)
+            fsIEquationParameter CakeHeight,
+            fsIEquationParameter hce,
+            fsIEquationParameter Pc,
+            fsIEquationParameter kappa,
+            fsIEquationParameter Pressure,
+            fsIEquationParameter FormationTime,
+            fsIEquationParameter etaf)
+            : base(
+                CakeHeight, 
+                hce, 
+                Pc, 
+                kappa, 
+                Pressure, 
+                FormationTime, 
+                etaf)
         {
             this.CakeHeight = CakeHeight;
             this.hce = hce;
@@ -35,12 +43,7 @@ namespace StepCalculators
             this.etaf = etaf;
 
             Result = CakeHeight;
-            Inputs.Add(hce);
-            Inputs.Add(Pc);
-            Inputs.Add(kappa);
-            Inputs.Add(Pressure);
-            Inputs.Add(FormationTime);
-            Inputs.Add(etaf);
+
         }
 
         public override void Calculate()

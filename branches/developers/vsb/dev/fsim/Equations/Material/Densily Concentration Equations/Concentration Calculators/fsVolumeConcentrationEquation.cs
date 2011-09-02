@@ -9,20 +9,20 @@ namespace StepCalculators
 {
     public class fsVolumeConcentrationEquation : fsBaseConcentrationEquation
     {
-        private fsCalculatorParameter VolumeConcentration;
+        private fsIEquationParameter VolumeConcentration;
 
         public fsVolumeConcentrationEquation(
-            fsCalculatorParameter VolumeConcentration,
-            fsCalculatorParameter FiltrateDensity,
-            fsCalculatorParameter SolidsDensity,
-            fsCalculatorParameter SuspensionDensity)
+            fsIEquationParameter VolumeConcentration,
+            fsIEquationParameter FiltrateDensity,
+            fsIEquationParameter SolidsDensity,
+            fsIEquationParameter SuspensionDensity)
             : base(
-                FiltrateDensity,
-                SolidsDensity,
+                FiltrateDensity, 
+                SolidsDensity, 
                 SuspensionDensity)
         {
             this.VolumeConcentration = VolumeConcentration;
-
+        
             Result = VolumeConcentration;
         }
 

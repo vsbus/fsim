@@ -9,18 +9,18 @@ namespace StepCalculators
 {
     public class fsDivisionInverseEquation : fsCalculatorEquation
     {
-        private fsCalculatorParameter result;
-        private fsCalculatorParameter denominator;
+        private fsIEquationParameter result;
+        private fsIEquationParameter denominator;
 
         public fsDivisionInverseEquation(
-            fsCalculatorParameter result,
-            fsCalculatorParameter denominator)
+            fsIEquationParameter result,
+            fsIEquationParameter denominator)
+            : base(result, denominator)
         {
             this.result = result;
             this.denominator = denominator;
-
+        
             Result = result;
-            Inputs.Add(denominator);
         }
 
         public override void Calculate()

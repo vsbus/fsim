@@ -6,28 +6,31 @@ using Parameters;
 
 namespace StepCalculators
 {
-    public class fsCalculatorEquation
+    public abstract class fsCalculatorEquation
     {
-        private fsCalculatorParameter m_result;
-        protected Parameters.fsCalculatorParameter Result
+        private List<fsIEquationParameter> m_inputs = new List<fsIEquationParameter>();
+
+        private fsIEquationParameter m_result;
+        protected fsIEquationParameter Result
         {
             get { return m_result; }
             set { m_result = value; }
         }
 
-        private List<fsCalculatorParameter> m_inputs = new List<fsCalculatorParameter>();
-        protected List<fsCalculatorParameter> Inputs
+        protected fsCalculatorEquation(params fsIEquationParameter[] parameters)
         {
-            get { return m_inputs; }
-            set { m_inputs = value; }
+            foreach (var p in parameters)
+            {
+                m_inputs.Add(p);
+            }
         }
 
         public bool CanBeCalculated()
         {
-            if (m_result.isInput || m_result.IsProcessed)
+            if (m_result.IsProcessed)
                 return false;
             foreach (var p in m_inputs)
-                if (!p.isInput && !p.IsProcessed)
+                if (p != m_result && !p.IsProcessed)
                     return false;
             return true;
         }
@@ -39,32 +42,33 @@ namespace StepCalculators
 
         public double GetWeight()
         {
-            List<fsCalculatorParameter> oldInputs = new List<fsCalculatorParameter>();
-            foreach (var p in Inputs)
-            {
-                var np = new fsCalculatorParameter(p.Identifier, p.IsInputed);
-                np.IsProcessed = p.IsProcessed;
-                np.Value = p.Value;
-                oldInputs.Add(np);
-                p.IsProcessed = false;
-                p.IsInputed = true;
-                p.Value = fsValue.One;
-            }
-            fsCalculatorParameter oldResult = new fsCalculatorParameter(Result.Identifier, Result.IsInputed);
-            oldResult.IsProcessed = Result.IsProcessed;
-            oldResult.Value = Result.Value;
-            Result.IsInputed = false;
-
-            double startTime = DateTime.Now.TimeOfDay.TotalSeconds;
-            int iterationsCount = 0;
-            while (DateTime.Now.TimeOfDay.TotalSeconds - startTime <= 1)
-            {
-                ++iterationsCount;
-                Calculate();
-            }
-            double result = (DateTime.Now.TimeOfDay.TotalSeconds - startTime) / iterationsCount;
-            // todo: restore old values
-            return result;
+            return 0;
+//             List<fsCalculatorParameter> oldInputs = new List<fsCalculatorParameter>();
+//             foreach (var p in Inputs)
+//             {
+//                 var np = new fsCalculatorParameter(p.Identifier, p.IsInputed);
+//                 np.IsProcessed = p.IsProcessed;
+//                 np.Value = p.Value;
+//                 oldInputs.Add(np);
+//                 p.IsProcessed = false;
+//                 p.IsInputed = true;
+//                 p.Value = fsValue.One;
+//             }
+//             fsCalculatorParameter oldResult = new fsCalculatorParameter(Result.Identifier, Result.IsInputed);
+//             oldResult.IsProcessed = Result.IsProcessed;
+//             oldResult.Value = Result.Value;
+//             Result.IsInputed = false;
+// 
+//             double startTime = DateTime.Now.TimeOfDay.TotalSeconds;
+//             int iterationsCount = 0;
+//             while (DateTime.Now.TimeOfDay.TotalSeconds - startTime <= 1)
+//             {
+//                 ++iterationsCount;
+//                 Calculate();
+//             }
+//             double result = (DateTime.Now.TimeOfDay.TotalSeconds - startTime) / iterationsCount;
+//             // todo: restore old values
+//             return result;
         }
     }
 }

@@ -7,15 +7,22 @@ using Value;
 
 namespace Parameters
 {
-    public class fsCalculatorConstant : fsNamedValueParameter
+    public class fsCalculatorConstant : fsSimulationParameter, fsIEquationParameter
     {
-        public fsCalculatorConstant(fsParameterIdentifier identifier)
-            : base(identifier)
+        public bool IsProcessed
         {
+            get
+            {
+                return true;
+            }
+            set
+            {
+                throw new Exception("Set is processed is restricted for Consts");
+            }
         }
 
-        public fsCalculatorConstant(fsParameterIdentifier identifier, fsValue value)
-            : base(identifier, value)
+        public fsCalculatorConstant(fsParameterIdentifier identifier)
+            : base(identifier)
         {
         }
     }

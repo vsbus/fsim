@@ -8,26 +8,28 @@ namespace StepCalculators
 {
     public class fsVsusFromAreaAndCakeHeightEquation : fsCalculatorEquation
     {
-        private fsCalculatorParameter SuspensionVolume;
-        private fsCalculatorParameter Area;
-        private fsCalculatorParameter CakeHeight;
-        private fsCalculatorParameter kappa;
+        private fsIEquationParameter SuspensionVolume;
+        private fsIEquationParameter Area;
+        private fsIEquationParameter CakeHeight;
+        private fsIEquationParameter kappa;
 
         public fsVsusFromAreaAndCakeHeightEquation(
-            fsCalculatorParameter Vsus,
-            fsCalculatorParameter Area,
-            fsCalculatorParameter CakeHeight,
-            fsCalculatorParameter kappa)
+            fsIEquationParameter SuspensionVolume,
+            fsIEquationParameter Area,
+            fsIEquationParameter CakeHeight,
+            fsIEquationParameter kappa)
+            : base(
+                SuspensionVolume, 
+                Area, 
+                CakeHeight, 
+                kappa)
         {
-            this.SuspensionVolume = Vsus;
+            this.SuspensionVolume = SuspensionVolume;
             this.Area = Area;
             this.CakeHeight = CakeHeight;
             this.kappa = kappa;
 
-            Result = Vsus;
-            Inputs.Add(Area);
-            Inputs.Add(CakeHeight);
-            Inputs.Add(kappa);
+            Result = SuspensionVolume;
         }
 
         public override void Calculate()

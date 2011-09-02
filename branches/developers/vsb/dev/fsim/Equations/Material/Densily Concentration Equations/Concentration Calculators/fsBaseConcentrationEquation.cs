@@ -6,24 +6,24 @@ using Parameters;
 
 namespace StepCalculators
 {
-    public class fsBaseConcentrationEquation : fsCalculatorEquation
+    public abstract class fsBaseConcentrationEquation : fsCalculatorEquation
     {
-        protected fsCalculatorParameter FiltrateDensity;
-        protected fsCalculatorParameter SolidsDensity;
-        protected fsCalculatorParameter SuspensionDensity;
+        protected fsIEquationParameter FiltrateDensity;
+        protected fsIEquationParameter SolidsDensity;
+        protected fsIEquationParameter SuspensionDensity;
 
         public fsBaseConcentrationEquation(
-            fsCalculatorParameter FiltrateDensity,
-            fsCalculatorParameter SolidsDensity,
-            fsCalculatorParameter SuspensionDensity)
+            fsIEquationParameter FiltrateDensity,
+            fsIEquationParameter SolidsDensity,
+            fsIEquationParameter SuspensionDensity)
+            : base(
+                FiltrateDensity, 
+                SolidsDensity, 
+                SuspensionDensity)
         {
             this.FiltrateDensity = FiltrateDensity;
             this.SolidsDensity = SolidsDensity;
             this.SuspensionDensity = SuspensionDensity;
-
-            Inputs.Add(FiltrateDensity);
-            Inputs.Add(SolidsDensity);
-            Inputs.Add(SuspensionDensity);
         }
     }
 }

@@ -8,14 +8,14 @@ namespace StepCalculators
 {
     public class fsEps0Kappa0Calculator : fsCalculator
     {
-        private fsCalculatorParameter Porosity0;
-        private fsCalculatorParameter Kappa0;
+        private fsCalculatorVariable Porosity0;
+        private fsCalculatorVariable Kappa0;
         private fsCalculatorConstant VolumeConcentration;
 
         protected override void InitParametersAndConstants()
         {
-            Porosity0 = InitParameter(fsParameterIdentifier.Porosity0);
-            Kappa0 = InitParameter(fsParameterIdentifier.kappa0);
+            Porosity0 = InitVariable(fsParameterIdentifier.Porosity0);
+            Kappa0 = InitVariable(fsParameterIdentifier.kappa0);
             VolumeConcentration = InitConstant(fsParameterIdentifier.VolumeConcentration);
         }
 

@@ -6,6 +6,40 @@ using Parameters;
 
 namespace StepCalculators
 {
+//     public class CC : fsIEquationParameter
+//     {
+//         #region fsIProcessedParameter Members
+// 
+//         bool IsProcessed
+//         {
+//             get
+//             {
+//                 throw new NotImplementedException();
+//             }
+//             set
+//             {
+//                 throw new NotImplementedException();
+//             }
+//         }
+// 
+//         #endregion
+// 
+//         #region fsIValuedParameter Members
+// 
+//         Value.fsValue Value
+//         {
+//             get
+//             {
+//                 throw new NotImplementedException();
+//             }
+//             set
+//             {
+//                 throw new NotImplementedException();
+//             }
+//         }
+// 
+//         #endregion
+//     }
     /*
      * fsStepCalculator is a base abstract class for all calculators
      * it consists of three main components
@@ -22,7 +56,7 @@ namespace StepCalculators
      * */
     public abstract class fsCalculator
     {
-        private Dictionary<fsParameterIdentifier, fsCalculatorParameter> m_parameters = new Dictionary<fsParameterIdentifier, fsCalculatorParameter>();
+        private Dictionary<fsParameterIdentifier, fsCalculatorVariable> m_variables = new Dictionary<fsParameterIdentifier, fsCalculatorVariable>();
         private Dictionary<fsParameterIdentifier, fsCalculatorConstant> m_constants = new Dictionary<fsParameterIdentifier, fsCalculatorConstant>();
         private List<fsCalculatorEquation> m_equations = new List<fsCalculatorEquation>();
 
@@ -31,7 +65,7 @@ namespace StepCalculators
 
         public void Calculate()
         {
-            foreach (var p in m_parameters.Values)
+            foreach (var p in m_variables.Values)
             {
                 p.IsProcessed = false;
             }
@@ -52,7 +86,7 @@ namespace StepCalculators
         public string GetStatusMessage()
         {
             string message = "";
-            foreach (var p in m_parameters.Values)
+            foreach (var p in m_variables.Values)
             {
                 if (!p.isInput && !p.IsProcessed)
                 {
@@ -73,9 +107,9 @@ namespace StepCalculators
         {
             foreach (fsParameterIdentifier p in target.Keys)
             {
-                if (m_parameters.ContainsKey(p))
+                if (m_variables.ContainsKey(p))
                 {
-                    target[p].Value = m_parameters[p].Value;
+                    target[p].Value = m_variables[p].Value;
                 }
             }
         }
@@ -83,10 +117,10 @@ namespace StepCalculators
         {
             foreach (fsParameterIdentifier p in source.Keys)
             {
-                if (m_parameters.ContainsKey(p))
+                if (m_variables.ContainsKey(p))
                 {
-                    m_parameters[p].Value = source[p].Value;
-                    m_parameters[p].isInput = source[p].isInput;
+                    m_variables[p].Value = source[p].Value;
+                    m_variables[p].isInput = source[p].isInput;
                 }
                 if (m_constants.ContainsKey(p))
                 {
@@ -109,10 +143,10 @@ namespace StepCalculators
             return res;
         }
 
-        protected fsCalculatorParameter InitParameter(fsParameterIdentifier identifier)
+        protected fsCalculatorVariable InitVariable(fsParameterIdentifier identifier)
         {
-            var p = new fsCalculatorParameter(identifier);
-            m_parameters[identifier] = p;
+            var p = new fsCalculatorVariable(identifier);
+            m_variables[identifier] = p;
             return p;
         }
         protected fsCalculatorConstant InitConstant(fsParameterIdentifier identifier)

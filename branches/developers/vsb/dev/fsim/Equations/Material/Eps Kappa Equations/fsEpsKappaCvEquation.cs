@@ -6,16 +6,20 @@ using Parameters;
 
 namespace StepCalculators
 {
-    public class fsEpsKappaCvEquation : fsCalculatorEquation
+    public abstract class fsEpsKappaCvEquation : fsCalculatorEquation
     {
-        protected fsCalculatorParameter Porosity;
-        protected fsCalculatorParameter Kappa;
-        protected fsCalculatorConstant VolumeConcentration;
+        protected fsIEquationParameter Porosity;
+        protected fsIEquationParameter Kappa;
+        protected fsIEquationParameter VolumeConcentration;
 
         public fsEpsKappaCvEquation(
-            fsCalculatorParameter Porosity,
-            fsCalculatorParameter Kappa,
-            fsCalculatorConstant VolumeConcentration)
+            fsIEquationParameter Porosity,
+            fsIEquationParameter Kappa,
+            fsIEquationParameter VolumeConcentration)
+            : base(
+                Porosity, 
+                Kappa, 
+                VolumeConcentration)
         {
             this.Porosity = Porosity;
             this.Kappa = Kappa;
