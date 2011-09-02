@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Parameters
 {
-    public interface fsIEquationParameter : 
-        fsIProcessedParameter, 
+    public interface fsIEquationParameter :
+        fsIProcessedParameter,
         fsIValuedParameter
     {
     }
