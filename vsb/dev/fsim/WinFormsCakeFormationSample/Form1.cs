@@ -149,7 +149,7 @@ namespace WinFormsCakeFormationSample
         private void CalculateInThread()
         {
             calculationIndicatorButton.BackColor = System.Drawing.Color.Red;
-            fsCalculatorUpdateHandler uh = new fsCalculatorUpdateHandler(calculationIndicatorButton);
+            fsCalculatorUpdateHandler uh = new fsCalculatorUpdateHandler(progressBar1);
             errorMessageTextBox.Text = "";
 
             var calcsList = new fsCalculator [] {
@@ -161,9 +161,9 @@ namespace WinFormsCakeFormationSample
             for (int i = 0; i < calcsList.Length; ++i)
             {
                 var calc = calcsList[i];
-                //calc.SetUpdateHandler(uh.CreateSubHandler(
-                //    (double)i / calcsList.Length,
-                //    (double)(i + 1) / calcsList.Length));
+                calc.SetUpdateHandler(uh.CreateSubHandler(
+                    (double)i / calcsList.Length,
+                    (double)(i + 1) / calcsList.Length));
                 ApplyCalculator(calc);
             }
 
