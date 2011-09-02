@@ -7,40 +7,6 @@ using Equations;
 
 namespace StepCalculators
 {
-//     public class CC : fsIEquationParameter
-//     {
-//         #region fsIProcessedParameter Members
-// 
-//         bool IsProcessed
-//         {
-//             get
-//             {
-//                 throw new NotImplementedException();
-//             }
-//             set
-//             {
-//                 throw new NotImplementedException();
-//             }
-//         }
-// 
-//         #endregion
-// 
-//         #region fsIValuedParameter Members
-// 
-//         Value.fsValue Value
-//         {
-//             get
-//             {
-//                 throw new NotImplementedException();
-//             }
-//             set
-//             {
-//                 throw new NotImplementedException();
-//             }
-//         }
-// 
-//         #endregion
-//     }
     /*
      * fsStepCalculator is a base abstract class for all calculators
      * it consists of three main components
