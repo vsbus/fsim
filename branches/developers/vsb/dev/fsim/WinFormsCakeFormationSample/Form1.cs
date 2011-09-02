@@ -97,20 +97,35 @@ namespace WinFormsCakeFormationSample
                 fsValue newValue = fsValue.ObjectToValue(cell.Value);
                 Text = param.Identifier.Name + " changed from " + oldValue.ToString() + " to " + newValue.ToString();
                 param.Value = newValue;
-                
-                if (cell == parameterCell[fsParameterIdentifier.Porosity0])
-                {
-                    parameterValue[fsParameterIdentifier.Porosity0].isInput = true;
-                    parameterValue[fsParameterIdentifier.kappa0].isInput = false;
-                }
-                if (cell == parameterCell[fsParameterIdentifier.kappa0])
-                {
-                    parameterValue[fsParameterIdentifier.Porosity0].isInput = false;
-                    parameterValue[fsParameterIdentifier.kappa0].isInput = true;
-                }
+
+                UpdateInputs(cell);
 
                 Recalculate();
             }
+        }
+
+        private void UpdateInputs(DataGridViewCell cell, params fsParameterIdentifier [] parameters)
+        {
+            foreach (var p in parameters)
+            {
+                parameterValue[p].isInput = cell == parameterCell[p];
+            }
+        }
+
+        private void UpdateInputs(DataGridViewCell cell)
+        {
+            UpdateInputs(cell, 
+                fsParameterIdentifier.Porosity0,
+                fsParameterIdentifier.kappa0);
+
+            UpdateInputs(cell,
+                fsParameterIdentifier.Pc0,
+                fsParameterIdentifier.rc0,
+                fsParameterIdentifier.alpha0);
+
+            UpdateInputs(cell,
+                fsParameterIdentifier.Rm0,
+                fsParameterIdentifier.hce0);
         }
 
         private void Recalculate()
@@ -134,10 +149,23 @@ namespace WinFormsCakeFormationSample
         private void CalculateInThread()
         {
             calculationIndicatorButton.BackColor = System.Drawing.Color.Red;
-
             fsCalculatorUpdateHandler uh = new fsCalculatorUpdateHandler(calculationIndicatorButton);
-            ApplyCalculator(new fsDensityConcentrationCalculator(uh.CreateSubHandler(0, 0.5)));
-            ApplyCalculator(new fsEps0Kappa0Calculator(uh.CreateSubHandler(0.5, 1)));
+            errorMessageTextBox.Text = "";
+
+            var calcsList = new fsCalculator [] {
+                new fsDensityConcentrationCalculator(),
+                new fsEps0Kappa0Calculator(),
+                new fsPc0rc0alpha0Calculator(),
+                new fsRm0hce0Calculator()
+            };
+            for (int i = 0; i < calcsList.Length; ++i)
+            {
+                var calc = calcsList[i];
+                //calc.SetUpdateHandler(uh.CreateSubHandler(
+                //    (double)i / calcsList.Length,
+                //    (double)(i + 1) / calcsList.Length));
+                ApplyCalculator(calc);
+            }
 
             foreach (var p in parameterValue.Keys)
             {
@@ -154,6 +182,7 @@ namespace WinFormsCakeFormationSample
         {
             calculator.ReadDataFromStorage(parameterValue);
             calculator.Calculate();
+            errorMessageTextBox.Text += calculator.GetStatusMessage();
             calculator.CopyValuesToStorage(parameterValue);
         }
         private void CakeFormationDataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)

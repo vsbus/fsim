@@ -38,6 +38,7 @@
             this.CakeFormationParameterValueColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
             this.calculationIndicatorButton = new System.Windows.Forms.Button();
             this.useMultiThreadingFlag = new System.Windows.Forms.CheckBox();
+            this.errorMessageTextBox = new System.Windows.Forms.TextBox();
             this.materialDataGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaterialParametersDataGrid)).BeginInit();
             this.cakeFormationGroupBox.SuspendLayout();
@@ -131,13 +132,15 @@
             // 
             this.calculationIndicatorButton.Location = new System.Drawing.Point(568, 52);
             this.calculationIndicatorButton.Name = "calculationIndicatorButton";
-            this.calculationIndicatorButton.Size = new System.Drawing.Size(76, 23);
+            this.calculationIndicatorButton.Size = new System.Drawing.Size(118, 23);
             this.calculationIndicatorButton.TabIndex = 2;
             this.calculationIndicatorButton.UseVisualStyleBackColor = true;
             // 
             // useMultiThreadingFlag
             // 
             this.useMultiThreadingFlag.AutoSize = true;
+            this.useMultiThreadingFlag.Checked = true;
+            this.useMultiThreadingFlag.CheckState = System.Windows.Forms.CheckState.Checked;
             this.useMultiThreadingFlag.Location = new System.Drawing.Point(568, 29);
             this.useMultiThreadingFlag.Name = "useMultiThreadingFlag";
             this.useMultiThreadingFlag.Size = new System.Drawing.Size(118, 17);
@@ -145,11 +148,21 @@
             this.useMultiThreadingFlag.Text = "Use MultiThreading";
             this.useMultiThreadingFlag.UseVisualStyleBackColor = true;
             // 
+            // errorMessageTextBox
+            // 
+            this.errorMessageTextBox.Location = new System.Drawing.Point(568, 81);
+            this.errorMessageTextBox.Multiline = true;
+            this.errorMessageTextBox.Name = "errorMessageTextBox";
+            this.errorMessageTextBox.Size = new System.Drawing.Size(118, 202);
+            this.errorMessageTextBox.TabIndex = 4;
+            this.errorMessageTextBox.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 559);
+            this.ClientSize = new System.Drawing.Size(723, 559);
+            this.Controls.Add(this.errorMessageTextBox);
             this.Controls.Add(this.useMultiThreadingFlag);
             this.Controls.Add(this.calculationIndicatorButton);
             this.Controls.Add(this.cakeFormationGroupBox);
@@ -178,6 +191,7 @@
         private fmDataGrid.fmDataGridViewNumericalTextBoxColumn CakeFormationParameterValueColumn;
         private System.Windows.Forms.Button calculationIndicatorButton;
         private System.Windows.Forms.CheckBox useMultiThreadingFlag;
+        private System.Windows.Forms.TextBox errorMessageTextBox;
     }
 }
 

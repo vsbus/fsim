@@ -40,12 +40,12 @@ namespace Equations
 
         private void SecondFactorFormula()
         {
-            firstFactor.Value = product.Value / secondFactor.Value;
+            secondFactor.Value = product.Value / firstFactor.Value; 
         }
 
         private void FirstFactorFormula()
         {
-            secondFactor.Value = product.Value / firstFactor.Value;
+            firstFactor.Value = product.Value / secondFactor.Value;
         }
 
         private void ProductFormula()

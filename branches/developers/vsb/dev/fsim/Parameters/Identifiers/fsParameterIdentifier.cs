@@ -66,7 +66,7 @@ namespace Parameters
         public static fsParameterIdentifier rc0 = new fsParameterIdentifier("rc0");
         public static fsParameterIdentifier nc = new fsParameterIdentifier("nc");
         public static fsParameterIdentifier alpha0 = new fsParameterIdentifier("alpha0");
-        public static fsParameterIdentifier hce0 = new fsParameterIdentifier("hce");
+        public static fsParameterIdentifier hce0 = new fsParameterIdentifier("hce0");
         public static fsParameterIdentifier Rm0 = new fsParameterIdentifier("Rm0");
     }
 }
