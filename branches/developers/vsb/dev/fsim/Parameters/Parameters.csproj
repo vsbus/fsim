@@ -46,14 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="For Calculators\fsCalculatorConstant.cs" />
-    <Compile Include="For Calculators\fsCalculatorParameter.cs" />
     <Compile Include="For Calculators\fsCalculatorVariable.cs" />
-    <Compile Include="For Equations\fsEquationParameter.cs" />
-    <Compile Include="For Equations\fsIEquationParameter.cs" />
     <Compile Include="fsJustValueParameter.cs" />
     <Compile Include="Identifiers\fsParameterIdentifier.cs" />
     <Compile Include="fsSimulationParameter.cs" />
     <Compile Include="fsNamedValueParameter.cs" />
+    <Compile Include="Interfaces\fsIEquationParameter.cs" />
     <Compile Include="Interfaces\fsIProcessedParameter.cs" />
     <Compile Include="Interfaces\fsIValuedParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
