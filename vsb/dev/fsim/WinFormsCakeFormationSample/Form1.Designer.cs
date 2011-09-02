@@ -131,7 +131,7 @@
             // 
             this.calculationIndicatorButton.Location = new System.Drawing.Point(568, 52);
             this.calculationIndicatorButton.Name = "calculationIndicatorButton";
-            this.calculationIndicatorButton.Size = new System.Drawing.Size(41, 23);
+            this.calculationIndicatorButton.Size = new System.Drawing.Size(76, 23);
             this.calculationIndicatorButton.TabIndex = 2;
             this.calculationIndicatorButton.UseVisualStyleBackColor = true;
             // 
