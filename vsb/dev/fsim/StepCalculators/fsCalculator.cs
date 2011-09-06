@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Text;
 using Parameters;
 using Equations;
+using UpdateHandler;
 
 namespace StepCalculators
 {
@@ -63,6 +64,16 @@ namespace StepCalculators
         }
 
         #endregion
+
+        public int GetToCalculateAmount()
+        {
+            int result = 0;
+            foreach (var v in m_variables.Values)
+            {
+                result += v.isInput ? 0 : 1;
+            }
+            return result;
+        }
 
         public void SetUpdateHandler(fsCalculatorUpdateHandler updateHandler)
         {

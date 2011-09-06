@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,6 +9,7 @@ using Parameters;
 using Value;
 using StepCalculators;
 using System.Threading;
+using UpdateHandler;
 
 namespace WinFormsCakeFormationSample
 {
@@ -106,10 +106,12 @@ namespace WinFormsCakeFormationSample
 
         private void UpdateInputs(DataGridViewCell cell, params fsParameterIdentifier [] parameters)
         {
-            foreach (var p in parameters)
-            {
-                parameterValue[p].isInput = cell == parameterCell[p];
-            }
+            var parameter = cellParameter.ContainsKey(cell)
+                ? cellParameter[cell]
+                : null;
+            if (parameters.Contains(parameter))
+               foreach (var p in parameters)
+                    parameterValue[p].isInput = cell == parameterCell[p];
         }
 
         private void UpdateInputs(DataGridViewCell cell)
@@ -148,8 +150,7 @@ namespace WinFormsCakeFormationSample
 
         private void CalculateInThread()
         {
-            calculationIndicatorButton.BackColor = System.Drawing.Color.Red;
-            fsCalculatorUpdateHandler uh = new fsCalculatorUpdateHandler(progressBar1);
+            fsCalculatorUpdateHandler uh = new fsCalculatorUpdateHandler(fsLabeledProgressBar1);
             errorMessageTextBox.Text = "";
 
             var calcsList = new fsCalculator [] {
@@ -158,12 +159,27 @@ namespace WinFormsCakeFormationSample
                 new fsPc0rc0alpha0Calculator(),
                 new fsRm0hce0Calculator()
             };
+            
+            var progressSplitters = new double[calcsList.Length + 1];
+            int totalAmount = 0;
+            for (int i = 0; i < calcsList.Length; ++i)
+            {
+                totalAmount += calcsList[i].GetToCalculateAmount();
+            }
+            int currentAmount = 0;
+            for (int i = 0; i < calcsList.Length; ++i)
+            {
+                progressSplitters[i] = (double)currentAmount / totalAmount;
+                currentAmount += calcsList[i].GetToCalculateAmount();
+            }
+            progressSplitters[calcsList.Length] = 1;
+
             for (int i = 0; i < calcsList.Length; ++i)
             {
                 var calc = calcsList[i];
                 calc.SetUpdateHandler(uh.CreateSubHandler(
-                    (double)i / calcsList.Length,
-                    (double)(i + 1) / calcsList.Length));
+                    progressSplitters[i],
+                    progressSplitters[i + 1]));
                 ApplyCalculator(calc);
             }
 
@@ -175,8 +191,6 @@ namespace WinFormsCakeFormationSample
                     parameterCell[p].Value = value.Value.ToString();
                 }
             }
-
-            calculationIndicatorButton.BackColor = System.Drawing.Color.FromKnownColor(System.Drawing.KnownColor.ButtonFace);
         }
         private void ApplyCalculator(fsCalculator calculator)
         {
