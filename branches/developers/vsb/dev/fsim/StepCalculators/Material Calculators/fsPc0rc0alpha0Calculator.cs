@@ -26,7 +26,7 @@ namespace StepCalculators
 
         protected override void InitEquations()
         {
-            AddEquation(new fsPcrcEquation(Pc0, rc0));
+            AddEquation(new fsDivisionInverseEquation(Pc0, rc0));
             AddEquation(new fsAlphaPcEquation(alpha0, Pc0, eps0, rho_s));
         }
     }

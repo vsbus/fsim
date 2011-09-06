@@ -32,9 +32,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cake Formation\fsCakeHeightFrom_Dp_tfEquation.cs" />
+    <Compile Include="Cake Formation\fsFrom0AndDpEquation.cs" />
     <Compile Include="Cake Formation\fsVsusFromAreaAndCakeHeightEquation.cs" />
     <Compile Include="fsCalculatorEquation.cs" />
     <Compile Include="Material\Densily Concentration Equations\Concentration Calculators\fsConcentrationEquation.cs" />
@@ -42,7 +48,6 @@
     <Compile Include="Material\Densily Concentration Equations\Concentration Calculators\fsVolumeConcentrationEquation.cs" />
     <Compile Include="Material\Eps Kappa Equations\fsEpsKappaCvEquation.cs" />
     <Compile Include="Material\Pc rc alpha Equations\fsAlphaPcEquation.cs" />
-    <Compile Include="Material\Pc rc alpha Equations\fsPcrcEquation.cs" />
     <Compile Include="Math\fsDivisionInverseEquation.cs" />
     <Compile Include="Math\fsProductEquation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

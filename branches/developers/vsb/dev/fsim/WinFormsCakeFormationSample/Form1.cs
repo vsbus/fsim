@@ -42,6 +42,7 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.Pc0,
                 fsParameterIdentifier.rc0,
                 fsParameterIdentifier.alpha0,
+                fsParameterIdentifier.nc,
                 fsParameterIdentifier.hce0,
                 fsParameterIdentifier.Rm0,
             };
@@ -49,10 +50,11 @@ namespace WinFormsCakeFormationSample
             fsParameterIdentifier[] CakeFormationParameters = new fsParameterIdentifier[] {
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.Pressure,
-                fsParameterIdentifier.CakeHeight,
                 fsParameterIdentifier.CycleTime,
+                fsParameterIdentifier.RotationalSpeed,
                 fsParameterIdentifier.FormationRelativeTime,
-                fsParameterIdentifier.FormationTime
+                fsParameterIdentifier.FormationTime,
+                fsParameterIdentifier.CakeHeight
             };
 
             foreach (var p in MaterialParameters)
@@ -79,6 +81,9 @@ namespace WinFormsCakeFormationSample
             parameterCell[fsParameterIdentifier.MassConcentration].ReadOnly = true;
             parameterCell[fsParameterIdentifier.VolumeConcentration].ReadOnly = true;
             parameterCell[fsParameterIdentifier.Concentration].ReadOnly = true;
+
+            parameterValue[fsParameterIdentifier.FilterArea].isInput = true;
+            parameterValue[fsParameterIdentifier.Pressure].isInput = true;
         }
 
         private void MaterialParametersDataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
@@ -110,8 +115,13 @@ namespace WinFormsCakeFormationSample
                 ? cellParameter[cell]
                 : null;
             if (parameters.Contains(parameter))
-               foreach (var p in parameters)
-                    parameterValue[p].isInput = cell == parameterCell[p];
+                foreach (var p in parameters)
+                {
+                    var pcell = parameterCell[p];
+                    bool isInput = cell == pcell;
+                    parameterValue[p].isInput = isInput;
+                    pcell.Style.ForeColor = isInput ? Color.Blue : Color.Black;
+                }
         }
 
         private void UpdateInputs(DataGridViewCell cell)
@@ -128,6 +138,15 @@ namespace WinFormsCakeFormationSample
             UpdateInputs(cell,
                 fsParameterIdentifier.Rm0,
                 fsParameterIdentifier.hce0);
+
+            UpdateInputs(cell,
+                fsParameterIdentifier.CycleTime,
+                fsParameterIdentifier.RotationalSpeed);
+
+            UpdateInputs(cell,
+                fsParameterIdentifier.FormationTime,
+                fsParameterIdentifier.FormationRelativeTime,
+                fsParameterIdentifier.CakeHeight);
         }
 
         private void Recalculate()
@@ -157,7 +176,8 @@ namespace WinFormsCakeFormationSample
                 new fsDensityConcentrationCalculator(),
                 new fsEps0Kappa0Calculator(),
                 new fsPc0rc0alpha0Calculator(),
-                new fsRm0hce0Calculator()
+                new fsRm0hce0Calculator(),
+                new fsCakeFormationDpConstCalculator(),
             };
             
             var progressSplitters = new double[calcsList.Length + 1];

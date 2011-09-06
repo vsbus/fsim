@@ -43,7 +43,6 @@ namespace Equations
         private void SuspensionVolumeFormula()
         {
             SuspensionVolume.Value = Area.Value * CakeHeight.Value * (1 + kappa.Value) / kappa.Value;
-            base.Calculate();
         }
 
         #endregion

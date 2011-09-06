@@ -38,6 +38,7 @@ namespace Parameters
         public static fsParameterIdentifier a4 = new fsParameterIdentifier("a4");
         public static fsParameterIdentifier a5 = new fsParameterIdentifier("a5");
 
+        public static fsParameterIdentifier Porosity = new fsParameterIdentifier("eps");
         public static fsParameterIdentifier kappa = new fsParameterIdentifier("kappa");
         public static fsParameterIdentifier Pc = new fsParameterIdentifier("Pc");
 
