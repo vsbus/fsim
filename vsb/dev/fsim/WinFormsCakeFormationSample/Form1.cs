@@ -59,7 +59,7 @@ namespace WinFormsCakeFormationSample
 
             foreach (var p in MaterialParameters)
             {
-                MaterialParametersDataGrid.Rows.Add(new object[] {p.Name});
+                MaterialParametersDataGrid.Rows.Add(new object[] {p.Name + " (" + p.Units.CurrentName + ")"});
                 var cell = MaterialParametersDataGrid.Rows[MaterialParametersDataGrid.Rows.Count - 1].Cells[1];
                 parameterCell[p] = cell;
                 cellParameter[cell] = p;
@@ -68,7 +68,7 @@ namespace WinFormsCakeFormationSample
 
             foreach (var p in CakeFormationParameters)
             {
-                CakeFormationDataGrid.Rows.Add(new object[] { p.Name });
+                CakeFormationDataGrid.Rows.Add(new object[] { p.Name + " (" + p.Units.CurrentName + ")"});
                 var cell = CakeFormationDataGrid.Rows[CakeFormationDataGrid.Rows.Count - 1].Cells[1];
                 parameterCell[p] = cell;
                 cellParameter[cell] = p;
@@ -99,7 +99,7 @@ namespace WinFormsCakeFormationSample
                 var param = parameterValue[id];
                 
                 fsValue oldValue = param.Value;
-                fsValue newValue = fsValue.ObjectToValue(cell.Value);
+                fsValue newValue = fsValue.ObjectToValue(cell.Value) * param.Identifier.Units.CurrentCoefficient;
                 Text = param.Identifier.Name + " changed from " + oldValue.ToString() + " to " + newValue.ToString();
                 param.Value = newValue;
 
@@ -208,7 +208,7 @@ namespace WinFormsCakeFormationSample
                 var value = parameterValue[p];
                 if (value.isInput == false)
                 {
-                    parameterCell[p].Value = value.Value.ToString();
+                    parameterCell[p].Value = value.ValueToStringWithCurrentUnits();
                 }
             }
         }
