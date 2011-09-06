@@ -12,6 +12,12 @@ namespace StepCalculators
         fsCalculatorConstant SuspensionDensity;
         fsCalculatorConstant etaf;
         fsCalculatorConstant hce0;
+        fsCalculatorConstant Porosity0;
+        fsCalculatorConstant kappa0;
+        fsCalculatorConstant Pc0;
+        fsCalculatorConstant ne;
+        fsCalculatorConstant nc;
+        fsCalculatorConstant VolumeConcentration;
 
         fsCalculatorVariable FilterArea;
 
@@ -26,6 +32,7 @@ namespace StepCalculators
         fsCalculatorVariable SuspensionMass;
         fsCalculatorVariable SuspensionVolume;
 
+        fsCalculatorVariable Porosity;
         fsCalculatorVariable Pc;
         fsCalculatorVariable kappa;
 
@@ -34,6 +41,12 @@ namespace StepCalculators
             SuspensionDensity = InitConstant(fsParameterIdentifier.SuspensionDensity);
             etaf = InitConstant(fsParameterIdentifier.FiltrateViscosity);
             hce0 = InitConstant(fsParameterIdentifier.hce0);
+            Porosity0 = InitConstant(fsParameterIdentifier.Porosity0);
+            kappa0 = InitConstant(fsParameterIdentifier.kappa0);
+            Pc0 = InitConstant(fsParameterIdentifier.Pc0);
+            ne = InitConstant(fsParameterIdentifier.ne);
+            nc = InitConstant(fsParameterIdentifier.nc);
+            VolumeConcentration = InitConstant(fsParameterIdentifier.VolumeConcentration);
 
             FilterArea = InitVariable(fsParameterIdentifier.FilterArea);
 
@@ -48,6 +61,7 @@ namespace StepCalculators
             SuspensionMass = InitVariable(fsParameterIdentifier.SuspensionMass);
             SuspensionVolume = InitVariable(fsParameterIdentifier.SuspensionVolume);
 
+            Porosity = InitVariable(fsParameterIdentifier.Porosity);
             Pc = InitVariable(fsParameterIdentifier.Pc);
             kappa = InitVariable(fsParameterIdentifier.kappa);
         }
@@ -60,6 +74,9 @@ namespace StepCalculators
             AddEquation(new fsCakeHeightFrom_Dp_tf(CakeHeight, hce0, Pc, kappa, Pressure, FormationTime, etaf));
             AddEquation(new fsVsusFromAreaAndCakeHeightEquation(SuspensionVolume, FilterArea, CakeHeight, kappa));
             AddEquation(new fsProductEquation(SuspensionMass, SuspensionDensity, SuspensionVolume));
+            AddEquation(new fsFrom0AndDpEquation(Porosity, Porosity0, Pressure, ne));
+            AddEquation(new fsFrom0AndDpEquation(Pc, Pc0, Pressure, nc));
+            AddEquation(new fsEpsKappaCvEquation(Porosity, kappa, VolumeConcentration));
         }
     }
 }
