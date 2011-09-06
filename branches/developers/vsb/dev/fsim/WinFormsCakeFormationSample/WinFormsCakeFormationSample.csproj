@@ -31,25 +31,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Controls\obj\Debug\Controls.dll</HintPath>
+    </Reference>
     <Reference Include="fmDataGrid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\fmDataGrid\obj\Debug\fmDataGrid.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.AddIn">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Xml.Linq">
+    <Reference Include="System.Data.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form1.cs">
@@ -90,6 +96,10 @@
     <ProjectReference Include="..\StepCalculators\StepCalculators.csproj">
       <Project>{95DCD086-DBE7-4361-BE61-C62FB904659E}</Project>
       <Name>StepCalculators</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UpdateHandler\UpdateHandler.csproj">
+      <Project>{4AE3622D-D14E-46A6-AD01-0B88B9BC22C8}</Project>
+      <Name>UpdateHandler</Name>
     </ProjectReference>
     <ProjectReference Include="..\Value\Value.csproj">
       <Project>{CD1BD2A7-AB61-4A58-B1F9-9A3DF9A0E9F2}</Project>

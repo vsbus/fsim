@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Parameters;
 
@@ -62,12 +61,12 @@ namespace Equations
 
         private bool Calculate(fsIEquationParameter result)
         {
-            int sum = 0;
-            for (int i = 0; i < 50000000; ++i)
-            {
-                sum += i;
-            }
-            sum -= 10;
+//             int sum = 0;
+//             for (int i = 0; i < 50000000; ++i)
+//             {
+//                 sum += i;
+//             }
+//             sum -= 10;
 
             if (m_formulas == null)
             {

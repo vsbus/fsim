@@ -36,10 +36,9 @@
             this.CakeFormationDataGrid = new fmDataGrid.fmDataGrid();
             this.CakeFormationParameterNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CakeFormationParameterValueColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
-            this.calculationIndicatorButton = new System.Windows.Forms.Button();
             this.useMultiThreadingFlag = new System.Windows.Forms.CheckBox();
             this.errorMessageTextBox = new System.Windows.Forms.TextBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.fsLabeledProgressBar1 = new UpdateHandler.fsLabeledProgressBar();
             this.materialDataGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaterialParametersDataGrid)).BeginInit();
             this.cakeFormationGroupBox.SuspendLayout();
@@ -50,9 +49,9 @@
             // 
             this.materialDataGroupBox.Controls.Add(this.MaterialParametersDataGrid);
             this.materialDataGroupBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.materialDataGroupBox.Location = new System.Drawing.Point(0, 10);
+            this.materialDataGroupBox.Location = new System.Drawing.Point(0, 0);
             this.materialDataGroupBox.Name = "materialDataGroupBox";
-            this.materialDataGroupBox.Size = new System.Drawing.Size(273, 549);
+            this.materialDataGroupBox.Size = new System.Drawing.Size(273, 559);
             this.materialDataGroupBox.TabIndex = 0;
             this.materialDataGroupBox.TabStop = false;
             this.materialDataGroupBox.Text = "Material Data";
@@ -72,7 +71,7 @@
             this.MaterialParametersDataGrid.Name = "MaterialParametersDataGrid";
             this.MaterialParametersDataGrid.RowHeadersVisible = false;
             this.MaterialParametersDataGrid.RowTemplate.Height = 18;
-            this.MaterialParametersDataGrid.Size = new System.Drawing.Size(267, 530);
+            this.MaterialParametersDataGrid.Size = new System.Drawing.Size(267, 540);
             this.MaterialParametersDataGrid.TabIndex = 0;
             this.MaterialParametersDataGrid.CellValueChangedByUser += new System.Windows.Forms.DataGridViewCellEventHandler(this.MaterialParametersDataGrid_CellValueChangedByUser);
             // 
@@ -93,9 +92,9 @@
             // 
             this.cakeFormationGroupBox.Controls.Add(this.CakeFormationDataGrid);
             this.cakeFormationGroupBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.cakeFormationGroupBox.Location = new System.Drawing.Point(273, 10);
+            this.cakeFormationGroupBox.Location = new System.Drawing.Point(273, 0);
             this.cakeFormationGroupBox.Name = "cakeFormationGroupBox";
-            this.cakeFormationGroupBox.Size = new System.Drawing.Size(289, 549);
+            this.cakeFormationGroupBox.Size = new System.Drawing.Size(289, 559);
             this.cakeFormationGroupBox.TabIndex = 1;
             this.cakeFormationGroupBox.TabStop = false;
             this.cakeFormationGroupBox.Text = "Cake Formation";
@@ -115,7 +114,7 @@
             this.CakeFormationDataGrid.Name = "CakeFormationDataGrid";
             this.CakeFormationDataGrid.RowHeadersVisible = false;
             this.CakeFormationDataGrid.RowTemplate.Height = 18;
-            this.CakeFormationDataGrid.Size = new System.Drawing.Size(283, 530);
+            this.CakeFormationDataGrid.Size = new System.Drawing.Size(283, 540);
             this.CakeFormationDataGrid.TabIndex = 0;
             this.CakeFormationDataGrid.CellValueChangedByUser += new System.Windows.Forms.DataGridViewCellEventHandler(this.CakeFormationDataGrid_CellValueChangedByUser);
             // 
@@ -128,14 +127,6 @@
             // 
             this.CakeFormationParameterValueColumn.HeaderText = "Value";
             this.CakeFormationParameterValueColumn.Name = "CakeFormationParameterValueColumn";
-            // 
-            // calculationIndicatorButton
-            // 
-            this.calculationIndicatorButton.Location = new System.Drawing.Point(568, 52);
-            this.calculationIndicatorButton.Name = "calculationIndicatorButton";
-            this.calculationIndicatorButton.Size = new System.Drawing.Size(118, 23);
-            this.calculationIndicatorButton.TabIndex = 2;
-            this.calculationIndicatorButton.UseVisualStyleBackColor = true;
             // 
             // useMultiThreadingFlag
             // 
@@ -151,33 +142,32 @@
             // 
             // errorMessageTextBox
             // 
-            this.errorMessageTextBox.Location = new System.Drawing.Point(568, 81);
+            this.errorMessageTextBox.Location = new System.Drawing.Point(568, 127);
             this.errorMessageTextBox.Multiline = true;
             this.errorMessageTextBox.Name = "errorMessageTextBox";
             this.errorMessageTextBox.Size = new System.Drawing.Size(118, 202);
             this.errorMessageTextBox.TabIndex = 4;
             this.errorMessageTextBox.Visible = false;
             // 
-            // progressBar1
+            // fsLabeledProgressBar1
             // 
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.progressBar1.Location = new System.Drawing.Point(0, 0);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(723, 10);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.TabIndex = 5;
+            this.fsLabeledProgressBar1.Location = new System.Drawing.Point(565, 52);
+            this.fsLabeledProgressBar1.Maximum = 100;
+            this.fsLabeledProgressBar1.Name = "fsLabeledProgressBar1";
+            this.fsLabeledProgressBar1.Size = new System.Drawing.Size(121, 31);
+            this.fsLabeledProgressBar1.TabIndex = 5;
+            this.fsLabeledProgressBar1.Value = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 559);
+            this.Controls.Add(this.fsLabeledProgressBar1);
             this.Controls.Add(this.errorMessageTextBox);
             this.Controls.Add(this.useMultiThreadingFlag);
-            this.Controls.Add(this.calculationIndicatorButton);
             this.Controls.Add(this.cakeFormationGroupBox);
             this.Controls.Add(this.materialDataGroupBox);
-            this.Controls.Add(this.progressBar1);
             this.Name = "Form1";
             this.Text = "Cake Fromation Sample";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -200,10 +190,9 @@
         private fmDataGrid.fmDataGrid CakeFormationDataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn CakeFormationParameterNameColumn;
         private fmDataGrid.fmDataGridViewNumericalTextBoxColumn CakeFormationParameterValueColumn;
-        private System.Windows.Forms.Button calculationIndicatorButton;
         private System.Windows.Forms.CheckBox useMultiThreadingFlag;
         private System.Windows.Forms.TextBox errorMessageTextBox;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private UpdateHandler.fsLabeledProgressBar fsLabeledProgressBar1;
     }
 }
 

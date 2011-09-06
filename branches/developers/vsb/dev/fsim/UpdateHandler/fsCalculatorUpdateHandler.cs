@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Text;
 using System.Windows.Forms;
 
-namespace StepCalculators
+namespace UpdateHandler
 {
     public class fsCalculatorUpdateHandler
     {
         private fsCalculatorUpdateHandler m_parentHandler = null;
         private double m_startValue = 0;
         private double m_endValue = 1;
-        private ProgressBar m_progressBar = null;
+        private fsIUpdatable m_statusControl = null;
 
-        public fsCalculatorUpdateHandler(ProgressBar statusControl)
+        public fsCalculatorUpdateHandler(fsIUpdatable statusControl)
         {
-            m_progressBar = statusControl;
+            m_statusControl = statusControl;
         }
 
         private fsCalculatorUpdateHandler(
@@ -28,14 +28,21 @@ namespace StepCalculators
             m_endValue = endValue;
         }
 
+        private delegate void CallUpdateProgressBar(fsIUpdatable statusControl, int progress);
+        static private void UpdateProgressBar(fsIUpdatable statusControl, int progress)
+        {
+            statusControl.Value = progress;
+            statusControl.Refresh();
+        }
+
         public void SetProgress(double progress)
         {
             if (m_parentHandler == null)
             {
-                //m_progressBar.Text = ((int)(progress * 100 + 0.5)).ToString() + "%";
-                int intProgress = (int)(progress * m_progressBar.Maximum + 0.5);
-                m_progressBar.Value = intProgress;
-                m_progressBar.Refresh();
+                int intProgress = (int)(progress * m_statusControl.Maximum + 0.5);
+                m_statusControl.Invoke(
+                    new CallUpdateProgressBar(UpdateProgressBar),
+                    new object[] { m_statusControl, intProgress });
             }
             else
             {

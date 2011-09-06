@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cake Formation\fsCakeFormationDpConstCalculator.cs" />
-    <Compile Include="Calculator Update Handler\fsCalculatorUpdateHandler.cs" />
     <Compile Include="fsCalculator.cs" />
     <Compile Include="Material Calculators\fsDensityConcentrationCalculator.cs" />
     <Compile Include="Material Calculators\fsEps0Kapp0Calculator.cs" />
@@ -63,6 +62,10 @@
     <ProjectReference Include="..\Parameters\Parameters.csproj">
       <Project>{67A1D000-12E6-439C-BC89-23C4059BC855}</Project>
       <Name>Parameters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UpdateHandler\UpdateHandler.csproj">
+      <Project>{4AE3622D-D14E-46A6-AD01-0B88B9BC22C8}</Project>
+      <Name>UpdateHandler</Name>
     </ProjectReference>
     <ProjectReference Include="..\Value\Value.csproj">
       <Project>{CD1BD2A7-AB61-4A58-B1F9-9A3DF9A0E9F2}</Project>
