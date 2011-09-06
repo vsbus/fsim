@@ -147,6 +147,7 @@
             this.errorMessageTextBox.Name = "errorMessageTextBox";
             this.errorMessageTextBox.Size = new System.Drawing.Size(146, 467);
             this.errorMessageTextBox.TabIndex = 4;
+            this.errorMessageTextBox.Visible = false;
             // 
             // fsLabeledProgressBar1
             // 

@@ -39,6 +39,11 @@ namespace Parameters
             m_isInput = isInput;
         }
 
+        public string ValueToStringWithCurrentUnits()
+        {
+            return (Value / Identifier.Units.CurrentCoefficient).ToString();
+        }
+
         public override string ToString()
         {
             return Identifier.Name + "(" + (m_isInput ? "Inputed" : "Calculated") + ")" + " = " + Value.ToString();
