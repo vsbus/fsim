@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Windows.Forms;
-
-namespace UpdateHandler
+﻿namespace UpdateHandler
 {
     public class fsCalculatorUpdateHandler
     {
-        private fsCalculatorUpdateHandler m_parentHandler = null;
-        private double m_startValue = 0;
-        private double m_endValue = 1;
-        private fsIUpdatable m_statusControl = null;
+        private readonly fsCalculatorUpdateHandler m_parentHandler;
+        private readonly double m_startValue;
+        private readonly double m_endValue;
+        private readonly IUpdatable m_statusControl;
 
-        public fsCalculatorUpdateHandler(fsIUpdatable statusControl)
+        #region Constructors
+
+        public fsCalculatorUpdateHandler(IUpdatable statusControl)
         {
             m_statusControl = statusControl;
         }
@@ -28,8 +24,12 @@ namespace UpdateHandler
             m_endValue = endValue;
         }
 
-        private delegate void CallUpdateProgressBar(fsIUpdatable statusControl, int progress);
-        static private void UpdateProgressBar(fsIUpdatable statusControl, int progress)
+        #endregion
+
+        #region Update Routines
+
+        private delegate void fsCallUpdateProgressBar(IUpdatable statusControl, int progress);
+        static private void UpdateProgressBar(IUpdatable statusControl, int progress)
         {
             statusControl.Value = progress;
             statusControl.Refresh();
@@ -39,9 +39,9 @@ namespace UpdateHandler
         {
             if (m_parentHandler == null)
             {
-                int intProgress = (int)(progress * m_statusControl.Maximum + 0.5);
+                var intProgress = (int)(progress * m_statusControl.Maximum + 0.5);
                 m_statusControl.Invoke(
-                    new CallUpdateProgressBar(UpdateProgressBar),
+                    new fsCallUpdateProgressBar(UpdateProgressBar),
                     new object[] { m_statusControl, intProgress });
             }
             else
@@ -49,6 +49,8 @@ namespace UpdateHandler
                 m_parentHandler.SetProgress(m_startValue + (m_endValue - m_startValue) * progress);
             }
         }
+
+        #endregion
 
         public fsCalculatorUpdateHandler CreateSubHandler(double startValue, double endValue)
         {

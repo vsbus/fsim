@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
 
 namespace UpdateHandler
 {
-    public interface fsIUpdatable
+    public interface IUpdatable
     {
         void Refresh();
         int Value { set;  get; }
