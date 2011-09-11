@@ -103,6 +103,10 @@
             new fsUnitRecord("m3", 1)
         });
 
+        public static fsUnits Flowrate = new fsUnits(new[] {
+            new fsUnitRecord("kg/h", 1/3600.0),
+        });
+
         public static fsUnits PermeabilityPc = new fsUnits(new[] {
             new fsUnitRecord("10-13m2", 1e-13)
         });

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Parameters;
 using Value;
@@ -15,11 +13,11 @@ namespace WinFormsCakeFormationSample
 {
     public partial class Form1 : Form
     {
-        private Thread m_currentCalculation = null;
+        private Thread m_currentCalculation;
 
-        private Dictionary<fsParameterIdentifier, DataGridViewCell> parameterCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
-        private Dictionary<DataGridViewCell, fsParameterIdentifier> cellParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
-        private Dictionary<fsParameterIdentifier, fsSimulationParameter> parameterValue = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
+        private readonly Dictionary<fsParameterIdentifier, DataGridViewCell> m_parameterCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
+        private readonly Dictionary<DataGridViewCell, fsParameterIdentifier> m_cellParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
+        private readonly Dictionary<fsParameterIdentifier, fsSimulationParameter> m_parameterValue = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
 
         public Form1()
         {
@@ -28,7 +26,7 @@ namespace WinFormsCakeFormationSample
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            fsParameterIdentifier[] MaterialParameters = new fsParameterIdentifier[] {
+            var materialParameters = new[] {
                 fsParameterIdentifier.FiltrateViscosity,
                 fsParameterIdentifier.FiltrateDensity,
                 fsParameterIdentifier.SolidsDensity,
@@ -47,7 +45,7 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.Rm0,
             };
 
-            fsParameterIdentifier[] CakeFormationParameters = new fsParameterIdentifier[] {
+            var cakeFormationParameters = new[] {
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.Pressure,
                 fsParameterIdentifier.CycleTime,
@@ -56,53 +54,54 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.FormationTime,
                 fsParameterIdentifier.CakeHeight,
                 fsParameterIdentifier.SuspensionMass,
-                fsParameterIdentifier.SuspensionVolume
+                fsParameterIdentifier.SuspensionVolume,
+                fsParameterIdentifier.SuspensionMassFlowrate
             };
 
-            foreach (var p in MaterialParameters)
+            foreach (var p in materialParameters)
             {
                 MaterialParametersDataGrid.Rows.Add(new object[] {p.Name + " (" + p.Units.CurrentName + ")"});
                 var cell = MaterialParametersDataGrid.Rows[MaterialParametersDataGrid.Rows.Count - 1].Cells[1];
-                parameterCell[p] = cell;
-                cellParameter[cell] = p;
-                parameterValue[p] = new fsSimulationParameter(p);
+                m_parameterCell[p] = cell;
+                m_cellParameter[cell] = p;
+                m_parameterValue[p] = new fsSimulationParameter(p);
             }
 
-            foreach (var p in CakeFormationParameters)
+            foreach (var p in cakeFormationParameters)
             {
                 CakeFormationDataGrid.Rows.Add(new object[] { p.Name + " (" + p.Units.CurrentName + ")"});
                 var cell = CakeFormationDataGrid.Rows[CakeFormationDataGrid.Rows.Count - 1].Cells[1];
-                parameterCell[p] = cell;
-                cellParameter[cell] = p;
-                parameterValue[p] = new fsSimulationParameter(p);
+                m_parameterCell[p] = cell;
+                m_cellParameter[cell] = p;
+                m_parameterValue[p] = new fsSimulationParameter(p);
             }
 
-            parameterValue[fsParameterIdentifier.FiltrateDensity].IsInput = true;
-            parameterValue[fsParameterIdentifier.SolidsDensity].IsInput = true;
-            parameterValue[fsParameterIdentifier.SuspensionDensity].IsInput = true;
-            parameterCell[fsParameterIdentifier.MassConcentration].ReadOnly = true;
-            parameterCell[fsParameterIdentifier.VolumeConcentration].ReadOnly = true;
-            parameterCell[fsParameterIdentifier.Concentration].ReadOnly = true;
+            m_parameterValue[fsParameterIdentifier.FiltrateDensity].IsInput = true;
+            m_parameterValue[fsParameterIdentifier.SolidsDensity].IsInput = true;
+            m_parameterValue[fsParameterIdentifier.SuspensionDensity].IsInput = true;
+            m_parameterCell[fsParameterIdentifier.MassConcentration].ReadOnly = true;
+            m_parameterCell[fsParameterIdentifier.VolumeConcentration].ReadOnly = true;
+            m_parameterCell[fsParameterIdentifier.Concentration].ReadOnly = true;
 
-            parameterValue[fsParameterIdentifier.FilterArea].IsInput = true;
-            parameterValue[fsParameterIdentifier.Pressure].IsInput = true;
+            m_parameterValue[fsParameterIdentifier.FilterArea].IsInput = true;
+            m_parameterValue[fsParameterIdentifier.Pressure].IsInput = true;
         }
 
         private void MaterialParametersDataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
         {
-            ProcessParameterChange((sender as DataGridView)[e.ColumnIndex, e.RowIndex]);
+            ProcessParameterChange(((DataGridView) sender)[e.ColumnIndex, e.RowIndex]);
         }
 
         private void ProcessParameterChange(DataGridViewCell cell)
         {
-            if (cellParameter.ContainsKey(cell))
+            if (m_cellParameter.ContainsKey(cell))
             {
-                var id = cellParameter[cell];
-                var param = parameterValue[id];
+                var id = m_cellParameter[cell];
+                var param = m_parameterValue[id];
                 
                 fsValue oldValue = param.Value;
                 fsValue newValue = fsValue.ObjectToValue(cell.Value) * param.Identifier.Units.CurrentCoefficient;
-                Text = param.Identifier.Name + " changed from " + oldValue.ToString() + " to " + newValue.ToString();
+                Text = param.Identifier.Name + @" changed from " + oldValue.ToString() + @" to " + newValue.ToString();
                 param.Value = newValue;
 
                 UpdateInputs(cell);
@@ -113,15 +112,15 @@ namespace WinFormsCakeFormationSample
 
         private void UpdateInputs(DataGridViewCell cell, params fsParameterIdentifier [] parameters)
         {
-            var parameter = cellParameter.ContainsKey(cell)
-                ? cellParameter[cell]
+            var parameter = m_cellParameter.ContainsKey(cell)
+                ? m_cellParameter[cell]
                 : null;
             if (parameters.Contains(parameter))
                 foreach (var p in parameters)
                 {
-                    var pcell = parameterCell[p];
+                    var pcell = m_parameterCell[p];
                     bool isInput = cell == pcell;
-                    parameterValue[p].IsInput = isInput;
+                    m_parameterValue[p].IsInput = isInput;
                     pcell.Style.ForeColor = isInput ? Color.Blue : Color.Black;
                 }
         }
@@ -162,7 +161,7 @@ namespace WinFormsCakeFormationSample
                     m_currentCalculation.Abort();
                     m_currentCalculation = null;
                 }
-                m_currentCalculation = new Thread(new ThreadStart(CalculateInThread));
+                m_currentCalculation = new Thread(CalculateInThread);
                 m_currentCalculation.Start();
             }
             else
@@ -173,7 +172,7 @@ namespace WinFormsCakeFormationSample
 
         private void CalculateInThread()
         {
-            fsCalculatorUpdateHandler uh = new fsCalculatorUpdateHandler(fsLabeledProgressBar1);
+            var uh = new fsCalculatorUpdateHandler(fsLabeledProgressBar1);
             errorMessageTextBox.Text = "";
 
             var calcsList = new fsCalculator [] {
@@ -185,11 +184,7 @@ namespace WinFormsCakeFormationSample
             };
             
             var progressSplitters = new double[calcsList.Length + 1];
-            int totalAmount = 0;
-            for (int i = 0; i < calcsList.Length; ++i)
-            {
-                totalAmount += calcsList[i].GetToCalculateAmount();
-            }
+            int totalAmount = calcsList.Sum(t => t.GetToCalculateAmount());
             int currentAmount = 0;
             for (int i = 0; i < calcsList.Length; ++i)
             {
@@ -207,25 +202,25 @@ namespace WinFormsCakeFormationSample
                 ApplyCalculator(calc);
             }
 
-            foreach (var p in parameterValue.Keys)
+            foreach (var p in m_parameterValue.Keys)
             {
-                var value = parameterValue[p];
+                var value = m_parameterValue[p];
                 if (value.IsInput == false)
                 {
-                    parameterCell[p].Value = value.ValueToStringWithCurrentUnits();
+                    m_parameterCell[p].Value = value.ValueToStringWithCurrentUnits();
                 }
             }
         }
         private void ApplyCalculator(fsCalculator calculator)
         {
-            calculator.ReadDataFromStorage(parameterValue);
+            calculator.ReadDataFromStorage(m_parameterValue);
             calculator.Calculate();
             errorMessageTextBox.Text += calculator.GetStatusMessage();
-            calculator.CopyValuesToStorage(parameterValue);
+            calculator.CopyValuesToStorage(m_parameterValue);
         }
         private void CakeFormationDataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
         {
-            ProcessParameterChange((sender as DataGridView)[e.ColumnIndex, e.RowIndex]);
+            ProcessParameterChange(((DataGridView) sender)[e.ColumnIndex, e.RowIndex]);
         }
     }
 }

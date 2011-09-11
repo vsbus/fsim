@@ -26,6 +26,7 @@ namespace StepCalculators
         readonly fsCalculatorVariable m_cakeHeight;
         readonly fsCalculatorVariable m_suspensionMass;
         readonly fsCalculatorVariable m_suspensionVolume;
+        readonly fsCalculatorVariable m_suspensionMassFlowrate;
 
         readonly fsCalculatorVariable m_porosity;
         readonly fsCalculatorVariable m_pc;
@@ -57,6 +58,7 @@ namespace StepCalculators
             m_cakeHeight = AddVariable(fsParameterIdentifier.CakeHeight);
             m_suspensionMass = AddVariable(fsParameterIdentifier.SuspensionMass);
             m_suspensionVolume = AddVariable(fsParameterIdentifier.SuspensionVolume);
+            m_suspensionMassFlowrate = AddVariable(fsParameterIdentifier.SuspensionMassFlowrate);
 
             m_porosity = AddVariable(fsParameterIdentifier.Porosity);
             m_pc = AddVariable(fsParameterIdentifier.Pc);
@@ -75,6 +77,7 @@ namespace StepCalculators
             AddEquation(new fsFrom0AndDpEquation(m_porosity, m_porosity0, m_pressure, m_ne));
             AddEquation(new fsFrom0AndDpEquation(m_pc, m_pc0, m_pressure, m_nc));
             AddEquation(new fsEpsKappaCvEquation(m_porosity, m_kappa, m_volumeConcentration));
+            AddEquation(new fsProductEquation(m_suspensionMass, m_suspensionMassFlowrate, m_cycleTime));
 
             #endregion
         }

@@ -4,6 +4,8 @@ namespace Parameters
 {
     public class fsParameterIdentifier
     {
+        #region fsParameterIdentifier
+
         public string Name { get; set; }
 
         public fsUnits Units { get; private set; }
@@ -25,19 +27,9 @@ namespace Parameters
             return Name;
         }
 
-//         public static fsParameterIdentifier height = new fsParameterIdentifier("height", fsUnits.LengthUnits);
-//         public static fsParameterIdentifier length = new fsParameterIdentifier("length");
-//         public static fsParameterIdentifier width = new fsParameterIdentifier("width");
-//         public static fsParameterIdentifier side = new fsParameterIdentifier("side");
-//         public static fsParameterIdentifier volume = new fsParameterIdentifier("volume");
-//         public static fsParameterIdentifier coefficient = new fsParameterIdentifier("coefficient");
-// 
-//         public static fsParameterIdentifier q = new fsParameterIdentifier("q");
-//         public static fsParameterIdentifier a1 = new fsParameterIdentifier("a1");
-//         public static fsParameterIdentifier a2 = new fsParameterIdentifier("a2");
-//         public static fsParameterIdentifier a3 = new fsParameterIdentifier("a3");
-//         public static fsParameterIdentifier a4 = new fsParameterIdentifier("a4");
-//         public static fsParameterIdentifier a5 = new fsParameterIdentifier("a5");
+        #endregion
+
+        #region Parameters Collection
 
         public static fsParameterIdentifier Porosity = new fsParameterIdentifier("eps");
         public static fsParameterIdentifier Kappa = new fsParameterIdentifier("kappa");
@@ -52,6 +44,7 @@ namespace Parameters
         public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc", fsUnits.Length);
         public static fsParameterIdentifier SuspensionMass = new fsParameterIdentifier("Msus", fsUnits.Mass);
         public static fsParameterIdentifier SuspensionVolume = new fsParameterIdentifier("Vsus", fsUnits.Volume);
+        public static fsParameterIdentifier SuspensionMassFlowrate = new fsParameterIdentifier("Qmsus", fsUnits.Flowrate);
 
         
         public static fsParameterIdentifier FiltrateViscosity = new fsParameterIdentifier("etaf", fsUnits.Viscosity);
@@ -70,5 +63,7 @@ namespace Parameters
         public static fsParameterIdentifier Alpha0 = new fsParameterIdentifier("alpha0", fsUnits.CakeResistanceAlpha);
         public static fsParameterIdentifier Hce0 = new fsParameterIdentifier("hce0", fsUnits.Length);
         public static fsParameterIdentifier Rm0 = new fsParameterIdentifier("Rm0", fsUnits.FilterMediumResistance);
+
+        #endregion
     }
 }
