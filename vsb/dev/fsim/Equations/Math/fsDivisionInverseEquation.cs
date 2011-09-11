@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
-using Value;
+﻿using Parameters;
 
 namespace Equations
 {
@@ -12,8 +8,8 @@ namespace Equations
 
         #region Parameters
 
-        private IEquationParameter first;
-        private IEquationParameter second;
+        readonly IEquationParameter m_first;
+        readonly IEquationParameter m_second;
 
         #endregion
 
@@ -22,26 +18,26 @@ namespace Equations
             IEquationParameter second)
             : base(first, second)
         {
-            this.first = first;
-            this.second = second;
+            m_first = first;
+            m_second = second;
         }
 
         protected override void InitFormulas()
         {
-            AddFormula(first, FirstFormula);
-            AddFormula(second, SecondFormula);
+            AddFormula(m_first, FirstFormula);
+            AddFormula(m_second, SecondFormula);
         }
 
         #region Formulas
 
         private void FirstFormula()
         {
-            first.Value = 1 / second.Value;
+            m_first.Value = 1 / m_second.Value;
         }
 
         private void SecondFormula()
         {
-            second.Value = 1 / first.Value;
+            m_second.Value = 1 / m_first.Value;
         }
 
         #endregion

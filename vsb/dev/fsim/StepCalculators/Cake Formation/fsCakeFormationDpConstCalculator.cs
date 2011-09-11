@@ -69,7 +69,7 @@ namespace StepCalculators
             AddEquation(new fsDivisionInverseEquation(m_cycleTime, m_rotationalSpeed));
             AddEquation(new fsDivisionInverseEquation(m_rotationalSpeed, m_cycleTime));
             AddEquation(new fsProductEquation(m_formationTime, m_formationRelativeTime, m_cycleTime));
-            AddEquation(new fsCakeHeightFrom_Dp_tf(m_cakeHeight, m_hce0, m_pc, m_kappa, m_pressure, m_formationTime, m_etaf));
+            AddEquation(new fsCakeHeightFromDpTf(m_cakeHeight, m_hce0, m_pc, m_kappa, m_pressure, m_formationTime, m_etaf));
             AddEquation(new fsVsusFromAreaAndCakeHeightEquation(m_suspensionVolume, m_filterArea, m_cakeHeight, m_kappa));
             AddEquation(new fsProductEquation(m_suspensionMass, m_suspensionDensity, m_suspensionVolume));
             AddEquation(new fsFrom0AndDpEquation(m_porosity, m_porosity0, m_pressure, m_ne));

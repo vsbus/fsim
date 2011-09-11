@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 
 namespace Equations
 {
@@ -11,9 +8,9 @@ namespace Equations
 
         #region Parameters
         
-        private IEquationParameter product;
-        private IEquationParameter firstFactor;
-        private IEquationParameter secondFactor;
+        readonly IEquationParameter m_product;
+        readonly IEquationParameter m_firstFactor;
+        readonly IEquationParameter m_secondFactor;
         
         #endregion
 
@@ -23,33 +20,33 @@ namespace Equations
             IEquationParameter secondFactor)
             : base (product, firstFactor, secondFactor)
         {
-            this.product = product;
-            this.firstFactor = firstFactor;
-            this.secondFactor = secondFactor;
+            m_product = product;
+            m_firstFactor = firstFactor;
+            m_secondFactor = secondFactor;
         }
 
         protected override void InitFormulas()
         {
-            AddFormula(product, ProductFormula);
-            AddFormula(firstFactor, FirstFactorFormula);
-            AddFormula(secondFactor, SecondFactorFormula);
+            AddFormula(m_product, ProductFormula);
+            AddFormula(m_firstFactor, FirstFactorFormula);
+            AddFormula(m_secondFactor, SecondFactorFormula);
         }
 
         #region Formulas
 
         private void SecondFactorFormula()
         {
-            secondFactor.Value = product.Value / firstFactor.Value; 
+            m_secondFactor.Value = m_product.Value / m_firstFactor.Value; 
         }
 
         private void FirstFactorFormula()
         {
-            firstFactor.Value = product.Value / secondFactor.Value;
+            m_firstFactor.Value = m_product.Value / m_secondFactor.Value;
         }
 
         private void ProductFormula()
         {
-            product.Value = firstFactor.Value * secondFactor.Value;
+            m_product.Value = m_firstFactor.Value * m_secondFactor.Value;
         }
 
         #endregion

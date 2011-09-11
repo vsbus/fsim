@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 using Value;
 
 namespace Equations
@@ -10,43 +7,43 @@ namespace Equations
     {
         #region Parameters
 
-        private IEquationParameter Concentration;
-        private IEquationParameter FiltrateDensity;
-        private IEquationParameter SolidsDensity;
-        private IEquationParameter SuspensionDensity;
+        readonly IEquationParameter m_concentration;
+        readonly IEquationParameter m_filtrateDensity;
+        readonly IEquationParameter m_solidsDensity;
+        readonly IEquationParameter m_suspensionDensity;
 
         #endregion
 
         public fsConcentrationEquation(
-            IEquationParameter Concentration,
-            IEquationParameter FiltrateDensity,
-            IEquationParameter SolidsDensity,
-            IEquationParameter SuspensionDensity)
+            IEquationParameter concentration,
+            IEquationParameter filtrateDensity,
+            IEquationParameter solidsDensity,
+            IEquationParameter suspensionDensity)
             : base(
-                Concentration,
-                FiltrateDensity,
-                SolidsDensity,
-                SuspensionDensity)
+                concentration,
+                filtrateDensity,
+                solidsDensity,
+                suspensionDensity)
         {
-            this.Concentration = Concentration;
-            this.FiltrateDensity = FiltrateDensity;
-            this.SolidsDensity = SolidsDensity;
-            this.SuspensionDensity = SuspensionDensity;
+            m_concentration = concentration;
+            m_filtrateDensity = filtrateDensity;
+            m_solidsDensity = solidsDensity;
+            m_suspensionDensity = suspensionDensity;
         }
 
         protected override void InitFormulas()
         {
-            AddFormula(Concentration, ConcentrationFormula);
+            AddFormula(m_concentration, ConcentrationFormula);
         }
 
         #region Formulas
 
         private void ConcentrationFormula()
         {
-            fsValue rho_s = SolidsDensity.Value;
-            fsValue rho_f = FiltrateDensity.Value;
-            fsValue rho_sus = SuspensionDensity.Value;
-            Concentration.Value = rho_s * (rho_f - rho_sus) / (rho_f - rho_s); ;
+            fsValue rhoS = m_solidsDensity.Value;
+            fsValue rhoF = m_filtrateDensity.Value;
+            fsValue rhoSus = m_suspensionDensity.Value;
+            m_concentration.Value = rhoS * (rhoF - rhoSus) / (rhoF - rhoS);
         }
 
         #endregion

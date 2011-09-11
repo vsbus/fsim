@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 
 namespace Equations
 {
@@ -9,46 +6,46 @@ namespace Equations
     {
        #region Parameters
 
-        protected IEquationParameter alpha;
-        protected IEquationParameter Pc;
-        protected IEquationParameter eps;
-        protected IEquationParameter rho_s;
+        readonly IEquationParameter m_alpha;
+        readonly IEquationParameter m_pc;
+        readonly IEquationParameter m_eps;
+        readonly IEquationParameter m_rhoS;
 
         #endregion
 
         public fsAlphaPcEquation(
             IEquationParameter alpha,
-            IEquationParameter Pc,
+            IEquationParameter pc,
             IEquationParameter eps,
-            IEquationParameter rho_s)
+            IEquationParameter rhoS)
             : base(
                 alpha,
-                Pc,
+                pc,
                 eps,
-                rho_s)
+                rhoS)
         {          
-            this.alpha = alpha;
-            this.Pc = Pc;
-            this.eps = eps;
-            this.rho_s = rho_s;
+            m_alpha = alpha;
+            m_pc = pc;
+            m_eps = eps;
+            m_rhoS = rhoS;
         }
 
         protected override void InitFormulas()
         {
-            AddFormula(alpha, AlphaFormula);
-            AddFormula(Pc, PcFormula);
+            AddFormula(m_alpha, AlphaFormula);
+            AddFormula(m_pc, PcFormula);
         }
 
         #region Formulas
 
         private void AlphaFormula()
         {
-            alpha.Value = 1 / (Pc.Value * (1 - eps.Value) * rho_s.Value);
+            m_alpha.Value = 1 / (m_pc.Value * (1 - m_eps.Value) * m_rhoS.Value);
         }
 
         private void PcFormula()
         {
-            Pc.Value = 1 / (alpha.Value * (1 - eps.Value) * rho_s.Value);
+            m_pc.Value = 1 / (m_alpha.Value * (1 - m_eps.Value) * m_rhoS.Value);
         }
 
         #endregion
