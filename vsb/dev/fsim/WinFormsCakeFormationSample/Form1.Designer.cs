@@ -30,15 +30,15 @@
         {
             this.materialDataGroupBox = new System.Windows.Forms.GroupBox();
             this.MaterialParametersDataGrid = new fmDataGrid.fmDataGrid();
-            this.MaterialParameterNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaterialParameterValue = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
             this.cakeFormationGroupBox = new System.Windows.Forms.GroupBox();
             this.CakeFormationDataGrid = new fmDataGrid.fmDataGrid();
-            this.CakeFormationParameterNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CakeFormationParameterValueColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
             this.useMultiThreadingFlag = new System.Windows.Forms.CheckBox();
             this.errorMessageTextBox = new System.Windows.Forms.TextBox();
             this.fsLabeledProgressBar1 = new UpdateHandler.fsLabeledProgressBar();
+            this.MaterialParameterNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaterialParameterValue = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
+            this.CakeFormationParameterNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CakeFormationParameterValueColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
             this.materialDataGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaterialParametersDataGrid)).BeginInit();
             this.cakeFormationGroupBox.SuspendLayout();
@@ -51,7 +51,7 @@
             this.materialDataGroupBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.materialDataGroupBox.Location = new System.Drawing.Point(0, 0);
             this.materialDataGroupBox.Name = "materialDataGroupBox";
-            this.materialDataGroupBox.Size = new System.Drawing.Size(273, 559);
+            this.materialDataGroupBox.Size = new System.Drawing.Size(178, 559);
             this.materialDataGroupBox.TabIndex = 0;
             this.materialDataGroupBox.TabStop = false;
             this.materialDataGroupBox.Text = "Material Data";
@@ -71,30 +71,17 @@
             this.MaterialParametersDataGrid.Name = "MaterialParametersDataGrid";
             this.MaterialParametersDataGrid.RowHeadersVisible = false;
             this.MaterialParametersDataGrid.RowTemplate.Height = 18;
-            this.MaterialParametersDataGrid.Size = new System.Drawing.Size(267, 540);
+            this.MaterialParametersDataGrid.Size = new System.Drawing.Size(172, 540);
             this.MaterialParametersDataGrid.TabIndex = 0;
             this.MaterialParametersDataGrid.CellValueChangedByUser += new System.Windows.Forms.DataGridViewCellEventHandler(this.MaterialParametersDataGrid_CellValueChangedByUser);
-            // 
-            // MaterialParameterNameColumn
-            // 
-            this.MaterialParameterNameColumn.HeaderText = "Parameter";
-            this.MaterialParameterNameColumn.Name = "MaterialParameterNameColumn";
-            this.MaterialParameterNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // MaterialParameterValue
-            // 
-            this.MaterialParameterValue.HeaderText = "Value";
-            this.MaterialParameterValue.Name = "MaterialParameterValue";
-            this.MaterialParameterValue.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.MaterialParameterValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // cakeFormationGroupBox
             // 
             this.cakeFormationGroupBox.Controls.Add(this.CakeFormationDataGrid);
             this.cakeFormationGroupBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.cakeFormationGroupBox.Location = new System.Drawing.Point(273, 0);
+            this.cakeFormationGroupBox.Location = new System.Drawing.Point(178, 0);
             this.cakeFormationGroupBox.Name = "cakeFormationGroupBox";
-            this.cakeFormationGroupBox.Size = new System.Drawing.Size(289, 559);
+            this.cakeFormationGroupBox.Size = new System.Drawing.Size(179, 559);
             this.cakeFormationGroupBox.TabIndex = 1;
             this.cakeFormationGroupBox.TabStop = false;
             this.cakeFormationGroupBox.Text = "Cake Formation";
@@ -114,19 +101,9 @@
             this.CakeFormationDataGrid.Name = "CakeFormationDataGrid";
             this.CakeFormationDataGrid.RowHeadersVisible = false;
             this.CakeFormationDataGrid.RowTemplate.Height = 18;
-            this.CakeFormationDataGrid.Size = new System.Drawing.Size(283, 540);
+            this.CakeFormationDataGrid.Size = new System.Drawing.Size(173, 540);
             this.CakeFormationDataGrid.TabIndex = 0;
             this.CakeFormationDataGrid.CellValueChangedByUser += new System.Windows.Forms.DataGridViewCellEventHandler(this.CakeFormationDataGrid_CellValueChangedByUser);
-            // 
-            // CakeFormationParameterNameColumn
-            // 
-            this.CakeFormationParameterNameColumn.HeaderText = "Parameter";
-            this.CakeFormationParameterNameColumn.Name = "CakeFormationParameterNameColumn";
-            // 
-            // CakeFormationParameterValueColumn
-            // 
-            this.CakeFormationParameterValueColumn.HeaderText = "Value";
-            this.CakeFormationParameterValueColumn.Name = "CakeFormationParameterValueColumn";
             // 
             // useMultiThreadingFlag
             // 
@@ -158,6 +135,31 @@
             this.fsLabeledProgressBar1.TabIndex = 5;
             this.fsLabeledProgressBar1.Value = 0;
             // 
+            // MaterialParameterNameColumn
+            // 
+            this.MaterialParameterNameColumn.HeaderText = "Parameter";
+            this.MaterialParameterNameColumn.Name = "MaterialParameterNameColumn";
+            this.MaterialParameterNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // MaterialParameterValue
+            // 
+            this.MaterialParameterValue.HeaderText = "Value";
+            this.MaterialParameterValue.Name = "MaterialParameterValue";
+            this.MaterialParameterValue.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.MaterialParameterValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.MaterialParameterValue.Width = 60;
+            // 
+            // CakeFormationParameterNameColumn
+            // 
+            this.CakeFormationParameterNameColumn.HeaderText = "Parameter";
+            this.CakeFormationParameterNameColumn.Name = "CakeFormationParameterNameColumn";
+            // 
+            // CakeFormationParameterValueColumn
+            // 
+            this.CakeFormationParameterValueColumn.HeaderText = "Value";
+            this.CakeFormationParameterValueColumn.Name = "CakeFormationParameterValueColumn";
+            this.CakeFormationParameterValueColumn.Width = 60;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -185,14 +187,14 @@
         private System.Windows.Forms.GroupBox materialDataGroupBox;
         private System.Windows.Forms.GroupBox cakeFormationGroupBox;
         private fmDataGrid.fmDataGrid MaterialParametersDataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaterialParameterNameColumn;
-        private fmDataGrid.fmDataGridViewNumericalTextBoxColumn MaterialParameterValue;
         private fmDataGrid.fmDataGrid CakeFormationDataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CakeFormationParameterNameColumn;
-        private fmDataGrid.fmDataGridViewNumericalTextBoxColumn CakeFormationParameterValueColumn;
         private System.Windows.Forms.CheckBox useMultiThreadingFlag;
         private System.Windows.Forms.TextBox errorMessageTextBox;
         private UpdateHandler.fsLabeledProgressBar fsLabeledProgressBar1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaterialParameterNameColumn;
+        private fmDataGrid.fmDataGridViewNumericalTextBoxColumn MaterialParameterValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CakeFormationParameterNameColumn;
+        private fmDataGrid.fmDataGridViewNumericalTextBoxColumn CakeFormationParameterValueColumn;
     }
 }
 

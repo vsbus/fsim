@@ -50,6 +50,7 @@ namespace Equations
         protected override void InitFormulas()
         {
             AddFormula(CakeHeight, CakeHeightFormula);
+            AddFormula(FormationTime, CakeFormationTime);
         }
 
         #region Formulas
@@ -57,6 +58,13 @@ namespace Equations
         private void CakeHeightFormula()
         {
             CakeHeight.Value = fsValue.Sqrt(hce.Value * hce.Value + 2 * Pc.Value * kappa.Value * Pressure.Value * FormationTime.Value / etaf.Value) - hce.Value;
+        }
+
+        private void CakeFormationTime()
+        {
+            FormationTime.Value = etaf.Value
+                * (CakeHeight.Value * CakeHeight.Value + 2 * CakeHeight.Value * hce.Value)
+                / (2 * Pc.Value * kappa.Value * Pressure.Value);
         }
 
         #endregion

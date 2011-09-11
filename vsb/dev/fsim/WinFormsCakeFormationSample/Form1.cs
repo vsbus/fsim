@@ -54,7 +54,9 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.RotationalSpeed,
                 fsParameterIdentifier.FormationRelativeTime,
                 fsParameterIdentifier.FormationTime,
-                fsParameterIdentifier.CakeHeight
+                fsParameterIdentifier.CakeHeight,
+                fsParameterIdentifier.SuspensionMass,
+                fsParameterIdentifier.SuspensionVolume
             };
 
             foreach (var p in MaterialParameters)
@@ -146,7 +148,9 @@ namespace WinFormsCakeFormationSample
             UpdateInputs(cell,
                 fsParameterIdentifier.FormationTime,
                 fsParameterIdentifier.FormationRelativeTime,
-                fsParameterIdentifier.CakeHeight);
+                fsParameterIdentifier.CakeHeight,
+                fsParameterIdentifier.SuspensionMass,
+                fsParameterIdentifier.SuspensionVolume);
         }
 
         private void Recalculate()

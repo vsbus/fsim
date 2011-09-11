@@ -13,7 +13,7 @@ namespace Parameters
         {
             get
             {
-                return m_isProcessed || isInput;
+                return m_isProcessed;
             }
             set
             {

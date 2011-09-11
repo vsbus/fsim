@@ -5,6 +5,7 @@ using System.Text;
 using Parameters;
 using Equations;
 using UpdateHandler;
+using Value;
 
 namespace StepCalculators
 {
@@ -84,7 +85,11 @@ namespace StepCalculators
         {
             foreach (var p in m_variables.Values)
             {
-                p.IsProcessed = false;
+                p.IsProcessed = p.isInput;
+                if (p.IsProcessed == false)
+                {
+                    p.Value = new fsValue();
+                }
             }
             
             #region Update Hander
