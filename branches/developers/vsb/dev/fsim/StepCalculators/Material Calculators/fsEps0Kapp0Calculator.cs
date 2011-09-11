@@ -1,28 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using Parameters;
+﻿using Parameters;
 using Equations;
 
 namespace StepCalculators
 {
     public class fsEps0Kappa0Calculator : fsCalculator
     {
-        private fsCalculatorVariable Porosity0;
-        private fsCalculatorVariable Kappa0;
-        private fsCalculatorConstant VolumeConcentration;
+        readonly fsCalculatorVariable m_porosity0;
+        readonly fsCalculatorVariable m_kappa0;
+        readonly fsCalculatorConstant m_volumeConcentration;
 
-        protected override void InitParameters()
+        public fsEps0Kappa0Calculator()
         {
-            Porosity0 = InitVariable(fsParameterIdentifier.Porosity0);
-            Kappa0 = InitVariable(fsParameterIdentifier.kappa0);
-            VolumeConcentration = InitConstant(fsParameterIdentifier.VolumeConcentration);
-        }
+            #region Parameters Initialization
 
-        protected override void InitEquations()
-        {
-            AddEquation(new fsEpsKappaCvEquation(Porosity0, Kappa0, VolumeConcentration));
+            m_porosity0 = AddVariable(fsParameterIdentifier.Porosity0);
+            m_kappa0 = AddVariable(fsParameterIdentifier.Kappa0);
+            m_volumeConcentration = AddConstant(fsParameterIdentifier.VolumeConcentration);
+
+            #endregion
+
+            #region Equations Initialization
+
+            AddEquation(new fsEpsKappaCvEquation(m_porosity0, m_kappa0, m_volumeConcentration));
+
+            #endregion
         }
     }
 }

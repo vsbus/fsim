@@ -14,10 +14,10 @@ namespace ConsoleCakeFormationSample
         {
             fsSimulationParameter[] paramsArray = {
                 new fsSimulationParameter(fsParameterIdentifier.SuspensionDensity),
-                new fsSimulationParameter(fsParameterIdentifier.hce0),
+                new fsSimulationParameter(fsParameterIdentifier.Hce0),
                 new fsSimulationParameter(fsParameterIdentifier.FiltrateViscosity),
                 new fsSimulationParameter(fsParameterIdentifier.Pc),
-                new fsSimulationParameter(fsParameterIdentifier.kappa),
+                new fsSimulationParameter(fsParameterIdentifier.Kappa),
                 new fsSimulationParameter(fsParameterIdentifier.FilterArea),
                 new fsSimulationParameter(fsParameterIdentifier.Pressure),
                 new fsSimulationParameter(fsParameterIdentifier.RotationalSpeed),
@@ -55,9 +55,9 @@ namespace ConsoleCakeFormationSample
             ResetAllPArameters(data);
             SetParameter(data, fsParameterIdentifier.SuspensionDensity, 1070);
             SetParameter(data, fsParameterIdentifier.FiltrateViscosity, 1e-3);
-            SetParameter(data, fsParameterIdentifier.hce0, 10e-3);
+            SetParameter(data, fsParameterIdentifier.Hce0, 10e-3);
             SetParameter(data, fsParameterIdentifier.Pc, 0.885e-13);
-            SetParameter(data, fsParameterIdentifier.kappa, 0.396);
+            SetParameter(data, fsParameterIdentifier.Kappa, 0.396);
             SetParameter(data, fsParameterIdentifier.FilterArea, 0.5);
             SetParameter(data, fsParameterIdentifier.Pressure, 1.5e5);
             SetParameter(data, fsParameterIdentifier.CycleTime, 0.5);
@@ -85,9 +85,9 @@ namespace ConsoleCakeFormationSample
             ResetAllPArameters(data);
             SetParameter(data, fsParameterIdentifier.SuspensionDensity, 1070);
             SetParameter(data, fsParameterIdentifier.FiltrateViscosity, 1e-3);
-            SetParameter(data, fsParameterIdentifier.hce0, 10e-3);
+            SetParameter(data, fsParameterIdentifier.Hce0, 10e-3);
             SetParameter(data, fsParameterIdentifier.Pc, 0.885e-13);
-            SetParameter(data, fsParameterIdentifier.kappa, 0.396);
+            SetParameter(data, fsParameterIdentifier.Kappa, 0.396);
             SetParameter(data, fsParameterIdentifier.FilterArea, 0.5);
             SetParameter(data, fsParameterIdentifier.Pressure, 1.5e5);
             SetParameter(data, fsParameterIdentifier.RotationalSpeed, 2);
@@ -105,7 +105,7 @@ namespace ConsoleCakeFormationSample
 
         private static void SetParameter(Dictionary<fsParameterIdentifier, fsSimulationParameter> data, fsParameterIdentifier identifier, double value)
         {
-            data[identifier].isInput = true;
+            data[identifier].IsInput = true;
             data[identifier].Value = new fsValue(value);
         }
 
@@ -113,7 +113,7 @@ namespace ConsoleCakeFormationSample
         {
             foreach (var p in data.Values)
             {
-                p.isInput = false;
+                p.IsInput = false;
                 p.Value = new fsValue();
             }
         }

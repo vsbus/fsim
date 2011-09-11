@@ -9,16 +9,16 @@ namespace Equations
     {
         #region Parameters
 
-        protected fsIEquationParameter Porosity;
-        protected fsIEquationParameter Kappa;
-        protected fsIEquationParameter VolumeConcentration;
+        protected IEquationParameter Porosity;
+        protected IEquationParameter Kappa;
+        protected IEquationParameter VolumeConcentration;
 
         #endregion
 
         public fsEpsKappaCvEquation(
-            fsIEquationParameter Porosity,
-            fsIEquationParameter Kappa,
-            fsIEquationParameter VolumeConcentration)
+            IEquationParameter Porosity,
+            IEquationParameter Kappa,
+            IEquationParameter VolumeConcentration)
             : base(
                 Porosity,
                 Kappa,

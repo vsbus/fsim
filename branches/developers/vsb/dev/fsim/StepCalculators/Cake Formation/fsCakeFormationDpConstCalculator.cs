@@ -1,82 +1,82 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using Parameters;
+﻿using Parameters;
 using Equations;
 
 namespace StepCalculators
 {
     public class fsCakeFormationDpConstCalculator : fsCalculator
     {
-        fsCalculatorConstant SuspensionDensity;
-        fsCalculatorConstant etaf;
-        fsCalculatorConstant hce0;
-        fsCalculatorConstant Porosity0;
-        fsCalculatorConstant kappa0;
-        fsCalculatorConstant Pc0;
-        fsCalculatorConstant ne;
-        fsCalculatorConstant nc;
-        fsCalculatorConstant VolumeConcentration;
+        readonly fsCalculatorConstant m_suspensionDensity;
+        readonly fsCalculatorConstant m_etaf;
+        readonly fsCalculatorConstant m_hce0;
+        readonly fsCalculatorConstant m_porosity0;
+        readonly fsCalculatorConstant m_pc0;
+        readonly fsCalculatorConstant m_ne;
+        readonly fsCalculatorConstant m_nc;
+        readonly fsCalculatorConstant m_volumeConcentration;
 
-        fsCalculatorVariable FilterArea;
+        readonly fsCalculatorVariable m_filterArea;
 
-        fsCalculatorVariable Pressure;
+        readonly fsCalculatorVariable m_pressure;
 
-        fsCalculatorVariable CycleTime;
-        fsCalculatorVariable RotationalSpeed;
+        readonly fsCalculatorVariable m_cycleTime;
+        readonly fsCalculatorVariable m_rotationalSpeed;
 
-        fsCalculatorVariable FormationRelativeTime;
-        fsCalculatorVariable FormationTime;
-        fsCalculatorVariable CakeHeight;
-        fsCalculatorVariable SuspensionMass;
-        fsCalculatorVariable SuspensionVolume;
+        readonly fsCalculatorVariable m_formationRelativeTime;
+        readonly fsCalculatorVariable m_formationTime;
+        readonly fsCalculatorVariable m_cakeHeight;
+        readonly fsCalculatorVariable m_suspensionMass;
+        readonly fsCalculatorVariable m_suspensionVolume;
 
-        fsCalculatorVariable Porosity;
-        fsCalculatorVariable Pc;
-        fsCalculatorVariable kappa;
+        readonly fsCalculatorVariable m_porosity;
+        readonly fsCalculatorVariable m_pc;
+        readonly fsCalculatorVariable m_kappa;
 
-        protected override void InitParameters()
+        public fsCakeFormationDpConstCalculator()
         {
-            SuspensionDensity = InitConstant(fsParameterIdentifier.SuspensionDensity);
-            etaf = InitConstant(fsParameterIdentifier.FiltrateViscosity);
-            hce0 = InitConstant(fsParameterIdentifier.hce0);
-            Porosity0 = InitConstant(fsParameterIdentifier.Porosity0);
-            kappa0 = InitConstant(fsParameterIdentifier.kappa0);
-            Pc0 = InitConstant(fsParameterIdentifier.Pc0);
-            ne = InitConstant(fsParameterIdentifier.ne);
-            nc = InitConstant(fsParameterIdentifier.nc);
-            VolumeConcentration = InitConstant(fsParameterIdentifier.VolumeConcentration);
+            #region Parameters Initialization
 
-            FilterArea = InitVariable(fsParameterIdentifier.FilterArea);
+            m_suspensionDensity = AddConstant(fsParameterIdentifier.SuspensionDensity);
+            m_etaf = AddConstant(fsParameterIdentifier.FiltrateViscosity);
+            m_hce0 = AddConstant(fsParameterIdentifier.Hce0);
+            m_porosity0 = AddConstant(fsParameterIdentifier.Porosity0);
+            AddConstant(fsParameterIdentifier.Kappa0);
+            m_pc0 = AddConstant(fsParameterIdentifier.Pc0);
+            m_ne = AddConstant(fsParameterIdentifier.Ne);
+            m_nc = AddConstant(fsParameterIdentifier.Nc);
+            m_volumeConcentration = AddConstant(fsParameterIdentifier.VolumeConcentration);
 
-            Pressure = InitVariable(fsParameterIdentifier.Pressure);
+            m_filterArea = AddVariable(fsParameterIdentifier.FilterArea);
 
-            CycleTime = InitVariable(fsParameterIdentifier.CycleTime);
-            RotationalSpeed = InitVariable(fsParameterIdentifier.RotationalSpeed);
+            m_pressure = AddVariable(fsParameterIdentifier.Pressure);
 
-            FormationRelativeTime = InitVariable(fsParameterIdentifier.FormationRelativeTime);
-            FormationTime = InitVariable(fsParameterIdentifier.FormationTime);
-            CakeHeight = InitVariable(fsParameterIdentifier.CakeHeight);
-            SuspensionMass = InitVariable(fsParameterIdentifier.SuspensionMass);
-            SuspensionVolume = InitVariable(fsParameterIdentifier.SuspensionVolume);
+            m_cycleTime = AddVariable(fsParameterIdentifier.CycleTime);
+            m_rotationalSpeed = AddVariable(fsParameterIdentifier.RotationalSpeed);
 
-            Porosity = InitVariable(fsParameterIdentifier.Porosity);
-            Pc = InitVariable(fsParameterIdentifier.Pc);
-            kappa = InitVariable(fsParameterIdentifier.kappa);
-        }
+            m_formationRelativeTime = AddVariable(fsParameterIdentifier.FormationRelativeTime);
+            m_formationTime = AddVariable(fsParameterIdentifier.FormationTime);
+            m_cakeHeight = AddVariable(fsParameterIdentifier.CakeHeight);
+            m_suspensionMass = AddVariable(fsParameterIdentifier.SuspensionMass);
+            m_suspensionVolume = AddVariable(fsParameterIdentifier.SuspensionVolume);
 
-        protected override void InitEquations()
-        {
-            AddEquation(new fsDivisionInverseEquation(CycleTime, RotationalSpeed));
-            AddEquation(new fsDivisionInverseEquation(RotationalSpeed, CycleTime));
-            AddEquation(new fsProductEquation(FormationTime, FormationRelativeTime, CycleTime));
-            AddEquation(new fsCakeHeightFrom_Dp_tf(CakeHeight, hce0, Pc, kappa, Pressure, FormationTime, etaf));
-            AddEquation(new fsVsusFromAreaAndCakeHeightEquation(SuspensionVolume, FilterArea, CakeHeight, kappa));
-            AddEquation(new fsProductEquation(SuspensionMass, SuspensionDensity, SuspensionVolume));
-            AddEquation(new fsFrom0AndDpEquation(Porosity, Porosity0, Pressure, ne));
-            AddEquation(new fsFrom0AndDpEquation(Pc, Pc0, Pressure, nc));
-            AddEquation(new fsEpsKappaCvEquation(Porosity, kappa, VolumeConcentration));
+            m_porosity = AddVariable(fsParameterIdentifier.Porosity);
+            m_pc = AddVariable(fsParameterIdentifier.Pc);
+            m_kappa = AddVariable(fsParameterIdentifier.Kappa);
+
+            #endregion
+
+            #region Equations Initialization
+
+            AddEquation(new fsDivisionInverseEquation(m_cycleTime, m_rotationalSpeed));
+            AddEquation(new fsDivisionInverseEquation(m_rotationalSpeed, m_cycleTime));
+            AddEquation(new fsProductEquation(m_formationTime, m_formationRelativeTime, m_cycleTime));
+            AddEquation(new fsCakeHeightFrom_Dp_tf(m_cakeHeight, m_hce0, m_pc, m_kappa, m_pressure, m_formationTime, m_etaf));
+            AddEquation(new fsVsusFromAreaAndCakeHeightEquation(m_suspensionVolume, m_filterArea, m_cakeHeight, m_kappa));
+            AddEquation(new fsProductEquation(m_suspensionMass, m_suspensionDensity, m_suspensionVolume));
+            AddEquation(new fsFrom0AndDpEquation(m_porosity, m_porosity0, m_pressure, m_ne));
+            AddEquation(new fsFrom0AndDpEquation(m_pc, m_pc0, m_pressure, m_nc));
+            AddEquation(new fsEpsKappaCvEquation(m_porosity, m_kappa, m_volumeConcentration));
+
+            #endregion
         }
     }
 }

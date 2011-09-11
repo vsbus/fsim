@@ -9,18 +9,18 @@ namespace Equations
     {
        #region Parameters
 
-        protected fsIEquationParameter alpha;
-        protected fsIEquationParameter Pc;
-        protected fsIEquationParameter eps;
-        protected fsIEquationParameter rho_s;
+        protected IEquationParameter alpha;
+        protected IEquationParameter Pc;
+        protected IEquationParameter eps;
+        protected IEquationParameter rho_s;
 
         #endregion
 
         public fsAlphaPcEquation(
-            fsIEquationParameter alpha,
-            fsIEquationParameter Pc,
-            fsIEquationParameter eps,
-            fsIEquationParameter rho_s)
+            IEquationParameter alpha,
+            IEquationParameter Pc,
+            IEquationParameter eps,
+            IEquationParameter rho_s)
             : base(
                 alpha,
                 Pc,

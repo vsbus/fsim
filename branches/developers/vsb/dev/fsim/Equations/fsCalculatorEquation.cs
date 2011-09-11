@@ -9,7 +9,7 @@ namespace Equations
     {
         #region Parameters
 
-        private List<fsIEquationParameter> m_parameters = new List<fsIEquationParameter>();
+        private List<IEquationParameter> m_parameters = new List<IEquationParameter>();
 
         #endregion
 
@@ -17,18 +17,18 @@ namespace Equations
 
         protected delegate void Formula();
 
-        private List<KeyValuePair<fsIEquationParameter, Formula>> m_formulas = null;
+        private List<KeyValuePair<IEquationParameter, Formula>> m_formulas = null;
 
-        protected void AddFormula(fsIEquationParameter result, Formula formula)
+        protected void AddFormula(IEquationParameter result, Formula formula)
         {
-            m_formulas.Add(new KeyValuePair<fsIEquationParameter, Formula>(result, formula));
+            m_formulas.Add(new KeyValuePair<IEquationParameter, Formula>(result, formula));
         }
 
         protected abstract void InitFormulas();
 
         #endregion
 
-        protected fsCalculatorEquation(params fsIEquationParameter[] parameters)
+        protected fsCalculatorEquation(params IEquationParameter[] parameters)
         {
             foreach (var p in parameters)
             {
@@ -40,7 +40,7 @@ namespace Equations
 
         public bool Calculate()
         {
-            fsIEquationParameter result = null;
+            IEquationParameter result = null;
             foreach (var p in m_parameters)
             {
                 if (p.IsProcessed == false)
@@ -59,7 +59,7 @@ namespace Equations
             return false;
         }
 
-        private bool Calculate(fsIEquationParameter result)
+        private bool Calculate(IEquationParameter result)
         {
 //             int sum = 0;
 //             for (int i = 0; i < 50000000; ++i)
@@ -70,7 +70,7 @@ namespace Equations
 
             if (m_formulas == null)
             {
-                m_formulas = new List<KeyValuePair<fsIEquationParameter, Formula>>();
+                m_formulas = new List<KeyValuePair<IEquationParameter, Formula>>();
                 InitFormulas();
             }
             foreach (var f in m_formulas)

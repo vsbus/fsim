@@ -1,36 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using Parameters;
+﻿using Parameters;
 using Equations;
 
 namespace StepCalculators
 {
     public class fsDensityConcentrationCalculator : fsCalculator
     {
-        private fsCalculatorVariable FiltrateDensity;
-        private fsCalculatorVariable SolidsDensity;
-        private fsCalculatorVariable SuspensionDensity;
-        private fsCalculatorVariable MassConcentration;
-        private fsCalculatorVariable VolumeConcentration;
-        private fsCalculatorVariable Concentration;
+        readonly fsCalculatorVariable m_filtrateDensity;
+        readonly fsCalculatorVariable m_solidsDensity;
+        readonly fsCalculatorVariable m_suspensionDensity;
+        readonly fsCalculatorVariable m_massConcentration;
+        readonly fsCalculatorVariable m_volumeConcentration;
+        readonly fsCalculatorVariable m_concentration;
 
-        protected override void InitParameters()
+        public fsDensityConcentrationCalculator() : base()
         {
-            FiltrateDensity = InitVariable(fsParameterIdentifier.FiltrateDensity);
-            SolidsDensity = InitVariable(fsParameterIdentifier.SolidsDensity);
-            SuspensionDensity = InitVariable(fsParameterIdentifier.SuspensionDensity);
-            MassConcentration = InitVariable(fsParameterIdentifier.MassConcentration);
-            VolumeConcentration = InitVariable(fsParameterIdentifier.VolumeConcentration);
-            Concentration = InitVariable(fsParameterIdentifier.Concentration);
-        }
+            #region Parameters Initialization
 
-        protected override void InitEquations()
-        {
-            AddEquation(new fsMassConcentrationEquation(MassConcentration, FiltrateDensity, SolidsDensity, SuspensionDensity));
-            AddEquation(new fsVolumeConcentrationEquation(VolumeConcentration, FiltrateDensity, SolidsDensity, SuspensionDensity));
-            AddEquation(new fsConcentrationEquation(Concentration, FiltrateDensity, SolidsDensity, SuspensionDensity));
+            m_filtrateDensity = AddVariable(fsParameterIdentifier.FiltrateDensity);
+            m_solidsDensity = AddVariable(fsParameterIdentifier.SolidsDensity);
+            m_suspensionDensity = AddVariable(fsParameterIdentifier.SuspensionDensity);
+            m_massConcentration = AddVariable(fsParameterIdentifier.MassConcentration);
+            m_volumeConcentration = AddVariable(fsParameterIdentifier.VolumeConcentration);
+            m_concentration = AddVariable(fsParameterIdentifier.Concentration);
+
+            #endregion
+
+            #region Equations Initialization
+
+            AddEquation(new fsMassConcentrationEquation(m_massConcentration, m_filtrateDensity, m_solidsDensity, m_suspensionDensity));
+            AddEquation(new fsVolumeConcentrationEquation(m_volumeConcentration, m_filtrateDensity, m_solidsDensity, m_suspensionDensity));
+            AddEquation(new fsConcentrationEquation(m_concentration, m_filtrateDensity, m_solidsDensity, m_suspensionDensity));
+
+            #endregion
         }
     }
 }

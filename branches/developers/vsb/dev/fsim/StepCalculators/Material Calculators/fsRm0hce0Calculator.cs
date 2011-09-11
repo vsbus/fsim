@@ -1,28 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using Equations;
+﻿using Equations;
 using Parameters;
 
 namespace StepCalculators
 {
     public class fsRm0hce0Calculator : fsCalculator
     {
-        private fsCalculatorVariable hce0;
-        private fsCalculatorVariable Rm0;
-        private fsCalculatorConstant Pc0;
+        readonly fsCalculatorVariable m_hce0;
+        readonly fsCalculatorVariable m_rm0;
+        readonly fsCalculatorConstant m_pc0;
 
-        protected override void InitParameters()
+        public fsRm0hce0Calculator()
         {
-            hce0 = InitVariable(fsParameterIdentifier.hce0);
-            Rm0 = InitVariable(fsParameterIdentifier.Rm0);
-            Pc0 = InitConstant(fsParameterIdentifier.Pc0);
-        }
+            #region Parameters Initialization
 
-        protected override void InitEquations()
-        {
-            AddEquation(new fsProductEquation(hce0, Pc0, Rm0));
+            m_hce0 = AddVariable(fsParameterIdentifier.Hce0);
+            m_rm0 = AddVariable(fsParameterIdentifier.Rm0);
+            m_pc0 = AddConstant(fsParameterIdentifier.Pc0);
+
+            #endregion
+
+            #region Equations Initialization
+
+            AddEquation(new fsProductEquation(m_hce0, m_pc0, m_rm0));
+
+            #endregion
         }
     }
 }

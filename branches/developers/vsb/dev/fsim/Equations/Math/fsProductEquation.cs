@@ -11,16 +11,16 @@ namespace Equations
 
         #region Parameters
         
-        private fsIEquationParameter product;
-        private fsIEquationParameter firstFactor;
-        private fsIEquationParameter secondFactor;
+        private IEquationParameter product;
+        private IEquationParameter firstFactor;
+        private IEquationParameter secondFactor;
         
         #endregion
 
         public fsProductEquation(
-            fsIEquationParameter product,
-            fsIEquationParameter firstFactor,
-            fsIEquationParameter secondFactor)
+            IEquationParameter product,
+            IEquationParameter firstFactor,
+            IEquationParameter secondFactor)
             : base (product, firstFactor, secondFactor)
         {
             this.product = product;

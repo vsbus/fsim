@@ -1,36 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using Value;
-
-namespace Parameters
+﻿namespace Parameters
 {
-    public class fsCalculatorVariable : fsSimulationParameter, fsIEquationParameter
+    public class fsCalculatorVariable : fsSimulationParameter, IEquationParameter
     {
-        bool m_isProcessed;
-        public bool IsProcessed
-        {
-            get
-            {
-                return m_isProcessed;
-            }
-            set
-            {
-                m_isProcessed = value;
-            }
-        }
+        public bool IsProcessed { get; set; }
 
         public fsCalculatorVariable(fsParameterIdentifier identifier)
             : base(identifier)
         {
-            m_isProcessed = false;
+            IsProcessed = false;
         }
 
         public fsCalculatorVariable(fsParameterIdentifier identifier, bool isInput)
             : base(identifier, isInput)
         {
-            m_isProcessed = false;
+            IsProcessed = false;
         }
     }
 }

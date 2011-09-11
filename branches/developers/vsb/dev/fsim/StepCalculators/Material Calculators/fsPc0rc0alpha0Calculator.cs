@@ -1,33 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using Parameters;
+﻿using Parameters;
 using Equations;
 
 namespace StepCalculators
 {
     public class fsPc0rc0alpha0Calculator : fsCalculator
     {
-        private fsCalculatorVariable Pc0;
-        private fsCalculatorVariable rc0;
-        private fsCalculatorVariable alpha0;
-        private fsCalculatorConstant eps0;
-        private fsCalculatorConstant rho_s;
+        readonly fsCalculatorVariable m_pc0;
+        readonly fsCalculatorVariable m_rc0;
+        readonly fsCalculatorVariable m_alpha0;
+        readonly fsCalculatorConstant m_eps0;
+        readonly fsCalculatorConstant m_rhoS;
 
-        protected override void InitParameters()
+        public fsPc0rc0alpha0Calculator()
         {
-            Pc0 = InitVariable(fsParameterIdentifier.Pc0);
-            rc0 = InitVariable(fsParameterIdentifier.rc0);
-            alpha0 = InitVariable(fsParameterIdentifier.alpha0);
-            eps0 = InitConstant(fsParameterIdentifier.Porosity0);
-            rho_s = InitConstant(fsParameterIdentifier.SolidsDensity);
-        }
+            #region Parameters Initialization
 
-        protected override void InitEquations()
-        {
-            AddEquation(new fsDivisionInverseEquation(Pc0, rc0));
-            AddEquation(new fsAlphaPcEquation(alpha0, Pc0, eps0, rho_s));
+            m_pc0 = AddVariable(fsParameterIdentifier.Pc0);
+            m_rc0 = AddVariable(fsParameterIdentifier.Rc0);
+            m_alpha0 = AddVariable(fsParameterIdentifier.Alpha0);
+            m_eps0 = AddConstant(fsParameterIdentifier.Porosity0);
+            m_rhoS = AddConstant(fsParameterIdentifier.SolidsDensity);
+
+            #endregion
+
+            #region Equations Initialization
+
+            AddEquation(new fsDivisionInverseEquation(m_pc0, m_rc0));
+            AddEquation(new fsAlphaPcEquation(m_alpha0, m_pc0, m_eps0, m_rhoS));
+
+            #endregion
         }
     }
 }
