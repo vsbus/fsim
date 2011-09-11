@@ -1,35 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using Value;
+﻿using Value;
 
 namespace Parameters
 {
     public class fsNamedValueParameter : fsJustValueParameter
     {
-        private fsParameterIdentifier m_identifier;
-        public fsParameterIdentifier Identifier
-        {
-            get { return m_identifier; }
-            set { m_identifier = value; }
-        }
+        public fsParameterIdentifier Identifier { get; set; }
 
         public fsNamedValueParameter(fsParameterIdentifier identifier)
-            : base()
         {
-            m_identifier = identifier;
+            Identifier = identifier;
         }
 
         public fsNamedValueParameter(fsParameterIdentifier identifier, fsValue value)
             : base(value)
         {
-            m_identifier = identifier;
+            Identifier = identifier;
         }
 
         public override string ToString()
         {
-            return m_identifier.Name + " = " + Value.ToString();
+            return Identifier.Name + " = " + Value;
         }
     }
 }

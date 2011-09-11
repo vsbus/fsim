@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-
-namespace Parameters
+﻿namespace Parameters
 {
-    public interface fsIProcessedParameter
+    public interface IProcessedParameter
     {
         bool IsProcessed { get; set; }
     }

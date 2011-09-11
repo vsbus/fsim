@@ -9,18 +9,18 @@ namespace Equations
     {
         #region Parameters
 
-        private fsIEquationParameter SuspensionVolume;
-        private fsIEquationParameter Area;
-        private fsIEquationParameter CakeHeight;
-        private fsIEquationParameter kappa;
+        private IEquationParameter SuspensionVolume;
+        private IEquationParameter Area;
+        private IEquationParameter CakeHeight;
+        private IEquationParameter kappa;
 
         #endregion
 
         public fsVsusFromAreaAndCakeHeightEquation(
-            fsIEquationParameter SuspensionVolume,
-            fsIEquationParameter Area,
-            fsIEquationParameter CakeHeight,
-            fsIEquationParameter kappa)
+            IEquationParameter SuspensionVolume,
+            IEquationParameter Area,
+            IEquationParameter CakeHeight,
+            IEquationParameter kappa)
             : base(
                 SuspensionVolume, 
                 Area, 

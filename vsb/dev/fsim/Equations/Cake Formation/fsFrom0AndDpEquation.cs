@@ -10,18 +10,18 @@ namespace Equations
     {
         #region Parameters
 
-        private fsIEquationParameter x;
-        private fsIEquationParameter x0;
-        private fsIEquationParameter Pressure;
-        private fsIEquationParameter degree;
+        private IEquationParameter x;
+        private IEquationParameter x0;
+        private IEquationParameter Pressure;
+        private IEquationParameter degree;
 
         #endregion
 
         public fsFrom0AndDpEquation(
-            fsIEquationParameter x,
-            fsIEquationParameter x0,
-            fsIEquationParameter Pressure,
-            fsIEquationParameter degree)
+            IEquationParameter x,
+            IEquationParameter x0,
+            IEquationParameter Pressure,
+            IEquationParameter degree)
             : base(
                 x, 
                 x0, 

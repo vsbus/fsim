@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
-using Value;
 
 namespace Parameters
 {
-    public class fsCalculatorConstant : fsSimulationParameter, fsIEquationParameter
+    public class fsCalculatorConstant : fsSimulationParameter, IEquationParameter
     {
         public bool IsProcessed
         {

@@ -10,18 +10,18 @@ namespace Equations
     {
         #region Parameters
 
-        private fsIEquationParameter MassConcentration;
-        private fsIEquationParameter FiltrateDensity;
-        private fsIEquationParameter SolidsDensity;
-        private fsIEquationParameter SuspensionDensity;
+        private IEquationParameter MassConcentration;
+        private IEquationParameter FiltrateDensity;
+        private IEquationParameter SolidsDensity;
+        private IEquationParameter SuspensionDensity;
 
         #endregion
 
         public fsMassConcentrationEquation(
-            fsIEquationParameter MassConcentration,
-            fsIEquationParameter FiltrateDensity,
-            fsIEquationParameter SolidsDensity,
-            fsIEquationParameter SuspensionDensity) 
+            IEquationParameter MassConcentration,
+            IEquationParameter FiltrateDensity,
+            IEquationParameter SolidsDensity,
+            IEquationParameter SuspensionDensity) 
             : base(
                 MassConcentration,
                 FiltrateDensity, 

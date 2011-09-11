@@ -12,14 +12,14 @@ namespace Equations
 
         #region Parameters
 
-        private fsIEquationParameter first;
-        private fsIEquationParameter second;
+        private IEquationParameter first;
+        private IEquationParameter second;
 
         #endregion
 
         public fsDivisionInverseEquation(
-            fsIEquationParameter first,
-            fsIEquationParameter second)
+            IEquationParameter first,
+            IEquationParameter second)
             : base(first, second)
         {
             this.first = first;

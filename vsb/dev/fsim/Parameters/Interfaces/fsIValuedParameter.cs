@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using Value;
+﻿using Value;
 
 namespace Parameters
 {
-    public interface fsIValuedParameter
+    public interface IValuedParameter
     {
         fsValue Value { get; set; }
     }

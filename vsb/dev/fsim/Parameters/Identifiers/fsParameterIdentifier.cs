@@ -1,41 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using Units;
+﻿using Units;
 
 namespace Parameters
 {
     public class fsParameterIdentifier
     {
-        private string m_name;
-        public string Name
-        {
-            get { return m_name; }
-            set { m_name = value; }
-        }
+        public string Name { get; set; }
 
-        private fsUnits m_units;
-        public Units.fsUnits Units
-        {
-            get { return m_units; }
-        }
+        public fsUnits Units { get; private set; }
 
         public fsParameterIdentifier(string name)
         {
-            m_name = name;
-            m_units = fsUnits.NoUnits;
+            Name = name;
+            Units = fsUnits.NoUnits;
         }
 
         public fsParameterIdentifier(string name, fsUnits units)
         {
-            m_name = name;
-            m_units = units;
+            Name = name;
+            Units = units;
         }
 
         public override string ToString()
         {
-            return m_name;
+            return Name;
         }
 
 //         public static fsParameterIdentifier height = new fsParameterIdentifier("height", fsUnits.LengthUnits);
@@ -53,7 +40,7 @@ namespace Parameters
 //         public static fsParameterIdentifier a5 = new fsParameterIdentifier("a5");
 
         public static fsParameterIdentifier Porosity = new fsParameterIdentifier("eps");
-        public static fsParameterIdentifier kappa = new fsParameterIdentifier("kappa");
+        public static fsParameterIdentifier Kappa = new fsParameterIdentifier("kappa");
         public static fsParameterIdentifier Pc = new fsParameterIdentifier("Pc");
 
         public static fsParameterIdentifier FilterArea = new fsParameterIdentifier("A", fsUnits.Area);
@@ -75,13 +62,13 @@ namespace Parameters
         public static fsParameterIdentifier VolumeConcentration = new fsParameterIdentifier("Cv", fsUnits.Concentration);
         public static fsParameterIdentifier Concentration = new fsParameterIdentifier("C");
         public static fsParameterIdentifier Porosity0 = new fsParameterIdentifier("eps0", fsUnits.Concentration);
-        public static fsParameterIdentifier kappa0 = new fsParameterIdentifier("kappa0");
-        public static fsParameterIdentifier ne = new fsParameterIdentifier("ne");
+        public static fsParameterIdentifier Kappa0 = new fsParameterIdentifier("kappa0");
+        public static fsParameterIdentifier Ne = new fsParameterIdentifier("ne");
         public static fsParameterIdentifier Pc0 = new fsParameterIdentifier("Pc0", fsUnits.PermeabilityPc);
-        public static fsParameterIdentifier rc0 = new fsParameterIdentifier("rc0", fsUnits.CakeResistanceRc);
-        public static fsParameterIdentifier nc = new fsParameterIdentifier("nc");
-        public static fsParameterIdentifier alpha0 = new fsParameterIdentifier("alpha0", fsUnits.CakeResistanceAlpha);
-        public static fsParameterIdentifier hce0 = new fsParameterIdentifier("hce0", fsUnits.Length);
+        public static fsParameterIdentifier Rc0 = new fsParameterIdentifier("rc0", fsUnits.CakeResistanceRc);
+        public static fsParameterIdentifier Nc = new fsParameterIdentifier("nc");
+        public static fsParameterIdentifier Alpha0 = new fsParameterIdentifier("alpha0", fsUnits.CakeResistanceAlpha);
+        public static fsParameterIdentifier Hce0 = new fsParameterIdentifier("hce0", fsUnits.Length);
         public static fsParameterIdentifier Rm0 = new fsParameterIdentifier("Rm0", fsUnits.FilterMediumResistance);
     }
 }

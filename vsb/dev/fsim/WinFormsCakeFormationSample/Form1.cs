@@ -37,13 +37,13 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.VolumeConcentration,
                 fsParameterIdentifier.Concentration,
                 fsParameterIdentifier.Porosity0,
-                fsParameterIdentifier.kappa0,
-                fsParameterIdentifier.ne,
+                fsParameterIdentifier.Kappa0,
+                fsParameterIdentifier.Ne,
                 fsParameterIdentifier.Pc0,
-                fsParameterIdentifier.rc0,
-                fsParameterIdentifier.alpha0,
-                fsParameterIdentifier.nc,
-                fsParameterIdentifier.hce0,
+                fsParameterIdentifier.Rc0,
+                fsParameterIdentifier.Alpha0,
+                fsParameterIdentifier.Nc,
+                fsParameterIdentifier.Hce0,
                 fsParameterIdentifier.Rm0,
             };
 
@@ -77,15 +77,15 @@ namespace WinFormsCakeFormationSample
                 parameterValue[p] = new fsSimulationParameter(p);
             }
 
-            parameterValue[fsParameterIdentifier.FiltrateDensity].isInput = true;
-            parameterValue[fsParameterIdentifier.SolidsDensity].isInput = true;
-            parameterValue[fsParameterIdentifier.SuspensionDensity].isInput = true;
+            parameterValue[fsParameterIdentifier.FiltrateDensity].IsInput = true;
+            parameterValue[fsParameterIdentifier.SolidsDensity].IsInput = true;
+            parameterValue[fsParameterIdentifier.SuspensionDensity].IsInput = true;
             parameterCell[fsParameterIdentifier.MassConcentration].ReadOnly = true;
             parameterCell[fsParameterIdentifier.VolumeConcentration].ReadOnly = true;
             parameterCell[fsParameterIdentifier.Concentration].ReadOnly = true;
 
-            parameterValue[fsParameterIdentifier.FilterArea].isInput = true;
-            parameterValue[fsParameterIdentifier.Pressure].isInput = true;
+            parameterValue[fsParameterIdentifier.FilterArea].IsInput = true;
+            parameterValue[fsParameterIdentifier.Pressure].IsInput = true;
         }
 
         private void MaterialParametersDataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
@@ -121,7 +121,7 @@ namespace WinFormsCakeFormationSample
                 {
                     var pcell = parameterCell[p];
                     bool isInput = cell == pcell;
-                    parameterValue[p].isInput = isInput;
+                    parameterValue[p].IsInput = isInput;
                     pcell.Style.ForeColor = isInput ? Color.Blue : Color.Black;
                 }
         }
@@ -130,16 +130,16 @@ namespace WinFormsCakeFormationSample
         {
             UpdateInputs(cell, 
                 fsParameterIdentifier.Porosity0,
-                fsParameterIdentifier.kappa0);
+                fsParameterIdentifier.Kappa0);
 
             UpdateInputs(cell,
                 fsParameterIdentifier.Pc0,
-                fsParameterIdentifier.rc0,
-                fsParameterIdentifier.alpha0);
+                fsParameterIdentifier.Rc0,
+                fsParameterIdentifier.Alpha0);
 
             UpdateInputs(cell,
                 fsParameterIdentifier.Rm0,
-                fsParameterIdentifier.hce0);
+                fsParameterIdentifier.Hce0);
 
             UpdateInputs(cell,
                 fsParameterIdentifier.CycleTime,
@@ -210,7 +210,7 @@ namespace WinFormsCakeFormationSample
             foreach (var p in parameterValue.Keys)
             {
                 var value = parameterValue[p];
-                if (value.isInput == false)
+                if (value.IsInput == false)
                 {
                     parameterCell[p].Value = value.ValueToStringWithCurrentUnits();
                 }

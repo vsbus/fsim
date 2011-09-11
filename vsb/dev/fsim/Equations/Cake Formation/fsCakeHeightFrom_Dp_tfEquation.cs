@@ -10,24 +10,24 @@ namespace Equations
     {
         #region Parameters
 
-        fsIEquationParameter CakeHeight;
-        fsIEquationParameter hce;
-        fsIEquationParameter Pc;
-        fsIEquationParameter kappa;
-        fsIEquationParameter Pressure;
-        fsIEquationParameter FormationTime;
-        fsIEquationParameter etaf;
+        IEquationParameter CakeHeight;
+        IEquationParameter hce;
+        IEquationParameter Pc;
+        IEquationParameter kappa;
+        IEquationParameter Pressure;
+        IEquationParameter FormationTime;
+        IEquationParameter etaf;
 
         #endregion
 
         public fsCakeHeightFrom_Dp_tf(
-            fsIEquationParameter CakeHeight,
-            fsIEquationParameter hce,
-            fsIEquationParameter Pc,
-            fsIEquationParameter kappa,
-            fsIEquationParameter Pressure,
-            fsIEquationParameter FormationTime,
-            fsIEquationParameter etaf)
+            IEquationParameter CakeHeight,
+            IEquationParameter hce,
+            IEquationParameter Pc,
+            IEquationParameter kappa,
+            IEquationParameter Pressure,
+            IEquationParameter FormationTime,
+            IEquationParameter etaf)
             : base(
                 CakeHeight, 
                 hce, 
