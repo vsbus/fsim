@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Parameters;
 
 namespace Equations
@@ -9,19 +7,19 @@ namespace Equations
     {
         #region Parameters
 
-        private List<IEquationParameter> m_parameters = new List<IEquationParameter>();
+        private readonly List<IEquationParameter> m_parameters = new List<IEquationParameter>();
 
         #endregion
 
         #region Formulas
 
-        protected delegate void Formula();
+        protected delegate void fsFormula();
 
-        private List<KeyValuePair<IEquationParameter, Formula>> m_formulas = null;
+        private List<KeyValuePair<IEquationParameter, fsFormula>> m_formulas;
 
-        protected void AddFormula(IEquationParameter result, Formula formula)
+        protected void AddFormula(IEquationParameter result, fsFormula formula)
         {
-            m_formulas.Add(new KeyValuePair<IEquationParameter, Formula>(result, formula));
+            m_formulas.Add(new KeyValuePair<IEquationParameter, fsFormula>(result, formula));
         }
 
         protected abstract void InitFormulas();
@@ -70,7 +68,7 @@ namespace Equations
 
             if (m_formulas == null)
             {
-                m_formulas = new List<KeyValuePair<IEquationParameter, Formula>>();
+                m_formulas = new List<KeyValuePair<IEquationParameter, fsFormula>>();
                 InitFormulas();
             }
             foreach (var f in m_formulas)

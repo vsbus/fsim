@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 
 namespace Equations
 {
@@ -9,40 +6,40 @@ namespace Equations
     {
         #region Parameters
 
-        private IEquationParameter SuspensionVolume;
-        private IEquationParameter Area;
-        private IEquationParameter CakeHeight;
-        private IEquationParameter kappa;
+        readonly IEquationParameter m_suspensionVolume;
+        readonly IEquationParameter m_area;
+        readonly IEquationParameter m_cakeHeight;
+        readonly IEquationParameter m_kappa;
 
         #endregion
 
         public fsVsusFromAreaAndCakeHeightEquation(
-            IEquationParameter SuspensionVolume,
-            IEquationParameter Area,
-            IEquationParameter CakeHeight,
+            IEquationParameter suspensionVolume,
+            IEquationParameter area,
+            IEquationParameter cakeHeight,
             IEquationParameter kappa)
             : base(
-                SuspensionVolume, 
-                Area, 
-                CakeHeight, 
+                suspensionVolume, 
+                area, 
+                cakeHeight, 
                 kappa)
         {
-            this.SuspensionVolume = SuspensionVolume;
-            this.Area = Area;
-            this.CakeHeight = CakeHeight;
-            this.kappa = kappa;
+            m_suspensionVolume = suspensionVolume;
+            m_area = area;
+            m_cakeHeight = cakeHeight;
+            m_kappa = kappa;
         }
 
         protected override void InitFormulas()
         {
-            AddFormula(SuspensionVolume, SuspensionVolumeFormula);
+            AddFormula(m_suspensionVolume, SuspensionVolumeFormula);
         }
 
         #region Formulas
 
         private void SuspensionVolumeFormula()
         {
-            SuspensionVolume.Value = Area.Value * CakeHeight.Value * (1 + kappa.Value) / kappa.Value;
+            m_suspensionVolume.Value = m_area.Value * m_cakeHeight.Value * (1 + m_kappa.Value) / m_kappa.Value;
         }
 
         #endregion

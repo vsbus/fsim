@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 using Value;
 
 namespace Equations
@@ -10,43 +7,43 @@ namespace Equations
     {
         #region Parameters
 
-        private IEquationParameter MassConcentration;
-        private IEquationParameter FiltrateDensity;
-        private IEquationParameter SolidsDensity;
-        private IEquationParameter SuspensionDensity;
+        readonly IEquationParameter m_massConcentration;
+        readonly IEquationParameter m_filtrateDensity;
+        readonly IEquationParameter m_solidsDensity;
+        readonly IEquationParameter m_suspensionDensity;
 
         #endregion
 
         public fsMassConcentrationEquation(
-            IEquationParameter MassConcentration,
-            IEquationParameter FiltrateDensity,
-            IEquationParameter SolidsDensity,
-            IEquationParameter SuspensionDensity) 
+            IEquationParameter massConcentration,
+            IEquationParameter filtrateDensity,
+            IEquationParameter solidsDensity,
+            IEquationParameter suspensionDensity) 
             : base(
-                MassConcentration,
-                FiltrateDensity, 
-                SolidsDensity, 
-                SuspensionDensity)
+                massConcentration,
+                filtrateDensity, 
+                solidsDensity, 
+                suspensionDensity)
         {
-            this.MassConcentration = MassConcentration;
-            this.FiltrateDensity = FiltrateDensity;
-            this.SolidsDensity = SolidsDensity;
-            this.SuspensionDensity = SuspensionDensity;
+            m_massConcentration = massConcentration;
+            m_filtrateDensity = filtrateDensity;
+            m_solidsDensity = solidsDensity;
+            m_suspensionDensity = suspensionDensity;
         }
 
         protected override void InitFormulas()
         {
-            AddFormula(MassConcentration, MassConcentrationFormula);
+            AddFormula(m_massConcentration, MassConcentrationFormula);
         }
 
         #region Formulas
 
         private void MassConcentrationFormula()
         {
-            fsValue rho_s = SolidsDensity.Value;
-            fsValue rho_f = FiltrateDensity.Value;
-            fsValue rho_sus = SuspensionDensity.Value;
-            MassConcentration.Value = rho_s * (rho_f - rho_sus) / rho_sus / (rho_f - rho_s);
+            fsValue rhoS = m_solidsDensity.Value;
+            fsValue rhoF = m_filtrateDensity.Value;
+            fsValue rhoSus = m_suspensionDensity.Value;
+            m_massConcentration.Value = rhoS * (rhoF - rhoSus) / rhoSus / (rhoF - rhoS);
         }
 
         #endregion

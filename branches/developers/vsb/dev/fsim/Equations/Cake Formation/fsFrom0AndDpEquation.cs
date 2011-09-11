@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 using Value;
 
 namespace Equations
@@ -10,40 +7,40 @@ namespace Equations
     {
         #region Parameters
 
-        private IEquationParameter x;
-        private IEquationParameter x0;
-        private IEquationParameter Pressure;
-        private IEquationParameter degree;
+        readonly IEquationParameter m_x;
+        readonly IEquationParameter m_x0;
+        readonly IEquationParameter m_pressure;
+        readonly IEquationParameter m_degree;
 
         #endregion
 
         public fsFrom0AndDpEquation(
             IEquationParameter x,
             IEquationParameter x0,
-            IEquationParameter Pressure,
+            IEquationParameter pressure,
             IEquationParameter degree)
             : base(
                 x, 
                 x0, 
-                Pressure, 
+                pressure, 
                 degree)
         {
-            this.x = x;
-            this.x0 = x0;
-            this.Pressure = Pressure;
-            this.degree = degree;
+            m_x = x;
+            m_x0 = x0;
+            m_pressure = pressure;
+            m_degree = degree;
         }
 
         protected override void InitFormulas()
         {
-            AddFormula(x, xFormula);
+            AddFormula(m_x, XFormula);
         }
 
         #region Formulas
 
-        private void xFormula()
+        private void XFormula()
         {
-            x.Value = x0.Value * fsValue.Pow(Pressure.Value / 1e5, -degree.Value);
+            m_x.Value = m_x0.Value * fsValue.Pow(m_pressure.Value / 1e5, -m_degree.Value);
         }
 
         #endregion

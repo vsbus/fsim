@@ -1,70 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 using Value;
 
 namespace Equations
 {
-    public class fsCakeHeightFrom_Dp_tf : fsCalculatorEquation
+    public class fsCakeHeightFromDpTf : fsCalculatorEquation
     {
         #region Parameters
 
-        IEquationParameter CakeHeight;
-        IEquationParameter hce;
-        IEquationParameter Pc;
-        IEquationParameter kappa;
-        IEquationParameter Pressure;
-        IEquationParameter FormationTime;
-        IEquationParameter etaf;
+        readonly IEquationParameter m_cakeHeight;
+        readonly IEquationParameter m_hce;
+        readonly IEquationParameter m_pc;
+        readonly IEquationParameter m_kappa;
+        readonly IEquationParameter m_pressure;
+        readonly IEquationParameter m_formationTime;
+        readonly IEquationParameter m_etaf;
 
         #endregion
 
-        public fsCakeHeightFrom_Dp_tf(
-            IEquationParameter CakeHeight,
+        public fsCakeHeightFromDpTf(
+            IEquationParameter cakeHeight,
             IEquationParameter hce,
-            IEquationParameter Pc,
+            IEquationParameter pc,
             IEquationParameter kappa,
-            IEquationParameter Pressure,
-            IEquationParameter FormationTime,
+            IEquationParameter pressure,
+            IEquationParameter formationTime,
             IEquationParameter etaf)
             : base(
-                CakeHeight, 
+                cakeHeight, 
                 hce, 
-                Pc, 
+                pc, 
                 kappa, 
-                Pressure, 
-                FormationTime, 
+                pressure, 
+                formationTime, 
                 etaf)
         {
-            this.CakeHeight = CakeHeight;
-            this.hce = hce;
-            this.Pc = Pc;
-            this.kappa = kappa;
-            this.Pressure = Pressure;
-            this.FormationTime = FormationTime;
-            this.etaf = etaf;
+            m_cakeHeight = cakeHeight;
+            m_hce = hce;
+            m_pc = pc;
+            m_kappa = kappa;
+            m_pressure = pressure;
+            m_formationTime = formationTime;
+            m_etaf = etaf;
 
         }
 
         protected override void InitFormulas()
         {
-            AddFormula(CakeHeight, CakeHeightFormula);
-            AddFormula(FormationTime, CakeFormationTime);
+            AddFormula(m_cakeHeight, CakeHeightFormula);
+            AddFormula(m_formationTime, CakeFormationTime);
         }
 
         #region Formulas
 
         private void CakeHeightFormula()
         {
-            CakeHeight.Value = fsValue.Sqrt(hce.Value * hce.Value + 2 * Pc.Value * kappa.Value * Pressure.Value * FormationTime.Value / etaf.Value) - hce.Value;
+            m_cakeHeight.Value = fsValue.Sqrt(m_hce.Value * m_hce.Value + 2 * m_pc.Value * m_kappa.Value * m_pressure.Value * m_formationTime.Value / m_etaf.Value) - m_hce.Value;
         }
 
         private void CakeFormationTime()
         {
-            FormationTime.Value = etaf.Value
-                * (CakeHeight.Value * CakeHeight.Value + 2 * CakeHeight.Value * hce.Value)
-                / (2 * Pc.Value * kappa.Value * Pressure.Value);
+            m_formationTime.Value = m_etaf.Value
+                * (m_cakeHeight.Value * m_cakeHeight.Value + 2 * m_cakeHeight.Value * m_hce.Value)
+                / (2 * m_pc.Value * m_kappa.Value * m_pressure.Value);
         }
 
         #endregion

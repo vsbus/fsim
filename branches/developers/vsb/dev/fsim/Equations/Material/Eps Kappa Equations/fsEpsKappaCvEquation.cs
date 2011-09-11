@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 
 namespace Equations
 {
@@ -9,42 +6,42 @@ namespace Equations
     {
         #region Parameters
 
-        protected IEquationParameter Porosity;
-        protected IEquationParameter Kappa;
-        protected IEquationParameter VolumeConcentration;
+        readonly IEquationParameter m_porosity;
+        readonly IEquationParameter m_kappa;
+        readonly IEquationParameter m_volumeConcentration;
 
         #endregion
 
         public fsEpsKappaCvEquation(
-            IEquationParameter Porosity,
-            IEquationParameter Kappa,
-            IEquationParameter VolumeConcentration)
+            IEquationParameter porosity,
+            IEquationParameter kappa,
+            IEquationParameter volumeConcentration)
             : base(
-                Porosity,
-                Kappa,
-                VolumeConcentration)
+                porosity,
+                kappa,
+                volumeConcentration)
         {
-            this.Porosity = Porosity;
-            this.Kappa = Kappa;
-            this.VolumeConcentration = VolumeConcentration;
+            m_porosity = porosity;
+            m_kappa = kappa;
+            m_volumeConcentration = volumeConcentration;
         }
 
         protected override void InitFormulas()
         {
-            AddFormula(Porosity, PorosityFormula);
-            AddFormula(Kappa, KappaFormula);
+            AddFormula(m_porosity, PorosityFormula);
+            AddFormula(m_kappa, KappaFormula);
         }
 
         #region Formulas
 
         private void KappaFormula()
         {
-            Kappa.Value = VolumeConcentration.Value / (1 - Porosity.Value - VolumeConcentration.Value);
+            m_kappa.Value = m_volumeConcentration.Value / (1 - m_porosity.Value - m_volumeConcentration.Value);
         }
 
         private void PorosityFormula()
         {
-            Porosity.Value = 1 - VolumeConcentration.Value * (Kappa.Value + 1) / Kappa.Value;
+            m_porosity.Value = 1 - m_volumeConcentration.Value * (m_kappa.Value + 1) / m_kappa.Value;
         }
 
         #endregion
