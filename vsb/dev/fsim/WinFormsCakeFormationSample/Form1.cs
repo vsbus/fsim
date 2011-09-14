@@ -15,25 +15,83 @@ namespace WinFormsCakeFormationSample
     {
         private Thread m_currentCalculation;
 
-        private readonly Dictionary<fsParameterIdentifier, DataGridViewCell> m_parameterCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
-        private readonly Dictionary<DataGridViewCell, fsParameterIdentifier> m_cellParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
-        private readonly Dictionary<fsParameterIdentifier, fsSimulationParameter> m_parameterValue = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
+        class DataContainer
+        {
+            public Dictionary<fsParameterIdentifier, DataGridViewCell> m_parameterCell;
+            public Dictionary<DataGridViewCell, fsParameterIdentifier> m_cellParameter;
+            public Dictionary<fsParameterIdentifier, fsSimulationParameter> m_parameterValue;
+            public List<fsCalculator> m_calculatorList;
+
+            public DataContainer()
+            {
+                m_parameterCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
+                m_cellParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
+                m_parameterValue = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
+                m_calculatorList = new List<fsCalculator>();
+            }
+        }
+
+        DataContainer materialData = new DataContainer();
+        DataContainer cakeFormationData = new DataContainer();
+        DataContainer deliquoringData = new DataContainer();
+
+        DataContainer[] dataContainers;
+
 
         public Form1()
         {
             InitializeComponent();
         }
 
+        void AddParameters(DataGridView dataGrid,
+            DataContainer dataContainer,
+            params fsParameterIdentifier [] parameters)
+        {
+            foreach (var p in parameters)
+            {
+                dataGrid.Rows.Add(new object[] { p.Name + " (" + p.Units.CurrentName + ")" });
+                var cell = dataGrid.Rows[dataGrid.Rows.Count - 1].Cells[1];
+                dataContainer.m_parameterCell[p] = cell;
+                dataContainer.m_cellParameter[cell] = p;
+                dataContainer.m_parameterValue[p] = new fsSimulationParameter(p);
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            var materialParameters = new[] {
-                fsParameterIdentifier.FiltrateViscosity,
-                fsParameterIdentifier.FiltrateDensity,
-                fsParameterIdentifier.SolidsDensity,
-                fsParameterIdentifier.SuspensionDensity,
-                fsParameterIdentifier.MassConcentration,
-                fsParameterIdentifier.VolumeConcentration,
-                fsParameterIdentifier.Concentration,
+            materialData.m_calculatorList.Add(new fsDensityConcentrationCalculator());
+
+            cakeFormationData.m_calculatorList.Add(new fsEps0Kappa0Calculator());
+            cakeFormationData.m_calculatorList.Add(new fsPc0rc0alpha0Calculator());
+            cakeFormationData.m_calculatorList.Add(new fsRm0hce0Calculator());
+            cakeFormationData.m_calculatorList.Add(new fsCakeFormationDpConstCalculator());
+
+            dataContainers = new[] {
+                materialData,
+                cakeFormationData,
+                deliquoringData
+            };
+
+            InitMaterialParameters();
+            InitCakeFormationParameters();
+            //InitDeliquoringParameters();
+        }
+
+        private void InitDeliquoringParameters()
+        {
+            AddParameters(
+                DeliquoringDataGrid,
+                deliquoringData,
+                fsParameterIdentifier.Porosity0,
+                fsParameterIdentifier.Ne,
+                fsParameterIdentifier.Porosity);
+        }
+
+        private void InitCakeFormationParameters()
+        {
+            AddParameters(
+                CakeFormationDataGrid,
+                cakeFormationData,
                 fsParameterIdentifier.Porosity0,
                 fsParameterIdentifier.Kappa0,
                 fsParameterIdentifier.Ne,
@@ -43,9 +101,6 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.Nc,
                 fsParameterIdentifier.Hce0,
                 fsParameterIdentifier.Rm0,
-            };
-
-            var cakeFormationParameters = new[] {
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.Pressure,
                 fsParameterIdentifier.CycleTime,
@@ -55,36 +110,31 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.CakeHeight,
                 fsParameterIdentifier.SuspensionMass,
                 fsParameterIdentifier.SuspensionVolume,
-                fsParameterIdentifier.SuspensionMassFlowrate
-            };
+                fsParameterIdentifier.SuspensionMassFlowrate);
 
-            foreach (var p in materialParameters)
-            {
-                MaterialParametersDataGrid.Rows.Add(new object[] {p.Name + " (" + p.Units.CurrentName + ")"});
-                var cell = MaterialParametersDataGrid.Rows[MaterialParametersDataGrid.Rows.Count - 1].Cells[1];
-                m_parameterCell[p] = cell;
-                m_cellParameter[cell] = p;
-                m_parameterValue[p] = new fsSimulationParameter(p);
-            }
+            cakeFormationData.m_parameterValue[fsParameterIdentifier.FilterArea].IsInput = true;
+            cakeFormationData.m_parameterValue[fsParameterIdentifier.Pressure].IsInput = true;
+        }
 
-            foreach (var p in cakeFormationParameters)
-            {
-                CakeFormationDataGrid.Rows.Add(new object[] { p.Name + " (" + p.Units.CurrentName + ")"});
-                var cell = CakeFormationDataGrid.Rows[CakeFormationDataGrid.Rows.Count - 1].Cells[1];
-                m_parameterCell[p] = cell;
-                m_cellParameter[cell] = p;
-                m_parameterValue[p] = new fsSimulationParameter(p);
-            }
+        private void InitMaterialParameters()
+        {
+            AddParameters(
+                MaterialParametersDataGrid,
+                materialData,
+                fsParameterIdentifier.FiltrateViscosity,
+                fsParameterIdentifier.FiltrateDensity,
+                fsParameterIdentifier.SolidsDensity,
+                fsParameterIdentifier.SuspensionDensity,
+                fsParameterIdentifier.MassConcentration,
+                fsParameterIdentifier.VolumeConcentration,
+                fsParameterIdentifier.Concentration);
 
-            m_parameterValue[fsParameterIdentifier.FiltrateDensity].IsInput = true;
-            m_parameterValue[fsParameterIdentifier.SolidsDensity].IsInput = true;
-            m_parameterValue[fsParameterIdentifier.SuspensionDensity].IsInput = true;
-            m_parameterCell[fsParameterIdentifier.MassConcentration].ReadOnly = true;
-            m_parameterCell[fsParameterIdentifier.VolumeConcentration].ReadOnly = true;
-            m_parameterCell[fsParameterIdentifier.Concentration].ReadOnly = true;
-
-            m_parameterValue[fsParameterIdentifier.FilterArea].IsInput = true;
-            m_parameterValue[fsParameterIdentifier.Pressure].IsInput = true;
+            materialData.m_parameterValue[fsParameterIdentifier.FiltrateDensity].IsInput = true;
+            materialData.m_parameterValue[fsParameterIdentifier.SolidsDensity].IsInput = true;
+            materialData.m_parameterValue[fsParameterIdentifier.SuspensionDensity].IsInput = true;
+            materialData.m_parameterCell[fsParameterIdentifier.MassConcentration].ReadOnly = true;
+            materialData.m_parameterCell[fsParameterIdentifier.VolumeConcentration].ReadOnly = true;
+            materialData.m_parameterCell[fsParameterIdentifier.Concentration].ReadOnly = true;
         }
 
         private void MaterialParametersDataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
@@ -94,35 +144,41 @@ namespace WinFormsCakeFormationSample
 
         private void ProcessParameterChange(DataGridViewCell cell)
         {
-            if (m_cellParameter.ContainsKey(cell))
+            foreach (var dataContainer in dataContainers)
             {
-                var id = m_cellParameter[cell];
-                var param = m_parameterValue[id];
-                
-                fsValue oldValue = param.Value;
-                fsValue newValue = fsValue.ObjectToValue(cell.Value) * param.Identifier.Units.CurrentCoefficient;
-                Text = param.Identifier.Name + @" changed from " + oldValue.ToString() + @" to " + newValue.ToString();
-                param.Value = newValue;
+                if (dataContainer.m_cellParameter.ContainsKey(cell))
+                {
+                    var id = dataContainer.m_cellParameter[cell];
+                    var param = dataContainer.m_parameterValue[id];
 
-                UpdateInputs(cell);
+                    fsValue oldValue = param.Value;
+                    fsValue newValue = fsValue.ObjectToValue(cell.Value) * param.Identifier.Units.CurrentCoefficient;
+                    Text = param.Identifier.Name + @" changed from " + oldValue.ToString() + @" to " + newValue.ToString();
+                    param.Value = newValue;
 
-                Recalculate();
+                    UpdateInputs(cell);
+
+                    Recalculate();
+                }
             }
         }
 
         private void UpdateInputs(DataGridViewCell cell, params fsParameterIdentifier [] parameters)
         {
-            var parameter = m_cellParameter.ContainsKey(cell)
-                ? m_cellParameter[cell]
-                : null;
-            if (parameters.Contains(parameter))
-                foreach (var p in parameters)
-                {
-                    var pcell = m_parameterCell[p];
-                    bool isInput = cell == pcell;
-                    m_parameterValue[p].IsInput = isInput;
-                    pcell.Style.ForeColor = isInput ? Color.Blue : Color.Black;
-                }
+            foreach (var dataContainer in dataContainers)
+            {
+                var parameter = dataContainer.m_cellParameter.ContainsKey(cell)
+                    ? dataContainer.m_cellParameter[cell]
+                    : null;
+                if (parameters.Contains(parameter))
+                    foreach (var p in parameters)
+                    {
+                        var pcell = dataContainer.m_parameterCell[p];
+                        bool isInput = cell == pcell;
+                        dataContainer.m_parameterValue[p].IsInput = isInput;
+                        pcell.Style.ForeColor = isInput ? Color.Blue : Color.Black;
+                    }
+            }
         }
 
         private void UpdateInputs(DataGridViewCell cell)
@@ -175,48 +231,57 @@ namespace WinFormsCakeFormationSample
             var uh = new fsCalculatorUpdateHandler(fsLabeledProgressBar1);
             errorMessageTextBox.Text = "";
 
-            var calcsList = new fsCalculator [] {
-                new fsDensityConcentrationCalculator(),
-                new fsEps0Kappa0Calculator(),
-                new fsPc0rc0alpha0Calculator(),
-                new fsRm0hce0Calculator(),
-                new fsCakeFormationDpConstCalculator(),
-            };
-            
-            var progressSplitters = new double[calcsList.Length + 1];
-            int totalAmount = calcsList.Sum(t => t.GetToCalculateAmount());
+            var calcsList = new List<KeyValuePair<fsCalculator, Dictionary<fsParameterIdentifier, fsSimulationParameter>>>();
+            foreach (var dataContainer in dataContainers)
+            {
+                foreach (var calculator in dataContainer.m_calculatorList)
+                {
+                    calcsList.Add(new KeyValuePair<fsCalculator,Dictionary<fsParameterIdentifier,fsSimulationParameter>>(
+                        calculator,
+                        dataContainer.m_parameterValue));
+                }
+            }
+
+            var progressSplitters = new double[calcsList.Count + 1];
+            int totalAmount = calcsList.Sum(t => t.Key.GetToCalculateAmount());
             int currentAmount = 0;
-            for (int i = 0; i < calcsList.Length; ++i)
+            for (int i = 0; i < calcsList.Count; ++i)
             {
                 progressSplitters[i] = (double)currentAmount / totalAmount;
-                currentAmount += calcsList[i].GetToCalculateAmount();
+                currentAmount += calcsList[i].Key.GetToCalculateAmount();
             }
-            progressSplitters[calcsList.Length] = 1;
+            progressSplitters[calcsList.Count] = 1;
 
-            for (int i = 0; i < calcsList.Length; ++i)
+            for (int i = 0; i < calcsList.Count; ++i)
             {
-                var calc = calcsList[i];
+                var calc = calcsList[i].Key;
                 calc.SetUpdateHandler(uh.CreateSubHandler(
                     progressSplitters[i],
                     progressSplitters[i + 1]));
-                ApplyCalculator(calc);
+                ApplyCalculator(calc, calcsList[i].Value);
             }
 
-            foreach (var p in m_parameterValue.Keys)
+            foreach (var dataContainer in dataContainers)
             {
-                var value = m_parameterValue[p];
-                if (value.IsInput == false)
+                foreach (var p in dataContainer.m_parameterValue.Keys)
                 {
-                    m_parameterCell[p].Value = value.ValueToStringWithCurrentUnits();
+                    var value = dataContainer.m_parameterValue[p];
+                    if (value.IsInput == false)
+                    {
+                        dataContainer.m_parameterCell[p].Value = value.ValueToStringWithCurrentUnits();
+                    }
                 }
             }
         }
-        private void ApplyCalculator(fsCalculator calculator)
+        private void ApplyCalculator(fsCalculator calculator, Dictionary<fsParameterIdentifier, fsSimulationParameter> parameterValue)
         {
-            calculator.ReadDataFromStorage(m_parameterValue);
-            calculator.Calculate();
-            errorMessageTextBox.Text += calculator.GetStatusMessage();
-            calculator.CopyValuesToStorage(m_parameterValue);
+            foreach (var dataContainer in dataContainers)
+            {
+                calculator.ReadDataFromStorage(parameterValue);
+                calculator.Calculate();
+                errorMessageTextBox.Text += calculator.GetStatusMessage();
+                calculator.CopyValuesToStorage(parameterValue);
+            }
         }
         private void CakeFormationDataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
         {
