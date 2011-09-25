@@ -43,7 +43,7 @@ namespace Calculator.Calculation_Controls
             ChangeCalculationOption();
         }
 
-        private void AddGroup(CalculationProcessor.Group group, Color color)
+        private void AddGroup(ParametersGroup group, Color color)
         {
             foreach (var p in group.Parameters)
             {
@@ -103,7 +103,7 @@ namespace Calculator.Calculation_Controls
                 driveParameter = fsParameterIdentifier.SolidsMassFraction;
             }
 
-            CalculationProcessor.Group newCalculatedGroup = m_calculationProcessor.ParameterToGroup[driveParameter];
+            ParametersGroup newCalculatedGroup = m_calculationProcessor.ParameterToGroup[driveParameter];
             foreach (var g in m_calculationProcessor.Groups)
             {
                 m_calculationProcessor.SetGroupInputed(g, g != newCalculatedGroup);

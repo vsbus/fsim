@@ -59,6 +59,7 @@
     <Compile Include="Calculation Controls\DensityConcentrationControl.Designer.cs">
       <DependentUpon>DensityConcentrationControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calculation Controls\ParametersGroup.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
