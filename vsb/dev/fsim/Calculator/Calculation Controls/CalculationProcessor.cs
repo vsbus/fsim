@@ -18,24 +18,10 @@ namespace Calculator.Calculation_Controls
         public Dictionary<DataGridViewCell, fsParameterIdentifier> CellToParameter { get; private set; }
         public List<fsCalculator> Calculators { get; private set; }
 
-        public class Group
-        {
-            public List<fsParameterIdentifier> Parameters { get; private set; }
-            public fsParameterIdentifier Representator { get; set; }
-            public bool IsInput { get; set; }
+        public List<ParametersGroup> Groups { get; private set; }
+        public Dictionary<fsParameterIdentifier, ParametersGroup> ParameterToGroup { get; private set; }
 
-            public Group()
-            {
-                Parameters = new List<fsParameterIdentifier>();
-                Representator = null;
-                IsInput = false;
-            }
-        }
-
-        public List<Group> Groups { get; private set; }
-        public Dictionary<fsParameterIdentifier, Group> ParameterToGroup { get; private set; }
-
-        public void SetGroupInputed(Group g, bool isInput)
+        public void SetGroupInputed(ParametersGroup g, bool isInput)
         {
             g.IsInput = isInput;
             if (isInput == true)
@@ -61,8 +47,8 @@ namespace Calculator.Calculation_Controls
             CellToParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
             ParameterToCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
             Values = new Dictionary<fsParameterIdentifier, fsNamedValueParameter>();
-            Groups = new List<Group>();
-            ParameterToGroup = new Dictionary<fsParameterIdentifier, Group>();
+            Groups = new List<ParametersGroup>();
+            ParameterToGroup = new Dictionary<fsParameterIdentifier, ParametersGroup>();
             Calculators = new List<fsCalculator>();
         }
 
@@ -143,9 +129,9 @@ namespace Calculator.Calculation_Controls
             }
         }
 
-        public Group AddGroup(params fsParameterIdentifier [] parameters)
+        public ParametersGroup AddGroup(params fsParameterIdentifier [] parameters)
         {
-            Group group = new Group();
+            ParametersGroup group = new ParametersGroup();
             foreach (var p in parameters)
             {
                 group.Parameters.Add(p);
