@@ -85,12 +85,16 @@
             new fsUnitRecord("-", 1)
         });
 
+        public static fsUnits SolidsConcentration = new fsUnits(new[] {
+            new fsUnitRecord("g/l", 1)
+        });
+
         public static fsUnits Density = new fsUnits(new[] {
-            new fsUnitRecord("kg/m3", 1),
+            new fsUnitRecord("kg/m3", 1)
         });
 
         public static fsUnits Viscosity = new fsUnits(new[] {
-            new fsUnitRecord("mPa s", 1e-3),
+            new fsUnitRecord("mPa s", 1e-3)
         });
 
         public static fsUnits Mass = new fsUnits(new[] {
