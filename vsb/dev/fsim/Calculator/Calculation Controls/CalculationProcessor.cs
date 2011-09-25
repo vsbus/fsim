@@ -80,9 +80,14 @@ namespace Calculator.Calculation_Controls
                 var parameter = CellToParameter[cell];
                 UpdateInputInGroup(parameter);
                 ReadEnteredValue(cell, parameter);
-                Recalculate();
-                WriteValuesToDataGrid();
             }
+            RecalculateAndOutput();
+        }
+
+        public void RecalculateAndOutput()
+        {
+            Recalculate();
+            WriteValuesToDataGrid();
         }
 
         private void WriteValuesToDataGrid()

@@ -108,17 +108,13 @@ namespace Calculator.Calculation_Controls
             {
                 m_calculationProcessor.SetGroupInputed(g, g != newCalculatedGroup);
             }
+
+            m_calculationProcessor.RecalculateAndOutput();
         }
 
         private void dataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewCell cell = ((DataGridView) sender)[e.ColumnIndex, e.RowIndex];
-            
-            // group representator update
-            // read changed values from dataGrid
-            // calculate
-            // write all values to datagrid
-            m_calculationProcessor.CellValueChanged(cell);
+            m_calculationProcessor.CellValueChanged(dataGrid[e.ColumnIndex, e.RowIndex]);
         }
     }
 }
