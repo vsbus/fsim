@@ -29,60 +29,99 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.windowsDataGrid = new fmDataGrid.fmDataGrid();
+            this.WindowNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.addModuleButton = new System.Windows.Forms.Button();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.windowTilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.windowsDataGrid)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.windowToolStripMenuItem});
+            this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(571, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.closeToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
-            this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.newToolStripMenuItem.Text = "&New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.closeToolStripMenuItem.Text = "&Close";
-            // 
-            // windowToolStripMenuItem
-            // 
-            this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
-            this.windowToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
-            this.windowToolStripMenuItem.Text = "&Window";
-            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.windowsDataGrid);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(178, 348);
+            this.panel1.Size = new System.Drawing.Size(120, 348);
             this.panel1.TabIndex = 3;
+            // 
+            // windowsDataGrid
+            // 
+            this.windowsDataGrid.AllowUserToAddRows = false;
+            this.windowsDataGrid.AllowUserToDeleteRows = false;
+            this.windowsDataGrid.AllowUserToResizeColumns = false;
+            this.windowsDataGrid.AllowUserToResizeRows = false;
+            this.windowsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.windowsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.WindowNameColumn});
+            this.windowsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.windowsDataGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.windowsDataGrid.HighLightCurrentRow = false;
+            this.windowsDataGrid.Location = new System.Drawing.Point(0, 31);
+            this.windowsDataGrid.Name = "windowsDataGrid";
+            this.windowsDataGrid.ReadOnly = true;
+            this.windowsDataGrid.RowHeadersVisible = false;
+            this.windowsDataGrid.RowTemplate.Height = 18;
+            this.windowsDataGrid.Size = new System.Drawing.Size(120, 317);
+            this.windowsDataGrid.TabIndex = 0;
+            this.windowsDataGrid.CurrentCellChanged += new System.EventHandler(this.windowsDataGrid_CurrentCellChanged);
+            // 
+            // WindowNameColumn
+            // 
+            this.WindowNameColumn.HeaderText = "Window";
+            this.WindowNameColumn.Name = "WindowNameColumn";
+            this.WindowNameColumn.ReadOnly = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.addModuleButton);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(120, 31);
+            this.panel2.TabIndex = 1;
+            // 
+            // addModuleButton
+            // 
+            this.addModuleButton.Location = new System.Drawing.Point(3, 3);
+            this.addModuleButton.Name = "addModuleButton";
+            this.addModuleButton.Size = new System.Drawing.Size(75, 23);
+            this.addModuleButton.TabIndex = 0;
+            this.addModuleButton.Text = "Add Module";
+            this.addModuleButton.UseVisualStyleBackColor = true;
+            this.addModuleButton.Click += new System.EventHandler(this.addModuleButton_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.windowTilesToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.viewToolStripMenuItem.Text = "&View";
+            // 
+            // windowTilesToolStripMenuItem
+            // 
+            this.windowTilesToolStripMenuItem.Name = "windowTilesToolStripMenuItem";
+            this.windowTilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.windowTilesToolStripMenuItem.Text = "Window Tiles";
+            this.windowTilesToolStripMenuItem.Click += new System.EventHandler(this.windowTilesToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -97,6 +136,9 @@
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.windowsDataGrid)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,11 +147,13 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem windowToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
+        private fmDataGrid.fmDataGrid windowsDataGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WindowNameColumn;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button addModuleButton;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem windowTilesToolStripMenuItem;
 
     }
 }
