@@ -125,16 +125,16 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.FiltrateDensity,
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity,
-                fsParameterIdentifier.MassConcentration,
-                fsParameterIdentifier.VolumeConcentration,
-                fsParameterIdentifier.Concentration);
+                fsParameterIdentifier.SolidsMassFraction,
+                fsParameterIdentifier.SolidsVolumeFraction,
+                fsParameterIdentifier.SolidsConcentration);
 
             materialData.m_parameterValue[fsParameterIdentifier.FiltrateDensity].IsInput = true;
             materialData.m_parameterValue[fsParameterIdentifier.SolidsDensity].IsInput = true;
             materialData.m_parameterValue[fsParameterIdentifier.SuspensionDensity].IsInput = true;
-            materialData.m_parameterCell[fsParameterIdentifier.MassConcentration].ReadOnly = true;
-            materialData.m_parameterCell[fsParameterIdentifier.VolumeConcentration].ReadOnly = true;
-            materialData.m_parameterCell[fsParameterIdentifier.Concentration].ReadOnly = true;
+            materialData.m_parameterCell[fsParameterIdentifier.SolidsMassFraction].ReadOnly = true;
+            materialData.m_parameterCell[fsParameterIdentifier.SolidsVolumeFraction].ReadOnly = true;
+            materialData.m_parameterCell[fsParameterIdentifier.SolidsConcentration].ReadOnly = true;
         }
 
         private void MaterialParametersDataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)

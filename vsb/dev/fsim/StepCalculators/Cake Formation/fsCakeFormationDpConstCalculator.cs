@@ -44,7 +44,7 @@ namespace StepCalculators
             m_pc0 = AddConstant(fsParameterIdentifier.Pc0);
             m_ne = AddConstant(fsParameterIdentifier.Ne);
             m_nc = AddConstant(fsParameterIdentifier.Nc);
-            m_volumeConcentration = AddConstant(fsParameterIdentifier.VolumeConcentration);
+            m_volumeConcentration = AddConstant(fsParameterIdentifier.SolidsVolumeFraction);
 
             m_filterArea = AddVariable(fsParameterIdentifier.FilterArea);
 

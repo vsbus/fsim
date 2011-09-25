@@ -6,25 +6,43 @@ namespace Parameters
     {
         #region fsParameterIdentifier
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
+
+        public string FullName { get; private set; }
 
         public fsUnits Units { get; private set; }
 
         public fsParameterIdentifier(string name)
         {
             Name = name;
+            FullName = name;
             Units = fsUnits.NoUnits;
         }
 
         public fsParameterIdentifier(string name, fsUnits units)
         {
             Name = name;
+            FullName = name;
             Units = units;
+        }
+
+        public fsParameterIdentifier(string name, string fullName, fsUnits units)
+        {
+            Name = name;
+            FullName = fullName;
+            Units = units;
+        }
+
+        public fsParameterIdentifier(string name, string fullName)
+        {
+            Name = name;
+            FullName = fullName;
+            Units = fsUnits.NoUnits;
         }
 
         public override string ToString()
         {
-            return Name;
+            return FullName + " (" + Name + ")";
         }
 
         #endregion
@@ -48,12 +66,12 @@ namespace Parameters
 
         
         public static fsParameterIdentifier FiltrateViscosity = new fsParameterIdentifier("etaf", fsUnits.Viscosity);
-        public static fsParameterIdentifier FiltrateDensity = new fsParameterIdentifier("rho_f", fsUnits.Density);
-        public static fsParameterIdentifier SolidsDensity = new fsParameterIdentifier("rho_s", fsUnits.Density);
-        public static fsParameterIdentifier SuspensionDensity = new fsParameterIdentifier("rho_sus", fsUnits.Density);
-        public static fsParameterIdentifier MassConcentration = new fsParameterIdentifier("Cm", fsUnits.Concentration);
-        public static fsParameterIdentifier VolumeConcentration = new fsParameterIdentifier("Cv", fsUnits.Concentration);
-        public static fsParameterIdentifier Concentration = new fsParameterIdentifier("C");
+        public static fsParameterIdentifier FiltrateDensity = new fsParameterIdentifier("rho_f", "Filtrate Density", fsUnits.Density);
+        public static fsParameterIdentifier SolidsDensity = new fsParameterIdentifier("rho_s", "Solids Density", fsUnits.Density);
+        public static fsParameterIdentifier SuspensionDensity = new fsParameterIdentifier("rho_sus", "Suspension Density", fsUnits.Density);
+        public static fsParameterIdentifier SolidsMassFraction = new fsParameterIdentifier("Cm", "Solids Mass Fraction", fsUnits.Concentration);
+        public static fsParameterIdentifier SolidsVolumeFraction = new fsParameterIdentifier("Cv", "Solids Volume Fraction", fsUnits.Concentration);
+        public static fsParameterIdentifier SolidsConcentration = new fsParameterIdentifier("C", "Solids Concentration", fsUnits.SolidsConcentration);
         public static fsParameterIdentifier Porosity0 = new fsParameterIdentifier("eps0", fsUnits.Concentration);
         public static fsParameterIdentifier Kappa0 = new fsParameterIdentifier("kappa0");
         public static fsParameterIdentifier Ne = new fsParameterIdentifier("ne");
