@@ -21,23 +21,23 @@ namespace Calculator
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new Form2();
-            form.Text = "Form #" + counter.ToString();
-            ++counter;
-            activeForms.Add(form);
-            form.MdiParent = this;
-            form.Show();
-            form.Closed += FormClose;
-            RebuildWindowsList();
+            
         }
 
         private void RebuildWindowsList()
         {
-            windowToolStripMenuItem.DropDownItems.Clear();
-            foreach( var f in activeForms)
+            DataGridViewCell cell = windowsDataGrid.CurrentCell;
+            string currentWindowName = cell == null || cell.Value == null
+                ? ""
+                : cell.Value.ToString();
+            windowsDataGrid.Rows.Clear();
+            foreach (var f in activeForms)
             {
-                var item = windowToolStripMenuItem.DropDownItems.Add(f.Text);
-                item.Click += ActivateWindow;
+                int ind = windowsDataGrid.Rows.Add(f.Text);
+                if (f.Text == currentWindowName)
+                {
+                    windowsDataGrid.CurrentCell = windowsDataGrid[0, ind];
+                }
             }
         }
 
@@ -55,15 +55,54 @@ namespace Calculator
             }
         }
 
-        void ActivateWindow(object sender, EventArgs e)
+        private void windowsDataGrid_CurrentCellChanged(object sender, EventArgs e)
         {
-            string text = ((ToolStripItem) sender).Text;
-            foreach (var f in activeForms)
+            DataGridView dataGrid = (DataGridView)sender;
+            DataGridViewCell cell = dataGrid.CurrentCell;
+            if (cell != null && cell.Value != null)
             {
-                if (f.Text == text)
+                string text = cell.Value.ToString();
+                foreach (var form in activeForms)
                 {
-                    f.Activate();
+                    if (form.Text == text)
+                    {
+                        form.Activate();
+                        dataGrid.Focus();
+                    }
                 }
+            }
+        }
+
+        private void addModuleButton_Click(object sender, EventArgs e)
+        {
+            var form = new Form2();
+            form.Text = "Form #" + counter.ToString();
+            ++counter;
+            activeForms.Add(form);
+            form.MdiParent = this;
+            form.Show();
+            form.Closed += FormClose;
+            RebuildWindowsList();
+            windowsDataGrid.CurrentCell = windowsDataGrid[0, windowsDataGrid.RowCount - 1];
+        }
+
+        private void windowTilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int x = 0;
+            int y = 0;
+            int maxHeight = 0;
+            foreach (var form in activeForms)
+            {
+                if (x > 0 && x + form.Width > ClientSize.Width)
+                {
+                    x = 0;
+                    y += maxHeight;
+                    maxHeight = 0;
+                }
+                form.Left = x;
+                form.Top = y;
+                x += form.Width;
+                maxHeight = Math.Max(maxHeight, form.Height);
             }
         }
     }
