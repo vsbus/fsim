@@ -36,6 +36,12 @@
             this.WindowNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.addModuleButton = new System.Windows.Forms.Button();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsDataGrid)).BeginInit();
@@ -45,6 +51,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
             this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -89,12 +96,12 @@
             this.windowsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.windowsDataGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.windowsDataGrid.HighLightCurrentRow = false;
-            this.windowsDataGrid.Location = new System.Drawing.Point(0, 31);
+            this.windowsDataGrid.Location = new System.Drawing.Point(0, 72);
             this.windowsDataGrid.Name = "windowsDataGrid";
             this.windowsDataGrid.ReadOnly = true;
             this.windowsDataGrid.RowHeadersVisible = false;
             this.windowsDataGrid.RowTemplate.Height = 18;
-            this.windowsDataGrid.Size = new System.Drawing.Size(120, 317);
+            this.windowsDataGrid.Size = new System.Drawing.Size(120, 276);
             this.windowsDataGrid.TabIndex = 0;
             this.windowsDataGrid.CurrentCellChanged += new System.EventHandler(this.windowsDataGrid_CurrentCellChanged);
             // 
@@ -110,18 +117,61 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(120, 31);
+            this.panel2.Size = new System.Drawing.Size(120, 72);
             this.panel2.TabIndex = 1;
             // 
             // addModuleButton
             // 
-            this.addModuleButton.Location = new System.Drawing.Point(3, 3);
+            this.addModuleButton.Location = new System.Drawing.Point(29, 19);
             this.addModuleButton.Name = "addModuleButton";
-            this.addModuleButton.Size = new System.Drawing.Size(75, 23);
+            this.addModuleButton.Size = new System.Drawing.Size(54, 47);
             this.addModuleButton.TabIndex = 0;
             this.addModuleButton.Text = "Add Module";
             this.addModuleButton.UseVisualStyleBackColor = true;
             this.addModuleButton.Click += new System.EventHandler(this.addModuleButton_Click);
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
+            this.closeToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Text = "&New";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "&Open";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "&Save";
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Text = "Save &As";
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Text = "&Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -154,6 +204,12 @@
         private System.Windows.Forms.Button addModuleButton;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem windowTilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
 
     }
 }

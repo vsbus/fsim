@@ -114,5 +114,10 @@ namespace Calculator
                 maxHeight = Math.Max(maxHeight, form.Height);
             }
         }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
