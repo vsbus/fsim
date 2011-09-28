@@ -153,7 +153,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "DensityConcentrationControl";
             this.Size = new System.Drawing.Size(370, 164);
-            this.Load += new System.EventHandler(this.DensityConcentrationControl_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();

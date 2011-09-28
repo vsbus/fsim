@@ -75,15 +75,20 @@ namespace Calculator
 
         private void addModuleButton_Click(object sender, EventArgs e)
         {
-            var form = new Form2();
-            form.Text = "Form #" + counter.ToString();
-            ++counter;
-            activeForms.Add(form);
-            form.MdiParent = this;
-            form.Show();
-            form.Closed += FormClose;
-            RebuildWindowsList();
-            windowsDataGrid.CurrentCell = windowsDataGrid[0, windowsDataGrid.RowCount - 1];
+            var modulesForm = new ModulesForm();
+            modulesForm.ShowDialog();
+            if (modulesForm.DialogResult == DialogResult.OK)
+            {
+                var form = modulesForm.SelectedModule;
+                form.Text = "Form #" + counter.ToString();
+                ++counter;
+                activeForms.Add(form);
+                form.MdiParent = this;
+                form.Show();
+                form.Closed += FormClose;
+                RebuildWindowsList();
+                windowsDataGrid.CurrentCell = windowsDataGrid[0, windowsDataGrid.RowCount - 1];
+            }
         }
 
         private void windowTilesToolStripMenuItem_Click(object sender, EventArgs e)

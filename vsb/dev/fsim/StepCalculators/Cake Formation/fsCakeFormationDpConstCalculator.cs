@@ -6,6 +6,7 @@ namespace StepCalculators
     public class fsCakeFormationDpConstCalculator : fsCalculator
     {
         readonly fsCalculatorConstant m_suspensionDensity;
+        readonly fsCalculatorConstant m_solidsDensity;
         readonly fsCalculatorConstant m_etaf;
         readonly fsCalculatorConstant m_hce0;
         readonly fsCalculatorConstant m_porosity0;
@@ -30,6 +31,8 @@ namespace StepCalculators
 
         readonly fsCalculatorVariable m_porosity;
         readonly fsCalculatorVariable m_pc;
+        readonly fsCalculatorVariable m_rc;
+        readonly fsCalculatorVariable m_alpha;
         readonly fsCalculatorVariable m_kappa;
 
         public fsCakeFormationDpConstCalculator()
@@ -37,6 +40,7 @@ namespace StepCalculators
             #region Parameters Initialization
 
             m_suspensionDensity = AddConstant(fsParameterIdentifier.SuspensionDensity);
+            m_solidsDensity = AddConstant(fsParameterIdentifier.SolidsDensity);
             m_etaf = AddConstant(fsParameterIdentifier.FiltrateViscosity);
             m_hce0 = AddConstant(fsParameterIdentifier.Hce0);
             m_porosity0 = AddConstant(fsParameterIdentifier.Porosity0);
@@ -62,6 +66,8 @@ namespace StepCalculators
 
             m_porosity = AddVariable(fsParameterIdentifier.Porosity);
             m_pc = AddVariable(fsParameterIdentifier.Pc);
+            m_rc = AddVariable(fsParameterIdentifier.Rc);
+            m_alpha = AddVariable(fsParameterIdentifier.Alpha);
             m_kappa = AddVariable(fsParameterIdentifier.Kappa);
 
             #endregion
@@ -77,6 +83,8 @@ namespace StepCalculators
             AddEquation(new fsFrom0AndDpEquation(m_porosity, m_porosity0, m_pressure, m_ne));
             AddEquation(new fsFrom0AndDpEquation(m_pc, m_pc0, m_pressure, m_nc));
             AddEquation(new fsEpsKappaCvEquation(m_porosity, m_kappa, m_volumeConcentration));
+            AddEquation(new fsAlphaPcEquation(m_alpha, m_pc, m_porosity, m_solidsDensity));
+            AddEquation(new fsDivisionInverseEquation(m_rc, m_pc));
             AddEquation(new fsProductEquation(m_suspensionMass, m_suspensionMassFlowrate, m_cycleTime));
 
             #endregion

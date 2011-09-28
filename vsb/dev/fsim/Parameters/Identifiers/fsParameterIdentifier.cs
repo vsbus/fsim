@@ -49,9 +49,11 @@ namespace Parameters
 
         #region Parameters Collection
 
-        public static fsParameterIdentifier Porosity = new fsParameterIdentifier("eps");
+        public static fsParameterIdentifier Porosity = new fsParameterIdentifier("eps", fsUnits.Concentration);
         public static fsParameterIdentifier Kappa = new fsParameterIdentifier("kappa");
-        public static fsParameterIdentifier Pc = new fsParameterIdentifier("Pc");
+        public static fsParameterIdentifier Pc = new fsParameterIdentifier("Pc", fsUnits.PermeabilityPc);
+        public static fsParameterIdentifier Rc = new fsParameterIdentifier("rc", fsUnits.CakeResistanceRc);
+        public static fsParameterIdentifier Alpha = new fsParameterIdentifier("alpha", fsUnits.CakeResistanceAlpha);
 
         public static fsParameterIdentifier FilterArea = new fsParameterIdentifier("A", fsUnits.Area);
         public static fsParameterIdentifier Pressure = new fsParameterIdentifier("Dp", fsUnits.Pressure);
@@ -72,7 +74,7 @@ namespace Parameters
         public static fsParameterIdentifier SolidsMassFraction = new fsParameterIdentifier("Cm", "Solids Mass Fraction", fsUnits.Concentration);
         public static fsParameterIdentifier SolidsVolumeFraction = new fsParameterIdentifier("Cv", "Solids Volume Fraction", fsUnits.Concentration);
         public static fsParameterIdentifier SolidsConcentration = new fsParameterIdentifier("C", "Solids Concentration", fsUnits.SolidsConcentration);
-        public static fsParameterIdentifier Porosity0 = new fsParameterIdentifier("eps0", fsUnits.Concentration);
+        public static fsParameterIdentifier Porosity0 = new fsParameterIdentifier("eps0", "Porosity0", fsUnits.Concentration);
         public static fsParameterIdentifier Kappa0 = new fsParameterIdentifier("kappa0");
         public static fsParameterIdentifier Ne = new fsParameterIdentifier("ne");
         public static fsParameterIdentifier Pc0 = new fsParameterIdentifier("Pc0", fsUnits.PermeabilityPc);
