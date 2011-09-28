@@ -42,7 +42,7 @@ namespace Parameters
 
         public override string ToString()
         {
-            return FullName + " (" + Name + ")";
+            return FullName == Name ? Name : FullName + " (" + Name + ")";
         }
 
         #endregion
