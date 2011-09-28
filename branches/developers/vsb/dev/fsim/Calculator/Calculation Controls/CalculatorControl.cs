@@ -22,7 +22,7 @@ namespace Calculator.Calculation_Controls
 
         protected void AddRow(DataGridView dataGrid, fsParameterIdentifier parameter, Color color)
         {
-            int ind = dataGrid.Rows.Add(new[] { parameter.ToString() + "[" + parameter.Units.CurrentName + "]", "" });
+            int ind = dataGrid.Rows.Add(new[] { parameter.ToString() + " [" + parameter.Units.CurrentName + "]", "" });
             foreach (DataGridViewCell cell in dataGrid.Rows[ind].Cells)
             {
                 cell.Style.BackColor = color;

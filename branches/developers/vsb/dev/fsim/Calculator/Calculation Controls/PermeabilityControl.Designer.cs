@@ -41,6 +41,7 @@
             this.dataGrid.AllowUserToResizeColumns = false;
             this.dataGrid.AllowUserToResizeRows = false;
             this.dataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.parameterNameColumn,
@@ -52,7 +53,7 @@
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.RowHeadersVisible = false;
             this.dataGrid.RowTemplate.Height = 18;
-            this.dataGrid.Size = new System.Drawing.Size(210, 183);
+            this.dataGrid.Size = new System.Drawing.Size(218, 237);
             this.dataGrid.TabIndex = 0;
             this.dataGrid.CellValueChangedByUser += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellValueChangedByUser);
             // 
@@ -75,7 +76,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGrid);
             this.Name = "PermeabilityControl";
-            this.Size = new System.Drawing.Size(210, 183);
+            this.Size = new System.Drawing.Size(218, 237);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.ResumeLayout(false);
 

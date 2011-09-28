@@ -79,8 +79,12 @@ namespace Calculator
             modulesForm.ShowDialog();
             if (modulesForm.DialogResult == DialogResult.OK)
             {
-                var form = modulesForm.SelectedModule;
+                var form = new Form();
                 form.Text = "Form #" + counter.ToString();
+                form.Width = modulesForm.SelectedModule.Width + 10;
+                form.Height = modulesForm.SelectedModule.Height + 10;
+                modulesForm.SelectedModule.Parent = form;
+                modulesForm.SelectedModule.Dock = DockStyle.Fill;
                 ++counter;
                 activeForms.Add(form);
                 form.MdiParent = this;
