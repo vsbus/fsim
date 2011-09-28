@@ -52,7 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculation Controls\CalculationProcessor.cs" />
+    <Compile Include="Calculation Controls\CalculationProcessor\CalculationProcessor.cs" />
+    <Compile Include="Calculation Controls\CalculationProcessor\ParametersGroup.cs" />
     <Compile Include="Calculation Controls\CalculatorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -62,7 +63,6 @@
     <Compile Include="Calculation Controls\DensityConcentrationControl.Designer.cs">
       <DependentUpon>DensityConcentrationControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Calculation Controls\ParametersGroup.cs" />
     <Compile Include="Calculation Controls\PermeabilityControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

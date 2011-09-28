@@ -12,7 +12,6 @@ namespace Calculator.Calculation_Controls
 {
     public class CalculationProcessor
     {
-
         public Dictionary<fsParameterIdentifier, fsNamedValueParameter> Values { get; private set; }
         public Dictionary<fsParameterIdentifier, DataGridViewCell> ParameterToCell { get; private set; }
         public Dictionary<DataGridViewCell, fsParameterIdentifier> CellToParameter { get; private set; }
@@ -20,6 +19,29 @@ namespace Calculator.Calculation_Controls
 
         public List<ParametersGroup> Groups { get; private set; }
         public Dictionary<fsParameterIdentifier, ParametersGroup> ParameterToGroup { get; private set; }
+
+        public CalculationProcessor()
+        {
+            CellToParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
+            ParameterToCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
+            Values = new Dictionary<fsParameterIdentifier, fsNamedValueParameter>();
+            Groups = new List<ParametersGroup>();
+            ParameterToGroup = new Dictionary<fsParameterIdentifier, ParametersGroup>();
+            Calculators = new List<fsCalculator>();
+        }
+
+        public ParametersGroup AddGroup(params fsParameterIdentifier[] parameters)
+        {
+            ParametersGroup group = new ParametersGroup();
+            foreach (var p in parameters)
+            {
+                group.Parameters.Add(p);
+                ParameterToGroup[p] = group;
+            }
+            group.Representator = group.Parameters[0];
+            Groups.Add(group);
+            return group;
+        }
 
         public void SetGroupInputed(ParametersGroup g, bool isInput)
         {
@@ -40,16 +62,6 @@ namespace Calculator.Calculation_Controls
                     ParameterToCell[p].Style.ForeColor = Color.Black;
                 }
             }
-        }
-
-        public CalculationProcessor()
-        {
-            CellToParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
-            ParameterToCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
-            Values = new Dictionary<fsParameterIdentifier, fsNamedValueParameter>();
-            Groups = new List<ParametersGroup>();
-            ParameterToGroup = new Dictionary<fsParameterIdentifier, ParametersGroup>();
-            Calculators = new List<fsCalculator>();
         }
 
         internal void AssignParameterAndCell(fsParameterIdentifier parameter, DataGridViewCell dataGridViewCell)
@@ -127,19 +139,6 @@ namespace Calculator.Calculation_Controls
             {
                 ParameterToCell[p].Style.ForeColor = p == parameter ? Color.Blue : Color.Black;
             }
-        }
-
-        public ParametersGroup AddGroup(params fsParameterIdentifier [] parameters)
-        {
-            ParametersGroup group = new ParametersGroup();
-            foreach (var p in parameters)
-            {
-                group.Parameters.Add(p);
-                ParameterToGroup[p] = group;
-            }
-            group.Representator = group.Parameters[0];
-            Groups.Add(group);
-            return group;
         }
     }
 }
