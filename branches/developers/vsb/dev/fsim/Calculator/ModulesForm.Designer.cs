@@ -42,14 +42,14 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(111, 290);
+            this.listBox1.Size = new System.Drawing.Size(138, 290);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // OKButton
             // 
             this.OKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OKButton.Location = new System.Drawing.Point(211, 2);
+            this.OKButton.Location = new System.Drawing.Point(241, 2);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 23);
             this.OKButton.TabIndex = 1;
@@ -60,7 +60,7 @@
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.Location = new System.Drawing.Point(292, 2);
+            this.cancelButton.Location = new System.Drawing.Point(322, 2);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 2;
@@ -71,9 +71,9 @@
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(111, 0);
+            this.panel1.Location = new System.Drawing.Point(138, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(379, 257);
+            this.panel1.Size = new System.Drawing.Size(409, 257);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -81,21 +81,21 @@
             this.panel2.Controls.Add(this.OKButton);
             this.panel2.Controls.Add(this.cancelButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(111, 257);
+            this.panel2.Location = new System.Drawing.Point(138, 257);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(379, 37);
+            this.panel2.Size = new System.Drawing.Size(409, 37);
             this.panel2.TabIndex = 4;
             // 
             // ModulesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 294);
+            this.ClientSize = new System.Drawing.Size(547, 294);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.listBox1);
             this.Name = "ModulesForm";
-            this.Text = "ModulesForm";
+            this.Text = "Calculator Modules";
             this.Load += new System.EventHandler(this.ModulesForm_Load);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
