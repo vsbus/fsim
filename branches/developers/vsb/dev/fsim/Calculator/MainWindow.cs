@@ -17,7 +17,7 @@ namespace Calculator
         }
 
         private int counter = 0;
-        List<Form> activeForms = new List<Form>();
+        List<Module> m_modules = new List<Module>();
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -31,10 +31,10 @@ namespace Calculator
                 ? ""
                 : cell.Value.ToString();
             windowsDataGrid.Rows.Clear();
-            foreach (var f in activeForms)
+            foreach (var module in m_modules)
             {
-                int ind = windowsDataGrid.Rows.Add(f.Text);
-                if (f.Text == currentWindowName)
+                int ind = windowsDataGrid.Rows.Add(module.Name);
+                if (module.Name == currentWindowName)
                 {
                     windowsDataGrid.CurrentCell = windowsDataGrid[0, ind];
                 }
@@ -44,11 +44,11 @@ namespace Calculator
         void FormClose(object sender, EventArgs e)
         {
             string text = ((Form)sender).Text;
-            foreach (var f in activeForms)
+            foreach (var f in m_modules)
             {
-                if (f.Text == text)
+                if (f.Name == text)
                 {
-                    activeForms.Remove(f);
+                    m_modules.Remove(f);
                     RebuildWindowsList();
                     return;
                 }
@@ -62,11 +62,11 @@ namespace Calculator
             if (cell != null && cell.Value != null)
             {
                 string text = cell.Value.ToString();
-                foreach (var form in activeForms)
+                foreach (var module in m_modules)
                 {
-                    if (form.Text == text)
+                    if (module.Name == text)
                     {
-                        form.Activate();
+                        module.Form.Activate();
                         dataGrid.Focus();
                     }
                 }
@@ -79,17 +79,11 @@ namespace Calculator
             modulesForm.ShowDialog();
             if (modulesForm.DialogResult == DialogResult.OK)
             {
-                var form = new Form();
-                form.Text = "Form #" + counter.ToString();
-                form.Width = modulesForm.SelectedModule.Width + 10;
-                form.Height = modulesForm.SelectedModule.Height + 10;
-                modulesForm.SelectedModule.Parent = form;
-                modulesForm.SelectedModule.Dock = DockStyle.Fill;
                 ++counter;
-                activeForms.Add(form);
-                form.MdiParent = this;
-                form.Show();
-                form.Closed += FormClose;
+                var module = new Module("Module #" + counter.ToString(), modulesForm.SelectedModule);
+                m_modules.Add(module);
+                module.Form.MdiParent = this;
+                module.Form.Closed += FormClose;
                 RebuildWindowsList();
                 windowsDataGrid.CurrentCell = windowsDataGrid[0, windowsDataGrid.RowCount - 1];
             }
@@ -100,24 +94,29 @@ namespace Calculator
             int x = 0;
             int y = 0;
             int maxHeight = 0;
-            foreach (var form in activeForms)
+            foreach (var module in m_modules)
             {
-                if (x > 0 && x + form.Width > ClientSize.Width)
+                if (x > 0 && x + module.Form.Width > ClientSize.Width)
                 {
                     x = 0;
                     y += maxHeight;
                     maxHeight = 0;
                 }
-                form.Left = x;
-                form.Top = y;
-                x += form.Width;
-                maxHeight = Math.Max(maxHeight, form.Height);
+                module.Form.Left = x;
+                module.Form.Top = y;
+                x += module.Form.Width;
+                maxHeight = Math.Max(maxHeight, module.Form.Height);
             }
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_modules[0].Serialize();
         }
     }
 }
