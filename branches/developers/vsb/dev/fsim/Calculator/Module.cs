@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Calculator.Calculation_Controls;
 using System.Xml.Serialization;
 using System.IO;
+using System.Reflection;
 
 namespace Calculator
 {
@@ -26,11 +27,6 @@ namespace Calculator
             m_calculatorControl.Parent = Form;
             m_calculatorControl.Dock = DockStyle.Fill;
             Form.Show();
-        }
-
-        public void Serialize()
-        {
-            m_calculatorControl.Serialize();
         }
     }
 }

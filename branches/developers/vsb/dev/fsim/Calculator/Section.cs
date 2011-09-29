@@ -18,15 +18,5 @@ namespace Calculator
         {
             m_modules.Remove(module);
         }
-
-        public void Serialize()
-        {
-            throw new Exception("serialize doesn't implemented");
-        }
-
-        public void Deserialize()
-        {
-            throw new Exception("Deserialize doesn't implemented");
-        }
     }
 }

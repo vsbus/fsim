@@ -19,11 +19,6 @@ namespace Calculator
         private int counter = 0;
         List<Module> m_modules = new List<Module>();
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void RebuildWindowsList()
         {
             DataGridViewCell cell = windowsDataGrid.CurrentCell;
@@ -116,7 +111,6 @@ namespace Calculator
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            m_modules[0].Serialize();
         }
     }
 }

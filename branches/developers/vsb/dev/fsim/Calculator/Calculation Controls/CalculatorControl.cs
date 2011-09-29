@@ -32,13 +32,5 @@ namespace Calculator.Calculation_Controls
             }
             m_calculationProcessor.AssignParameterAndCell(parameter, dataGrid.Rows[ind].Cells[1]);
         }
-
-        public void Serialize()
-        {
-            Stream stream = File.Open(@"C:\temp\module.xml", FileMode.Create);
-            SoapFormatter formatter = new SoapFormatter();
-            formatter.Serialize(stream, m_calculationProcessor);
-            stream.Close();
-        }
     }
 }
