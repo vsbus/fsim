@@ -13,87 +13,131 @@ namespace Calculator.Calculation_Controls
 {
     public partial class DensityConcentrationControl : CalculatorControl
     {
+        #region 
+
+        enum CalculationOption
+        {
+            CALC_FILTRATE_DENSITY,
+            CALC_SOLIDS_DENSITY,
+            CALC_SUSPENSION_DENSITY,
+            CALC_CONCENTRATIONS
+        }
+        private CalculationOption calculationOption;
+       
+        #endregion
+
+        ParametersGroup filtrateGroup;
+        ParametersGroup solidsGroup;
+        ParametersGroup suspensionGroup;
+        ParametersGroup concentrationGroup;
+
         public DensityConcentrationControl()
         {
             InitializeComponent();
 
-            m_calculationProcessor.Calculators.Add(new fsDensityConcentrationCalculator());
+            Calculators.Add(new fsDensityConcentrationCalculator());
 
-            var filtrateGroup = m_calculationProcessor.AddGroup(
+            filtrateGroup = AddGroup(
                 fsParameterIdentifier.FiltrateDensity);
-            var solidsGroup = m_calculationProcessor.AddGroup(
+            solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity);
-            var suspensionGroup = m_calculationProcessor.AddGroup(
+            suspensionGroup = AddGroup(
                 fsParameterIdentifier.SuspensionDensity);
-            var concentrationGroup = m_calculationProcessor.AddGroup(
+            concentrationGroup = AddGroup(
                 fsParameterIdentifier.SolidsMassFraction,
                 fsParameterIdentifier.SolidsVolumeFraction,
                 fsParameterIdentifier.SolidsConcentration);
 
-            AddGroup(dataGrid, filtrateGroup, Color.FromArgb(230, 255, 255));
-            AddGroup(dataGrid, solidsGroup, Color.FromArgb(255, 230, 255));
-            AddGroup(dataGrid, suspensionGroup, Color.FromArgb(255, 255, 230));
-            AddGroup(dataGrid, concentrationGroup, Color.FromArgb(230, 230, 230));
+            AddGroupToUI(dataGrid, filtrateGroup, Color.FromArgb(230, 255, 255));
+            AddGroupToUI(dataGrid, solidsGroup, Color.FromArgb(255, 230, 255));
+            AddGroupToUI(dataGrid, suspensionGroup, Color.FromArgb(255, 255, 230));
+            AddGroupToUI(dataGrid, concentrationGroup, Color.FromArgb(230, 230, 230));
 
-            ChangeCalculationOption();
+            calculationOption = CalculationOption.CALC_SUSPENSION_DENSITY;
+            UpdateCalculationOptionAndInputGroups();
+
+            ConnectUIWithDataUpdating();
+            UpdateUIFromData();
         }
 
-        private void ChangeCalculationOption()
+        protected override void UpdateUIFromData()
         {
-            fsParameterIdentifier driveParameter = null;
+            UpdateCellForeColors();
+
+            WriteValuesToDataGrid();
+
+            switch (calculationOption)
+            {
+                case CalculationOption.CALC_FILTRATE_DENSITY:
+                    filtrateRadioButton.Checked = true;
+                    break;
+                case CalculationOption.CALC_SOLIDS_DENSITY:
+                    solidsRadioButton.Checked = true;
+                    break;
+                case CalculationOption.CALC_SUSPENSION_DENSITY:
+                    suspensionRadioButton.Checked = true;
+                    break;
+                case CalculationOption.CALC_CONCENTRATIONS:
+                    concentrationsRadioButton.Checked = true;
+                    break;
+            }
+        }
+
+        protected override void UpdateCalculationOptionAndInputGroups()
+        {
             if (filtrateRadioButton.Checked)
             {
-                driveParameter = fsParameterIdentifier.FiltrateDensity;
+                calculationOption = CalculationOption.CALC_FILTRATE_DENSITY;
             }
             if (solidsRadioButton.Checked)
             {
-                driveParameter = fsParameterIdentifier.SolidsDensity;
+                calculationOption = CalculationOption.CALC_SOLIDS_DENSITY;
             }
             if (suspensionRadioButton.Checked)
             {
-                driveParameter = fsParameterIdentifier.SuspensionDensity;
+                calculationOption = CalculationOption.CALC_SUSPENSION_DENSITY;
             }
             if (concentrationsRadioButton.Checked)
             {
-                driveParameter = fsParameterIdentifier.SolidsMassFraction;
+                calculationOption = CalculationOption.CALC_CONCENTRATIONS;
             }
 
-            ParametersGroup newCalculatedGroup = m_calculationProcessor.ParameterToGroup[driveParameter];
-            foreach (var g in m_calculationProcessor.Groups)
+            SetGroupInput(filtrateGroup, calculationOption != CalculationOption.CALC_FILTRATE_DENSITY);
+            SetGroupInput(solidsGroup, calculationOption != CalculationOption.CALC_SOLIDS_DENSITY);
+            SetGroupInput(suspensionGroup, calculationOption != CalculationOption.CALC_SUSPENSION_DENSITY);
+            SetGroupInput(concentrationGroup, calculationOption != CalculationOption.CALC_CONCENTRATIONS);
+        }
+        private void SetGroupInput(ParametersGroup group, bool value)
+        {
+            group.IsInput = value;
+            foreach (var parameter in group.Parameters)
             {
-                m_calculationProcessor.SetGroupInputed(g, g != newCalculatedGroup);
+                ParameterToCell[parameter].ReadOnly = !value;
             }
-
-            m_calculationProcessor.RecalculateAndOutput();
         }
 
-        private void dataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
+        protected override void ConnectUIWithDataUpdating()
         {
-            m_calculationProcessor.CellValueChanged(dataGrid[e.ColumnIndex, e.RowIndex]);
+            dataGrid.CellValueChangedByUser += new DataGridViewCellEventHandler(dataGridCellValueChangedByUser);
+            filtrateRadioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
+            solidsRadioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
+            suspensionRadioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
+            concentrationsRadioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
         }
 
-        #region Radio Buttons Events
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        void radioButtonCheckedChanged(object sender, EventArgs e)
         {
-            ChangeCalculationOption();
+            UpdateCalculationOptionAndInputGroups();
+            UpdateUIFromData();
         }
 
-        private void solidsRadioButton_CheckedChanged(object sender, EventArgs e)
+        void dataGridCellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
         {
-            ChangeCalculationOption();
+            if (sender is DataGridView)
+            {
+                ProcessNewEntry(((DataGridView)sender).CurrentCell);
+            }
+            UpdateUIFromData();
         }
-
-        private void suspensionRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            ChangeCalculationOption();
-        }
-
-        private void concentrationsRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            ChangeCalculationOption();
-        }
-
-        #endregion
     }
 }

@@ -64,12 +64,14 @@
     <Compile Include="Calculation Controls\DensityConcentrationControl.Designer.cs">
       <DependentUpon>DensityConcentrationControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calculation Controls\ICalculatorControl.cs" />
     <Compile Include="Calculation Controls\PermeabilityControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Calculation Controls\PermeabilityControl.Designer.cs">
       <DependentUpon>PermeabilityControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calculator Modules\Permeability Module\PermeabilityModule.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

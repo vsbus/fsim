@@ -30,18 +30,6 @@ namespace Calculator.Calculation_Controls
             Calculators = new List<fsCalculator>();
         }
 
-        public ParametersGroup AddGroup(params fsParameterIdentifier[] parameters)
-        {
-            ParametersGroup group = new ParametersGroup();
-            foreach (var p in parameters)
-            {
-                group.Parameters.Add(p);
-                ParameterToGroup[p] = group;
-            }
-            group.Representator = group.Parameters[0];
-            Groups.Add(group);
-            return group;
-        }
 
         public void SetGroupInputed(ParametersGroup g, bool isInput)
         {
@@ -64,29 +52,17 @@ namespace Calculator.Calculation_Controls
             }
         }
 
-        internal void AssignParameterAndCell(fsParameterIdentifier parameter, DataGridViewCell dataGridViewCell)
-        {
-            Values.Add(parameter, new fsSimulationParameter(parameter));
-            ParameterToCell.Add(parameter, dataGridViewCell);
-            CellToParameter.Add(dataGridViewCell, parameter);
-        }
+//         internal void CellValueChanged(DataGridViewCell cell)
+//         {
+//             if (CellToParameter.ContainsKey(cell))
+//             {
+//                 var parameter = CellToParameter[cell];
+//                 UpdateInputInGroup(parameter);
+//                 ReadEnteredValue(cell, parameter);
+//             }
+//             RecalculateAndOutput();
+//         }
 
-        internal void CellValueChanged(DataGridViewCell cell)
-        {
-            if (CellToParameter.ContainsKey(cell))
-            {
-                var parameter = CellToParameter[cell];
-                UpdateInputInGroup(parameter);
-                ReadEnteredValue(cell, parameter);
-            }
-            RecalculateAndOutput();
-        }
-
-        public void RecalculateAndOutput()
-        {
-            Recalculate();
-            WriteValuesToDataGrid();
-        }
 
         private void WriteValuesToDataGrid()
         {
@@ -96,49 +72,5 @@ namespace Calculator.Calculation_Controls
             }
         }
 
-        private void Recalculate()
-        {
-            Dictionary<fsParameterIdentifier, fsSimulationParameter> localValues = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
-            foreach (var p in Values.Keys)
-            {
-                if (ParameterToGroup[p].IsInput && p == ParameterToGroup[p].Representator)
-                {
-                    localValues[p] = new fsSimulationParameter(
-                        p,
-                        true,
-                        Values[p].Value);
-                }
-                else
-                {
-                    localValues[p] = new fsSimulationParameter(p);
-                }
-            }
-            foreach (var calc in Calculators)
-            {
-                calc.ReadDataFromStorage(localValues);
-                calc.Calculate();
-                calc.CopyValuesToStorage(localValues);
-            }
-            foreach (var p in Values.Keys)
-            {
-                Values[p].Value = localValues[p].Value;
-            }
-        }
-
-        private void ReadEnteredValue(DataGridViewCell cell, fsParameterIdentifier parameter)
-        {
-            var value = Values[parameter];
-            value.Value = fsValue.ObjectToValue(cell.Value) * parameter.Units.CurrentCoefficient;
-        }
-
-        private void UpdateInputInGroup(fsParameterIdentifier parameter)
-        {
-            var g = ParameterToGroup[parameter];
-            g.Representator = parameter;
-            foreach (var p in g.Parameters)
-            {
-                ParameterToCell[p].Style.ForeColor = p == parameter ? Color.Blue : Color.Black;
-            }
-        }
     }
 }

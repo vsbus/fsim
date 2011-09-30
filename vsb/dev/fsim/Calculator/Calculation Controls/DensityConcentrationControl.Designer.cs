@@ -72,7 +72,6 @@
             this.concentrationsRadioButton.TabIndex = 3;
             this.concentrationsRadioButton.Text = "Concentrations";
             this.concentrationsRadioButton.UseVisualStyleBackColor = true;
-            this.concentrationsRadioButton.CheckedChanged += new System.EventHandler(this.concentrationsRadioButton_CheckedChanged);
             // 
             // suspensionRadioButton
             // 
@@ -85,7 +84,6 @@
             this.suspensionRadioButton.TabStop = true;
             this.suspensionRadioButton.Text = "Suspension Density";
             this.suspensionRadioButton.UseVisualStyleBackColor = true;
-            this.suspensionRadioButton.CheckedChanged += new System.EventHandler(this.suspensionRadioButton_CheckedChanged);
             // 
             // solidsRadioButton
             // 
@@ -96,7 +94,6 @@
             this.solidsRadioButton.TabIndex = 1;
             this.solidsRadioButton.Text = "Solids Density";
             this.solidsRadioButton.UseVisualStyleBackColor = true;
-            this.solidsRadioButton.CheckedChanged += new System.EventHandler(this.solidsRadioButton_CheckedChanged);
             // 
             // filtrateRadioButton
             // 
@@ -107,7 +104,6 @@
             this.filtrateRadioButton.TabIndex = 0;
             this.filtrateRadioButton.Text = "Filtrate Density";
             this.filtrateRadioButton.UseVisualStyleBackColor = true;
-            this.filtrateRadioButton.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // dataGrid
             // 
@@ -130,7 +126,6 @@
             this.dataGrid.RowTemplate.Height = 18;
             this.dataGrid.Size = new System.Drawing.Size(228, 164);
             this.dataGrid.TabIndex = 0;
-            this.dataGrid.CellValueChangedByUser += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellValueChangedByUser);
             // 
             // ParameterColumn
             // 
