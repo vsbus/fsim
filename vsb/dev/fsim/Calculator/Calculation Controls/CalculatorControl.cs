@@ -21,19 +21,6 @@ namespace Calculator.Calculation_Controls
         
         #endregion
 
-        virtual protected void UpdateUIFromData()
-        {
-            throw new NotImplementedException();
-        }
-        virtual protected void ConnectUIWithDataUpdating()
-        {
-            throw new NotImplementedException();
-        }
-        virtual protected void UpdateCalculationOptionAndInputGroups()
-        {
-            throw new NotImplementedException();
-        }
-
         #region UI data
 
         protected Dictionary<fsParameterIdentifier, DataGridViewCell> ParameterToCell { get; private set; }
@@ -53,9 +40,33 @@ namespace Calculator.Calculation_Controls
 
         #region Routines
 
+        virtual protected void UpdateUIFromData()
+        {
+            throw new NotImplementedException();
+        }
+
+        virtual protected void ConnectUIWithDataUpdating()
+        {
+            throw new NotImplementedException();
+        }
+
+        virtual protected void UpdateCalculationOptionAndInputGroups()
+        {
+            throw new NotImplementedException();
+        }
+
         protected List<fsCalculator> Calculators { get; private set; }
         protected List<ParametersGroup> Groups { get; private set; }
         protected Dictionary<fsParameterIdentifier, ParametersGroup> ParameterToGroup { get; private set; }
+
+        protected void SetGroupInput(ParametersGroup group, bool value)
+        {
+            group.IsInput = value;
+            foreach (var parameter in group.Parameters)
+            {
+                ParameterToCell[parameter].ReadOnly = !value;
+            }
+        }
 
         public ParametersGroup AddGroup(params fsParameterIdentifier[] parameters)
         {
@@ -69,7 +80,6 @@ namespace Calculator.Calculation_Controls
             Groups.Add(group);
             return group;
         }
-
 
         protected void AddGroupToUI(DataGridView dataGrid, ParametersGroup group, Color color)
         {
@@ -165,7 +175,6 @@ namespace Calculator.Calculation_Controls
             var value = Values[parameter];
             value.Value = fsValue.ObjectToValue(cell.Value) * parameter.Units.CurrentCoefficient;
         }
-
 
         #endregion
     }

@@ -64,7 +64,6 @@
     <Compile Include="Calculation Controls\DensityConcentrationControl.Designer.cs">
       <DependentUpon>DensityConcentrationControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Calculation Controls\ICalculatorControl.cs" />
     <Compile Include="Calculation Controls\PermeabilityControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
