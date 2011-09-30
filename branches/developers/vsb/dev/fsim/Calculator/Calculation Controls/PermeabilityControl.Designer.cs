@@ -55,7 +55,6 @@
             this.dataGrid.RowTemplate.Height = 18;
             this.dataGrid.Size = new System.Drawing.Size(218, 237);
             this.dataGrid.TabIndex = 0;
-            this.dataGrid.CellValueChangedByUser += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellValueChangedByUser);
             // 
             // parameterNameColumn
             // 

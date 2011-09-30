@@ -13,47 +13,81 @@ namespace Calculator.Calculation_Controls
 {
     public partial class PermeabilityControl : CalculatorControl
     {
+        private ParametersGroup solidsGroup;
+        private ParametersGroup porosityGroup;
+        private ParametersGroup pc0rc0a0Group;
+        private ParametersGroup ncGroup;
+        private ParametersGroup pressureGroup;
+        private ParametersGroup pcrcaGroup;
+
         public PermeabilityControl()
         {
             InitializeComponent();
 
-            m_calculationProcessor.Calculators.Add(new fsPermeabilityCalculator());
+            Calculators.Add(new fsPermeabilityCalculator());
 
-            var solidsGroup = m_calculationProcessor.AddGroup(
+            solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity);
-            var porosityGroup = m_calculationProcessor.AddGroup(
+            porosityGroup = AddGroup(
                 fsParameterIdentifier.Porosity);
-            var pc0rc0a0Group = m_calculationProcessor.AddGroup(
+            pc0rc0a0Group = AddGroup(
                 fsParameterIdentifier.Pc0,
                 fsParameterIdentifier.Rc0,
                 fsParameterIdentifier.Alpha0);
-            var ncGroup = m_calculationProcessor.AddGroup(
+            ncGroup = AddGroup(
                 fsParameterIdentifier.Nc);
-            var pressureGroup = m_calculationProcessor.AddGroup(
+            pressureGroup = AddGroup(
                 fsParameterIdentifier.Pressure);
-            var pcrcaGroup = m_calculationProcessor.AddGroup(
+            pcrcaGroup = AddGroup(
                 fsParameterIdentifier.Pc,
                 fsParameterIdentifier.Rc,
                 fsParameterIdentifier.Alpha);
 
-            AddGroup(dataGrid, solidsGroup, Color.FromArgb(230, 230, 255));
-            AddGroup(dataGrid, porosityGroup, Color.FromArgb(255, 255, 230));
-            AddGroup(dataGrid, pc0rc0a0Group, Color.FromArgb(230, 230, 255));
-            AddGroup(dataGrid, ncGroup, Color.FromArgb(255, 255, 230));
-            AddGroup(dataGrid, pressureGroup, Color.FromArgb(230, 230, 255));
-            AddGroup(dataGrid, pcrcaGroup, Color.FromArgb(255, 230, 230));
+            AddGroupToUI(dataGrid, solidsGroup, Color.FromArgb(230, 230, 255));
+            AddGroupToUI(dataGrid, porosityGroup, Color.FromArgb(255, 255, 230));
+            AddGroupToUI(dataGrid, pc0rc0a0Group, Color.FromArgb(230, 230, 255));
+            AddGroupToUI(dataGrid, ncGroup, Color.FromArgb(255, 255, 230));
+            AddGroupToUI(dataGrid, pressureGroup, Color.FromArgb(230, 230, 255));
+            AddGroupToUI(dataGrid, pcrcaGroup, Color.FromArgb(255, 230, 230));
 
-            m_calculationProcessor.SetGroupInputed(solidsGroup, true);
-            m_calculationProcessor.SetGroupInputed(porosityGroup, true);
-            m_calculationProcessor.SetGroupInputed(pc0rc0a0Group, true);
-            m_calculationProcessor.SetGroupInputed(ncGroup, true);
-            m_calculationProcessor.SetGroupInputed(pressureGroup, true);
-            m_calculationProcessor.SetGroupInputed(pcrcaGroup, false);
+            UpdateCalculationOptionAndInputGroups();
+            ConnectUIWithDataUpdating();
+            UpdateUIFromData();
         }
 
-        private void dataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
+        protected override void UpdateCalculationOptionAndInputGroups()
         {
-            m_calculationProcessor.CellValueChanged(dataGrid[e.ColumnIndex, e.RowIndex]);
+            foreach (var g in Groups)
+            {
+                bool isInput = g != pcrcaGroup;
+                g.IsInput = isInput;
+                if (!isInput)
+                {
+                    foreach (var p in g.Parameters)
+                    {
+                        ParameterToCell[p].ReadOnly = true;
+                    }
+                }
+            }
+        }
+
+        protected override void  UpdateUIFromData()
+        {
+            UpdateCellForeColors();
+            WriteValuesToDataGrid();
+        }
+
+        protected override void ConnectUIWithDataUpdating()
+        {
+            dataGrid.CellValueChangedByUser += new DataGridViewCellEventHandler(dataGrid_CellValueChangedByUser);
+        }
+
+        void dataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
+        {
+            if (sender is DataGridView)
+            {
+                ProcessNewEntry(((DataGridView)dataGrid).CurrentCell);
+            }
         }
     }
 }
