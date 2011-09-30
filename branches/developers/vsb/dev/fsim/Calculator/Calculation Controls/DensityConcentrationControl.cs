@@ -13,7 +13,7 @@ namespace Calculator.Calculation_Controls
 {
     public partial class DensityConcentrationControl : CalculatorControl
     {
-        #region 
+        #region Calculation Data
 
         enum CalculationOption
         {
@@ -26,10 +26,14 @@ namespace Calculator.Calculation_Controls
        
         #endregion
 
+        #region Routine Data
+
         ParametersGroup filtrateGroup;
         ParametersGroup solidsGroup;
         ParametersGroup suspensionGroup;
         ParametersGroup concentrationGroup;
+
+        #endregion
 
         public DensityConcentrationControl()
         {
@@ -59,6 +63,8 @@ namespace Calculator.Calculation_Controls
             ConnectUIWithDataUpdating();
             UpdateUIFromData();
         }
+
+        #region Routine Methods
 
         protected override void UpdateUIFromData()
         {
@@ -107,14 +113,6 @@ namespace Calculator.Calculation_Controls
             SetGroupInput(suspensionGroup, calculationOption != CalculationOption.CALC_SUSPENSION_DENSITY);
             SetGroupInput(concentrationGroup, calculationOption != CalculationOption.CALC_CONCENTRATIONS);
         }
-        private void SetGroupInput(ParametersGroup group, bool value)
-        {
-            group.IsInput = value;
-            foreach (var parameter in group.Parameters)
-            {
-                ParameterToCell[parameter].ReadOnly = !value;
-            }
-        }
 
         protected override void ConnectUIWithDataUpdating()
         {
@@ -139,5 +137,7 @@ namespace Calculator.Calculation_Controls
             }
             UpdateUIFromData();
         }
+
+        #endregion
     }
 }

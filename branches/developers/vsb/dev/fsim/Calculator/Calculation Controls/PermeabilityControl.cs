@@ -13,12 +13,16 @@ namespace Calculator.Calculation_Controls
 {
     public partial class PermeabilityControl : CalculatorControl
     {
+        #region Routine Data
+
         private ParametersGroup solidsGroup;
         private ParametersGroup porosityGroup;
         private ParametersGroup pc0rc0a0Group;
         private ParametersGroup ncGroup;
         private ParametersGroup pressureGroup;
         private ParametersGroup pcrcaGroup;
+
+        #endregion
 
         public PermeabilityControl()
         {
@@ -55,19 +59,13 @@ namespace Calculator.Calculation_Controls
             UpdateUIFromData();
         }
 
+        #region Routine Methods
+
         protected override void UpdateCalculationOptionAndInputGroups()
         {
             foreach (var g in Groups)
             {
-                bool isInput = g != pcrcaGroup;
-                g.IsInput = isInput;
-                if (!isInput)
-                {
-                    foreach (var p in g.Parameters)
-                    {
-                        ParameterToCell[p].ReadOnly = true;
-                    }
-                }
+                SetGroupInput(g, g != pcrcaGroup);
             }
         }
 
@@ -89,5 +87,7 @@ namespace Calculator.Calculation_Controls
                 ProcessNewEntry(((DataGridView)dataGrid).CurrentCell);
             }
         }
+
+        #endregion
     }
 }
