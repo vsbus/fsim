@@ -39,6 +39,7 @@ namespace Calculator
         {
             modules["Density/Concentration"] = new DensityConcentrationControl();
             modules["Permeability"] = new PermeabilityControl();
+            modules["Msus and Hc"] = new MsusAndHcControl();
 
             foreach (var s in modules.Keys)
             {

@@ -50,9 +50,13 @@
     <Compile Include="fsCalculator.cs" />
     <Compile Include="Material Calculators\fsDensityConcentrationCalculator.cs" />
     <Compile Include="Material Calculators\fsEps0Kapp0Calculator.cs" />
+    <Compile Include="Material Calculators\fsEpsKappaCalculator.cs" />
     <Compile Include="Material Calculators\fsPc0rc0alpha0Calculator.cs" />
     <Compile Include="Material Calculators\fsRm0hce0Calculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Small Calculators\fsMsusHcConcaveCylindricAreaCalculator.cs" />
+    <Compile Include="Small Calculators\fsMsusHcConvexCylindricAreaCalculator.cs" />
+    <Compile Include="Small Calculators\fsMsusHcPlainAreaCalculator.cs" />
     <Compile Include="Small Calculators\fsPermeabilityCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
