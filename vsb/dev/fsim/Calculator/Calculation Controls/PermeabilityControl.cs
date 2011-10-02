@@ -11,18 +11,15 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public partial class PermeabilityControl : CalculatorControl
+    public partial class PermeabilityControl : fsCalculatorControl
     {
-        #region Routine Data
-
-        private ParametersGroup solidsGroup;
-        private ParametersGroup porosityGroup;
-        private ParametersGroup pc0rc0a0Group;
-        private ParametersGroup ncGroup;
-        private ParametersGroup pressureGroup;
-        private ParametersGroup pcrcaGroup;
-
-        #endregion
+        enum fsCalculationOption
+        {
+            CALC_PC0_RC0_ALPHA0,
+            CALC_PRESSURE,
+            CALC_NC,
+            CALC_PC_RC_ALPHA
+        }
 
         public PermeabilityControl()
         {
@@ -30,19 +27,19 @@ namespace Calculator.Calculation_Controls
 
             Calculators.Add(new fsPermeabilityCalculator());
 
-            solidsGroup = AddGroup(
+            var solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity);
-            porosityGroup = AddGroup(
+            var porosityGroup = AddGroup(
                 fsParameterIdentifier.Porosity);
-            pc0rc0a0Group = AddGroup(
+            var pc0rc0a0Group = AddGroup(
                 fsParameterIdentifier.Pc0,
                 fsParameterIdentifier.Rc0,
                 fsParameterIdentifier.Alpha0);
-            ncGroup = AddGroup(
+            var ncGroup = AddGroup(
                 fsParameterIdentifier.Nc);
-            pressureGroup = AddGroup(
+            var pressureGroup = AddGroup(
                 fsParameterIdentifier.Pressure);
-            pcrcaGroup = AddGroup(
+            var pcrcaGroup = AddGroup(
                 fsParameterIdentifier.Pc,
                 fsParameterIdentifier.Rc,
                 fsParameterIdentifier.Alpha);
@@ -54,40 +51,17 @@ namespace Calculator.Calculation_Controls
             AddGroupToUI(dataGrid, pressureGroup, Color.FromArgb(230, 230, 255));
             AddGroupToUI(dataGrid, pcrcaGroup, Color.FromArgb(255, 230, 230));
 
+            AssignCalculationOption(fsCalculationOption.CALC_PC0_RC0_ALPHA0, pc0rc0alpha0RadioButton, pc0rc0a0Group);
+            AssignCalculationOption(fsCalculationOption.CALC_PRESSURE, pressureRadioButton, pressureGroup);
+            AssignCalculationOption(fsCalculationOption.CALC_NC, ncRadioButton, ncGroup);
+            AssignCalculationOption(fsCalculationOption.CALC_PC_RC_ALPHA, pcrcalphaRadioButton, pcrcaGroup);
+
+            base.CalculationOption = fsCalculationOption.CALC_PC_RC_ALPHA;
             UpdateCalculationOptionAndInputGroups();
-            ConnectUIWithDataUpdating();
+
+            ConnectUIWithDataUpdating(dataGrid);
             UpdateUIFromData();
         }
 
-        #region Routine Methods
-
-        protected override void UpdateCalculationOptionAndInputGroups()
-        {
-            foreach (var g in Groups)
-            {
-                SetGroupInput(g, g != pcrcaGroup);
-            }
-        }
-
-        protected override void  UpdateUIFromData()
-        {
-            UpdateCellForeColors();
-            WriteValuesToDataGrid();
-        }
-
-        protected override void ConnectUIWithDataUpdating()
-        {
-            dataGrid.CellValueChangedByUser += new DataGridViewCellEventHandler(dataGrid_CellValueChangedByUser);
-        }
-
-        void dataGrid_CellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
-        {
-            if (sender is DataGridView)
-            {
-                ProcessNewEntry(((DataGridView)dataGrid).CurrentCell);
-            }
-        }
-
-        #endregion
     }
 }

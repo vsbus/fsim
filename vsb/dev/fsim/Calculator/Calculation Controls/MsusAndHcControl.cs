@@ -11,19 +11,19 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public partial class MsusAndHcControl : CalculatorControl
+    public partial class MsusAndHcControl : fsCalculatorControl
     {
         #region Calculation Data
 
-        enum MachineTypeOption
+        enum fsMachineTypeOption
         {
             PLAIN_AREA,
             CONVEX_CYLINDRIC,
             CONCAVE_CYLINDRIC
         }
-        private MachineTypeOption machineTypeOption;
+        private fsMachineTypeOption machineTypeOption;
 
-        enum CalculationOption
+        enum fsCalculationOption
         {
             DENISITIES_CALCULATED,
             CONCENTREATIONS_CALCULATED,
@@ -33,20 +33,12 @@ namespace Calculator.Calculation_Controls
             CAKE_HEIGHT_CALCULATED,
             MASS_VOLUME_CALCULATED
         }
-        private CalculationOption calculationOption;
 
         #endregion
 
         #region Routine Data
 
-        ParametersGroup filtrateGroup;
-        ParametersGroup densitiesGroup;
-        ParametersGroup concentrationGroup;
-        ParametersGroup epsKappaGroup;
-        ParametersGroup diameterGroup;
-        ParametersGroup areaBGroup;
-        ParametersGroup cakeHeightGroup;
-        ParametersGroup massVolumeGroup;
+        private ParametersGroup areaBGroup;
 
         private List<fsCalculator> plainAreaCalculators = new List<fsCalculator>();
         private List<fsCalculator> convexCylindricAreaCalculators = new List<fsCalculator>();
@@ -63,27 +55,27 @@ namespace Calculator.Calculation_Controls
             concaveCylindricAreaCalculators.Add(new fsMsusHcConcaveCylindricAreaCalculator());
             Calculators = plainAreaCalculators;
 
-            filtrateGroup = AddGroup(
+            var filtrateGroup = AddGroup(
                 fsParameterIdentifier.FiltrateDensity);
-            densitiesGroup = AddGroup(
+            var densitiesGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity);
-            concentrationGroup = AddGroup(
+            var concentrationGroup = AddGroup(
                 fsParameterIdentifier.SolidsMassFraction,
                 fsParameterIdentifier.SolidsVolumeFraction,
                 fsParameterIdentifier.SolidsConcentration);
-            epsKappaGroup = AddGroup(
+            var epsKappaGroup = AddGroup(
                 fsParameterIdentifier.Porosity,
                 fsParameterIdentifier.Kappa);
-            diameterGroup = AddGroup(
+            var diameterGroup = AddGroup(
                 fsParameterIdentifier.FilterDiameter);
             areaBGroup = AddGroup(
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.FilterB,
                 fsParameterIdentifier.FilterBOverDiameter);
-            cakeHeightGroup = AddGroup(
+            var cakeHeightGroup = AddGroup(
                 fsParameterIdentifier.CakeHeight);
-            massVolumeGroup = AddGroup(
+            var massVolumeGroup = AddGroup(
                 fsParameterIdentifier.SuspensionVolume,
                 fsParameterIdentifier.SuspensionMass
                 /*,
@@ -116,21 +108,21 @@ namespace Calculator.Calculation_Controls
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterB].RowIndex, Color.FromArgb(255, 230, 230));
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].RowIndex, Color.FromArgb(255, 230, 230));
 
-            AssignCalculationOption(CalculationOption.DENISITIES_CALCULATED, denisitiesRadioButton, densitiesGroup);
-            AssignCalculationOption(CalculationOption.CONCENTREATIONS_CALCULATED, concentrationRadioButton, concentrationGroup);
-            AssignCalculationOption(CalculationOption.POROSITY_KAPPA_CALCULATED, epsKappaRadioButton, epsKappaGroup);
-            AssignCalculationOption(CalculationOption.MACHINE_DIAMETER_CALCULATED, diameterRadioButton, diameterGroup);
-            AssignCalculationOption(CalculationOption.MACHINE_A_B_CALCULATED, areaRadioButton, areaBGroup);
-            AssignCalculationOption(CalculationOption.CAKE_HEIGHT_CALCULATED, cakeHeightRadioButton, cakeHeightGroup);
-            AssignCalculationOption(CalculationOption.MASS_VOLUME_CALCULATED, massVolumeRadioButton, massVolumeGroup);
+            AssignCalculationOption(fsCalculationOption.DENISITIES_CALCULATED, denisitiesRadioButton, densitiesGroup);
+            AssignCalculationOption(fsCalculationOption.CONCENTREATIONS_CALCULATED, concentrationRadioButton, concentrationGroup);
+            AssignCalculationOption(fsCalculationOption.POROSITY_KAPPA_CALCULATED, epsKappaRadioButton, epsKappaGroup);
+            AssignCalculationOption(fsCalculationOption.MACHINE_DIAMETER_CALCULATED, diameterRadioButton, diameterGroup);
+            AssignCalculationOption(fsCalculationOption.MACHINE_A_B_CALCULATED, areaRadioButton, areaBGroup);
+            AssignCalculationOption(fsCalculationOption.CAKE_HEIGHT_CALCULATED, cakeHeightRadioButton, cakeHeightGroup);
+            AssignCalculationOption(fsCalculationOption.MASS_VOLUME_CALCULATED, massVolumeRadioButton, massVolumeGroup);
             
-            calculationOption = CalculationOption.MASS_VOLUME_CALCULATED;
+            base.CalculationOption = fsCalculationOption.MASS_VOLUME_CALCULATED;
             UpdateCalculationOptionAndInputGroups();
 
-            machineTypeOption = MachineTypeOption.PLAIN_AREA;
+            machineTypeOption = fsMachineTypeOption.PLAIN_AREA;
             UpdateMachineTypeOptionUI();
 
-            ConnectUIWithDataUpdating();
+            ConnectUIWithDataUpdating(dataGrid);
             UpdateUIFromData();
         }
 
@@ -138,36 +130,23 @@ namespace Calculator.Calculation_Controls
         {
             if (planeAreaRadioButton.Checked)
             {
-                machineTypeOption = MachineTypeOption.PLAIN_AREA;
+                machineTypeOption = fsMachineTypeOption.PLAIN_AREA;
             }
             if (convexAreaRadioButton.Checked)
             {
-                machineTypeOption = MachineTypeOption.CONVEX_CYLINDRIC;
+                machineTypeOption = fsMachineTypeOption.CONVEX_CYLINDRIC;
             }
             if (concaveAreaRadioButton.Checked)
             {
-                machineTypeOption = MachineTypeOption.CONCAVE_CYLINDRIC;
+                machineTypeOption = fsMachineTypeOption.CONCAVE_CYLINDRIC;
             }
         }
 
         #region Routine Methods
 
-        protected override void UpdateUIFromData()
-        {
-            UpdateMachineRadioButtonsAndVisibleControls();
-
-            UpdateCellForeColors();
-
-            WriteValuesToDataGrid();
-
-            calculationOptionToRadioButton[calculationOption].Checked = true;
-
-            textBox1.Lines = Calculators[0].GetStatusMessage().Split('\n');
-        }
-
         private void UpdateMachineRadioButtonsAndVisibleControls()
         {
-            if (machineTypeOption == MachineTypeOption.PLAIN_AREA)
+            if (machineTypeOption == fsMachineTypeOption.PLAIN_AREA)
             {
                 planeAreaRadioButton.Checked = true;
                 ParameterToCell[fsParameterIdentifier.FilterDiameter].OwningRow.Visible = false;
@@ -181,7 +160,7 @@ namespace Calculator.Calculation_Controls
                 Calculators = plainAreaCalculators;
                 areaBGroup.Representator = fsParameterIdentifier.FilterArea;
             }
-            if (machineTypeOption == MachineTypeOption.CONVEX_CYLINDRIC)
+            if (machineTypeOption == fsMachineTypeOption.CONVEX_CYLINDRIC)
             {
                 convexAreaRadioButton.Checked = true;
                 ParameterToCell[fsParameterIdentifier.FilterDiameter].OwningRow.Visible = true;
@@ -191,7 +170,7 @@ namespace Calculator.Calculation_Controls
                 Calculators = convexCylindricAreaCalculators;
                 areaBGroup.Representator = fsParameterIdentifier.FilterArea;
             }
-            if (machineTypeOption == MachineTypeOption.CONCAVE_CYLINDRIC)
+            if (machineTypeOption == fsMachineTypeOption.CONCAVE_CYLINDRIC)
             {
                 concaveAreaRadioButton.Checked = true;
                 ParameterToCell[fsParameterIdentifier.FilterDiameter].OwningRow.Visible = true;
@@ -202,51 +181,25 @@ namespace Calculator.Calculation_Controls
             }
         }
 
-        protected override void UpdateCalculationOptionAndInputGroups()
+        protected override void UpdateUIFromData()
         {
-            foreach (var pair in calculationOptionToRadioButton)
-            {
-                if (pair.Value.Checked)
-                {
-                    calculationOption = (CalculationOption)pair.Key;
-                    break;
-                }
-            }
-
-            foreach (var group in Groups)
-            {
-                SetGroupInput(group, calculationOptionToGroup[calculationOption] != group);
-            }
+            UpdateMachineRadioButtonsAndVisibleControls();
+            base.UpdateUIFromData();
+            textBox1.Lines = Calculators[0].GetStatusMessage().Split('\n');
         }
 
-        protected override void ConnectUIWithDataUpdating()
+        protected override void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid dataGrid)
         {
-            dataGrid.CellValueChangedByUser += new DataGridViewCellEventHandler(dataGridCellValueChangedByUser);
-            foreach (var radioButton in calculationOptionToRadioButton.Values)
-            {
-                radioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
-            }
+            base.ConnectUIWithDataUpdating(dataGrid);
             planeAreaRadioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
             convexAreaRadioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
             concaveAreaRadioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
         }
 
-        void radioButtonCheckedChanged(object sender, EventArgs e)
+        override protected void radioButtonCheckedChanged(object sender, EventArgs e)
         {
-            UpdateCalculationOptionAndInputGroups();
             UpdateMachineTypeOptionUI();
-            Recalculate();
-            WriteValuesToDataGrid();
-            UpdateUIFromData();
-        }
-
-        void dataGridCellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
-        {
-            if (sender is DataGridView)
-            {
-                ProcessNewEntry(((DataGridView)sender).CurrentCell);
-            }
-            UpdateUIFromData();
+            base.radioButtonCheckedChanged(sender, e);
         }
 
         #endregion

@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using Parameters;
-using System.Xml.Serialization;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Soap;
 using StepCalculators;
 using Value;
 
 namespace Calculator.Calculation_Controls
 {
-    public class CalculatorControl : UserControl
+    public class fsCalculatorControl : UserControl
     {
         #region Calculation Data
         
         protected Dictionary<fsParameterIdentifier, fsNamedValueParameter> Values { get; private set; }
+        protected object CalculationOption;
         
         #endregion
 
@@ -30,7 +26,7 @@ namespace Calculator.Calculation_Controls
 
         #endregion
 
-        public CalculatorControl()
+        public fsCalculatorControl()
         {
             Values = new Dictionary<fsParameterIdentifier, fsNamedValueParameter>();
             ParameterToCell = new Dictionary<fsParameterIdentifier,DataGridViewCell>();
@@ -44,17 +40,42 @@ namespace Calculator.Calculation_Controls
 
         virtual protected void UpdateUIFromData()
         {
-            throw new NotImplementedException();
+            UpdateCellForeColors();
+            WriteValuesToDataGrid();
+            calculationOptionToRadioButton[CalculationOption].Checked = true;
         }
 
-        virtual protected void ConnectUIWithDataUpdating()
+        virtual protected void radioButtonCheckedChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            UpdateCalculationOptionAndInputGroups();
+            Recalculate();
+            UpdateUIFromData();
         }
 
-        virtual protected void UpdateCalculationOptionAndInputGroups()
+        virtual protected void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid dataGrid)
         {
-            throw new NotImplementedException();
+            dataGrid.CellValueChangedByUser += new DataGridViewCellEventHandler(dataGridCellValueChangedByUser);
+            foreach (var radioButton in calculationOptionToRadioButton.Values)
+            {
+                radioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
+            }
+        }
+
+        protected void UpdateCalculationOptionAndInputGroups()
+        {
+            foreach (var pair in calculationOptionToRadioButton)
+            {
+                if (pair.Value.Checked)
+                {
+                    CalculationOption = pair.Key;
+                    break;
+                }
+            }
+
+            foreach (var group in Groups)
+            {
+                SetGroupInput(group, calculationOptionToGroup[CalculationOption] != group);
+            }
         }
 
         protected List<fsCalculator> Calculators { get; set; }
@@ -96,6 +117,15 @@ namespace Calculator.Calculation_Controls
                 Values.Add(p, new fsSimulationParameter(p));
                 AddRow(dataGrid, p, color);
             }
+        }
+
+        protected void dataGridCellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
+        {
+            if (sender is DataGridView)
+            {
+                ProcessNewEntry(((DataGridView)sender).CurrentCell);
+            }
+            UpdateUIFromData();
         }
 
         protected void AddRow(DataGridView dataGrid, fsParameterIdentifier parameter, Color color)
