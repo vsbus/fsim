@@ -1,59 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using Parameters;
 using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public partial class MsusAndHcControl : fsCalculatorControl
+    public sealed partial class fsMsusAndHcControl : fsCalculatorControl
     {
         #region Calculation Data
 
         enum fsMachineTypeOption
         {
-            PLAIN_AREA,
-            CONVEX_CYLINDRIC,
-            CONCAVE_CYLINDRIC
+            PlainArea,
+            ConvexCylindric,
+            ConcaveCylindric
         }
-        private fsMachineTypeOption machineTypeOption;
+        private fsMachineTypeOption m_machineTypeOption;
 
         enum fsCalculationOption
         {
-            DENISITIES_CALCULATED,
-            CONCENTREATIONS_CALCULATED,
-            POROSITY_KAPPA_CALCULATED,
-            MACHINE_DIAMETER_CALCULATED,
-            MACHINE_A_B_CALCULATED,
-            CAKE_HEIGHT_CALCULATED,
-            MASS_VOLUME_CALCULATED
+            DenisitiesCalculated,
+            ConcentreationsCalculated,
+            PorosityKappaCalculated,
+            MachineDiameterCalculated,
+            MachineAreaBCalculated,
+            CakeHeightCalculated,
+            MassVolumeCalculated
         }
 
         #endregion
 
         #region Routine Data
 
-        private ParametersGroup areaBGroup;
+        private readonly ParametersGroup m_areaBGroup;
 
-        private List<fsCalculator> plainAreaCalculators = new List<fsCalculator>();
-        private List<fsCalculator> convexCylindricAreaCalculators = new List<fsCalculator>();
-        private List<fsCalculator> concaveCylindricAreaCalculators = new List<fsCalculator>();
+        private readonly List<fsCalculator> m_plainAreaCalculators = new List<fsCalculator>();
+        private readonly List<fsCalculator> m_convexCylindricAreaCalculators = new List<fsCalculator>();
+        private readonly List<fsCalculator> m_concaveCylindricAreaCalculators = new List<fsCalculator>();
 
         #endregion
 
-        public MsusAndHcControl()
+        public fsMsusAndHcControl()
         {
             InitializeComponent();
 
-            plainAreaCalculators.Add(new fsMsusHcPlainAreaCalculator());
-            convexCylindricAreaCalculators.Add(new fsMsusHcConvexCylindricAreaCalculator());
-            concaveCylindricAreaCalculators.Add(new fsMsusHcConcaveCylindricAreaCalculator());
-            Calculators = plainAreaCalculators;
+            m_plainAreaCalculators.Add(new fsMsusHcPlainAreaCalculator());
+            m_convexCylindricAreaCalculators.Add(new fsMsusHcConvexCylindricAreaCalculator());
+            m_concaveCylindricAreaCalculators.Add(new fsMsusHcConcaveCylindricAreaCalculator());
+            Calculators = m_plainAreaCalculators;
 
             var filtrateGroup = AddGroup(
                 fsParameterIdentifier.FiltrateDensity);
@@ -69,7 +64,7 @@ namespace Calculator.Calculation_Controls
                 fsParameterIdentifier.Kappa);
             var diameterGroup = AddGroup(
                 fsParameterIdentifier.FilterDiameter);
-            areaBGroup = AddGroup(
+            m_areaBGroup = AddGroup(
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.FilterB,
                 fsParameterIdentifier.FilterBOverDiameter);
@@ -89,7 +84,7 @@ namespace Calculator.Calculation_Controls
                 concentrationGroup,
                 epsKappaGroup,
                 diameterGroup,
-                areaBGroup,
+                m_areaBGroup,
                 cakeHeightGroup,
                 massVolumeGroup
             };
@@ -108,18 +103,18 @@ namespace Calculator.Calculation_Controls
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterB].RowIndex, Color.FromArgb(255, 230, 230));
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].RowIndex, Color.FromArgb(255, 230, 230));
 
-            AssignCalculationOption(fsCalculationOption.DENISITIES_CALCULATED, denisitiesRadioButton, densitiesGroup);
-            AssignCalculationOption(fsCalculationOption.CONCENTREATIONS_CALCULATED, concentrationRadioButton, concentrationGroup);
-            AssignCalculationOption(fsCalculationOption.POROSITY_KAPPA_CALCULATED, epsKappaRadioButton, epsKappaGroup);
-            AssignCalculationOption(fsCalculationOption.MACHINE_DIAMETER_CALCULATED, diameterRadioButton, diameterGroup);
-            AssignCalculationOption(fsCalculationOption.MACHINE_A_B_CALCULATED, areaRadioButton, areaBGroup);
-            AssignCalculationOption(fsCalculationOption.CAKE_HEIGHT_CALCULATED, cakeHeightRadioButton, cakeHeightGroup);
-            AssignCalculationOption(fsCalculationOption.MASS_VOLUME_CALCULATED, massVolumeRadioButton, massVolumeGroup);
+            AssignCalculationOption(fsCalculationOption.DenisitiesCalculated, denisitiesRadioButton, densitiesGroup);
+            AssignCalculationOption(fsCalculationOption.ConcentreationsCalculated, concentrationRadioButton, concentrationGroup);
+            AssignCalculationOption(fsCalculationOption.PorosityKappaCalculated, epsKappaRadioButton, epsKappaGroup);
+            AssignCalculationOption(fsCalculationOption.MachineDiameterCalculated, diameterRadioButton, diameterGroup);
+            AssignCalculationOption(fsCalculationOption.MachineAreaBCalculated, areaRadioButton, m_areaBGroup);
+            AssignCalculationOption(fsCalculationOption.CakeHeightCalculated, cakeHeightRadioButton, cakeHeightGroup);
+            AssignCalculationOption(fsCalculationOption.MassVolumeCalculated, massVolumeRadioButton, massVolumeGroup);
             
-            base.CalculationOption = fsCalculationOption.MASS_VOLUME_CALCULATED;
+            CalculationOption = fsCalculationOption.MassVolumeCalculated;
             UpdateCalculationOptionAndInputGroups();
 
-            machineTypeOption = fsMachineTypeOption.PLAIN_AREA;
+            m_machineTypeOption = fsMachineTypeOption.PlainArea;
             UpdateMachineTypeOptionUI();
 
             ConnectUIWithDataUpdating(dataGrid);
@@ -130,15 +125,15 @@ namespace Calculator.Calculation_Controls
         {
             if (planeAreaRadioButton.Checked)
             {
-                machineTypeOption = fsMachineTypeOption.PLAIN_AREA;
+                m_machineTypeOption = fsMachineTypeOption.PlainArea;
             }
             if (convexAreaRadioButton.Checked)
             {
-                machineTypeOption = fsMachineTypeOption.CONVEX_CYLINDRIC;
+                m_machineTypeOption = fsMachineTypeOption.ConvexCylindric;
             }
             if (concaveAreaRadioButton.Checked)
             {
-                machineTypeOption = fsMachineTypeOption.CONCAVE_CYLINDRIC;
+                m_machineTypeOption = fsMachineTypeOption.ConcaveCylindric;
             }
         }
 
@@ -146,7 +141,7 @@ namespace Calculator.Calculation_Controls
 
         private void UpdateMachineRadioButtonsAndVisibleControls()
         {
-            if (machineTypeOption == fsMachineTypeOption.PLAIN_AREA)
+            if (m_machineTypeOption == fsMachineTypeOption.PlainArea)
             {
                 planeAreaRadioButton.Checked = true;
                 ParameterToCell[fsParameterIdentifier.FilterDiameter].OwningRow.Visible = false;
@@ -157,27 +152,27 @@ namespace Calculator.Calculation_Controls
                 {
                     areaRadioButton.Checked = true;
                 }
-                Calculators = plainAreaCalculators;
-                areaBGroup.Representator = fsParameterIdentifier.FilterArea;
+                Calculators = m_plainAreaCalculators;
+                m_areaBGroup.Representator = fsParameterIdentifier.FilterArea;
             }
-            if (machineTypeOption == fsMachineTypeOption.CONVEX_CYLINDRIC)
+            if (m_machineTypeOption == fsMachineTypeOption.ConvexCylindric)
             {
                 convexAreaRadioButton.Checked = true;
                 ParameterToCell[fsParameterIdentifier.FilterDiameter].OwningRow.Visible = true;
                 ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = false;
                 diameterRadioButton.Visible = true;
-                Calculators = convexCylindricAreaCalculators;
-                areaBGroup.Representator = fsParameterIdentifier.FilterArea;
+                Calculators = m_convexCylindricAreaCalculators;
+                m_areaBGroup.Representator = fsParameterIdentifier.FilterArea;
             }
-            if (machineTypeOption == fsMachineTypeOption.CONCAVE_CYLINDRIC)
+            if (m_machineTypeOption == fsMachineTypeOption.ConcaveCylindric)
             {
                 concaveAreaRadioButton.Checked = true;
                 ParameterToCell[fsParameterIdentifier.FilterDiameter].OwningRow.Visible = true;
                 ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = true;
                 ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = true;
                 diameterRadioButton.Visible = true;
-                Calculators = concaveCylindricAreaCalculators;
+                Calculators = m_concaveCylindricAreaCalculators;
             }
         }
 
@@ -188,12 +183,12 @@ namespace Calculator.Calculation_Controls
             textBox1.Lines = Calculators[0].GetStatusMessage().Split('\n');
         }
 
-        protected override void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid dataGrid)
+        protected override void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid grid)
         {
-            base.ConnectUIWithDataUpdating(dataGrid);
-            planeAreaRadioButton.CheckedChanged += new EventHandler(RadioButtonCheckedChanged);
-            convexAreaRadioButton.CheckedChanged += new EventHandler(RadioButtonCheckedChanged);
-            concaveAreaRadioButton.CheckedChanged += new EventHandler(RadioButtonCheckedChanged);
+            base.ConnectUIWithDataUpdating(grid);
+            planeAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
+            convexAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
+            concaveAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
         }
 
         override protected void RadioButtonCheckedChanged(object sender, EventArgs e)

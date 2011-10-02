@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Calculation_Controls
 {
-    partial class DensityConcentrationControl
+    sealed partial class fsDensityConcentrationControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -146,7 +146,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.panel1);
-            this.Name = "DensityConcentrationControl";
+            this.Name = "fsDensityConcentrationControl";
             this.Size = new System.Drawing.Size(370, 164);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
