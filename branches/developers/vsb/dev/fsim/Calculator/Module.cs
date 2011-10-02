@@ -13,10 +13,10 @@ namespace Calculator
     public class Module
     {
         public string Name { get; private set; }
-        private CalculatorControl m_calculatorControl;
+        private fsCalculatorControl m_calculatorControl;
         public Form Form { get; private set; }
 
-        public Module(string name, CalculatorControl calculatorControl)
+        public Module(string name, fsCalculatorControl calculatorControl)
         {
             Name = name;
             m_calculatorControl = calculatorControl;

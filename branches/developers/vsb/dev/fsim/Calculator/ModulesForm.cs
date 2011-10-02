@@ -12,8 +12,8 @@ namespace Calculator
 {
     public partial class ModulesForm : Form
     {
-        private Dictionary<string, CalculatorControl> modules = new Dictionary<string, CalculatorControl>();
-        public CalculatorControl SelectedModule { get; private set; }
+        private Dictionary<string, fsCalculatorControl> modules = new Dictionary<string, fsCalculatorControl>();
+        public fsCalculatorControl SelectedModule { get; private set; }
         
         public ModulesForm()
         {
