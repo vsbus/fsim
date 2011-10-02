@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Calculator
@@ -70,7 +65,7 @@ namespace Calculator
 
         private void addModuleButton_Click(object sender, EventArgs e)
         {
-            var modulesForm = new ModulesForm();
+            var modulesForm = new fsModulesForm();
             modulesForm.ShowDialog();
             if (modulesForm.DialogResult == DialogResult.OK)
             {

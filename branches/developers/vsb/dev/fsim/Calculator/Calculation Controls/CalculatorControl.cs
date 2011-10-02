@@ -52,9 +52,9 @@ namespace Calculator.Calculation_Controls
             UpdateUIFromData();
         }
 
-        virtual protected void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid dataGrid)
+        virtual protected void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid grid)
         {
-            dataGrid.CellValueChangedByUser += DataGridCellValueChangedByUser;
+            grid.CellValueChangedByUser += DataGridCellValueChangedByUser;
             foreach (var radioButton in CalculationOptionToRadioButton.Values)
             {
                 radioButton.CheckedChanged += RadioButtonCheckedChanged;

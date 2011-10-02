@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Calculation_Controls
 {
-    partial class MsusAndHcControl
+    sealed partial class fsMsusAndHcControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -270,7 +270,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.panel1);
-            this.Name = "MsusAndHcControl";
+            this.Name = "fsMsusAndHcControl";
             this.Size = new System.Drawing.Size(611, 293);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.panel1.ResumeLayout(false);

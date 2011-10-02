@@ -1,6 +1,6 @@
 ﻿namespace Calculator
 {
-    partial class ModulesForm
+    partial class fsModulesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -44,7 +44,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(138, 381);
             this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1SelectedIndexChanged);
             // 
             // OKButton
             // 
@@ -55,7 +55,7 @@
             this.OKButton.TabIndex = 1;
             this.OKButton.Text = "Take";
             this.OKButton.UseVisualStyleBackColor = true;
-            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
+            this.OKButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
             // cancelButton
             // 
@@ -66,7 +66,7 @@
             this.cancelButton.TabIndex = 2;
             this.cancelButton.Text = "Close";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // panel1
             // 
@@ -94,9 +94,9 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.listBox1);
-            this.Name = "ModulesForm";
+            this.Name = "fsModulesForm";
             this.Text = "Calculator Modules";
-            this.Load += new System.EventHandler(this.ModulesForm_Load);
+            this.Load += new System.EventHandler(this.ModulesFormLoad);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 

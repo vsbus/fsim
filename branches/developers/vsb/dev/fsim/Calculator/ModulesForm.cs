@@ -1,60 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Calculator.Calculation_Controls;
 
 namespace Calculator
 {
-    public partial class ModulesForm : Form
+    public partial class fsModulesForm : Form
     {
-        private Dictionary<string, fsCalculatorControl> modules = new Dictionary<string, fsCalculatorControl>();
+        private readonly Dictionary<string, fsCalculatorControl> m_modules = new Dictionary<string, fsCalculatorControl>();
         public fsCalculatorControl SelectedModule { get; private set; }
         
-        public ModulesForm()
+        public fsModulesForm()
         {
             InitializeComponent();
             SelectedModule = null;
         }
 
-        private void CancelButton_Click(object sender, EventArgs e)
+        private void CancelButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void OKButton_Click(object sender, EventArgs e)
+        private void OkButtonClick(object sender, EventArgs e)
         {
-            SelectedModule = modules[listBox1.SelectedItem.ToString()];
+            SelectedModule = m_modules[listBox1.SelectedItem.ToString()];
             SelectedModule.Dock = DockStyle.None;
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void ModulesForm_Load(object sender, EventArgs e)
+        private void ModulesFormLoad(object sender, EventArgs e)
         {
-            modules["Density/Concentration"] = new DensityConcentrationControl();
-            modules["Permeability"] = new fsPermeabilityControl();
-            modules["Msus and Hc"] = new MsusAndHcControl();
+            m_modules["Density/Concentration"] = new fsDensityConcentrationControl();
+            m_modules["Permeability"] = new fsPermeabilityControl();
+            m_modules["Msus and Hc"] = new fsMsusAndHcControl();
 
-            foreach (var s in modules.Keys)
+            foreach (var s in m_modules.Keys)
             {
                 listBox1.Items.Add(s);
             }
             listBox1.SelectedIndex = 0;
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox1SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SelectedModule != null)
             {
                 SelectedModule.Parent = null;
             }
-            SelectedModule = modules[listBox1.SelectedItem.ToString()];
+            SelectedModule = m_modules[listBox1.SelectedItem.ToString()];
             SelectedModule.Parent = panel1;
             SelectedModule.Dock = DockStyle.Fill;
         }

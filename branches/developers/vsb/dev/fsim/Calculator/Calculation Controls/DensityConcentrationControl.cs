@@ -1,26 +1,24 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Drawing;
 using Parameters;
 using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public partial class DensityConcentrationControl : fsCalculatorControl
+    public sealed partial class fsDensityConcentrationControl : fsCalculatorControl
     {
         #region Calculation Data
 
         enum fsCalculationOption
         {
-            CALC_FILTRATE_DENSITY,
-            CALC_SOLIDS_DENSITY,
-            CALC_SUSPENSION_DENSITY,
-            CALC_CONCENTRATIONS
+            CalcFiltrateDensity,
+            CalcSolidsDensity,
+            CalcSuspensionDensity,
+            CalcConcentrations
         }
        
         #endregion
 
-        public DensityConcentrationControl()
+        public fsDensityConcentrationControl()
         {
             InitializeComponent();
 
@@ -42,12 +40,12 @@ namespace Calculator.Calculation_Controls
             AddGroupToUI(dataGrid, suspensionGroup, Color.FromArgb(255, 255, 230));
             AddGroupToUI(dataGrid, concentrationGroup, Color.FromArgb(230, 230, 230));
 
-            AssignCalculationOption(fsCalculationOption.CALC_FILTRATE_DENSITY, filtrateRadioButton, filtrateGroup);
-            AssignCalculationOption(fsCalculationOption.CALC_SOLIDS_DENSITY, solidsRadioButton, solidsGroup);
-            AssignCalculationOption(fsCalculationOption.CALC_SUSPENSION_DENSITY, suspensionRadioButton, suspensionGroup);
-            AssignCalculationOption(fsCalculationOption.CALC_CONCENTRATIONS, concentrationsRadioButton, concentrationGroup);
+            AssignCalculationOption(fsCalculationOption.CalcFiltrateDensity, filtrateRadioButton, filtrateGroup);
+            AssignCalculationOption(fsCalculationOption.CalcSolidsDensity, solidsRadioButton, solidsGroup);
+            AssignCalculationOption(fsCalculationOption.CalcSuspensionDensity, suspensionRadioButton, suspensionGroup);
+            AssignCalculationOption(fsCalculationOption.CalcConcentrations, concentrationsRadioButton, concentrationGroup);
 
-            base.CalculationOption = fsCalculationOption.CALC_SUSPENSION_DENSITY;
+            CalculationOption = fsCalculationOption.CalcSuspensionDensity;
             UpdateCalculationOptionAndInputGroups();
 
             ConnectUIWithDataUpdating(dataGrid);

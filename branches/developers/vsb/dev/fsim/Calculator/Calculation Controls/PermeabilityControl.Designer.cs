@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Calculation_Controls
 {
-    partial class fsPermeabilityControl
+    sealed partial class fsPermeabilityControl
     {
         /// <summary> 
         /// Required designer variable.
