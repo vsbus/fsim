@@ -38,7 +38,7 @@ namespace Calculator
         private void ModulesForm_Load(object sender, EventArgs e)
         {
             modules["Density/Concentration"] = new DensityConcentrationControl();
-            modules["Permeability"] = new PermeabilityControl();
+            modules["Permeability"] = new fsPermeabilityControl();
             modules["Msus and Hc"] = new MsusAndHcControl();
 
             foreach (var s in modules.Keys)

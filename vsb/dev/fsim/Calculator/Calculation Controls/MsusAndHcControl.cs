@@ -191,15 +191,15 @@ namespace Calculator.Calculation_Controls
         protected override void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid dataGrid)
         {
             base.ConnectUIWithDataUpdating(dataGrid);
-            planeAreaRadioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
-            convexAreaRadioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
-            concaveAreaRadioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
+            planeAreaRadioButton.CheckedChanged += new EventHandler(RadioButtonCheckedChanged);
+            convexAreaRadioButton.CheckedChanged += new EventHandler(RadioButtonCheckedChanged);
+            concaveAreaRadioButton.CheckedChanged += new EventHandler(RadioButtonCheckedChanged);
         }
 
-        override protected void radioButtonCheckedChanged(object sender, EventArgs e)
+        override protected void RadioButtonCheckedChanged(object sender, EventArgs e)
         {
             UpdateMachineTypeOptionUI();
-            base.radioButtonCheckedChanged(sender, e);
+            base.RadioButtonCheckedChanged(sender, e);
         }
 
         #endregion
