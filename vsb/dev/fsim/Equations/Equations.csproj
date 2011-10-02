@@ -40,7 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cake Formation\fsCakeHeightFrom_Dp_tfEquation.cs" />
+    <Compile Include="Math\fsCylinderAreaEquation.cs" />
     <Compile Include="Cake Formation\fsFrom0AndDpEquation.cs" />
+    <Compile Include="Cake Formation\fsSuspensionMassFromHcEpsConcaveCylindircAreaEquation.cs" />
+    <Compile Include="Cake Formation\fsSuspensionMassFromHcEpsConvexCylindircAreaEquation.cs" />
+    <Compile Include="Cake Formation\fsSuspensionMassFromHcEpsPlainAreaEquation.cs" />
+    <Compile Include="Cake Formation\fsSuspensionVolumeFromHcEpsPlainAreaEquation.cs" />
+    <Compile Include="Cake Formation\fsSuspensionVolumeFromHcKappaPlainAreaEquation.cs" />
     <Compile Include="Cake Formation\fsVsusFromAreaAndCakeHeightEquation.cs" />
     <Compile Include="fsCalculatorEquation.cs" />
     <Compile Include="Material\Densily Concentration Equations\Concentration Calculators\fsConcentrationEquation.cs" />

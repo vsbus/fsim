@@ -25,6 +25,8 @@ namespace Calculator.Calculation_Controls
 
         protected Dictionary<fsParameterIdentifier, DataGridViewCell> ParameterToCell { get; private set; }
         protected Dictionary<DataGridViewCell, fsParameterIdentifier> CellToParameter { get; private set; }
+        protected Dictionary<object, RadioButton> calculationOptionToRadioButton = new Dictionary<object, RadioButton>();
+        protected Dictionary<object, ParametersGroup> calculationOptionToGroup = new Dictionary<object, ParametersGroup>();
 
         #endregion
 
@@ -55,9 +57,15 @@ namespace Calculator.Calculation_Controls
             throw new NotImplementedException();
         }
 
-        protected List<fsCalculator> Calculators { get; private set; }
+        protected List<fsCalculator> Calculators { get; set; }
         protected List<ParametersGroup> Groups { get; private set; }
         protected Dictionary<fsParameterIdentifier, ParametersGroup> ParameterToGroup { get; private set; }
+
+        protected void AssignCalculationOption(object calculationOption, RadioButton radioButton, ParametersGroup group)
+        {
+            calculationOptionToRadioButton[calculationOption] = radioButton;
+            calculationOptionToGroup[calculationOption] = group;
+        }
 
         protected void SetGroupInput(ParametersGroup group, bool value)
         {
@@ -93,11 +101,16 @@ namespace Calculator.Calculation_Controls
         protected void AddRow(DataGridView dataGrid, fsParameterIdentifier parameter, Color color)
         {
             int ind = dataGrid.Rows.Add(new[] { parameter.ToString() + " [" + parameter.Units.CurrentName + "]", "" });
+            SetRowColor(dataGrid, ind, color);
+            AssignParameterAndCell(parameter, dataGrid.Rows[ind].Cells[1]);
+        }
+
+        protected void SetRowColor(DataGridView dataGrid, int ind, Color color)
+        {
             foreach (DataGridViewCell cell in dataGrid.Rows[ind].Cells)
             {
                 cell.Style.BackColor = color;
             }
-            AssignParameterAndCell(parameter, dataGrid.Rows[ind].Cells[1]);
         }
 
         protected void AssignParameterAndCell(fsParameterIdentifier parameter, DataGridViewCell dataGridViewCell)
@@ -153,10 +166,19 @@ namespace Calculator.Calculation_Controls
 
         protected void UpdateCellForeColors()
         {
-            foreach (var p in ParameterToCell)
+            foreach (var pair in ParameterToCell)
             {
-                var group = ParameterToGroup[p.Key];
-                p.Value.Style.ForeColor = group.IsInput && group.Representator == p.Key ? Color.Blue : Color.Black;
+                var group = ParameterToGroup[pair.Key];
+                if (group.IsInput)
+                {
+                    pair.Value.Style.ForeColor = group.Representator == pair.Key
+                        ? Color.Blue
+                        : Color.Black;    
+                }
+                else
+                {
+                    pair.Value.Style.ForeColor = Color.Black;
+                }
             }
         }
 

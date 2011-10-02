@@ -5,6 +5,7 @@ namespace Equations
 {
     public class fsMassConcentrationEquation : fsCalculatorEquation
     {
+        // Cm * rhoSus * (rhoF - rhoS) = rhoS * (rhoF - rhoSus)
         #region Parameters
 
         readonly IEquationParameter m_solidsMassFraction;

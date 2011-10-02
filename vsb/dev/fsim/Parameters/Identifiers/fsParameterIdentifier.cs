@@ -55,15 +55,25 @@ namespace Parameters
         public static fsParameterIdentifier Rc = new fsParameterIdentifier("rc", fsUnits.CakeResistanceRc);
         public static fsParameterIdentifier Alpha = new fsParameterIdentifier("alpha", fsUnits.CakeResistanceAlpha);
 
-        public static fsParameterIdentifier FilterArea = new fsParameterIdentifier("A", fsUnits.Area);
+        public static fsParameterIdentifier FilterArea = new fsParameterIdentifier("A", "Filter Area", fsUnits.Area);
+        public static fsParameterIdentifier FilterDiameter = new fsParameterIdentifier("D", "Machine Diameter", fsUnits.Length);
+        public static fsParameterIdentifier FilterB = new fsParameterIdentifier("b", fsUnits.Length);
+        public static fsParameterIdentifier FilterBOverDiameter = new fsParameterIdentifier("b/D", fsUnits.NoUnits);
+
         public static fsParameterIdentifier Pressure = new fsParameterIdentifier("Dp", fsUnits.Pressure);
         public static fsParameterIdentifier CycleTime = new fsParameterIdentifier("tc", fsUnits.Time);
         public static fsParameterIdentifier RotationalSpeed = new fsParameterIdentifier("n", fsUnits.Frequency);
         public static fsParameterIdentifier FormationRelativeTime = new fsParameterIdentifier("sf", fsUnits.Concentration);
         public static fsParameterIdentifier FormationTime = new fsParameterIdentifier("tf", fsUnits.Time);
         public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc", fsUnits.Length);
-        public static fsParameterIdentifier SuspensionMass = new fsParameterIdentifier("Msus", fsUnits.Mass);
+
+        public static fsParameterIdentifier SuspensionMass = new fsParameterIdentifier("Msus", "Suspension Mass", fsUnits.Mass);
+        public static fsParameterIdentifier FiltrateMass = new fsParameterIdentifier("Mf", "Fitrate Mass", fsUnits.Mass);
+        public static fsParameterIdentifier SolidsMass = new fsParameterIdentifier("Ms", "Solids Mass", fsUnits.Mass);
+        public static fsParameterIdentifier CakeMass = new fsParameterIdentifier("Mc", "Cake Mass", fsUnits.Mass);
+        
         public static fsParameterIdentifier SuspensionVolume = new fsParameterIdentifier("Vsus", fsUnits.Volume);
+
         public static fsParameterIdentifier SuspensionMassFlowrate = new fsParameterIdentifier("Qmsus", fsUnits.Flowrate);
 
         
