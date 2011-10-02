@@ -21,8 +21,8 @@ namespace Calculator.Calculation_Controls
 
         protected Dictionary<fsParameterIdentifier, DataGridViewCell> ParameterToCell { get; private set; }
         protected Dictionary<DataGridViewCell, fsParameterIdentifier> CellToParameter { get; private set; }
-        protected Dictionary<object, RadioButton> calculationOptionToRadioButton = new Dictionary<object, RadioButton>();
-        protected Dictionary<object, ParametersGroup> calculationOptionToGroup = new Dictionary<object, ParametersGroup>();
+        protected Dictionary<object, RadioButton> CalculationOptionToRadioButton = new Dictionary<object, RadioButton>();
+        protected Dictionary<object, ParametersGroup> CalculationOptionToGroup = new Dictionary<object, ParametersGroup>();
 
         #endregion
 
@@ -42,10 +42,10 @@ namespace Calculator.Calculation_Controls
         {
             UpdateCellForeColors();
             WriteValuesToDataGrid();
-            calculationOptionToRadioButton[CalculationOption].Checked = true;
+            CalculationOptionToRadioButton[CalculationOption].Checked = true;
         }
 
-        virtual protected void radioButtonCheckedChanged(object sender, EventArgs e)
+        virtual protected void RadioButtonCheckedChanged(object sender, EventArgs e)
         {
             UpdateCalculationOptionAndInputGroups();
             Recalculate();
@@ -54,16 +54,16 @@ namespace Calculator.Calculation_Controls
 
         virtual protected void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid dataGrid)
         {
-            dataGrid.CellValueChangedByUser += new DataGridViewCellEventHandler(dataGridCellValueChangedByUser);
-            foreach (var radioButton in calculationOptionToRadioButton.Values)
+            dataGrid.CellValueChangedByUser += DataGridCellValueChangedByUser;
+            foreach (var radioButton in CalculationOptionToRadioButton.Values)
             {
-                radioButton.CheckedChanged += new EventHandler(radioButtonCheckedChanged);
+                radioButton.CheckedChanged += RadioButtonCheckedChanged;
             }
         }
 
         protected void UpdateCalculationOptionAndInputGroups()
         {
-            foreach (var pair in calculationOptionToRadioButton)
+            foreach (var pair in CalculationOptionToRadioButton)
             {
                 if (pair.Value.Checked)
                 {
@@ -74,7 +74,7 @@ namespace Calculator.Calculation_Controls
 
             foreach (var group in Groups)
             {
-                SetGroupInput(group, calculationOptionToGroup[CalculationOption] != group);
+                SetGroupInput(group, CalculationOptionToGroup[CalculationOption] != group);
             }
         }
 
@@ -84,8 +84,8 @@ namespace Calculator.Calculation_Controls
 
         protected void AssignCalculationOption(object calculationOption, RadioButton radioButton, ParametersGroup group)
         {
-            calculationOptionToRadioButton[calculationOption] = radioButton;
-            calculationOptionToGroup[calculationOption] = group;
+            CalculationOptionToRadioButton[calculationOption] = radioButton;
+            CalculationOptionToGroup[calculationOption] = group;
         }
 
         protected void SetGroupInput(ParametersGroup group, bool value)
@@ -99,7 +99,7 @@ namespace Calculator.Calculation_Controls
 
         public ParametersGroup AddGroup(params fsParameterIdentifier[] parameters)
         {
-            ParametersGroup group = new ParametersGroup();
+            var group = new ParametersGroup();
             foreach (var parameter in parameters)
             {
                 group.Parameters.Add(parameter);
@@ -119,7 +119,7 @@ namespace Calculator.Calculation_Controls
             }
         }
 
-        protected void dataGridCellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
+        protected void DataGridCellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
         {
             if (sender is DataGridView)
             {
@@ -130,7 +130,7 @@ namespace Calculator.Calculation_Controls
 
         protected void AddRow(DataGridView dataGrid, fsParameterIdentifier parameter, Color color)
         {
-            int ind = dataGrid.Rows.Add(new[] { parameter.ToString() + " [" + parameter.Units.CurrentName + "]", "" });
+            int ind = dataGrid.Rows.Add(new[] { parameter + " [" + parameter.Units.CurrentName + "]", "" });
             SetRowColor(dataGrid, ind, color);
             AssignParameterAndCell(parameter, dataGrid.Rows[ind].Cells[1]);
         }
@@ -163,7 +163,7 @@ namespace Calculator.Calculation_Controls
 
         protected void Recalculate()
         {
-            Dictionary<fsParameterIdentifier, fsSimulationParameter> localValues = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
+            var localValues = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
             
             foreach (var parameter in Values.Keys)
             {

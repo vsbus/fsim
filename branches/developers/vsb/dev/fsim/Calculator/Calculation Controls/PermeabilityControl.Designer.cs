@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Calculation_Controls
 {
-    partial class PermeabilityControl
+    partial class fsPermeabilityControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -149,7 +149,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.panel1);
-            this.Name = "PermeabilityControl";
+            this.Name = "fsPermeabilityControl";
             this.Size = new System.Drawing.Size(370, 237);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.panel1.ResumeLayout(false);
