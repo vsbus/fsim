@@ -32,10 +32,10 @@ namespace Calculator
 
         private void ModulesFormLoad(object sender, EventArgs e)
         {
-            m_modules["Density/Concentration"] = new fsDensityConcentrationControl();
-            m_modules["Permeability"] = new fsPermeabilityControl();
-            m_modules["Msus and Hc"] = new fsMsusAndHcControl();
+            m_modules["Suspension Mass and Cake Height"] = new fsMsusAndHcControl();
             m_modules["Cake Pororsity"] = new CakePorossityControl();
+            m_modules["Densities and Solids Concentrations"] = new fsDensityConcentrationControl();
+            m_modules["Permeability and Cake Compressibility"] = new fsPermeabilityControl();
 
             foreach (var s in m_modules.Keys)
             {

@@ -14,8 +14,8 @@ namespace StepCalculators
         readonly fsCalculatorVariable m_pc0;
         readonly fsCalculatorVariable m_rc0;
         readonly fsCalculatorVariable m_alpha0;
-        readonly fsCalculatorConstant m_nc;
-        readonly fsCalculatorConstant m_pressure;
+        readonly fsCalculatorVariable m_nc;
+        readonly fsCalculatorVariable m_pressure;
         readonly fsCalculatorVariable m_pc;
         readonly fsCalculatorVariable m_rc;
         readonly fsCalculatorVariable m_alpha;
@@ -29,8 +29,8 @@ namespace StepCalculators
             m_pc0 = AddVariable(fsParameterIdentifier.Pc0);
             m_rc0 = AddVariable(fsParameterIdentifier.Rc0);
             m_alpha0 = AddVariable(fsParameterIdentifier.Alpha0);
-            m_nc = AddConstant(fsParameterIdentifier.Nc);
-            m_pressure = AddConstant(fsParameterIdentifier.Pressure);
+            m_nc = AddVariable(fsParameterIdentifier.Nc);
+            m_pressure = AddVariable(fsParameterIdentifier.Pressure);
             m_pc = AddVariable(fsParameterIdentifier.Pc);
             m_rc = AddVariable(fsParameterIdentifier.Rc);
             m_alpha = AddVariable(fsParameterIdentifier.Alpha);
