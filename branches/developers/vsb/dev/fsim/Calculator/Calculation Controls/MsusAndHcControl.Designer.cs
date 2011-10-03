@@ -109,15 +109,15 @@
             this.panel2.Controls.Add(this.epsKappaRadioButton);
             this.panel2.Controls.Add(this.diameterRadioButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 102);
+            this.panel2.Location = new System.Drawing.Point(0, 96);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(256, 191);
+            this.panel2.Size = new System.Drawing.Size(256, 197);
             this.panel2.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 0;
@@ -126,7 +126,7 @@
             // massVolumeRadioButton
             // 
             this.massVolumeRadioButton.AutoSize = true;
-            this.massVolumeRadioButton.Location = new System.Drawing.Point(31, 163);
+            this.massVolumeRadioButton.Location = new System.Drawing.Point(24, 162);
             this.massVolumeRadioButton.Name = "massVolumeRadioButton";
             this.massVolumeRadioButton.Size = new System.Drawing.Size(96, 17);
             this.massVolumeRadioButton.TabIndex = 7;
@@ -137,7 +137,7 @@
             // denisitiesRadioButton
             // 
             this.denisitiesRadioButton.AutoSize = true;
-            this.denisitiesRadioButton.Location = new System.Drawing.Point(31, 25);
+            this.denisitiesRadioButton.Location = new System.Drawing.Point(24, 24);
             this.denisitiesRadioButton.Name = "denisitiesRadioButton";
             this.denisitiesRadioButton.Size = new System.Drawing.Size(170, 17);
             this.denisitiesRadioButton.TabIndex = 1;
@@ -148,7 +148,7 @@
             // cakeHeightRadioButton
             // 
             this.cakeHeightRadioButton.AutoSize = true;
-            this.cakeHeightRadioButton.Location = new System.Drawing.Point(31, 140);
+            this.cakeHeightRadioButton.Location = new System.Drawing.Point(24, 139);
             this.cakeHeightRadioButton.Name = "cakeHeightRadioButton";
             this.cakeHeightRadioButton.Size = new System.Drawing.Size(84, 17);
             this.cakeHeightRadioButton.TabIndex = 6;
@@ -159,7 +159,7 @@
             // concentrationRadioButton
             // 
             this.concentrationRadioButton.AutoSize = true;
-            this.concentrationRadioButton.Location = new System.Drawing.Point(31, 48);
+            this.concentrationRadioButton.Location = new System.Drawing.Point(24, 47);
             this.concentrationRadioButton.Name = "concentrationRadioButton";
             this.concentrationRadioButton.Size = new System.Drawing.Size(96, 17);
             this.concentrationRadioButton.TabIndex = 2;
@@ -170,7 +170,7 @@
             // areaRadioButton
             // 
             this.areaRadioButton.AutoSize = true;
-            this.areaRadioButton.Location = new System.Drawing.Point(31, 117);
+            this.areaRadioButton.Location = new System.Drawing.Point(24, 116);
             this.areaRadioButton.Name = "areaRadioButton";
             this.areaRadioButton.Size = new System.Drawing.Size(212, 17);
             this.areaRadioButton.TabIndex = 5;
@@ -181,7 +181,7 @@
             // epsKappaRadioButton
             // 
             this.epsKappaRadioButton.AutoSize = true;
-            this.epsKappaRadioButton.Location = new System.Drawing.Point(31, 71);
+            this.epsKappaRadioButton.Location = new System.Drawing.Point(24, 70);
             this.epsKappaRadioButton.Name = "epsKappaRadioButton";
             this.epsKappaRadioButton.Size = new System.Drawing.Size(104, 17);
             this.epsKappaRadioButton.TabIndex = 3;
@@ -192,7 +192,7 @@
             // diameterRadioButton
             // 
             this.diameterRadioButton.AutoSize = true;
-            this.diameterRadioButton.Location = new System.Drawing.Point(31, 94);
+            this.diameterRadioButton.Location = new System.Drawing.Point(24, 93);
             this.diameterRadioButton.Name = "diameterRadioButton";
             this.diameterRadioButton.Size = new System.Drawing.Size(111, 17);
             this.diameterRadioButton.TabIndex = 4;
@@ -209,13 +209,13 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(256, 102);
+            this.panel3.Size = new System.Drawing.Size(256, 96);
             this.panel3.TabIndex = 9;
             // 
             // concaveAreaRadioButton
             // 
             this.concaveAreaRadioButton.AutoSize = true;
-            this.concaveAreaRadioButton.Location = new System.Drawing.Point(31, 73);
+            this.concaveAreaRadioButton.Location = new System.Drawing.Point(24, 70);
             this.concaveAreaRadioButton.Name = "concaveAreaRadioButton";
             this.concaveAreaRadioButton.Size = new System.Drawing.Size(155, 17);
             this.concaveAreaRadioButton.TabIndex = 3;
@@ -226,7 +226,7 @@
             // convexAreaRadioButton
             // 
             this.convexAreaRadioButton.AutoSize = true;
-            this.convexAreaRadioButton.Location = new System.Drawing.Point(31, 50);
+            this.convexAreaRadioButton.Location = new System.Drawing.Point(24, 47);
             this.convexAreaRadioButton.Name = "convexAreaRadioButton";
             this.convexAreaRadioButton.Size = new System.Drawing.Size(158, 17);
             this.convexAreaRadioButton.TabIndex = 2;
@@ -237,7 +237,7 @@
             // planeAreaRadioButton
             // 
             this.planeAreaRadioButton.AutoSize = true;
-            this.planeAreaRadioButton.Location = new System.Drawing.Point(31, 27);
+            this.planeAreaRadioButton.Location = new System.Drawing.Point(24, 24);
             this.planeAreaRadioButton.Name = "planeAreaRadioButton";
             this.planeAreaRadioButton.Size = new System.Drawing.Size(77, 17);
             this.planeAreaRadioButton.TabIndex = 1;
@@ -248,7 +248,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 11);
+            this.label2.Location = new System.Drawing.Point(8, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 13);
             this.label2.TabIndex = 0;
@@ -263,7 +263,7 @@
             this.textBox1.Size = new System.Drawing.Size(140, 293);
             this.textBox1.TabIndex = 2;
             // 
-            // MsusAndHcControl
+            // fsMsusAndHcControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

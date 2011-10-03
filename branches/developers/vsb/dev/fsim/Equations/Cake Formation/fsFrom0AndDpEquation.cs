@@ -34,6 +34,9 @@ namespace Equations
         protected override void InitFormulas()
         {
             AddFormula(m_x, XFormula);
+            AddFormula(m_x0, X0Formula);
+            AddFormula(m_pressure, PressureFormula);
+            AddFormula(m_degree, DegreeFormula);
         }
 
         #region Formulas
@@ -41,6 +44,21 @@ namespace Equations
         private void XFormula()
         {
             m_x.Value = m_x0.Value * fsValue.Pow(m_pressure.Value / 1e5, -m_degree.Value);
+        }
+
+        private void X0Formula()
+        {
+            m_x0.Value = m_x.Value / fsValue.Pow(m_pressure.Value / 1e5, -m_degree.Value);
+        }
+
+        private void PressureFormula()
+        {
+            m_pressure.Value = 1e5 / fsValue.Pow(m_x.Value / m_x0.Value, 1 / m_degree.Value);
+        }
+
+        private void DegreeFormula()
+        {
+            m_degree.Value = fsValue.Log(m_x.Value / m_x0.Value) / fsValue.Log(1e5 / m_pressure.Value);
         }
 
         #endregion

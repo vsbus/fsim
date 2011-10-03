@@ -51,13 +51,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(142, 164);
+            this.panel1.Size = new System.Drawing.Size(149, 164);
             this.panel1.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 13);
+            this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 4;
@@ -66,7 +66,7 @@
             // concentrationsRadioButton
             // 
             this.concentrationsRadioButton.AutoSize = true;
-            this.concentrationsRadioButton.Location = new System.Drawing.Point(20, 98);
+            this.concentrationsRadioButton.Location = new System.Drawing.Point(24, 93);
             this.concentrationsRadioButton.Name = "concentrationsRadioButton";
             this.concentrationsRadioButton.Size = new System.Drawing.Size(96, 17);
             this.concentrationsRadioButton.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             this.suspensionRadioButton.AutoSize = true;
             this.suspensionRadioButton.Checked = true;
-            this.suspensionRadioButton.Location = new System.Drawing.Point(20, 75);
+            this.suspensionRadioButton.Location = new System.Drawing.Point(24, 70);
             this.suspensionRadioButton.Name = "suspensionRadioButton";
             this.suspensionRadioButton.Size = new System.Drawing.Size(118, 17);
             this.suspensionRadioButton.TabIndex = 2;
@@ -88,7 +88,7 @@
             // solidsRadioButton
             // 
             this.solidsRadioButton.AutoSize = true;
-            this.solidsRadioButton.Location = new System.Drawing.Point(20, 52);
+            this.solidsRadioButton.Location = new System.Drawing.Point(24, 47);
             this.solidsRadioButton.Name = "solidsRadioButton";
             this.solidsRadioButton.Size = new System.Drawing.Size(91, 17);
             this.solidsRadioButton.TabIndex = 1;
@@ -98,7 +98,7 @@
             // filtrateRadioButton
             // 
             this.filtrateRadioButton.AutoSize = true;
-            this.filtrateRadioButton.Location = new System.Drawing.Point(20, 29);
+            this.filtrateRadioButton.Location = new System.Drawing.Point(24, 24);
             this.filtrateRadioButton.Name = "filtrateRadioButton";
             this.filtrateRadioButton.Size = new System.Drawing.Size(94, 17);
             this.filtrateRadioButton.TabIndex = 0;
@@ -120,11 +120,11 @@
             this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.dataGrid.HighLightCurrentRow = false;
-            this.dataGrid.Location = new System.Drawing.Point(142, 0);
+            this.dataGrid.Location = new System.Drawing.Point(149, 0);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.RowHeadersVisible = false;
             this.dataGrid.RowTemplate.Height = 18;
-            this.dataGrid.Size = new System.Drawing.Size(228, 164);
+            this.dataGrid.Size = new System.Drawing.Size(221, 164);
             this.dataGrid.TabIndex = 0;
             // 
             // ParameterColumn
@@ -140,7 +140,7 @@
             this.ValueColumn.Name = "ValueColumn";
             this.ValueColumn.Width = 60;
             // 
-            // DensityConcentrationControl
+            // fsDensityConcentrationControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

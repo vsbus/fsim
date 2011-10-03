@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Cake Formation\fsCakeFormationDpConstCalculator.cs" />
     <Compile Include="fsCalculator.cs" />
+    <Compile Include="Small Calculators\fsCakePorosityCalculator.cs" />
     <Compile Include="Material Calculators\fsDensityConcentrationCalculator.cs" />
     <Compile Include="Material Calculators\fsEps0Kapp0Calculator.cs" />
     <Compile Include="Material Calculators\fsEpsKappaCalculator.cs" />
