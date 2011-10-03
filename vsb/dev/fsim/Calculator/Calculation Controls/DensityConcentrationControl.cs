@@ -46,7 +46,7 @@ namespace Calculator.Calculation_Controls
             AssignCalculationOption(fsCalculationOption.CalcConcentrations, concentrationsRadioButton, concentrationGroup);
 
             CalculationOption = fsCalculationOption.CalcSuspensionDensity;
-            UpdateCalculationOptionAndInputGroups();
+            UpdateCalculationOptionAndInputGroupsFromUI();
 
             ConnectUIWithDataUpdating(dataGrid);
             UpdateUIFromData();

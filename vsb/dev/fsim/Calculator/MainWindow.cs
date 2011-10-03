@@ -11,8 +11,8 @@ namespace Calculator
             InitializeComponent();
         }
 
-        private int counter = 0;
-        List<Module> m_modules = new List<Module>();
+        private int m_counter;
+        readonly List<Module> m_modules = new List<Module>();
 
         private void RebuildWindowsList()
         {
@@ -45,9 +45,9 @@ namespace Calculator
             }
         }
 
-        private void windowsDataGrid_CurrentCellChanged(object sender, EventArgs e)
+        private void WindowsDataGridCurrentCellChanged(object sender, EventArgs e)
         {
-            DataGridView dataGrid = (DataGridView)sender;
+            var dataGrid = (DataGridView)sender;
             DataGridViewCell cell = dataGrid.CurrentCell;
             if (cell != null && cell.Value != null)
             {
@@ -63,14 +63,14 @@ namespace Calculator
             }
         }
 
-        private void addModuleButton_Click(object sender, EventArgs e)
+        private void AddModuleButtonClick(object sender, EventArgs e)
         {
             var modulesForm = new fsModulesForm();
             modulesForm.ShowDialog();
             if (modulesForm.DialogResult == DialogResult.OK)
             {
-                ++counter;
-                var module = new Module("Module #" + counter.ToString(), modulesForm.SelectedModule);
+                ++m_counter;
+                var module = new Module("Module #" + m_counter, modulesForm.SelectedModule);
                 m_modules.Add(module);
                 module.Form.MdiParent = this;
                 module.Form.Closed += FormClose;
@@ -79,7 +79,7 @@ namespace Calculator
             }
         }
 
-        private void windowTilesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void WindowTilesToolStripMenuItemClick(object sender, EventArgs e)
         {
             int x = 0;
             int y = 0;
@@ -99,13 +99,9 @@ namespace Calculator
             }
         }
 
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CloseToolStripMenuItemClick(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
         }
     }
 }

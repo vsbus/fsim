@@ -35,6 +35,7 @@ namespace Calculator
             m_modules["Density/Concentration"] = new fsDensityConcentrationControl();
             m_modules["Permeability"] = new fsPermeabilityControl();
             m_modules["Msus and Hc"] = new fsMsusAndHcControl();
+            m_modules["Cake Pororsity"] = new CakePorossityControl();
 
             foreach (var s in m_modules.Keys)
             {

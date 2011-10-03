@@ -67,6 +67,8 @@ namespace Parameters
         public static fsParameterIdentifier FormationTime = new fsParameterIdentifier("tf", fsUnits.Time);
         public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc", fsUnits.Length);
 
+        public static fsParameterIdentifier WetCakeMass = new fsParameterIdentifier("Mcw", "Wet Cake Mass", fsUnits.Mass);
+        public static fsParameterIdentifier DryCakeMass = new fsParameterIdentifier("Mcd", "Dry Cake Mass", fsUnits.Mass);
         public static fsParameterIdentifier SuspensionMass = new fsParameterIdentifier("Msus", "Suspension Mass", fsUnits.Mass);
         public static fsParameterIdentifier FiltrateMass = new fsParameterIdentifier("Mf", "Fitrate Mass", fsUnits.Mass);
         public static fsParameterIdentifier SolidsMass = new fsParameterIdentifier("Ms", "Solids Mass", fsUnits.Mass);
@@ -79,6 +81,7 @@ namespace Parameters
         
         public static fsParameterIdentifier FiltrateViscosity = new fsParameterIdentifier("etaf", fsUnits.Viscosity);
         public static fsParameterIdentifier FiltrateDensity = new fsParameterIdentifier("rho_f", "Filtrate Density", fsUnits.Density);
+        public static fsParameterIdentifier LiquidDensity = new fsParameterIdentifier("rho_l", "Liquid Density", fsUnits.Density);
         public static fsParameterIdentifier SolidsDensity = new fsParameterIdentifier("rho_s", "Solids Density", fsUnits.Density);
         public static fsParameterIdentifier SuspensionDensity = new fsParameterIdentifier("rho_sus", "Suspension Density", fsUnits.Density);
         public static fsParameterIdentifier SolidsMassFraction = new fsParameterIdentifier("Cm", "Solids Mass Fraction", fsUnits.Concentration);

@@ -12,7 +12,7 @@ namespace StepCalculators
      * it consists of three main components
      *     m_constants:     values that calculated before and used in current calculator like constants
      *     m_parameters:    input by user/calculated or just calculated parameters
-     *     m_equations:     set of equations that can be used for calculating values from m_parameters
+     *     Equations:     set of equations that can be used for calculating values from m_parameters
      *     
      * In derivative classes user must override 
      *     InitParametersAndConstants():    here he must to initialize all constants and parameters
@@ -25,7 +25,7 @@ namespace StepCalculators
     {
         private readonly Dictionary<fsParameterIdentifier, fsCalculatorVariable> m_variables = new Dictionary<fsParameterIdentifier, fsCalculatorVariable>();
         private readonly Dictionary<fsParameterIdentifier, fsCalculatorConstant> m_constants = new Dictionary<fsParameterIdentifier, fsCalculatorConstant>();
-        private readonly List<fsCalculatorEquation> m_equations = new List<fsCalculatorEquation>();
+        protected List<fsCalculatorEquation> Equations = new List<fsCalculatorEquation>();
         private fsCalculatorUpdateHandler m_updateHandler;
 
         public void Calculate()
@@ -54,7 +54,7 @@ namespace StepCalculators
             while (somethingChanged)
             {
                 somethingChanged = false;
-                foreach (var equation in m_equations)
+                foreach (var equation in Equations)
                     if (equation.Calculate())
                     {
                         somethingChanged = true;
@@ -99,7 +99,7 @@ namespace StepCalculators
 
         protected void AddEquation(fsCalculatorEquation equation)
         {
-            m_equations.Add(equation);
+            Equations.Add(equation);
         }
 
         #endregion

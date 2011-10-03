@@ -112,16 +112,16 @@ namespace Calculator.Calculation_Controls
             AssignCalculationOption(fsCalculationOption.MassVolumeCalculated, massVolumeRadioButton, massVolumeGroup);
             
             CalculationOption = fsCalculationOption.MassVolumeCalculated;
-            UpdateCalculationOptionAndInputGroups();
-
             m_machineTypeOption = fsMachineTypeOption.PlainArea;
-            UpdateMachineTypeOptionUI();
+            UpdateCalculationOptionAndInputGroupsFromUI();
 
             ConnectUIWithDataUpdating(dataGrid);
             UpdateUIFromData();
         }
+        
+        #region Routine Methods
 
-        private void UpdateMachineTypeOptionUI()
+        override protected void UpdateCalculationOptionAndInputGroupsFromUI()
         {
             if (planeAreaRadioButton.Checked)
             {
@@ -135,11 +135,11 @@ namespace Calculator.Calculation_Controls
             {
                 m_machineTypeOption = fsMachineTypeOption.ConcaveCylindric;
             }
+
+            base.UpdateCalculationOptionAndInputGroupsFromUI();
         }
 
-        #region Routine Methods
-
-        private void UpdateMachineRadioButtonsAndVisibleControls()
+        protected override void UpdateUIFromData()
         {
             if (m_machineTypeOption == fsMachineTypeOption.PlainArea)
             {
@@ -174,12 +174,9 @@ namespace Calculator.Calculation_Controls
                 diameterRadioButton.Visible = true;
                 Calculators = m_concaveCylindricAreaCalculators;
             }
-        }
 
-        protected override void UpdateUIFromData()
-        {
-            UpdateMachineRadioButtonsAndVisibleControls();
             base.UpdateUIFromData();
+
             textBox1.Lines = Calculators[0].GetStatusMessage().Split('\n');
         }
 
@@ -189,12 +186,6 @@ namespace Calculator.Calculation_Controls
             planeAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
             convexAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
             concaveAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
-        }
-
-        override protected void RadioButtonCheckedChanged(object sender, EventArgs e)
-        {
-            UpdateMachineTypeOptionUI();
-            base.RadioButtonCheckedChanged(sender, e);
         }
 
         #endregion

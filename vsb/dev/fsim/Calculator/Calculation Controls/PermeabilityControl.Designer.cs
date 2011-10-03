@@ -93,7 +93,7 @@
             // 
             this.pcrcalphaRadioButton.AutoSize = true;
             this.pcrcalphaRadioButton.Checked = true;
-            this.pcrcalphaRadioButton.Location = new System.Drawing.Point(31, 95);
+            this.pcrcalphaRadioButton.Location = new System.Drawing.Point(24, 93);
             this.pcrcalphaRadioButton.Name = "pcrcalphaRadioButton";
             this.pcrcalphaRadioButton.Size = new System.Drawing.Size(79, 17);
             this.pcrcalphaRadioButton.TabIndex = 4;
@@ -104,7 +104,7 @@
             // ncRadioButton
             // 
             this.ncRadioButton.AutoSize = true;
-            this.ncRadioButton.Location = new System.Drawing.Point(31, 49);
+            this.ncRadioButton.Location = new System.Drawing.Point(24, 47);
             this.ncRadioButton.Name = "ncRadioButton";
             this.ncRadioButton.Size = new System.Drawing.Size(37, 17);
             this.ncRadioButton.TabIndex = 3;
@@ -115,7 +115,7 @@
             // pressureRadioButton
             // 
             this.pressureRadioButton.AutoSize = true;
-            this.pressureRadioButton.Location = new System.Drawing.Point(31, 72);
+            this.pressureRadioButton.Location = new System.Drawing.Point(24, 70);
             this.pressureRadioButton.Name = "pressureRadioButton";
             this.pressureRadioButton.Size = new System.Drawing.Size(89, 17);
             this.pressureRadioButton.TabIndex = 2;
@@ -126,7 +126,7 @@
             // pc0rc0alpha0RadioButton
             // 
             this.pc0rc0alpha0RadioButton.AutoSize = true;
-            this.pc0rc0alpha0RadioButton.Location = new System.Drawing.Point(31, 26);
+            this.pc0rc0alpha0RadioButton.Location = new System.Drawing.Point(24, 24);
             this.pc0rc0alpha0RadioButton.Name = "pc0rc0alpha0RadioButton";
             this.pc0rc0alpha0RadioButton.Size = new System.Drawing.Size(97, 17);
             this.pc0rc0alpha0RadioButton.TabIndex = 1;
@@ -137,13 +137,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 10);
+            this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Calculate:";
             // 
-            // PermeabilityControl
+            // fsPermeabilityControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

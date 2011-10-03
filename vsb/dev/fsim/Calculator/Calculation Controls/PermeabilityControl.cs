@@ -50,7 +50,7 @@ namespace Calculator.Calculation_Controls
             AssignCalculationOption(fsCalculationOption.CalcPcRcAlpha, pcrcalphaRadioButton, pcRcAGroup);
 
             CalculationOption = fsCalculationOption.CalcPcRcAlpha;
-            UpdateCalculationOptionAndInputGroups();
+            UpdateCalculationOptionAndInputGroupsFromUI();
 
             ConnectUIWithDataUpdating(dataGrid);
             UpdateUIFromData();

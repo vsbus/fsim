@@ -42,12 +42,15 @@ namespace Calculator.Calculation_Controls
         {
             UpdateCellForeColors();
             WriteValuesToDataGrid();
-            CalculationOptionToRadioButton[CalculationOption].Checked = true;
+            if (CalculationOption != null)
+            {
+                CalculationOptionToRadioButton[CalculationOption].Checked = true;
+            }
         }
 
         virtual protected void RadioButtonCheckedChanged(object sender, EventArgs e)
         {
-            UpdateCalculationOptionAndInputGroups();
+            UpdateCalculationOptionAndInputGroupsFromUI();
             Recalculate();
             UpdateUIFromData();
         }
@@ -61,7 +64,7 @@ namespace Calculator.Calculation_Controls
             }
         }
 
-        protected void UpdateCalculationOptionAndInputGroups()
+        virtual protected void UpdateCalculationOptionAndInputGroupsFromUI()
         {
             foreach (var pair in CalculationOptionToRadioButton)
             {
@@ -72,9 +75,12 @@ namespace Calculator.Calculation_Controls
                 }
             }
 
-            foreach (var group in Groups)
+            if (CalculationOption != null)
             {
-                SetGroupInput(group, CalculationOptionToGroup[CalculationOption] != group);
+                foreach (var group in Groups)
+                {
+                    SetGroupInput(group, CalculationOptionToGroup[CalculationOption] != group);
+                }
             }
         }
 

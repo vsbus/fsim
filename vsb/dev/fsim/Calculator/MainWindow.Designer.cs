@@ -94,14 +94,13 @@
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
-            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem.Text = "&Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItemClick);
             // 
             // viewToolStripMenuItem
             // 
@@ -116,7 +115,7 @@
             this.windowTilesToolStripMenuItem.Name = "windowTilesToolStripMenuItem";
             this.windowTilesToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.windowTilesToolStripMenuItem.Text = "Window Tiles";
-            this.windowTilesToolStripMenuItem.Click += new System.EventHandler(this.windowTilesToolStripMenuItem_Click);
+            this.windowTilesToolStripMenuItem.Click += new System.EventHandler(this.WindowTilesToolStripMenuItemClick);
             // 
             // panel1
             // 
@@ -147,7 +146,7 @@
             this.windowsDataGrid.RowTemplate.Height = 18;
             this.windowsDataGrid.Size = new System.Drawing.Size(120, 276);
             this.windowsDataGrid.TabIndex = 0;
-            this.windowsDataGrid.CurrentCellChanged += new System.EventHandler(this.windowsDataGrid_CurrentCellChanged);
+            this.windowsDataGrid.CurrentCellChanged += new System.EventHandler(this.WindowsDataGridCurrentCellChanged);
             // 
             // WindowNameColumn
             // 
@@ -172,7 +171,7 @@
             this.addModuleButton.TabIndex = 0;
             this.addModuleButton.Text = "Add Module";
             this.addModuleButton.UseVisualStyleBackColor = true;
-            this.addModuleButton.Click += new System.EventHandler(this.addModuleButton_Click);
+            this.addModuleButton.Click += new System.EventHandler(this.AddModuleButtonClick);
             // 
             // MainWindow
             // 
