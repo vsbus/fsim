@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculation Controls\CakeMoistureContentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Calculation Controls\CakeMoistureContentControl.Designer.cs">
+      <DependentUpon>CakeMoistureContentControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Calculation Controls\CakePorossityControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
