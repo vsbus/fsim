@@ -36,6 +36,7 @@ namespace Calculator
             m_modules["Cake Pororsity"] = new CakePorossityControl();
             m_modules["Densities and Solids Concentrations"] = new fsDensityConcentrationControl();
             m_modules["Permeability and Cake Compressibility"] = new fsPermeabilityControl();
+            m_modules["iwiwiwiiwiw"] = new CakeMoistureContentFromWetAndDryCakeMassControl();
 
             foreach (var s in m_modules.Keys)
             {

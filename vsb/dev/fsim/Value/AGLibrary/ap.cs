@@ -28,14 +28,26 @@ namespace AGLibrary
             return new Complex(_x);
         }
 
+        public override bool Equals(object obj)
+        {
+            var other = (Complex)obj;
+            return this.x == other.x
+                && this.y == other.y;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public static bool operator ==(Complex lhs, Complex rhs)
         {
-            return (lhs.x == rhs.x) & (lhs.y == rhs.y);
+            return lhs.Equals(rhs);
         }
 
         public static bool operator !=(Complex lhs, Complex rhs)
         {
-            return (lhs.x != rhs.x) | (lhs.y != rhs.y);
+            return !lhs.Equals(rhs);
         }
 
         public static Complex operator +(Complex lhs)
