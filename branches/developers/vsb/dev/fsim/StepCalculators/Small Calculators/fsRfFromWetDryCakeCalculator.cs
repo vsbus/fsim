@@ -1,23 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Equations;
 using Parameters;
+using Value;
 
 namespace StepCalculators
 {
     public class fsRfFromWetDryCakeCalculator : fsCalculator
     {
-        readonly fsCalculatorVariable m_area;
+        readonly fsCalculatorConstant m_wetMass;
+        readonly fsCalculatorConstant m_dryMass;
+        readonly fsCalculatorConstant m_Cm;
+        readonly fsCalculatorConstant m_C;
         readonly fsCalculatorConstant m_rhoL;
+        readonly fsCalculatorVariable m_Rf;
+        readonly fsCalculatorVariable m_internalC;
 
         public fsRfFromWetDryCakeCalculator()
         {
             #region Parameters Initialization
 
-            m_area = AddVariable(fsParameterIdentifier.FilterArea);
+            m_wetMass = AddConstant(fsParameterIdentifier.WetCakeMass);
+            m_dryMass = AddConstant(fsParameterIdentifier.DryCakeMass);
+            m_Cm = AddConstant(fsParameterIdentifier.SolidsMassFraction);
+            m_C = AddConstant(fsParameterIdentifier.SolidsConcentration);
             m_rhoL = AddConstant(fsParameterIdentifier.LiquidDensity);
+            m_Rf = AddVariable(fsParameterIdentifier.CakeMoistureContent);
+            m_internalC = AddVariable(new fsParameterIdentifier("internalC"));
 
             #endregion
 
@@ -33,7 +45,9 @@ namespace StepCalculators
 
         public enum fsConcentrationOption
         {
+            [Description("Mass fraction Cm (%)")]
             SolidsMassFraction,
+            [Description("Concentration C (g/l)")]
             Concentration
         }
         public fsConcentrationOption m_concentrationOption;
@@ -42,17 +56,25 @@ namespace StepCalculators
         {
             Equations = new List<fsCalculatorEquation>();
 
-            //AddEquation(new fsPorosityEquation(
-            //                m_saltContentOption == fsSaltContentOption.Neglected,
-            //                m_saturationOption == fsSaturationOption.SaturatedCake,
-            //                m_eps,
-            //                m_Mcd,
-            //                m_Mcw,
-            //                m_rhoS,
-            //                m_rhoL,
-            //                m_area,
-            //                m_C,
-            //                m_hc));
+            if (m_saltContentOption == fsSaltContentOption.Neglected)
+            {
+                m_internalC.Value = fsValue.Zero;
+                m_internalC.IsInput = true;
+                AddEquation(new fsMoistureContentEquation(m_Rf, m_dryMass, m_wetMass, m_internalC));
+            }
+            else
+            {
+                if (m_concentrationOption == fsConcentrationOption.SolidsMassFraction)
+                {
+                    AddEquation(new fsMoistureContentEquation(m_Rf, m_dryMass, m_wetMass, m_Cm));
+                }
+                else
+                {
+                    m_internalC.IsInput = false;
+                    AddEquation(new fsProductEquation(m_C, m_internalC, m_rhoL));
+                    AddEquation(new fsMoistureContentEquation(m_Rf, m_dryMass, m_wetMass, m_internalC));
+                }
+            }
         }
     }
 }

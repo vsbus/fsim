@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Cake Formation\fsCakeHeightFrom_Dp_tfEquation.cs" />
     <Compile Include="Material\fsPorosityEquation.cs" />
+    <Compile Include="Material\fsMoistureContentEquation.cs" />
     <Compile Include="Math\fsCylinderAreaEquation.cs" />
     <Compile Include="Cake Formation\fsFrom0AndDpEquation.cs" />
     <Compile Include="Cake Formation\fsSuspensionMassFromHcEpsConcaveCylindircAreaEquation.cs" />

@@ -33,10 +33,10 @@ namespace Calculator
         private void ModulesFormLoad(object sender, EventArgs e)
         {
             m_modules["Suspension Mass and Cake Height"] = new fsMsusAndHcControl();
-            m_modules["Cake Pororsity"] = new CakePorossityControl();
+            m_modules["Cake Porosity"] = new CakePorossityControl();
             m_modules["Densities and Solids Concentrations"] = new fsDensityConcentrationControl();
             m_modules["Permeability and Cake Compressibility"] = new fsPermeabilityControl();
-            m_modules["iwiwiwiiwiw"] = new CakeMoistureContentFromWetAndDryCakeMassControl();
+            m_modules["Cake Moisture Content from Wet and Dry Cake Mass"] = new CakeMoistureContentFromWetAndDryCakeMassControl();
 
             foreach (var s in m_modules.Keys)
             {
