@@ -72,8 +72,8 @@ namespace Equations
             fsValue a = const1 / m_filterDiameter.Value;
             fsValue b = const1;
             fsValue c = -m_suspensionMass.Value * m_solidsMassFraction.Value;
-            fsValue D = b * b - 4 * a * c;
-            m_cakeHeight.Value = (-b + fsValue.Sqrt(D)) / (2 * a);
+            fsValue d = b * b - 4 * a * c;
+            m_cakeHeight.Value = (-b + fsValue.Sqrt(d)) / (2 * a);
         }
 
         private void FilterAreaFormula()

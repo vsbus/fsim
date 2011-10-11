@@ -35,9 +35,9 @@ namespace Equations
         protected override void InitFormulas()
         {
             AddFormula(m_solidsMassFraction, MassConcentrationFormula);
-            AddFormula(m_filtrateDensity, filtrateDensityFormula);
-            AddFormula(m_solidsDensity, solidsDensityFormula);
-            AddFormula(m_suspensionDensity, suspensionDensityFormula);
+            AddFormula(m_filtrateDensity, FiltrateDensityFormula);
+            AddFormula(m_solidsDensity, SolidsDensityFormula);
+            AddFormula(m_suspensionDensity, SuspensionDensityFormula);
         }
 
         #region Formulas
@@ -50,28 +50,28 @@ namespace Equations
             m_solidsMassFraction.Value = rhoS * (rhoF - rhoSus) / rhoSus / (rhoF - rhoS);
         }
 
-        private void filtrateDensityFormula()
+        private void FiltrateDensityFormula()
         {
-            fsValue Cm = m_solidsMassFraction.Value;
+            fsValue cm = m_solidsMassFraction.Value;
             fsValue rhoS = m_solidsDensity.Value;
             fsValue rhoSus = m_suspensionDensity.Value;
-            m_filtrateDensity.Value = rhoS * rhoSus * (1 - Cm) / (rhoS - Cm * rhoSus);
+            m_filtrateDensity.Value = rhoS * rhoSus * (1 - cm) / (rhoS - cm * rhoSus);
         }
 
-        private void solidsDensityFormula()
+        private void SolidsDensityFormula()
         {
-            fsValue Cm = m_solidsMassFraction.Value;
+            fsValue cm = m_solidsMassFraction.Value;
             fsValue rhoF = m_filtrateDensity.Value;
             fsValue rhoSus = m_suspensionDensity.Value;
-            m_solidsDensity.Value = Cm * rhoF * rhoSus / (rhoF - rhoSus * (1 - Cm));
+            m_solidsDensity.Value = cm * rhoF * rhoSus / (rhoF - rhoSus * (1 - cm));
         }
 
-        private void suspensionDensityFormula()
+        private void SuspensionDensityFormula()
         {
-            fsValue Cm = m_solidsMassFraction.Value;
+            fsValue cm = m_solidsMassFraction.Value;
             fsValue rhoF = m_filtrateDensity.Value;
             fsValue rhoS = m_solidsDensity.Value;
-            m_suspensionDensity.Value = rhoS * rhoF / (rhoS * (1 - Cm) + Cm * rhoF);
+            m_suspensionDensity.Value = rhoS * rhoF / (rhoS * (1 - cm) + cm * rhoF);
         }
 
         #endregion

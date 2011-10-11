@@ -1,5 +1,4 @@
-﻿using System;
-using Parameters;
+﻿using Parameters;
 
 namespace Equations
 {
