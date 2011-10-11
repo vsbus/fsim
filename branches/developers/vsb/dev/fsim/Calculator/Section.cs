@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Calculator
 {
-    public class Section
+    public class fsSection
     {
-        private List<Module> m_modules = new List<Module>();
+        private readonly List<fsModule> m_modules = new List<fsModule>();
 
-        public void AddModule(Module module)
+        public void AddModule(fsModule module)
         {
             m_modules.Add(module);
         }
 
-        public void RemoveModule(Module module)
+        public void RemoveModule(fsModule module)
         {
             m_modules.Remove(module);
         }

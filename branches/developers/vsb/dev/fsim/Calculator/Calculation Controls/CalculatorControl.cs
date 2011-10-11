@@ -22,7 +22,7 @@ namespace Calculator.Calculation_Controls
         protected Dictionary<fsParameterIdentifier, DataGridViewCell> ParameterToCell { get; private set; }
         protected Dictionary<DataGridViewCell, fsParameterIdentifier> CellToParameter { get; private set; }
         protected Dictionary<object, RadioButton> CalculationOptionToRadioButton = new Dictionary<object, RadioButton>();
-        protected Dictionary<object, ParametersGroup> CalculationOptionToGroup = new Dictionary<object, ParametersGroup>();
+        protected Dictionary<object, fsParametersGroup> CalculationOptionToGroup = new Dictionary<object, fsParametersGroup>();
 
         #endregion
 
@@ -32,8 +32,8 @@ namespace Calculator.Calculation_Controls
             ParameterToCell = new Dictionary<fsParameterIdentifier,DataGridViewCell>();
             CellToParameter = new Dictionary<DataGridViewCell,fsParameterIdentifier>();
             Calculators = new List<fsCalculator>();
-            Groups = new List<ParametersGroup>();
-            ParameterToGroup = new Dictionary<fsParameterIdentifier, ParametersGroup>();
+            Groups = new List<fsParametersGroup>();
+            ParameterToGroup = new Dictionary<fsParameterIdentifier, fsParametersGroup>();
         }
 
         #region Routines
@@ -85,16 +85,16 @@ namespace Calculator.Calculation_Controls
         }
 
         protected List<fsCalculator> Calculators { get; set; }
-        protected List<ParametersGroup> Groups { get; private set; }
-        protected Dictionary<fsParameterIdentifier, ParametersGroup> ParameterToGroup { get; private set; }
+        protected List<fsParametersGroup> Groups { get; private set; }
+        protected Dictionary<fsParameterIdentifier, fsParametersGroup> ParameterToGroup { get; private set; }
 
-        protected void AssignCalculationOption(object calculationOption, RadioButton radioButton, ParametersGroup group)
+        protected void AssignCalculationOption(object calculationOption, RadioButton radioButton, fsParametersGroup group)
         {
             CalculationOptionToRadioButton[calculationOption] = radioButton;
             CalculationOptionToGroup[calculationOption] = group;
         }
 
-        protected void SetGroupInput(ParametersGroup group, bool value)
+        protected void SetGroupInput(fsParametersGroup group, bool value)
         {
             group.IsInput = value;
             foreach (var parameter in group.Parameters)
@@ -103,9 +103,9 @@ namespace Calculator.Calculation_Controls
             }
         }
 
-        public ParametersGroup AddGroup(params fsParameterIdentifier[] parameters)
+        public fsParametersGroup AddGroup(params fsParameterIdentifier[] parameters)
         {
-            var group = new ParametersGroup();
+            var group = new fsParametersGroup();
             foreach (var parameter in parameters)
             {
                 group.Parameters.Add(parameter);
@@ -116,7 +116,7 @@ namespace Calculator.Calculation_Controls
             return group;
         }
 
-        protected void AddGroupToUI(DataGridView dataGrid, ParametersGroup group, Color color)
+        protected void AddGroupToUI(DataGridView dataGrid, fsParametersGroup group, Color color)
         {
             foreach (var p in group.Parameters)
             {

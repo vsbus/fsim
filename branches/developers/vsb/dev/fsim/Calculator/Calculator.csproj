@@ -88,7 +88,6 @@
     <Compile Include="Calculation Controls\PermeabilityControl.Designer.cs">
       <DependentUpon>PermeabilityControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Calculator Modules\Permeability Module\PermeabilityModule.cs" />
     <Compile Include="fsMisc.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>

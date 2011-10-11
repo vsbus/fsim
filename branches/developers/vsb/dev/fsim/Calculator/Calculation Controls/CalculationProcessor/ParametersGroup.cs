@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Parameters;
 
 namespace Calculator.Calculation_Controls
 {
-    public class ParametersGroup
+    public class fsParametersGroup
     {
         public List<fsParameterIdentifier> Parameters { get; private set; }
         public fsParameterIdentifier Representator { get; set; }
         public bool IsInput { get; set; }
 
-        public ParametersGroup()
+        public fsParametersGroup()
         {
             Parameters = new List<fsParameterIdentifier>();
             Representator = null;

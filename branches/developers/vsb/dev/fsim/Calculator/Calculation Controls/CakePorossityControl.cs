@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Drawing;
 using Parameters;
 using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class CakePorossityControl : fsCalculatorControl
+    public sealed partial class fsCakePorossityControl : fsCalculatorControl
     {
         #region Calculation Data
 
-        private StepCalculators.fsCakePorosityCalculator.fsSaltContentOption m_saltContentOption;
+        private fsCakePorosityCalculator.fsSaltContentOption m_saltContentOption;
         private fsCakePorosityCalculator.fsSaturationOption m_saturationOption;
         private fsCakePorosityCalculator.fsMachineTypeOption m_machineTypeOption;
 
@@ -23,7 +16,7 @@ namespace Calculator.Calculation_Controls
 
         private readonly fsCakePorosityCalculator m_calculator = new fsCakePorosityCalculator();
 
-        public CakePorossityControl()
+        public fsCakePorossityControl()
         {
             InitializeComponent();
 
