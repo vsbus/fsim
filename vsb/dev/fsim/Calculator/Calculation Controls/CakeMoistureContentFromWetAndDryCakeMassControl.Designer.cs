@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Calculation_Controls
 {
-    sealed partial class CakeMoistureContentFromWetAndDryCakeMassControl
+    sealed partial class fsCakeMoistureContentFromWetAndDryCakeMassControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -132,7 +132,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.panel1);
-            this.Name = "CakeMoistureContentFromWetAndDryCakeMassControl";
+            this.Name = "fsCakeMoistureContentFromWetAndDryCakeMassControl";
             this.Size = new System.Drawing.Size(486, 144);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

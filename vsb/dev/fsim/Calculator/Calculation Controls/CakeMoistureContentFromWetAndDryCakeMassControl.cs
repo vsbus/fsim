@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Parameters;
 using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class CakeMoistureContentFromWetAndDryCakeMassControl : fsCalculatorControl
+    public sealed partial class fsCakeMoistureContentFromWetAndDryCakeMassControl : fsCalculatorControl
     {
         #region Calculation Data
 
@@ -20,9 +15,9 @@ namespace Calculator.Calculation_Controls
 
         #endregion
 
-        private fsRfFromWetDryCakeCalculator m_calculator = new fsRfFromWetDryCakeCalculator();
+        private readonly fsRfFromWetDryCakeCalculator m_calculator = new fsRfFromWetDryCakeCalculator();
 
-        public CakeMoistureContentFromWetAndDryCakeMassControl()
+        public fsCakeMoistureContentFromWetAndDryCakeMassControl()
         {
             InitializeComponent();
 

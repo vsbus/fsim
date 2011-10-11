@@ -12,7 +12,7 @@ namespace Calculator
         }
 
         private int m_counter;
-        readonly List<Module> m_modules = new List<Module>();
+        readonly List<fsModule> m_modules = new List<fsModule>();
 
         private void RebuildWindowsList()
         {
@@ -70,7 +70,7 @@ namespace Calculator
             if (modulesForm.DialogResult == DialogResult.OK)
             {
                 ++m_counter;
-                var module = new Module("Module #" + m_counter, modulesForm.SelectedModule);
+                var module = new fsModule("Module #" + m_counter, modulesForm.SelectedModule);
                 m_modules.Add(module);
                 module.Form.MdiParent = this;
                 module.Form.Closed += FormClose;

@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Calculation_Controls
 {
-    sealed partial class CakePorossityControl
+    sealed partial class fsCakePorossityControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -242,7 +242,7 @@
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "CakePorossityControl";
+            this.Name = "fsCakePorossityControl";
             this.Size = new System.Drawing.Size(421, 321);
             this.panel1.ResumeLayout(false);
             this.machineTypePanel.ResumeLayout(false);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using Parameters;
 using StepCalculators;
@@ -34,7 +33,7 @@ namespace Calculator.Calculation_Controls
 
         #region Routine Data
 
-        private readonly ParametersGroup m_areaBGroup;
+        private readonly fsParametersGroup m_areaBGroup;
 
         private readonly List<fsCalculator> m_plainAreaCalculators = new List<fsCalculator>();
         private readonly List<fsCalculator> m_convexCylindricAreaCalculators = new List<fsCalculator>();
