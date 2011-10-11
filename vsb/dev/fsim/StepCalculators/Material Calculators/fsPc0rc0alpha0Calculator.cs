@@ -3,7 +3,7 @@ using Equations;
 
 namespace StepCalculators
 {
-    public class fsPc0rc0alpha0Calculator : fsCalculator
+    public class fsPc0Rc0Alpha0Calculator : fsCalculator
     {
         readonly fsCalculatorVariable m_pc0;
         readonly fsCalculatorVariable m_rc0;
@@ -11,7 +11,7 @@ namespace StepCalculators
         readonly fsCalculatorConstant m_eps0;
         readonly fsCalculatorConstant m_rhoS;
 
-        public fsPc0rc0alpha0Calculator()
+        public fsPc0Rc0Alpha0Calculator()
         {
             #region Parameters Initialization
 

@@ -85,8 +85,8 @@ namespace Calculator.Calculation_Controls
                 fsMisc.GetEnum(typeof (fsRfFromWetDryCakeCalculator.fsConcentrationOption),
                                concentrationComboBox.Text);
 
-            m_calculator.m_saltContentOption = m_saltContentOption;
-            m_calculator.m_concentrationOption = m_concentrationOption;
+            m_calculator.SaltContentOption = m_saltContentOption;
+            m_calculator.ConcentrationOption = m_concentrationOption;
             m_calculator.RebuildEquationsList();
 
             base.UpdateCalculationOptionAndInputGroupsFromUI();

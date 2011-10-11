@@ -62,8 +62,8 @@ namespace WinFormsCakeFormationSample
             materialData.m_calculatorList.Add(new fsDensityConcentrationCalculator());
 
             cakeFormationData.m_calculatorList.Add(new fsEps0Kappa0Calculator());
-            cakeFormationData.m_calculatorList.Add(new fsPc0rc0alpha0Calculator());
-            cakeFormationData.m_calculatorList.Add(new fsRm0hce0Calculator());
+            cakeFormationData.m_calculatorList.Add(new fsPc0Rc0Alpha0Calculator());
+            cakeFormationData.m_calculatorList.Add(new fsRm0Hce0Calculator());
             cakeFormationData.m_calculatorList.Add(new fsCakeFormationDpConstCalculator());
 
             dataContainers = new[] {

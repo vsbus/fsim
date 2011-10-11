@@ -109,9 +109,9 @@ namespace Calculator.Calculation_Controls
                 m_machineTypeOption = fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric;
             }
 
-            m_calculator.m_saltContentOption = m_saltContentOption;
-            m_calculator.m_saturationOption = m_saturationOption;
-            m_calculator.m_machineTypeOption = m_machineTypeOption;
+            m_calculator.SaltContentOption = m_saltContentOption;
+            m_calculator.SaturationOption = m_saturationOption;
+            m_calculator.MachineTypeOption = m_machineTypeOption;
             m_calculator.RebuildEquationsList();
 
             base.UpdateCalculationOptionAndInputGroupsFromUI();

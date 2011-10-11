@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using Equations;
 using Parameters;
 using Value;
@@ -13,10 +10,10 @@ namespace StepCalculators
     {
         readonly fsCalculatorConstant m_wetMass;
         readonly fsCalculatorConstant m_dryMass;
-        readonly fsCalculatorConstant m_Cm;
-        readonly fsCalculatorConstant m_C;
-        readonly fsCalculatorConstant m_rhoL;
-        readonly fsCalculatorVariable m_Rf;
+        readonly fsCalculatorConstant m_solidsMassFraction;
+        readonly fsCalculatorConstant m_solidsMassConcentration;
+        readonly fsCalculatorConstant m_liquidDensity;
+        readonly fsCalculatorVariable m_cakeMoistureContent;
         readonly fsCalculatorVariable m_internalC;
 
         public fsRfFromWetDryCakeCalculator()
@@ -25,10 +22,10 @@ namespace StepCalculators
 
             m_wetMass = AddConstant(fsParameterIdentifier.WetCakeMass);
             m_dryMass = AddConstant(fsParameterIdentifier.DryCakeMass);
-            m_Cm = AddConstant(fsParameterIdentifier.SolidsMassFraction);
-            m_C = AddConstant(fsParameterIdentifier.SolidsConcentration);
-            m_rhoL = AddConstant(fsParameterIdentifier.LiquidDensity);
-            m_Rf = AddVariable(fsParameterIdentifier.CakeMoistureContent);
+            m_solidsMassFraction = AddConstant(fsParameterIdentifier.SolidsMassFraction);
+            m_solidsMassConcentration = AddConstant(fsParameterIdentifier.SolidsConcentration);
+            m_liquidDensity = AddConstant(fsParameterIdentifier.LiquidDensity);
+            m_cakeMoistureContent = AddVariable(fsParameterIdentifier.CakeMoistureContent);
             m_internalC = AddVariable(new fsParameterIdentifier("internalC"));
 
             #endregion
@@ -41,7 +38,7 @@ namespace StepCalculators
             Neglected,
             Considered
         }
-        public fsSaltContentOption m_saltContentOption;
+        public fsSaltContentOption SaltContentOption;
 
         public enum fsConcentrationOption
         {
@@ -50,29 +47,29 @@ namespace StepCalculators
             [Description("Concentration C (g/l)")]
             Concentration
         }
-        public fsConcentrationOption m_concentrationOption;
+        public fsConcentrationOption ConcentrationOption;
 
         public void RebuildEquationsList()
         {
             Equations = new List<fsCalculatorEquation>();
 
-            if (m_saltContentOption == fsSaltContentOption.Neglected)
+            if (SaltContentOption == fsSaltContentOption.Neglected)
             {
                 m_internalC.Value = fsValue.Zero;
                 m_internalC.IsInput = true;
-                AddEquation(new fsMoistureContentEquation(m_Rf, m_dryMass, m_wetMass, m_internalC));
+                AddEquation(new fsMoistureContentEquation(m_cakeMoistureContent, m_dryMass, m_wetMass, m_internalC));
             }
             else
             {
-                if (m_concentrationOption == fsConcentrationOption.SolidsMassFraction)
+                if (ConcentrationOption == fsConcentrationOption.SolidsMassFraction)
                 {
-                    AddEquation(new fsMoistureContentEquation(m_Rf, m_dryMass, m_wetMass, m_Cm));
+                    AddEquation(new fsMoistureContentEquation(m_cakeMoistureContent, m_dryMass, m_wetMass, m_solidsMassFraction));
                 }
                 else
                 {
                     m_internalC.IsInput = false;
-                    AddEquation(new fsProductEquation(m_C, m_internalC, m_rhoL));
-                    AddEquation(new fsMoistureContentEquation(m_Rf, m_dryMass, m_wetMass, m_internalC));
+                    AddEquation(new fsProductEquation(m_solidsMassConcentration, m_internalC, m_liquidDensity));
+                    AddEquation(new fsMoistureContentEquation(m_cakeMoistureContent, m_dryMass, m_wetMass, m_internalC));
                 }
             }
         }
