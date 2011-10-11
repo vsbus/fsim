@@ -21,7 +21,7 @@ namespace Calculator.Calculation_Controls
 
         #endregion
 
-        private fsCakePorosityCalculator m_calculator = new fsCakePorosityCalculator();
+        private readonly fsCakePorosityCalculator m_calculator = new fsCakePorosityCalculator();
 
         public CakePorossityControl()
         {
