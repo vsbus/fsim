@@ -33,6 +33,7 @@
             this.ValueColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.filterElementDiameterRadioButton = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.massVolumeRadioButton = new System.Windows.Forms.RadioButton();
             this.denisitiesRadioButton = new System.Windows.Forms.RadioButton();
@@ -47,7 +48,6 @@
             this.planeAreaRadioButton = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.filterElementDiameterRadioButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -58,7 +58,6 @@
             // 
             this.dataGrid.AllowUserToAddRows = false;
             this.dataGrid.AllowUserToDeleteRows = false;
-            this.dataGrid.AllowUserToResizeColumns = true;
             this.dataGrid.AllowUserToResizeRows = false;
             this.dataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -115,6 +114,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(256, 197);
             this.panel2.TabIndex = 8;
+            // 
+            // filterElementDiameterRadioButton
+            // 
+            this.filterElementDiameterRadioButton.AutoSize = true;
+            this.filterElementDiameterRadioButton.Location = new System.Drawing.Point(24, 93);
+            this.filterElementDiameterRadioButton.Name = "filterElementDiameterRadioButton";
+            this.filterElementDiameterRadioButton.Size = new System.Drawing.Size(133, 17);
+            this.filterElementDiameterRadioButton.TabIndex = 8;
+            this.filterElementDiameterRadioButton.TabStop = true;
+            this.filterElementDiameterRadioButton.Text = "Filter Element Diameter";
+            this.filterElementDiameterRadioButton.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -264,17 +274,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(140, 293);
             this.textBox1.TabIndex = 2;
-            // 
-            // filterElementDiameterRadioButton
-            // 
-            this.filterElementDiameterRadioButton.AutoSize = true;
-            this.filterElementDiameterRadioButton.Location = new System.Drawing.Point(24, 93);
-            this.filterElementDiameterRadioButton.Name = "filterElementDiameterRadioButton";
-            this.filterElementDiameterRadioButton.Size = new System.Drawing.Size(133, 17);
-            this.filterElementDiameterRadioButton.TabIndex = 8;
-            this.filterElementDiameterRadioButton.TabStop = true;
-            this.filterElementDiameterRadioButton.Text = "Filter Element Diameter";
-            this.filterElementDiameterRadioButton.UseVisualStyleBackColor = true;
+            this.textBox1.Visible = false;
             // 
             // fsMsusAndHcControl
             // 

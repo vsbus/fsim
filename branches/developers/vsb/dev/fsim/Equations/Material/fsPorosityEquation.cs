@@ -31,7 +31,7 @@ namespace Equations
             IEquationParameter area,
             IEquationParameter solidsConcentration,
             IEquationParameter cakeHeight)
-            : base(porosity)
+            : base(porosity, dryMass, wetMass, solidsDensity, liquidDensity, area, solidsConcentration, cakeHeight)
         {
             m_isSaltContentNeglected = isSaltContentNeglected;
             m_isSaturated = isSaturated;
