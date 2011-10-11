@@ -131,7 +131,7 @@
             // 
             this.windowsDataGrid.AllowUserToAddRows = false;
             this.windowsDataGrid.AllowUserToDeleteRows = false;
-            this.windowsDataGrid.AllowUserToResizeColumns = false;
+            this.windowsDataGrid.AllowUserToResizeColumns = true;
             this.windowsDataGrid.AllowUserToResizeRows = false;
             this.windowsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.windowsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

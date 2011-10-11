@@ -40,7 +40,7 @@ namespace StepCalculators
             m_kappa = AddVariable(fsParameterIdentifier.Kappa);
             
             m_filterArea = AddVariable(fsParameterIdentifier.FilterArea);
-            m_filterDiameter = AddVariable(fsParameterIdentifier.FilterDiameter);
+            m_filterDiameter = AddVariable(fsParameterIdentifier.MachineDiameter);
             m_filterB = AddVariable(fsParameterIdentifier.FilterB);
             m_filterBOverDiameter = AddVariable(fsParameterIdentifier.FilterBOverDiameter);
 
