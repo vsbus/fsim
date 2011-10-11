@@ -55,6 +55,7 @@ namespace Calculator.Calculation_Controls
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
             }
             rfGroup.IsInput = false;
+            ParameterToCell[fsParameterIdentifier.CakeMoistureContent].ReadOnly = true;
 
             FillComboBox(saltContentComboBox, typeof(fsRfFromWetDryCakeCalculator.fsSaltContentOption));
             FillComboBox(concentrationComboBox, typeof(fsRfFromWetDryCakeCalculator.fsConcentrationOption));

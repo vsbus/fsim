@@ -30,28 +30,28 @@ namespace Calculator.Calculation_Controls
             Calculators.Add(m_calculator);
 
             var machineDiameterGroup = AddGroup(fsParameterIdentifier.MachineDiameter);
-            var filterElementDiameterGroup = AddGroup(fsParameterIdentifier.FilterElementDiameter);
             var areaBGroup = AddGroup(fsParameterIdentifier.FilterB,
                 fsParameterIdentifier.FilterBOverDiameter,
                 fsParameterIdentifier.FilterArea);
-            var liquidGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
-            var solidsGroup = AddGroup(fsParameterIdentifier.SolidsDensity);
+            var filterElementDiameterGroup = AddGroup(fsParameterIdentifier.FilterElementDiameter);
             var cakeHeightGroup = AddGroup(fsParameterIdentifier.CakeHeight);
             var wetGroup = AddGroup(fsParameterIdentifier.WetCakeMass);
             var dryGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
             var concentrationGroup = AddGroup(fsParameterIdentifier.SolidsConcentration);
+            var liquidGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
+            var solidsGroup = AddGroup(fsParameterIdentifier.SolidsDensity);
             var porosityGroup = AddGroup(fsParameterIdentifier.Porosity);
 
             var groups = new[] {
                 machineDiameterGroup, 
-                filterElementDiameterGroup,
                 areaBGroup, 
-                liquidGroup, 
-                solidsGroup, 
+                filterElementDiameterGroup,
                 cakeHeightGroup,
                 wetGroup, 
                 dryGroup, 
                 concentrationGroup,
+                liquidGroup, 
+                solidsGroup, 
                 porosityGroup
             };
 
@@ -66,6 +66,7 @@ namespace Calculator.Calculation_Controls
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
             }
             porosityGroup.IsInput = false;
+            ParameterToCell[fsParameterIdentifier.Porosity].ReadOnly = true;
 
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterArea].RowIndex, Color.FromArgb(255, 230, 230));
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterB].RowIndex, Color.FromArgb(255, 230, 230));
