@@ -7,8 +7,8 @@ namespace Equations
     {
         #region Parameters
 
-        private bool m_isSaltContentNeglected;
-        private bool m_isSaturated;
+        readonly bool m_isSaltContentNeglected;
+        readonly bool m_isSaturated;
         readonly IEquationParameter m_porosity;
         readonly IEquationParameter m_dryMass;
         readonly IEquationParameter m_wetMass;

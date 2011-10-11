@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 using Value;
 
 namespace Equations
@@ -10,70 +7,70 @@ namespace Equations
     {
         #region Parameters
 
-        private IEquationParameter SolidsVolumeFractionConcentration;
-        private IEquationParameter FiltrateDensity;
-        private IEquationParameter SolidsDensity;
-        private IEquationParameter SuspensionDensity;
+        readonly IEquationParameter m_solidsVolumeFractionConcentration;
+        readonly IEquationParameter m_filtrateDensity;
+        readonly IEquationParameter m_solidsDensity;
+        readonly IEquationParameter m_suspensionDensity;
 
         #endregion
 
         public fsVolumeConcentrationEquation(
-            IEquationParameter SolidsVolumeFractionConcentration,
-            IEquationParameter FiltrateDensity,
-            IEquationParameter SolidsDensity,
-            IEquationParameter SuspensionDensity)
+            IEquationParameter solidsVolumeFractionConcentration,
+            IEquationParameter filtrateDensity,
+            IEquationParameter solidsDensity,
+            IEquationParameter suspensionDensity)
             : base(
-                SolidsVolumeFractionConcentration,
-                FiltrateDensity, 
-                SolidsDensity, 
-                SuspensionDensity)
+                solidsVolumeFractionConcentration,
+                filtrateDensity, 
+                solidsDensity, 
+                suspensionDensity)
         {
-            this.SolidsVolumeFractionConcentration = SolidsVolumeFractionConcentration;
-            this.FiltrateDensity = FiltrateDensity;
-            this.SolidsDensity = SolidsDensity;
-            this.SuspensionDensity = SuspensionDensity;
+            m_solidsVolumeFractionConcentration = solidsVolumeFractionConcentration;
+            m_filtrateDensity = filtrateDensity;
+            m_solidsDensity = solidsDensity;
+            m_suspensionDensity = suspensionDensity;
         }
 
         protected override void InitFormulas()
         {
-            AddFormula(SolidsVolumeFractionConcentration, SolidsVolumeFractionFormula);
-            AddFormula(FiltrateDensity, FiltrateDensityFormula);
-            AddFormula(SolidsDensity, SolidsDensityFormula);
-            AddFormula(SuspensionDensity, SuspensionDensityFormula);
+            AddFormula(m_solidsVolumeFractionConcentration, SolidsVolumeFractionFormula);
+            AddFormula(m_filtrateDensity, FiltrateDensityFormula);
+            AddFormula(m_solidsDensity, SolidsDensityFormula);
+            AddFormula(m_suspensionDensity, SuspensionDensityFormula);
         }
 
         #region Formulas
 
         private void SolidsVolumeFractionFormula()
         {
-            fsValue rhoF = FiltrateDensity.Value;
-            fsValue rhoS = SolidsDensity.Value;
-            fsValue rhoSus = SuspensionDensity.Value;
-            SolidsVolumeFractionConcentration.Value = (rhoF - rhoSus) / (rhoF - rhoS);
+            fsValue rhoF = m_filtrateDensity.Value;
+            fsValue rhoS = m_solidsDensity.Value;
+            fsValue rhoSus = m_suspensionDensity.Value;
+            m_solidsVolumeFractionConcentration.Value = (rhoF - rhoSus) / (rhoF - rhoS);
         }
 
         private void FiltrateDensityFormula()
         {
-            fsValue Cv = SolidsVolumeFractionConcentration.Value;
-            fsValue rhoS = SolidsDensity.Value;
-            fsValue rhoSus = SuspensionDensity.Value;
-            FiltrateDensity.Value = (rhoSus - Cv * rhoS) / (1 - Cv);
+            fsValue cv = m_solidsVolumeFractionConcentration.Value;
+            fsValue rhoS = m_solidsDensity.Value;
+            fsValue rhoSus = m_suspensionDensity.Value;
+            m_filtrateDensity.Value = (rhoSus - cv * rhoS) / (1 - cv);
         }
 
         private void SolidsDensityFormula()
         {
-            fsValue Cv = SolidsVolumeFractionConcentration.Value;
-            fsValue rhoF = FiltrateDensity.Value;
-            fsValue rhoSus = SuspensionDensity.Value;
-            SolidsDensity.Value = (rhoSus - (1 - Cv) * rhoF) / Cv;
+            fsValue cv = m_solidsVolumeFractionConcentration.Value;
+            fsValue rhoF = m_filtrateDensity.Value;
+            fsValue rhoSus = m_suspensionDensity.Value;
+            m_solidsDensity.Value = (rhoSus - (1 - cv) * rhoF) / cv;
         }
 
         private void SuspensionDensityFormula()
         {
-            fsValue Cv = SolidsVolumeFractionConcentration.Value;
-            fsValue rhoF = FiltrateDensity.Value;
-            fsValue rhoS = SolidsDensity.Value;
-            SuspensionDensity.Value = rhoF * (1 - Cv) + Cv * rhoS;
+            fsValue cv = m_solidsVolumeFractionConcentration.Value;
+            fsValue rhoF = m_filtrateDensity.Value;
+            fsValue rhoS = m_solidsDensity.Value;
+            m_suspensionDensity.Value = rhoF * (1 - cv) + cv * rhoS;
         }
 
         #endregion
