@@ -65,12 +65,12 @@ namespace Calculator.Calculation_Controls
                 fsParameterIdentifier.Kappa);
             var machineDiameterGroup = AddGroup(
                 fsParameterIdentifier.MachineDiameter);
+            m_areaBGroup = AddGroup(
+                fsParameterIdentifier.FilterB,
+                fsParameterIdentifier.FilterBOverDiameter,
+                fsParameterIdentifier.FilterArea);
             var diameterFilterElementGroup = AddGroup(
                 fsParameterIdentifier.FilterElementDiameter);
-            m_areaBGroup = AddGroup(
-                fsParameterIdentifier.FilterArea,
-                fsParameterIdentifier.FilterB,
-                fsParameterIdentifier.FilterBOverDiameter);
             var cakeHeightGroup = AddGroup(
                 fsParameterIdentifier.CakeHeight);
             var massVolumeGroup = AddGroup(
@@ -83,8 +83,8 @@ namespace Calculator.Calculation_Controls
                 concentrationGroup,
                 epsKappaGroup,
                 machineDiameterGroup,
-                diameterFilterElementGroup,
                 m_areaBGroup,
+                diameterFilterElementGroup,
                 cakeHeightGroup,
                 massVolumeGroup
             };
