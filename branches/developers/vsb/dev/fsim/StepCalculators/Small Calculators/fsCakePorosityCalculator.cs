@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Equations;
 using Parameters;
 
@@ -51,14 +48,14 @@ namespace StepCalculators
             Neglected,
             NotNeglected
         }
-        public fsSaltContentOption m_saltContentOption;
+        public fsSaltContentOption SaltContentOption;
 
         public enum fsSaturationOption
         {
             NotSaturatedCake,
             SaturatedCake
         }
-        public fsSaturationOption m_saturationOption;
+        public fsSaturationOption SaturationOption;
 
         public enum fsMachineTypeOption
         {
@@ -66,13 +63,13 @@ namespace StepCalculators
             ConvexCylindric,
             ConcaveCylindric
         }
-        public fsMachineTypeOption m_machineTypeOption;
+        public fsMachineTypeOption MachineTypeOption;
 
         public void RebuildEquationsList()
         {
             Equations = new List<fsCalculatorEquation>();
 
-            switch (m_machineTypeOption)
+            switch (MachineTypeOption)
             {
                 case fsMachineTypeOption.PlainArea:
                     AddEquation(new fsAssignEquation(m_cakeArea, m_machineArea));
@@ -88,8 +85,8 @@ namespace StepCalculators
             }
 
             AddEquation(new fsPorosityEquation(
-                            m_saltContentOption == fsSaltContentOption.Neglected,
-                            m_saturationOption == fsSaturationOption.SaturatedCake,
+                            SaltContentOption == fsSaltContentOption.Neglected,
+                            SaturationOption == fsSaturationOption.SaturatedCake,
                             m_eps,
                             m_dryCakeMass,
                             m_wetCakeMass,

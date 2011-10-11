@@ -3,13 +3,13 @@ using Parameters;
 
 namespace StepCalculators
 {
-    public class fsRm0hce0Calculator : fsCalculator
+    public class fsRm0Hce0Calculator : fsCalculator
     {
         readonly fsCalculatorVariable m_hce0;
         readonly fsCalculatorVariable m_rm0;
         readonly fsCalculatorConstant m_pc0;
 
-        public fsRm0hce0Calculator()
+        public fsRm0Hce0Calculator()
         {
             #region Parameters Initialization
 

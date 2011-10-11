@@ -12,7 +12,7 @@ namespace StepCalculators
         readonly fsCalculatorVariable m_solidsVolumeFraction;
         readonly fsCalculatorVariable m_solidsConcentration;
 
-        public fsDensityConcentrationCalculator() : base()
+        public fsDensityConcentrationCalculator()
         {
             #region Parameters Initialization
 
