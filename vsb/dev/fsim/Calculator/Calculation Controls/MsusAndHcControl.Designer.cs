@@ -40,13 +40,14 @@
             this.concentrationRadioButton = new System.Windows.Forms.RadioButton();
             this.areaRadioButton = new System.Windows.Forms.RadioButton();
             this.epsKappaRadioButton = new System.Windows.Forms.RadioButton();
-            this.diameterRadioButton = new System.Windows.Forms.RadioButton();
+            this.machineDiameterRadioButton = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.concaveAreaRadioButton = new System.Windows.Forms.RadioButton();
             this.convexAreaRadioButton = new System.Windows.Forms.RadioButton();
             this.planeAreaRadioButton = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.filterElementDiameterRadioButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -57,7 +58,7 @@
             // 
             this.dataGrid.AllowUserToAddRows = false;
             this.dataGrid.AllowUserToDeleteRows = false;
-            this.dataGrid.AllowUserToResizeColumns = false;
+            this.dataGrid.AllowUserToResizeColumns = true;
             this.dataGrid.AllowUserToResizeRows = false;
             this.dataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -100,6 +101,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.filterElementDiameterRadioButton);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.massVolumeRadioButton);
             this.panel2.Controls.Add(this.denisitiesRadioButton);
@@ -107,7 +109,7 @@
             this.panel2.Controls.Add(this.concentrationRadioButton);
             this.panel2.Controls.Add(this.areaRadioButton);
             this.panel2.Controls.Add(this.epsKappaRadioButton);
-            this.panel2.Controls.Add(this.diameterRadioButton);
+            this.panel2.Controls.Add(this.machineDiameterRadioButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 96);
             this.panel2.Name = "panel2";
@@ -189,16 +191,16 @@
             this.epsKappaRadioButton.Text = "Porosity / Kappa";
             this.epsKappaRadioButton.UseVisualStyleBackColor = true;
             // 
-            // diameterRadioButton
+            // machineDiameterRadioButton
             // 
-            this.diameterRadioButton.AutoSize = true;
-            this.diameterRadioButton.Location = new System.Drawing.Point(24, 93);
-            this.diameterRadioButton.Name = "diameterRadioButton";
-            this.diameterRadioButton.Size = new System.Drawing.Size(111, 17);
-            this.diameterRadioButton.TabIndex = 4;
-            this.diameterRadioButton.TabStop = true;
-            this.diameterRadioButton.Text = "Machine Diameter";
-            this.diameterRadioButton.UseVisualStyleBackColor = true;
+            this.machineDiameterRadioButton.AutoSize = true;
+            this.machineDiameterRadioButton.Location = new System.Drawing.Point(24, 93);
+            this.machineDiameterRadioButton.Name = "machineDiameterRadioButton";
+            this.machineDiameterRadioButton.Size = new System.Drawing.Size(111, 17);
+            this.machineDiameterRadioButton.TabIndex = 4;
+            this.machineDiameterRadioButton.TabStop = true;
+            this.machineDiameterRadioButton.Text = "Machine Diameter";
+            this.machineDiameterRadioButton.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
@@ -263,6 +265,17 @@
             this.textBox1.Size = new System.Drawing.Size(140, 293);
             this.textBox1.TabIndex = 2;
             // 
+            // filterElementDiameterRadioButton
+            // 
+            this.filterElementDiameterRadioButton.AutoSize = true;
+            this.filterElementDiameterRadioButton.Location = new System.Drawing.Point(24, 93);
+            this.filterElementDiameterRadioButton.Name = "filterElementDiameterRadioButton";
+            this.filterElementDiameterRadioButton.Size = new System.Drawing.Size(133, 17);
+            this.filterElementDiameterRadioButton.TabIndex = 8;
+            this.filterElementDiameterRadioButton.TabStop = true;
+            this.filterElementDiameterRadioButton.Text = "Filter Element Diameter";
+            this.filterElementDiameterRadioButton.UseVisualStyleBackColor = true;
+            // 
             // fsMsusAndHcControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -290,7 +303,7 @@
         private fmDataGrid.fmDataGridViewNumericalTextBoxColumn ValueColumn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton areaRadioButton;
-        private System.Windows.Forms.RadioButton diameterRadioButton;
+        private System.Windows.Forms.RadioButton machineDiameterRadioButton;
         private System.Windows.Forms.RadioButton epsKappaRadioButton;
         private System.Windows.Forms.RadioButton concentrationRadioButton;
         private System.Windows.Forms.RadioButton denisitiesRadioButton;
@@ -304,5 +317,6 @@
         private System.Windows.Forms.RadioButton planeAreaRadioButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.RadioButton filterElementDiameterRadioButton;
     }
 }

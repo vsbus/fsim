@@ -20,7 +20,7 @@ namespace StepCalculators
         readonly fsCalculatorVariable m_kappa;
         
         readonly fsCalculatorVariable m_filterArea;
-        readonly fsCalculatorVariable m_filterDiameter;
+        readonly fsCalculatorVariable m_filterElementDiameter;
 
         readonly fsCalculatorVariable m_cakeHeight;
 
@@ -42,7 +42,7 @@ namespace StepCalculators
             m_kappa = AddVariable(fsParameterIdentifier.Kappa);
             
             m_filterArea = AddVariable(fsParameterIdentifier.FilterArea);
-            m_filterDiameter = AddVariable(fsParameterIdentifier.FilterDiameter);
+            m_filterElementDiameter = AddVariable(fsParameterIdentifier.FilterElementDiameter);
 
             m_cakeHeight = AddVariable(fsParameterIdentifier.CakeHeight);
             m_suspensionMass = AddVariable(fsParameterIdentifier.SuspensionMass);
@@ -58,7 +58,7 @@ namespace StepCalculators
 
             AddEquation(new fsEpsKappaCvEquation(m_porosity, m_kappa, m_solidsVolumeFraction));
 
-            AddEquation(new fsSuspensionMassFromHcEpsConvexCylindircAreaEquation(m_suspensionMass, m_porosity, m_solidsDensity, m_filterArea, m_filterDiameter, m_cakeHeight, m_solidsMassFraction));
+            AddEquation(new fsSuspensionMassFromHcEpsConvexCylindircAreaEquation(m_suspensionMass, m_porosity, m_solidsDensity, m_filterArea, m_filterElementDiameter, m_cakeHeight, m_solidsMassFraction));
             //AddEquation(new fsSuspensionVolumeFromHcEpsConvexCylindircAreaEquation(m_suspensionVolume, m_porosity, m_filterArea, m_cakeHeight, m_solidsVolumeFraction));
             //AddEquation(new fsSuspensionVolumeFromHcKappaConvexCylindircAreaEquation(m_suspensionVolume, m_kappa, m_filterArea, m_cakeHeight));
 

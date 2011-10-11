@@ -109,7 +109,7 @@
             // 
             this.dataGrid.AllowUserToAddRows = false;
             this.dataGrid.AllowUserToDeleteRows = false;
-            this.dataGrid.AllowUserToResizeColumns = false;
+            this.dataGrid.AllowUserToResizeColumns = true;
             this.dataGrid.AllowUserToResizeRows = false;
             this.dataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;

@@ -29,7 +29,8 @@ namespace Calculator.Calculation_Controls
 
             Calculators.Add(m_calculator);
 
-            var diameterGroup = AddGroup(fsParameterIdentifier.FilterDiameter);
+            var machineDiameterGroup = AddGroup(fsParameterIdentifier.MachineDiameter);
+            var filterElementDiameterGroup = AddGroup(fsParameterIdentifier.FilterElementDiameter);
             var areaBGroup = AddGroup(fsParameterIdentifier.FilterB,
                 fsParameterIdentifier.FilterBOverDiameter,
                 fsParameterIdentifier.FilterArea);
@@ -42,7 +43,8 @@ namespace Calculator.Calculation_Controls
             var porosityGroup = AddGroup(fsParameterIdentifier.Porosity);
 
             var groups = new[] {
-                diameterGroup, 
+                machineDiameterGroup, 
+                filterElementDiameterGroup,
                 areaBGroup, 
                 liquidGroup, 
                 solidsGroup, 
@@ -160,10 +162,12 @@ namespace Calculator.Calculation_Controls
             bool isSaturated = m_saturationOption == fsCakePorosityCalculator.fsSaturationOption.SaturatedCake;
 
             bool geometryVisible = !isSaturated;
-            bool diameterVisible = m_machineTypeOption != fsCakePorosityCalculator.fsMachineTypeOption.PlainArea;
+            bool filterElementDiameterVisible = m_machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric;
+            bool machineDiameterVisible = m_machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric;
             bool bAndBOverDVisible = m_machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric;
             ParameterToCell[fsParameterIdentifier.FilterArea].OwningRow.Visible = geometryVisible;
-            ParameterToCell[fsParameterIdentifier.FilterDiameter].OwningRow.Visible = geometryVisible && diameterVisible;
+            ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = geometryVisible && machineDiameterVisible;
+            ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = geometryVisible && filterElementDiameterVisible;
             ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = geometryVisible && bAndBOverDVisible;
             ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = geometryVisible && bAndBOverDVisible;
 

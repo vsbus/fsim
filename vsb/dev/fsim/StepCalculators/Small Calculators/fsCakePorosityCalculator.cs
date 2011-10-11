@@ -26,7 +26,7 @@ namespace StepCalculators
             #region Parameters Initialization
 
             m_area = AddVariable(fsParameterIdentifier.FilterArea);
-            m_diameter = AddVariable(fsParameterIdentifier.FilterDiameter);
+            m_diameter = AddVariable(fsParameterIdentifier.MachineDiameter);
             m_b = AddVariable(fsParameterIdentifier.FilterB);
             m_bOverD = AddVariable(fsParameterIdentifier.FilterBOverDiameter);
             m_rhoL = AddConstant(fsParameterIdentifier.LiquidDensity);

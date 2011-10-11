@@ -24,6 +24,7 @@ namespace Calculator.Calculation_Controls
             ConcentreationsCalculated,
             PorosityKappaCalculated,
             MachineDiameterCalculated,
+            FilterElementDiameterCalculated,
             MachineAreaBCalculated,
             CakeHeightCalculated,
             MassVolumeCalculated
@@ -62,8 +63,10 @@ namespace Calculator.Calculation_Controls
             var epsKappaGroup = AddGroup(
                 fsParameterIdentifier.Porosity,
                 fsParameterIdentifier.Kappa);
-            var diameterGroup = AddGroup(
-                fsParameterIdentifier.FilterDiameter);
+            var machineDiameterGroup = AddGroup(
+                fsParameterIdentifier.MachineDiameter);
+            var diameterFilterElementGroup = AddGroup(
+                fsParameterIdentifier.FilterElementDiameter);
             m_areaBGroup = AddGroup(
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.FilterB,
@@ -72,18 +75,15 @@ namespace Calculator.Calculation_Controls
                 fsParameterIdentifier.CakeHeight);
             var massVolumeGroup = AddGroup(
                 fsParameterIdentifier.SuspensionVolume,
-                fsParameterIdentifier.SuspensionMass
-                /*,
-                fsParameterIdentifier.FiltrateMass,
-                fsParameterIdentifier.CakeMass,
-                fsParameterIdentifier.SolidsMass*/);
+                fsParameterIdentifier.SuspensionMass);
 
             var groups = new[] {
                 filtrateGroup,
                 densitiesGroup,
                 concentrationGroup,
                 epsKappaGroup,
-                diameterGroup,
+                machineDiameterGroup,
+                diameterFilterElementGroup,
                 m_areaBGroup,
                 cakeHeightGroup,
                 massVolumeGroup
@@ -98,7 +98,6 @@ namespace Calculator.Calculation_Controls
             {
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);    
             }
-
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterArea].RowIndex, Color.FromArgb(255, 230, 230));
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterB].RowIndex, Color.FromArgb(255, 230, 230));
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].RowIndex, Color.FromArgb(255, 230, 230));
@@ -106,7 +105,8 @@ namespace Calculator.Calculation_Controls
             AssignCalculationOption(fsCalculationOption.DenisitiesCalculated, denisitiesRadioButton, densitiesGroup);
             AssignCalculationOption(fsCalculationOption.ConcentreationsCalculated, concentrationRadioButton, concentrationGroup);
             AssignCalculationOption(fsCalculationOption.PorosityKappaCalculated, epsKappaRadioButton, epsKappaGroup);
-            AssignCalculationOption(fsCalculationOption.MachineDiameterCalculated, diameterRadioButton, diameterGroup);
+            AssignCalculationOption(fsCalculationOption.MachineDiameterCalculated, machineDiameterRadioButton, machineDiameterGroup);
+            AssignCalculationOption(fsCalculationOption.FilterElementDiameterCalculated, filterElementDiameterRadioButton, diameterFilterElementGroup);
             AssignCalculationOption(fsCalculationOption.MachineAreaBCalculated, areaRadioButton, m_areaBGroup);
             AssignCalculationOption(fsCalculationOption.CakeHeightCalculated, cakeHeightRadioButton, cakeHeightGroup);
             AssignCalculationOption(fsCalculationOption.MassVolumeCalculated, massVolumeRadioButton, massVolumeGroup);
@@ -144,11 +144,13 @@ namespace Calculator.Calculation_Controls
             if (m_machineTypeOption == fsMachineTypeOption.PlainArea)
             {
                 planeAreaRadioButton.Checked = true;
-                ParameterToCell[fsParameterIdentifier.FilterDiameter].OwningRow.Visible = false;
+                ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = false;
+                ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = false;
-                diameterRadioButton.Visible = false;
-                if (diameterRadioButton.Checked)
+                machineDiameterRadioButton.Visible = false;
+                filterElementDiameterRadioButton.Visible = false;
+                if (machineDiameterRadioButton.Checked)
                 {
                     areaRadioButton.Checked = true;
                 }
@@ -158,20 +160,24 @@ namespace Calculator.Calculation_Controls
             if (m_machineTypeOption == fsMachineTypeOption.ConvexCylindric)
             {
                 convexAreaRadioButton.Checked = true;
-                ParameterToCell[fsParameterIdentifier.FilterDiameter].OwningRow.Visible = true;
+                ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = false;
+                ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = true;
                 ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = false;
-                diameterRadioButton.Visible = true;
+                machineDiameterRadioButton.Visible = false;
+                filterElementDiameterRadioButton.Visible = true;
                 Calculators = m_convexCylindricAreaCalculators;
                 m_areaBGroup.Representator = fsParameterIdentifier.FilterArea;
             }
             if (m_machineTypeOption == fsMachineTypeOption.ConcaveCylindric)
             {
                 concaveAreaRadioButton.Checked = true;
-                ParameterToCell[fsParameterIdentifier.FilterDiameter].OwningRow.Visible = true;
+                ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = true;
+                ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = true;
                 ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = true;
-                diameterRadioButton.Visible = true;
+                machineDiameterRadioButton.Visible = true;
+                filterElementDiameterRadioButton.Visible = false;
                 Calculators = m_concaveCylindricAreaCalculators;
             }
 

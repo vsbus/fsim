@@ -56,7 +56,8 @@ namespace Parameters
         public static fsParameterIdentifier Alpha = new fsParameterIdentifier("alpha", fsUnits.CakeResistanceAlpha);
 
         public static fsParameterIdentifier FilterArea = new fsParameterIdentifier("A", "Filter Area", fsUnits.Area);
-        public static fsParameterIdentifier FilterDiameter = new fsParameterIdentifier("D", "Machine Diameter", fsUnits.Length);
+        public static fsParameterIdentifier MachineDiameter = new fsParameterIdentifier("D", "Machine Diameter", fsUnits.Length);
+        public static fsParameterIdentifier FilterElementDiameter = new fsParameterIdentifier("d", "Filter Element Diameter", fsUnits.Length);
         public static fsParameterIdentifier FilterB = new fsParameterIdentifier("b", fsUnits.Length);
         public static fsParameterIdentifier FilterBOverDiameter = new fsParameterIdentifier("b/D", fsUnits.NoUnits);
 
