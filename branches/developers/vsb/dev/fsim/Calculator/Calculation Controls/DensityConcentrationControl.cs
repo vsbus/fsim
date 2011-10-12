@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 using Parameters;
 using StepCalculators;
 
@@ -10,9 +11,13 @@ namespace Calculator.Calculation_Controls
 
         enum fsCalculationOption
         {
+            [Description("Filtrate Density")]
             CalcFiltrateDensity,
+            [Description("Solids Density")]
             CalcSolidsDensity,
+            [Description("Suspension Density")]
             CalcSuspensionDensity,
+            [Description("Concentrations")]
             CalcConcentrations
         }
        
@@ -46,10 +51,36 @@ namespace Calculator.Calculation_Controls
             AssignCalculationOption(fsCalculationOption.CalcConcentrations, concentrationsRadioButton, concentrationGroup);
 
             CalculationOption = fsCalculationOption.CalcSuspensionDensity;
+            fsMisc.FillComboBox(calculateSelectionComboBox.Items, typeof(fsCalculationOption));
+            UpdateUIFromData();
+
             UpdateCalculationOptionAndInputGroupsFromUI();
 
             ConnectUIWithDataUpdating(dataGrid);
             UpdateUIFromData();
         }
+
+        #region Routine Methods
+
+        override protected void UpdateCalculationOptionAndInputGroupsFromUI()
+        {
+            base.UpdateCalculationOptionAndInputGroupsFromUI();
+            CalculationOption =
+                (fsCalculationOption)fsMisc.GetEnum(typeof(fsCalculationOption), calculateSelectionComboBox.Text);
+        }
+
+        protected override void UpdateUIFromData()
+        {
+            base.UpdateUIFromData();
+            calculateSelectionComboBox.Text = fsMisc.GetEnumDescription((fsCalculationOption)CalculationOption);
+        }
+
+        protected override void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid grid)
+        {
+            base.ConnectUIWithDataUpdating(grid);
+            calculateSelectionComboBox.TextChanged += RadioButtonCheckedChanged;
+        }
+
+        #endregion
     }
 }

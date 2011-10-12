@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 using Parameters;
 using StepCalculators;
 
@@ -8,9 +9,13 @@ namespace Calculator.Calculation_Controls
     {
         enum fsCalculationOption
         {
+            [Description("Pc0, rc0, alpha0")]
             CalcPc0Rc0Alpha0,
-            CalcPressure,
+            [Description("nc")]
             CalcNc,
+            [Description("Pressure (Dp)")]
+            CalcPressure,
+            [Description("Pc, rc, alpha")]
             CalcPcRcAlpha
         }
 
@@ -50,11 +55,36 @@ namespace Calculator.Calculation_Controls
             AssignCalculationOption(fsCalculationOption.CalcPcRcAlpha, pcrcalphaRadioButton, pcRcAGroup);
 
             CalculationOption = fsCalculationOption.CalcPcRcAlpha;
+            fsMisc.FillComboBox(calculateSelectionComboBox.Items, typeof(fsCalculationOption));
+            UpdateUIFromData();
+
             UpdateCalculationOptionAndInputGroupsFromUI();
 
             ConnectUIWithDataUpdating(dataGrid);
             UpdateUIFromData();
         }
 
+        #region Routine Methods
+
+        override protected void UpdateCalculationOptionAndInputGroupsFromUI()
+        {
+            base.UpdateCalculationOptionAndInputGroupsFromUI();
+            CalculationOption =
+                (fsCalculationOption)fsMisc.GetEnum(typeof(fsCalculationOption), calculateSelectionComboBox.Text);
+        }
+
+        protected override void UpdateUIFromData()
+        {
+            base.UpdateUIFromData();
+            calculateSelectionComboBox.Text = fsMisc.GetEnumDescription((fsCalculationOption)CalculationOption);
+        }
+
+        protected override void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid grid)
+        {
+            base.ConnectUIWithDataUpdating(grid);
+            calculateSelectionComboBox.TextChanged += RadioButtonCheckedChanged;
+        }
+
+        #endregion
     }
 }

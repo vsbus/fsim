@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Calculator
 {
@@ -25,5 +27,13 @@ namespace Calculator
             throw new Exception("Desired description not found in given enum type.");
         }
 
+        public static void FillComboBox(IList collection, Type enumType)
+        {
+            collection.Clear();
+            foreach (Enum element in Enum.GetValues(enumType))
+            {
+                collection.Add(fsMisc.GetEnumDescription(element));
+            }
+        }
     }
 }

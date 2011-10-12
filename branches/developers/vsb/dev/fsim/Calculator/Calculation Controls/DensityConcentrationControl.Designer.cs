@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.calculateSelectionComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.concentrationsRadioButton = new System.Windows.Forms.RadioButton();
             this.suspensionRadioButton = new System.Windows.Forms.RadioButton();
@@ -43,6 +44,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.calculateSelectionComboBox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.concentrationsRadioButton);
             this.panel1.Controls.Add(this.suspensionRadioButton);
@@ -51,13 +53,22 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(149, 164);
+            this.panel1.Size = new System.Drawing.Size(197, 164);
             this.panel1.TabIndex = 1;
+            // 
+            // calculateSelectionComboBox
+            // 
+            this.calculateSelectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.calculateSelectionComboBox.FormattingEnabled = true;
+            this.calculateSelectionComboBox.Location = new System.Drawing.Point(68, 9);
+            this.calculateSelectionComboBox.Name = "calculateSelectionComboBox";
+            this.calculateSelectionComboBox.Size = new System.Drawing.Size(121, 21);
+            this.calculateSelectionComboBox.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 8);
+            this.label1.Location = new System.Drawing.Point(8, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 4;
@@ -66,50 +77,53 @@
             // concentrationsRadioButton
             // 
             this.concentrationsRadioButton.AutoSize = true;
-            this.concentrationsRadioButton.Location = new System.Drawing.Point(24, 93);
+            this.concentrationsRadioButton.Location = new System.Drawing.Point(22, 111);
             this.concentrationsRadioButton.Name = "concentrationsRadioButton";
             this.concentrationsRadioButton.Size = new System.Drawing.Size(96, 17);
             this.concentrationsRadioButton.TabIndex = 3;
             this.concentrationsRadioButton.Text = "Concentrations";
             this.concentrationsRadioButton.UseVisualStyleBackColor = true;
+            this.concentrationsRadioButton.Visible = false;
             // 
             // suspensionRadioButton
             // 
             this.suspensionRadioButton.AutoSize = true;
             this.suspensionRadioButton.Checked = true;
-            this.suspensionRadioButton.Location = new System.Drawing.Point(24, 70);
+            this.suspensionRadioButton.Location = new System.Drawing.Point(22, 88);
             this.suspensionRadioButton.Name = "suspensionRadioButton";
             this.suspensionRadioButton.Size = new System.Drawing.Size(118, 17);
             this.suspensionRadioButton.TabIndex = 2;
             this.suspensionRadioButton.TabStop = true;
             this.suspensionRadioButton.Text = "Suspension Density";
             this.suspensionRadioButton.UseVisualStyleBackColor = true;
+            this.suspensionRadioButton.Visible = false;
             // 
             // solidsRadioButton
             // 
             this.solidsRadioButton.AutoSize = true;
-            this.solidsRadioButton.Location = new System.Drawing.Point(24, 47);
+            this.solidsRadioButton.Location = new System.Drawing.Point(22, 65);
             this.solidsRadioButton.Name = "solidsRadioButton";
             this.solidsRadioButton.Size = new System.Drawing.Size(91, 17);
             this.solidsRadioButton.TabIndex = 1;
             this.solidsRadioButton.Text = "Solids Density";
             this.solidsRadioButton.UseVisualStyleBackColor = true;
+            this.solidsRadioButton.Visible = false;
             // 
             // filtrateRadioButton
             // 
             this.filtrateRadioButton.AutoSize = true;
-            this.filtrateRadioButton.Location = new System.Drawing.Point(24, 24);
+            this.filtrateRadioButton.Location = new System.Drawing.Point(22, 42);
             this.filtrateRadioButton.Name = "filtrateRadioButton";
             this.filtrateRadioButton.Size = new System.Drawing.Size(94, 17);
             this.filtrateRadioButton.TabIndex = 0;
             this.filtrateRadioButton.Text = "Filtrate Density";
             this.filtrateRadioButton.UseVisualStyleBackColor = true;
+            this.filtrateRadioButton.Visible = false;
             // 
             // dataGrid
             // 
             this.dataGrid.AllowUserToAddRows = false;
             this.dataGrid.AllowUserToDeleteRows = false;
-            this.dataGrid.AllowUserToResizeColumns = true;
             this.dataGrid.AllowUserToResizeRows = false;
             this.dataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -120,11 +134,11 @@
             this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.dataGrid.HighLightCurrentRow = false;
-            this.dataGrid.Location = new System.Drawing.Point(149, 0);
+            this.dataGrid.Location = new System.Drawing.Point(197, 0);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.RowHeadersVisible = false;
             this.dataGrid.RowTemplate.Height = 18;
-            this.dataGrid.Size = new System.Drawing.Size(221, 164);
+            this.dataGrid.Size = new System.Drawing.Size(228, 164);
             this.dataGrid.TabIndex = 0;
             // 
             // ParameterColumn
@@ -147,7 +161,7 @@
             this.Controls.Add(this.dataGrid);
             this.Controls.Add(this.panel1);
             this.Name = "fsDensityConcentrationControl";
-            this.Size = new System.Drawing.Size(370, 164);
+            this.Size = new System.Drawing.Size(425, 164);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
@@ -166,5 +180,6 @@
         private System.Windows.Forms.RadioButton filtrateRadioButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn;
         private fmDataGrid.fmDataGridViewNumericalTextBoxColumn ValueColumn;
+        private System.Windows.Forms.ComboBox calculateSelectionComboBox;
     }
 }
