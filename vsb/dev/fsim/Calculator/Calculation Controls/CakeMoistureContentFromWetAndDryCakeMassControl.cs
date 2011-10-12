@@ -52,8 +52,8 @@ namespace Calculator.Calculation_Controls
             rfGroup.IsInput = false;
             ParameterToCell[fsParameterIdentifier.CakeMoistureContent].ReadOnly = true;
 
-            FillComboBox(saltContentComboBox, typeof(fsRfFromWetDryCakeCalculator.fsSaltContentOption));
-            FillComboBox(concentrationComboBox, typeof(fsRfFromWetDryCakeCalculator.fsConcentrationOption));
+            fsMisc.FillComboBox(saltContentComboBox.Items, typeof(fsRfFromWetDryCakeCalculator.fsSaltContentOption));
+            fsMisc.FillComboBox(concentrationComboBox.Items, typeof(fsRfFromWetDryCakeCalculator.fsConcentrationOption));
             m_saltContentOption = fsRfFromWetDryCakeCalculator.fsSaltContentOption.Neglected;
             m_concentrationOption = fsRfFromWetDryCakeCalculator.fsConcentrationOption.SolidsMassFraction;
             UpdateUIFromData();
@@ -61,15 +61,6 @@ namespace Calculator.Calculation_Controls
 
             ConnectUIWithDataUpdating(dataGrid);
             UpdateUIFromData();
-        }
-
-        private static void FillComboBox(ComboBox comboBox, Type enumType)
-        {
-            comboBox.Items.Clear();
-            foreach (Enum element in Enum.GetValues(enumType))
-            {
-                comboBox.Items.Add(fsMisc.GetEnumDescription(element));
-            }
         }
 
         #region Routine Methods

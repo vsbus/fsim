@@ -49,7 +49,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(274, 144);
+            this.panel1.Size = new System.Drawing.Size(284, 144);
             this.panel1.TabIndex = 0;
             // 
             // saltContentComboBox
@@ -59,7 +59,7 @@
             this.saltContentComboBox.Items.AddRange(new object[] {
             "Considered",
             "Neglected"});
-            this.saltContentComboBox.Location = new System.Drawing.Point(132, 9);
+            this.saltContentComboBox.Location = new System.Drawing.Point(137, 9);
             this.saltContentComboBox.Name = "saltContentComboBox";
             this.saltContentComboBox.Size = new System.Drawing.Size(136, 21);
             this.saltContentComboBox.TabIndex = 0;
@@ -68,7 +68,7 @@
             // 
             this.concentrationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.concentrationComboBox.FormattingEnabled = true;
-            this.concentrationComboBox.Location = new System.Drawing.Point(132, 36);
+            this.concentrationComboBox.Location = new System.Drawing.Point(137, 36);
             this.concentrationComboBox.Name = "concentrationComboBox";
             this.concentrationComboBox.Size = new System.Drawing.Size(136, 21);
             this.concentrationComboBox.TabIndex = 3;
@@ -76,7 +76,7 @@
             // concentrationLabel
             // 
             this.concentrationLabel.AutoSize = true;
-            this.concentrationLabel.Location = new System.Drawing.Point(15, 36);
+            this.concentrationLabel.Location = new System.Drawing.Point(20, 36);
             this.concentrationLabel.Name = "concentrationLabel";
             this.concentrationLabel.Size = new System.Drawing.Size(111, 13);
             this.concentrationLabel.TabIndex = 2;
@@ -85,7 +85,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 12);
+            this.label1.Location = new System.Drawing.Point(8, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 13);
             this.label1.TabIndex = 1;
@@ -95,7 +95,6 @@
             // 
             this.dataGrid.AllowUserToAddRows = false;
             this.dataGrid.AllowUserToDeleteRows = false;
-            this.dataGrid.AllowUserToResizeColumns = true;
             this.dataGrid.AllowUserToResizeRows = false;
             this.dataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -106,11 +105,11 @@
             this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.dataGrid.HighLightCurrentRow = false;
-            this.dataGrid.Location = new System.Drawing.Point(274, 0);
+            this.dataGrid.Location = new System.Drawing.Point(284, 0);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.RowHeadersVisible = false;
             this.dataGrid.RowTemplate.Height = 18;
-            this.dataGrid.Size = new System.Drawing.Size(212, 144);
+            this.dataGrid.Size = new System.Drawing.Size(202, 144);
             this.dataGrid.TabIndex = 1;
             // 
             // ParameterColumn
@@ -126,7 +125,7 @@
             this.ValueColumn.Name = "ValueColumn";
             this.ValueColumn.Width = 60;
             // 
-            // CakeMoistureContentFromWetAndDryCakeMassControl
+            // fsCakeMoistureContentFromWetAndDryCakeMassControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
