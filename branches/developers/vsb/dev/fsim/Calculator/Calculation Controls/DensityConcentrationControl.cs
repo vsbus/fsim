@@ -1,5 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 using Parameters;
 using StepCalculators;
 
@@ -7,7 +10,7 @@ namespace Calculator.Calculation_Controls
 {
     public sealed partial class fsDensityConcentrationControl : fsCalculatorControl
     {
-        #region Calculation Data
+        #region Calculation Option
 
         enum fsCalculationOption
         {
@@ -45,40 +48,47 @@ namespace Calculator.Calculation_Controls
             AddGroupToUI(dataGrid, suspensionGroup, Color.FromArgb(255, 255, 230));
             AddGroupToUI(dataGrid, concentrationGroup, Color.FromArgb(230, 230, 230));
 
-            AssignCalculationOption(fsCalculationOption.CalcFiltrateDensity, filtrateRadioButton, filtrateGroup);
-            AssignCalculationOption(fsCalculationOption.CalcSolidsDensity, solidsRadioButton, solidsGroup);
-            AssignCalculationOption(fsCalculationOption.CalcSuspensionDensity, suspensionRadioButton, suspensionGroup);
-            AssignCalculationOption(fsCalculationOption.CalcConcentrations, concentrationsRadioButton, concentrationGroup);
+            fsMisc.FillList(calculateSelectionComboBox.Items, typeof(fsCalculationOption));
+            EstablishCalculationOption(fsCalculationOption.CalcSuspensionDensity);
+            AssignCalculationOptionAndControl(typeof (fsCalculationOption), calculateSelectionComboBox);
 
-            CalculationOption = fsCalculationOption.CalcSuspensionDensity;
-            fsMisc.FillComboBox(calculateSelectionComboBox.Items, typeof(fsCalculationOption));
+            UpdateGroupsInputInfoFromCalculationOptions();
+            UpdateEquationsFromCalculationOptions();
+            Recalculate();
             UpdateUIFromData();
-
-            UpdateCalculationOptionAndInputGroupsFromUI();
-
-            ConnectUIWithDataUpdating(dataGrid);
-            UpdateUIFromData();
+            ConnectUIWithDataUpdating(dataGrid, calculateSelectionComboBox);
         }
 
         #region Routine Methods
 
-        override protected void UpdateCalculationOptionAndInputGroupsFromUI()
+        protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            base.UpdateCalculationOptionAndInputGroupsFromUI();
-            CalculationOption =
-                (fsCalculationOption)fsMisc.GetEnum(typeof(fsCalculationOption), calculateSelectionComboBox.Text);
+            var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)];
+            fsParametersGroup calculateGroup = null;
+            switch (calculationOption)
+            {
+                case fsCalculationOption.CalcFiltrateDensity:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.FiltrateDensity];
+                    break;
+                case fsCalculationOption.CalcSolidsDensity:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.SolidsDensity];
+                    break;
+                case fsCalculationOption.CalcSuspensionDensity:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.SuspensionDensity];
+                    break;
+                case fsCalculationOption.CalcConcentrations:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.SolidsMassFraction];
+                    break;
+            }
+            foreach (var group in ParameterToGroup.Values)
+            {
+                SetGroupInput(group, group != calculateGroup);
+            }
         }
 
-        protected override void UpdateUIFromData()
+        protected override void UpdateEquationsFromCalculationOptions()
         {
-            base.UpdateUIFromData();
-            calculateSelectionComboBox.Text = fsMisc.GetEnumDescription((fsCalculationOption)CalculationOption);
-        }
-
-        protected override void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid grid)
-        {
-            base.ConnectUIWithDataUpdating(grid);
-            calculateSelectionComboBox.TextChanged += RadioButtonCheckedChanged;
+            // this control uses only one calculator
         }
 
         #endregion

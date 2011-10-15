@@ -103,5 +103,10 @@ namespace Calculator
         {
             Close();
         }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            addModuleButton.PerformClick();
+        }
     }
 }
