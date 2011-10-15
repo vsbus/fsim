@@ -92,8 +92,7 @@ namespace Calculator.Calculation_Controls
                 else if (control is ComboBox)
                 {
                     var comboBox = control as ComboBox;
-                    comboBox.TextChanged += CalculationOptionChanged;
-                    //comboBox.SelectedValueChanged += CalculationOptionChanged;
+                    comboBox.SelectedIndexChanged += CalculationOptionChanged;
                 }
             }
         }
