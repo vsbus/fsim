@@ -8,13 +8,6 @@ namespace Calculator.Calculation_Controls
 {
     public sealed partial class fsCakeMoistureContentFromWetAndDryCakeMassControl : fsCalculatorControl
     {
-        #region Calculation Data
-
-        private fsRfFromWetDryCakeCalculator.fsSaltContentOption m_saltContentOption;
-        private fsRfFromWetDryCakeCalculator.fsConcentrationOption m_concentrationOption;
-
-        #endregion
-
         private readonly fsRfFromWetDryCakeCalculator m_calculator = new fsRfFromWetDryCakeCalculator();
 
         public fsCakeMoistureContentFromWetAndDryCakeMassControl()
@@ -52,61 +45,62 @@ namespace Calculator.Calculation_Controls
             rfGroup.IsInput = false;
             ParameterToCell[fsParameterIdentifier.CakeMoistureContent].ReadOnly = true;
 
-            fsMisc.FillComboBox(saltContentComboBox.Items, typeof(fsRfFromWetDryCakeCalculator.fsSaltContentOption));
-            fsMisc.FillComboBox(concentrationComboBox.Items, typeof(fsRfFromWetDryCakeCalculator.fsConcentrationOption));
-            m_saltContentOption = fsRfFromWetDryCakeCalculator.fsSaltContentOption.Neglected;
-            m_concentrationOption = fsRfFromWetDryCakeCalculator.fsConcentrationOption.SolidsMassFraction;
-            UpdateUIFromData();
-            UpdateCalculationOptionAndInputGroupsFromUI();
+            fsMisc.FillList(saltContentComboBox.Items, typeof(fsRfFromWetDryCakeCalculator.fsSaltContentOption));
+            EstablishCalculationOption(fsRfFromWetDryCakeCalculator.fsSaltContentOption.Neglected);
+            AssignCalculationOptionAndControl(typeof(fsRfFromWetDryCakeCalculator.fsSaltContentOption), saltContentComboBox);
 
-            ConnectUIWithDataUpdating(dataGrid);
+            fsMisc.FillList(concentrationComboBox.Items, typeof(fsRfFromWetDryCakeCalculator.fsConcentrationOption));
+            EstablishCalculationOption(fsRfFromWetDryCakeCalculator.fsConcentrationOption.SolidsMassFraction);
+            AssignCalculationOptionAndControl(typeof(fsRfFromWetDryCakeCalculator.fsConcentrationOption), concentrationComboBox);
+
+            UpdateGroupsInputInfoFromCalculationOptions();
+            UpdateEquationsFromCalculationOptions();
+            Recalculate();
             UpdateUIFromData();
+            ConnectUIWithDataUpdating(dataGrid,
+                saltContentComboBox,
+                concentrationComboBox);
         }
 
         #region Routine Methods
 
-        override protected void UpdateCalculationOptionAndInputGroupsFromUI()
+        protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            m_saltContentOption =
+            // this control has only one calculation group -- RF
+        }
+
+        protected override void UpdateEquationsFromCalculationOptions()
+        {
+            m_calculator.SaltContentOption =
                 (fsRfFromWetDryCakeCalculator.fsSaltContentOption)
-                fsMisc.GetEnum(typeof (fsRfFromWetDryCakeCalculator.fsSaltContentOption),
-                               saltContentComboBox.Text);
-            m_concentrationOption =
+                CalculationOptions[typeof (fsRfFromWetDryCakeCalculator.fsSaltContentOption)];
+            m_calculator.ConcentrationOption =
                 (fsRfFromWetDryCakeCalculator.fsConcentrationOption)
-                fsMisc.GetEnum(typeof (fsRfFromWetDryCakeCalculator.fsConcentrationOption),
-                               concentrationComboBox.Text);
-
-            m_calculator.SaltContentOption = m_saltContentOption;
-            m_calculator.ConcentrationOption = m_concentrationOption;
+                CalculationOptions[typeof (fsRfFromWetDryCakeCalculator.fsConcentrationOption)];
             m_calculator.RebuildEquationsList();
-
-            base.UpdateCalculationOptionAndInputGroupsFromUI();
         }
 
         protected override void UpdateUIFromData()
         {
-            saltContentComboBox.Text = fsMisc.GetEnumDescription(m_saltContentOption);
-
-            bool isSaltContConsidered = m_saltContentOption == fsRfFromWetDryCakeCalculator.fsSaltContentOption.Considered;
+            var saltContentOption =
+                (fsRfFromWetDryCakeCalculator.fsSaltContentOption)
+                CalculationOptions[typeof (fsRfFromWetDryCakeCalculator.fsSaltContentOption)];
+            bool isSaltContConsidered = saltContentOption == fsRfFromWetDryCakeCalculator.fsSaltContentOption.Considered;
 
             concentrationLabel.Visible = isSaltContConsidered;
             concentrationComboBox.Visible = isSaltContConsidered;
-            concentrationComboBox.Text = fsMisc.GetEnumDescription(m_concentrationOption);
 
-            bool isCmInput = m_concentrationOption ==
+            var concentrationOption =
+                (fsRfFromWetDryCakeCalculator.fsConcentrationOption)
+                CalculationOptions[typeof (fsRfFromWetDryCakeCalculator.fsConcentrationOption)];
+            bool isCmInput = concentrationOption ==
                              fsRfFromWetDryCakeCalculator.fsConcentrationOption.SolidsMassFraction;
+
             ParameterToCell[fsParameterIdentifier.SolidsMassFraction].OwningRow.Visible = isSaltContConsidered && isCmInput;
             ParameterToCell[fsParameterIdentifier.SolidsConcentration].OwningRow.Visible = isSaltContConsidered && !isCmInput;
             ParameterToCell[fsParameterIdentifier.LiquidDensity].OwningRow.Visible = isSaltContConsidered && !isCmInput;
 
             base.UpdateUIFromData();
-        }
-
-        protected override void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid grid)
-        {
-            base.ConnectUIWithDataUpdating(grid);
-            saltContentComboBox.TextChanged += RadioButtonCheckedChanged;
-            concentrationComboBox.TextChanged += RadioButtonCheckedChanged;
         }
 
         #endregion

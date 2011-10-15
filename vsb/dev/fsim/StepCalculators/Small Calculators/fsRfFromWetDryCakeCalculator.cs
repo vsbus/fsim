@@ -35,7 +35,9 @@ namespace StepCalculators
 
         public enum fsSaltContentOption
         {
+            [Description("Neglected")]
             Neglected,
+            [Description("Considered")]
             Considered
         }
         public fsSaltContentOption SaltContentOption;

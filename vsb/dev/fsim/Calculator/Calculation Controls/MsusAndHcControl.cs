@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 using Parameters;
 using StepCalculators;
 
@@ -9,23 +12,23 @@ namespace Calculator.Calculation_Controls
     {
         #region Calculation Data
 
-        enum fsMachineTypeOption
-        {
-            PlainArea,
-            ConvexCylindric,
-            ConcaveCylindric
-        }
-        private fsMachineTypeOption m_machineTypeOption;
-
         enum fsCalculationOption
         {
+            [Description("Densities")]
             DenisitiesCalculated,
+            [Description("Concentrations")]
             ConcentreationsCalculated,
+            [Description("Porosity / Kappa")]
             PorosityKappaCalculated,
+            [Description("Machine Diameter")]
             MachineDiameterCalculated,
+            [Description("Filter Element Diameter")]
             FilterElementDiameterCalculated,
+            [Description("Machine Geometry")]
             MachineAreaBCalculated,
+            [Description("Cake Height")]
             CakeHeightCalculated,
+            [Description("Mass / Volume")]
             MassVolumeCalculated
         }
 
@@ -101,98 +104,168 @@ namespace Calculator.Calculation_Controls
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterB].RowIndex, Color.FromArgb(255, 230, 230));
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].RowIndex, Color.FromArgb(255, 230, 230));
 
-            AssignCalculationOption(fsCalculationOption.DenisitiesCalculated, denisitiesRadioButton, densitiesGroup);
-            AssignCalculationOption(fsCalculationOption.ConcentreationsCalculated, concentrationRadioButton, concentrationGroup);
-            AssignCalculationOption(fsCalculationOption.PorosityKappaCalculated, epsKappaRadioButton, epsKappaGroup);
-            AssignCalculationOption(fsCalculationOption.MachineDiameterCalculated, machineDiameterRadioButton, machineDiameterGroup);
-            AssignCalculationOption(fsCalculationOption.FilterElementDiameterCalculated, filterElementDiameterRadioButton, diameterFilterElementGroup);
-            AssignCalculationOption(fsCalculationOption.MachineAreaBCalculated, areaRadioButton, m_areaBGroup);
-            AssignCalculationOption(fsCalculationOption.CakeHeightCalculated, cakeHeightRadioButton, cakeHeightGroup);
-            AssignCalculationOption(fsCalculationOption.MassVolumeCalculated, massVolumeRadioButton, massVolumeGroup);
-            
-            CalculationOption = fsCalculationOption.MassVolumeCalculated;
-            m_machineTypeOption = fsMachineTypeOption.PlainArea;
-            UpdateCalculationOptionAndInputGroupsFromUI();
+            fsMisc.FillList(machineTypeComboBox.Items, typeof(fsCakePorosityCalculator.fsMachineTypeOption));
+            EstablishCalculationOption(fsCakePorosityCalculator.fsMachineTypeOption.PlainArea);
+            AssignCalculationOptionAndControl(typeof(fsCakePorosityCalculator.fsMachineTypeOption), machineTypeComboBox);
 
-            ConnectUIWithDataUpdating(dataGrid);
+            EstablishCalculationOption(fsCalculationOption.MassVolumeCalculated);
+            FillCalculationComboBox();
+            AssignCalculationOptionAndControl(typeof(fsCalculationOption), calculationOptionComboBox);
+
+            UpdateGroupsInputInfoFromCalculationOptions();
+            UpdateEquationsFromCalculationOptions();
+            Recalculate();
             UpdateUIFromData();
+            ConnectUIWithDataUpdating(dataGrid,
+                machineTypeComboBox,
+                calculationOptionComboBox);
         }
         
         #region Routine Methods
 
-        override protected void UpdateCalculationOptionAndInputGroupsFromUI()
+        private void FillCalculationComboBox()
         {
-            if (planeAreaRadioButton.Checked)
+            var machineTypeOption =
+              (fsCakePorosityCalculator.fsMachineTypeOption)
+              CalculationOptions[typeof(fsCakePorosityCalculator.fsMachineTypeOption)];
+            var restrictedOptions = new List<fsCalculationOption>();
+            if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.PlainArea)
             {
-                m_machineTypeOption = fsMachineTypeOption.PlainArea;
+                restrictedOptions.Add(fsCalculationOption.MachineDiameterCalculated);
+                restrictedOptions.Add(fsCalculationOption.FilterElementDiameterCalculated);
             }
-            if (convexAreaRadioButton.Checked)
+            if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric)
             {
-                m_machineTypeOption = fsMachineTypeOption.ConvexCylindric;
+                restrictedOptions.Add(fsCalculationOption.MachineDiameterCalculated);
             }
-            if (concaveAreaRadioButton.Checked)
+            if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric)
             {
-                m_machineTypeOption = fsMachineTypeOption.ConcaveCylindric;
+                restrictedOptions.Add(fsCalculationOption.FilterElementDiameterCalculated);
             }
 
-            base.UpdateCalculationOptionAndInputGroupsFromUI();
+            var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)];
+            if (restrictedOptions.Contains(calculationOption))
+            {
+                EstablishCalculationOption(fsCalculationOption.MassVolumeCalculated);
+            }
+
+            fsMisc.FillList(calculationOptionComboBox.Items, typeof(fsCalculationOption));
+            foreach (var restrictedOption in restrictedOptions)
+            {
+                calculationOptionComboBox.Items.Remove(fsMisc.GetEnumDescription(restrictedOption));
+            }
+            calculationOptionComboBox.Text =
+               fsMisc.GetEnumDescription((fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)]);
+        }
+
+        protected override void UpdateGroupsInputInfoFromCalculationOptions()
+        {
+            var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)];
+            fsParametersGroup calculateGroup = null;
+            switch (calculationOption)
+            {
+                case fsCalculationOption.DenisitiesCalculated:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.SolidsDensity];
+                    break;
+                case fsCalculationOption.ConcentreationsCalculated:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.SolidsMassFraction];
+                    break;
+                case fsCalculationOption.PorosityKappaCalculated:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.Porosity];
+                    break;
+                case fsCalculationOption.MachineDiameterCalculated:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.MachineDiameter];
+                    break;
+                case fsCalculationOption.FilterElementDiameterCalculated:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.FilterElementDiameter];
+                    break;
+                case fsCalculationOption.MachineAreaBCalculated:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.FilterArea];
+                    break;
+                case fsCalculationOption.CakeHeightCalculated:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.CakeHeight];
+                    break;
+                case fsCalculationOption.MassVolumeCalculated:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.SuspensionMass];
+                    break;
+            }
+            foreach (var group in ParameterToGroup.Values)
+            {
+                SetGroupInput(group, group != calculateGroup);
+            }
+        }
+
+        private bool m_isBlockedCalculationOptionChanged = false;
+
+        protected override void CalculationOptionChanged(object sender, EventArgs e)
+        {
+            if (m_isBlockedCalculationOptionChanged)
+                return;
+
+            m_isBlockedCalculationOptionChanged = true;
+
+            UpdateCalculationOptionFromUI();
+            FillCalculationComboBox();
+           
+            m_isBlockedCalculationOptionChanged = false;
+
+            base.CalculationOptionChanged(sender, e);
         }
 
         protected override void UpdateUIFromData()
         {
-            if (m_machineTypeOption == fsMachineTypeOption.PlainArea)
+            var machineTypeOption =
+                (fsCakePorosityCalculator.fsMachineTypeOption)
+                CalculationOptions[typeof(fsCakePorosityCalculator.fsMachineTypeOption)];
+            List<fsCalculationOption> restrictedOptions = new List<fsCalculationOption>();
+            if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.PlainArea)
             {
-                planeAreaRadioButton.Checked = true;
                 ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = false;
-                machineDiameterRadioButton.Visible = false;
-                filterElementDiameterRadioButton.Visible = false;
-                if (machineDiameterRadioButton.Checked)
-                {
-                    areaRadioButton.Checked = true;
-                }
-                Calculators = m_plainAreaCalculators;
-                m_areaBGroup.Representator = fsParameterIdentifier.FilterArea;
             }
-            if (m_machineTypeOption == fsMachineTypeOption.ConvexCylindric)
+            if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric)
             {
-                convexAreaRadioButton.Checked = true;
                 ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = true;
                 ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = false;
-                machineDiameterRadioButton.Visible = false;
-                filterElementDiameterRadioButton.Visible = true;
-                Calculators = m_convexCylindricAreaCalculators;
-                m_areaBGroup.Representator = fsParameterIdentifier.FilterArea;
             }
-            if (m_machineTypeOption == fsMachineTypeOption.ConcaveCylindric)
+            if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric)
             {
-                concaveAreaRadioButton.Checked = true;
                 ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = true;
                 ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = true;
                 ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = true;
-                machineDiameterRadioButton.Visible = true;
-                filterElementDiameterRadioButton.Visible = false;
-                Calculators = m_concaveCylindricAreaCalculators;
             }
 
             base.UpdateUIFromData();
-
-            textBox1.Lines = Calculators[0].GetStatusMessage().Split('\n');
         }
 
-        protected override void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid grid)
+        protected override void UpdateEquationsFromCalculationOptions()
         {
-            base.ConnectUIWithDataUpdating(grid);
-            planeAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
-            convexAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
-            concaveAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
+            var machineTypeOption =
+                (fsCakePorosityCalculator.fsMachineTypeOption)
+                CalculationOptions[typeof (fsCakePorosityCalculator.fsMachineTypeOption)];
+            if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.PlainArea)
+            {
+                Calculators = m_plainAreaCalculators;
+                m_areaBGroup.Representator = fsParameterIdentifier.FilterArea;
+            }
+            if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric)
+            {
+                Calculators = m_convexCylindricAreaCalculators;
+                m_areaBGroup.Representator = fsParameterIdentifier.FilterArea;
+            }
+            if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric)
+            {
+                Calculators = m_concaveCylindricAreaCalculators;
+                m_areaBGroup.Representator = fsParameterIdentifier.FilterArea;
+            }
         }
 
         #endregion
     }
 }
+

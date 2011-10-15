@@ -6,14 +6,6 @@ namespace Calculator.Calculation_Controls
 {
     public sealed partial class fsCakePorossityControl : fsCalculatorControl
     {
-        #region Calculation Data
-
-        private fsCakePorosityCalculator.fsSaltContentOption m_saltContentOption;
-        private fsCakePorosityCalculator.fsSaturationOption m_saturationOption;
-        private fsCakePorosityCalculator.fsMachineTypeOption m_machineTypeOption;
-
-        #endregion
-
         private readonly fsCakePorosityCalculator m_calculator = new fsCakePorosityCalculator();
 
         public fsCakePorossityControl()
@@ -65,100 +57,77 @@ namespace Calculator.Calculation_Controls
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterB].RowIndex, Color.FromArgb(255, 230, 230));
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].RowIndex, Color.FromArgb(255, 230, 230));
 
-            m_saltContentOption = fsCakePorosityCalculator.fsSaltContentOption.Neglected;
-            m_saturationOption = fsCakePorosityCalculator.fsSaturationOption.NotSaturatedCake;
-            m_machineTypeOption = fsCakePorosityCalculator.fsMachineTypeOption.PlainArea;
-            UpdateCalculationOptionAndInputGroupsFromUI();
+            fsMisc.FillList(saturationComboBox.Items, typeof(fsCakePorosityCalculator.fsSaturationOption));
+            AssignCalculationOptionAndControl(typeof(fsCakePorosityCalculator.fsSaturationOption), saturationComboBox); 
+            EstablishCalculationOption(fsCakePorosityCalculator.fsSaturationOption.NotSaturatedCake);
 
-            ConnectUIWithDataUpdating(dataGrid);
+            fsMisc.FillList(saltContentComboBox.Items, typeof(fsCakePorosityCalculator.fsSaltContentOption));
+            AssignCalculationOptionAndControl(typeof(fsCakePorosityCalculator.fsSaltContentOption), saltContentComboBox); 
+            EstablishCalculationOption(fsCakePorosityCalculator.fsSaltContentOption.Neglected);
+
+            fsMisc.FillList(machineTypeComboBox.Items, typeof(fsCakePorosityCalculator.fsMachineTypeOption));
+            AssignCalculationOptionAndControl(typeof(fsCakePorosityCalculator.fsMachineTypeOption), machineTypeComboBox);
+            EstablishCalculationOption(fsCakePorosityCalculator.fsMachineTypeOption.PlainArea);
+
+            UpdateGroupsInputInfoFromCalculationOptions();
+            UpdateEquationsFromCalculationOptions();
+            Recalculate();
             UpdateUIFromData();
+            ConnectUIWithDataUpdating(dataGrid,
+                saturationComboBox,
+                saltContentComboBox,
+                machineTypeComboBox);
         }
 
         #region Routine Methods
 
-        override protected void UpdateCalculationOptionAndInputGroupsFromUI()
+        protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            if (saltNeglectedRadioButton.Checked)
-            {
-                m_saltContentOption = fsCakePorosityCalculator.fsSaltContentOption.Neglected;
-            }
-            if (saltNotNeglectedRadioButton.Checked)
-            {
-                m_saltContentOption = fsCakePorosityCalculator.fsSaltContentOption.NotNeglected;
-            }
+            // this control has only one calculation group -- porosity
+        }
 
-            if (genaralCaseRadioButton.Checked)
-            {
-                m_saturationOption = fsCakePorosityCalculator.fsSaturationOption.NotSaturatedCake;
-            }
-            if (cakeSaturatedCaseRadioButton.Checked)
-            {
-                m_saturationOption = fsCakePorosityCalculator.fsSaturationOption.SaturatedCake;
-            }
-
-            if (plainAreaRadioButton.Checked)
-            {
-                m_machineTypeOption = fsCakePorosityCalculator.fsMachineTypeOption.PlainArea;
-            }
-            if (convexAreaRadioButton.Checked)
-            {
-                m_machineTypeOption = fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric;
-            }
-            if (concaveAreaRadioButton.Checked)
-            {
-                m_machineTypeOption = fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric;
-            }
-
-            m_calculator.SaltContentOption = m_saltContentOption;
-            m_calculator.SaturationOption = m_saturationOption;
-            m_calculator.MachineTypeOption = m_machineTypeOption;
+        protected override void UpdateEquationsFromCalculationOptions()
+        {
+            m_calculator.SaturationOption = (fsCakePorosityCalculator.fsSaturationOption)
+                CalculationOptions[typeof(fsCakePorosityCalculator.fsSaturationOption)];
+            m_calculator.SaltContentOption =
+                (fsCakePorosityCalculator.fsSaltContentOption)
+                CalculationOptions[typeof (fsCakePorosityCalculator.fsSaltContentOption)];
+            m_calculator.MachineTypeOption =
+                (fsCakePorosityCalculator.fsMachineTypeOption)
+                CalculationOptions[typeof (fsCakePorosityCalculator.fsMachineTypeOption)];
             m_calculator.RebuildEquationsList();
-
-            base.UpdateCalculationOptionAndInputGroupsFromUI();
         }
 
         protected override void UpdateUIFromData()
         {
-            if (m_saturationOption == fsCakePorosityCalculator.fsSaturationOption.NotSaturatedCake)
+            var saturationOption =
+                (fsCakePorosityCalculator.fsSaturationOption)
+                CalculationOptions[typeof (fsCakePorosityCalculator.fsSaturationOption)];
+            if (saturationOption == fsCakePorosityCalculator.fsSaturationOption.NotSaturatedCake)
             {
-                genaralCaseRadioButton.Checked = true;
-                machineTypePanel.Visible = true;
+                machineTypeComboBox.Enabled = true;
             }
-            if (m_saturationOption == fsCakePorosityCalculator.fsSaturationOption.SaturatedCake)
+            if (saturationOption == fsCakePorosityCalculator.fsSaturationOption.SaturatedCake)
             {
-                cakeSaturatedCaseRadioButton.Checked = true;
-                machineTypePanel.Visible = false;
-            }
-
-            if (m_saltContentOption == fsCakePorosityCalculator.fsSaltContentOption.Neglected)
-            {
-                saltNeglectedRadioButton.Checked = true;
-            }
-            if (m_saltContentOption == fsCakePorosityCalculator.fsSaltContentOption.NotNeglected)
-            {
-                saltNotNeglectedRadioButton.Checked = true;
+                machineTypeComboBox.Enabled = false;
             }
 
-            if (m_machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.PlainArea)
-            {
-                plainAreaRadioButton.Checked = true;
-            }
-            if (m_machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric)
-            {
-                convexAreaRadioButton.Checked = true;
-            }
-            if (m_machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric)
-            {
-                concaveAreaRadioButton.Checked = true;
-            }
+            var saltContentOption =
+                (fsCakePorosityCalculator.fsSaltContentOption)
+                CalculationOptions[typeof(fsCakePorosityCalculator.fsSaltContentOption)];
 
-            bool isSaltContentNeglected = m_saltContentOption == fsCakePorosityCalculator.fsSaltContentOption.Neglected;
-            bool isSaturated = m_saturationOption == fsCakePorosityCalculator.fsSaturationOption.SaturatedCake;
+            var machineTypeOption =
+                (fsCakePorosityCalculator.fsMachineTypeOption)
+                CalculationOptions[typeof(fsCakePorosityCalculator.fsMachineTypeOption)];
+
+            bool isSaltContentNeglected = saltContentOption == fsCakePorosityCalculator.fsSaltContentOption.Neglected;
+            bool isSaturated = saturationOption == fsCakePorosityCalculator.fsSaturationOption.SaturatedCake;
 
             bool geometryVisible = !isSaturated;
-            bool filterElementDiameterVisible = m_machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric;
-            bool machineDiameterVisible = m_machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric;
-            bool bAndBOverDVisible = m_machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric;
+            bool filterElementDiameterVisible = machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric;
+            bool machineDiameterVisible = machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric;
+            bool bAndBOverDVisible = machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric;
             ParameterToCell[fsParameterIdentifier.FilterArea].OwningRow.Visible = geometryVisible;
             ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = geometryVisible && machineDiameterVisible;
             ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = geometryVisible && filterElementDiameterVisible;
@@ -170,20 +139,15 @@ namespace Calculator.Calculation_Controls
             ParameterToCell[fsParameterIdentifier.LiquidDensity].OwningRow.Visible = !isSaltContentNeglected || isSaturated;
             ParameterToCell[fsParameterIdentifier.CakeHeight].OwningRow.Visible = !isSaturated;
 
+
             base.UpdateUIFromData();
         }
 
-        protected override void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid grid)
-        {
-            base.ConnectUIWithDataUpdating(grid);
-            saltNeglectedRadioButton.CheckedChanged += RadioButtonCheckedChanged;
-            saltNotNeglectedRadioButton.CheckedChanged += RadioButtonCheckedChanged;
-            genaralCaseRadioButton.CheckedChanged += RadioButtonCheckedChanged;
-            cakeSaturatedCaseRadioButton.CheckedChanged += RadioButtonCheckedChanged;
-            plainAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
-            convexAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
-            concaveAreaRadioButton.CheckedChanged += RadioButtonCheckedChanged;
-        }
+        //protected override void UpdateUIFromData()
+        //{
+       
+        //    base.UpdateUIFromData();
+        //}
 
         #endregion
     }

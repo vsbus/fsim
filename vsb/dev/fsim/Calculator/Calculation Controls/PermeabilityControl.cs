@@ -7,6 +7,9 @@ namespace Calculator.Calculation_Controls
 {
     public sealed partial class fsPermeabilityControl : fsCalculatorControl
     {
+
+        #region Calculation Option
+
         enum fsCalculationOption
         {
             [Description("Pc0, rc0, alpha0")]
@@ -18,6 +21,8 @@ namespace Calculator.Calculation_Controls
             [Description("Pc, rc, alpha")]
             CalcPcRcAlpha
         }
+
+        #endregion
 
         public fsPermeabilityControl()
         {
@@ -49,40 +54,47 @@ namespace Calculator.Calculation_Controls
             AddGroupToUI(dataGrid, pressureGroup, Color.FromArgb(230, 230, 255));
             AddGroupToUI(dataGrid, pcRcAGroup, Color.FromArgb(255, 230, 230));
 
-            AssignCalculationOption(fsCalculationOption.CalcPc0Rc0Alpha0, pc0rc0alpha0RadioButton, pc0Rc0A0Group);
-            AssignCalculationOption(fsCalculationOption.CalcPressure, pressureRadioButton, pressureGroup);
-            AssignCalculationOption(fsCalculationOption.CalcNc, ncRadioButton, ncGroup);
-            AssignCalculationOption(fsCalculationOption.CalcPcRcAlpha, pcrcalphaRadioButton, pcRcAGroup);
+            fsMisc.FillList(calculationOptionComboBox.Items, typeof(fsCalculationOption));
+            AssignCalculationOptionAndControl(typeof(fsCalculationOption), calculationOptionComboBox);
+            EstablishCalculationOption(fsCalculationOption.CalcPcRcAlpha);
 
-            CalculationOption = fsCalculationOption.CalcPcRcAlpha;
-            fsMisc.FillComboBox(calculateSelectionComboBox.Items, typeof(fsCalculationOption));
+            UpdateGroupsInputInfoFromCalculationOptions();
+            UpdateEquationsFromCalculationOptions();
+            Recalculate();
             UpdateUIFromData();
-
-            UpdateCalculationOptionAndInputGroupsFromUI();
-
-            ConnectUIWithDataUpdating(dataGrid);
-            UpdateUIFromData();
+            ConnectUIWithDataUpdating(dataGrid, calculationOptionComboBox);
         }
 
         #region Routine Methods
 
-        override protected void UpdateCalculationOptionAndInputGroupsFromUI()
+        protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            base.UpdateCalculationOptionAndInputGroupsFromUI();
-            CalculationOption =
-                (fsCalculationOption)fsMisc.GetEnum(typeof(fsCalculationOption), calculateSelectionComboBox.Text);
+            var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)];
+            fsParametersGroup calculateGroup = null;
+            switch (calculationOption)
+            {
+                case fsCalculationOption.CalcNc:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.Nc];
+                    break;
+                case fsCalculationOption.CalcPc0Rc0Alpha0:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.Pc0];
+                    break;
+                case fsCalculationOption.CalcPcRcAlpha:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.Pc];
+                    break;
+                case fsCalculationOption.CalcPressure:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.Pressure];
+                    break;
+            }
+            foreach (var group in ParameterToGroup.Values)
+            {
+                SetGroupInput(group, group != calculateGroup);
+            }
         }
 
-        protected override void UpdateUIFromData()
+        protected override void UpdateEquationsFromCalculationOptions()
         {
-            base.UpdateUIFromData();
-            calculateSelectionComboBox.Text = fsMisc.GetEnumDescription((fsCalculationOption)CalculationOption);
-        }
-
-        protected override void ConnectUIWithDataUpdating(fmDataGrid.fmDataGrid grid)
-        {
-            base.ConnectUIWithDataUpdating(grid);
-            calculateSelectionComboBox.TextChanged += RadioButtonCheckedChanged;
+            // this control uses only one calculator
         }
 
         #endregion

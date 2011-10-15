@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using Equations;
 using Parameters;
 
@@ -45,22 +46,29 @@ namespace StepCalculators
 
         public enum fsSaltContentOption
         {
+            [Description("Neglected")]
             Neglected,
-            NotNeglected
+            [Description("Considered")]
+            Considered
         }
         public fsSaltContentOption SaltContentOption;
 
         public enum fsSaturationOption
         {
+            [Description("Cake not saturated")]
             NotSaturatedCake,
+            [Description("Cake Saturated")]
             SaturatedCake
         }
         public fsSaturationOption SaturationOption;
 
         public enum fsMachineTypeOption
         {
+            [Description("Plain Area")]
             PlainArea,
+            [Description("Convex Area (Candle Filters)")]
             ConvexCylindric,
+            [Description("Concave Area (Centrifuges)")]
             ConcaveCylindric
         }
         public fsMachineTypeOption MachineTypeOption;
