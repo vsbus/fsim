@@ -76,6 +76,12 @@
     <Compile Include="Calculation Controls\DensityConcentrationControl.Designer.cs">
       <DependentUpon>DensityConcentrationControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calculation Controls\LaboratoryFiltrationTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Calculation Controls\LaboratoryFiltrationTime.Designer.cs">
+      <DependentUpon>LaboratoryFiltrationTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Calculation Controls\MsusAndHcControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -114,6 +120,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Calculation Controls\DensityConcentrationControl.resx">
       <DependentUpon>DensityConcentrationControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calculation Controls\LaboratoryFiltrationTime.resx">
+      <DependentUpon>LaboratoryFiltrationTime.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Calculation Controls\MsusAndHcControl.resx">

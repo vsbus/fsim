@@ -59,6 +59,7 @@
     <Compile Include="Material\Pc rc alpha Equations\fsAlphaPcEquation.cs" />
     <Compile Include="Math\fsDivisionInverseEquation.cs" />
     <Compile Include="Math\fsProductEquation.cs" />
+    <Compile Include="Math\fsSumEquation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

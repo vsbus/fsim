@@ -72,6 +72,7 @@ namespace Parameters
         public static fsParameterIdentifier DryCakeMass = new fsParameterIdentifier("Mcd", "Dry Cake Mass", fsUnits.Mass);
         public static fsParameterIdentifier SuspensionMass = new fsParameterIdentifier("Msus", "Suspension Mass", fsUnits.Mass);
         public static fsParameterIdentifier FiltrateMass = new fsParameterIdentifier("Mf", "Fitrate Mass", fsUnits.Mass);
+        public static fsParameterIdentifier LiquidMass = new fsParameterIdentifier("Ml", "Liquid Mass", fsUnits.Mass);
         public static fsParameterIdentifier SolidsMass = new fsParameterIdentifier("Ms", "Solids Mass", fsUnits.Mass);
         public static fsParameterIdentifier CakeMass = new fsParameterIdentifier("Mc", "Cake Mass", fsUnits.Mass);
         
@@ -93,7 +94,7 @@ namespace Parameters
         public static fsParameterIdentifier Ne = new fsParameterIdentifier("ne");
         public static fsParameterIdentifier Pc0 = new fsParameterIdentifier("Pc0", fsUnits.PermeabilityPc);
         public static fsParameterIdentifier Rc0 = new fsParameterIdentifier("rc0", fsUnits.CakeResistanceRc);
-        public static fsParameterIdentifier Nc = new fsParameterIdentifier("nc");
+        public static fsParameterIdentifier CakeCompressibility = new fsParameterIdentifier("nc", "Cake Compressibility");
         public static fsParameterIdentifier Alpha0 = new fsParameterIdentifier("alpha0", fsUnits.CakeResistanceAlpha);
         public static fsParameterIdentifier Hce0 = new fsParameterIdentifier("hce0", fsUnits.Length);
         public static fsParameterIdentifier Rm0 = new fsParameterIdentifier("Rm0", fsUnits.FilterMediumResistance);
