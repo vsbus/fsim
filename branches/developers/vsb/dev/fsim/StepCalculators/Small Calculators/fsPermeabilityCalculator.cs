@@ -25,7 +25,7 @@ namespace StepCalculators
             m_pc0 = AddVariable(fsParameterIdentifier.Pc0);
             m_rc0 = AddVariable(fsParameterIdentifier.Rc0);
             m_alpha0 = AddVariable(fsParameterIdentifier.Alpha0);
-            m_nc = AddVariable(fsParameterIdentifier.Nc);
+            m_nc = AddVariable(fsParameterIdentifier.CakeCompressibility);
             m_pressure = AddVariable(fsParameterIdentifier.Pressure);
             m_pc = AddVariable(fsParameterIdentifier.Pc);
             m_rc = AddVariable(fsParameterIdentifier.Rc);

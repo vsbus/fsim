@@ -98,7 +98,7 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.Pc0,
                 fsParameterIdentifier.Rc0,
                 fsParameterIdentifier.Alpha0,
-                fsParameterIdentifier.Nc,
+                fsParameterIdentifier.CakeCompressibility,
                 fsParameterIdentifier.Hce0,
                 fsParameterIdentifier.Rm0,
                 fsParameterIdentifier.FilterArea,

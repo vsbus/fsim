@@ -39,7 +39,7 @@ namespace Calculator.Calculation_Controls
                 fsParameterIdentifier.Rc0,
                 fsParameterIdentifier.Alpha0);
             var ncGroup = AddGroup(
-                fsParameterIdentifier.Nc);
+                fsParameterIdentifier.CakeCompressibility);
             var pressureGroup = AddGroup(
                 fsParameterIdentifier.Pressure);
             var pcRcAGroup = AddGroup(
@@ -74,7 +74,7 @@ namespace Calculator.Calculation_Controls
             switch (calculationOption)
             {
                 case fsCalculationOption.CalcNc:
-                    calculateGroup = ParameterToGroup[fsParameterIdentifier.Nc];
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.CakeCompressibility];
                     break;
                 case fsCalculationOption.CalcPc0Rc0Alpha0:
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.Pc0];
