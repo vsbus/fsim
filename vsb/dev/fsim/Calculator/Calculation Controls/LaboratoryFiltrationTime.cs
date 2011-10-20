@@ -25,7 +25,7 @@ namespace Calculator.Calculation_Controls
                 fsParameterIdentifier.SolidsVolumeFraction,
                 fsParameterIdentifier.SolidsConcentration);
             var epsKappaGroup = AddGroup(
-                fsParameterIdentifier.Porosity0,
+                fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0);
             var viscosityGroup = AddGroup(
                 fsParameterIdentifier.FiltrateViscosity);

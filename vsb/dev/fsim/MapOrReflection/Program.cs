@@ -23,7 +23,7 @@ namespace MapOrReflection
 
             var list = new[] {
                 fsParameterIdentifier.SolidsDensity,
-                fsParameterIdentifier.Porosity,
+                fsParameterIdentifier.CakePorosity,
                 fsParameterIdentifier.Pc0,
                 fsParameterIdentifier.Rc0,
                 fsParameterIdentifier.Alpha0,
@@ -67,7 +67,7 @@ namespace MapOrReflection
 
             var list = new[] {
                 fsParameterIdentifier.SolidsDensity,
-                fsParameterIdentifier.Porosity,
+                fsParameterIdentifier.CakePorosity,
                 fsParameterIdentifier.Pc0,
                 fsParameterIdentifier.Rc0,
                 fsParameterIdentifier.Alpha0,

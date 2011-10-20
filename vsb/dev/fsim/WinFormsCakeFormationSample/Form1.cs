@@ -82,9 +82,9 @@ namespace WinFormsCakeFormationSample
             AddParameters(
                 DeliquoringDataGrid,
                 deliquoringData,
-                fsParameterIdentifier.Porosity0,
+                fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Ne,
-                fsParameterIdentifier.Porosity);
+                fsParameterIdentifier.CakePorosity);
         }
 
         private void InitCakeFormationParameters()
@@ -92,7 +92,7 @@ namespace WinFormsCakeFormationSample
             AddParameters(
                 CakeFormationDataGrid,
                 cakeFormationData,
-                fsParameterIdentifier.Porosity0,
+                fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0,
                 fsParameterIdentifier.Ne,
                 fsParameterIdentifier.Pc0,
@@ -184,7 +184,7 @@ namespace WinFormsCakeFormationSample
         private void UpdateInputs(DataGridViewCell cell)
         {
             UpdateInputs(cell, 
-                fsParameterIdentifier.Porosity0,
+                fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0);
 
             UpdateInputs(cell,

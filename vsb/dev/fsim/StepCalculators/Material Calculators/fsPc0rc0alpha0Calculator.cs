@@ -18,7 +18,7 @@ namespace StepCalculators
             m_pc0 = AddVariable(fsParameterIdentifier.Pc0);
             m_rc0 = AddVariable(fsParameterIdentifier.Rc0);
             m_alpha0 = AddVariable(fsParameterIdentifier.Alpha0);
-            m_eps0 = AddConstant(fsParameterIdentifier.Porosity0);
+            m_eps0 = AddConstant(fsParameterIdentifier.CakePorosity0);
             m_rhoS = AddConstant(fsParameterIdentifier.SolidsDensity);
 
             #endregion
