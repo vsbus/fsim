@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Drawing;
 using Parameters;
 using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class LaboratoryFiltrationTime : fsCalculatorControl
+    public sealed partial class fsLaboratoryFiltrationTime : fsCalculatorControl
     {
-        public LaboratoryFiltrationTime()
+        public fsLaboratoryFiltrationTime()
         {
             InitializeComponent();
 
@@ -100,13 +93,7 @@ namespace Calculator.Calculation_Controls
 
         protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            // this control hasn'tcalculation options
-        }
-
-        protected override void UpdateUIFromData()
-        {
-            textBox1.Lines = Calculators[Calculators.Count - 1].GetStatusMessage().Split('\n');
-            base.UpdateUIFromData();
+            // this control hasn't calculation options
         }
     }
 }

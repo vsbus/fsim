@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using Parameters;
 using StepCalculators;
 
@@ -110,6 +109,8 @@ namespace Calculator.Calculation_Controls
 
             EstablishCalculationOption(fsCalculationOption.MassVolumeCalculated);
             FillCalculationComboBox();
+
+            m_isBlockedCalculationOptionChanged = false;
             AssignCalculationOptionAndControl(typeof(fsCalculationOption), calculationOptionComboBox);
 
             UpdateGroupsInputInfoFromCalculationOptions();
@@ -195,7 +196,7 @@ namespace Calculator.Calculation_Controls
             }
         }
 
-        private bool m_isBlockedCalculationOptionChanged = false;
+        private bool m_isBlockedCalculationOptionChanged;
 
         protected override void CalculationOptionChanged(object sender, EventArgs e)
         {
@@ -217,7 +218,6 @@ namespace Calculator.Calculation_Controls
             var machineTypeOption =
                 (fsCakePorosityCalculator.fsMachineTypeOption)
                 CalculationOptions[typeof(fsCakePorosityCalculator.fsMachineTypeOption)];
-            List<fsCalculationOption> restrictedOptions = new List<fsCalculationOption>();
             if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.PlainArea)
             {
                 ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = false;
