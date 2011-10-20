@@ -37,7 +37,7 @@ namespace Calculator
             m_modules["Densities and Solids Concentrations"] = new fsDensityConcentrationControl();
             m_modules["Permeability and Cake Compressibility"] = new fsPermeabilityControl();
             m_modules["Cake Moisture Content from Wet and Dry Cake Mass"] = new fsCakeMoistureContentFromWetAndDryCakeMassControl();
-            m_modules["Laboratory Filtration Time"] = new LaboratoryFiltrationTime();
+            m_modules["Laboratory Filtration Time"] = new fsLaboratoryFiltrationTime();
 
             foreach (var s in m_modules.Keys)
             {

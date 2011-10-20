@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
-using System.Windows.Forms;
-using System.Collections.Generic;
 
 namespace Calculator
 {
@@ -33,7 +31,7 @@ namespace Calculator
             collection.Clear();
             foreach (Enum element in Enum.GetValues(enumType))
             {
-                collection.Add(fsMisc.GetEnumDescription(element));
+                collection.Add(GetEnumDescription(element));
             }
         }
     }

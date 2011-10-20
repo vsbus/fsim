@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Calculation_Controls
 {
-    sealed partial class LaboratoryFiltrationTime
+    sealed partial class fsLaboratoryFiltrationTime
     {
         /// <summary> 
         /// Required designer variable.
@@ -76,7 +76,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGrid);
-            this.Name = "LaboratoryFiltrationTime";
+            this.Name = "fsLaboratoryFiltrationTime";
             this.Size = new System.Drawing.Size(278, 436);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.ResumeLayout(false);
