@@ -32,7 +32,7 @@ namespace StepCalculators
             m_solidsVolumeFraction = AddVariable(fsParameterIdentifier.SolidsVolumeFraction);
             m_solidsConcentration = AddVariable(fsParameterIdentifier.SolidsConcentration);
 
-            m_porosity = AddVariable(fsParameterIdentifier.Porosity);
+            m_porosity = AddVariable(fsParameterIdentifier.CakePorosity);
             m_kappa = AddVariable(fsParameterIdentifier.Kappa);
             
             m_filterArea = AddVariable(fsParameterIdentifier.FilterArea);

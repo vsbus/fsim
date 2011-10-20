@@ -13,7 +13,7 @@ namespace StepCalculators
         {
             #region Parameters Initialization
 
-            m_porosity0 = AddVariable(fsParameterIdentifier.Porosity0);
+            m_porosity0 = AddVariable(fsParameterIdentifier.CakePorosity0);
             m_kappa0 = AddVariable(fsParameterIdentifier.Kappa0);
             m_volumeConcentration = AddConstant(fsParameterIdentifier.SolidsVolumeFraction);
 

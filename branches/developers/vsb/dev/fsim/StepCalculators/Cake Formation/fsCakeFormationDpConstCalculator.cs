@@ -43,7 +43,7 @@ namespace StepCalculators
             m_solidsDensity = AddConstant(fsParameterIdentifier.SolidsDensity);
             m_etaf = AddConstant(fsParameterIdentifier.FiltrateViscosity);
             m_hce0 = AddConstant(fsParameterIdentifier.Hce0);
-            m_porosity0 = AddConstant(fsParameterIdentifier.Porosity0);
+            m_porosity0 = AddConstant(fsParameterIdentifier.CakePorosity0);
             AddConstant(fsParameterIdentifier.Kappa0);
             m_pc0 = AddConstant(fsParameterIdentifier.Pc0);
             m_ne = AddConstant(fsParameterIdentifier.Ne);
@@ -64,7 +64,7 @@ namespace StepCalculators
             m_suspensionVolume = AddVariable(fsParameterIdentifier.SuspensionVolume);
             m_suspensionMassFlowrate = AddVariable(fsParameterIdentifier.SuspensionMassFlowrate);
 
-            m_porosity = AddVariable(fsParameterIdentifier.Porosity);
+            m_porosity = AddVariable(fsParameterIdentifier.CakePorosity);
             m_pc = AddVariable(fsParameterIdentifier.Pc);
             m_rc = AddVariable(fsParameterIdentifier.Rc);
             m_alpha = AddVariable(fsParameterIdentifier.Alpha);

@@ -33,7 +33,7 @@ namespace Calculator.Calculation_Controls
             var solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity);
             var porosityGroup = AddGroup(
-                fsParameterIdentifier.Porosity);
+                fsParameterIdentifier.CakePorosity);
             var pc0Rc0A0Group = AddGroup(
                 fsParameterIdentifier.Pc0,
                 fsParameterIdentifier.Rc0,

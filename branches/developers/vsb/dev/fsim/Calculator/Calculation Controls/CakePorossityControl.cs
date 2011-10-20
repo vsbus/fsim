@@ -25,7 +25,7 @@ namespace Calculator.Calculation_Controls
             var concentrationGroup = AddGroup(fsParameterIdentifier.SolidsConcentration);
             var liquidGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
             var solidsGroup = AddGroup(fsParameterIdentifier.SolidsDensity);
-            var porosityGroup = AddGroup(fsParameterIdentifier.Porosity);
+            var porosityGroup = AddGroup(fsParameterIdentifier.CakePorosity);
 
             var groups = new[] {
                 machineDiameterGroup, 
@@ -51,7 +51,7 @@ namespace Calculator.Calculation_Controls
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
             }
             porosityGroup.IsInput = false;
-            ParameterToCell[fsParameterIdentifier.Porosity].ReadOnly = true;
+            ParameterToCell[fsParameterIdentifier.CakePorosity].ReadOnly = true;
 
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterArea].RowIndex, Color.FromArgb(255, 230, 230));
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterB].RowIndex, Color.FromArgb(255, 230, 230));

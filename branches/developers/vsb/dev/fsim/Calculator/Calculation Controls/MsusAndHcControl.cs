@@ -62,7 +62,7 @@ namespace Calculator.Calculation_Controls
                 fsParameterIdentifier.SolidsVolumeFraction,
                 fsParameterIdentifier.SolidsConcentration);
             var epsKappaGroup = AddGroup(
-                fsParameterIdentifier.Porosity,
+                fsParameterIdentifier.CakePorosity,
                 fsParameterIdentifier.Kappa);
             var machineDiameterGroup = AddGroup(
                 fsParameterIdentifier.MachineDiameter);
@@ -172,7 +172,7 @@ namespace Calculator.Calculation_Controls
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.SolidsMassFraction];
                     break;
                 case fsCalculationOption.PorosityKappaCalculated:
-                    calculateGroup = ParameterToGroup[fsParameterIdentifier.Porosity];
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.CakePorosity];
                     break;
                 case fsCalculationOption.MachineDiameterCalculated:
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.MachineDiameter];
