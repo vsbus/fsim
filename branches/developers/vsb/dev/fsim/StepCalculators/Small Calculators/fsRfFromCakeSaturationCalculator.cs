@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Parameters;
+using Equations.Material;
 
 namespace StepCalculators
 {
@@ -27,6 +28,8 @@ namespace StepCalculators
             #endregion
 
             #region Equations Initialization
+
+            Equations.Add(new fsMoistureContentFromCakeSaturationEquation(m_liquidDensity, m_solidsDensity, m_cakePorosity, m_cakeMoistureContent, m_cakeSaturation));
 
             #endregion
         }
