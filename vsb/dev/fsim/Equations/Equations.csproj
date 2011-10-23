@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cake Formation\fsCakeHeightFrom_Dp_tfEquation.cs" />
+    <Compile Include="Material\fsMoistureContentFromCakeSaturationEquation.cs" />
     <Compile Include="Material\fsPorosityEquation.cs" />
     <Compile Include="Material\fsMoistureContentEquation.cs" />
     <Compile Include="Math\fsAssignEquation.cs" />

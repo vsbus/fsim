@@ -32,13 +32,32 @@ namespace Calculator.Calculation_Controls
             var solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity);
             var porosityGroup = AddGroup(
-                fsParameterIdentifier.CakePorosity,
-                fsParameterIdentifier.CakeSaturation,
+                fsParameterIdentifier.CakePorosity);
+            var saturationGroup = AddGroup(
+                fsParameterIdentifier.CakeSaturation);
+            var rfGroup = AddGroup(
                 fsParameterIdentifier.CakeMoistureContent);
 
-            AddGroupToUI(dataGrid, liquidGroup, Color.FromArgb(230, 255, 255));
-            AddGroupToUI(dataGrid, solidsGroup, Color.FromArgb(255, 230, 255));
-            AddGroupToUI(dataGrid, porosityGroup, Color.FromArgb(255, 255, 230));
+            var groups = new[] {
+                liquidGroup,
+                solidsGroup,
+                porosityGroup,
+                saturationGroup,
+                rfGroup
+            };
+
+            var colors = new[] {
+                Color.FromArgb(255, 255, 230),
+                Color.FromArgb(255, 230, 255)
+            };
+
+            for (int i = 0; i < groups.Length; ++i)
+            {
+                groups[i].IsInput = true;
+                AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
+            }
+            rfGroup.IsInput = false;
+            ParameterToCell[fsParameterIdentifier.CakeMoistureContent].ReadOnly = true;
 
             fsMisc.FillList(calculationOptionComboBox.Items, typeof(fsCalculationOption));
             EstablishCalculationOption(fsCalculationOption.CakeMoistureContent);
@@ -48,7 +67,7 @@ namespace Calculator.Calculation_Controls
             UpdateEquationsFromCalculationOptions();
             Recalculate();
             UpdateUIFromData();
-            ConnectUIWithDataUpdating(dataGrid);
+            ConnectUIWithDataUpdating(dataGrid, calculationOptionComboBox);
         }
 
         protected override void UpdateEquationsFromCalculationOptions()
@@ -58,7 +77,24 @@ namespace Calculator.Calculation_Controls
 
         protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            // this control hasn't calculation options
+            var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)];
+            fsParametersGroup calculateGroup = null;
+            switch (calculationOption)
+            {
+                case fsCalculationOption.CakeMoistureContent:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.CakeMoistureContent];
+                    break;
+                case fsCalculationOption.CakePorosity:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.CakePorosity];
+                    break;
+                case fsCalculationOption.CakeSaturation:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.CakeSaturation];
+                    break;
+            }
+            foreach (var group in ParameterToGroup.Values)
+            {
+                SetGroupInput(group, group != calculateGroup);
+            }
         }
     }
 }
