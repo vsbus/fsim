@@ -12,7 +12,7 @@ namespace StepCalculators
         readonly fsCalculatorConstant m_dryMass;
         readonly fsCalculatorConstant m_liquidMass;
         readonly fsCalculatorConstant m_solidsMassFraction;
-        readonly fsCalculatorConstant m_solidsMassConcentration;
+        readonly fsCalculatorConstant m_solidsConcentration;
         readonly fsCalculatorVariable m_internalC;
         readonly fsCalculatorConstant m_liquidDensity;
         readonly fsCalculatorVariable m_cakeMoistureContent;
@@ -27,8 +27,8 @@ namespace StepCalculators
             m_wetMass = AddConstant(fsParameterIdentifier.WetCakeMass);
             m_dryMass = AddConstant(fsParameterIdentifier.DryCakeMass);
             m_liquidMass = AddConstant(fsParameterIdentifier.LiquidMass);
-            m_solidsMassFraction = AddConstant(fsParameterIdentifier.SolidsMassFraction);
-            m_solidsMassConcentration = AddConstant(fsParameterIdentifier.SolidsConcentration);
+            m_solidsMassFraction = AddConstant(fsParameterIdentifier.WashOutMassFractionOfLiquidAfterResuspension);
+            m_solidsConcentration = AddConstant(fsParameterIdentifier.WashOutConcentrationOfLiquidAfterResuspension);
             m_internalC = AddVariable(new fsParameterIdentifier("internalC"));
             m_liquidDensity = AddConstant(fsParameterIdentifier.LiquidDensity);
             m_cakeMoistureContent = AddVariable(fsParameterIdentifier.CakeMoistureContent);
@@ -79,7 +79,7 @@ namespace StepCalculators
                 else
                 {
                     m_internalC.IsInput = false;
-                    AddEquation(new fsProductEquation(m_solidsMassConcentration, m_internalC, m_liquidDensity));
+                    AddEquation(new fsProductEquation(m_solidsConcentration, m_internalC, m_liquidDensity));
                     AddEquation(new fsCakeWashOutContentEquation(m_cakeWashOutContent, m_dryMass, m_wetMass, m_liquidMass, m_internalC));
                 }
             }
