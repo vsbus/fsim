@@ -22,7 +22,7 @@ namespace Calculator.Calculation_Controls
             var cakeHeightGroup = AddGroup(fsParameterIdentifier.CakeHeight);
             var wetGroup = AddGroup(fsParameterIdentifier.WetCakeMass);
             var dryGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
-            var concentrationGroup = AddGroup(fsParameterIdentifier.SolidsConcentration);
+            var concentrationGroup = AddGroup(fsParameterIdentifier.SaltConcentrationInTheCakeLiquid);
             var liquidGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
             var solidsGroup = AddGroup(fsParameterIdentifier.SolidsDensity);
             var porosityGroup = AddGroup(fsParameterIdentifier.CakePorosity);
@@ -134,7 +134,7 @@ namespace Calculator.Calculation_Controls
             ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = geometryVisible && bAndBOverDVisible;
             ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = geometryVisible && bAndBOverDVisible;
 
-            ParameterToCell[fsParameterIdentifier.SolidsConcentration].OwningRow.Visible = !isSaltContentNeglected;
+            ParameterToCell[fsParameterIdentifier.SaltConcentrationInTheCakeLiquid].OwningRow.Visible = !isSaltContentNeglected;
             ParameterToCell[fsParameterIdentifier.WetCakeMass].OwningRow.Visible = !isSaltContentNeglected || isSaturated;
             ParameterToCell[fsParameterIdentifier.LiquidDensity].OwningRow.Visible = !isSaltContentNeglected || isSaturated;
             ParameterToCell[fsParameterIdentifier.CakeHeight].OwningRow.Visible = !isSaturated;

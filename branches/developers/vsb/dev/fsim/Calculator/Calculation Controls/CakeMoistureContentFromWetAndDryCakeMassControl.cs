@@ -16,8 +16,8 @@ namespace Calculator.Calculation_Controls
 
             var wetMassGroup = AddGroup(fsParameterIdentifier.WetCakeMass);
             var dryMassGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
-            var cmGroup = AddGroup(fsParameterIdentifier.SolidsMassFraction);
-            var cGroup = AddGroup(fsParameterIdentifier.SolidsConcentration);
+            var cmGroup = AddGroup(fsParameterIdentifier.SaltMassFractionInTheCakeLiquid);
+            var cGroup = AddGroup(fsParameterIdentifier.SaltConcentrationInTheCakeLiquid);
             var rholGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
             var rfGroup = AddGroup(fsParameterIdentifier.CakeMoistureContent);
             
@@ -93,8 +93,8 @@ namespace Calculator.Calculation_Controls
             bool isCmInput = concentrationOption ==
                              fsRfFromWetDryCakeCalculator.fsConcentrationOption.SolidsMassFraction;
 
-            ParameterToCell[fsParameterIdentifier.SolidsMassFraction].OwningRow.Visible = isSaltContConsidered && isCmInput;
-            ParameterToCell[fsParameterIdentifier.SolidsConcentration].OwningRow.Visible = isSaltContConsidered && !isCmInput;
+            ParameterToCell[fsParameterIdentifier.SaltMassFractionInTheCakeLiquid].OwningRow.Visible = isSaltContConsidered && isCmInput;
+            ParameterToCell[fsParameterIdentifier.SaltConcentrationInTheCakeLiquid].OwningRow.Visible = isSaltContConsidered && !isCmInput;
             ParameterToCell[fsParameterIdentifier.LiquidDensity].OwningRow.Visible = isSaltContConsidered && !isCmInput;
 
             base.UpdateUIFromData();

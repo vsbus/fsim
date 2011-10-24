@@ -85,6 +85,11 @@
             new fsUnitRecord("-", 1)
         });
 
+
+        public static fsUnits CakeWashOutContent = new fsUnits(new[] {
+            new fsUnitRecord("mg H+/kg solids", 1e-3 / 1e3)
+        });
+
         public static fsUnits SolidsConcentration = new fsUnits(new[] {
             new fsUnitRecord("g/l", 1)
         });

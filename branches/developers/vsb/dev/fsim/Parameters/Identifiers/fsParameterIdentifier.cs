@@ -99,11 +99,15 @@ namespace Parameters
         public static fsParameterIdentifier Hce0 = new fsParameterIdentifier("hce0", fsUnits.Length);
         public static fsParameterIdentifier Rm0 = new fsParameterIdentifier("Rm0", fsUnits.FilterMediumResistance);
 
+        public static fsParameterIdentifier SaltConcentrationInTheCakeLiquid = new fsParameterIdentifier("Cw", "Salt concentration in the cake liquid", fsUnits.Concentration);
+        public static fsParameterIdentifier SaltMassFractionInTheCakeLiquid = new fsParameterIdentifier("Cwm", "Salt Mass fraction in the cake liquid", fsUnits.SolidsConcentration);
+        public static fsParameterIdentifier WashOutMassFractionOfLiquidAfterResuspension = new fsParameterIdentifier("Cwm", "Wash Out Mass Fration Of Liquid After Resuspension", fsUnits.Concentration);
+        public static fsParameterIdentifier WashOutConcentrationOfLiquidAfterResuspension = new fsParameterIdentifier("Cw", "Wash Out Concentration Of Liquid After Resuspension", fsUnits.SolidsConcentration);
         public static fsParameterIdentifier CakeSaturation = new fsParameterIdentifier("S", "Cake Saturation", fsUnits.Concentration);
         public static fsParameterIdentifier CakeMoistureContent = new fsParameterIdentifier("RF", "Cake Moisture Content", fsUnits.Concentration);
-        public static fsParameterIdentifier CakeWashOutContent = new fsParameterIdentifier("X", "Cake Wash Out Content", fsUnits.Concentration);
-        public static fsParameterIdentifier pH = new fsParameterIdentifier("pH", fsUnits.NoUnits);
-        public static fsParameterIdentifier pHcake = new fsParameterIdentifier("pHcake", fsUnits.NoUnits);
+        public static fsParameterIdentifier CakeWashOutContent = new fsParameterIdentifier("X", "Cake Wash Out Content", fsUnits.CakeWashOutContent);
+        public static fsParameterIdentifier pH = new fsParameterIdentifier("pH", "pH of liquid after resuspension", fsUnits.NoUnits);
+        public static fsParameterIdentifier pHcake = new fsParameterIdentifier("pH_c", "pH of liquid in the cake", fsUnits.NoUnits);
 
         #endregion
     }
