@@ -43,8 +43,8 @@ namespace StepCalculators
 
         public enum fsFromCalculationOption
         {
-            [Description("Wash Out Concentration")]
-            WashOutConcentration,
+            [Description("Wash Out Content")]
+            WashOutContent,
             [Description("pH")]
             Ph
         }
@@ -52,10 +52,10 @@ namespace StepCalculators
 
         public enum fsWashOutContentOption
         {
-            [Description("As Mass Fraction")]
-            AsMassFraction,
-            [Description("As Concentration")]
-            AsConcentration
+            [Description("As Concentration Cw(g/l)")]
+            AsConcentration,
+            [Description("As Mass Fraction Cwm(%)")]
+            AsMassFraction
         }
         public fsWashOutContentOption WashOutContentOption;
 
@@ -70,7 +70,7 @@ namespace StepCalculators
             };
             AddEquation(new fsMoistureContentEquation(m_cakeMoistureContent, m_dryMass, m_wetMass, zero));
 
-            if (FromCalculationOption == fsFromCalculationOption.WashOutConcentration)
+            if (FromCalculationOption == fsFromCalculationOption.WashOutContent)
             {
                 if (WashOutContentOption == fsWashOutContentOption.AsMassFraction)
                 {
