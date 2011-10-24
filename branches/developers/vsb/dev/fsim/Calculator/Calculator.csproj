@@ -71,6 +71,12 @@
     <Compile Include="Calculation Controls\CakePorossityControl.Designer.cs">
       <DependentUpon>CakePorossityControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calculation Controls\CakeWashOutContentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Calculation Controls\CakeWashOutContentControl.Designer.cs">
+      <DependentUpon>CakeWashOutContentControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Calculation Controls\CalculationProcessor\CalculationProcessor.cs" />
     <Compile Include="Calculation Controls\CalculationProcessor\ParametersGroup.cs" />
     <Compile Include="Calculation Controls\CalculatorControl.cs">
@@ -126,6 +132,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Calculation Controls\CakePorossityControl.resx">
       <DependentUpon>CakePorossityControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calculation Controls\CakeWashOutContentControl.resx">
+      <DependentUpon>CakeWashOutContentControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Calculation Controls\DensityConcentrationControl.resx">
