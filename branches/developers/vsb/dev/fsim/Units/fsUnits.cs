@@ -1,4 +1,5 @@
-﻿namespace Units
+﻿using System;
+namespace Units
 {
     public class fsUnits
     {
@@ -35,6 +36,18 @@
             get
             {
                 return m_currentUnit.Name;
+            }
+            set
+            {
+                foreach (var unitRecord in m_units)
+                {
+                    if (unitRecord.Name == value)
+                    {
+                        m_currentUnit = unitRecord;
+                        return;
+                    }
+                }
+                throw new Exception("Desired units doesn't exist in m_units list.");
             }
         }
 
@@ -109,6 +122,7 @@
 
         public static fsUnits Volume = new fsUnits(new[] {
             new fsUnitRecord("l", 1e-3),
+            new fsUnitRecord("ml", 1e-6),
             new fsUnitRecord("m3", 1)
         });
 
