@@ -37,11 +37,10 @@ namespace Calculator.Calculation_Controls
 
             for (int i = 0; i < groups.Length; ++i)
             {
-                groups[i].IsInput = true;
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
+                SetGroupInput(groups[i], true);
             }
-            rfGroup.IsInput = false;
-            ParameterToCell[fsParameterIdentifier.CakeMoistureContent].ReadOnly = true;
+            SetGroupInput(rfGroup, false);
 
             fsMisc.FillList(saltContentComboBox.Items, typeof(fsRfFromWetDryCakeCalculator.fsSaltContentOption));
             EstablishCalculationOption(fsRfFromWetDryCakeCalculator.fsSaltContentOption.Neglected);

@@ -34,7 +34,7 @@ namespace Equations
 
         private void MoistureContentFormula()
         {
-            m_moistureContent.Value = (1 - m_dryMass.Value/m_wetMass.Value)/(1 - m_concentration.Value);
+            m_moistureContent.Value = (1 - m_dryMass.Value / m_wetMass.Value) / (1 - m_concentration.Value);
         }
 
         #endregion
