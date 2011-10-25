@@ -44,7 +44,6 @@
     <Compile Include="Material\fsConcentrationFromPhEquation.cs" />
     <Compile Include="Material\fsMoistureContentFromCakeSaturationEquation.cs" />
     <Compile Include="Material\fsPhCakeEquation.cs" />
-    <Compile Include="Material\fsPorosityEquation.cs" />
     <Compile Include="Material\fsMoistureContentEquation.cs" />
     <Compile Include="Material\Porosity Equations\fsPorositySaltConsideredCakeNotSaturatedEquation.cs" />
     <Compile Include="Material\Porosity Equations\fsPorositySaltConsideredCakeSaturatedEquation.cs" />

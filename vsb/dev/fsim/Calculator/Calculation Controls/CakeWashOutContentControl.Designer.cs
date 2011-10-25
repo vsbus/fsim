@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Calculation_Controls
 {
-    sealed partial class CakeWashOutContentControl
+    sealed partial class fsCakeWashOutContentControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -142,7 +142,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "CakeWashOutContentControl";
+            this.Name = "fsCakeWashOutContentControl";
             this.Size = new System.Drawing.Size(280, 280);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

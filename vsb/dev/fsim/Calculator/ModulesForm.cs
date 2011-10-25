@@ -38,7 +38,7 @@ namespace Calculator
             m_modules["Permeability and Cake Compressibility"] = new fsPermeabilityControl();
             m_modules["Cake Moisture Content from Wet and Dry Cake Mass"] = new fsCakeMoistureContentFromWetAndDryCakeMassControl();
             m_modules["Cake Moisture Content from Cake Saturation"] = new fsCakeMoistureContentFromCakeSaturationControl();
-            m_modules["Cake Wash Out Content"] = new CakeWashOutContentControl();
+            m_modules["Cake Wash Out Content"] = new fsCakeWashOutContentControl();
             m_modules["Laboratory Filtration Time"] = new fsLaboratoryFiltrationTime();
 
             foreach (var s in m_modules.Keys)
