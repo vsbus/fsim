@@ -70,7 +70,7 @@ namespace Calculator
             if (modulesForm.DialogResult == DialogResult.OK)
             {
                 ++m_counter;
-                var module = new fsModule("Module #" + m_counter, modulesForm.SelectedModule);
+                var module = new fsModule("#" + m_counter + " - " + modulesForm.SelectedModuleName, modulesForm.SelectedModule);
                 m_modules.Add(module);
                 module.Form.MdiParent = this;
                 module.Form.Closed += FormClose;

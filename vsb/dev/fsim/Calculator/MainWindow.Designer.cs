@@ -39,9 +39,9 @@
             this.windowTilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.windowsDataGrid = new fmDataGrid.fmDataGrid();
-            this.WindowNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.addModuleButton = new System.Windows.Forms.Button();
+            this.WindowNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsDataGrid)).BeginInit();
@@ -124,7 +124,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(120, 348);
+            this.panel1.Size = new System.Drawing.Size(170, 348);
             this.panel1.TabIndex = 3;
             // 
             // windowsDataGrid
@@ -143,15 +143,9 @@
             this.windowsDataGrid.ReadOnly = true;
             this.windowsDataGrid.RowHeadersVisible = false;
             this.windowsDataGrid.RowTemplate.Height = 18;
-            this.windowsDataGrid.Size = new System.Drawing.Size(120, 276);
+            this.windowsDataGrid.Size = new System.Drawing.Size(170, 276);
             this.windowsDataGrid.TabIndex = 0;
             this.windowsDataGrid.CurrentCellChanged += new System.EventHandler(this.WindowsDataGridCurrentCellChanged);
-            // 
-            // WindowNameColumn
-            // 
-            this.WindowNameColumn.HeaderText = "Window";
-            this.WindowNameColumn.Name = "WindowNameColumn";
-            this.WindowNameColumn.ReadOnly = true;
             // 
             // panel2
             // 
@@ -159,18 +153,25 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(120, 72);
+            this.panel2.Size = new System.Drawing.Size(170, 72);
             this.panel2.TabIndex = 1;
             // 
             // addModuleButton
             // 
             this.addModuleButton.Location = new System.Drawing.Point(29, 19);
             this.addModuleButton.Name = "addModuleButton";
-            this.addModuleButton.Size = new System.Drawing.Size(54, 47);
+            this.addModuleButton.Size = new System.Drawing.Size(110, 34);
             this.addModuleButton.TabIndex = 0;
             this.addModuleButton.Text = "Add Module";
             this.addModuleButton.UseVisualStyleBackColor = true;
             this.addModuleButton.Click += new System.EventHandler(this.AddModuleButtonClick);
+            // 
+            // WindowNameColumn
+            // 
+            this.WindowNameColumn.HeaderText = "Window";
+            this.WindowNameColumn.Name = "WindowNameColumn";
+            this.WindowNameColumn.ReadOnly = true;
+            this.WindowNameColumn.Width = 160;
             // 
             // MainWindow
             // 
@@ -199,7 +200,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Panel panel1;
         private fmDataGrid.fmDataGrid windowsDataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WindowNameColumn;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button addModuleButton;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
@@ -210,6 +210,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WindowNameColumn;
 
     }
 }
