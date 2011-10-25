@@ -92,17 +92,34 @@ namespace StepCalculators
                     break;
             }
 
-            AddEquation(new fsPorosityEquation(
-                            SaltContentOption == fsSaltContentOption.Neglected,
-                            SaturationOption == fsSaturationOption.SaturatedCake,
-                            m_eps,
-                            m_dryCakeMass,
-                            m_wetCakeMass,
-                            m_rhoS,
-                            m_rhoL,
-                            m_cakeArea,
-                            m_c,
-                            m_cakeHeight));
+            if (SaltContentOption == fsSaltContentOption.Neglected)
+            {
+                if (SaturationOption == fsSaturationOption.SaturatedCake)
+                {
+                    AddEquation(new fsPorositySaltNeglectedCakeSaturatedEquation(m_eps, m_dryCakeMass, m_wetCakeMass,
+                                                                                 m_rhoS, m_rhoL));
+                }
+                else
+                {
+                    AddEquation(new fsPorositySaltNeglectedCakeNotSaturatedEquation(m_eps, m_dryCakeMass, m_rhoS,
+                                                                                    m_cakeArea, m_cakeHeight));
+                }
+            }
+            else
+            {
+                if (SaturationOption == fsSaturationOption.SaturatedCake)
+                {
+                    AddEquation(new fsPorositySaltConsideredCakeSaturatedEquation(m_eps, m_dryCakeMass, m_wetCakeMass,
+                                                                                  m_c, m_rhoS, m_rhoL));
+                }
+                else
+                {
+                    AddEquation(new fsPorositySaltConsideredCakeNotSaturatedEquation(m_eps, m_dryCakeMass, m_wetCakeMass,
+                                                                                     m_c, m_rhoS, m_rhoL, m_cakeArea,
+                                                                                     m_cakeHeight));
+                }
+            }
+
         }
     }
 }

@@ -46,6 +46,10 @@
     <Compile Include="Material\fsPhCakeEquation.cs" />
     <Compile Include="Material\fsPorosityEquation.cs" />
     <Compile Include="Material\fsMoistureContentEquation.cs" />
+    <Compile Include="Material\Porosity Equations\fsPorositySaltConsideredCakeNotSaturatedEquation.cs" />
+    <Compile Include="Material\Porosity Equations\fsPorositySaltConsideredCakeSaturatedEquation.cs" />
+    <Compile Include="Material\Porosity Equations\fsPorositySaltNeglectedCakeNotSaturatedEquation.cs" />
+    <Compile Include="Material\Porosity Equations\fsPorositySaltNeglectedCakeSaturatedEquation.cs" />
     <Compile Include="Math\fsAssignEquation.cs" />
     <Compile Include="Math\fsCylinderAreaEquation.cs" />
     <Compile Include="Cake Formation\fsFrom0AndDpEquation.cs" />
