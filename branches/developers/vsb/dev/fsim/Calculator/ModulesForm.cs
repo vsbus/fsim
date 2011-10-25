@@ -9,6 +9,7 @@ namespace Calculator
     {
         private readonly Dictionary<string, fsCalculatorControl> m_modules = new Dictionary<string, fsCalculatorControl>();
         public fsCalculatorControl SelectedModule { get; private set; }
+        public string SelectedModuleName { get; private set; }
         
         public fsModulesForm()
         {
@@ -54,7 +55,8 @@ namespace Calculator
             {
                 SelectedModule.Parent = null;
             }
-            SelectedModule = m_modules[listBox1.SelectedItem.ToString()];
+            SelectedModuleName = listBox1.SelectedItem.ToString();
+            SelectedModule = m_modules[SelectedModuleName];
             SelectedModule.Parent = panel1;
             SelectedModule.Dock = DockStyle.Fill;
         }
