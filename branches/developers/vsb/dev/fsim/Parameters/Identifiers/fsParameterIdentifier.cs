@@ -101,8 +101,8 @@ namespace Parameters
 
         public static fsParameterIdentifier SaltConcentrationInTheCakeLiquid = new fsParameterIdentifier("Cw", "Salt concentration in the cake liquid", fsUnits.SolidsConcentration);
         public static fsParameterIdentifier SaltMassFractionInTheCakeLiquid = new fsParameterIdentifier("Cwm", "Salt Mass fraction in the cake liquid", fsUnits.Concentration);
-        public static fsParameterIdentifier WashOutMassFractionOfLiquidAfterResuspension = new fsParameterIdentifier("Cwm", "Wash Out Mass Fration Of Liquid After Resuspension", fsUnits.Concentration);
-        public static fsParameterIdentifier WashOutConcentrationOfLiquidAfterResuspension = new fsParameterIdentifier("Cw", "Wash Out Concentration Of Liquid After Resuspension", fsUnits.SolidsConcentration);
+        public static fsParameterIdentifier WashOutMassFraction = new fsParameterIdentifier("Cwm", "Wash Out Mass Fration", fsUnits.Concentration);
+        public static fsParameterIdentifier WashOutConcentration = new fsParameterIdentifier("Cw", "Wash Out Concentration", fsUnits.SolidsConcentration);
         public static fsParameterIdentifier CakeSaturation = new fsParameterIdentifier("S", "Cake Saturation", fsUnits.Concentration);
         public static fsParameterIdentifier CakeMoistureContent = new fsParameterIdentifier("RF", "Cake Moisture Content", fsUnits.Concentration);
         public static fsParameterIdentifier CakeWashOutContent = new fsParameterIdentifier("X", "Cake Wash Out Content", fsUnits.CakeWashOutContent);
