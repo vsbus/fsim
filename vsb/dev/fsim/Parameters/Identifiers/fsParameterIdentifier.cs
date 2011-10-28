@@ -82,11 +82,12 @@ namespace Parameters
 
         
         public static fsParameterIdentifier FiltrateViscosity = new fsParameterIdentifier("etaf", fsUnits.Viscosity);
+        public static fsParameterIdentifier MotherLiquidDensity = new fsParameterIdentifier("rho_f", "Density of Mother Liquid", fsUnits.Density);
         public static fsParameterIdentifier FiltrateDensity = new fsParameterIdentifier("rho_f", "Filtrate Density", fsUnits.Density);
         public static fsParameterIdentifier LiquidDensity = new fsParameterIdentifier("rho_l", "Liquid Density", fsUnits.Density);
         public static fsParameterIdentifier SolidsDensity = new fsParameterIdentifier("rho_s", "Solids Density", fsUnits.Density);
         public static fsParameterIdentifier SuspensionDensity = new fsParameterIdentifier("rho_sus", "Suspension Density", fsUnits.Density);
-        public static fsParameterIdentifier SolidsMassFraction = new fsParameterIdentifier("Cm", "Solids Mass Fraction", fsUnits.Concentration);
+        public static fsParameterIdentifier SuspensionSolidsMassFraction = new fsParameterIdentifier("Cm", "Suspension Solids Mass Fraction", fsUnits.Concentration);
         public static fsParameterIdentifier SolidsVolumeFraction = new fsParameterIdentifier("Cv", "Solids Volume Fraction", fsUnits.Concentration);
         public static fsParameterIdentifier SolidsConcentration = new fsParameterIdentifier("C", "Solids Concentration", fsUnits.SolidsConcentration);
         public static fsParameterIdentifier CakePorosity0 = new fsParameterIdentifier("eps0", "Cake Porosity 0", fsUnits.Concentration);
@@ -99,6 +100,8 @@ namespace Parameters
         public static fsParameterIdentifier Hce0 = new fsParameterIdentifier("hce0", fsUnits.Length);
         public static fsParameterIdentifier Rm0 = new fsParameterIdentifier("Rm0", fsUnits.FilterMediumResistance);
 
+        public static fsParameterIdentifier SaltConcentrationInTheMotherLiquid = new fsParameterIdentifier("Cf", "Salt concentration in the mother liquid", fsUnits.SolidsConcentration);
+        public static fsParameterIdentifier SaltMassFractionInTheMotherLiquid = new fsParameterIdentifier("Cfm", "Salt Mass fraction in the mother liquid", fsUnits.Concentration);
         public static fsParameterIdentifier SaltConcentrationInTheCakeLiquid = new fsParameterIdentifier("Cw", "Salt concentration in the cake liquid", fsUnits.SolidsConcentration);
         public static fsParameterIdentifier SaltMassFractionInTheCakeLiquid = new fsParameterIdentifier("Cwm", "Salt Mass fraction in the cake liquid", fsUnits.Concentration);
         public static fsParameterIdentifier WashOutMassFraction = new fsParameterIdentifier("Cwm", "Wash Out Mass Fration", fsUnits.Concentration);

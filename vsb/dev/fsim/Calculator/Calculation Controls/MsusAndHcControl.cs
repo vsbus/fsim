@@ -58,7 +58,7 @@ namespace Calculator.Calculation_Controls
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity);
             var concentrationGroup = AddGroup(
-                fsParameterIdentifier.SolidsMassFraction,
+                fsParameterIdentifier.SuspensionSolidsMassFraction,
                 fsParameterIdentifier.SolidsVolumeFraction,
                 fsParameterIdentifier.SolidsConcentration);
             var epsKappaGroup = AddGroup(
@@ -169,7 +169,7 @@ namespace Calculator.Calculation_Controls
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.SolidsDensity];
                     break;
                 case fsCalculationOption.ConcentreationsCalculated:
-                    calculateGroup = ParameterToGroup[fsParameterIdentifier.SolidsMassFraction];
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.SuspensionSolidsMassFraction];
                     break;
                 case fsCalculationOption.PorosityKappaCalculated:
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.CakePorosity];

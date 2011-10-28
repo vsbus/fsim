@@ -36,6 +36,7 @@ namespace Calculator
             {
                 TreeNode suspensionNode = new TreeNode("Suspension");
                 AddModuleToTree(suspensionNode, "Densities and Suspension Solids Content", new fsDensityConcentrationControl());
+                AddModuleToTree(suspensionNode, "Suspension Solids Mass Fraction", new SuspensionSolidsMassFractionControl());
                 treeView1.Nodes.Add(suspensionNode);
             }
             {
@@ -79,6 +80,8 @@ namespace Calculator
             SelectedModuleName = treeView1.SelectedNode.Text;
             if (!m_modules.ContainsKey(SelectedModuleName))
                 return;
+
+            currentModuleTitleLabel.Text = SelectedModuleName;
 
             if (SelectedModule != null)
             {

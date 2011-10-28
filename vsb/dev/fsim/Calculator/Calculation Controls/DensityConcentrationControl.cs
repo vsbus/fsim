@@ -36,7 +36,7 @@ namespace Calculator.Calculation_Controls
             var suspensionGroup = AddGroup(
                 fsParameterIdentifier.SuspensionDensity);
             var concentrationGroup = AddGroup(
-                fsParameterIdentifier.SolidsMassFraction,
+                fsParameterIdentifier.SuspensionSolidsMassFraction,
                 fsParameterIdentifier.SolidsVolumeFraction,
                 fsParameterIdentifier.SolidsConcentration);
 
@@ -74,7 +74,7 @@ namespace Calculator.Calculation_Controls
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.SuspensionDensity];
                     break;
                 case fsCalculationOption.CalcConcentrations:
-                    calculateGroup = ParameterToGroup[fsParameterIdentifier.SolidsMassFraction];
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.SuspensionSolidsMassFraction];
                     break;
             }
             foreach (var group in ParameterToGroup.Values)

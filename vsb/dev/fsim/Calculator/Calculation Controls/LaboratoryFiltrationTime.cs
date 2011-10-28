@@ -21,7 +21,7 @@ namespace Calculator.Calculation_Controls
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity);
             var concentrationGroup = AddGroup(
-                fsParameterIdentifier.SolidsMassFraction,
+                fsParameterIdentifier.SuspensionSolidsMassFraction,
                 fsParameterIdentifier.SolidsVolumeFraction,
                 fsParameterIdentifier.SolidsConcentration);
             var epsKappaGroup = AddGroup(

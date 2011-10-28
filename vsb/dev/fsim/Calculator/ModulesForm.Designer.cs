@@ -34,8 +34,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.currentModuleTitleLabel = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // OKButton
@@ -63,9 +66,9 @@
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(327, 0);
+            this.panel1.Location = new System.Drawing.Point(327, 37);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(292, 424);
+            this.panel1.Size = new System.Drawing.Size(292, 387);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -97,12 +100,32 @@
             this.treeView1.TabIndex = 1;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.currentModuleTitleLabel);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(327, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(292, 37);
+            this.panel4.TabIndex = 6;
+            // 
+            // currentModuleTitleLabel
+            // 
+            this.currentModuleTitleLabel.AutoSize = true;
+            this.currentModuleTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.currentModuleTitleLabel.Location = new System.Drawing.Point(6, 9);
+            this.currentModuleTitleLabel.Name = "currentModuleTitleLabel";
+            this.currentModuleTitleLabel.Size = new System.Drawing.Size(144, 13);
+            this.currentModuleTitleLabel.TabIndex = 0;
+            this.currentModuleTitleLabel.Text = "currentModuleTitleLabel";
+            // 
             // fsModulesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 487);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Name = "fsModulesForm";
@@ -110,6 +133,8 @@
             this.Load += new System.EventHandler(this.ModulesFormLoad);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -122,5 +147,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label currentModuleTitleLabel;
     }
 }

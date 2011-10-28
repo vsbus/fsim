@@ -125,14 +125,14 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.FiltrateDensity,
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity,
-                fsParameterIdentifier.SolidsMassFraction,
+                fsParameterIdentifier.SuspensionSolidsMassFraction,
                 fsParameterIdentifier.SolidsVolumeFraction,
                 fsParameterIdentifier.SolidsConcentration);
 
             materialData.m_parameterValue[fsParameterIdentifier.FiltrateDensity].IsInput = true;
             materialData.m_parameterValue[fsParameterIdentifier.SolidsDensity].IsInput = true;
             materialData.m_parameterValue[fsParameterIdentifier.SuspensionDensity].IsInput = true;
-            materialData.m_parameterCell[fsParameterIdentifier.SolidsMassFraction].ReadOnly = true;
+            materialData.m_parameterCell[fsParameterIdentifier.SuspensionSolidsMassFraction].ReadOnly = true;
             materialData.m_parameterCell[fsParameterIdentifier.SolidsVolumeFraction].ReadOnly = true;
             materialData.m_parameterCell[fsParameterIdentifier.SolidsConcentration].ReadOnly = true;
         }
