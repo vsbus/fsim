@@ -63,6 +63,7 @@ namespace Calculator
             }
 
             treeView1.ExpandAll();
+            treeView1.SelectedNode = treeView1.Nodes[0].Nodes[0];
         }
 
         private void AddModuleToTree(TreeNode suspensionNode, string moduleName, fsCalculatorControl control)
