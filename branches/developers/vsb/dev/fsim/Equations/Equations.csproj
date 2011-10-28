@@ -49,6 +49,7 @@
     <Compile Include="Material\Porosity Equations\fsPorositySaltConsideredCakeSaturatedEquation.cs" />
     <Compile Include="Material\Porosity Equations\fsPorositySaltNeglectedCakeNotSaturatedEquation.cs" />
     <Compile Include="Material\Porosity Equations\fsPorositySaltNeglectedCakeSaturatedEquation.cs" />
+    <Compile Include="Material\Porosity Equations\fsSuspensionSolidsMassFractionEquation.cs" />
     <Compile Include="Math\fsAssignEquation.cs" />
     <Compile Include="Math\fsCylinderAreaEquation.cs" />
     <Compile Include="Cake Formation\fsFrom0AndDpEquation.cs" />

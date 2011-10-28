@@ -33,37 +33,23 @@ namespace StepCalculators
             Equations = null;
         }
 
-        public enum fsSaltContentOption
-        {
-            [Description("Neglected")]
-            Neglected,
-            [Description("Considered")]
-            Considered
-        }
-        public fsSaltContentOption SaltContentOption;
-
-        public enum fsConcentrationOption
-        {
-            [Description("Mass fraction Cm (%)")]
-            SolidsMassFraction,
-            [Description("Concentration C (g/l)")]
-            Concentration
-        }
-        public fsConcentrationOption ConcentrationOption;
+        public fsCalculationOptions.fsSaltContentOption SaltContentOption;
+        public fsCalculationOptions.fsConcentrationOption ConcentrationOption;
 
         public void RebuildEquationsList()
         {
             Equations = new List<fsCalculatorEquation>();
 
-            if (SaltContentOption == fsSaltContentOption.Neglected)
+            if (SaltContentOption == fsCalculationOptions.fsSaltContentOption.Neglected)
             {
                 m_internalC.Value = fsValue.Zero;
                 m_internalC.IsInput = true;
+                m_internalC.IsProcessed = true;
                 AddEquation(new fsMoistureContentEquation(m_cakeMoistureContent, m_dryMass, m_wetMass, m_internalC));
             }
             else
             {
-                if (ConcentrationOption == fsConcentrationOption.SolidsMassFraction)
+                if (ConcentrationOption == fsCalculationOptions.fsConcentrationOption.SolidsMassFraction)
                 {
                     AddEquation(new fsMoistureContentEquation(m_cakeMoistureContent, m_dryMass, m_wetMass, m_solidsMassFraction));
                 }

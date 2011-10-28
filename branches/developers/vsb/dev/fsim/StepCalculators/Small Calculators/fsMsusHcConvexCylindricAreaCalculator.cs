@@ -30,7 +30,7 @@ namespace StepCalculators
             m_filtrateDensity = AddVariable(fsParameterIdentifier.FiltrateDensity);
             m_solidsDensity = AddVariable(fsParameterIdentifier.SolidsDensity);
             m_suspensionDensity = AddVariable(fsParameterIdentifier.SuspensionDensity);
-            m_solidsMassFraction = AddVariable(fsParameterIdentifier.SolidsMassFraction);
+            m_solidsMassFraction = AddVariable(fsParameterIdentifier.SuspensionSolidsMassFraction);
             m_solidsVolumeFraction = AddVariable(fsParameterIdentifier.SolidsVolumeFraction);
             m_solidsConcentration = AddVariable(fsParameterIdentifier.SolidsConcentration);
 

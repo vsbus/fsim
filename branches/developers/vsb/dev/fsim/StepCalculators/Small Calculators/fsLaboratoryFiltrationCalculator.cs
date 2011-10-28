@@ -37,7 +37,7 @@ namespace StepCalculators
             AddConstant(fsParameterIdentifier.SuspensionDensity);
             m_eps0 = AddConstant(fsParameterIdentifier.CakePorosity0);
             m_solidsDensity = AddConstant(fsParameterIdentifier.SolidsDensity);
-            m_cm = AddConstant(fsParameterIdentifier.SolidsMassFraction);
+            m_cm = AddConstant(fsParameterIdentifier.SuspensionSolidsMassFraction);
             m_pc = AddVariable(fsParameterIdentifier.Pc);
             m_hc = AddVariable(fsParameterIdentifier.CakeHeight);
             m_formationTime = AddVariable(fsParameterIdentifier.FormationTime);
