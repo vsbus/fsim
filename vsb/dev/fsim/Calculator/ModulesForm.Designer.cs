@@ -41,7 +41,7 @@
             // OKButton
             // 
             this.OKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OKButton.Location = new System.Drawing.Point(232, 19);
+            this.OKButton.Location = new System.Drawing.Point(85, 19);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(90, 32);
             this.OKButton.TabIndex = 1;
@@ -52,7 +52,7 @@
             // cancelButton
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.Location = new System.Drawing.Point(337, 19);
+            this.cancelButton.Location = new System.Drawing.Point(190, 19);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(90, 32);
             this.cancelButton.TabIndex = 2;
@@ -65,7 +65,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(327, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(439, 358);
+            this.panel1.Size = new System.Drawing.Size(292, 424);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -73,9 +73,9 @@
             this.panel2.Controls.Add(this.OKButton);
             this.panel2.Controls.Add(this.cancelButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(327, 358);
+            this.panel2.Location = new System.Drawing.Point(327, 424);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(439, 63);
+            this.panel2.Size = new System.Drawing.Size(292, 63);
             this.panel2.TabIndex = 4;
             // 
             // panel3
@@ -84,7 +84,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(327, 421);
+            this.panel3.Size = new System.Drawing.Size(327, 487);
             this.panel3.TabIndex = 5;
             // 
             // treeView1
@@ -93,7 +93,7 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(327, 421);
+            this.treeView1.Size = new System.Drawing.Size(327, 487);
             this.treeView1.TabIndex = 1;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -101,7 +101,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(766, 421);
+            this.ClientSize = new System.Drawing.Size(619, 487);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
