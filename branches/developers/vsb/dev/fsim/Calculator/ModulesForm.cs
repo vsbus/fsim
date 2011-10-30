@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using Calculator.Calculation_Controls;
 
@@ -32,33 +33,33 @@ namespace Calculator
 
         private void ModulesFormLoad(object sender, EventArgs e)
         {
-
+            //var boldFont = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold);
             {
-                TreeNode suspensionNode = new TreeNode("Suspension");
+                var suspensionNode = new TreeNode("Suspension");
                 AddModuleToTree(suspensionNode, "Densities and Suspension Solids Content", new fsDensityConcentrationControl());
                 AddModuleToTree(suspensionNode, "Suspension Solids Mass Fraction", new SuspensionSolidsMassFractionControl());
                 treeView1.Nodes.Add(suspensionNode);
             }
             {
-                TreeNode filterCakeNode = new TreeNode("Filter Cake");
+                var filterCakeNode = new TreeNode("Filter Cake");
                 AddModuleToTree(filterCakeNode, "Suspension Amount and Cake Height", new fsMsusAndHcControl());
                 AddModuleToTree(filterCakeNode, "Cake Porosity", new fsCakePorossityControl());
                 AddModuleToTree(filterCakeNode, "Cake Permeability/resistance and Cake Compressibility", new fsPermeabilityControl());
                 treeView1.Nodes.Add(filterCakeNode);
             }
             {
-                TreeNode cakeFormationNode = new TreeNode("Cake Formation");
+                var cakeFormationNode = new TreeNode("Cake Formation");
                 AddModuleToTree(cakeFormationNode, "Calculation Cake Formation", new fsLaboratoryFiltrationTime());
                 treeView1.Nodes.Add(cakeFormationNode);
             }
             {
-                TreeNode cakeDeliquoringNode = new TreeNode("Cake Deliquoring");
+                var cakeDeliquoringNode = new TreeNode("Cake Deliquoring");
                 AddModuleToTree(cakeDeliquoringNode, "Cake Moisture Content from Wet and Dry Cake Mass", new fsCakeMoistureContentFromWetAndDryCakeMassControl());
                 AddModuleToTree(cakeDeliquoringNode, "Cake Moisture Content from Cake Saturation", new fsCakeMoistureContentFromCakeSaturationControl());
                 treeView1.Nodes.Add(cakeDeliquoringNode);
             }
             {
-                TreeNode cakeWashingNode = new TreeNode("Cake Washing");
+                var cakeWashingNode = new TreeNode("Cake Washing");
                 AddModuleToTree(cakeWashingNode, "Cake Wash Out Content X", new fsCakeWashOutContentControl());
                 treeView1.Nodes.Add(cakeWashingNode);
             }
@@ -72,10 +73,10 @@ namespace Calculator
             if (m_modules.ContainsKey(moduleName))
                 throw new Exception("Module with such name is already added.");
             m_modules[moduleName] = control;
-            suspensionNode.Nodes.Add(moduleName);
+            suspensionNode.Nodes.Add(moduleName).NodeFont = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular);
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TreeView1AfterSelect(object sender, TreeViewEventArgs e)
         {
             SelectedModuleName = treeView1.SelectedNode.Text;
             if (!m_modules.ContainsKey(SelectedModuleName))
