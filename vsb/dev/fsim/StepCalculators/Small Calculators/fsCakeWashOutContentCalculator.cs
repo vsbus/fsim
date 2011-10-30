@@ -41,23 +41,9 @@ namespace StepCalculators
             Equations = null;
         }
 
-        public enum fsFromCalculationOption
-        {
-            [Description("Wash Out Content")]
-            WashOutContent,
-            [Description("pH")]
-            Ph
-        }
-        public fsFromCalculationOption FromCalculationOption;
+        public fsCalculationOptions.fsFromCalculationOption FromCalculationOption;
 
-        public enum fsWashOutContentOption
-        {
-            [Description("As Concentration Cw(g/l)")]
-            AsConcentration,
-            [Description("As Mass Fraction Cwm(%)")]
-            AsMassFraction
-        }
-        public fsWashOutContentOption WashOutContentOption;
+        public fsCalculationOptions.fsWashOutContentOption WashOutContentOption;
 
         public void RebuildEquationsList()
         {
@@ -70,9 +56,9 @@ namespace StepCalculators
             };
             AddEquation(new fsMoistureContentEquation(m_cakeMoistureContent, m_dryMass, m_wetMass, zero));
 
-            if (FromCalculationOption == fsFromCalculationOption.WashOutContent)
+            if (FromCalculationOption == fsCalculationOptions.fsFromCalculationOption.WashOutContent)
             {
-                if (WashOutContentOption == fsWashOutContentOption.AsMassFraction)
+                if (WashOutContentOption == fsCalculationOptions.fsWashOutContentOption.AsMassFraction)
                 {
                     AddEquation(new fsCakeWashOutContentEquation(m_cakeWashOutContent, m_dryMass, m_wetMass, m_liquidMass, m_solidsMassFraction));
                 }

@@ -35,17 +35,17 @@ namespace Calculator.Calculation_Controls
             var porosityGroup = AddGroup(
                 fsParameterIdentifier.CakePorosity);
             var pc0Rc0A0Group = AddGroup(
-                fsParameterIdentifier.Pc0,
-                fsParameterIdentifier.Rc0,
+                fsParameterIdentifier.CakePermeability0,
+                fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.Alpha0);
             var ncGroup = AddGroup(
                 fsParameterIdentifier.CakeCompressibility);
             var pressureGroup = AddGroup(
                 fsParameterIdentifier.Pressure);
             var pcRcAGroup = AddGroup(
-                fsParameterIdentifier.Pc,
-                fsParameterIdentifier.Rc,
-                fsParameterIdentifier.Alpha);
+                fsParameterIdentifier.CakePermeability,
+                fsParameterIdentifier.CakeResistance,
+                fsParameterIdentifier.CakeResistanceAlpha);
 
             AddGroupToUI(dataGrid, solidsGroup, Color.FromArgb(230, 230, 255));
             AddGroupToUI(dataGrid, porosityGroup, Color.FromArgb(255, 255, 230));
@@ -77,10 +77,10 @@ namespace Calculator.Calculation_Controls
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.CakeCompressibility];
                     break;
                 case fsCalculationOption.CalcPc0Rc0Alpha0:
-                    calculateGroup = ParameterToGroup[fsParameterIdentifier.Pc0];
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.CakePermeability0];
                     break;
                 case fsCalculationOption.CalcPcRcAlpha:
-                    calculateGroup = ParameterToGroup[fsParameterIdentifier.Pc];
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.CakePermeability];
                     break;
                 case fsCalculationOption.CalcPressure:
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.Pressure];

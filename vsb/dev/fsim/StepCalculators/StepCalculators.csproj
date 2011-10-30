@@ -64,6 +64,7 @@
     <Compile Include="Small Calculators\fsMsusHcConvexCylindricAreaCalculator.cs" />
     <Compile Include="Small Calculators\fsMsusHcPlainAreaCalculator.cs" />
     <Compile Include="Small Calculators\fsPermeabilityCalculator.cs" />
+    <Compile Include="Small Calculators\fsPkeFromPcRcCalculator.cs" />
     <Compile Include="Small Calculators\fsRfFromCakeSaturationCalculator.cs" />
     <Compile Include="Small Calculators\fsRfFromWetDryCakeCalculator.cs" />
     <Compile Include="Small Calculators\fsSuspensionSolidsMassFractionCalculator.cs" />

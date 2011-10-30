@@ -24,14 +24,14 @@ namespace MapOrReflection
         {
             m_rhoS = AddVariable(fsParameterIdentifier.SolidsDensity);
             m_eps = AddVariable(fsParameterIdentifier.CakePorosity);
-            m_pc0 = AddVariable(fsParameterIdentifier.Pc0);
-            m_rc0 = AddVariable(fsParameterIdentifier.Rc0);
+            m_pc0 = AddVariable(fsParameterIdentifier.CakePermeability0);
+            m_rc0 = AddVariable(fsParameterIdentifier.CakeResistance0);
             m_alpha0 = AddVariable(fsParameterIdentifier.Alpha0);
             m_nc = AddVariable(fsParameterIdentifier.CakeCompressibility);
             m_pressure = AddVariable(fsParameterIdentifier.Pressure);
-            m_pc = AddVariable(fsParameterIdentifier.Pc);
-            m_rc = AddVariable(fsParameterIdentifier.Rc);
-            m_alpha = AddVariable(fsParameterIdentifier.Alpha);
+            m_pc = AddVariable(fsParameterIdentifier.CakePermeability);
+            m_rc = AddVariable(fsParameterIdentifier.CakeResistance);
+            m_alpha = AddVariable(fsParameterIdentifier.CakeResistanceAlpha);
         }
 
         protected fsCalculatorVariable AddVariable(fsParameterIdentifier identifier)

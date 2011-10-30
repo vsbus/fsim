@@ -24,14 +24,14 @@ namespace MapOrReflection
             var list = new[] {
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.CakePorosity,
-                fsParameterIdentifier.Pc0,
-                fsParameterIdentifier.Rc0,
+                fsParameterIdentifier.CakePermeability0,
+                fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.Alpha0,
                 fsParameterIdentifier.CakeCompressibility,
                 fsParameterIdentifier.Pressure,
-                fsParameterIdentifier.Pc,
-                fsParameterIdentifier.Rc,
-                fsParameterIdentifier.Alpha
+                fsParameterIdentifier.CakePermeability,
+                fsParameterIdentifier.CakeResistance,
+                fsParameterIdentifier.CakeResistanceAlpha
             };
 
             foreach (var x in list)
@@ -68,14 +68,14 @@ namespace MapOrReflection
             var list = new[] {
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.CakePorosity,
-                fsParameterIdentifier.Pc0,
-                fsParameterIdentifier.Rc0,
+                fsParameterIdentifier.CakePermeability0,
+                fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.Alpha0,
                 fsParameterIdentifier.CakeCompressibility,
                 fsParameterIdentifier.Pressure,
-                fsParameterIdentifier.Pc,
-                fsParameterIdentifier.Rc,
-                fsParameterIdentifier.Alpha
+                fsParameterIdentifier.CakePermeability,
+                fsParameterIdentifier.CakeResistance,
+                fsParameterIdentifier.CakeResistanceAlpha
             };
 
             foreach (var x in list)

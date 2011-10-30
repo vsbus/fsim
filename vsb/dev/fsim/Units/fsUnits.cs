@@ -117,6 +117,10 @@ namespace Units
             new fsUnitRecord("mPa s", 1e-3)
         });
 
+        public static fsUnits SurfaceTension = new fsUnits(new[] {
+            new fsUnitRecord("10-3 N m-1", 1e-3)
+        });
+
         public static fsUnits Mass = new fsUnits(new[] {
             new fsUnitRecord("kg", 1),
             new fsUnitRecord("g", 1e-3)
@@ -132,11 +136,11 @@ namespace Units
             new fsUnitRecord("kg/h", 1/3600.0),
         });
 
-        public static fsUnits PermeabilityPc = new fsUnits(new[] {
+        public static fsUnits CakePermeability = new fsUnits(new[] {
             new fsUnitRecord("10-13m2", 1e-13)
         });
 
-        public static fsUnits CakeResistanceRc = new fsUnits(new[] {
+        public static fsUnits CakeResistance = new fsUnits(new[] {
             new fsUnitRecord("10+13m-2", 1e13)
         });
 
