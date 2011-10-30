@@ -109,8 +109,8 @@ namespace Parameters
         public static fsParameterIdentifier CakeSaturation = new fsParameterIdentifier("S", "Cake Saturation", fsUnits.Concentration);
         public static fsParameterIdentifier CakeMoistureContent = new fsParameterIdentifier("RF", "Cake Moisture Content", fsUnits.Concentration);
         public static fsParameterIdentifier CakeWashOutContent = new fsParameterIdentifier("X", "Cake Wash Out Content", fsUnits.CakeWashOutContent);
-        public static fsParameterIdentifier pH = new fsParameterIdentifier("pH", "pH of liquid after resuspension", fsUnits.NoUnits);
-        public static fsParameterIdentifier pHcake = new fsParameterIdentifier("pH_c", "pH of liquid in the cake", fsUnits.NoUnits);
+        public static fsParameterIdentifier Ph = new fsParameterIdentifier("pH", "pH of liquid after resuspension", fsUnits.NoUnits);
+        public static fsParameterIdentifier PHcake = new fsParameterIdentifier("pH_c", "pH of liquid in the cake", fsUnits.NoUnits);
 
         #endregion
     }

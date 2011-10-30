@@ -32,8 +32,8 @@ namespace StepCalculators
             m_internalC = AddVariable(new fsParameterIdentifier("internalC"));
             m_liquidDensity = AddConstant(fsParameterIdentifier.LiquidDensity);
             m_cakeMoistureContent = AddVariable(fsParameterIdentifier.CakeMoistureContent);
-            m_pH = AddConstant(fsParameterIdentifier.pH);
-            m_pHcake = AddVariable(fsParameterIdentifier.pHcake);
+            m_pH = AddConstant(fsParameterIdentifier.Ph);
+            m_pHcake = AddVariable(fsParameterIdentifier.PHcake);
             m_cakeWashOutContent = AddVariable(fsParameterIdentifier.CakeWashOutContent);
 
             #endregion

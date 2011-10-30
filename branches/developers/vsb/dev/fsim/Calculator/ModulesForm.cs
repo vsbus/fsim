@@ -33,39 +33,38 @@ namespace Calculator
 
         private void ModulesFormLoad(object sender, EventArgs e)
         {
-            //var boldFont = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold);
-            {
-                var suspensionNode = new TreeNode("Suspension");
-                AddModuleToTree(suspensionNode, "Densities and Suspension Solids Content", new fsDensityConcentrationControl());
-                AddModuleToTree(suspensionNode, "Suspension Solids Mass Fraction", new SuspensionSolidsMassFractionControl());
-                treeView1.Nodes.Add(suspensionNode);
-            }
-            {
-                var filterCakeNode = new TreeNode("Filter Cake");
-                AddModuleToTree(filterCakeNode, "Suspension Amount and Cake Height", new fsMsusAndHcControl());
-                AddModuleToTree(filterCakeNode, "Cake Porosity", new fsCakePorossityControl());
-                AddModuleToTree(filterCakeNode, "Cake Permeability/resistance and Cake Compressibility", new fsPermeabilityControl());
-                treeView1.Nodes.Add(filterCakeNode);
-            }
-            {
-                var cakeFormationNode = new TreeNode("Cake Formation");
-                AddModuleToTree(cakeFormationNode, "Calculation Cake Formation", new fsLaboratoryFiltrationTime());
-                treeView1.Nodes.Add(cakeFormationNode);
-            }
-            {
-                var cakeDeliquoringNode = new TreeNode("Cake Deliquoring");
-                AddModuleToTree(cakeDeliquoringNode, "Cake Moisture Content from Wet and Dry Cake Mass", new fsCakeMoistureContentFromWetAndDryCakeMassControl());
-                AddModuleToTree(cakeDeliquoringNode, "Cake Moisture Content from Cake Saturation", new fsCakeMoistureContentFromCakeSaturationControl());
-                treeView1.Nodes.Add(cakeDeliquoringNode);
-            }
-            {
-                var cakeWashingNode = new TreeNode("Cake Washing");
-                AddModuleToTree(cakeWashingNode, "Cake Wash Out Content X", new fsCakeWashOutContentControl());
-                treeView1.Nodes.Add(cakeWashingNode);
-            }
+            AddGroupToTree("Suspension", new KeyValuePair<string, fsCalculatorControl>[] {
+                new KeyValuePair<string, fsCalculatorControl>("Densities and Suspension Solids Content", new fsDensityConcentrationControl()),
+                new KeyValuePair<string, fsCalculatorControl>("Suspension Solids Mass Fraction", new SuspensionSolidsMassFractionControl())
+            });
+            AddGroupToTree("Filter Cake", new KeyValuePair<string, fsCalculatorControl>[] {
+                new KeyValuePair<string, fsCalculatorControl>("Suspension Amount and Cake Height", new fsMsusAndHcControl()),
+                new KeyValuePair<string, fsCalculatorControl>("Cake Porosity", new fsCakePorossityControl()),
+                new KeyValuePair<string, fsCalculatorControl>("Cake Permeability/Resistance and Cake Compressibility", new fsPermeabilityControl())
+            });
+            AddGroupToTree("Cake Formation", new KeyValuePair<string, fsCalculatorControl>[] {
+                new KeyValuePair<string, fsCalculatorControl>("Calculation Cake Formation", new fsLaboratoryFiltrationTime())
+            });
+            AddGroupToTree("Cake Deliquoring", new KeyValuePair<string, fsCalculatorControl>[] {
+                new KeyValuePair<string, fsCalculatorControl>("Cake Moisture Content from Wet and Dry Cake Mass", new fsCakeMoistureContentFromWetAndDryCakeMassControl()),
+                new KeyValuePair<string, fsCalculatorControl>("Cake Moisture Content from Cake Saturation", new fsCakeMoistureContentFromCakeSaturationControl())
+            });
+            AddGroupToTree("Cake Washing", new KeyValuePair<string, fsCalculatorControl>[] {
+                new KeyValuePair<string, fsCalculatorControl>("Cake Wash Out Content X", new fsCakeWashOutContentControl())
+            });
 
             treeView1.ExpandAll();
             treeView1.SelectedNode = treeView1.Nodes[0].Nodes[0];
+        }
+
+        private void AddGroupToTree(string nodeName, IEnumerable<KeyValuePair<string, fsCalculatorControl>> calculationControls)
+        {
+            var node = new TreeNode(nodeName);
+            foreach (var pair in calculationControls)
+            {
+                AddModuleToTree(node, pair.Key, pair.Value);
+            }
+            treeView1.Nodes.Add(node);
         }
 
         private void AddModuleToTree(TreeNode suspensionNode, string moduleName, fsCalculatorControl control)
@@ -95,3 +94,4 @@ namespace Calculator
         }
     }
 }
+

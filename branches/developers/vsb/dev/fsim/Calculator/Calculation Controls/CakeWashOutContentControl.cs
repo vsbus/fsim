@@ -19,10 +19,10 @@ namespace Calculator.Calculation_Controls
             var cwmGroup = AddGroup(fsParameterIdentifier.WashOutMassFraction);
             var rholGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
             var cwGroup = AddGroup(fsParameterIdentifier.WashOutConcentration);
-            var phGroup = AddGroup(fsParameterIdentifier.pH);
+            var phGroup = AddGroup(fsParameterIdentifier.Ph);
             var dryMassGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
             var outGroup = AddGroup(
-                fsParameterIdentifier.pHcake,
+                fsParameterIdentifier.PHcake,
                 fsParameterIdentifier.CakeMoistureContent,
                 fsParameterIdentifier.CakeWashOutContent);
 
@@ -103,8 +103,8 @@ namespace Calculator.Calculation_Controls
             ParameterToCell[fsParameterIdentifier.WashOutMassFraction].OwningRow.Visible = isFromWashOutConcentration && isCmInput;
             ParameterToCell[fsParameterIdentifier.WashOutConcentration].OwningRow.Visible = isFromWashOutConcentration && !isCmInput;
             ParameterToCell[fsParameterIdentifier.LiquidDensity].OwningRow.Visible = !isFromWashOutConcentration || !isCmInput;
-            ParameterToCell[fsParameterIdentifier.pH].OwningRow.Visible = !isFromWashOutConcentration;
-            ParameterToCell[fsParameterIdentifier.pHcake].OwningRow.Visible = !isFromWashOutConcentration;
+            ParameterToCell[fsParameterIdentifier.Ph].OwningRow.Visible = !isFromWashOutConcentration;
+            ParameterToCell[fsParameterIdentifier.PHcake].OwningRow.Visible = !isFromWashOutConcentration;
 
             base.UpdateUIFromData();
         }
