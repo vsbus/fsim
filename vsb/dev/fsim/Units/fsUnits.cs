@@ -100,8 +100,9 @@ namespace Units
 
 
         public static fsUnits CakeWashOutContent = new fsUnits(new[] {
+            new fsUnitRecord("g/kg_solids", 1e-3),
             new fsUnitRecord("%", 1e-2),
-            new fsUnitRecord("mg H+/kg solids", 1e-3 / 1e3)
+            new fsUnitRecord("mg H+/kg solids", 1e-6)
         });
 
         public static fsUnits SolidsConcentration = new fsUnits(new[] {
