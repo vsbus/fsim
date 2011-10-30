@@ -32,6 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
@@ -45,12 +48,15 @@
     <Compile Include="Material\fsMoistureContentFromCakeSaturationEquation.cs" />
     <Compile Include="Material\fsPhCakeEquation.cs" />
     <Compile Include="Material\fsMoistureContentEquation.cs" />
+    <Compile Include="Material\fsPkeFromStandartEquation.cs" />
     <Compile Include="Material\Porosity Equations\fsPorositySaltConsideredCakeNotSaturatedEquation.cs" />
     <Compile Include="Material\Porosity Equations\fsPorositySaltConsideredCakeSaturatedEquation.cs" />
     <Compile Include="Material\Porosity Equations\fsPorositySaltNeglectedCakeNotSaturatedEquation.cs" />
     <Compile Include="Material\Porosity Equations\fsPorositySaltNeglectedCakeSaturatedEquation.cs" />
     <Compile Include="Material\Porosity Equations\fsSuspensionSolidsMassFractionEquation.cs" />
     <Compile Include="Math\fsAssignEquation.cs" />
+    <Compile Include="Math\GeneralEquations\fsConstantProductEquation.cs" />
+    <Compile Include="Math\GeneralEquations\fsConstantSumEquation.cs" />
     <Compile Include="Math\fsCylinderAreaEquation.cs" />
     <Compile Include="Cake Formation\fsFrom0AndDpEquation.cs" />
     <Compile Include="Cake Formation\fsSuspensionMassFromHcEpsConcaveCylindircAreaEquation.cs" />

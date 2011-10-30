@@ -51,9 +51,9 @@ namespace Parameters
 
         public static fsParameterIdentifier CakePorosity = new fsParameterIdentifier("eps", "Cake Porosity", fsUnits.Concentration);
         public static fsParameterIdentifier Kappa = new fsParameterIdentifier("kappa");
-        public static fsParameterIdentifier Pc = new fsParameterIdentifier("Pc", fsUnits.PermeabilityPc);
-        public static fsParameterIdentifier Rc = new fsParameterIdentifier("rc", fsUnits.CakeResistanceRc);
-        public static fsParameterIdentifier Alpha = new fsParameterIdentifier("alpha", fsUnits.CakeResistanceAlpha);
+        public static fsParameterIdentifier CakePermeability = new fsParameterIdentifier("Pc", "Cake Premeability", fsUnits.CakePermeability);
+        public static fsParameterIdentifier CakeResistance = new fsParameterIdentifier("rc", "Cake Resistance", fsUnits.CakeResistance);
+        public static fsParameterIdentifier CakeResistanceAlpha = new fsParameterIdentifier("alpha", "Cake Resistance", fsUnits.CakeResistanceAlpha);
 
         public static fsParameterIdentifier FilterArea = new fsParameterIdentifier("A", "Filter Area", fsUnits.Area);
         public static fsParameterIdentifier MachineDiameter = new fsParameterIdentifier("D", "Machine Diameter", fsUnits.Length);
@@ -82,6 +82,11 @@ namespace Parameters
 
         
         public static fsParameterIdentifier FiltrateViscosity = new fsParameterIdentifier("etaf", fsUnits.Viscosity);
+        public static fsParameterIdentifier SurfaceTensionLiquidOfCake = new fsParameterIdentifier("sigma", "Surface Tension Liquid of Cake", fsUnits.SurfaceTension);
+        public static fsParameterIdentifier StandartCapillaryPressure = new fsParameterIdentifier("pke_st", "Standart Capillary Pressure", fsUnits.Pressure);
+        public static fsParameterIdentifier CapillaryPressure = new fsParameterIdentifier("pke", "Capillary Pressure", fsUnits.Pressure);
+
+        public static fsParameterIdentifier BulkDensityDrySolids = new fsParameterIdentifier("rhos_bulk", "Bulk Density Dry Solids", fsUnits.Density);
         public static fsParameterIdentifier MotherLiquidDensity = new fsParameterIdentifier("rho_f", "Density of Mother Liquid", fsUnits.Density);
         public static fsParameterIdentifier FiltrateDensity = new fsParameterIdentifier("rho_f", "Filtrate Density", fsUnits.Density);
         public static fsParameterIdentifier LiquidDensity = new fsParameterIdentifier("rho_l", "Liquid Density", fsUnits.Density);
@@ -93,8 +98,8 @@ namespace Parameters
         public static fsParameterIdentifier CakePorosity0 = new fsParameterIdentifier("eps0", "Cake Porosity 0", fsUnits.Concentration);
         public static fsParameterIdentifier Kappa0 = new fsParameterIdentifier("kappa0");
         public static fsParameterIdentifier Ne = new fsParameterIdentifier("ne");
-        public static fsParameterIdentifier Pc0 = new fsParameterIdentifier("Pc0", fsUnits.PermeabilityPc);
-        public static fsParameterIdentifier Rc0 = new fsParameterIdentifier("rc0", fsUnits.CakeResistanceRc);
+        public static fsParameterIdentifier CakePermeability0 = new fsParameterIdentifier("Pc0", "Cake Permeability0", fsUnits.CakePermeability);
+        public static fsParameterIdentifier CakeResistance0 = new fsParameterIdentifier("rc0", "Cake Resistance0", fsUnits.CakeResistance);
         public static fsParameterIdentifier CakeCompressibility = new fsParameterIdentifier("nc", "Cake Compressibility");
         public static fsParameterIdentifier Alpha0 = new fsParameterIdentifier("alpha0", fsUnits.CakeResistanceAlpha);
         public static fsParameterIdentifier Hce0 = new fsParameterIdentifier("hce0", fsUnits.Length);

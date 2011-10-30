@@ -30,8 +30,8 @@ namespace Calculator.Calculation_Controls
             var viscosityGroup = AddGroup(
                 fsParameterIdentifier.FiltrateViscosity);
             var pc0Rc0Alpha0Group = AddGroup(
-                fsParameterIdentifier.Pc0,
-                fsParameterIdentifier.Rc0,
+                fsParameterIdentifier.CakePermeability0,
+                fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.Alpha0);
             var ncGroup = AddGroup(
                 fsParameterIdentifier.CakeCompressibility);

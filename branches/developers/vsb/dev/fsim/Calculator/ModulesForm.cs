@@ -47,7 +47,8 @@ namespace Calculator
             });
             AddGroupToTree("Cake Deliquoring", new KeyValuePair<string, fsCalculatorControl>[] {
                 new KeyValuePair<string, fsCalculatorControl>("Cake Moisture Content from Wet and Dry Cake Mass", new fsCakeMoistureContentFromWetAndDryCakeMassControl()),
-                new KeyValuePair<string, fsCalculatorControl>("Cake Moisture Content from Cake Saturation", new fsCakeMoistureContentFromCakeSaturationControl())
+                new KeyValuePair<string, fsCalculatorControl>("Cake Moisture Content from Cake Saturation", new fsCakeMoistureContentFromCakeSaturationControl()),
+                new KeyValuePair<string, fsCalculatorControl>("pke From Cake Permeability/Resistance", new fsPkeFromPcRcControl())
             });
             AddGroupToTree("Cake Washing", new KeyValuePair<string, fsCalculatorControl>[] {
                 new KeyValuePair<string, fsCalculatorControl>("Cake Wash Out Content X", new fsCakeWashOutContentControl())

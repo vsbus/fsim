@@ -49,13 +49,13 @@ namespace Calculator.Calculation_Controls
             }
             SetGroupInput(outGroup, false);
 
-            fsMisc.FillList(fromComboBox.Items, typeof(fsCakeWashOutContentCalculator.fsFromCalculationOption));
-            EstablishCalculationOption(fsCakeWashOutContentCalculator.fsFromCalculationOption.WashOutContent);
-            AssignCalculationOptionAndControl(typeof(fsCakeWashOutContentCalculator.fsFromCalculationOption), fromComboBox);
+            fsMisc.FillList(fromComboBox.Items, typeof(fsCalculationOptions.fsFromCalculationOption));
+            EstablishCalculationOption(fsCalculationOptions.fsFromCalculationOption.WashOutContent);
+            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsFromCalculationOption), fromComboBox);
 
-            fsMisc.FillList(washOutContentComboBox.Items, typeof(fsCakeWashOutContentCalculator.fsWashOutContentOption));
-            EstablishCalculationOption(fsCakeWashOutContentCalculator.fsWashOutContentOption.AsConcentration);
-            AssignCalculationOptionAndControl(typeof(fsCakeWashOutContentCalculator.fsWashOutContentOption), washOutContentComboBox);
+            fsMisc.FillList(washOutContentComboBox.Items, typeof(fsCalculationOptions.fsWashOutContentOption));
+            EstablishCalculationOption(fsCalculationOptions.fsWashOutContentOption.AsConcentration);
+            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsWashOutContentOption), washOutContentComboBox);
 
             UpdateGroupsInputInfoFromCalculationOptions();
             UpdateEquationsFromCalculationOptions();
@@ -76,29 +76,29 @@ namespace Calculator.Calculation_Controls
         protected override void UpdateEquationsFromCalculationOptions()
         {
             m_calculator.FromCalculationOption =
-                (fsCakeWashOutContentCalculator.fsFromCalculationOption)
-                CalculationOptions[typeof(fsCakeWashOutContentCalculator.fsFromCalculationOption)];
+                (fsCalculationOptions.fsFromCalculationOption)
+                CalculationOptions[typeof(fsCalculationOptions.fsFromCalculationOption)];
             m_calculator.WashOutContentOption =
-                (fsCakeWashOutContentCalculator.fsWashOutContentOption)
-                CalculationOptions[typeof(fsCakeWashOutContentCalculator.fsWashOutContentOption)];
+                (fsCalculationOptions.fsWashOutContentOption)
+                CalculationOptions[typeof(fsCalculationOptions.fsWashOutContentOption)];
             m_calculator.RebuildEquationsList();
         }
 
         protected override void UpdateUIFromData()
         {
             var fromContentOption =
-                (fsCakeWashOutContentCalculator.fsFromCalculationOption)
-                CalculationOptions[typeof(fsCakeWashOutContentCalculator.fsFromCalculationOption)];
-            bool isFromWashOutConcentration = fromContentOption == fsCakeWashOutContentCalculator.fsFromCalculationOption.WashOutContent;
+                (fsCalculationOptions.fsFromCalculationOption)
+                CalculationOptions[typeof(fsCalculationOptions.fsFromCalculationOption)];
+            bool isFromWashOutConcentration = fromContentOption == fsCalculationOptions.fsFromCalculationOption.WashOutContent;
 
             washOutContentLabel.Visible = isFromWashOutConcentration;
             washOutContentComboBox.Visible = isFromWashOutConcentration;
 
             var washOutContentOption =
-                (fsCakeWashOutContentCalculator.fsWashOutContentOption)
-                CalculationOptions[typeof(fsCakeWashOutContentCalculator.fsWashOutContentOption)];
+                (fsCalculationOptions.fsWashOutContentOption)
+                CalculationOptions[typeof(fsCalculationOptions.fsWashOutContentOption)];
             bool isCmInput = washOutContentOption ==
-                             fsCakeWashOutContentCalculator.fsWashOutContentOption.AsMassFraction;
+                             fsCalculationOptions.fsWashOutContentOption.AsMassFraction;
 
             ParameterToCell[fsParameterIdentifier.WashOutMassFraction].OwningRow.Visible = isFromWashOutConcentration && isCmInput;
             ParameterToCell[fsParameterIdentifier.WashOutConcentration].OwningRow.Visible = isFromWashOutConcentration && !isCmInput;

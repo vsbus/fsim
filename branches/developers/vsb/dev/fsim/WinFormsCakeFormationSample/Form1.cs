@@ -95,8 +95,8 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0,
                 fsParameterIdentifier.Ne,
-                fsParameterIdentifier.Pc0,
-                fsParameterIdentifier.Rc0,
+                fsParameterIdentifier.CakePermeability0,
+                fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.Alpha0,
                 fsParameterIdentifier.CakeCompressibility,
                 fsParameterIdentifier.Hce0,
@@ -188,8 +188,8 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.Kappa0);
 
             UpdateInputs(cell,
-                fsParameterIdentifier.Pc0,
-                fsParameterIdentifier.Rc0,
+                fsParameterIdentifier.CakePermeability0,
+                fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.Alpha0);
 
             UpdateInputs(cell,
