@@ -69,13 +69,13 @@
             this.ParameterColumn.Name = "ParameterColumn";
             this.ParameterColumn.ReadOnly = true;
             this.ParameterColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ParameterColumn.Width = 180;
+            this.ParameterColumn.Width = 260;
             // 
             // ValueColumn
             // 
             this.ValueColumn.HeaderText = "Value";
             this.ValueColumn.Name = "ValueColumn";
-            this.ValueColumn.Width = 80;
+            this.ValueColumn.Width = 50;
             // 
             // panel1
             // 
@@ -121,7 +121,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "fsCakeMoistureContentFromCakeSaturationControl";
-            this.Size = new System.Drawing.Size(280, 188);
+            this.Size = new System.Drawing.Size(330, 188);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

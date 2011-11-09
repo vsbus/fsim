@@ -54,7 +54,7 @@
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.RowHeadersVisible = false;
             this.dataGrid.RowTemplate.Height = 18;
-            this.dataGrid.Size = new System.Drawing.Size(270, 436);
+            this.dataGrid.Size = new System.Drawing.Size(322, 436);
             this.dataGrid.TabIndex = 0;
             // 
             // ParameterColumn
@@ -63,21 +63,21 @@
             this.ParameterColumn.Name = "ParameterColumn";
             this.ParameterColumn.ReadOnly = true;
             this.ParameterColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ParameterColumn.Width = 180;
+            this.ParameterColumn.Width = 260;
             // 
             // ValueColumn
             // 
             this.ValueColumn.HeaderText = "Value";
             this.ValueColumn.Name = "ValueColumn";
-            this.ValueColumn.Width = 80;
+            this.ValueColumn.Width = 50;
             // 
-            // LaboratoryFiltrationTime
+            // fsLaboratoryFiltrationTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGrid);
             this.Name = "fsLaboratoryFiltrationTime";
-            this.Size = new System.Drawing.Size(278, 436);
+            this.Size = new System.Drawing.Size(330, 436);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.ResumeLayout(false);
 
