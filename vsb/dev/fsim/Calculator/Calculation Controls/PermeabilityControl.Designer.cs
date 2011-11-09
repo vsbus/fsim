@@ -33,8 +33,8 @@
             this.calculationOptionComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.parameterNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valueColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
+            this.parameterColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValueColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -52,8 +52,8 @@
             this.dataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.parameterNameColumn,
-            this.valueColumn});
+            this.parameterColumn,
+            this.ValueColumn});
             this.dataGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.dataGrid.HighLightCurrentRow = false;
             this.dataGrid.Location = new System.Drawing.Point(8, 0);
@@ -100,19 +100,19 @@
             this.panel2.Size = new System.Drawing.Size(280, 233);
             this.panel2.TabIndex = 2;
             // 
-            // parameterNameColumn
+            // parameterColumn
             // 
-            this.parameterNameColumn.HeaderText = "Parameter";
-            this.parameterNameColumn.Name = "parameterNameColumn";
-            this.parameterNameColumn.ReadOnly = true;
-            this.parameterNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.parameterNameColumn.Width = 180;
+            this.parameterColumn.HeaderText = "Parameter";
+            this.parameterColumn.Name = "parameterNameColumn";
+            this.parameterColumn.ReadOnly = true;
+            this.parameterColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.parameterColumn.Width = 260;
             // 
-            // valueColumn
+            // ValueColumn
             // 
-            this.valueColumn.HeaderText = "Value";
-            this.valueColumn.Name = "valueColumn";
-            this.valueColumn.Width = 80;
+            this.ValueColumn.HeaderText = "Value";
+            this.ValueColumn.Name = "ValueColumn";
+            this.ValueColumn.Width = 50;
             // 
             // fsPermeabilityControl
             // 
@@ -121,7 +121,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "fsPermeabilityControl";
-            this.Size = new System.Drawing.Size(280, 272);
+            this.Size = new System.Drawing.Size(330, 272);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -137,7 +137,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox calculationOptionComboBox;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn parameterNameColumn;
-        private fmDataGrid.fmDataGridViewNumericalTextBoxColumn valueColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn parameterColumn;
+        private fmDataGrid.fmDataGridViewNumericalTextBoxColumn ValueColumn;
     }
 }

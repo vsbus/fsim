@@ -150,13 +150,13 @@
             this.ParameterColumn.Name = "ParameterColumn";
             this.ParameterColumn.ReadOnly = true;
             this.ParameterColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ParameterColumn.Width = 180;
+            this.ParameterColumn.Width = 260;
             // 
             // ValueColumn
             // 
             this.ValueColumn.HeaderText = "Value";
             this.ValueColumn.Name = "ValueColumn";
-            this.ValueColumn.Width = 80;
+            this.ValueColumn.Width = 50;
             // 
             // fsCakePorossityControl
             // 
@@ -165,7 +165,7 @@
             this.Controls.Add(this.machineTypePanel);
             this.Controls.Add(this.panel3);
             this.Name = "fsCakePorossityControl";
-            this.Size = new System.Drawing.Size(280, 366);
+            this.Size = new System.Drawing.Size(330, 366);
             this.machineTypePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.panel3.ResumeLayout(false);

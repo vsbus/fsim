@@ -35,7 +35,7 @@
             this.inputCake = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGrid = new fmDataGrid.fmDataGrid();
-            this.ParameterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ParameterColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValueColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -111,7 +111,7 @@
             this.dataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ParameterName,
+            this.ParameterColumn,
             this.ValueColumn});
             this.dataGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.dataGrid.HighLightCurrentRow = false;
@@ -122,19 +122,19 @@
             this.dataGrid.Size = new System.Drawing.Size(272, 189);
             this.dataGrid.TabIndex = 0;
             // 
-            // ParameterName
+            // ParameterColumn
             // 
-            this.ParameterName.HeaderText = "Parameter";
-            this.ParameterName.Name = "ParameterName";
-            this.ParameterName.ReadOnly = true;
-            this.ParameterName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ParameterName.Width = 180;
+            this.ParameterColumn.HeaderText = "Parameter";
+            this.ParameterColumn.Name = "ParameterName";
+            this.ParameterColumn.ReadOnly = true;
+            this.ParameterColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ParameterColumn.Width = 260;
             // 
             // ValueColumn
             // 
             this.ValueColumn.HeaderText = "Value";
             this.ValueColumn.Name = "ValueColumn";
-            this.ValueColumn.Width = 80;
+            this.ValueColumn.Width = 50;
             // 
             // fsPkeFromPcRcControl
             // 
@@ -143,7 +143,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "fsPkeFromPcRcControl";
-            this.Size = new System.Drawing.Size(280, 250);
+            this.Size = new System.Drawing.Size(330, 250);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -159,7 +159,7 @@
         private System.Windows.Forms.ComboBox inputCakeComboBox;
         private System.Windows.Forms.Label inputCake;
         private fmDataGrid.fmDataGrid dataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ParameterName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn;
         private fmDataGrid.fmDataGridViewNumericalTextBoxColumn ValueColumn;
         private System.Windows.Forms.ComboBox enterSolidsDensityComboBox;
         private System.Windows.Forms.Label enterSolidsDensityLabel;
