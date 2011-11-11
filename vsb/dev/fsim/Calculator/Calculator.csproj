@@ -118,6 +118,9 @@
     <Compile Include="Calculation Controls\SuspensionSolidsMassFractionControl.Designer.cs">
       <DependentUpon>SuspensionSolidsMassFractionControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="fsTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="fsMisc.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>

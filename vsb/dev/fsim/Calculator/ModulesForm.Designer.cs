@@ -33,7 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeView1 = new fsTreeView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.currentModuleTitleLabel = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
@@ -146,7 +146,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TreeView treeView1;
+        fsTreeView treeView1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label currentModuleTitleLabel;
     }
