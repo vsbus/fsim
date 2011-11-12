@@ -1,29 +1,34 @@
 ﻿using System;
 namespace Units
 {
-    public class fsUnits
+    public class fsCharacteristic
     {
-        #region fsUnits
+        #region fsCharacteristic
 
-        struct fsUnitRecord
+        public struct fsUnit
         {
             public string Name { get; private set; }
 
             public double Coefficient { get; private set; }
 
-            public fsUnitRecord(string name, double coefficient) : this()
+            public fsUnit(string name, double coefficient) : this()
             {
                 Name = name;
                 Coefficient = coefficient;
             }
         }
 
-        private readonly fsUnitRecord [] m_units;
-        private fsUnitRecord m_currentUnit;
-
-        private fsUnits(params fsUnitRecord[] units)
+        private readonly fsUnit [] m_units;
+        public fsUnit[] Units
         {
-            m_units = new fsUnitRecord[units.Length];
+            get { return m_units; }
+        }
+
+        private fsUnit m_currentUnit;
+
+        private fsCharacteristic(params fsUnit[] units)
+        {
+            m_units = new fsUnit[units.Length];
             for (int i = 0; i < units.Length; ++i)
             {
                 m_units[i] = units[i];
@@ -61,95 +66,95 @@ namespace Units
 
         #endregion
 
-        #region Units Collection
+        #region Characteristic Listing
 
-        public static fsUnits NoUnits = new fsUnits(new[] {
-            new fsUnitRecord("-", 1),
+        public static fsCharacteristic NoUnits = new fsCharacteristic(new[] {
+            new fsUnit("-", 1),
         });
 
-        public static fsUnits Length = new fsUnits(new[] {
-            new fsUnitRecord("mm", 1e-3),
-            new fsUnitRecord("m", 1)
+        public static fsCharacteristic Length = new fsCharacteristic(new[] {
+            new fsUnit("mm", 1e-3),
+            new fsUnit("m", 1)
         });
 
-        public static fsUnits Area = new fsUnits(new[] {
-            new fsUnitRecord("m2", 1),
-            new fsUnitRecord("cm2", 1e-4),
-            new fsUnitRecord("mm2", 1e-6)
+        public static fsCharacteristic Area = new fsCharacteristic(new[] {
+            new fsUnit("m2", 1),
+            new fsUnit("cm2", 1e-4),
+            new fsUnit("mm2", 1e-6)
         });
 
-        public static fsUnits Pressure = new fsUnits(new[] {
-            new fsUnitRecord("bar", 1e5),
-            new fsUnitRecord("Pa", 1)
+        public static fsCharacteristic Pressure = new fsCharacteristic(new[] {
+            new fsUnit("bar", 1e5),
+            new fsUnit("Pa", 1)
         });
 
-        public static fsUnits Time = new fsUnits(new[] {
-            new fsUnitRecord("s", 1),
-            new fsUnitRecord("m", 60)
+        public static fsCharacteristic Time = new fsCharacteristic(new[] {
+            new fsUnit("s", 1),
+            new fsUnit("m", 60)
         });
 
-        public static fsUnits Frequency = new fsUnits(new[] {
-            new fsUnitRecord("1/s", 1),
-            new fsUnitRecord("1/m", 1.0 / 60)
+        public static fsCharacteristic Frequency = new fsCharacteristic(new[] {
+            new fsUnit("1/s", 1),
+            new fsUnit("1/m", 1.0 / 60)
         });
 
-        public static fsUnits Concentration = new fsUnits(new[] {
-            new fsUnitRecord("%", 1e-2),
-            new fsUnitRecord("-", 1)
+        public static fsCharacteristic Concentration = new fsCharacteristic(new[] {
+            new fsUnit("%", 1e-2),
+            new fsUnit("-", 1)
         });
 
 
-        public static fsUnits CakeWashOutContent = new fsUnits(new[] {
-            new fsUnitRecord("g/kg_solids", 1e-3),
-            new fsUnitRecord("%", 1e-2),
-            new fsUnitRecord("mg H+/kg solids", 1e-6)
+        public static fsCharacteristic CakeWashOutContent = new fsCharacteristic(new[] {
+            new fsUnit("g/kg_solids", 1e-3),
+            new fsUnit("%", 1e-2),
+            new fsUnit("mg H+/kg solids", 1e-6)
         });
 
-        public static fsUnits SolidsConcentration = new fsUnits(new[] {
-            new fsUnitRecord("g/l", 1)
+        public static fsCharacteristic SolidsConcentration = new fsCharacteristic(new[] {
+            new fsUnit("g/l", 1)
         });
 
-        public static fsUnits Density = new fsUnits(new[] {
-            new fsUnitRecord("kg/m3", 1)
+        public static fsCharacteristic Density = new fsCharacteristic(new[] {
+            new fsUnit("kg/m3", 1)
         });
 
-        public static fsUnits Viscosity = new fsUnits(new[] {
-            new fsUnitRecord("mPa s", 1e-3)
+        public static fsCharacteristic Viscosity = new fsCharacteristic(new[] {
+            new fsUnit("mPa s", 1e-3)
         });
 
-        public static fsUnits SurfaceTension = new fsUnits(new[] {
-            new fsUnitRecord("10-3 N m-1", 1e-3)
+        public static fsCharacteristic SurfaceTension = new fsCharacteristic(new[] {
+            new fsUnit("10-3 N m-1", 1e-3)
         });
 
-        public static fsUnits Mass = new fsUnits(new[] {
-            new fsUnitRecord("kg", 1),
-            new fsUnitRecord("g", 1e-3)
+        public static fsCharacteristic Mass = new fsCharacteristic(new[] {
+            new fsUnit("kg", 1),
+            new fsUnit("g", 1e-3)
         });
 
-        public static fsUnits Volume = new fsUnits(new[] {
-            new fsUnitRecord("l", 1e-3),
-            new fsUnitRecord("ml", 1e-6),
-            new fsUnitRecord("m3", 1)
+        public static fsCharacteristic Volume = new fsCharacteristic(new[] {
+            new fsUnit("l", 1e-3),
+            new fsUnit("ml", 1e-6),
+            new fsUnit("m3", 1)
         });
 
-        public static fsUnits Flowrate = new fsUnits(new[] {
-            new fsUnitRecord("kg/h", 1/3600.0),
+        public static fsCharacteristic Flowrate = new fsCharacteristic(new[] {
+            new fsUnit("kg/h", 1/3600.0),
         });
 
-        public static fsUnits CakePermeability = new fsUnits(new[] {
-            new fsUnitRecord("10-13m2", 1e-13)
+        public static fsCharacteristic CakePermeability = new fsCharacteristic(new[] {
+            new fsUnit("10-13m2", 1e-13)
         });
 
-        public static fsUnits CakeResistance = new fsUnits(new[] {
-            new fsUnitRecord("10+13m-2", 1e13)
+        public static fsCharacteristic CakeResistance = new fsCharacteristic(new[] {
+            new fsUnit("10+13m-2", 1e13)
         });
 
-        public static fsUnits CakeResistanceAlpha = new fsUnits(new[] {
-            new fsUnitRecord("10+10m/kg", 1e10)
+        public static fsCharacteristic CakeResistanceAlpha = new fsCharacteristic(new[] {
+            new fsUnit("10+10m/kg", 1e10)
         });
 
-        public static fsUnits FilterMediumResistance = new fsUnits(new[] {
-            new fsUnitRecord("10+10m/kg", 1e10)
+        public static fsCharacteristic FilterMediumResistance = new fsCharacteristic(new[] {
+            new fsUnit("10+10m/kg", 1e10)
         });
 
         #endregion

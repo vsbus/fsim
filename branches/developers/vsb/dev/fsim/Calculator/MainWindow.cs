@@ -122,5 +122,12 @@ namespace Calculator
         {
             addModuleButton.PerformClick();
         }
+
+        private void unitsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var unitsDialog = new UnitsDialog();
+            unitsDialog.ShowDialog();
+
+        }
     }
 }
