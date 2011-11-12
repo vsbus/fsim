@@ -68,20 +68,20 @@ namespace Calculator
             treeView1.Nodes.Add(node);
         }
 
-        private void AddModuleToTree(TreeNode suspensionNode, string moduleName, fsCalculatorControl control)
+        private void AddModuleToTree(TreeNode treeNode, string moduleName, fsCalculatorControl control)
         {
             if (m_modules.ContainsKey(moduleName))
                 throw new Exception("Module with such name is already added.");
             m_modules[moduleName] = control;
-            suspensionNode.Nodes.Add(moduleName).NodeFont = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular);
+            treeNode.Nodes.Add(moduleName).NodeFont = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular);
         }
 
         private void TreeView1AfterSelect(object sender, TreeViewEventArgs e)
         {
-            SelectedModuleName = treeView1.SelectedNode.Text;
-            if (!m_modules.ContainsKey(SelectedModuleName))
+            if (!m_modules.ContainsKey(treeView1.SelectedNode.Text))
                 return;
 
+            SelectedModuleName = treeView1.SelectedNode.Text;
             currentModuleTitleLabel.Text = SelectedModuleName;
 
             if (SelectedModule != null)

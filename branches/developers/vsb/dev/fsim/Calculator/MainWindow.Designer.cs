@@ -39,9 +39,9 @@
             this.windowTilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.windowsDataGrid = new fmDataGrid.fmDataGrid();
+            this.WindowNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.addModuleButton = new System.Windows.Forms.Button();
-            this.WindowNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsDataGrid)).BeginInit();
@@ -147,6 +147,13 @@
             this.windowsDataGrid.TabIndex = 0;
             this.windowsDataGrid.CurrentCellChanged += new System.EventHandler(this.WindowsDataGridCurrentCellChanged);
             // 
+            // WindowNameColumn
+            // 
+            this.WindowNameColumn.HeaderText = "Window";
+            this.WindowNameColumn.Name = "WindowNameColumn";
+            this.WindowNameColumn.ReadOnly = true;
+            this.WindowNameColumn.Width = 160;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.addModuleButton);
@@ -165,13 +172,6 @@
             this.addModuleButton.Text = "Add Module";
             this.addModuleButton.UseVisualStyleBackColor = true;
             this.addModuleButton.Click += new System.EventHandler(this.AddModuleButtonClick);
-            // 
-            // WindowNameColumn
-            // 
-            this.WindowNameColumn.HeaderText = "Window";
-            this.WindowNameColumn.Name = "WindowNameColumn";
-            this.WindowNameColumn.ReadOnly = true;
-            this.WindowNameColumn.Width = 160;
             // 
             // MainWindow
             // 
