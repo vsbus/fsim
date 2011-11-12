@@ -74,8 +74,22 @@ namespace Calculator
                 m_modules.Add(module);
                 module.Form.MdiParent = this;
                 module.Form.Closed += FormClose;
+                module.Form.Activated += Form_Activated;
                 RebuildWindowsList();
                 windowsDataGrid.CurrentCell = windowsDataGrid[0, windowsDataGrid.RowCount - 1];
+            }
+        }
+
+        void Form_Activated(object sender, EventArgs e)
+        {
+            var form = (Form)sender;
+            foreach (DataGridViewRow row in windowsDataGrid.Rows)
+            {
+                var currentCell = row.Cells[0];
+                if (currentCell.Value.ToString() == form.Text)
+                {
+                    windowsDataGrid.CurrentCell = currentCell;
+                }
             }
         }
 
