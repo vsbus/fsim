@@ -32,6 +32,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="For Calculators\fsCalculatorConstant.cs" />
@@ -43,6 +45,7 @@
     <Compile Include="Interfaces\fsIEquationParameter.cs" />
     <Compile Include="Interfaces\fsIProcessedParameter.cs" />
     <Compile Include="Interfaces\fsIValuedParameter.cs" />
+    <Compile Include="Interfaces\fsMeasuredParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

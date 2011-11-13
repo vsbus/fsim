@@ -4,7 +4,9 @@ using System.Windows.Forms;
 using System.Drawing;
 using Parameters;
 using StepCalculators;
+using Units;
 using Value;
+using ParametersIdentifiers.Interfaces;
 
 namespace Calculator.Calculation_Controls
 {
@@ -12,7 +14,7 @@ namespace Calculator.Calculation_Controls
     {
         #region Calculation Data
         
-        protected Dictionary<fsParameterIdentifier, fsNamedValueParameter> Values { get; private set; }
+        protected Dictionary<fsParameterIdentifier, fsMeasuredParameter> Values { get; private set; }
         protected Dictionary<Type, Enum> CalculationOptions = new Dictionary<Type, Enum>();
         
         #endregion
@@ -29,7 +31,7 @@ namespace Calculator.Calculation_Controls
 
         public fsCalculatorControl()
         {
-            Values = new Dictionary<fsParameterIdentifier, fsNamedValueParameter>();
+            Values = new Dictionary<fsParameterIdentifier, fsMeasuredParameter>();
             ParameterToCell = new Dictionary<fsParameterIdentifier,DataGridViewCell>();
             CellToParameter = new Dictionary<DataGridViewCell,fsParameterIdentifier>();
             Calculators = new List<fsCalculator>();
@@ -145,8 +147,9 @@ namespace Calculator.Calculation_Controls
         {
             foreach (var p in group.Parameters)
             {
-                Values.Add(p, new fsSimulationParameter(p));
-                AddRow(dataGrid, p, color);
+                var parameter = new fsMeasuredParameter(p);
+                Values.Add(p, parameter);
+                AddRow(dataGrid, parameter, color);
             }
         }
 
@@ -164,11 +167,11 @@ namespace Calculator.Calculation_Controls
             WriteValuesToDataGrid();
         }
 
-        protected void AddRow(DataGridView dataGrid, fsParameterIdentifier parameter, Color color)
+        protected void AddRow(DataGridView dataGrid, fsMeasuredParameter parameter, Color color)
         {
-            int ind = dataGrid.Rows.Add(new[] { parameter + " [" + parameter.Units.CurrentName + "]", "" });
+            int ind = dataGrid.Rows.Add(new[] { parameter.ToString(), "" });
             SetRowColor(dataGrid, ind, color);
-            AssignParameterAndCell(parameter, dataGrid.Rows[ind].Cells[1]);
+            AssignParameterAndCell(parameter.Identifier, dataGrid.Rows[ind].Cells[1]);
         }
 
         protected void SetRowColor(DataGridView dataGrid, int ind, Color color)
@@ -214,7 +217,7 @@ namespace Calculator.Calculation_Controls
         {
             foreach (var p in Values.Keys)
             {
-                ParameterToCell[p].Value = Values[p].Value / p.Units.CurrentCoefficient;
+                ParameterToCell[p].Value = Values[p].GetValueInUnits();
             }
         }
 
@@ -249,10 +252,23 @@ namespace Calculator.Calculation_Controls
         protected void ReadEnteredValue(DataGridViewCell cell, fsParameterIdentifier parameter)
         {
             var value = Values[parameter];
-            value.Value = fsValue.ObjectToValue(cell.Value) * parameter.Units.CurrentCoefficient;
+            value.SetValueInUnits(fsValue.ObjectToValue(cell.Value));
         }
 
         #endregion
+
+        internal void SetUnits(Dictionary<fsCharacteristic, fsCharacteristic.fsUnit> dictionary)
+        {
+            foreach(var identifier in Values.Keys)
+            {
+                var parameter = Values[identifier];
+                parameter.Unit = dictionary[identifier.MeasurementCharacteristic];
+                var valueCell = ParameterToCell[identifier];
+                var parameterNameCell = valueCell.DataGridView[valueCell.ColumnIndex - 1, valueCell.RowIndex];
+                parameterNameCell.Value = parameter.ToString();
+                valueCell.Value = parameter.GetValueInUnits();
+            }
+        }
     }
 }
 

@@ -10,34 +10,34 @@ namespace Parameters
 
         public string FullName { get; private set; }
 
-        public fsCharacteristic Units { get; private set; }
+        public fsCharacteristic MeasurementCharacteristic { get; private set; }
 
         public fsParameterIdentifier(string name)
         {
             Name = name;
             FullName = name;
-            Units = fsCharacteristic.NoUnits;
+            MeasurementCharacteristic = fsCharacteristic.NoUnits;
         }
 
         public fsParameterIdentifier(string name, fsCharacteristic units)
         {
             Name = name;
             FullName = name;
-            Units = units;
+            MeasurementCharacteristic = units;
         }
 
         public fsParameterIdentifier(string name, string fullName, fsCharacteristic units)
         {
             Name = name;
             FullName = fullName;
-            Units = units;
+            MeasurementCharacteristic = units;
         }
 
         public fsParameterIdentifier(string name, string fullName)
         {
             Name = name;
             FullName = fullName;
-            Units = fsCharacteristic.NoUnits;
+            MeasurementCharacteristic = fsCharacteristic.NoUnits;
         }
 
         public override string ToString()

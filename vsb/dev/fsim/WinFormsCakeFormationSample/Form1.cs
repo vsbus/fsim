@@ -49,7 +49,7 @@ namespace WinFormsCakeFormationSample
         {
             foreach (var p in parameters)
             {
-                dataGrid.Rows.Add(new object[] { p.Name + " (" + p.Units.CurrentName + ")" });
+                dataGrid.Rows.Add(new object[] { p.Name + " (" + p.MeasurementCharacteristic.CurrentUnit.Name + ")" });
                 var cell = dataGrid.Rows[dataGrid.Rows.Count - 1].Cells[1];
                 dataContainer.m_parameterCell[p] = cell;
                 dataContainer.m_cellParameter[cell] = p;
@@ -152,7 +152,7 @@ namespace WinFormsCakeFormationSample
                     var param = dataContainer.m_parameterValue[id];
 
                     fsValue oldValue = param.Value;
-                    fsValue newValue = fsValue.ObjectToValue(cell.Value) * param.Identifier.Units.CurrentCoefficient;
+                    fsValue newValue = fsValue.ObjectToValue(cell.Value) * param.Identifier.MeasurementCharacteristic.CurrentUnit.Coefficient;
                     Text = param.Identifier.Name + @" changed from " + oldValue.ToString() + @" to " + newValue.ToString();
                     param.Value = newValue;
 

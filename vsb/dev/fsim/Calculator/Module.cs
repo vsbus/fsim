@@ -1,5 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using Calculator.Calculation_Controls;
+using Units;
 
 namespace Calculator
 {
@@ -22,6 +24,11 @@ namespace Calculator
             m_calculatorControl.Parent = Form;
             m_calculatorControl.Dock = DockStyle.Fill;
             Form.Show();
+        }
+
+        internal void SetUnits(Dictionary<fsCharacteristic, fsCharacteristic.fsUnit> dictionary)
+        {
+            m_calculatorControl.SetUnits(dictionary);
         }
     }
 }
