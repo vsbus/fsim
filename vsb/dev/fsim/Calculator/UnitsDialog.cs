@@ -13,6 +13,8 @@ namespace Calculator
 {
     public partial class UnitsDialog : Form
     {
+        public Dictionary<Type, ComboBox> Characteristics = new Dictionary<Type, ComboBox>();
+
         public UnitsDialog()
         {
             InitializeComponent();
@@ -22,43 +24,50 @@ namespace Calculator
         {
             Type type = typeof(fsCharacteristic);
             FieldInfo[] fields = type.GetFields();
-            int currentHeight = 8;
+            List<KeyValuePair<Label, ComboBox>> characteristicControls = new List<KeyValuePair<Label, ComboBox>>();
+            panel1.Width = 0;
             foreach (var field in fields)
             {
-                var row = new DataGridViewRow();
-                //var cells = new DataGridViewCell[2];
                 var characteristicLabel = new Label();
-                characteristicLabel.Parent = panel1;
-                characteristicLabel.Location = new Point(8, currentHeight);
                 characteristicLabel.Text = field.Name;
+                
                 var unitsComboBox = new ComboBox();
-                unitsComboBox.Parent = panel1;
-                unitsComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-                unitsComboBox.Location = new Point(8 + 100, currentHeight);
                 foreach (var unit in ((fsCharacteristic)field.GetValue(null)).Units)
                 {
                     unitsComboBox.Items.Add(unit.Name);
                 }
                 unitsComboBox.Text = unitsComboBox.Items[0].ToString();
 
-                currentHeight += 28;
-
-//                 object temp = field.GetValue(null); // Get value
-//                 if (temp is int) // See if it is an integer.
-//                 {
-//                     int value = (int)temp;
-//                     Console.Write(name);
-//                     Console.Write(" (int) = ");
-//                     Console.WriteLine(value);
-//                 }
-//                 else if (temp is string) // See if it is a string.
-//                 {
-//                     string value = temp as string;
-//                     Console.Write(name);
-//                     Console.Write(" (string) = ");
-//                     Console.WriteLine(value);
-//                 }
+                int width = 8 + characteristicLabel.Width + 8 + unitsComboBox.Width + 8;
+                if (panel1.Width < width)
+                {
+                    panel1.Width = width;
+                }
+                
+                characteristicControls.Add(new KeyValuePair<Label, ComboBox>(characteristicLabel, unitsComboBox));
+                Characteristics[type] = unitsComboBox;
             }
+
+            int currentHeight = 8;
+            foreach (var pair in characteristicControls)
+            {
+                var characteristicLabel = pair.Key;
+                var unitsComboBox = pair.Value;
+
+                characteristicLabel.Parent = panel1;
+                characteristicLabel.Location = new Point(8, currentHeight + 4);
+
+                unitsComboBox.Parent = panel1;
+                unitsComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                unitsComboBox.Location = new Point(panel1.Width - unitsComboBox.Width - 8, currentHeight);
+
+                currentHeight += 24;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
