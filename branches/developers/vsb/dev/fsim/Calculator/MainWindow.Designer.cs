@@ -189,7 +189,7 @@
             this.unitsToolStripMenuItem.Name = "unitsToolStripMenuItem";
             this.unitsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.unitsToolStripMenuItem.Text = "&Units";
-            this.unitsToolStripMenuItem.Click += new System.EventHandler(this.unitsToolStripMenuItem_Click);
+            this.unitsToolStripMenuItem.Click += new System.EventHandler(this.UnitsToolStripMenuItemClick);
             // 
             // MainWindow
             // 
@@ -202,7 +202,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "Calculator";
-            this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.Load += new System.EventHandler(this.MainWindowLoad);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);

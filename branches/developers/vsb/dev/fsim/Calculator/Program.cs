@@ -17,11 +17,11 @@ namespace Calculator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            fsCharacteristic.Time.CurrentName = "s";
-            fsCharacteristic.Length.CurrentName = "mm";
-            fsCharacteristic.Area.CurrentName = "cm2";
-            fsCharacteristic.Mass.CurrentName = "g";
-            fsCharacteristic.Volume.CurrentName = "ml";            
+            fsCharacteristic.Time.CurrentUnit = fsCharacteristic.fsUnit.Second;
+            fsCharacteristic.Length.CurrentUnit = fsCharacteristic.fsUnit.MilliMeter;
+            fsCharacteristic.Area.CurrentUnit = fsCharacteristic.fsUnit.SquareSantiMeter;
+            fsCharacteristic.Mass.CurrentUnit = fsCharacteristic.fsUnit.Gramme;
+            fsCharacteristic.Volume.CurrentUnit = fsCharacteristic.fsUnit.MilliLiter;
 
             Application.Run(new MainWindow());
         }

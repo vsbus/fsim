@@ -74,13 +74,13 @@ namespace Calculator
                 m_modules.Add(module);
                 module.Form.MdiParent = this;
                 module.Form.Closed += FormClose;
-                module.Form.Activated += Form_Activated;
+                module.Form.Activated += FormActivated;
                 RebuildWindowsList();
                 windowsDataGrid.CurrentCell = windowsDataGrid[0, windowsDataGrid.RowCount - 1];
             }
         }
 
-        void Form_Activated(object sender, EventArgs e)
+        void FormActivated(object sender, EventArgs e)
         {
             var form = (Form)sender;
             foreach (DataGridViewRow row in windowsDataGrid.Rows)
@@ -118,16 +118,22 @@ namespace Calculator
             Close();
         }
 
-        private void MainWindow_Load(object sender, EventArgs e)
+        private void MainWindowLoad(object sender, EventArgs e)
         {
             addModuleButton.PerformClick();
         }
 
-        private void unitsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UnitsToolStripMenuItemClick(object sender, EventArgs e)
         {
             var unitsDialog = new UnitsDialog();
             unitsDialog.ShowDialog();
-
+            if (unitsDialog.DialogResult == DialogResult.OK)
+            {
+                foreach (var module in m_modules)
+                {
+                    module.SetUnits(unitsDialog.Units);
+                }
+            }
         }
     }
 }

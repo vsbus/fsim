@@ -13,7 +13,8 @@ namespace Calculator
 {
     public partial class UnitsDialog : Form
     {
-        public Dictionary<Type, ComboBox> Characteristics = new Dictionary<Type, ComboBox>();
+        private Dictionary<fsCharacteristic, ComboBox> UnitsToComboBox = new Dictionary<fsCharacteristic, ComboBox>();
+        public Dictionary<fsCharacteristic, Units.fsCharacteristic.fsUnit> Units = new Dictionary<fsCharacteristic, fsCharacteristic.fsUnit>();
 
         public UnitsDialog()
         {
@@ -32,7 +33,8 @@ namespace Calculator
                 characteristicLabel.Text = field.Name;
                 
                 var unitsComboBox = new ComboBox();
-                foreach (var unit in ((fsCharacteristic)field.GetValue(null)).Units)
+                var characteristic = ((fsCharacteristic) field.GetValue(null));
+                foreach (var unit in characteristic.Units)
                 {
                     unitsComboBox.Items.Add(unit.Name);
                 }
@@ -45,7 +47,7 @@ namespace Calculator
                 }
                 
                 characteristicControls.Add(new KeyValuePair<Label, ComboBox>(characteristicLabel, unitsComboBox));
-                Characteristics[type] = unitsComboBox;
+                UnitsToComboBox[characteristic] = unitsComboBox;
             }
 
             int currentHeight = 8;
@@ -67,7 +69,18 @@ namespace Calculator
 
         private void button1_Click(object sender, EventArgs e)
         {
+            foreach (var pair in UnitsToComboBox)
+            {
+                Units[pair.Key] = fsCharacteristic.fsUnit.UnitFromText(pair.Value.Text);
+            }
+            DialogResult = DialogResult.OK;
+            Close();
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

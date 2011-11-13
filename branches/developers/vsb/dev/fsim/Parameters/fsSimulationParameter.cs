@@ -32,7 +32,7 @@ namespace Parameters
 
         public string ValueToStringWithCurrentUnits()
         {
-            return (Value / Identifier.Units.CurrentCoefficient).ToString();
+            return (Value / Identifier.MeasurementCharacteristic.CurrentUnit.Coefficient).ToString();
         }
 
         public override string ToString()
