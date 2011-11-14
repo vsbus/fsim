@@ -1,53 +1,115 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 using Units;
 
 namespace Calculator
 {
-    public partial class UnitsDialog : Form
+    public partial class fsUnitsDialog : Form
     {
-        private Dictionary<fsCharacteristic, ComboBox> UnitsToComboBox = new Dictionary<fsCharacteristic, ComboBox>();
-        public Dictionary<fsCharacteristic, Units.fsCharacteristic.fsUnit> Units = new Dictionary<fsCharacteristic, fsCharacteristic.fsUnit>();
+        private readonly Dictionary<fsCharacteristic, ComboBox> m_unitsToComboBox = new Dictionary<fsCharacteristic, ComboBox>();
+        public Dictionary<fsCharacteristic, fsCharacteristic.fsUnit> Units = new Dictionary<fsCharacteristic, fsCharacteristic.fsUnit>();
+        private readonly Dictionary<fsModule, CheckBox> m_moduleToCheckBox = new Dictionary<fsModule, CheckBox>();
+        private List<fsModule> m_modules;
 
-        public UnitsDialog()
+        public fsUnitsDialog()
         {
             InitializeComponent();
         }
 
-        private void UnitsDialog_Load(object sender, EventArgs e)
+        private void UnitsDialogLoad(object sender, EventArgs e)
+        {
+            InitializeElementListing();
+            InitializeUnitsPanel();
+        }
+
+        public List<fsModule> GetModifiedModules()
+        {
+            var modifiedModules = new List<fsModule>();
+            foreach (var pair in m_moduleToCheckBox)
+            {
+                if (pair.Value.Checked)
+                {
+                    modifiedModules.Add(pair.Key);
+                }
+            }
+            return modifiedModules;
+        }
+
+        public bool GetFutureModulesModified()
+        {
+            return m_futureCheckBox.Checked;
+        }
+
+        private void InitializeElementListing()
+        {
+            var checkBox = new CheckBox {Parent = listingPanel, Location = new Point(8, 16), Text = @"All"};
+            checkBox.CheckStateChanged += CheckBoxCheckStateChanged;
+
+            if (m_modules != null)
+            {
+                foreach (var module in m_modules)
+                {
+                    AddModuleToList(module.Name, false, module);
+                }
+            }
+        }
+
+        public void AssignModulesList(List<fsModule> modules)
+        {
+            m_modules = modules;
+        }
+
+        void CheckBoxCheckStateChanged(object sender, EventArgs e)
+        {
+            var allCheckBox = (CheckBox) sender;
+            foreach (var checkBox in m_moduleToCheckBox.Values)
+            {
+                checkBox.Checked = allCheckBox.Checked;
+            }
+        }
+
+        private void AddModuleToList(string text, bool isChecked, fsModule module)
+        {
+            var checkBox = new CheckBox
+                               {
+                                   Parent = listingPanel,
+                                   Location = new Point(8, 48 + 8 + (m_moduleToCheckBox.Count) * 24),
+                                   Text = text,
+                                   Checked = isChecked,
+                                   AutoSize = true
+                               };
+            m_moduleToCheckBox[module] = checkBox;
+        }
+
+        private void InitializeUnitsPanel()
         {
             Type type = typeof(fsCharacteristic);
             FieldInfo[] fields = type.GetFields();
-            List<KeyValuePair<Label, ComboBox>> characteristicControls = new List<KeyValuePair<Label, ComboBox>>();
-            panel1.Width = 0;
+            var characteristicControls = new List<KeyValuePair<Label, ComboBox>>();
+            unitsPanel.Width = 0;
             foreach (var field in fields)
             {
-                var characteristicLabel = new Label();
-                characteristicLabel.Text = field.Name;
-                
+                var characteristicLabel = new Label {Text = field.Name, AutoSize = true};
+
                 var unitsComboBox = new ComboBox();
-                var characteristic = ((fsCharacteristic) field.GetValue(null));
+                var characteristic = ((fsCharacteristic)field.GetValue(null));
                 foreach (var unit in characteristic.Units)
                 {
                     unitsComboBox.Items.Add(unit.Name);
                 }
-                unitsComboBox.Text = unitsComboBox.Items[0].ToString();
+                unitsComboBox.Text = characteristic.CurrentUnit.Name;
 
-                int width = 8 + characteristicLabel.Width + 8 + unitsComboBox.Width + 8;
-                if (panel1.Width < width)
+                int width = 8 + characteristicLabel.Width + 8 + unitsComboBox.Width + 8 + 48;
+                if (unitsPanel.Width < width)
                 {
-                    panel1.Width = width;
+                    unitsPanel.Width = width;
                 }
-                
+
                 characteristicControls.Add(new KeyValuePair<Label, ComboBox>(characteristicLabel, unitsComboBox));
-                UnitsToComboBox[characteristic] = unitsComboBox;
+                m_unitsToComboBox[characteristic] = unitsComboBox;
             }
 
             int currentHeight = 8;
@@ -56,20 +118,19 @@ namespace Calculator
                 var characteristicLabel = pair.Key;
                 var unitsComboBox = pair.Value;
 
-                characteristicLabel.Parent = panel1;
-                characteristicLabel.Location = new Point(8, currentHeight + 4);
-
-                unitsComboBox.Parent = panel1;
+                unitsComboBox.Parent = unitsPanel;
                 unitsComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-                unitsComboBox.Location = new Point(panel1.Width - unitsComboBox.Width - 8, currentHeight);
+                unitsComboBox.Location = new Point(unitsPanel.Width - unitsComboBox.Width - 24, currentHeight);
+
+                characteristicLabel.Parent = unitsPanel;
+                characteristicLabel.Location = new Point(unitsComboBox.Location.X - 8 - characteristicLabel.Width - 8, currentHeight + 4);
 
                 currentHeight += 24;
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1Click(object sender, EventArgs e)
         {
-            foreach (var pair in UnitsToComboBox)
+            foreach (var pair in m_unitsToComboBox)
             {
                 Units[pair.Key] = fsCharacteristic.fsUnit.UnitFromText(pair.Value.Text);
             }
@@ -77,7 +138,7 @@ namespace Calculator
             Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();

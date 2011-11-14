@@ -15,15 +15,18 @@ namespace Calculator
         {
             Name = name;
             m_calculatorControl = calculatorControl;
-            Form = new Form
-                       {
-                           Text = Name,
-                           Width = m_calculatorControl.Width + 10,
-                           Height = m_calculatorControl.Height + 10
-                       };
-            m_calculatorControl.Parent = Form;
-            m_calculatorControl.Dock = DockStyle.Fill;
-            Form.Show();
+            if (m_calculatorControl != null)
+            {
+                Form = new Form
+                           {
+                               Text = Name,
+                               Width = m_calculatorControl.Width + 10,
+                               Height = m_calculatorControl.Height + 10
+                           };
+                m_calculatorControl.Parent = Form;
+                m_calculatorControl.Dock = DockStyle.Fill;
+                Form.Show();
+            }
         }
 
         internal void SetUnits(Dictionary<fsCharacteristic, fsCharacteristic.fsUnit> dictionary)
