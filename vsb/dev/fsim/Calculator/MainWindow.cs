@@ -125,13 +125,21 @@ namespace Calculator
 
         private void UnitsToolStripMenuItemClick(object sender, EventArgs e)
         {
-            var unitsDialog = new UnitsDialog();
+            var unitsDialog = new fsUnitsDialog();
+            unitsDialog.AssignModulesList(m_modules);
             unitsDialog.ShowDialog();
             if (unitsDialog.DialogResult == DialogResult.OK)
             {
-                foreach (var module in m_modules)
+                foreach (var module in unitsDialog.GetModifiedModules())
                 {
                     module.SetUnits(unitsDialog.Units);
+                }
+                if (unitsDialog.GetFutureModulesModified())
+                {
+                    foreach (var unit in unitsDialog.Units)
+                    {
+                        unit.Key.CurrentUnit = unit.Value;
+                    }
                 }
             }
         }
