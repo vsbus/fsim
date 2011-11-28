@@ -5,16 +5,23 @@ namespace fmDataGrid
 {
     public class fmDataGridViewNumericalTextBoxCell : DataGridViewTextBoxCell
     {
+        public fmDataGridViewNumericalTextBoxEditingControl EditBox { get; private set; }
         public override void InitializeEditingControl(int rowIndex, object initialFormattedValue, DataGridViewCellStyle dataGridViewCellStyle)
         {
             base.InitializeEditingControl(rowIndex, initialFormattedValue, dataGridViewCellStyle);
-            var numTextBox = DataGridView.EditingControl as fmDataGridViewNumericalTextBoxEditingControl;
+            EditBox = DataGridView.EditingControl as fmDataGridViewNumericalTextBoxEditingControl;
             // ReSharper disable PossibleNullReferenceException
-            numTextBox.Height = OwningRow.Height;
+            EditBox.Height = OwningRow.Height;
             string stringInCell = Convert.ToString(Value);
-            numTextBox.Text = stringInCell;
+            EditBox.Text = stringInCell;
             // ReSharper restore PossibleNullReferenceException
         }
+        public override void DetachEditingControl()
+        {
+            base.DetachEditingControl();
+            EditBox = null;
+        }
+         
 
         public override Type EditType
         {
