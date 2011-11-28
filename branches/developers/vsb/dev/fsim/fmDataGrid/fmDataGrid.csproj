@@ -58,6 +58,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Value\Value.csproj">
+      <Project>{CD1BD2A7-AB61-4A58-B1F9-9A3DF9A0E9F2}</Project>
+      <Name>Value</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
