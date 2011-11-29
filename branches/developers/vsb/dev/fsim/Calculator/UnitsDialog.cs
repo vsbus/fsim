@@ -10,6 +10,7 @@ namespace Calculator
     public partial class fsUnitsDialog : Form
     {
         private readonly Dictionary<fsCharacteristic, ComboBox> m_unitsToComboBox = new Dictionary<fsCharacteristic, ComboBox>();
+        private readonly Dictionary<fsCharacteristic, Label> m_unitsToLabel = new Dictionary<fsCharacteristic, Label>();
         public Dictionary<fsCharacteristic, fsCharacteristic.fsUnit> Units = new Dictionary<fsCharacteristic, fsCharacteristic.fsUnit>();
         private readonly Dictionary<fsModule, CheckBox> m_moduleToCheckBox = new Dictionary<fsModule, CheckBox>();
         private List<fsModule> m_modules;
@@ -23,6 +24,7 @@ namespace Calculator
         {
             InitializeElementListing();
             InitializeUnitsPanel();
+            ShowHideSecondaryCharacteristics(m_showSecondaryCheckbox.Checked);
         }
 
         public List<fsModule> GetModifiedModules()
@@ -84,18 +86,46 @@ namespace Calculator
             m_moduleToCheckBox[module] = checkBox;
         }
 
+        private fsCharacteristic[] GetPrimaryCharacteristics()
+        {
+            return new fsCharacteristic[]{
+                fsCharacteristic.Time,
+                fsCharacteristic.Area,
+                fsCharacteristic.Mass,
+                fsCharacteristic.Volume,
+                fsCharacteristic.MassFlowrate
+            }; 
+        }
+
+        private fsCharacteristic[] GetSecondaryCharacteristics()
+        {
+            return new fsCharacteristic[]{
+                fsCharacteristic.Pressure,
+                fsCharacteristic.Viscosity,
+                fsCharacteristic.Density,
+                fsCharacteristic.SurfaceTension,
+                fsCharacteristic.CakeWashOutContent,
+                fsCharacteristic.Frequency
+            };
+        }
+
         private void InitializeUnitsPanel()
         {
-            Type type = typeof(fsCharacteristic);
-            FieldInfo[] fields = type.GetFields();
+            var primaryCharacteristics = GetPrimaryCharacteristics();
+            var secondaryCharacteristics = GetSecondaryCharacteristics();
+
+            var allCharacteristics = new List<fsCharacteristic>();
+            allCharacteristics.AddRange(primaryCharacteristics);
+            allCharacteristics.AddRange(secondaryCharacteristics);
+
             var characteristicControls = new List<KeyValuePair<Label, ComboBox>>();
             unitsPanel.Width = 0;
-            foreach (var field in fields)
+            foreach (fsCharacteristic characteristic in allCharacteristics)
             {
-                var characteristicLabel = new Label {Text = field.Name, AutoSize = true};
-
+                var characteristicLabel = new Label { Text = characteristic.Name, AutoSize = true };
+                
                 var unitsComboBox = new ComboBox();
-                var characteristic = ((fsCharacteristic)field.GetValue(null));
+                               
                 foreach (var unit in characteristic.Units)
                 {
                     unitsComboBox.Items.Add(unit.Name);
@@ -110,6 +140,7 @@ namespace Calculator
 
                 characteristicControls.Add(new KeyValuePair<Label, ComboBox>(characteristicLabel, unitsComboBox));
                 m_unitsToComboBox[characteristic] = unitsComboBox;
+                m_unitsToLabel[characteristic] = characteristicLabel;
             }
 
             int currentHeight = 8;
@@ -125,7 +156,7 @@ namespace Calculator
                 characteristicLabel.Parent = unitsPanel;
                 characteristicLabel.Location = new Point(unitsComboBox.Location.X - 8 - characteristicLabel.Width - 8, currentHeight + 4);
 
-                currentHeight += 24;
+                currentHeight += 32;
             }
         }
         private void Button1Click(object sender, EventArgs e)
@@ -142,6 +173,20 @@ namespace Calculator
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void ParametersDisplay_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHideSecondaryCharacteristics(m_showSecondaryCheckbox.Checked);
+        }
+
+        private void ShowHideSecondaryCharacteristics(bool isVisible)
+        {
+            foreach (var characteristic in GetSecondaryCharacteristics())
+            {
+                m_unitsToComboBox[characteristic].Visible = isVisible;
+                m_unitsToLabel[characteristic].Visible = isVisible;
+            }
         }
     }
 }

@@ -78,7 +78,7 @@ namespace Parameters
         
         public static fsParameterIdentifier SuspensionVolume = new fsParameterIdentifier("Vsus", fsCharacteristic.Volume);
 
-        public static fsParameterIdentifier SuspensionMassFlowrate = new fsParameterIdentifier("Qmsus", fsCharacteristic.Flowrate);
+        public static fsParameterIdentifier SuspensionMassFlowrate = new fsParameterIdentifier("Qmsus", fsCharacteristic.MassFlowrate);
 
         
         public static fsParameterIdentifier FiltrateViscosity = new fsParameterIdentifier("etaf", fsCharacteristic.Viscosity);

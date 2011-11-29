@@ -262,11 +262,14 @@ namespace Calculator.Calculation_Controls
             foreach(var identifier in Values.Keys)
             {
                 var parameter = Values[identifier];
-                parameter.Unit = dictionary[identifier.MeasurementCharacteristic];
-                var valueCell = ParameterToCell[identifier];
-                var parameterNameCell = valueCell.DataGridView[valueCell.ColumnIndex - 1, valueCell.RowIndex];
-                parameterNameCell.Value = parameter.ToString();
-                valueCell.Value = parameter.GetValueInUnits();
+                if (dictionary.ContainsKey(identifier.MeasurementCharacteristic))
+                {
+                    parameter.Unit = dictionary[identifier.MeasurementCharacteristic];
+                    var valueCell = ParameterToCell[identifier];
+                    var parameterNameCell = valueCell.DataGridView[valueCell.ColumnIndex - 1, valueCell.RowIndex];
+                    parameterNameCell.Value = parameter.ToString();
+                    valueCell.Value = parameter.GetValueInUnits();
+                }
             }
         }
     }
