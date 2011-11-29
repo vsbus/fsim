@@ -30,6 +30,7 @@
         {
             this.unitsPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.m_showSecondaryCheckbox = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.listingPanel = new System.Windows.Forms.Panel();
@@ -62,6 +63,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(559, 36);
             this.panel2.TabIndex = 1;
+            // 
+            // m_showSecondaryCheckbox
+            // 
+            this.m_showSecondaryCheckbox.AutoSize = true;
+            this.m_showSecondaryCheckbox.Location = new System.Drawing.Point(273, 8);
+            this.m_showSecondaryCheckbox.Name = "m_showSecondaryCheckbox";
+            this.m_showSecondaryCheckbox.Size = new System.Drawing.Size(160, 17);
+            this.m_showSecondaryCheckbox.TabIndex = 2;
+            this.m_showSecondaryCheckbox.Text = "Show secondary parameters";
+            this.m_showSecondaryCheckbox.UseVisualStyleBackColor = true;
+            this.m_showSecondaryCheckbox.CheckedChanged += new System.EventHandler(this.ParametersDisplay_CheckedChanged);
             // 
             // button2
             // 
@@ -122,6 +134,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel3.Controls.Add(this.m_showSecondaryCheckbox);
             this.panel3.Controls.Add(this.m_futureCheckBox);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 377);
@@ -158,6 +171,7 @@
         private System.Windows.Forms.CheckBox m_futureCheckBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.CheckBox m_showSecondaryCheckbox;
 
     }
 }
