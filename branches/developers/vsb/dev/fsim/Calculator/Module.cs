@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using Calculator.Calculation_Controls;
+using Parameters;
 using Units;
 
 namespace Calculator

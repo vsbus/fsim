@@ -5,7 +5,7 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class fsDensityConcentrationControl : fsCalculatorControl
+    public sealed partial class fsDensityConcentrationControl : fsOptionsOneTableAndCommentsCalculatorControl
     {
         #region Calculation Option
 
