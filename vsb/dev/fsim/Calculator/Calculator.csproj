@@ -100,6 +100,12 @@
     <Compile Include="Calculation Controls\MsusAndHcControl.Designer.cs">
       <DependentUpon>MsusAndHcControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calculation Controls\OptionsOneTableAndCommentsCalculatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Calculation Controls\OptionsOneTableAndCommentsCalculatorControl.Designer.cs">
+      <DependentUpon>OptionsOneTableAndCommentsCalculatorControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Calculation Controls\PermeabilityControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,7 +134,8 @@
     <Compile Include="MainWindow.designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module.cs" />
+    <Compile Include="Module.cs">
+    </Compile>
     <Compile Include="ModulesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,6 +170,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Calculation Controls\MsusAndHcControl.resx">
       <DependentUpon>MsusAndHcControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calculation Controls\OptionsOneTableAndCommentsCalculatorControl.resx">
+      <DependentUpon>OptionsOneTableAndCommentsCalculatorControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Calculation Controls\PermeabilityControl.resx">
