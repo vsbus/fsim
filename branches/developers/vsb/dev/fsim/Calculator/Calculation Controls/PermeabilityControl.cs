@@ -5,7 +5,7 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class fsPermeabilityControl : fsCalculatorControl
+    public sealed partial class fsPermeabilityControl : fsOptionsOneTableAndCommentsCalculatorControl
     {
 
         #region Calculation Option
