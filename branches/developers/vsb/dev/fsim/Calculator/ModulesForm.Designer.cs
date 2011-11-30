@@ -33,7 +33,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.treeView1 = new fsTreeView();
+            this.treeView1 = new Calculator.fsTreeView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.currentModuleTitleLabel = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
@@ -66,9 +66,9 @@
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(327, 37);
+            this.panel1.Location = new System.Drawing.Point(327, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(345, 401);
+            this.panel1.Size = new System.Drawing.Size(345, 447);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -76,7 +76,7 @@
             this.panel2.Controls.Add(this.OKButton);
             this.panel2.Controls.Add(this.cancelButton);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(327, 438);
+            this.panel2.Location = new System.Drawing.Point(327, 475);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(345, 63);
             this.panel2.TabIndex = 4;
@@ -87,7 +87,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(327, 501);
+            this.panel3.Size = new System.Drawing.Size(327, 538);
             this.panel3.TabIndex = 5;
             // 
             // treeView1
@@ -96,7 +96,7 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(327, 501);
+            this.treeView1.Size = new System.Drawing.Size(327, 538);
             this.treeView1.TabIndex = 1;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeView1AfterSelect);
             // 
@@ -106,7 +106,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(327, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(345, 37);
+            this.panel4.Size = new System.Drawing.Size(345, 28);
             this.panel4.TabIndex = 6;
             // 
             // currentModuleTitleLabel
@@ -123,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(672, 501);
+            this.ClientSize = new System.Drawing.Size(672, 538);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
