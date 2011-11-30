@@ -5,7 +5,7 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class fsPkeFromPcRcControl : fsCalculatorControl
+    public sealed partial class fsPkeFromPcRcControl : fsOptionsOneTableAndCommentsCalculatorControl
     {
         private readonly fsPkeFromPcRcCalculator m_calculator = new fsPkeFromPcRcCalculator();
 
