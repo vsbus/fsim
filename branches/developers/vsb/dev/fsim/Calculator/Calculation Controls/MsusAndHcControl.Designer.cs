@@ -28,140 +28,84 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGrid = new fmDataGrid.fmDataGrid();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.calculationOptionComboBox = new System.Windows.Forms.ComboBox();
             this.machineTypeComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.ParameterColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValueColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.leftTopPanel.SuspendLayout();
+            this.calculationOptionsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGrid
+            // leftTopPanel
             // 
-            this.dataGrid.AllowUserToAddRows = false;
-            this.dataGrid.AllowUserToDeleteRows = false;
-            this.dataGrid.AllowUserToResizeRows = false;
-            this.dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGrid.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ParameterColumn,
-            this.ValueColumn});
-            this.dataGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.dataGrid.HighLightCurrentRow = false;
-            this.dataGrid.Location = new System.Drawing.Point(8, 0);
-            this.dataGrid.Name = "dataGrid";
-            this.dataGrid.RowHeadersVisible = false;
-            this.dataGrid.RowTemplate.Height = 18;
-            this.dataGrid.Size = new System.Drawing.Size(272, 326);
-            this.dataGrid.TabIndex = 0;
+            this.leftTopPanel.Size = new System.Drawing.Size(295, 72);
             // 
-            // panel2
+            // calculationOptionsPanel
             // 
-            this.panel2.Controls.Add(this.dataGrid);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 65);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(280, 326);
-            this.panel2.TabIndex = 8;
+            this.calculationOptionsPanel.Controls.Add(this.calculationOptionComboBox);
+            this.calculationOptionsPanel.Controls.Add(this.machineTypeComboBox);
+            this.calculationOptionsPanel.Controls.Add(this.label2);
+            this.calculationOptionsPanel.Controls.Add(this.label1);
+            this.calculationOptionsPanel.Size = new System.Drawing.Size(244, 72);
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(71, 38);
+            this.label1.Location = new System.Drawing.Point(32, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Calculate:";
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.calculationOptionComboBox);
-            this.panel3.Controls.Add(this.machineTypeComboBox);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(280, 65);
-            this.panel3.TabIndex = 9;
-            // 
             // calculationOptionComboBox
             // 
+            this.calculationOptionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.calculationOptionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.calculationOptionComboBox.FormattingEnabled = true;
-            this.calculationOptionComboBox.Location = new System.Drawing.Point(131, 35);
+            this.calculationOptionComboBox.Location = new System.Drawing.Point(92, 38);
             this.calculationOptionComboBox.Name = "calculationOptionComboBox";
             this.calculationOptionComboBox.Size = new System.Drawing.Size(146, 21);
             this.calculationOptionComboBox.TabIndex = 5;
             // 
             // machineTypeComboBox
             // 
+            this.machineTypeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.machineTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.machineTypeComboBox.FormattingEnabled = true;
-            this.machineTypeComboBox.Location = new System.Drawing.Point(131, 3);
+            this.machineTypeComboBox.Location = new System.Drawing.Point(92, 6);
             this.machineTypeComboBox.Name = "machineTypeComboBox";
             this.machineTypeComboBox.Size = new System.Drawing.Size(146, 21);
             this.machineTypeComboBox.TabIndex = 4;
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 6);
+            this.label2.Location = new System.Drawing.Point(8, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Machine Type:";
             // 
-            // ParameterColumn
-            // 
-            this.ParameterColumn.HeaderText = "Parameter";
-            this.ParameterColumn.Name = "ParameterColumn";
-            this.ParameterColumn.ReadOnly = true;
-            this.ParameterColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ParameterColumn.Width = 260;
-            // 
-            // ValueColumn
-            // 
-            this.ValueColumn.HeaderText = "Value";
-            this.ValueColumn.Name = "ValueColumn";
-            this.ValueColumn.Width = 50;
-            // 
             // fsMsusAndHcControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel3);
             this.Name = "fsMsusAndHcControl";
-            this.Size = new System.Drawing.Size(330, 391);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.Size = new System.Drawing.Size(295, 391);
+            this.leftTopPanel.ResumeLayout(false);
+            this.calculationOptionsPanel.ResumeLayout(false);
+            this.calculationOptionsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private fmDataGrid.fmDataGrid dataGrid;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox calculationOptionComboBox;
         private System.Windows.Forms.ComboBox machineTypeComboBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn;
-        private fmDataGrid.fmDataGridViewNumericalTextBoxColumn ValueColumn;
     }
 }

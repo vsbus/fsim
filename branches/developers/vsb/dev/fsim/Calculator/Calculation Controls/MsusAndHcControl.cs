@@ -7,7 +7,7 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class fsMsusAndHcControl : fsCalculatorControl
+    public sealed partial class fsMsusAndHcControl : fsOptionsOneTableAndCommentsCalculatorControl
     {
         #region Calculation Data
 
