@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Calculator.Calculation_Controls;
 
 namespace Calculator
 {
@@ -69,8 +70,13 @@ namespace Calculator
             modulesForm.ShowDialog();
             if (modulesForm.DialogResult == DialogResult.OK)
             {
+                if (modulesForm.SelectedCalculatorControl is fsOptionsOneTableAndCommentsCalculatorControl)
+                {
+                    (modulesForm.SelectedCalculatorControl as fsOptionsOneTableAndCommentsCalculatorControl).
+                        AllowCommentsView = true;
+                }
                 ++m_counter;
-                var module = new fsModule("#" + m_counter + " - " + modulesForm.SelectedModuleName, modulesForm.SelectedModule);
+                var module = new fsModule("#" + m_counter + " - " + modulesForm.SelectedCalculatorControlName, modulesForm.SelectedCalculatorControl);
                 m_modules.Add(module);
                 module.Form.MdiParent = this;
                 module.Form.Closed += FormClose;

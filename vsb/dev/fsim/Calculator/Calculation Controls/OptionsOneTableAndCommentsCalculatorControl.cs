@@ -11,6 +11,14 @@ namespace Calculator.Calculation_Controls
 {
     public partial class fsOptionsOneTableAndCommentsCalculatorControl : fsCalculatorControl
     {
+        public bool AllowCommentsView
+        {
+            set
+            {
+                showHideCommnetsButton.Visible = value;
+            }
+        }
+
         public fsOptionsOneTableAndCommentsCalculatorControl()
         {
             InitializeComponent();
