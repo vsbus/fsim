@@ -9,13 +9,13 @@ namespace Calculator
     public partial class fsModulesForm : Form
     {
         private readonly Dictionary<string, fsCalculatorControl> m_modules = new Dictionary<string, fsCalculatorControl>();
-        public fsCalculatorControl SelectedModule { get; private set; }
-        public string SelectedModuleName { get; private set; }
+        public fsCalculatorControl SelectedCalculatorControl { get; private set; }
+        public string SelectedCalculatorControlName { get; private set; }
         
         public fsModulesForm()
         {
             InitializeComponent();
-            SelectedModule = null;
+            SelectedCalculatorControl = null;
         }
 
         private void CancelButtonClick(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace Calculator
 
         private void OkButtonClick(object sender, EventArgs e)
         {
-            SelectedModule.Dock = DockStyle.None;
+            SelectedCalculatorControl.Dock = DockStyle.None;
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -63,7 +63,12 @@ namespace Calculator
             var node = new TreeNode(nodeName);
             foreach (var pair in calculationControls)
             {
-                AddModuleToTree(node, pair.Key, pair.Value);
+                var calculatorControl = pair.Value;
+                AddModuleToTree(node, pair.Key, calculatorControl);
+                if (calculatorControl is fsOptionsOneTableAndCommentsCalculatorControl)
+                {
+                    (calculatorControl as fsOptionsOneTableAndCommentsCalculatorControl).AllowCommentsView = false;
+                }
             }
             treeView1.Nodes.Add(node);
         }
@@ -81,17 +86,17 @@ namespace Calculator
             if (!m_modules.ContainsKey(treeView1.SelectedNode.Text))
                 return;
 
-            SelectedModuleName = treeView1.SelectedNode.Text;
-            currentModuleTitleLabel.Text = SelectedModuleName;
+            SelectedCalculatorControlName = treeView1.SelectedNode.Text;
+            currentModuleTitleLabel.Text = SelectedCalculatorControlName;
 
-            if (SelectedModule != null)
+            if (SelectedCalculatorControl != null)
             {
-                SelectedModule.Parent = null;
+                SelectedCalculatorControl.Parent = null;
             }
             
-            SelectedModule = m_modules[SelectedModuleName];
-            SelectedModule.Parent = panel1;
-            SelectedModule.Dock = DockStyle.Fill;
+            SelectedCalculatorControl = m_modules[SelectedCalculatorControlName];
+            SelectedCalculatorControl.Parent = panel1;
+            SelectedCalculatorControl.Dock = DockStyle.Fill;
         }
     }
 }
