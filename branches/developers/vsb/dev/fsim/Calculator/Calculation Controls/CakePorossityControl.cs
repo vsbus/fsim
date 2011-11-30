@@ -4,7 +4,7 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class fsCakePorossityControl : fsCalculatorControl
+    public sealed partial class fsCakePorossityControl : fsOptionsOneTableAndCommentsCalculatorControl
     {
         private readonly fsCakePorosityCalculator m_calculator = new fsCakePorosityCalculator();
 
