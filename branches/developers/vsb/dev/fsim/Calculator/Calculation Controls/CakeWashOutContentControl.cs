@@ -4,7 +4,7 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class fsCakeWashOutContentControl : fsCalculatorControl
+    public sealed partial class fsCakeWashOutContentControl : fsOptionsOneTableAndCommentsCalculatorControl
     {
         private readonly fsCakeWashOutContentCalculator m_calculator = new fsCakeWashOutContentCalculator();
 
