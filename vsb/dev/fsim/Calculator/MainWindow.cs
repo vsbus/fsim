@@ -138,11 +138,11 @@ namespace Calculator
             {
                 foreach (var module in unitsDialog.GetModifiedModules())
                 {
-                    module.SetUnits(unitsDialog.Units);
+                    module.SetUnits(unitsDialog.Characteristics);
                 }
                 if (unitsDialog.GetFutureModulesModified())
                 {
-                    foreach (var unit in unitsDialog.Units)
+                    foreach (var unit in unitsDialog.Characteristics)
                     {
                         unit.Key.CurrentUnit = unit.Value;
                     }

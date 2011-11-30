@@ -257,7 +257,7 @@ namespace Calculator.Calculation_Controls
 
         #endregion
 
-        internal void SetUnits(Dictionary<fsCharacteristic, fsCharacteristic.fsUnit> dictionary)
+        internal void SetUnits(Dictionary<fsCharacteristic, fsUnit> dictionary)
         {
             foreach(var identifier in Values.Keys)
             {
