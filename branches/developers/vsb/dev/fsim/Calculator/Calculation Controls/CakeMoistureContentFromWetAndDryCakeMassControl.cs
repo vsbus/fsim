@@ -4,7 +4,7 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class fsCakeMoistureContentFromWetAndDryCakeMassControl : fsCalculatorControl
+    public sealed partial class fsCakeMoistureContentFromWetAndDryCakeMassControl : fsOptionsOneTableAndCommentsCalculatorControl
     {
         private readonly fsRfFromWetDryCakeCalculator m_calculator = new fsRfFromWetDryCakeCalculator();
 
