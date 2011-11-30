@@ -5,7 +5,7 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class fsCakeMoistureContentFromCakeSaturationControl : fsCalculatorControl
+    public sealed partial class fsCakeMoistureContentFromCakeSaturationControl : fsOptionsOneTableAndCommentsCalculatorControl
     {
         #region Calculation Option
 
