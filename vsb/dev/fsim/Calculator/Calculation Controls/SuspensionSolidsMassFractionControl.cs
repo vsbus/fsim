@@ -11,7 +11,7 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public partial class SuspensionSolidsMassFractionControl : fsCalculatorControl
+    public partial class SuspensionSolidsMassFractionControl : fsOptionsOneTableAndCommentsCalculatorControl
     {
         private readonly fsSuspensionSolidsMassFractionCalculator m_calculator = new fsSuspensionSolidsMassFractionCalculator();
 
