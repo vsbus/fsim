@@ -4,7 +4,7 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class fsLaboratoryFiltrationTime : fsCalculatorControl
+    public sealed partial class fsLaboratoryFiltrationTime : fsOptionsOneTableAndCommentsCalculatorControl
     {
         public fsLaboratoryFiltrationTime()
         {
