@@ -4,20 +4,63 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using Units;
+using System.ComponentModel;
 
 namespace Calculator
 {
     public partial class fsUnitsDialog : Form
     {
-        private readonly Dictionary<fsCharacteristic, ComboBox> m_unitsToComboBox = new Dictionary<fsCharacteristic, ComboBox>();
-        private readonly Dictionary<fsCharacteristic, Label> m_unitsToLabel = new Dictionary<fsCharacteristic, Label>();
-        public Dictionary<fsCharacteristic, fsCharacteristic.fsUnit> Units = new Dictionary<fsCharacteristic, fsCharacteristic.fsUnit>();
+        public Dictionary<fsCharacteristic, fsUnit> Characteristics = new Dictionary<fsCharacteristic, fsUnit>();
+        
+        private readonly Dictionary<fsCharacteristic, ComboBox> m_characteristicToComboBox = new Dictionary<fsCharacteristic, ComboBox>();
+        private readonly Dictionary<fsCharacteristic, Label> m_characteristicToLabel = new Dictionary<fsCharacteristic, Label>();
         private readonly Dictionary<fsModule, CheckBox> m_moduleToCheckBox = new Dictionary<fsModule, CheckBox>();
         private List<fsModule> m_modules;
+
+        private class Scheme
+        {
+            public Dictionary<fsCharacteristic, fsUnit> CharacteristicToUnit { get; private set; }
+
+            public string Name { get; private set; }
+
+            Scheme (string name, params KeyValuePair<fsCharacteristic, fsUnit> [] characteristicToUnit)
+            {
+                CharacteristicToUnit = new Dictionary<fsCharacteristic, fsUnit>();
+                Name = name;
+                foreach (var pair in characteristicToUnit)
+                {
+                    CharacteristicToUnit.Add(pair.Key, pair.Value);
+                }
+            }
+
+            public static Scheme SI = new Scheme("SI", new[] {
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareMeter),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerSec),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.CubicMeter)
+            });
+
+            public static Scheme Laboratory = new Scheme("Laboratory", new[] {
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareSantiMeter),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerMin),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.Liter)
+            });
+        }
 
         public fsUnitsDialog()
         {
             InitializeComponent();
+            InitializeShemeBox();
+        }
+
+        private void InitializeShemeBox()
+        {
+            schemeBox.Items.Add("Custom");
+            schemeBox.SelectedItem = schemeBox.Items[0];
+
+            schemeBox.Items.Add(Scheme.SI.Name);
+            schemeBox.Items.Add(Scheme.Laboratory.Name);
         }
 
         private void UnitsDialogLoad(object sender, EventArgs e)
@@ -139,8 +182,8 @@ namespace Calculator
                 }
 
                 characteristicControls.Add(new KeyValuePair<Label, ComboBox>(characteristicLabel, unitsComboBox));
-                m_unitsToComboBox[characteristic] = unitsComboBox;
-                m_unitsToLabel[characteristic] = characteristicLabel;
+                m_characteristicToComboBox[characteristic] = unitsComboBox;
+                m_characteristicToLabel[characteristic] = characteristicLabel;
             }
 
             int currentHeight = 8;
@@ -161,9 +204,9 @@ namespace Calculator
         }
         private void Button1Click(object sender, EventArgs e)
         {
-            foreach (var pair in m_unitsToComboBox)
+            foreach (var pair in m_characteristicToComboBox)
             {
-                Units[pair.Key] = fsCharacteristic.fsUnit.UnitFromText(pair.Value.Text);
+                Characteristics[pair.Key] = fsUnit.UnitFromText(pair.Value.Text);
             }
             DialogResult = DialogResult.OK;
             Close();
@@ -184,9 +227,34 @@ namespace Calculator
         {
             foreach (var characteristic in GetSecondaryCharacteristics())
             {
-                m_unitsToComboBox[characteristic].Visible = isVisible;
-                m_unitsToLabel[characteristic].Visible = isVisible;
+                m_characteristicToComboBox[characteristic].Visible = isVisible;
+                m_characteristicToLabel[characteristic].Visible = isVisible;
             }
+        }
+
+        private void schemeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedScheme = schemeBox.SelectedItem.ToString();
+            if (selectedScheme == "Custom")
+                return;
+            var type = typeof(Scheme);
+            foreach (var field in type.GetFields())
+            {
+                var scheme = ((Scheme)field.GetValue(null));
+                if (selectedScheme == scheme.Name)
+                {
+                    UpdateSchemeBox(scheme.CharacteristicToUnit);
+                    return;
+                }
+            }
+        }
+
+        private void UpdateSchemeBox(Dictionary<fsCharacteristic, fsUnit> dictionary)
+        {
+            foreach (var pair in dictionary)
+            {
+                m_characteristicToComboBox[pair.Key].Text = pair.Value.Name;
+            }    
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Calculator
             }
         }
 
-        internal void SetUnits(Dictionary<fsCharacteristic, fsCharacteristic.fsUnit> dictionary)
+        internal void SetUnits(Dictionary<fsCharacteristic, fsUnit> dictionary)
         {
             m_calculatorControl.SetUnits(dictionary);
         }

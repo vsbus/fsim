@@ -6,7 +6,7 @@ namespace ParametersIdentifiers.Interfaces
 {
     public class fsMeasuredParameter : fsNamedValueParameter
     {
-        public fsCharacteristic.fsUnit Unit { get; set; }
+        public fsUnit Unit { get; set; }
 
         public fsMeasuredParameter(fsParameterIdentifier identifier)
             : base(identifier)

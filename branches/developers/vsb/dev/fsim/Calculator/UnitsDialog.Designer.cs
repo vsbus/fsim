@@ -28,30 +28,76 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.rightPanel = new System.Windows.Forms.Panel();
             this.unitsPanel = new System.Windows.Forms.Panel();
+            this.shemePanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.schemeBox = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.m_showSecondaryCheckbox = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.m_showSecondaryCheckbox = new System.Windows.Forms.CheckBox();
             this.listingPanel = new System.Windows.Forms.Panel();
             this.m_futureCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.rightPanel.SuspendLayout();
+            this.shemePanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
+            // rightPanel
+            // 
+            this.rightPanel.AutoScroll = true;
+            this.rightPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.rightPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.rightPanel.Controls.Add(this.unitsPanel);
+            this.rightPanel.Controls.Add(this.shemePanel);
+            this.rightPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rightPanel.Location = new System.Drawing.Point(263, 0);
+            this.rightPanel.Name = "rightPanel";
+            this.rightPanel.Size = new System.Drawing.Size(296, 377);
+            this.rightPanel.TabIndex = 0;
+            // 
             // unitsPanel
             // 
             this.unitsPanel.AutoScroll = true;
-            this.unitsPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.unitsPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.unitsPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.unitsPanel.Location = new System.Drawing.Point(263, 0);
+            this.unitsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.unitsPanel.Location = new System.Drawing.Point(0, 55);
             this.unitsPanel.Name = "unitsPanel";
-            this.unitsPanel.Size = new System.Drawing.Size(296, 377);
+            this.unitsPanel.Size = new System.Drawing.Size(292, 318);
             this.unitsPanel.TabIndex = 0;
+            // 
+            // shemePanel
+            // 
+            this.shemePanel.Controls.Add(this.label1);
+            this.shemePanel.Controls.Add(this.schemeBox);
+            this.shemePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.shemePanel.Location = new System.Drawing.Point(0, 0);
+            this.shemePanel.Name = "shemePanel";
+            this.shemePanel.Size = new System.Drawing.Size(292, 55);
+            this.shemePanel.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Select Sceme";
+            // 
+            // schemeBox
+            // 
+            this.schemeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.schemeBox.FormattingEnabled = true;
+            this.schemeBox.Location = new System.Drawing.Point(80, 10);
+            this.schemeBox.Name = "schemeBox";
+            this.schemeBox.Size = new System.Drawing.Size(121, 21);
+            this.schemeBox.TabIndex = 0;
+            this.schemeBox.SelectedIndexChanged += new System.EventHandler(this.schemeBox_SelectedIndexChanged);
             // 
             // panel2
             // 
@@ -63,17 +109,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(559, 36);
             this.panel2.TabIndex = 1;
-            // 
-            // m_showSecondaryCheckbox
-            // 
-            this.m_showSecondaryCheckbox.AutoSize = true;
-            this.m_showSecondaryCheckbox.Location = new System.Drawing.Point(273, 8);
-            this.m_showSecondaryCheckbox.Name = "m_showSecondaryCheckbox";
-            this.m_showSecondaryCheckbox.Size = new System.Drawing.Size(160, 17);
-            this.m_showSecondaryCheckbox.TabIndex = 2;
-            this.m_showSecondaryCheckbox.Text = "Show secondary parameters";
-            this.m_showSecondaryCheckbox.UseVisualStyleBackColor = true;
-            this.m_showSecondaryCheckbox.CheckedChanged += new System.EventHandler(this.ParametersDisplay_CheckedChanged);
             // 
             // button2
             // 
@@ -96,6 +131,17 @@
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1Click);
+            // 
+            // m_showSecondaryCheckbox
+            // 
+            this.m_showSecondaryCheckbox.AutoSize = true;
+            this.m_showSecondaryCheckbox.Location = new System.Drawing.Point(273, 8);
+            this.m_showSecondaryCheckbox.Name = "m_showSecondaryCheckbox";
+            this.m_showSecondaryCheckbox.Size = new System.Drawing.Size(160, 17);
+            this.m_showSecondaryCheckbox.TabIndex = 2;
+            this.m_showSecondaryCheckbox.Text = "Show secondary parameters";
+            this.m_showSecondaryCheckbox.UseVisualStyleBackColor = true;
+            this.m_showSecondaryCheckbox.CheckedChanged += new System.EventHandler(this.ParametersDisplay_CheckedChanged);
             // 
             // listingPanel
             // 
@@ -124,7 +170,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.listingPanel);
-            this.panel1.Controls.Add(this.unitsPanel);
+            this.panel1.Controls.Add(this.rightPanel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -153,6 +199,9 @@
             this.Name = "fsUnitsDialog";
             this.Text = "UnitsDialog";
             this.Load += new System.EventHandler(this.UnitsDialogLoad);
+            this.rightPanel.ResumeLayout(false);
+            this.shemePanel.ResumeLayout(false);
+            this.shemePanel.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -163,7 +212,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel unitsPanel;
+        private System.Windows.Forms.Panel rightPanel;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
@@ -172,6 +221,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.CheckBox m_showSecondaryCheckbox;
+        private System.Windows.Forms.Panel unitsPanel;
+        private System.Windows.Forms.Panel shemePanel;
+        private System.Windows.Forms.ComboBox schemeBox;
+        private System.Windows.Forms.Label label1;
 
     }
 }
