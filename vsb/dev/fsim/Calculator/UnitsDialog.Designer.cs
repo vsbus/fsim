@@ -83,21 +83,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 13);
+            this.label1.Location = new System.Drawing.Point(18, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.Size = new System.Drawing.Size(70, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Select Sceme";
+            this.label1.Text = "Units Sceme:";
             // 
             // schemeBox
             // 
             this.schemeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.schemeBox.FormattingEnabled = true;
-            this.schemeBox.Location = new System.Drawing.Point(80, 10);
+            this.schemeBox.Location = new System.Drawing.Point(94, 13);
             this.schemeBox.Name = "schemeBox";
-            this.schemeBox.Size = new System.Drawing.Size(121, 21);
+            this.schemeBox.Size = new System.Drawing.Size(178, 21);
             this.schemeBox.TabIndex = 0;
-            this.schemeBox.SelectedIndexChanged += new System.EventHandler(this.schemeBox_SelectedIndexChanged);
+            this.schemeBox.SelectedIndexChanged += new System.EventHandler(this.SchemeBoxSelectedIndexChanged);
             // 
             // panel2
             // 
@@ -141,7 +141,7 @@
             this.m_showSecondaryCheckbox.TabIndex = 2;
             this.m_showSecondaryCheckbox.Text = "Show secondary parameters";
             this.m_showSecondaryCheckbox.UseVisualStyleBackColor = true;
-            this.m_showSecondaryCheckbox.CheckedChanged += new System.EventHandler(this.ParametersDisplay_CheckedChanged);
+            this.m_showSecondaryCheckbox.CheckedChanged += new System.EventHandler(this.ParametersDisplayCheckedChanged);
             // 
             // listingPanel
             // 

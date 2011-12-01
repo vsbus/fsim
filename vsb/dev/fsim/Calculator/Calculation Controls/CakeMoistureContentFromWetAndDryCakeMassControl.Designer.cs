@@ -38,7 +38,7 @@
             // 
             // leftTopPanel
             // 
-            this.leftTopPanel.Size = new System.Drawing.Size(328, 72);
+            this.leftTopPanel.Size = new System.Drawing.Size(338, 72);
             // 
             // calculationOptionsPanel
             // 
@@ -46,7 +46,7 @@
             this.calculationOptionsPanel.Controls.Add(this.concentrationComboBox);
             this.calculationOptionsPanel.Controls.Add(this.label1);
             this.calculationOptionsPanel.Controls.Add(this.concentrationLabel);
-            this.calculationOptionsPanel.Size = new System.Drawing.Size(277, 72);
+            this.calculationOptionsPanel.Size = new System.Drawing.Size(287, 72);
             // 
             // saltContentComboBox
             // 
@@ -56,7 +56,7 @@
             this.saltContentComboBox.Items.AddRange(new object[] {
             "Considered",
             "Neglected"});
-            this.saltContentComboBox.Location = new System.Drawing.Point(130, 6);
+            this.saltContentComboBox.Location = new System.Drawing.Point(140, 6);
             this.saltContentComboBox.Name = "saltContentComboBox";
             this.saltContentComboBox.Size = new System.Drawing.Size(136, 21);
             this.saltContentComboBox.TabIndex = 0;
@@ -66,7 +66,7 @@
             this.concentrationComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.concentrationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.concentrationComboBox.FormattingEnabled = true;
-            this.concentrationComboBox.Location = new System.Drawing.Point(130, 38);
+            this.concentrationComboBox.Location = new System.Drawing.Point(140, 38);
             this.concentrationComboBox.Name = "concentrationComboBox";
             this.concentrationComboBox.Size = new System.Drawing.Size(136, 21);
             this.concentrationComboBox.TabIndex = 3;
@@ -75,7 +75,7 @@
             // 
             this.concentrationLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.concentrationLabel.AutoSize = true;
-            this.concentrationLabel.Location = new System.Drawing.Point(13, 42);
+            this.concentrationLabel.Location = new System.Drawing.Point(23, 42);
             this.concentrationLabel.Name = "concentrationLabel";
             this.concentrationLabel.Size = new System.Drawing.Size(111, 13);
             this.concentrationLabel.TabIndex = 2;
@@ -85,7 +85,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1, 10);
+            this.label1.Location = new System.Drawing.Point(11, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 13);
             this.label1.TabIndex = 1;
@@ -96,7 +96,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "fsCakeMoistureContentFromWetAndDryCakeMassControl";
-            this.Size = new System.Drawing.Size(328, 224);
+            this.Size = new System.Drawing.Size(338, 224);
             this.leftTopPanel.ResumeLayout(false);
             this.calculationOptionsPanel.ResumeLayout(false);
             this.calculationOptionsPanel.PerformLayout();
