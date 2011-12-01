@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Reflection;
+using System.Linq;
 using System.Windows.Forms;
 using Units;
-using System.ComponentModel;
 
 namespace Calculator
 {
@@ -16,14 +15,15 @@ namespace Calculator
         private readonly Dictionary<fsCharacteristic, Label> m_characteristicToLabel = new Dictionary<fsCharacteristic, Label>();
         private readonly Dictionary<fsModule, CheckBox> m_moduleToCheckBox = new Dictionary<fsModule, CheckBox>();
         private List<fsModule> m_modules;
+        private const string CustomSchemeTitle = "Custom";
 
-        private class Scheme
+        private class fsScheme
         {
             public Dictionary<fsCharacteristic, fsUnit> CharacteristicToUnit { get; private set; }
 
             public string Name { get; private set; }
 
-            Scheme (string name, params KeyValuePair<fsCharacteristic, fsUnit> [] characteristicToUnit)
+            fsScheme (string name, params KeyValuePair<fsCharacteristic, fsUnit> [] characteristicToUnit)
             {
                 CharacteristicToUnit = new Dictionary<fsCharacteristic, fsUnit>();
                 Name = name;
@@ -33,18 +33,25 @@ namespace Calculator
                 }
             }
 
-            public static Scheme SI = new Scheme("SI", new[] {
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
+            public static readonly fsScheme InternationalSystemOfUnits = new fsScheme("International System of Units", new[] {
                 new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareMeter),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerSec),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.CubicMeter)
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.CubicMeter),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerSec)
             });
 
-            public static Scheme Laboratory = new Scheme("Laboratory", new[] {
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
+            public static readonly fsScheme LaboratoryScale = new fsScheme("Laboratory Scale", new[] {
                 new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareSantiMeter),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerMin),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.Liter)
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.Gramme),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.MilliLiter),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerHour)
+            });
+
+            public static fsScheme PilotIndustrialScale = new fsScheme("Pilot/Industrial Scale", new[] {
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareMeter),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.Liter),
+                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerMin)
             });
         }
 
@@ -56,11 +63,14 @@ namespace Calculator
 
         private void InitializeShemeBox()
         {
-            schemeBox.Items.Add("Custom");
+            schemeBox.Items.Add(CustomSchemeTitle);
             schemeBox.SelectedItem = schemeBox.Items[0];
 
-            schemeBox.Items.Add(Scheme.SI.Name);
-            schemeBox.Items.Add(Scheme.Laboratory.Name);
+            foreach (var field in typeof(fsScheme).GetFields())
+            {
+                var scheme = ((fsScheme)field.GetValue(null));
+                schemeBox.Items.Add(scheme.Name);
+            }
         }
 
         private void UnitsDialogLoad(object sender, EventArgs e)
@@ -72,15 +82,7 @@ namespace Calculator
 
         public List<fsModule> GetModifiedModules()
         {
-            var modifiedModules = new List<fsModule>();
-            foreach (var pair in m_moduleToCheckBox)
-            {
-                if (pair.Value.Checked)
-                {
-                    modifiedModules.Add(pair.Key);
-                }
-            }
-            return modifiedModules;
+            return (from pair in m_moduleToCheckBox where pair.Value.Checked select pair.Key).ToList();
         }
 
         public bool GetFutureModulesModified()
@@ -129,9 +131,9 @@ namespace Calculator
             m_moduleToCheckBox[module] = checkBox;
         }
 
-        private fsCharacteristic[] GetPrimaryCharacteristics()
+        private static IEnumerable<fsCharacteristic> GetPrimaryCharacteristics()
         {
-            return new fsCharacteristic[]{
+            return new[]{
                 fsCharacteristic.Time,
                 fsCharacteristic.Area,
                 fsCharacteristic.Mass,
@@ -140,9 +142,9 @@ namespace Calculator
             }; 
         }
 
-        private fsCharacteristic[] GetSecondaryCharacteristics()
+        private static IEnumerable<fsCharacteristic> GetSecondaryCharacteristics()
         {
-            return new fsCharacteristic[]{
+            return new[]{
                 fsCharacteristic.Pressure,
                 fsCharacteristic.Viscosity,
                 fsCharacteristic.Density,
@@ -162,11 +164,16 @@ namespace Calculator
             allCharacteristics.AddRange(secondaryCharacteristics);
 
             var characteristicControls = new List<KeyValuePair<Label, ComboBox>>();
-            unitsPanel.Width = 0;
+
+            const int sizeBeforeLabel = 8;
+            const int sizeFromLabelToCombobox = 16;
+            const int sizeAfterCombobox = 24;
+            rightPanel.Width = 0;
+
             foreach (fsCharacteristic characteristic in allCharacteristics)
             {
-                var characteristicLabel = new Label { Text = characteristic.Name, AutoSize = true };
-                
+                var characteristicLabel = new Label {Text = characteristic.Name, AutoSize = true, Parent = unitsPanel};
+
                 var unitsComboBox = new ComboBox();
                                
                 foreach (var unit in characteristic.Units)
@@ -175,10 +182,14 @@ namespace Calculator
                 }
                 unitsComboBox.Text = characteristic.CurrentUnit.Name;
 
-                int width = 8 + characteristicLabel.Width + 8 + unitsComboBox.Width + 8 + 48;
-                if (unitsPanel.Width < width)
+                int width = sizeBeforeLabel 
+                    + characteristicLabel.Width
+                    + sizeFromLabelToCombobox
+                    + unitsComboBox.Width
+                    + sizeAfterCombobox;
+                if (rightPanel.Width < width)
                 {
-                    unitsPanel.Width = width;
+                    rightPanel.Width = width;
                 }
 
                 characteristicControls.Add(new KeyValuePair<Label, ComboBox>(characteristicLabel, unitsComboBox));
@@ -194,10 +205,11 @@ namespace Calculator
 
                 unitsComboBox.Parent = unitsPanel;
                 unitsComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-                unitsComboBox.Location = new Point(unitsPanel.Width - unitsComboBox.Width - 24, currentHeight);
+                unitsComboBox.Location = new Point(unitsPanel.Width - sizeAfterCombobox - unitsComboBox.Width, currentHeight);
+                unitsComboBox.SelectedValueChanged += UnitChanged;
 
                 characteristicLabel.Parent = unitsPanel;
-                characteristicLabel.Location = new Point(unitsComboBox.Location.X - 8 - characteristicLabel.Width - 8, currentHeight + 4);
+                characteristicLabel.Location = new Point(unitsComboBox.Location.X - sizeFromLabelToCombobox - characteristicLabel.Width, currentHeight + 4);
 
                 currentHeight += 32;
             }
@@ -218,7 +230,7 @@ namespace Calculator
             Close();
         }
 
-        private void ParametersDisplay_CheckedChanged(object sender, EventArgs e)
+        private void ParametersDisplayCheckedChanged(object sender, EventArgs e)
         {
             ShowHideSecondaryCharacteristics(m_showSecondaryCheckbox.Checked);
         }
@@ -232,15 +244,15 @@ namespace Calculator
             }
         }
 
-        private void schemeBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void SchemeBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedScheme = schemeBox.SelectedItem.ToString();
-            if (selectedScheme == "Custom")
+            if (selectedScheme == CustomSchemeTitle)
                 return;
-            var type = typeof(Scheme);
+            var type = typeof(fsScheme);
             foreach (var field in type.GetFields())
             {
-                var scheme = ((Scheme)field.GetValue(null));
+                var scheme = ((fsScheme)field.GetValue(null));
                 if (selectedScheme == scheme.Name)
                 {
                     UpdateSchemeBox(scheme.CharacteristicToUnit);
@@ -249,12 +261,23 @@ namespace Calculator
             }
         }
 
+        private bool m_schemeApplyingInProcess;
+        private void UnitChanged(object sender, EventArgs e)
+        {
+            if (!m_schemeApplyingInProcess)
+            {
+                schemeBox.Text = CustomSchemeTitle;
+            }
+        }
+
         private void UpdateSchemeBox(Dictionary<fsCharacteristic, fsUnit> dictionary)
         {
+            m_schemeApplyingInProcess = true;
             foreach (var pair in dictionary)
             {
                 m_characteristicToComboBox[pair.Key].Text = pair.Value.Name;
-            }    
+            }
+            m_schemeApplyingInProcess = false;
         }
     }
 }
