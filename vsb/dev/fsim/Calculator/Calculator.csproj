@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\fmDataGrid\obj\Debug\fmDataGrid.dll</HintPath>
     </Reference>
+    <Reference Include="fmZedGraph, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\fmZedControl\obj\Debug\fmZedGraph.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -51,6 +55,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph, Version=5.1.5.23178, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\fmZedControl\bin\Debug\ZedGraph.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculation Controls\CakeMoistureContentFromCakeSaturationControl.cs">
@@ -123,9 +131,6 @@
     </Compile>
     <Compile Include="Calculation Controls\SuspensionSolidsMassFractionControl.Designer.cs">
       <DependentUpon>SuspensionSolidsMassFractionControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="fsTreeView.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="fsMisc.cs" />
     <Compile Include="MainWindow.cs">
@@ -205,6 +210,10 @@
       <DependentUpon>UnitsDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\fsTableAndChart.resx">
+      <DependentUpon>fsTableAndChart.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -224,6 +233,15 @@
     </Compile>
     <Compile Include="UnitsDialog.Designer.cs">
       <DependentUpon>UnitsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\fsTableAndChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\fsTableAndChart.Designer.cs">
+      <DependentUpon>fsTableAndChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\fsTreeView.cs">
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
