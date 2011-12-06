@@ -22,6 +22,7 @@ namespace Calculator.Calculation_Controls
         public fsOptionsOneTableAndCommentsCalculatorControl()
         {
             InitializeComponent();
+            splitContainer1.Panel2Collapsed = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,20 +33,26 @@ namespace Calculator.Calculation_Controls
                 showHideCommnetsButton.Text = ">";
                 if (Parent != null)
                 {
-                    Parent.Width -= rightPanel.Width;
+                    Parent.Width -= splitContainer1.Panel2.Width + splitContainer1.SplitterWidth;
                 }
+                splitContainer1.Panel2Collapsed = true;
                 rightPanel.Width = 0;
             }
             else
             {
                 rightPanel.Visible = true;
                 showHideCommnetsButton.Text = "<";
-                Width = leftPanel.Width;
-                rightPanel.Width = 200;
                 if (Parent != null)
                 {
-                    Parent.Width += rightPanel.Width;
+                    //Parent.Width * (Parent.Width + splitContainer1.Panel2.Width + splitContainer1.SplitterWidth) / 
+                    splitContainer1.Panel2Collapsed = false;
+                    int w = splitContainer1.Width;
+                    int a = splitContainer1.Panel1.Width;
+                    int s = splitContainer1.SplitterWidth;
+                    int newWidth = (2 * w * w + s * a) / (2 * a);
+                    Parent.Width += newWidth - w;
                 }
+                
             }
         }
     }
