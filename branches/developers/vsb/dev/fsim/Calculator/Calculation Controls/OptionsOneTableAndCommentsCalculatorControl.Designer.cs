@@ -38,7 +38,7 @@
             this.showHideCommentsPanel = new System.Windows.Forms.Panel();
             this.showHideCommnetsButton = new System.Windows.Forms.Button();
             this.rightPanel = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.fsTableAndChart1 = new Calculator.User_Controls.fsTableAndChart();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.leftPanel.SuspendLayout();
             this.tablesPanel.SuspendLayout();
@@ -58,16 +58,16 @@
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftPanel.Location = new System.Drawing.Point(0, 0);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(248, 300);
+            this.leftPanel.Size = new System.Drawing.Size(267, 300);
             this.leftPanel.TabIndex = 0;
             // 
             // tablesPanel
             // 
             this.tablesPanel.Controls.Add(this.dataGrid);
             this.tablesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tablesPanel.Location = new System.Drawing.Point(0, 37);
+            this.tablesPanel.Location = new System.Drawing.Point(0, 48);
             this.tablesPanel.Name = "tablesPanel";
-            this.tablesPanel.Size = new System.Drawing.Size(248, 263);
+            this.tablesPanel.Size = new System.Drawing.Size(267, 252);
             this.tablesPanel.TabIndex = 1;
             // 
             // dataGrid
@@ -88,7 +88,7 @@
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.RowHeadersVisible = false;
             this.dataGrid.RowTemplate.Height = 18;
-            this.dataGrid.Size = new System.Drawing.Size(248, 263);
+            this.dataGrid.Size = new System.Drawing.Size(267, 252);
             this.dataGrid.TabIndex = 0;
             // 
             // ParameterColumn
@@ -113,7 +113,7 @@
             this.leftTopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.leftTopPanel.Location = new System.Drawing.Point(0, 0);
             this.leftTopPanel.Name = "leftTopPanel";
-            this.leftTopPanel.Size = new System.Drawing.Size(248, 37);
+            this.leftTopPanel.Size = new System.Drawing.Size(267, 48);
             this.leftTopPanel.TabIndex = 0;
             // 
             // calculationOptionsPanel
@@ -121,24 +121,27 @@
             this.calculationOptionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.calculationOptionsPanel.Location = new System.Drawing.Point(0, 0);
             this.calculationOptionsPanel.Name = "calculationOptionsPanel";
-            this.calculationOptionsPanel.Size = new System.Drawing.Size(197, 37);
+            this.calculationOptionsPanel.Size = new System.Drawing.Size(216, 48);
             this.calculationOptionsPanel.TabIndex = 0;
             // 
             // showHideCommentsPanel
             // 
             this.showHideCommentsPanel.Controls.Add(this.showHideCommnetsButton);
             this.showHideCommentsPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.showHideCommentsPanel.Location = new System.Drawing.Point(197, 0);
+            this.showHideCommentsPanel.Location = new System.Drawing.Point(216, 0);
             this.showHideCommentsPanel.Name = "showHideCommentsPanel";
-            this.showHideCommentsPanel.Size = new System.Drawing.Size(51, 37);
+            this.showHideCommentsPanel.Size = new System.Drawing.Size(51, 48);
             this.showHideCommentsPanel.TabIndex = 1;
             // 
             // showHideCommnetsButton
             // 
-            this.showHideCommnetsButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.showHideCommnetsButton.Location = new System.Drawing.Point(6, 5);
+            this.showHideCommnetsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.showHideCommnetsButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.showHideCommnetsButton.Location = new System.Drawing.Point(6, 8);
             this.showHideCommnetsButton.Name = "showHideCommnetsButton";
-            this.showHideCommnetsButton.Size = new System.Drawing.Size(39, 26);
+            this.showHideCommnetsButton.Size = new System.Drawing.Size(35, 34);
             this.showHideCommnetsButton.TabIndex = 0;
             this.showHideCommnetsButton.Text = ">";
             this.showHideCommnetsButton.UseVisualStyleBackColor = true;
@@ -146,22 +149,21 @@
             // 
             // rightPanel
             // 
-            this.rightPanel.Controls.Add(this.textBox1);
+            this.rightPanel.Controls.Add(this.fsTableAndChart1);
             this.rightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightPanel.Location = new System.Drawing.Point(0, 0);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(182, 300);
+            this.rightPanel.Size = new System.Drawing.Size(516, 300);
             this.rightPanel.TabIndex = 1;
             this.rightPanel.Visible = false;
             // 
-            // textBox1
+            // fsTableAndChart1
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(182, 300);
-            this.textBox1.TabIndex = 0;
+            this.fsTableAndChart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fsTableAndChart1.Location = new System.Drawing.Point(0, 0);
+            this.fsTableAndChart1.Name = "fsTableAndChart1";
+            this.fsTableAndChart1.Size = new System.Drawing.Size(516, 300);
+            this.fsTableAndChart1.TabIndex = 1;
             // 
             // splitContainer1
             // 
@@ -176,8 +178,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rightPanel);
-            this.splitContainer1.Size = new System.Drawing.Size(434, 300);
-            this.splitContainer1.SplitterDistance = 248;
+            this.splitContainer1.Size = new System.Drawing.Size(787, 300);
+            this.splitContainer1.SplitterDistance = 267;
             this.splitContainer1.TabIndex = 2;
             // 
             // fsOptionsOneTableAndCommentsCalculatorControl
@@ -186,14 +188,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Name = "fsOptionsOneTableAndCommentsCalculatorControl";
-            this.Size = new System.Drawing.Size(434, 300);
+            this.Size = new System.Drawing.Size(787, 300);
             this.leftPanel.ResumeLayout(false);
             this.tablesPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.leftTopPanel.ResumeLayout(false);
             this.showHideCommentsPanel.ResumeLayout(false);
             this.rightPanel.ResumeLayout(false);
-            this.rightPanel.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
@@ -210,10 +211,10 @@
         protected System.Windows.Forms.Panel calculationOptionsPanel;
         private System.Windows.Forms.Panel showHideCommentsPanel;
         private System.Windows.Forms.Button showHideCommnetsButton;
-        private System.Windows.Forms.TextBox textBox1;
         protected fmDataGrid.fmDataGrid dataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn;
         private fmDataGrid.fmDataGridViewNumericalTextBoxColumn ValueColumn;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private Calculator.User_Controls.fsTableAndChart fsTableAndChart1;
     }
 }
