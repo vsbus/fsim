@@ -35,10 +35,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\fmDataGrid\obj\Debug\fmDataGrid.dll</HintPath>
     </Reference>
-    <Reference Include="fmZedGraph, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\fmZedControl\obj\Debug\fmZedGraph.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -57,7 +53,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="ZedGraph, Version=5.1.5.23178, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\fmZedControl\bin\Debug\ZedGraph.dll</HintPath>
+      <HintPath>..\fmZedControl\ZedGraph.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +241,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\fmZedControl\fmZedGraph.csproj">
+      <Project>{6AA10204-B802-462B-AC8B-D012081866BA}</Project>
+      <Name>fmZedGraph</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Parameters\Parameters.csproj">
       <Project>{67A1D000-12E6-439C-BC89-23C4059BC855}</Project>
       <Name>Parameters</Name>
