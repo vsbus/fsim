@@ -3,49 +3,39 @@ using System.Windows.Forms;
 using Parameters;
 using System.Drawing;
 using StepCalculators;
+using ParametersIdentifiers.Interfaces;
 
 namespace Calculator.Calculation_Controls
 {
-    public class fsCalculationProcessor
+    static public class fsCalculationProcessor
     {
-        public Dictionary<fsParameterIdentifier, fsNamedValueParameter> Values { get; private set; }
-        public Dictionary<fsParameterIdentifier, DataGridViewCell> ParameterToCell { get; private set; }
-        public Dictionary<DataGridViewCell, fsParameterIdentifier> CellToParameter { get; private set; }
-        public List<fsCalculator> Calculators { get; private set; }
-
-        public List<fsParametersGroup> Groups { get; private set; }
-        public Dictionary<fsParameterIdentifier, fsParametersGroup> ParameterToGroup { get; private set; }
-
-        public fsCalculationProcessor()
+        static public void ProcessCalculatorParameters(
+            Dictionary<fsParameterIdentifier, fsMeasuredParameter> values,
+            Dictionary<fsParameterIdentifier, fsParametersGroup> parameterToGroup,
+            List<fsCalculator> calculators)
         {
-            CellToParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
-            ParameterToCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
-            Values = new Dictionary<fsParameterIdentifier, fsNamedValueParameter>();
-            Groups = new List<fsParametersGroup>();
-            ParameterToGroup = new Dictionary<fsParameterIdentifier, fsParametersGroup>();
-            Calculators = new List<fsCalculator>();
-        }
+            var localValues = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
 
-
-        public void SetGroupInputed(fsParametersGroup g, bool isInput)
-        {
-            g.IsInput = isInput;
-            if (isInput)
+            foreach (var parameter in values.Keys)
             {
-                foreach (var p in g.Parameters)
-                {
-                    ParameterToCell[p].ReadOnly = false;
-                    ParameterToCell[p].Style.ForeColor = p == g.Representator ? Color.Blue : Color.Black;
-                }
+                var group = parameterToGroup[parameter];
+                localValues[parameter] = group.IsInput && parameter == group.Representator
+                    ? new fsSimulationParameter(parameter, true, values[parameter].Value)
+                    : new fsSimulationParameter(parameter);
             }
-            else
+
+            foreach (var calc in calculators)
             {
-                foreach (var p in g.Parameters)
-                {
-                    ParameterToCell[p].ReadOnly = true;
-                    ParameterToCell[p].Style.ForeColor = Color.Black;
-                }
+                calc.ReadDataFromStorage(localValues);
+                calc.Calculate();
+                calc.CopyValuesToStorage(localValues);
+            }
+
+            foreach (var parameter in values.Keys)
+            {
+                values[parameter].Value = localValues[parameter].Value;
             }
         }
+
     }
 }

@@ -6,6 +6,14 @@ namespace Parameters
     {
         public fsParameterIdentifier Identifier { get; set; }
 
+        #region Constructors
+
+        public fsNamedValueParameter(fsNamedValueParameter other)
+            : base(other)
+        {
+            Identifier = other.Identifier;
+        }
+
         public fsNamedValueParameter(fsParameterIdentifier identifier)
         {
             Identifier = identifier;
@@ -16,6 +24,8 @@ namespace Parameters
         {
             Identifier = identifier;
         }
+
+        #endregion
 
         public override string ToString()
         {
