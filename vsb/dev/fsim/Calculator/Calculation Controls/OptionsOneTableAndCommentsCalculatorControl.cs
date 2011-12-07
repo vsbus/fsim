@@ -25,6 +25,13 @@ namespace Calculator.Calculation_Controls
             splitContainer1.Panel2Collapsed = true;
         }
 
+        protected override void Recalculate()
+        {
+            base.Recalculate();
+            fsTableAndChart1.AssignCalculatorData(Values, Groups, ParameterToGroup, Calculators);
+            fsTableAndChart1.Reprocess();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (rightPanel.Visible)

@@ -188,30 +188,10 @@ namespace Calculator.Calculation_Controls
             CellToParameter.Add(dataGridViewCell, parameter);
         }
 
-        protected void Recalculate()
+        virtual protected void Recalculate()
         {
-            var localValues = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
-            
-            foreach (var parameter in Values.Keys)
-            {
-                localValues[parameter] = ParameterToGroup[parameter].IsInput && parameter == ParameterToGroup[parameter].Representator
-                    ? new fsSimulationParameter(parameter, true, Values[parameter].Value)
-                    : localValues[parameter] = new fsSimulationParameter(parameter);
-            }
-            
-            foreach (var calc in Calculators)
-            {
-                calc.ReadDataFromStorage(localValues);
-                calc.Calculate();
-                calc.CopyValuesToStorage(localValues);
-            }
-            
-            foreach (var parameter in Values.Keys)
-            {
-                Values[parameter].Value = localValues[parameter].Value;
-            }
+            fsCalculationProcessor.ProcessCalculatorParameters(Values, ParameterToGroup, Calculators);
         }
-
 
         protected void WriteValuesToDataGrid()
         {

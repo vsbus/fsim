@@ -8,6 +8,14 @@ namespace ParametersIdentifiers.Interfaces
     {
         public fsUnit Unit { get; set; }
 
+        #region Constructors
+
+        public fsMeasuredParameter(fsMeasuredParameter other)
+            : base(other)
+        {
+            Unit = other.Unit;
+        }
+
         public fsMeasuredParameter(fsParameterIdentifier identifier)
             : base(identifier)
         {
@@ -19,6 +27,8 @@ namespace ParametersIdentifiers.Interfaces
         {
             Unit = identifier.MeasurementCharacteristic.CurrentUnit;
         }
+
+        #endregion
 
         public fsValue GetValueInUnits()
         {

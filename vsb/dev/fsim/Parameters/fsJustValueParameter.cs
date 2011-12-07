@@ -6,9 +6,16 @@ namespace Parameters
     {
         public fsValue Value { get; set; }
 
+        #region Constructors
+
         public fsJustValueParameter()
         {
             Value = new fsValue();
+        }
+
+        public fsJustValueParameter(fsJustValueParameter other)
+        {
+            Value = other.Value;
         }
 
         public fsJustValueParameter(fsValue value)
@@ -20,5 +27,7 @@ namespace Parameters
         {
             return Value.ToString();
         }
+
+        #endregion
     }
 }
