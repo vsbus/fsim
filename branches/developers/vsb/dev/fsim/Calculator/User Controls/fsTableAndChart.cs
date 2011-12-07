@@ -10,6 +10,7 @@ using ParametersIdentifiers.Interfaces;
 using StepCalculators;
 using Parameters;
 using Calculator.Calculation_Controls;
+using Units;
 using Value;
 using ZedGraph;
 
@@ -60,6 +61,7 @@ namespace Calculator.User_Controls
                 m_diagramUpdate = true;
 
                 BuildData();
+                BuildFunctions();
                 RefreshCurves();
                 RefreshTable();
 
@@ -67,25 +69,65 @@ namespace Calculator.User_Controls
             }
         }
 
+        private class Function
+        {
+            public fsParameterIdentifier ParameterIdentifier;
+            public fsUnit Unit;
+            public List<fsValue> Values;
+
+            public Function(fsParameterIdentifier parameterIdentifier, fsUnit unit)
+            {
+                ParameterIdentifier = parameterIdentifier;
+                Unit = unit;
+                Values = new List<fsValue>();
+            }
+        }
+
+        private List<Function> m_functions = new List<Function>();
+
+        private void BuildFunctions()
+        {
+            m_functions.Clear();
+            var fx = new Function(m_data[0][0].Identifier, m_data[0][0].Unit);
+            for (int row = 0; row < m_data.Count; ++row)
+            {
+                fx.Values.Add(m_data[row][0].GetValueInUnits());
+            }
+            m_functions.Add(fx);
+            for (int col = 1; col < m_data[0].Count; ++col)
+            {
+                var parameter = m_data[0][col].Identifier;
+                if (yAxisList.CheckedItems.Contains(parameter.Name))
+                {
+                    var fy = new Function(parameter, m_data[0][col].Unit);
+                    for (int row = 0; row < m_data.Count; ++row)
+                    {
+                        fy.Values.Add(m_data[row][col].GetValueInUnits());
+                    }
+                    m_functions.Add(fy);
+                }
+            }
+        }
+
         private void RefreshCurves()
         {
-            if (m_data.Count > 0)
+            if (m_functions.Count > 1)
             {
                 fmZedGraphControl1.GraphPane.CurveList.Clear();
 
                 double[] xValues = new double[m_data.Count];
                 for (int row = 0; row < m_data.Count; ++row)
                 {
-                    xValues[row] = m_data[row][0].GetValueInUnits().Value;
+                    xValues[row] = m_functions[0].Values[row].Value;
                 }
-                for (int col = 1; col < m_data[0].Count; ++col)
+                for (int col = 1; col < m_functions.Count; ++col)
                 {
-                    string name = m_data[0][col].Identifier.Name;
-                    string unitName = m_data[0][col].Unit.Name;
-                    double[] yValues = new double[m_data.Count];
+                    string name = m_functions[col].ParameterIdentifier.Name;
+                    string unitName = m_functions[col].Unit.Name;
+                    double[] yValues = new double[m_functions[col].Values.Count];
                     for (int row = 0; row < m_data.Count; ++row)
                     {
-                        yValues[row] = m_data[row][col].GetValueInUnits().Value;
+                        yValues[row] = m_functions[col].Values[row].Value;
                     }
                     LineItem curve = fmZedGraphControl1.GraphPane.AddCurve(name + " (" + unitName + ")",
                         xValues,
@@ -106,18 +148,18 @@ namespace Calculator.User_Controls
         {
             table.Rows.Clear();
             table.Columns.Clear();
-            if (m_data.Count > 0)
+            if (m_functions.Count > 0)
             {
-                table.RowCount = m_data.Count;
-                if (m_data[0].Count > 0)
+                table.ColumnCount = m_functions.Count;
+                if (m_functions[0].Values.Count > 0)
                 {
-                    table.ColumnCount = m_data[0].Count;
+                    table.RowCount = m_functions[0].Values.Count;
                     for (int col = 0; col < table.ColumnCount; ++col)
                     {
-                        table.Columns[col].HeaderCell.Value = m_data[0][col].Identifier.Name;
+                        table.Columns[col].HeaderCell.Value = m_functions[col].ParameterIdentifier.Name;
                         for (int row = 0; row < table.RowCount; ++row)
                         {
-                            table[col, row].Value = m_data[row][col].GetValueInUnits();
+                            table[col, row].Value = m_functions[col].Values[row];
                         }
                     }
                 }
@@ -170,13 +212,19 @@ namespace Calculator.User_Controls
 
         private void RefreshYAxisList()
         {
-            yAxisList.Items.Clear();
+            var newList = new List<KeyValuePair<string, bool>>();
             foreach (var group in m_groups)
             {
                 foreach (var parameter in group.Parameters)
                 {
-                    yAxisList.Items.Add(parameter.Name);
+                    newList.Add(new KeyValuePair<string, bool>(parameter.Name,
+                                                               yAxisList.CheckedItems.Contains(parameter.Name)));
                 }
+            }
+            yAxisList.Items.Clear();
+            foreach (var keyValuePair in newList)
+            {
+                yAxisList.Items.Add(keyValuePair.Key, keyValuePair.Value);
             }
         }
 
@@ -214,6 +262,26 @@ namespace Calculator.User_Controls
         }
 
         private void xAxisList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateDiagram();
+        }
+
+        private void yAxisList_MouseUp(object sender, MouseEventArgs e)
+        {
+            UpdateDiagram();
+        }
+
+        private void rangeFrom_TextChanged(object sender, EventArgs e)
+        {
+            UpdateDiagram();
+        }
+
+        private void rangeTo_TextChanged(object sender, EventArgs e)
+        {
+            UpdateDiagram();
+        }
+
+        private void detalizationBox_TextChanged(object sender, EventArgs e)
         {
             UpdateDiagram();
         }
