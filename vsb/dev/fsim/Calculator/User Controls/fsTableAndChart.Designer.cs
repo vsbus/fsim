@@ -89,11 +89,13 @@
             // 
             this.yAxisList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
+            this.yAxisList.CheckOnClick = true;
             this.yAxisList.FormattingEnabled = true;
             this.yAxisList.Location = new System.Drawing.Point(48, 97);
             this.yAxisList.Name = "yAxisList";
             this.yAxisList.Size = new System.Drawing.Size(72, 139);
             this.yAxisList.TabIndex = 6;
+            this.yAxisList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.yAxisList_MouseUp);
             // 
             // detalizationBox
             // 
@@ -101,6 +103,7 @@
             this.detalizationBox.Name = "detalizationBox";
             this.detalizationBox.Size = new System.Drawing.Size(32, 20);
             this.detalizationBox.TabIndex = 5;
+            this.detalizationBox.TextChanged += new System.EventHandler(this.detalizationBox_TextChanged);
             // 
             // label2
             // 
@@ -117,6 +120,7 @@
             this.rangeTo.Name = "rangeTo";
             this.rangeTo.Size = new System.Drawing.Size(32, 20);
             this.rangeTo.TabIndex = 3;
+            this.rangeTo.TextChanged += new System.EventHandler(this.rangeTo_TextChanged);
             // 
             // rangeFrom
             // 
@@ -124,6 +128,7 @@
             this.rangeFrom.Name = "rangeFrom";
             this.rangeFrom.Size = new System.Drawing.Size(32, 20);
             this.rangeFrom.TabIndex = 2;
+            this.rangeFrom.TextChanged += new System.EventHandler(this.rangeFrom_TextChanged);
             // 
             // label1
             // 
