@@ -7,19 +7,14 @@ namespace Calculator.Calculation_Controls
 {
     public sealed partial class fsPermeabilityControl : fsOptionsOneTableAndCommentsCalculatorControl
     {
-
         #region Calculation Option
 
-        enum fsCalculationOption
+        private enum fsCalculationOption
         {
-            [Description("Pc0, rc0, alpha0")]
-            CalcPc0Rc0Alpha0,
-            [Description("nc")]
-            CalcNc,
-            [Description("Pressure (Dp)")]
-            CalcPressure,
-            [Description("Pc, rc, alpha")]
-            CalcPcRcAlpha
+            [Description("Pc0, rc0, alpha0")] CalcPc0Rc0Alpha0,
+            [Description("nc")] CalcNc,
+            [Description("Pressure (Dp)")] CalcPressure,
+            [Description("Pc, rc, alpha")] CalcPcRcAlpha
         }
 
         #endregion
@@ -30,19 +25,19 @@ namespace Calculator.Calculation_Controls
 
             Calculators.Add(new fsPermeabilityCalculator());
 
-            var solidsGroup = AddGroup(
+            fsParametersGroup solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity);
-            var porosityGroup = AddGroup(
+            fsParametersGroup porosityGroup = AddGroup(
                 fsParameterIdentifier.CakePorosity);
-            var pc0Rc0A0Group = AddGroup(
+            fsParametersGroup pc0Rc0A0Group = AddGroup(
                 fsParameterIdentifier.CakePermeability0,
                 fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.Alpha0);
-            var ncGroup = AddGroup(
+            fsParametersGroup ncGroup = AddGroup(
                 fsParameterIdentifier.CakeCompressibility);
-            var pressureGroup = AddGroup(
+            fsParametersGroup pressureGroup = AddGroup(
                 fsParameterIdentifier.Pressure);
-            var pcRcAGroup = AddGroup(
+            fsParametersGroup pcRcAGroup = AddGroup(
                 fsParameterIdentifier.CakePermeability,
                 fsParameterIdentifier.CakeResistance,
                 fsParameterIdentifier.CakeResistanceAlpha);
@@ -54,8 +49,8 @@ namespace Calculator.Calculation_Controls
             AddGroupToUI(dataGrid, pressureGroup, Color.FromArgb(230, 230, 255));
             AddGroupToUI(dataGrid, pcRcAGroup, Color.FromArgb(255, 230, 230));
 
-            fsMisc.FillList(calculationOptionComboBox.Items, typeof(fsCalculationOption));
-            AssignCalculationOptionAndControl(typeof(fsCalculationOption), calculationOptionComboBox);
+            fsMisc.FillList(calculationOptionComboBox.Items, typeof (fsCalculationOption));
+            AssignCalculationOptionAndControl(typeof (fsCalculationOption), calculationOptionComboBox);
             EstablishCalculationOption(fsCalculationOption.CalcPcRcAlpha);
 
             UpdateGroupsInputInfoFromCalculationOptions();
@@ -69,7 +64,7 @@ namespace Calculator.Calculation_Controls
 
         protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)];
+            var calculationOption = (fsCalculationOption) CalculationOptions[typeof (fsCalculationOption)];
             fsParametersGroup calculateGroup = null;
             switch (calculationOption)
             {
@@ -86,7 +81,7 @@ namespace Calculator.Calculation_Controls
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.Pressure];
                     break;
             }
-            foreach (var group in ParameterToGroup.Values)
+            foreach (fsParametersGroup group in ParameterToGroup.Values)
             {
                 SetGroupInput(group, group != calculateGroup);
             }

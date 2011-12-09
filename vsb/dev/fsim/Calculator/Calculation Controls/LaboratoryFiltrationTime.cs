@@ -15,60 +15,62 @@ namespace Calculator.Calculation_Controls
             Calculators.Add(new fsPc0Rc0Alpha0Calculator());
             Calculators.Add(new fsLaboratoryFiltrationCalculator());
 
-            var filtrateGroup = AddGroup(
+            fsParametersGroup filtrateGroup = AddGroup(
                 fsParameterIdentifier.FiltrateDensity);
-            var solidsGroup = AddGroup(
+            fsParametersGroup solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity);
-            var concentrationGroup = AddGroup(
+            fsParametersGroup concentrationGroup = AddGroup(
                 fsParameterIdentifier.SuspensionSolidsMassFraction,
                 fsParameterIdentifier.SolidsVolumeFraction,
                 fsParameterIdentifier.SolidsConcentration);
-            var epsKappaGroup = AddGroup(
+            fsParametersGroup epsKappaGroup = AddGroup(
                 fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0);
-            var viscosityGroup = AddGroup(
+            fsParametersGroup viscosityGroup = AddGroup(
                 fsParameterIdentifier.FiltrateViscosity);
-            var pc0Rc0Alpha0Group = AddGroup(
+            fsParametersGroup pc0Rc0Alpha0Group = AddGroup(
                 fsParameterIdentifier.CakePermeability0,
                 fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.Alpha0);
-            var ncGroup = AddGroup(
+            fsParametersGroup ncGroup = AddGroup(
                 fsParameterIdentifier.CakeCompressibility);
-            var hceGroup = AddGroup(
+            fsParametersGroup hceGroup = AddGroup(
                 fsParameterIdentifier.Hce0);
-            var pressureGroup = AddGroup(
+            fsParametersGroup pressureGroup = AddGroup(
                 fsParameterIdentifier.Pressure);
-            var areaGroup = AddGroup(
+            fsParametersGroup areaGroup = AddGroup(
                 fsParameterIdentifier.FilterArea);
-            var cakeFormationGroup = AddGroup(
+            fsParametersGroup cakeFormationGroup = AddGroup(
                 fsParameterIdentifier.CakeHeight,
                 fsParameterIdentifier.FormationTime,
                 fsParameterIdentifier.SuspensionMass);
-            var resultsGroup = AddGroup(
+            fsParametersGroup resultsGroup = AddGroup(
                 fsParameterIdentifier.SolidsMass,
                 fsParameterIdentifier.LiquidMass);
 
 
-            var groups = new[] {
-                filtrateGroup,
-                solidsGroup,
-                concentrationGroup,
-                epsKappaGroup,
-                viscosityGroup,
-                pc0Rc0Alpha0Group,
-                ncGroup,
-                hceGroup,
-                pressureGroup,
-                areaGroup,
-                cakeFormationGroup,
-                resultsGroup
-            };
+            var groups = new[]
+                             {
+                                 filtrateGroup,
+                                 solidsGroup,
+                                 concentrationGroup,
+                                 epsKappaGroup,
+                                 viscosityGroup,
+                                 pc0Rc0Alpha0Group,
+                                 ncGroup,
+                                 hceGroup,
+                                 pressureGroup,
+                                 areaGroup,
+                                 cakeFormationGroup,
+                                 resultsGroup
+                             };
 
-            var colors = new[] {
-                Color.FromArgb(255, 255, 230),
-                Color.FromArgb(255, 230, 255)
-            };
+            var colors = new[]
+                             {
+                                 Color.FromArgb(255, 255, 230),
+                                 Color.FromArgb(255, 230, 255)
+                             };
 
             for (int i = 0; i < groups.Length; ++i)
             {
@@ -97,4 +99,3 @@ namespace Calculator.Calculation_Controls
         }
     }
 }
-

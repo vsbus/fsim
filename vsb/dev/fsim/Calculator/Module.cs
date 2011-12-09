@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using Calculator.Calculation_Controls;
-using Parameters;
 using Units;
 
 namespace Calculator
 {
     public class fsModule
     {
-        public string Name { get; private set; }
         private readonly fsCalculatorControl m_calculatorControl;
-        public Form Form { get; private set; }
 
         public fsModule(string name, fsCalculatorControl calculatorControl)
         {
@@ -31,6 +26,9 @@ namespace Calculator
                 Form.Show();
             }
         }
+
+        public string Name { get; private set; }
+        public Form Form { get; private set; }
 
         internal void SetUnits(Dictionary<fsCharacteristic, fsUnit> dictionary)
         {

@@ -14,36 +14,38 @@ namespace Calculator.Calculation_Controls
 
             Calculators.Add(m_calculator);
 
-            var machineDiameterGroup = AddGroup(fsParameterIdentifier.MachineDiameter);
-            var areaBGroup = AddGroup(fsParameterIdentifier.FilterB,
-                fsParameterIdentifier.FilterBOverDiameter,
-                fsParameterIdentifier.FilterArea);
-            var filterElementDiameterGroup = AddGroup(fsParameterIdentifier.FilterElementDiameter);
-            var cakeHeightGroup = AddGroup(fsParameterIdentifier.CakeHeight);
-            var wetGroup = AddGroup(fsParameterIdentifier.WetCakeMass);
-            var dryGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
-            var concentrationGroup = AddGroup(fsParameterIdentifier.SaltConcentrationInTheCakeLiquid);
-            var liquidGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
-            var solidsGroup = AddGroup(fsParameterIdentifier.SolidsDensity);
-            var porosityGroup = AddGroup(fsParameterIdentifier.CakePorosity);
+            fsParametersGroup machineDiameterGroup = AddGroup(fsParameterIdentifier.MachineDiameter);
+            fsParametersGroup areaBGroup = AddGroup(fsParameterIdentifier.FilterB,
+                                                    fsParameterIdentifier.FilterBOverDiameter,
+                                                    fsParameterIdentifier.FilterArea);
+            fsParametersGroup filterElementDiameterGroup = AddGroup(fsParameterIdentifier.FilterElementDiameter);
+            fsParametersGroup cakeHeightGroup = AddGroup(fsParameterIdentifier.CakeHeight);
+            fsParametersGroup wetGroup = AddGroup(fsParameterIdentifier.WetCakeMass);
+            fsParametersGroup dryGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
+            fsParametersGroup concentrationGroup = AddGroup(fsParameterIdentifier.SaltConcentrationInTheCakeLiquid);
+            fsParametersGroup liquidGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
+            fsParametersGroup solidsGroup = AddGroup(fsParameterIdentifier.SolidsDensity);
+            fsParametersGroup porosityGroup = AddGroup(fsParameterIdentifier.CakePorosity);
 
-            var groups = new[] {
-                machineDiameterGroup, 
-                areaBGroup, 
-                filterElementDiameterGroup,
-                cakeHeightGroup,
-                wetGroup, 
-                dryGroup, 
-                concentrationGroup,
-                liquidGroup, 
-                solidsGroup, 
-                porosityGroup
-            };
+            var groups = new[]
+                             {
+                                 machineDiameterGroup,
+                                 areaBGroup,
+                                 filterElementDiameterGroup,
+                                 cakeHeightGroup,
+                                 wetGroup,
+                                 dryGroup,
+                                 concentrationGroup,
+                                 liquidGroup,
+                                 solidsGroup,
+                                 porosityGroup
+                             };
 
-            var colors = new[] {
-                Color.FromArgb(255, 255, 230),
-                Color.FromArgb(255, 230, 255)
-            };
+            var colors = new[]
+                             {
+                                 Color.FromArgb(255, 255, 230),
+                                 Color.FromArgb(255, 230, 255)
+                             };
 
             for (int i = 0; i < groups.Length; ++i)
             {
@@ -53,20 +55,22 @@ namespace Calculator.Calculation_Controls
             porosityGroup.IsInput = false;
             ParameterToCell[fsParameterIdentifier.CakePorosity].ReadOnly = true;
 
-            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterArea].RowIndex, Color.FromArgb(255, 230, 230));
+            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterArea].RowIndex,
+                        Color.FromArgb(255, 230, 230));
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterB].RowIndex, Color.FromArgb(255, 230, 230));
-            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].RowIndex, Color.FromArgb(255, 230, 230));
+            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].RowIndex,
+                        Color.FromArgb(255, 230, 230));
 
-            fsMisc.FillList(saturationComboBox.Items, typeof(fsCakePorosityCalculator.fsSaturationOption));
-            AssignCalculationOptionAndControl(typeof(fsCakePorosityCalculator.fsSaturationOption), saturationComboBox); 
+            fsMisc.FillList(saturationComboBox.Items, typeof (fsCakePorosityCalculator.fsSaturationOption));
+            AssignCalculationOptionAndControl(typeof (fsCakePorosityCalculator.fsSaturationOption), saturationComboBox);
             EstablishCalculationOption(fsCakePorosityCalculator.fsSaturationOption.NotSaturatedCake);
 
-            fsMisc.FillList(saltContentComboBox.Items, typeof(fsCakePorosityCalculator.fsSaltContentOption));
-            AssignCalculationOptionAndControl(typeof(fsCakePorosityCalculator.fsSaltContentOption), saltContentComboBox); 
+            fsMisc.FillList(saltContentComboBox.Items, typeof (fsCakePorosityCalculator.fsSaltContentOption));
+            AssignCalculationOptionAndControl(typeof (fsCakePorosityCalculator.fsSaltContentOption), saltContentComboBox);
             EstablishCalculationOption(fsCakePorosityCalculator.fsSaltContentOption.Neglected);
 
-            fsMisc.FillList(machineTypeComboBox.Items, typeof(fsCakePorosityCalculator.fsMachineTypeOption));
-            AssignCalculationOptionAndControl(typeof(fsCakePorosityCalculator.fsMachineTypeOption), machineTypeComboBox);
+            fsMisc.FillList(machineTypeComboBox.Items, typeof (fsCakePorosityCalculator.fsMachineTypeOption));
+            AssignCalculationOptionAndControl(typeof (fsCakePorosityCalculator.fsMachineTypeOption), machineTypeComboBox);
             EstablishCalculationOption(fsCakePorosityCalculator.fsMachineTypeOption.PlainArea);
 
             UpdateGroupsInputInfoFromCalculationOptions();
@@ -74,9 +78,9 @@ namespace Calculator.Calculation_Controls
             Recalculate();
             UpdateUIFromData();
             ConnectUIWithDataUpdating(dataGrid,
-                saturationComboBox,
-                saltContentComboBox,
-                machineTypeComboBox);
+                                      saturationComboBox,
+                                      saltContentComboBox,
+                                      machineTypeComboBox);
         }
 
         #region Routine Methods
@@ -89,7 +93,7 @@ namespace Calculator.Calculation_Controls
         protected override void UpdateEquationsFromCalculationOptions()
         {
             m_calculator.SaturationOption = (fsCakePorosityCalculator.fsSaturationOption)
-                CalculationOptions[typeof(fsCakePorosityCalculator.fsSaturationOption)];
+                                            CalculationOptions[typeof (fsCakePorosityCalculator.fsSaturationOption)];
             m_calculator.SaltContentOption =
                 (fsCakePorosityCalculator.fsSaltContentOption)
                 CalculationOptions[typeof (fsCakePorosityCalculator.fsSaltContentOption)];
@@ -115,28 +119,36 @@ namespace Calculator.Calculation_Controls
 
             var saltContentOption =
                 (fsCakePorosityCalculator.fsSaltContentOption)
-                CalculationOptions[typeof(fsCakePorosityCalculator.fsSaltContentOption)];
+                CalculationOptions[typeof (fsCakePorosityCalculator.fsSaltContentOption)];
 
             var machineTypeOption =
                 (fsCakePorosityCalculator.fsMachineTypeOption)
-                CalculationOptions[typeof(fsCakePorosityCalculator.fsMachineTypeOption)];
+                CalculationOptions[typeof (fsCakePorosityCalculator.fsMachineTypeOption)];
 
             bool isSaltContentNeglected = saltContentOption == fsCakePorosityCalculator.fsSaltContentOption.Neglected;
             bool isSaturated = saturationOption == fsCakePorosityCalculator.fsSaturationOption.SaturatedCake;
 
             bool geometryVisible = !isSaturated;
-            bool filterElementDiameterVisible = machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric;
-            bool machineDiameterVisible = machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric;
+            bool filterElementDiameterVisible = machineTypeOption ==
+                                                fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric;
+            bool machineDiameterVisible = machineTypeOption ==
+                                          fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric;
             bool bAndBOverDVisible = machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric;
             ParameterToCell[fsParameterIdentifier.FilterArea].OwningRow.Visible = geometryVisible;
-            ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = geometryVisible && machineDiameterVisible;
-            ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = geometryVisible && filterElementDiameterVisible;
+            ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = geometryVisible &&
+                                                                                       machineDiameterVisible;
+            ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = geometryVisible &&
+                                                                                             filterElementDiameterVisible;
             ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = geometryVisible && bAndBOverDVisible;
-            ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = geometryVisible && bAndBOverDVisible;
+            ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = geometryVisible &&
+                                                                                           bAndBOverDVisible;
 
-            ParameterToCell[fsParameterIdentifier.SaltConcentrationInTheCakeLiquid].OwningRow.Visible = !isSaltContentNeglected;
-            ParameterToCell[fsParameterIdentifier.WetCakeMass].OwningRow.Visible = !isSaltContentNeglected || isSaturated;
-            ParameterToCell[fsParameterIdentifier.LiquidDensity].OwningRow.Visible = !isSaltContentNeglected || isSaturated;
+            ParameterToCell[fsParameterIdentifier.SaltConcentrationInTheCakeLiquid].OwningRow.Visible =
+                !isSaltContentNeglected;
+            ParameterToCell[fsParameterIdentifier.WetCakeMass].OwningRow.Visible = !isSaltContentNeglected ||
+                                                                                   isSaturated;
+            ParameterToCell[fsParameterIdentifier.LiquidDensity].OwningRow.Visible = !isSaltContentNeglected ||
+                                                                                     isSaturated;
             ParameterToCell[fsParameterIdentifier.CakeHeight].OwningRow.Visible = !isSaturated;
 
 
@@ -145,7 +157,7 @@ namespace Calculator.Calculation_Controls
 
         //protected override void UpdateUIFromData()
         //{
-       
+
         //    base.UpdateUIFromData();
         //}
 

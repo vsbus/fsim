@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Drawing;
+﻿using System.Drawing;
 using Parameters;
 using StepCalculators;
 
@@ -15,42 +14,43 @@ namespace Calculator.Calculation_Controls
 
             Calculators.Add(m_calculator);
 
-            var permeabilityGroup = AddGroup(
+            fsParametersGroup permeabilityGroup = AddGroup(
                 fsParameterIdentifier.CakePermeability);
-            var resistanceGroup = AddGroup(
+            fsParametersGroup resistanceGroup = AddGroup(
                 fsParameterIdentifier.CakeResistance);
-            var alphaGroup = AddGroup(
+            fsParametersGroup alphaGroup = AddGroup(
                 fsParameterIdentifier.CakeResistanceAlpha);
-            var rhosGroup = AddGroup(
+            fsParametersGroup rhosGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity);
-            var epsGroup = AddGroup(
+            fsParametersGroup epsGroup = AddGroup(
                 fsParameterIdentifier.CakePorosity);
-            var rhosBulkGroup = AddGroup(
+            fsParametersGroup rhosBulkGroup = AddGroup(
                 fsParameterIdentifier.BulkDensityDrySolids);
-            var sigmaGroup = AddGroup(
+            fsParametersGroup sigmaGroup = AddGroup(
                 fsParameterIdentifier.SurfaceTensionLiquidOfCake);
-            var pkestGroup = AddGroup(
+            fsParametersGroup pkestGroup = AddGroup(
                 fsParameterIdentifier.StandartCapillaryPressure);
-            var pkeGroup = AddGroup(
+            fsParametersGroup pkeGroup = AddGroup(
                 fsParameterIdentifier.CapillaryPressure);
 
             var groups = new[]
-            {
-                permeabilityGroup,
-                resistanceGroup,
-                alphaGroup,
-                rhosGroup,
-                epsGroup,
-                rhosBulkGroup,
-                sigmaGroup,
-                pkestGroup,
-                pkeGroup
-            };
+                             {
+                                 permeabilityGroup,
+                                 resistanceGroup,
+                                 alphaGroup,
+                                 rhosGroup,
+                                 epsGroup,
+                                 rhosBulkGroup,
+                                 sigmaGroup,
+                                 pkestGroup,
+                                 pkeGroup
+                             };
 
-            var colors = new[] {
-                Color.FromArgb(255, 255, 230),
-                Color.FromArgb(255, 230, 255)
-            };
+            var colors = new[]
+                             {
+                                 Color.FromArgb(255, 255, 230),
+                                 Color.FromArgb(255, 230, 255)
+                             };
 
             for (int i = 0; i < groups.Length; ++i)
             {
@@ -59,12 +59,13 @@ namespace Calculator.Calculation_Controls
             }
             SetGroupInput(pkeGroup, false);
 
-            fsMisc.FillList(inputCakeComboBox.Items, typeof(fsCalculationOptions.fsCakeInputOption));
-            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsCakeInputOption), inputCakeComboBox);
+            fsMisc.FillList(inputCakeComboBox.Items, typeof (fsCalculationOptions.fsCakeInputOption));
+            AssignCalculationOptionAndControl(typeof (fsCalculationOptions.fsCakeInputOption), inputCakeComboBox);
             EstablishCalculationOption(fsCalculationOptions.fsCakeInputOption.PermeabilityPc);
 
-            fsMisc.FillList(enterSolidsDensityComboBox.Items, typeof(fsCalculationOptions.fsEnterSolidsDensity));
-            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsEnterSolidsDensity), enterSolidsDensityComboBox);
+            fsMisc.FillList(enterSolidsDensityComboBox.Items, typeof (fsCalculationOptions.fsEnterSolidsDensity));
+            AssignCalculationOptionAndControl(typeof (fsCalculationOptions.fsEnterSolidsDensity),
+                                              enterSolidsDensityComboBox);
             EstablishCalculationOption(fsCalculationOptions.fsEnterSolidsDensity.BulkDensityDrySolids);
 
             UpdateGroupsInputInfoFromCalculationOptions();
@@ -72,8 +73,8 @@ namespace Calculator.Calculation_Controls
             Recalculate();
             UpdateUIFromData();
             ConnectUIWithDataUpdating(dataGrid,
-                inputCakeComboBox,
-                enterSolidsDensityComboBox);
+                                      inputCakeComboBox,
+                                      enterSolidsDensityComboBox);
         }
 
         #region Routine Methods
@@ -96,7 +97,9 @@ namespace Calculator.Calculation_Controls
 
         protected override void UpdateUIFromData()
         {
-            var cakeInputOption = (fsCalculationOptions.fsCakeInputOption)CalculationOptions[typeof(fsCalculationOptions.fsCakeInputOption)];
+            var cakeInputOption =
+                (fsCalculationOptions.fsCakeInputOption)
+                CalculationOptions[typeof (fsCalculationOptions.fsCakeInputOption)];
             ParameterToCell[fsParameterIdentifier.CakePermeability].OwningRow.Visible =
                 cakeInputOption == fsCalculationOptions.fsCakeInputOption.PermeabilityPc;
             ParameterToCell[fsParameterIdentifier.CakeResistance].OwningRow.Visible =
@@ -108,7 +111,9 @@ namespace Calculator.Calculation_Controls
             enterSolidsDensityLabel.Visible = isAlpha;
             enterSolidsDensityComboBox.Visible = isAlpha;
 
-            var enterSolidsDensityOption = (fsCalculationOptions.fsEnterSolidsDensity)CalculationOptions[typeof(fsCalculationOptions.fsEnterSolidsDensity)];
+            var enterSolidsDensityOption =
+                (fsCalculationOptions.fsEnterSolidsDensity)
+                CalculationOptions[typeof (fsCalculationOptions.fsEnterSolidsDensity)];
             bool isBulk = enterSolidsDensityOption == fsCalculationOptions.fsEnterSolidsDensity.BulkDensityDrySolids;
             ParameterToCell[fsParameterIdentifier.BulkDensityDrySolids].OwningRow.Visible = isAlpha && isBulk;
             ParameterToCell[fsParameterIdentifier.SolidsDensity].OwningRow.Visible = isAlpha && !isBulk;

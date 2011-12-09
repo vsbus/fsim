@@ -1,45 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 using Parameters;
+using ParametersIdentifiers.Interfaces;
 using StepCalculators;
 using Units;
 using Value;
-using ParametersIdentifiers.Interfaces;
 
 namespace Calculator.Calculation_Controls
 {
     public class fsCalculatorControl : UserControl
     {
         #region Calculation Data
-        
-        protected Dictionary<fsParameterIdentifier, fsMeasuredParameter> Values { get; private set; }
+
         protected Dictionary<Type, Enum> CalculationOptions = new Dictionary<Type, Enum>();
-        
+        protected Dictionary<fsParameterIdentifier, fsMeasuredParameter> Values { get; private set; }
+
         #endregion
 
         #region UI data
 
+        protected Dictionary<Type, Control> CalculationOptionToControl = new Dictionary<Type, Control>();
+
+        protected Dictionary<object, fsParametersGroup> CalculationOptionToGroup =
+            new Dictionary<object, fsParametersGroup>();
+
+        protected Dictionary<Control, Type> ControlToCalculationOption = new Dictionary<Control, Type>();
         protected Dictionary<fsParameterIdentifier, DataGridViewCell> ParameterToCell { get; private set; }
         protected Dictionary<DataGridViewCell, fsParameterIdentifier> CellToParameter { get; private set; }
-        protected Dictionary<object, fsParametersGroup> CalculationOptionToGroup = new Dictionary<object, fsParametersGroup>();
-        protected Dictionary<Control, Type> ControlToCalculationOption = new Dictionary<Control, Type>();
-        protected Dictionary<Type, Control> CalculationOptionToControl = new Dictionary<Type, Control>();
 
         #endregion
 
         public fsCalculatorControl()
         {
             Values = new Dictionary<fsParameterIdentifier, fsMeasuredParameter>();
-            ParameterToCell = new Dictionary<fsParameterIdentifier,DataGridViewCell>();
-            CellToParameter = new Dictionary<DataGridViewCell,fsParameterIdentifier>();
+            ParameterToCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
+            CellToParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
             Calculators = new List<fsCalculator>();
             Groups = new List<fsParametersGroup>();
             ParameterToGroup = new Dictionary<fsParameterIdentifier, fsParametersGroup>();
         }
 
         #region Routines
+
+        protected List<fsCalculator> Calculators { get; set; }
+        protected List<fsParametersGroup> Groups { get; private set; }
+        protected Dictionary<fsParameterIdentifier, fsParametersGroup> ParameterToGroup { get; private set; }
 
         protected void EstablishCalculationOption(Enum option)
         {
@@ -52,7 +59,7 @@ namespace Calculator.Calculation_Controls
             ControlToCalculationOption[comboBox] = type;
         }
 
-        virtual protected void UpdateUIFromData()
+        protected virtual void UpdateUIFromData()
         {
             UpdateCellForeColors();
             WriteValuesToDataGrid();
@@ -67,7 +74,7 @@ namespace Calculator.Calculation_Controls
             }
         }
 
-        virtual protected void CalculationOptionChanged(object sender, EventArgs e)
+        protected virtual void CalculationOptionChanged(object sender, EventArgs e)
         {
             UpdateCalculationOptionFromUI();
             UpdateGroupsInputInfoFromCalculationOptions();
@@ -76,9 +83,9 @@ namespace Calculator.Calculation_Controls
             UpdateUIFromData();
         }
 
-        protected void ConnectUIWithDataUpdating(params Control [] controls)
+        protected void ConnectUIWithDataUpdating(params Control[] controls)
         {
-            foreach (var control in controls)
+            foreach (Control control in controls)
             {
                 if (control is DataGridView)
                 {
@@ -99,12 +106,12 @@ namespace Calculator.Calculation_Controls
             }
         }
 
-        virtual protected void UpdateGroupsInputInfoFromCalculationOptions()
+        protected virtual void UpdateGroupsInputInfoFromCalculationOptions()
         {
             throw new Exception("You should set up groups input info in this method. Override this methodin your class.");
         }
 
-        virtual protected void UpdateEquationsFromCalculationOptions()
+        protected virtual void UpdateEquationsFromCalculationOptions()
         {
             throw new Exception("it should set up equations here. Override this method.");
         }
@@ -117,14 +124,10 @@ namespace Calculator.Calculation_Controls
             }
         }
 
-        protected List<fsCalculator> Calculators { get; set; }
-        protected List<fsParametersGroup> Groups { get; private set; }
-        protected Dictionary<fsParameterIdentifier, fsParametersGroup> ParameterToGroup { get; private set; }
-
         protected void SetGroupInput(fsParametersGroup group, bool value)
         {
             group.IsInput = value;
-            foreach (var parameter in group.Parameters)
+            foreach (fsParameterIdentifier parameter in group.Parameters)
             {
                 ParameterToCell[parameter].ReadOnly = !value;
             }
@@ -133,7 +136,7 @@ namespace Calculator.Calculation_Controls
         public fsParametersGroup AddGroup(params fsParameterIdentifier[] parameters)
         {
             var group = new fsParametersGroup();
-            foreach (var parameter in parameters)
+            foreach (fsParameterIdentifier parameter in parameters)
             {
                 group.Parameters.Add(parameter);
                 ParameterToGroup[parameter] = group;
@@ -145,7 +148,7 @@ namespace Calculator.Calculation_Controls
 
         protected void AddGroupToUI(DataGridView dataGrid, fsParametersGroup group, Color color)
         {
-            foreach (var p in group.Parameters)
+            foreach (fsParameterIdentifier p in group.Parameters)
             {
                 var parameter = new fsMeasuredParameter(p);
                 Values.Add(p, parameter);
@@ -155,11 +158,11 @@ namespace Calculator.Calculation_Controls
 
         protected void DataGridCellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
         {
-            var cell = ((DataGridView) sender).CurrentCell;
+            DataGridViewCell cell = ((DataGridView) sender).CurrentCell;
             if (cell == null || !CellToParameter.ContainsKey(cell))
                 return;
 
-            var parameter = CellToParameter[cell];
+            fsParameterIdentifier parameter = CellToParameter[cell];
             UpdateInputInGroup(parameter);
             ReadEnteredValue(cell, parameter);
             Recalculate();
@@ -169,7 +172,7 @@ namespace Calculator.Calculation_Controls
 
         protected void AddRow(DataGridView dataGrid, fsMeasuredParameter parameter, Color color)
         {
-            int ind = dataGrid.Rows.Add(new[] { parameter.ToString(), "" });
+            int ind = dataGrid.Rows.Add(new[] {parameter.ToString(), ""});
             SetRowColor(dataGrid, ind, color);
             AssignParameterAndCell(parameter.Identifier, dataGrid.Rows[ind].Cells[1]);
         }
@@ -188,14 +191,14 @@ namespace Calculator.Calculation_Controls
             CellToParameter.Add(dataGridViewCell, parameter);
         }
 
-        virtual protected void Recalculate()
+        protected virtual void Recalculate()
         {
             fsCalculationProcessor.ProcessCalculatorParameters(Values, ParameterToGroup, Calculators);
         }
 
         protected void WriteValuesToDataGrid()
         {
-            foreach (var p in Values.Keys)
+            foreach (fsParameterIdentifier p in Values.Keys)
             {
                 ParameterToCell[p].Value = Values[p].GetValueInUnits();
             }
@@ -205,12 +208,12 @@ namespace Calculator.Calculation_Controls
         {
             foreach (var pair in ParameterToCell)
             {
-                var group = ParameterToGroup[pair.Key];
+                fsParametersGroup group = ParameterToGroup[pair.Key];
                 if (group.IsInput)
                 {
                     pair.Value.Style.ForeColor = group.Representator == pair.Key
-                        ? Color.Blue
-                        : Color.Black;    
+                                                     ? Color.Blue
+                                                     : Color.Black;
                 }
                 else
                 {
@@ -221,9 +224,9 @@ namespace Calculator.Calculation_Controls
 
         protected void UpdateInputInGroup(fsParameterIdentifier parameter)
         {
-            var g = ParameterToGroup[parameter];
+            fsParametersGroup g = ParameterToGroup[parameter];
             g.Representator = parameter;
-            foreach (var p in g.Parameters)
+            foreach (fsParameterIdentifier p in g.Parameters)
             {
                 ParameterToCell[p].Style.ForeColor = p == parameter ? Color.Blue : Color.Black;
             }
@@ -231,7 +234,7 @@ namespace Calculator.Calculation_Controls
 
         protected void ReadEnteredValue(DataGridViewCell cell, fsParameterIdentifier parameter)
         {
-            var value = Values[parameter];
+            fsMeasuredParameter value = Values[parameter];
             value.SetValueInUnits(fsValue.ObjectToValue(cell.Value));
         }
 
@@ -239,14 +242,15 @@ namespace Calculator.Calculation_Controls
 
         internal void SetUnits(Dictionary<fsCharacteristic, fsUnit> dictionary)
         {
-            foreach(var identifier in Values.Keys)
+            foreach (fsParameterIdentifier identifier in Values.Keys)
             {
-                var parameter = Values[identifier];
+                fsMeasuredParameter parameter = Values[identifier];
                 if (dictionary.ContainsKey(identifier.MeasurementCharacteristic))
                 {
                     parameter.Unit = dictionary[identifier.MeasurementCharacteristic];
-                    var valueCell = ParameterToCell[identifier];
-                    var parameterNameCell = valueCell.DataGridView[valueCell.ColumnIndex - 1, valueCell.RowIndex];
+                    DataGridViewCell valueCell = ParameterToCell[identifier];
+                    DataGridViewCell parameterNameCell =
+                        valueCell.DataGridView[valueCell.ColumnIndex - 1, valueCell.RowIndex];
                     parameterNameCell.Value = parameter.ToString();
                     valueCell.Value = parameter.GetValueInUnits();
                 }
@@ -254,5 +258,3 @@ namespace Calculator.Calculation_Controls
         }
     }
 }
-
-

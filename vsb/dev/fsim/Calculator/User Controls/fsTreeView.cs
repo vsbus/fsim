@@ -1,12 +1,13 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Calculator
 {
     public class fsTreeView : TreeView
     {
-        TreeNode m_node;
         private readonly Color m_backColor = Color.Blue;
+        private TreeNode m_node;
 
         protected override void OnAfterSelect(TreeViewEventArgs e)
         {
@@ -18,6 +19,7 @@ namespace Calculator
             m_node = e.Node;
             base.OnAfterSelect(e);
         }
+
         protected override void OnBeforeSelect(TreeViewCancelEventArgs e)
         {
             e.Node.BackColor = m_backColor;
@@ -25,7 +27,7 @@ namespace Calculator
             base.OnBeforeSelect(e);
         }
 
-        protected override void OnLostFocus(System.EventArgs e)
+        protected override void OnLostFocus(EventArgs e)
         {
             if (m_node != null)
             {

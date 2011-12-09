@@ -5,18 +5,16 @@ using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    public sealed partial class fsCakeMoistureContentFromCakeSaturationControl : fsOptionsOneTableAndCommentsCalculatorControl
+    public sealed partial class fsCakeMoistureContentFromCakeSaturationControl :
+        fsOptionsOneTableAndCommentsCalculatorControl
     {
         #region Calculation Option
 
-        enum fsCalculationOption
+        private enum fsCalculationOption
         {
-            [Description("Cake Porosity")]
-            CakePorosity,
-            [Description("Cake Saturation")]
-            CakeSaturation,
-            [Description("Cake Moisture Content")]
-            CakeMoistureContent
+            [Description("Cake Porosity")] CakePorosity,
+            [Description("Cake Saturation")] CakeSaturation,
+            [Description("Cake Moisture Content")] CakeMoistureContent
         }
 
         #endregion
@@ -27,29 +25,31 @@ namespace Calculator.Calculation_Controls
 
             Calculators.Add(new fsRfFromCakeSaturationCalculator());
 
-            var liquidGroup = AddGroup(
+            fsParametersGroup liquidGroup = AddGroup(
                 fsParameterIdentifier.LiquidDensity);
-            var solidsGroup = AddGroup(
+            fsParametersGroup solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity);
-            var porosityGroup = AddGroup(
+            fsParametersGroup porosityGroup = AddGroup(
                 fsParameterIdentifier.CakePorosity);
-            var saturationGroup = AddGroup(
+            fsParametersGroup saturationGroup = AddGroup(
                 fsParameterIdentifier.CakeSaturation);
-            var rfGroup = AddGroup(
+            fsParametersGroup rfGroup = AddGroup(
                 fsParameterIdentifier.CakeMoistureContent);
 
-            var groups = new[] {
-                liquidGroup,
-                solidsGroup,
-                porosityGroup,
-                saturationGroup,
-                rfGroup
-            };
+            var groups = new[]
+                             {
+                                 liquidGroup,
+                                 solidsGroup,
+                                 porosityGroup,
+                                 saturationGroup,
+                                 rfGroup
+                             };
 
-            var colors = new[] {
-                Color.FromArgb(255, 255, 230),
-                Color.FromArgb(255, 230, 255)
-            };
+            var colors = new[]
+                             {
+                                 Color.FromArgb(255, 255, 230),
+                                 Color.FromArgb(255, 230, 255)
+                             };
 
             for (int i = 0; i < groups.Length; ++i)
             {
@@ -59,9 +59,9 @@ namespace Calculator.Calculation_Controls
             rfGroup.IsInput = false;
             ParameterToCell[fsParameterIdentifier.CakeMoistureContent].ReadOnly = true;
 
-            fsMisc.FillList(calculationOptionComboBox.Items, typeof(fsCalculationOption));
+            fsMisc.FillList(calculationOptionComboBox.Items, typeof (fsCalculationOption));
             EstablishCalculationOption(fsCalculationOption.CakeMoistureContent);
-            AssignCalculationOptionAndControl(typeof(fsCalculationOption), calculationOptionComboBox);
+            AssignCalculationOptionAndControl(typeof (fsCalculationOption), calculationOptionComboBox);
 
             UpdateGroupsInputInfoFromCalculationOptions();
             UpdateEquationsFromCalculationOptions();
@@ -77,7 +77,7 @@ namespace Calculator.Calculation_Controls
 
         protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)];
+            var calculationOption = (fsCalculationOption) CalculationOptions[typeof (fsCalculationOption)];
             fsParametersGroup calculateGroup = null;
             switch (calculationOption)
             {
@@ -91,7 +91,7 @@ namespace Calculator.Calculation_Controls
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.CakeSaturation];
                     break;
             }
-            foreach (var group in ParameterToGroup.Values)
+            foreach (fsParametersGroup group in ParameterToGroup.Values)
             {
                 SetGroupInput(group, group != calculateGroup);
             }

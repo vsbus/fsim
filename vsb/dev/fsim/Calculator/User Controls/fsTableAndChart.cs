@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Calculator.Calculation_Controls;
+using Parameters;
 using ParametersIdentifiers.Interfaces;
 using StepCalculators;
-using Parameters;
-using Calculator.Calculation_Controls;
 using Units;
 using Value;
 using ZedGraph;
@@ -15,10 +15,13 @@ namespace Calculator.User_Controls
 {
     public partial class fsTableAndChart : UserControl
     {
+        private readonly List<fsFunction> m_functions = new List<fsFunction>();
         private List<fsCalculator> m_calculators;
-        private Dictionary<fsParameterIdentifier, fsMeasuredParameter> m_values;
+        private List<List<fsMeasuredParameter>> m_data;
+        private bool m_diagramUpdate;
         private List<fsParametersGroup> m_groups;
         private Dictionary<fsParameterIdentifier, fsParametersGroup> m_parameterToGroup;
+        private Dictionary<fsParameterIdentifier, fsMeasuredParameter> m_values;
 
         public fsTableAndChart()
         {
@@ -26,8 +29,6 @@ namespace Calculator.User_Controls
 
             m_values = new Dictionary<fsParameterIdentifier, fsMeasuredParameter>();
         }
-
-        bool m_diagramUpdate;
 
         public void Reprocess()
         {
@@ -47,7 +48,6 @@ namespace Calculator.User_Controls
                 m_diagramUpdate = false;
 
                 UpdateDiagram();
-
             }
         }
 
@@ -66,22 +66,6 @@ namespace Calculator.User_Controls
             }
         }
 
-        private class fsFunction
-        {
-            public readonly fsParameterIdentifier ParameterIdentifier;
-            public fsUnit Unit;
-            public readonly List<fsValue> Values;
-
-            public fsFunction(fsParameterIdentifier parameterIdentifier, fsUnit unit)
-            {
-                ParameterIdentifier = parameterIdentifier;
-                Unit = unit;
-                Values = new List<fsValue>();
-            }
-        }
-
-        private readonly List<fsFunction> m_functions = new List<fsFunction>();
-
         private void BuildFunctions()
         {
             m_functions.Clear();
@@ -93,7 +77,7 @@ namespace Calculator.User_Controls
             m_functions.Add(fx);
             for (int col = 1; col < m_data[0].Count; ++col)
             {
-                var parameter = m_data[0][col].Identifier;
+                fsParameterIdentifier parameter = m_data[0][col].Identifier;
                 if (yAxisList.CheckedItems.Contains(parameter.Name))
                 {
                     var fy = new fsFunction(parameter, m_data[0][col].Unit);
@@ -127,10 +111,10 @@ namespace Calculator.User_Controls
                         yValues[row] = m_functions[col].Values[row].Value;
                     }
                     LineItem curve = fmZedGraphControl1.GraphPane.AddCurve(name + " (" + unitName + ")",
-                        xValues,
-                        yValues,
-                        Color.Black,
-                        SymbolType.None);
+                                                                           xValues,
+                                                                           yValues,
+                                                                           Color.Black,
+                                                                           SymbolType.None);
                     curve.Line.IsAntiAlias = true;
                 }
 
@@ -138,8 +122,6 @@ namespace Calculator.User_Controls
                 fmZedGraphControl1.Refresh();
             }
         }
-
-        private List<List<fsMeasuredParameter>> m_data;
 
         private void RefreshTable()
         {
@@ -165,13 +147,15 @@ namespace Calculator.User_Controls
 
         private void BuildData()
         {
-            var xParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
+            fsParameterIdentifier xParameter =
+                m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
 
             int detalization = Convert.ToInt32(detalizationBox.Text);
             m_data = new List<List<fsMeasuredParameter>>();
             for (int i = 0; i < detalization; ++i)
             {
-                var currentValues = m_values.ToDictionary(pair => pair.Key, pair => new fsMeasuredParameter(pair.Value));
+                Dictionary<fsParameterIdentifier, fsMeasuredParameter> currentValues =
+                    m_values.ToDictionary(pair => pair.Key, pair => new fsMeasuredParameter(pair.Value));
 
                 fsValue from = fsValue.StringToValue(rangeFrom.Text);
                 fsValue to = fsValue.StringToValue(rangeTo.Text);
@@ -198,7 +182,7 @@ namespace Calculator.User_Controls
         private void RefreshYAxisList()
         {
             var newList = new List<KeyValuePair<string, bool>>();
-            foreach (var group in m_groups)
+            foreach (fsParametersGroup group in m_groups)
             {
                 newList.AddRange(
                     group.Parameters.Select(
@@ -216,7 +200,7 @@ namespace Calculator.User_Controls
         {
             string currentText = xAxisList.Text;
             xAxisList.Items.Clear();
-            foreach (var group in m_groups)
+            foreach (fsParametersGroup group in m_groups)
             {
                 if (group.IsInput)
                 {
@@ -269,5 +253,23 @@ namespace Calculator.User_Controls
         {
             UpdateDiagram();
         }
+
+        #region Nested type: fsFunction
+
+        private class fsFunction
+        {
+            public readonly fsParameterIdentifier ParameterIdentifier;
+            public readonly List<fsValue> Values;
+            public fsUnit Unit;
+
+            public fsFunction(fsParameterIdentifier parameterIdentifier, fsUnit unit)
+            {
+                ParameterIdentifier = parameterIdentifier;
+                Unit = unit;
+                Values = new List<fsValue>();
+            }
+        }
+
+        #endregion
     }
 }
