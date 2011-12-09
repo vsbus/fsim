@@ -5,25 +5,26 @@ namespace Equations
 {
     public class fsMassConcentrationEquation : fsCalculatorEquation
     {
-        // Cm * rhoSus * (rhoF - rhoS) = rhoS * (rhoF - rhoSus)
         #region Parameters
 
-        readonly IEquationParameter m_solidsMassFraction;
-        readonly IEquationParameter m_filtrateDensity;
-        readonly IEquationParameter m_solidsDensity;
-        readonly IEquationParameter m_suspensionDensity;
+        private readonly IEquationParameter m_filtrateDensity;
+        private readonly IEquationParameter m_solidsDensity;
+        private readonly IEquationParameter m_solidsMassFraction;
+        private readonly IEquationParameter m_suspensionDensity;
 
         #endregion
+
+        // Cm * rhoSus * (rhoF - rhoS) = rhoS * (rhoF - rhoSus)
 
         public fsMassConcentrationEquation(
             IEquationParameter solidsMassFraction,
             IEquationParameter filtrateDensity,
             IEquationParameter solidsDensity,
-            IEquationParameter suspensionDensity) 
+            IEquationParameter suspensionDensity)
             : base(
                 solidsMassFraction,
-                filtrateDensity, 
-                solidsDensity, 
+                filtrateDensity,
+                solidsDensity,
                 suspensionDensity)
         {
             m_solidsMassFraction = solidsMassFraction;

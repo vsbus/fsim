@@ -4,21 +4,21 @@ namespace Equations
 {
     public class fsProductEquation : fsCalculatorEquation
     {
-        // product = firstFactor * secondFactor
-
         #region Parameters
-        
-        readonly IEquationParameter m_product;
-        readonly IEquationParameter m_firstFactor;
-        readonly IEquationParameter m_secondFactor;
-        
+
+        private readonly IEquationParameter m_firstFactor;
+        private readonly IEquationParameter m_product;
+        private readonly IEquationParameter m_secondFactor;
+
         #endregion
+
+        // product = firstFactor * secondFactor
 
         public fsProductEquation(
             IEquationParameter product,
             IEquationParameter firstFactor,
             IEquationParameter secondFactor)
-            : base (product, firstFactor, secondFactor)
+            : base(product, firstFactor, secondFactor)
         {
             m_product = product;
             m_firstFactor = firstFactor;
@@ -36,7 +36,7 @@ namespace Equations
 
         private void SecondFactorFormula()
         {
-            m_secondFactor.Value = m_product.Value / m_firstFactor.Value; 
+            m_secondFactor.Value = m_product.Value / m_firstFactor.Value;
         }
 
         private void FirstFactorFormula()

@@ -13,8 +13,6 @@ namespace Equations
 
         #region Formulas
 
-        protected delegate void fsFormula();
-
         private List<KeyValuePair<IEquationParameter, fsFormula>> m_formulas;
 
         protected void AddFormula(IEquationParameter result, fsFormula formula)
@@ -24,11 +22,13 @@ namespace Equations
 
         protected abstract void InitFormulas();
 
+        protected delegate void fsFormula();
+
         #endregion
 
         protected fsCalculatorEquation(params IEquationParameter[] parameters)
         {
-            foreach (var p in parameters)
+            foreach (IEquationParameter p in parameters)
             {
                 m_parameters.Add(p);
             }
@@ -39,7 +39,7 @@ namespace Equations
         public bool Calculate()
         {
             IEquationParameter result = null;
-            foreach (var p in m_parameters)
+            foreach (IEquationParameter p in m_parameters)
             {
                 if (p.IsProcessed == false)
                     if (result == null)

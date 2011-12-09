@@ -7,9 +7,9 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_area;
-        readonly IEquationParameter m_diameter;
-        readonly IEquationParameter m_height;
+        private readonly IEquationParameter m_area;
+        private readonly IEquationParameter m_diameter;
+        private readonly IEquationParameter m_height;
 
         #endregion
 
@@ -18,8 +18,8 @@ namespace Equations
             IEquationParameter diameter,
             IEquationParameter height)
             : base(
-                area, 
-                diameter, 
+                area,
+                diameter,
                 height)
         {
             m_area = area;

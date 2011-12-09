@@ -4,19 +4,19 @@ namespace Equations
 {
     public class fsAssignEquation : fsCalculatorEquation
     {
-        // x = y
-
         #region Parameters
-        
-        readonly IEquationParameter m_left;
-        readonly IEquationParameter m_right;
-        
+
+        private readonly IEquationParameter m_left;
+        private readonly IEquationParameter m_right;
+
         #endregion
+
+        // x = y
 
         public fsAssignEquation(
             IEquationParameter left,
             IEquationParameter right)
-            : base (left, right)
+            : base(left, right)
         {
             m_left = left;
             m_right = right;

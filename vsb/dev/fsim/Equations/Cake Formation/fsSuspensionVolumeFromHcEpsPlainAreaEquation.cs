@@ -4,17 +4,17 @@ namespace Equations
 {
     public class fsSuspensionVolumeFromHcEpsPlainAreaEquation : fsCalculatorEquation
     {
-        // Vsus = (1 - eps) * A * hc / Cv;
-
         #region Parameters
 
-        readonly IEquationParameter m_suspensionVolume;
-        readonly IEquationParameter m_porosity;
-        readonly IEquationParameter m_filterArea;
-        readonly IEquationParameter m_cakeHeight;
-        readonly IEquationParameter m_solidsVolumeFraction;
+        private readonly IEquationParameter m_cakeHeight;
+        private readonly IEquationParameter m_filterArea;
+        private readonly IEquationParameter m_porosity;
+        private readonly IEquationParameter m_solidsVolumeFraction;
+        private readonly IEquationParameter m_suspensionVolume;
 
         #endregion
+
+        // Vsus = (1 - eps) * A * hc / Cv;
 
         public fsSuspensionVolumeFromHcEpsPlainAreaEquation(
             IEquationParameter suspensionVolume,

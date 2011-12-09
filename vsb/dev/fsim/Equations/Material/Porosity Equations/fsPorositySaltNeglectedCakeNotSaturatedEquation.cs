@@ -6,11 +6,11 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_porosity;
-        readonly IEquationParameter m_dryMass;
-        readonly IEquationParameter m_solidsDensity;
-        readonly IEquationParameter m_area;
-        readonly IEquationParameter m_cakeHeight;
+        private readonly IEquationParameter m_area;
+        private readonly IEquationParameter m_cakeHeight;
+        private readonly IEquationParameter m_dryMass;
+        private readonly IEquationParameter m_porosity;
+        private readonly IEquationParameter m_solidsDensity;
 
         #endregion
 

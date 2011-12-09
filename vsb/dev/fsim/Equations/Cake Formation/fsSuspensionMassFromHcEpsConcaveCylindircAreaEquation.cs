@@ -5,19 +5,19 @@ namespace Equations
 {
     public class fsSuspensionMassFromHcEpsConcaveCylindircAreaEquation : fsCalculatorEquation
     {
-        // Msus * Cm = (1 - eps) * rho_s * A * hc * (1 - hc / d);
-
         #region Parameters
 
-        readonly IEquationParameter m_suspensionMass;
-        readonly IEquationParameter m_porosity;
-        readonly IEquationParameter m_solidsDensity;
-        readonly IEquationParameter m_filterArea;
-        readonly IEquationParameter m_filterDiameter;
-        readonly IEquationParameter m_cakeHeight;
-        readonly IEquationParameter m_solidsMassFraction;
+        private readonly IEquationParameter m_cakeHeight;
+        private readonly IEquationParameter m_filterArea;
+        private readonly IEquationParameter m_filterDiameter;
+        private readonly IEquationParameter m_porosity;
+        private readonly IEquationParameter m_solidsDensity;
+        private readonly IEquationParameter m_solidsMassFraction;
+        private readonly IEquationParameter m_suspensionMass;
 
         #endregion
+
+        // Msus * Cm = (1 - eps) * rho_s * A * hc * (1 - hc / d);
 
         public fsSuspensionMassFromHcEpsConcaveCylindircAreaEquation(
             IEquationParameter suspensionMass,

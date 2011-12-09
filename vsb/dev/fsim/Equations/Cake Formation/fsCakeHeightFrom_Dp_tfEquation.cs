@@ -7,13 +7,13 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_cakeHeight;
-        readonly IEquationParameter m_hce;
-        readonly IEquationParameter m_pc;
-        readonly IEquationParameter m_kappa;
-        readonly IEquationParameter m_pressure;
-        readonly IEquationParameter m_formationTime;
-        readonly IEquationParameter m_etaf;
+        private readonly IEquationParameter m_cakeHeight;
+        private readonly IEquationParameter m_etaf;
+        private readonly IEquationParameter m_formationTime;
+        private readonly IEquationParameter m_hce;
+        private readonly IEquationParameter m_kappa;
+        private readonly IEquationParameter m_pc;
+        private readonly IEquationParameter m_pressure;
 
         #endregion
 
@@ -26,12 +26,12 @@ namespace Equations
             IEquationParameter formationTime,
             IEquationParameter etaf)
             : base(
-                cakeHeight, 
-                hce, 
-                pc, 
-                kappa, 
-                pressure, 
-                formationTime, 
+                cakeHeight,
+                hce,
+                pc,
+                kappa,
+                pressure,
+                formationTime,
                 etaf)
         {
             m_cakeHeight = cakeHeight;
@@ -41,7 +41,6 @@ namespace Equations
             m_pressure = pressure;
             m_formationTime = formationTime;
             m_etaf = etaf;
-
         }
 
         protected override void InitFormulas()
@@ -54,14 +53,17 @@ namespace Equations
 
         private void CakeHeightFormula()
         {
-            m_cakeHeight.Value = fsValue.Sqrt(m_hce.Value * m_hce.Value + 2 * m_pc.Value * m_kappa.Value * m_pressure.Value * m_formationTime.Value / m_etaf.Value) - m_hce.Value;
+            m_cakeHeight.Value =
+                fsValue.Sqrt(m_hce.Value * m_hce.Value +
+                             2 * m_pc.Value * m_kappa.Value * m_pressure.Value * m_formationTime.Value / m_etaf.Value) -
+                m_hce.Value;
         }
 
         private void CakeFormationTime()
         {
             m_formationTime.Value = m_etaf.Value
-                * (m_cakeHeight.Value * m_cakeHeight.Value + 2 * m_cakeHeight.Value * m_hce.Value)
-                / (2 * m_pc.Value * m_kappa.Value * m_pressure.Value);
+                                    * (m_cakeHeight.Value * m_cakeHeight.Value + 2 * m_cakeHeight.Value * m_hce.Value)
+                                    / (2 * m_pc.Value * m_kappa.Value * m_pressure.Value);
         }
 
         #endregion

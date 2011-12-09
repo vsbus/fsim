@@ -7,10 +7,10 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_solidsConcentration;
-        readonly IEquationParameter m_filtrateDensity;
-        readonly IEquationParameter m_solidsDensity;
-        readonly IEquationParameter m_suspensionDensity;
+        private readonly IEquationParameter m_filtrateDensity;
+        private readonly IEquationParameter m_solidsConcentration;
+        private readonly IEquationParameter m_solidsDensity;
+        private readonly IEquationParameter m_suspensionDensity;
 
         #endregion
 

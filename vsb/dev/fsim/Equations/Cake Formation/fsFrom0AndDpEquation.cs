@@ -7,10 +7,10 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_x;
-        readonly IEquationParameter m_x0;
-        readonly IEquationParameter m_pressure;
-        readonly IEquationParameter m_degree;
+        private readonly IEquationParameter m_degree;
+        private readonly IEquationParameter m_pressure;
+        private readonly IEquationParameter m_x;
+        private readonly IEquationParameter m_x0;
 
         #endregion
 
@@ -20,9 +20,9 @@ namespace Equations
             IEquationParameter pressure,
             IEquationParameter degree)
             : base(
-                x, 
-                x0, 
-                pressure, 
+                x,
+                x0,
+                pressure,
                 degree)
         {
             m_x = x;

@@ -4,14 +4,14 @@ namespace Equations
 {
     public class fsDivisionInverseEquation : fsCalculatorEquation
     {
-        // first * second = 1
-
         #region Parameters
 
-        readonly IEquationParameter m_first;
-        readonly IEquationParameter m_second;
+        private readonly IEquationParameter m_first;
+        private readonly IEquationParameter m_second;
 
         #endregion
+
+        // first * second = 1
 
         public fsDivisionInverseEquation(
             IEquationParameter first,

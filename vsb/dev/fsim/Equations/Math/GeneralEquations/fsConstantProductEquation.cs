@@ -5,19 +5,19 @@ namespace Equations
 {
     public class fsConstantProductEquation : fsCalculatorEquation
     {
-        // const = a * b * c * d * ... (any amount of parameters)
-
         #region Parameters
 
-        readonly double m_const;
-        readonly IEquationParameter[] m_elements;
-        
+        private readonly double m_const;
+        private readonly IEquationParameter[] m_elements;
+
         #endregion
+
+        // const = a * b * c * d * ... (any amount of parameters)
 
         public fsConstantProductEquation(
             double constValue,
-            params IEquationParameter [] elements)
-            : base (elements)
+            params IEquationParameter[] elements)
+            : base(elements)
         {
             m_const = constValue;
             m_elements = elements;
@@ -31,7 +31,7 @@ namespace Equations
         protected override bool Calculate(IEquationParameter result)
         {
             fsValue product = fsValue.One;
-            foreach (var equationParameter in m_elements)
+            foreach (IEquationParameter equationParameter in m_elements)
             {
                 if (equationParameter != result)
                 {
