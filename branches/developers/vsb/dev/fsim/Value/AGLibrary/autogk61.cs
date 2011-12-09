@@ -83,12 +83,12 @@ namespace AGLibrary
                                               ref int heapused)
         {
             bool result;
-            double[,] heap = new double[0,0];
+            var heap = new double[0,0];
             int heapw = 0;
             double sumerr = 0;
-            double[] x = new double[0];
-            double[] wg = new double[0];
-            double[] wk = new double[0];
+            var x = new double[0];
+            var wg = new double[0];
+            var wk = new double[0];
             int n = 0;
             int ng = 0;
             int i = 0;
@@ -192,38 +192,38 @@ namespace AGLibrary
             wk[28] = 0.051221547849258772170656282604944;
             wk[29] = 0.051426128537459025933862879215781;
             wk[30] = 0.051494729429451567558340433647099;
-            for (i = n - 1; i >= n/2; i--)
+            for (i = n - 1; i >= n / 2; i--)
             {
                 x[i] = -x[n - 1 - i];
             }
-            for (i = n - 1; i >= n/2; i--)
+            for (i = n - 1; i >= n / 2; i--)
             {
                 wk[i] = wk[n - 1 - i];
             }
             for (i = ng - 1; i >= 0; i--)
             {
-                wg[n - 2 - 2*i] = wg[i];
-                wg[1 + 2*i] = wg[i];
+                wg[n - 2 - 2 * i] = wg[i];
+                wg[1 + 2 * i] = wg[i];
             }
-            for (i = 0; i <= n/2; i++)
+            for (i = 0; i <= n / 2; i++)
             {
-                wg[2*i] = 0;
+                wg[2 * i] = 0;
             }
-            c1 = 0.5*(b - a);
-            c2 = 0.5*(b + a);
+            c1 = 0.5 * (b - a);
+            c2 = 0.5 * (b + a);
             intg = 0;
             intk = 0;
             for (i = 0; i <= n - 1; i++)
             {
-                v = f(c1*x[i] + c2);
-                intk = intk + v*wk[i];
-                if (i%2 == 1)
+                v = f(c1 * x[i] + c2);
+                intk = intk + v * wk[i];
+                if (i % 2 == 1)
                 {
-                    intg = intg + v*wg[i];
+                    intg = intg + v * wg[i];
                 }
             }
-            intk = intk*(b - a)*0.5;
-            intg = intg*(b - a)*0.5;
+            intk = intk * (b - a) * 0.5;
+            intg = intg * (b - a) * 0.5;
             heap[0, 0] = Math.Abs(intg - intk);
             heap[0, 1] = intk;
             heap[0, 2] = a;
@@ -245,26 +245,26 @@ namespace AGLibrary
                 ta = heap[h - 1, 2];
                 tb = heap[h - 1, 3];
                 heap[h - 1, 2] = ta;
-                heap[h - 1, 3] = 0.5*(ta + tb);
-                heap[h, 2] = 0.5*(ta + tb);
+                heap[h - 1, 3] = 0.5 * (ta + tb);
+                heap[h, 2] = 0.5 * (ta + tb);
                 heap[h, 3] = tb;
                 for (j = h - 1; j <= h; j++)
                 {
-                    c1 = 0.5*(heap[j, 3] - heap[j, 2]);
-                    c2 = 0.5*(heap[j, 3] + heap[j, 2]);
+                    c1 = 0.5 * (heap[j, 3] - heap[j, 2]);
+                    c2 = 0.5 * (heap[j, 3] + heap[j, 2]);
                     intg = 0;
                     intk = 0;
                     for (i = 0; i <= n - 1; i++)
                     {
-                        v = f(c1*x[i] + c2);
-                        intk = intk + v*wk[i];
-                        if (i%2 == 1)
+                        v = f(c1 * x[i] + c2);
+                        intk = intk + v * wk[i];
+                        if (i % 2 == 1)
                         {
-                            intg = intg + v*wg[i];
+                            intg = intg + v * wg[i];
                         }
                     }
-                    intk = intk*(heap[j, 3] - heap[j, 2])*0.5;
-                    intg = intg*(heap[j, 3] - heap[j, 2])*0.5;
+                    intk = intk * (heap[j, 3] - heap[j, 2]) * 0.5;
+                    intg = intg * (heap[j, 3] - heap[j, 2]) * 0.5;
                     heap[j, 0] = Math.Abs(intg - intk);
                     heap[j, 1] = intk;
                     sumerr = sumerr + heap[j, 0];
@@ -306,14 +306,14 @@ namespace AGLibrary
                 heap[0, i] = t;
             }
             p = 0;
-            while (2*p + 1 < heapsize - 1)
+            while (2 * p + 1 < heapsize - 1)
             {
-                maxcp = 2*p + 1;
-                if (2*p + 2 < heapsize - 1)
+                maxcp = 2 * p + 1;
+                if (2 * p + 2 < heapsize - 1)
                 {
-                    if (heap[2*p + 2, 0] > heap[2*p + 1, 0])
+                    if (heap[2 * p + 2, 0] > heap[2 * p + 1, 0])
                     {
-                        maxcp = 2*p + 2;
+                        maxcp = 2 * p + 2;
                     }
                 }
                 if (heap[p, 0] < heap[maxcp, 0])
@@ -350,7 +350,7 @@ namespace AGLibrary
             p = heapsize;
             while (p != 0)
             {
-                parent = (p - 1)/2;
+                parent = (p - 1) / 2;
                 if (heap[p, 0] > heap[parent, 0])
                 {
                     for (i = 0; i <= heapwidth - 1; i++)
