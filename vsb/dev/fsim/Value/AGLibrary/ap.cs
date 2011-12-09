@@ -30,9 +30,9 @@ namespace AGLibrary
 
         public override bool Equals(object obj)
         {
-            var other = (Complex)obj;
-            return this.x == other.x
-                && this.y == other.y;
+            var other = (Complex) obj;
+            return x == other.x
+                   && y == other.y;
         }
 
         public override int GetHashCode()
@@ -72,7 +72,7 @@ namespace AGLibrary
 
         public static Complex operator *(Complex lhs, Complex rhs)
         {
-            return new Complex(lhs.x*rhs.x - lhs.y*rhs.y, lhs.x*rhs.y + lhs.y*rhs.x);
+            return new Complex(lhs.x * rhs.x - lhs.y * rhs.y, lhs.x * rhs.y + lhs.y * rhs.x);
         }
 
         public static Complex operator /(Complex lhs, Complex rhs)
@@ -82,17 +82,17 @@ namespace AGLibrary
             double f;
             if (Math.Abs(rhs.y) < Math.Abs(rhs.x))
             {
-                e = rhs.y/rhs.x;
-                f = rhs.x + rhs.y*e;
-                result.x = (lhs.x + lhs.y*e)/f;
-                result.y = (lhs.y - lhs.x*e)/f;
+                e = rhs.y / rhs.x;
+                f = rhs.x + rhs.y * e;
+                result.x = (lhs.x + lhs.y * e) / f;
+                result.y = (lhs.y - lhs.x * e) / f;
             }
             else
             {
-                e = rhs.x/rhs.y;
-                f = rhs.y + rhs.x*e;
-                result.x = (lhs.y + lhs.x*e)/f;
-                result.y = (-lhs.x + lhs.y*e)/f;
+                e = rhs.x / rhs.y;
+                f = rhs.y + rhs.x * e;
+                result.x = (lhs.y + lhs.x * e) / f;
+                result.y = (-lhs.x + lhs.y * e) / f;
             }
             return result;
         }
@@ -144,7 +144,7 @@ namespace AGLibrary
 
         public static double Sqr(double X)
         {
-            return X*X;
+            return X * X;
         }
 
         public static double AbsComplex(Complex z)
@@ -162,8 +162,8 @@ namespace AGLibrary
                 return w;
             else
             {
-                double t = v/w;
-                return w*Math.Sqrt(1 + t*t);
+                double t = v / w;
+                return w * Math.Sqrt(1 + t * t);
             }
         }
 
@@ -174,7 +174,7 @@ namespace AGLibrary
 
         public static Complex CSqr(Complex z)
         {
-            return new Complex(z.x*z.x - z.y*z.y, 2*z.x*z.y);
+            return new Complex(z.x * z.x - z.y * z.y, 2 * z.x * z.y);
         }
     }
 }

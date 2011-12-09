@@ -6,16 +6,12 @@ namespace Value
 {
     public struct fsValue : IComparable
     {
-        public bool Defined;
-        public double Value;
-        
         private const string UndefinedValue = "";
         public static int OutputPrecision = 3;
-
-        public static fsValue Infinity()
-        {
-            return new fsValue(1e100);
-        }
+        public static fsValue One = new fsValue(1);
+        public static fsValue Zero = new fsValue(0);
+        public bool Defined;
+        public double Value;
 
         public fsValue(double x)
         {
@@ -33,6 +29,29 @@ namespace Value
         {
             Defined = val.Defined;
             Value = val.Value;
+        }
+
+        #region IComparable Members
+
+        public int CompareTo(object obj)
+        {
+            if (obj is fsValue)
+            {
+                var temp = (fsValue) obj;
+
+                if (this < temp) return -1;
+                if (this > temp) return 1;
+                return 0;
+            }
+
+            throw new ArgumentException("object is not a fmValue");
+        }
+
+        #endregion
+
+        public static fsValue Infinity()
+        {
+            return new fsValue(1e100);
         }
 
         public fsValue Round(int precision)
@@ -120,19 +139,19 @@ namespace Value
                 return new fsValue();
             }
 
-            if (obj.GetType() == typeof(string))
+            if (obj.GetType() == typeof (string))
             {
                 return StringToValue(Convert.ToString(obj));
             }
 
-            if (obj.GetType() == typeof(fsValue))
+            if (obj.GetType() == typeof (fsValue))
             {
-                return (fsValue)obj;
+                return (fsValue) obj;
             }
 
-            if (obj.GetType() == typeof(double))
+            if (obj.GetType() == typeof (double))
             {
-                return new fsValue((double)obj);
+                return new fsValue((double) obj);
             }
 
             throw new Exception("Can't convert object to fmValue");
@@ -243,23 +262,23 @@ namespace Value
         public static fsValue operator /(fsValue op1, fsValue op2)
         {
             var res = new fsValue
-            {
-                Defined = op1.Defined && op2.Defined && (op2.Value != 0.0)
-            };
+                          {
+                              Defined = op1.Defined && op2.Defined && (op2.Value != 0.0)
+                          };
             res.Value = res.Defined ? op1.Value / op2.Value : 1;
             return res;
         }
 
         public static fsValue operator /(fsValue op1, double op2)
         {
-            var res = new fsValue { Defined = op1.Defined && (op2 != 0.0) };
+            var res = new fsValue {Defined = op1.Defined && (op2 != 0.0)};
             res.Value = res.Defined ? op1.Value / op2 : 1;
             return res;
         }
 
         public static fsValue operator /(double op1, fsValue op2)
         {
-            var res = new fsValue { Defined = op2.Defined && (op2.Value != 0.0) };
+            var res = new fsValue {Defined = op2.Defined && (op2.Value != 0.0)};
             res.Value = res.Defined ? op1 / op2.Value : 1;
             return res;
         }
@@ -282,7 +301,8 @@ namespace Value
                 while (dy > 1e-9)
                 {
                     double f = y * Math.Exp(y);
-                    if (f > x.Value) y -= dy; else y += dy;
+                    if (f > x.Value) y -= dy;
+                    else y += dy;
                     dy *= 0.5;
                 }
                 return new fsValue(y);
@@ -293,7 +313,8 @@ namespace Value
                 while (dy > 1e-9)
                 {
                     double f = -y * Math.Exp(-y);
-                    if (f < x.Value) y -= dy; else y += dy;
+                    if (f < x.Value) y -= dy;
+                    else y += dy;
                     dy *= 0.5;
                 }
                 return new fsValue(-y);
@@ -302,14 +323,14 @@ namespace Value
 
         public static fsValue Exp(fsValue op)
         {
-            var res = new fsValue { Defined = op.Defined };
+            var res = new fsValue {Defined = op.Defined};
             res.Value = res.Defined ? Math.Exp(op.Value) : 1;
             return res;
         }
 
         public static fsValue Log(fsValue op)
         {
-            var res = new fsValue { Defined = op.Defined && op.Value > 0 };
+            var res = new fsValue {Defined = op.Defined && op.Value > 0};
             res.Value = res.Defined ? Math.Log(op.Value) : 1;
             return res;
         }
@@ -317,24 +338,24 @@ namespace Value
         public static fsValue Pow(fsValue op1, fsValue degree)
         {
             var res = new fsValue
-            {
-                Defined =
-                    op1.Defined && degree.Defined && (op1.Value > 0 || op1.Value == 0 && degree.Value > 0)
-            };
+                          {
+                              Defined =
+                                  op1.Defined && degree.Defined && (op1.Value > 0 || op1.Value == 0 && degree.Value > 0)
+                          };
             res.Value = res.Defined ? Math.Pow(op1.Value, degree.Value) : 1;
             return res;
         }
 
         public static fsValue Pow(fsValue op1, double degree)
         {
-            var res = new fsValue { Defined = op1.Defined && op1.Value > 0 };
+            var res = new fsValue {Defined = op1.Defined && op1.Value > 0};
             res.Value = res.Defined ? Math.Pow(op1.Value, degree) : 1;
             return res;
         }
 
         public static fsValue Sqrt(fsValue op1)
         {
-            var res = new fsValue { Defined = op1.Defined && op1.Value > 0 };
+            var res = new fsValue {Defined = op1.Defined && op1.Value > 0};
             res.Value = res.Defined ? Math.Sqrt(op1.Value) : 1;
             return res;
         }
@@ -348,7 +369,7 @@ namespace Value
 
         public static fsValue Erf(fsValue op)
         {
-            var res = new fsValue { Defined = op.Defined };
+            var res = new fsValue {Defined = op.Defined};
             res.Value = res.Defined ? normaldistr.erf(op.Value) : 1;
             return res;
         }
@@ -360,8 +381,8 @@ namespace Value
 
         public override bool Equals(object obj)
         {
-            if (obj.GetType() != typeof(fsValue)) return false;
-            return Equals((fsValue)obj);
+            if (obj.GetType() != typeof (fsValue)) return false;
+            return Equals((fsValue) obj);
         }
 
         public override int GetHashCode()
@@ -370,20 +391,6 @@ namespace Value
             {
                 return (Value.GetHashCode() * 397) ^ Defined.GetHashCode();
             }
-        }
-
-        public int CompareTo(object obj)
-        {
-            if (obj is fsValue)
-            {
-                var temp = (fsValue)obj;
-
-                if (this < temp) return -1;
-                if (this > temp) return 1;
-                return 0;
-            }
-
-            throw new ArgumentException("object is not a fmValue");
         }
 
 
@@ -405,7 +412,8 @@ namespace Value
 
         public static fsValue Sign(fsValue beginValue, fsValue eps)
         {
-            return new fsValue(Math.Abs(beginValue.Value) <= eps.Value ? 0 : beginValue.Value > 0 ? 1 : -1, beginValue.Defined && eps.Defined);
+            return new fsValue(Math.Abs(beginValue.Value) <= eps.Value ? 0 : beginValue.Value > 0 ? 1 : -1,
+                               beginValue.Defined && eps.Defined);
         }
 
         public fsValue RoundUp(fsValue x, int precision)
@@ -469,8 +477,5 @@ namespace Value
             }
             return x < y ? -1 : 1;
         }
-
-        public static fsValue One = new fsValue(1);
-        public static fsValue Zero = new fsValue(0);
     }
 }
