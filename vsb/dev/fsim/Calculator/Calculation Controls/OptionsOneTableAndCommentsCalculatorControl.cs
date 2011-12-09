@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace Calculator.Calculation_Controls
 {
@@ -32,12 +25,12 @@ namespace Calculator.Calculation_Controls
             fsTableAndChart1.Reprocess();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1Click(object sender, EventArgs e)
         {
             if (rightPanel.Visible)
             {
                 rightPanel.Visible = false;
-                showHideCommnetsButton.Text = ">";
+                showHideCommnetsButton.Text = @">";
                 if (Parent != null)
                 {
                     Parent.Width -= splitContainer1.Panel2.Width + splitContainer1.SplitterWidth;
@@ -48,10 +41,9 @@ namespace Calculator.Calculation_Controls
             else
             {
                 rightPanel.Visible = true;
-                showHideCommnetsButton.Text = "<";
+                showHideCommnetsButton.Text = @"<";
                 if (Parent != null)
                 {
-                    //Parent.Width * (Parent.Width + splitContainer1.Panel2.Width + splitContainer1.SplitterWidth) / 
                     splitContainer1.Panel2Collapsed = false;
                     int w = splitContainer1.Width;
                     int a = splitContainer1.Panel1.Width;

@@ -95,7 +95,7 @@
             this.yAxisList.Name = "yAxisList";
             this.yAxisList.Size = new System.Drawing.Size(72, 139);
             this.yAxisList.TabIndex = 6;
-            this.yAxisList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.yAxisList_MouseUp);
+            this.yAxisList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.YAxisListMouseUp);
             // 
             // detalizationBox
             // 
@@ -103,7 +103,7 @@
             this.detalizationBox.Name = "detalizationBox";
             this.detalizationBox.Size = new System.Drawing.Size(32, 20);
             this.detalizationBox.TabIndex = 5;
-            this.detalizationBox.TextChanged += new System.EventHandler(this.detalizationBox_TextChanged);
+            this.detalizationBox.TextChanged += new System.EventHandler(this.DetalizationBoxTextChanged);
             // 
             // label2
             // 
@@ -120,7 +120,7 @@
             this.rangeTo.Name = "rangeTo";
             this.rangeTo.Size = new System.Drawing.Size(32, 20);
             this.rangeTo.TabIndex = 3;
-            this.rangeTo.TextChanged += new System.EventHandler(this.rangeTo_TextChanged);
+            this.rangeTo.TextChanged += new System.EventHandler(this.RangeToTextChanged);
             // 
             // rangeFrom
             // 
@@ -128,7 +128,7 @@
             this.rangeFrom.Name = "rangeFrom";
             this.rangeFrom.Size = new System.Drawing.Size(32, 20);
             this.rangeFrom.TabIndex = 2;
-            this.rangeFrom.TextChanged += new System.EventHandler(this.rangeFrom_TextChanged);
+            this.rangeFrom.TextChanged += new System.EventHandler(this.RangeFromTextChanged);
             // 
             // label1
             // 
@@ -147,7 +147,7 @@
             this.xAxisList.Name = "xAxisList";
             this.xAxisList.Size = new System.Drawing.Size(72, 21);
             this.xAxisList.TabIndex = 0;
-            this.xAxisList.SelectedIndexChanged += new System.EventHandler(this.xAxisList_SelectedIndexChanged);
+            this.xAxisList.SelectedIndexChanged += new System.EventHandler(this.XAxisListSelectedIndexChanged);
             // 
             // fmZedGraphControl1
             // 
