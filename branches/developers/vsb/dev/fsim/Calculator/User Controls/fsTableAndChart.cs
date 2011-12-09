@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ParametersIdentifiers.Interfaces;
 using StepCalculators;
@@ -30,7 +27,7 @@ namespace Calculator.User_Controls
             m_values = new Dictionary<fsParameterIdentifier, fsMeasuredParameter>();
         }
 
-        bool m_diagramUpdate = false;
+        bool m_diagramUpdate;
 
         public void Reprocess()
         {
@@ -40,11 +37,11 @@ namespace Calculator.User_Controls
 
                 RefreshXAxisList();
                 RefreshYAxisList();
-                rangeFrom.Text = "0";
-                rangeTo.Text = "100";
+                rangeFrom.Text = @"0";
+                rangeTo.Text = @"100";
                 if (detalizationBox.Text == "")
                 {
-                    detalizationBox.Text = "50";
+                    detalizationBox.Text = @"50";
                 }
 
                 m_diagramUpdate = false;
@@ -69,13 +66,13 @@ namespace Calculator.User_Controls
             }
         }
 
-        private class Function
+        private class fsFunction
         {
-            public fsParameterIdentifier ParameterIdentifier;
+            public readonly fsParameterIdentifier ParameterIdentifier;
             public fsUnit Unit;
-            public List<fsValue> Values;
+            public readonly List<fsValue> Values;
 
-            public Function(fsParameterIdentifier parameterIdentifier, fsUnit unit)
+            public fsFunction(fsParameterIdentifier parameterIdentifier, fsUnit unit)
             {
                 ParameterIdentifier = parameterIdentifier;
                 Unit = unit;
@@ -83,15 +80,15 @@ namespace Calculator.User_Controls
             }
         }
 
-        private List<Function> m_functions = new List<Function>();
+        private readonly List<fsFunction> m_functions = new List<fsFunction>();
 
         private void BuildFunctions()
         {
             m_functions.Clear();
-            var fx = new Function(m_data[0][0].Identifier, m_data[0][0].Unit);
-            for (int row = 0; row < m_data.Count; ++row)
+            var fx = new fsFunction(m_data[0][0].Identifier, m_data[0][0].Unit);
+            foreach (var t in m_data)
             {
-                fx.Values.Add(m_data[row][0].GetValueInUnits());
+                fx.Values.Add(t[0].GetValueInUnits());
             }
             m_functions.Add(fx);
             for (int col = 1; col < m_data[0].Count; ++col)
@@ -99,10 +96,10 @@ namespace Calculator.User_Controls
                 var parameter = m_data[0][col].Identifier;
                 if (yAxisList.CheckedItems.Contains(parameter.Name))
                 {
-                    var fy = new Function(parameter, m_data[0][col].Unit);
-                    for (int row = 0; row < m_data.Count; ++row)
+                    var fy = new fsFunction(parameter, m_data[0][col].Unit);
+                    foreach (var t in m_data)
                     {
-                        fy.Values.Add(m_data[row][col].GetValueInUnits());
+                        fy.Values.Add(t[col].GetValueInUnits());
                     }
                     m_functions.Add(fy);
                 }
@@ -115,7 +112,7 @@ namespace Calculator.User_Controls
             {
                 fmZedGraphControl1.GraphPane.CurveList.Clear();
 
-                double[] xValues = new double[m_data.Count];
+                var xValues = new double[m_data.Count];
                 for (int row = 0; row < m_data.Count; ++row)
                 {
                     xValues[row] = m_functions[0].Values[row].Value;
@@ -124,7 +121,7 @@ namespace Calculator.User_Controls
                 {
                     string name = m_functions[col].ParameterIdentifier.Name;
                     string unitName = m_functions[col].Unit.Name;
-                    double[] yValues = new double[m_functions[col].Values.Count];
+                    var yValues = new double[m_functions[col].Values.Count];
                     for (int row = 0; row < m_data.Count; ++row)
                     {
                         yValues[row] = m_functions[col].Values[row].Value;
@@ -168,25 +165,13 @@ namespace Calculator.User_Controls
 
         private void BuildData()
         {
-            fsParameterIdentifier xParameter = null;
-            foreach (var parameter in m_values.Keys)
-            {
-                if (parameter.Name == xAxisList.Text)
-                {
-                    xParameter = parameter;
-                    break;
-                }
-            }
+            var xParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
 
             int detalization = Convert.ToInt32(detalizationBox.Text);
             m_data = new List<List<fsMeasuredParameter>>();
             for (int i = 0; i < detalization; ++i)
             {
-                Dictionary<fsParameterIdentifier, fsMeasuredParameter> currentValues = new Dictionary<fsParameterIdentifier, fsMeasuredParameter>();
-                foreach (var pair in m_values)
-                {
-                    currentValues.Add(pair.Key, new fsMeasuredParameter(pair.Value));
-                }
+                var currentValues = m_values.ToDictionary(pair => pair.Key, pair => new fsMeasuredParameter(pair.Value));
 
                 fsValue from = fsValue.StringToValue(rangeFrom.Text);
                 fsValue to = fsValue.StringToValue(rangeTo.Text);
@@ -215,11 +200,10 @@ namespace Calculator.User_Controls
             var newList = new List<KeyValuePair<string, bool>>();
             foreach (var group in m_groups)
             {
-                foreach (var parameter in group.Parameters)
-                {
-                    newList.Add(new KeyValuePair<string, bool>(parameter.Name,
-                                                               yAxisList.CheckedItems.Contains(parameter.Name)));
-                }
+                newList.AddRange(
+                    group.Parameters.Select(
+                        parameter =>
+                        new KeyValuePair<string, bool>(parameter.Name, yAxisList.CheckedItems.Contains(parameter.Name))));
             }
             yAxisList.Items.Clear();
             foreach (var keyValuePair in newList)
@@ -261,27 +245,27 @@ namespace Calculator.User_Controls
             m_calculators = calculators;
         }
 
-        private void xAxisList_SelectedIndexChanged(object sender, EventArgs e)
+        private void XAxisListSelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateDiagram();
         }
 
-        private void yAxisList_MouseUp(object sender, MouseEventArgs e)
+        private void YAxisListMouseUp(object sender, MouseEventArgs e)
         {
             UpdateDiagram();
         }
 
-        private void rangeFrom_TextChanged(object sender, EventArgs e)
+        private void RangeFromTextChanged(object sender, EventArgs e)
         {
             UpdateDiagram();
         }
 
-        private void rangeTo_TextChanged(object sender, EventArgs e)
+        private void RangeToTextChanged(object sender, EventArgs e)
         {
             UpdateDiagram();
         }
 
-        private void detalizationBox_TextChanged(object sender, EventArgs e)
+        private void DetalizationBoxTextChanged(object sender, EventArgs e)
         {
             UpdateDiagram();
         }
