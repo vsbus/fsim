@@ -1,24 +1,23 @@
-﻿using System.Collections.Generic;
-using Parameters;
+﻿using Parameters;
 using Value;
 
 namespace Equations
 {
     public class fsConstantSumEquation : fsCalculatorEquation
     {
-        // const = a + b + c + d + ... (any amount of parameters)
-
         #region Parameters
 
-        readonly double m_const;
-        readonly IEquationParameter[] m_elements;
-        
+        private readonly double m_const;
+        private readonly IEquationParameter[] m_elements;
+
         #endregion
+
+        // const = a + b + c + d + ... (any amount of parameters)
 
         public fsConstantSumEquation(
             double constValue,
-            params IEquationParameter [] elements)
-            : base (elements)
+            params IEquationParameter[] elements)
+            : base(elements)
         {
             m_const = constValue;
             m_elements = elements;
@@ -32,7 +31,7 @@ namespace Equations
         protected override bool Calculate(IEquationParameter result)
         {
             fsValue sum = fsValue.Zero;
-            foreach (var equationParameter in m_elements)
+            foreach (IEquationParameter equationParameter in m_elements)
             {
                 if (equationParameter != result)
                 {

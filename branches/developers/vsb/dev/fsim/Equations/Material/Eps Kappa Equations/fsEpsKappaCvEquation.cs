@@ -6,9 +6,9 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_porosity;
-        readonly IEquationParameter m_kappa;
-        readonly IEquationParameter m_volumeConcentration;
+        private readonly IEquationParameter m_kappa;
+        private readonly IEquationParameter m_porosity;
+        private readonly IEquationParameter m_volumeConcentration;
 
         #endregion
 

@@ -4,16 +4,16 @@ namespace Equations
 {
     public class fsSuspensionVolumeFromHcKappaPlainAreaEquation : fsCalculatorEquation
     {
-        // Vsus * kappa = (kappa + 1) * A * hc;
-
         #region Parameters
 
-        readonly IEquationParameter m_suspensionVolume;
-        readonly IEquationParameter m_kappa;
-        readonly IEquationParameter m_filterArea;
-        readonly IEquationParameter m_cakeHeight;
+        private readonly IEquationParameter m_cakeHeight;
+        private readonly IEquationParameter m_filterArea;
+        private readonly IEquationParameter m_kappa;
+        private readonly IEquationParameter m_suspensionVolume;
 
         #endregion
+
+        // Vsus * kappa = (kappa + 1) * A * hc;
 
         public fsSuspensionVolumeFromHcKappaPlainAreaEquation(
             IEquationParameter suspensionVolume,

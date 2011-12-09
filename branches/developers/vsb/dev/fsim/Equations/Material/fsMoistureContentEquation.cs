@@ -1,14 +1,15 @@
 ﻿using Parameters;
+
 namespace Equations
 {
     public class fsMoistureContentEquation : fsCalculatorEquation
     {
         #region Parameters
 
-        readonly IEquationParameter m_moistureContent;
-        readonly IEquationParameter m_dryMass;
-        readonly IEquationParameter m_wetMass;
-        readonly IEquationParameter m_concentration;
+        private readonly IEquationParameter m_concentration;
+        private readonly IEquationParameter m_dryMass;
+        private readonly IEquationParameter m_moistureContent;
+        private readonly IEquationParameter m_wetMass;
 
         #endregion
 

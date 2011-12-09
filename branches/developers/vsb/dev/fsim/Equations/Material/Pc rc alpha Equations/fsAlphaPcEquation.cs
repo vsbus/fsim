@@ -4,12 +4,12 @@ namespace Equations
 {
     public class fsAlphaPcEquation : fsCalculatorEquation
     {
-       #region Parameters
+        #region Parameters
 
-        readonly IEquationParameter m_alpha;
-        readonly IEquationParameter m_pc;
-        readonly IEquationParameter m_eps;
-        readonly IEquationParameter m_rhoS;
+        private readonly IEquationParameter m_alpha;
+        private readonly IEquationParameter m_eps;
+        private readonly IEquationParameter m_pc;
+        private readonly IEquationParameter m_rhoS;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace Equations
                 pc,
                 eps,
                 rhoS)
-        {          
+        {
             m_alpha = alpha;
             m_pc = pc;
             m_eps = eps;

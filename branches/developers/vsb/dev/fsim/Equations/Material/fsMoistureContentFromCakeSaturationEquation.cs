@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 using Value;
 
 namespace Equations.Material
@@ -10,13 +7,12 @@ namespace Equations.Material
     {
         #region Parameters
 
+        private readonly IEquationParameter m_cakePorosity;
+        private readonly IEquationParameter m_cakeSaturation;
+        private readonly IEquationParameter m_liquidDensity;
+        private readonly IEquationParameter m_moistureContent;
+        private readonly IEquationParameter m_solidsDensity;
 
-        readonly IEquationParameter m_liquidDensity;
-        readonly IEquationParameter m_solidsDensity;
-        readonly IEquationParameter m_cakePorosity;
-        readonly IEquationParameter m_moistureContent;
-        readonly IEquationParameter m_cakeSaturation;
-        
         #endregion
 
         public fsMoistureContentFromCakeSaturationEquation(
@@ -45,7 +41,9 @@ namespace Equations.Material
 
         private void MoistureContentFormula()
         {
-            m_moistureContent.Value = 1 / ((1 - m_cakePorosity.Value) * m_solidsDensity.Value / (m_cakePorosity.Value * m_liquidDensity.Value * m_cakeSaturation.Value) + 1);
+            m_moistureContent.Value = 1 /
+                                      ((1 - m_cakePorosity.Value) * m_solidsDensity.Value /
+                                       (m_cakePorosity.Value * m_liquidDensity.Value * m_cakeSaturation.Value) + 1);
         }
 
         private void CakeSaturationFormula()

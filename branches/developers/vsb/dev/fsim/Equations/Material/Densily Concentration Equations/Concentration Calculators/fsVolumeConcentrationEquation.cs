@@ -7,10 +7,10 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_solidsVolumeFractionConcentration;
-        readonly IEquationParameter m_filtrateDensity;
-        readonly IEquationParameter m_solidsDensity;
-        readonly IEquationParameter m_suspensionDensity;
+        private readonly IEquationParameter m_filtrateDensity;
+        private readonly IEquationParameter m_solidsDensity;
+        private readonly IEquationParameter m_solidsVolumeFractionConcentration;
+        private readonly IEquationParameter m_suspensionDensity;
 
         #endregion
 
@@ -21,8 +21,8 @@ namespace Equations
             IEquationParameter suspensionDensity)
             : base(
                 solidsVolumeFractionConcentration,
-                filtrateDensity, 
-                solidsDensity, 
+                filtrateDensity,
+                solidsDensity,
                 suspensionDensity)
         {
             m_solidsVolumeFractionConcentration = solidsVolumeFractionConcentration;

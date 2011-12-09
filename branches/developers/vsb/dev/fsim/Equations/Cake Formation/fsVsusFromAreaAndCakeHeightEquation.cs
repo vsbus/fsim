@@ -6,10 +6,10 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_suspensionVolume;
-        readonly IEquationParameter m_area;
-        readonly IEquationParameter m_cakeHeight;
-        readonly IEquationParameter m_kappa;
+        private readonly IEquationParameter m_area;
+        private readonly IEquationParameter m_cakeHeight;
+        private readonly IEquationParameter m_kappa;
+        private readonly IEquationParameter m_suspensionVolume;
 
         #endregion
 
@@ -19,9 +19,9 @@ namespace Equations
             IEquationParameter cakeHeight,
             IEquationParameter kappa)
             : base(
-                suspensionVolume, 
-                area, 
-                cakeHeight, 
+                suspensionVolume,
+                area,
+                cakeHeight,
                 kappa)
         {
             m_suspensionVolume = suspensionVolume;

@@ -7,9 +7,9 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_concentration;
-        readonly IEquationParameter m_pH;
-        readonly IEquationParameter m_liquidDensity;
+        private readonly IEquationParameter m_concentration;
+        private readonly IEquationParameter m_liquidDensity;
+        private readonly IEquationParameter m_pH;
 
         #endregion
 

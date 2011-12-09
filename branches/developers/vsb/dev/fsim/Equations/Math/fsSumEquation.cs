@@ -4,21 +4,21 @@ namespace Equations
 {
     public class fsSumEquation : fsCalculatorEquation
     {
-        // sum = first + second
-
         #region Parameters
-        
-        readonly IEquationParameter m_sum;
-        readonly IEquationParameter m_firstElement;
-        readonly IEquationParameter m_secondElement;
-        
+
+        private readonly IEquationParameter m_firstElement;
+        private readonly IEquationParameter m_secondElement;
+        private readonly IEquationParameter m_sum;
+
         #endregion
+
+        // sum = first + second
 
         public fsSumEquation(
             IEquationParameter sum,
             IEquationParameter firstElement,
             IEquationParameter secondElement)
-            : base (sum, firstElement, secondElement)
+            : base(sum, firstElement, secondElement)
         {
             m_sum = sum;
             m_firstElement = firstElement;
@@ -36,7 +36,7 @@ namespace Equations
 
         private void SecondElementFormula()
         {
-            m_secondElement.Value = m_sum.Value - m_firstElement.Value; 
+            m_secondElement.Value = m_sum.Value - m_firstElement.Value;
         }
 
         private void FirstElementFormula()

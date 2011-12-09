@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 
 namespace Equations
 {
@@ -10,10 +6,10 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_pke;
-        readonly IEquationParameter m_pkest;
-        readonly IEquationParameter m_sigma;
-        readonly IEquationParameter m_pc;
+        private readonly IEquationParameter m_pc;
+        private readonly IEquationParameter m_pke;
+        private readonly IEquationParameter m_pkest;
+        private readonly IEquationParameter m_sigma;
 
         #endregion
 

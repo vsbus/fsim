@@ -8,11 +8,11 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_pHCake;
-        readonly IEquationParameter m_pH;
-        readonly IEquationParameter m_wetMass;
-        readonly IEquationParameter m_dryMass;
-        readonly IEquationParameter m_liquidMass;
+        private readonly IEquationParameter m_dryMass;
+        private readonly IEquationParameter m_liquidMass;
+        private readonly IEquationParameter m_pH;
+        private readonly IEquationParameter m_pHCake;
+        private readonly IEquationParameter m_wetMass;
 
         #endregion
 

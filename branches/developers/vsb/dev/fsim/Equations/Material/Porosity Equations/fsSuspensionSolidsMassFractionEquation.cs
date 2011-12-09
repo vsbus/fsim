@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Parameters;
+﻿using Parameters;
 
 namespace Equations
 {
@@ -9,10 +6,10 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_suspensionSolidsMassFraction;
-        readonly IEquationParameter m_dryMass;
-        readonly IEquationParameter m_suspensionMass;
-        readonly IEquationParameter m_saltMassFractionInTheMotherLiquid;
+        private readonly IEquationParameter m_dryMass;
+        private readonly IEquationParameter m_saltMassFractionInTheMotherLiquid;
+        private readonly IEquationParameter m_suspensionMass;
+        private readonly IEquationParameter m_suspensionSolidsMassFraction;
 
         #endregion
 
@@ -38,7 +35,9 @@ namespace Equations
 
         private void SuspensionSolidsMassFractionFormula()
         {
-            m_suspensionSolidsMassFraction.Value = m_dryMass.Value / m_suspensionMass.Value - m_saltMassFractionInTheMotherLiquid.Value * (1 - m_dryMass.Value / m_suspensionMass.Value);
+            m_suspensionSolidsMassFraction.Value = m_dryMass.Value / m_suspensionMass.Value -
+                                                   m_saltMassFractionInTheMotherLiquid.Value *
+                                                   (1 - m_dryMass.Value / m_suspensionMass.Value);
         }
 
         #endregion

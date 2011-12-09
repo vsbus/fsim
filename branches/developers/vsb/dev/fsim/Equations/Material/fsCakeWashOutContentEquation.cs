@@ -6,11 +6,11 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_cakeWashOut;
-        readonly IEquationParameter m_dryMass;
-        readonly IEquationParameter m_wetMass;
-        readonly IEquationParameter m_liquidMass;
-        readonly IEquationParameter m_concentration;
+        private readonly IEquationParameter m_cakeWashOut;
+        private readonly IEquationParameter m_concentration;
+        private readonly IEquationParameter m_dryMass;
+        private readonly IEquationParameter m_liquidMass;
+        private readonly IEquationParameter m_wetMass;
 
         #endregion
 

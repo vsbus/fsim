@@ -7,14 +7,14 @@ namespace Equations
     {
         #region Parameters
 
-        readonly IEquationParameter m_porosity;
-        readonly IEquationParameter m_dryMass;
-        readonly IEquationParameter m_wetMass;
-        readonly IEquationParameter m_solidsConcentration;
-        readonly IEquationParameter m_solidsDensity;
-        readonly IEquationParameter m_liquidDensity;
-        readonly IEquationParameter m_area;
-        readonly IEquationParameter m_cakeHeight;
+        private readonly IEquationParameter m_area;
+        private readonly IEquationParameter m_cakeHeight;
+        private readonly IEquationParameter m_dryMass;
+        private readonly IEquationParameter m_liquidDensity;
+        private readonly IEquationParameter m_porosity;
+        private readonly IEquationParameter m_solidsConcentration;
+        private readonly IEquationParameter m_solidsDensity;
+        private readonly IEquationParameter m_wetMass;
 
         #endregion
 
@@ -48,12 +48,12 @@ namespace Equations
 
         private void PorosityFormula()
         {
-            fsValue nom = m_dryMass.Value - (m_wetMass.Value - m_dryMass.Value) * m_solidsConcentration.Value / m_liquidDensity.Value;
+            fsValue nom = m_dryMass.Value -
+                          (m_wetMass.Value - m_dryMass.Value) * m_solidsConcentration.Value / m_liquidDensity.Value;
             fsValue den = m_solidsDensity.Value * m_area.Value * m_cakeHeight.Value;
             m_porosity.Value = 1 - nom / den;
         }
 
         #endregion
     }
-
 }
