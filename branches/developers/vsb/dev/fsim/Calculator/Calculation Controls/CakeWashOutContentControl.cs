@@ -14,33 +14,35 @@ namespace Calculator.Calculation_Controls
 
             Calculators.Add(m_calculator);
 
-            var wetMassGroup = AddGroup(fsParameterIdentifier.WetCakeMass);
-            var liquidGroup = AddGroup(fsParameterIdentifier.LiquidMass);
-            var cwmGroup = AddGroup(fsParameterIdentifier.WashOutMassFraction);
-            var rholGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
-            var cwGroup = AddGroup(fsParameterIdentifier.WashOutConcentration);
-            var phGroup = AddGroup(fsParameterIdentifier.Ph);
-            var dryMassGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
-            var outGroup = AddGroup(
+            fsParametersGroup wetMassGroup = AddGroup(fsParameterIdentifier.WetCakeMass);
+            fsParametersGroup liquidGroup = AddGroup(fsParameterIdentifier.LiquidMass);
+            fsParametersGroup cwmGroup = AddGroup(fsParameterIdentifier.WashOutMassFraction);
+            fsParametersGroup rholGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
+            fsParametersGroup cwGroup = AddGroup(fsParameterIdentifier.WashOutConcentration);
+            fsParametersGroup phGroup = AddGroup(fsParameterIdentifier.Ph);
+            fsParametersGroup dryMassGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
+            fsParametersGroup outGroup = AddGroup(
                 fsParameterIdentifier.PHcake,
                 fsParameterIdentifier.CakeMoistureContent,
                 fsParameterIdentifier.CakeWashOutContent);
 
-            var groups = new[] {
-                wetMassGroup,
-                liquidGroup,
-                rholGroup,
-                cwGroup,
-                cwmGroup,
-                dryMassGroup,
-                phGroup,
-                outGroup
-            };
+            var groups = new[]
+                             {
+                                 wetMassGroup,
+                                 liquidGroup,
+                                 rholGroup,
+                                 cwGroup,
+                                 cwmGroup,
+                                 dryMassGroup,
+                                 phGroup,
+                                 outGroup
+                             };
 
-            var colors = new[] {
-                Color.FromArgb(255, 255, 230),
-                Color.FromArgb(255, 230, 255)
-            };
+            var colors = new[]
+                             {
+                                 Color.FromArgb(255, 255, 230),
+                                 Color.FromArgb(255, 230, 255)
+                             };
 
             for (int i = 0; i < groups.Length; ++i)
             {
@@ -49,21 +51,22 @@ namespace Calculator.Calculation_Controls
             }
             SetGroupInput(outGroup, false);
 
-            fsMisc.FillList(fromComboBox.Items, typeof(fsCalculationOptions.fsFromCalculationOption));
+            fsMisc.FillList(fromComboBox.Items, typeof (fsCalculationOptions.fsFromCalculationOption));
             EstablishCalculationOption(fsCalculationOptions.fsFromCalculationOption.WashOutContent);
-            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsFromCalculationOption), fromComboBox);
+            AssignCalculationOptionAndControl(typeof (fsCalculationOptions.fsFromCalculationOption), fromComboBox);
 
-            fsMisc.FillList(washOutContentComboBox.Items, typeof(fsCalculationOptions.fsWashOutContentOption));
+            fsMisc.FillList(washOutContentComboBox.Items, typeof (fsCalculationOptions.fsWashOutContentOption));
             EstablishCalculationOption(fsCalculationOptions.fsWashOutContentOption.AsConcentration);
-            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsWashOutContentOption), washOutContentComboBox);
+            AssignCalculationOptionAndControl(typeof (fsCalculationOptions.fsWashOutContentOption),
+                                              washOutContentComboBox);
 
             UpdateGroupsInputInfoFromCalculationOptions();
             UpdateEquationsFromCalculationOptions();
             Recalculate();
             UpdateUIFromData();
             ConnectUIWithDataUpdating(dataGrid,
-                fromComboBox,
-                washOutContentComboBox);
+                                      fromComboBox,
+                                      washOutContentComboBox);
         }
 
         #region Routine Methods
@@ -77,10 +80,10 @@ namespace Calculator.Calculation_Controls
         {
             m_calculator.FromCalculationOption =
                 (fsCalculationOptions.fsFromCalculationOption)
-                CalculationOptions[typeof(fsCalculationOptions.fsFromCalculationOption)];
+                CalculationOptions[typeof (fsCalculationOptions.fsFromCalculationOption)];
             m_calculator.WashOutContentOption =
                 (fsCalculationOptions.fsWashOutContentOption)
-                CalculationOptions[typeof(fsCalculationOptions.fsWashOutContentOption)];
+                CalculationOptions[typeof (fsCalculationOptions.fsWashOutContentOption)];
             m_calculator.RebuildEquationsList();
         }
 
@@ -88,21 +91,25 @@ namespace Calculator.Calculation_Controls
         {
             var fromContentOption =
                 (fsCalculationOptions.fsFromCalculationOption)
-                CalculationOptions[typeof(fsCalculationOptions.fsFromCalculationOption)];
-            bool isFromWashOutConcentration = fromContentOption == fsCalculationOptions.fsFromCalculationOption.WashOutContent;
+                CalculationOptions[typeof (fsCalculationOptions.fsFromCalculationOption)];
+            bool isFromWashOutConcentration = fromContentOption ==
+                                              fsCalculationOptions.fsFromCalculationOption.WashOutContent;
 
             washOutContentLabel.Visible = isFromWashOutConcentration;
             washOutContentComboBox.Visible = isFromWashOutConcentration;
 
             var washOutContentOption =
                 (fsCalculationOptions.fsWashOutContentOption)
-                CalculationOptions[typeof(fsCalculationOptions.fsWashOutContentOption)];
+                CalculationOptions[typeof (fsCalculationOptions.fsWashOutContentOption)];
             bool isCmInput = washOutContentOption ==
                              fsCalculationOptions.fsWashOutContentOption.AsMassFraction;
 
-            ParameterToCell[fsParameterIdentifier.WashOutMassFraction].OwningRow.Visible = isFromWashOutConcentration && isCmInput;
-            ParameterToCell[fsParameterIdentifier.WashOutConcentration].OwningRow.Visible = isFromWashOutConcentration && !isCmInput;
-            ParameterToCell[fsParameterIdentifier.LiquidDensity].OwningRow.Visible = !isFromWashOutConcentration || !isCmInput;
+            ParameterToCell[fsParameterIdentifier.WashOutMassFraction].OwningRow.Visible = isFromWashOutConcentration &&
+                                                                                           isCmInput;
+            ParameterToCell[fsParameterIdentifier.WashOutConcentration].OwningRow.Visible =
+                isFromWashOutConcentration && !isCmInput;
+            ParameterToCell[fsParameterIdentifier.LiquidDensity].OwningRow.Visible = !isFromWashOutConcentration ||
+                                                                                     !isCmInput;
             ParameterToCell[fsParameterIdentifier.Ph].OwningRow.Visible = !isFromWashOutConcentration;
             ParameterToCell[fsParameterIdentifier.PHcake].OwningRow.Visible = !isFromWashOutConcentration;
 

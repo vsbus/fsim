@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Drawing;
 using Parameters;
 using StepCalculators;
 
@@ -13,7 +6,8 @@ namespace Calculator.Calculation_Controls
 {
     public partial class SuspensionSolidsMassFractionControl : fsOptionsOneTableAndCommentsCalculatorControl
     {
-        private readonly fsSuspensionSolidsMassFractionCalculator m_calculator = new fsSuspensionSolidsMassFractionCalculator();
+        private readonly fsSuspensionSolidsMassFractionCalculator m_calculator =
+            new fsSuspensionSolidsMassFractionCalculator();
 
         public SuspensionSolidsMassFractionControl()
         {
@@ -21,26 +15,28 @@ namespace Calculator.Calculation_Controls
 
             Calculators.Add(m_calculator);
 
-            var wetMassGroup = AddGroup(fsParameterIdentifier.SuspensionMass);
-            var dryMassGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
-            var cfmGroup = AddGroup(fsParameterIdentifier.SaltMassFractionInTheMotherLiquid);
-            var cfGroup = AddGroup(fsParameterIdentifier.SaltConcentrationInTheMotherLiquid);
-            var rhofGroup = AddGroup(fsParameterIdentifier.MotherLiquidDensity);
-            var cmGroup = AddGroup(fsParameterIdentifier.SuspensionSolidsMassFraction);
+            fsParametersGroup wetMassGroup = AddGroup(fsParameterIdentifier.SuspensionMass);
+            fsParametersGroup dryMassGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
+            fsParametersGroup cfmGroup = AddGroup(fsParameterIdentifier.SaltMassFractionInTheMotherLiquid);
+            fsParametersGroup cfGroup = AddGroup(fsParameterIdentifier.SaltConcentrationInTheMotherLiquid);
+            fsParametersGroup rhofGroup = AddGroup(fsParameterIdentifier.MotherLiquidDensity);
+            fsParametersGroup cmGroup = AddGroup(fsParameterIdentifier.SuspensionSolidsMassFraction);
 
-            var groups = new[] {
-                wetMassGroup,
-                dryMassGroup,
-                cfmGroup,
-                cfGroup,
-                rhofGroup,
-                cmGroup
-            };
+            var groups = new[]
+                             {
+                                 wetMassGroup,
+                                 dryMassGroup,
+                                 cfmGroup,
+                                 cfGroup,
+                                 rhofGroup,
+                                 cmGroup
+                             };
 
-            var colors = new[] {
-                Color.FromArgb(255, 255, 230),
-                Color.FromArgb(255, 230, 255)
-            };
+            var colors = new[]
+                             {
+                                 Color.FromArgb(255, 255, 230),
+                                 Color.FromArgb(255, 230, 255)
+                             };
 
             for (int i = 0; i < groups.Length; ++i)
             {
@@ -49,21 +45,21 @@ namespace Calculator.Calculation_Controls
             }
             SetGroupInput(cmGroup, false);
 
-            fsMisc.FillList(saltContentComboBox.Items, typeof(fsCalculationOptions.fsSaltContentOption));
+            fsMisc.FillList(saltContentComboBox.Items, typeof (fsCalculationOptions.fsSaltContentOption));
             EstablishCalculationOption(fsCalculationOptions.fsSaltContentOption.Neglected);
-            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsSaltContentOption), saltContentComboBox);
+            AssignCalculationOptionAndControl(typeof (fsCalculationOptions.fsSaltContentOption), saltContentComboBox);
 
-            fsMisc.FillList(concentrationComboBox.Items, typeof(fsCalculationOptions.fsConcentrationOption));
+            fsMisc.FillList(concentrationComboBox.Items, typeof (fsCalculationOptions.fsConcentrationOption));
             EstablishCalculationOption(fsCalculationOptions.fsConcentrationOption.SolidsMassFraction);
-            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsConcentrationOption), concentrationComboBox);
+            AssignCalculationOptionAndControl(typeof (fsCalculationOptions.fsConcentrationOption), concentrationComboBox);
 
             UpdateGroupsInputInfoFromCalculationOptions();
             UpdateEquationsFromCalculationOptions();
             Recalculate();
             UpdateUIFromData();
             ConnectUIWithDataUpdating(dataGrid,
-                saltContentComboBox,
-                concentrationComboBox);
+                                      saltContentComboBox,
+                                      concentrationComboBox);
         }
 
         #region Routine Methods
@@ -77,10 +73,10 @@ namespace Calculator.Calculation_Controls
         {
             m_calculator.SaltContentOption =
                 (fsCalculationOptions.fsSaltContentOption)
-                CalculationOptions[typeof(fsCalculationOptions.fsSaltContentOption)];
+                CalculationOptions[typeof (fsCalculationOptions.fsSaltContentOption)];
             m_calculator.ConcentrationOption =
                 (fsCalculationOptions.fsConcentrationOption)
-                CalculationOptions[typeof(fsCalculationOptions.fsConcentrationOption)];
+                CalculationOptions[typeof (fsCalculationOptions.fsConcentrationOption)];
             m_calculator.RebuildEquationsList();
         }
 
@@ -88,7 +84,7 @@ namespace Calculator.Calculation_Controls
         {
             var saltContentOption =
                 (fsCalculationOptions.fsSaltContentOption)
-                CalculationOptions[typeof(fsCalculationOptions.fsSaltContentOption)];
+                CalculationOptions[typeof (fsCalculationOptions.fsSaltContentOption)];
             bool isSaltContConsidered = saltContentOption == fsCalculationOptions.fsSaltContentOption.Considered;
 
             concentrationLabel.Visible = isSaltContConsidered;
@@ -96,18 +92,20 @@ namespace Calculator.Calculation_Controls
 
             var concentrationOption =
                 (fsCalculationOptions.fsConcentrationOption)
-                CalculationOptions[typeof(fsCalculationOptions.fsConcentrationOption)];
+                CalculationOptions[typeof (fsCalculationOptions.fsConcentrationOption)];
             bool isCmInput = concentrationOption ==
                              fsCalculationOptions.fsConcentrationOption.SolidsMassFraction;
 
-            ParameterToCell[fsParameterIdentifier.SaltMassFractionInTheMotherLiquid].OwningRow.Visible = isSaltContConsidered && isCmInput;
-            ParameterToCell[fsParameterIdentifier.SaltConcentrationInTheMotherLiquid].OwningRow.Visible = isSaltContConsidered && !isCmInput;
-            ParameterToCell[fsParameterIdentifier.MotherLiquidDensity].OwningRow.Visible = isSaltContConsidered && !isCmInput;
+            ParameterToCell[fsParameterIdentifier.SaltMassFractionInTheMotherLiquid].OwningRow.Visible =
+                isSaltContConsidered && isCmInput;
+            ParameterToCell[fsParameterIdentifier.SaltConcentrationInTheMotherLiquid].OwningRow.Visible =
+                isSaltContConsidered && !isCmInput;
+            ParameterToCell[fsParameterIdentifier.MotherLiquidDensity].OwningRow.Visible = isSaltContConsidered &&
+                                                                                           !isCmInput;
 
             base.UpdateUIFromData();
         }
 
         #endregion
-
     }
 }

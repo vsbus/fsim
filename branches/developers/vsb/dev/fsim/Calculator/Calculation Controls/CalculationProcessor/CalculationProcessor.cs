@@ -1,41 +1,38 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Forms;
 using Parameters;
-using System.Drawing;
-using StepCalculators;
 using ParametersIdentifiers.Interfaces;
+using StepCalculators;
 
 namespace Calculator.Calculation_Controls
 {
-    static public class fsCalculationProcessor
+    public static class fsCalculationProcessor
     {
-        static public void ProcessCalculatorParameters(
+        public static void ProcessCalculatorParameters(
             Dictionary<fsParameterIdentifier, fsMeasuredParameter> values,
             Dictionary<fsParameterIdentifier, fsParametersGroup> parameterToGroup,
             List<fsCalculator> calculators)
         {
             var localValues = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
 
-            foreach (var parameter in values.Keys)
+            foreach (fsParameterIdentifier parameter in values.Keys)
             {
-                var group = parameterToGroup[parameter];
+                fsParametersGroup group = parameterToGroup[parameter];
                 localValues[parameter] = group.IsInput && parameter == group.Representator
-                    ? new fsSimulationParameter(parameter, true, values[parameter].Value)
-                    : new fsSimulationParameter(parameter);
+                                             ? new fsSimulationParameter(parameter, true, values[parameter].Value)
+                                             : new fsSimulationParameter(parameter);
             }
 
-            foreach (var calc in calculators)
+            foreach (fsCalculator calc in calculators)
             {
                 calc.ReadDataFromStorage(localValues);
                 calc.Calculate();
                 calc.CopyValuesToStorage(localValues);
             }
 
-            foreach (var parameter in values.Keys)
+            foreach (fsParameterIdentifier parameter in values.Keys)
             {
                 values[parameter].Value = localValues[parameter].Value;
             }
         }
-
     }
 }

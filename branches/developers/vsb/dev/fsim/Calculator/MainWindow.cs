@@ -7,22 +7,22 @@ namespace Calculator
 {
     public partial class MainWindow : Form
     {
+        private readonly List<fsModule> m_modules = new List<fsModule>();
+        private int m_counter;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private int m_counter;
-        readonly List<fsModule> m_modules = new List<fsModule>();
-
         private void RebuildWindowsList()
         {
             DataGridViewCell cell = windowsDataGrid.CurrentCell;
             string currentWindowName = cell == null || cell.Value == null
-                ? ""
-                : cell.Value.ToString();
+                                           ? ""
+                                           : cell.Value.ToString();
             windowsDataGrid.Rows.Clear();
-            foreach (var module in m_modules)
+            foreach (fsModule module in m_modules)
             {
                 int ind = windowsDataGrid.Rows.Add(module.Name);
                 if (module.Name == currentWindowName)
@@ -32,10 +32,10 @@ namespace Calculator
             }
         }
 
-        void FormClose(object sender, EventArgs e)
+        private void FormClose(object sender, EventArgs e)
         {
-            string text = ((Form)sender).Text;
-            foreach (var f in m_modules)
+            string text = ((Form) sender).Text;
+            foreach (fsModule f in m_modules)
             {
                 if (f.Name == text)
                 {
@@ -48,12 +48,12 @@ namespace Calculator
 
         private void WindowsDataGridCurrentCellChanged(object sender, EventArgs e)
         {
-            var dataGrid = (DataGridView)sender;
+            var dataGrid = (DataGridView) sender;
             DataGridViewCell cell = dataGrid.CurrentCell;
             if (cell != null && cell.Value != null)
             {
                 string text = cell.Value.ToString();
-                foreach (var module in m_modules)
+                foreach (fsModule module in m_modules)
                 {
                     if (module.Name == text)
                     {
@@ -76,7 +76,8 @@ namespace Calculator
                         AllowCommentsView = true;
                 }
                 ++m_counter;
-                var module = new fsModule("#" + m_counter + " - " + modulesForm.SelectedCalculatorControlName, modulesForm.SelectedCalculatorControl);
+                var module = new fsModule("#" + m_counter + " - " + modulesForm.SelectedCalculatorControlName,
+                                          modulesForm.SelectedCalculatorControl);
                 m_modules.Add(module);
                 module.Form.MdiParent = this;
                 module.Form.Closed += FormClose;
@@ -86,12 +87,12 @@ namespace Calculator
             }
         }
 
-        void FormActivated(object sender, EventArgs e)
+        private void FormActivated(object sender, EventArgs e)
         {
-            var form = (Form)sender;
+            var form = (Form) sender;
             foreach (DataGridViewRow row in windowsDataGrid.Rows)
             {
-                var currentCell = row.Cells[0];
+                DataGridViewCell currentCell = row.Cells[0];
                 if (currentCell.Value.ToString() == form.Text)
                 {
                     windowsDataGrid.CurrentCell = currentCell;
@@ -104,7 +105,7 @@ namespace Calculator
             int x = 0;
             int y = 0;
             int maxHeight = 0;
-            foreach (var module in m_modules)
+            foreach (fsModule module in m_modules)
             {
                 if (x > 0 && x + module.Form.Width > ClientSize.Width)
                 {
@@ -136,7 +137,7 @@ namespace Calculator
             unitsDialog.ShowDialog();
             if (unitsDialog.DialogResult == DialogResult.OK)
             {
-                foreach (var module in unitsDialog.GetModifiedModules())
+                foreach (fsModule module in unitsDialog.GetModifiedModules())
                 {
                     module.SetUnits(unitsDialog.Characteristics);
                 }

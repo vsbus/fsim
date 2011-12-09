@@ -4,18 +4,15 @@ namespace Calculator.Calculation_Controls
 {
     public partial class fsOptionsOneTableAndCommentsCalculatorControl : fsCalculatorControl
     {
-        public bool AllowCommentsView
-        {
-            set
-            {
-                showHideCommnetsButton.Visible = value;
-            }
-        }
-
         public fsOptionsOneTableAndCommentsCalculatorControl()
         {
             InitializeComponent();
             splitContainer1.Panel2Collapsed = true;
+        }
+
+        public bool AllowCommentsView
+        {
+            set { showHideCommnetsButton.Visible = value; }
         }
 
         protected override void Recalculate()
@@ -51,7 +48,6 @@ namespace Calculator.Calculation_Controls
                     int newWidth = (2 * w * w + s * a) / (2 * a);
                     Parent.Width += newWidth - w;
                 }
-                
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using Units;
 
@@ -9,51 +10,18 @@ namespace Calculator
 {
     public partial class fsUnitsDialog : Form
     {
-        public Dictionary<fsCharacteristic, fsUnit> Characteristics = new Dictionary<fsCharacteristic, fsUnit>();
-        
-        private readonly Dictionary<fsCharacteristic, ComboBox> m_characteristicToComboBox = new Dictionary<fsCharacteristic, ComboBox>();
-        private readonly Dictionary<fsCharacteristic, Label> m_characteristicToLabel = new Dictionary<fsCharacteristic, Label>();
-        private readonly Dictionary<fsModule, CheckBox> m_moduleToCheckBox = new Dictionary<fsModule, CheckBox>();
-        private List<fsModule> m_modules;
         private const string CustomSchemeTitle = "Custom";
 
-        private class fsScheme
-        {
-            public Dictionary<fsCharacteristic, fsUnit> CharacteristicToUnit { get; private set; }
+        private readonly Dictionary<fsCharacteristic, ComboBox> m_characteristicToComboBox =
+            new Dictionary<fsCharacteristic, ComboBox>();
 
-            public string Name { get; private set; }
+        private readonly Dictionary<fsCharacteristic, Label> m_characteristicToLabel =
+            new Dictionary<fsCharacteristic, Label>();
 
-            fsScheme (string name, params KeyValuePair<fsCharacteristic, fsUnit> [] characteristicToUnit)
-            {
-                CharacteristicToUnit = new Dictionary<fsCharacteristic, fsUnit>();
-                Name = name;
-                foreach (var pair in characteristicToUnit)
-                {
-                    CharacteristicToUnit.Add(pair.Key, pair.Value);
-                }
-            }
-
-            public static readonly fsScheme InternationalSystemOfUnits = new fsScheme("International System of Units", new[] {
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareMeter),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.CubicMeter),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerSec)
-            });
-
-            public static readonly fsScheme LaboratoryScale = new fsScheme("Laboratory Scale", new[] {
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareSantiMeter),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.Gramme),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.MilliLiter),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerHour)
-            });
-
-            public static fsScheme PilotIndustrialScale = new fsScheme("Pilot/Industrial Scale", new[] {
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareMeter),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.Liter),
-                new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerMin)
-            });
-        }
+        private readonly Dictionary<fsModule, CheckBox> m_moduleToCheckBox = new Dictionary<fsModule, CheckBox>();
+        public Dictionary<fsCharacteristic, fsUnit> Characteristics = new Dictionary<fsCharacteristic, fsUnit>();
+        private List<fsModule> m_modules;
+        private bool m_schemeApplyingInProcess;
 
         public fsUnitsDialog()
         {
@@ -66,9 +34,9 @@ namespace Calculator
             schemeBox.Items.Add(CustomSchemeTitle);
             schemeBox.SelectedItem = schemeBox.Items[0];
 
-            foreach (var field in typeof(fsScheme).GetFields())
+            foreach (FieldInfo field in typeof (fsScheme).GetFields())
             {
-                var scheme = ((fsScheme)field.GetValue(null));
+                var scheme = ((fsScheme) field.GetValue(null));
                 schemeBox.Items.Add(scheme.Name);
             }
         }
@@ -97,7 +65,7 @@ namespace Calculator
 
             if (m_modules != null)
             {
-                foreach (var module in m_modules)
+                foreach (fsModule module in m_modules)
                 {
                     AddModuleToList(module.Name, false, module);
                 }
@@ -109,10 +77,10 @@ namespace Calculator
             m_modules = modules;
         }
 
-        void CheckBoxCheckStateChanged(object sender, EventArgs e)
+        private void CheckBoxCheckStateChanged(object sender, EventArgs e)
         {
             var allCheckBox = (CheckBox) sender;
-            foreach (var checkBox in m_moduleToCheckBox.Values)
+            foreach (CheckBox checkBox in m_moduleToCheckBox.Values)
             {
                 checkBox.Checked = allCheckBox.Checked;
             }
@@ -133,31 +101,33 @@ namespace Calculator
 
         private static IEnumerable<fsCharacteristic> GetPrimaryCharacteristics()
         {
-            return new[]{
-                fsCharacteristic.Time,
-                fsCharacteristic.Area,
-                fsCharacteristic.Mass,
-                fsCharacteristic.Volume,
-                fsCharacteristic.MassFlowrate
-            }; 
+            return new[]
+                       {
+                           fsCharacteristic.Time,
+                           fsCharacteristic.Area,
+                           fsCharacteristic.Mass,
+                           fsCharacteristic.Volume,
+                           fsCharacteristic.MassFlowrate
+                       };
         }
 
         private static IEnumerable<fsCharacteristic> GetSecondaryCharacteristics()
         {
-            return new[]{
-                fsCharacteristic.Pressure,
-                fsCharacteristic.Viscosity,
-                fsCharacteristic.Density,
-                fsCharacteristic.SurfaceTension,
-                fsCharacteristic.CakeWashOutContent,
-                fsCharacteristic.Frequency
-            };
+            return new[]
+                       {
+                           fsCharacteristic.Pressure,
+                           fsCharacteristic.Viscosity,
+                           fsCharacteristic.Density,
+                           fsCharacteristic.SurfaceTension,
+                           fsCharacteristic.CakeWashOutContent,
+                           fsCharacteristic.Frequency
+                       };
         }
 
         private void InitializeUnitsPanel()
         {
-            var primaryCharacteristics = GetPrimaryCharacteristics();
-            var secondaryCharacteristics = GetSecondaryCharacteristics();
+            IEnumerable<fsCharacteristic> primaryCharacteristics = GetPrimaryCharacteristics();
+            IEnumerable<fsCharacteristic> secondaryCharacteristics = GetSecondaryCharacteristics();
 
             var allCharacteristics = new List<fsCharacteristic>();
             allCharacteristics.AddRange(primaryCharacteristics);
@@ -175,18 +145,18 @@ namespace Calculator
                 var characteristicLabel = new Label {Text = characteristic.Name, AutoSize = true, Parent = unitsPanel};
 
                 var unitsComboBox = new ComboBox();
-                               
-                foreach (var unit in characteristic.Units)
+
+                foreach (fsUnit unit in characteristic.Units)
                 {
                     unitsComboBox.Items.Add(unit.Name);
                 }
                 unitsComboBox.Text = characteristic.CurrentUnit.Name;
 
-                int width = sizeBeforeLabel 
-                    + characteristicLabel.Width
-                    + sizeFromLabelToCombobox
-                    + unitsComboBox.Width
-                    + sizeAfterCombobox;
+                int width = sizeBeforeLabel
+                            + characteristicLabel.Width
+                            + sizeFromLabelToCombobox
+                            + unitsComboBox.Width
+                            + sizeAfterCombobox;
                 if (rightPanel.Width < width)
                 {
                     rightPanel.Width = width;
@@ -200,20 +170,24 @@ namespace Calculator
             int currentHeight = 8;
             foreach (var pair in characteristicControls)
             {
-                var characteristicLabel = pair.Key;
-                var unitsComboBox = pair.Value;
+                Label characteristicLabel = pair.Key;
+                ComboBox unitsComboBox = pair.Value;
 
                 unitsComboBox.Parent = unitsPanel;
                 unitsComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-                unitsComboBox.Location = new Point(unitsPanel.Width - sizeAfterCombobox - unitsComboBox.Width, currentHeight);
+                unitsComboBox.Location = new Point(unitsPanel.Width - sizeAfterCombobox - unitsComboBox.Width,
+                                                   currentHeight);
                 unitsComboBox.SelectedValueChanged += UnitChanged;
 
                 characteristicLabel.Parent = unitsPanel;
-                characteristicLabel.Location = new Point(unitsComboBox.Location.X - sizeFromLabelToCombobox - characteristicLabel.Width, currentHeight + 4);
+                characteristicLabel.Location =
+                    new Point(unitsComboBox.Location.X - sizeFromLabelToCombobox - characteristicLabel.Width,
+                              currentHeight + 4);
 
                 currentHeight += 32;
             }
         }
+
         private void Button1Click(object sender, EventArgs e)
         {
             foreach (var pair in m_characteristicToComboBox)
@@ -237,7 +211,7 @@ namespace Calculator
 
         private void ShowHideSecondaryCharacteristics(bool isVisible)
         {
-            foreach (var characteristic in GetSecondaryCharacteristics())
+            foreach (fsCharacteristic characteristic in GetSecondaryCharacteristics())
             {
                 m_characteristicToComboBox[characteristic].Visible = isVisible;
                 m_characteristicToLabel[characteristic].Visible = isVisible;
@@ -246,13 +220,13 @@ namespace Calculator
 
         private void SchemeBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedScheme = schemeBox.SelectedItem.ToString();
+            string selectedScheme = schemeBox.SelectedItem.ToString();
             if (selectedScheme == CustomSchemeTitle)
                 return;
-            var type = typeof(fsScheme);
-            foreach (var field in type.GetFields())
+            Type type = typeof (fsScheme);
+            foreach (FieldInfo field in type.GetFields())
             {
-                var scheme = ((fsScheme)field.GetValue(null));
+                var scheme = ((fsScheme) field.GetValue(null));
                 if (selectedScheme == scheme.Name)
                 {
                     UpdateSchemeBox(scheme.CharacteristicToUnit);
@@ -261,7 +235,6 @@ namespace Calculator
             }
         }
 
-        private bool m_schemeApplyingInProcess;
         private void UnitChanged(object sender, EventArgs e)
         {
             if (!m_schemeApplyingInProcess)
@@ -279,5 +252,132 @@ namespace Calculator
             }
             m_schemeApplyingInProcess = false;
         }
+
+        #region Nested type: fsScheme
+
+        private class fsScheme
+        {
+            public static readonly fsScheme InternationalSystemOfUnits = new fsScheme("International System of Units",
+                                                                                      new[]
+                                                                                          {
+                                                                                              new KeyValuePair
+                                                                                                  <fsCharacteristic,
+                                                                                                  fsUnit>(
+                                                                                                  fsCharacteristic.Area,
+                                                                                                  fsUnit.SquareMeter),
+                                                                                              new KeyValuePair
+                                                                                                  <fsCharacteristic,
+                                                                                                  fsUnit>(
+                                                                                                  fsCharacteristic.Mass,
+                                                                                                  fsUnit.KiloGramme),
+                                                                                              new KeyValuePair
+                                                                                                  <fsCharacteristic,
+                                                                                                  fsUnit>(
+                                                                                                  fsCharacteristic.
+                                                                                                      Volume,
+                                                                                                  fsUnit.CubicMeter),
+                                                                                              new KeyValuePair
+                                                                                                  <fsCharacteristic,
+                                                                                                  fsUnit>(
+                                                                                                  fsCharacteristic.
+                                                                                                      MassFlowrate,
+                                                                                                  fsUnit.
+                                                                                                      KiloGrammePerSec)
+                                                                                          });
+
+            public static readonly fsScheme LaboratoryScale = new fsScheme("Laboratory Scale", new[]
+                                                                                                   {
+                                                                                                       new KeyValuePair
+                                                                                                           <
+                                                                                                           fsCharacteristic
+                                                                                                           , fsUnit>(
+                                                                                                           fsCharacteristic
+                                                                                                               .Area,
+                                                                                                           fsUnit.
+                                                                                                               SquareSantiMeter)
+                                                                                                       ,
+                                                                                                       new KeyValuePair
+                                                                                                           <
+                                                                                                           fsCharacteristic
+                                                                                                           , fsUnit>(
+                                                                                                           fsCharacteristic
+                                                                                                               .Mass,
+                                                                                                           fsUnit.Gramme)
+                                                                                                       ,
+                                                                                                       new KeyValuePair
+                                                                                                           <
+                                                                                                           fsCharacteristic
+                                                                                                           , fsUnit>(
+                                                                                                           fsCharacteristic
+                                                                                                               .Volume,
+                                                                                                           fsUnit.
+                                                                                                               MilliLiter)
+                                                                                                       ,
+                                                                                                       new KeyValuePair
+                                                                                                           <
+                                                                                                           fsCharacteristic
+                                                                                                           , fsUnit>(
+                                                                                                           fsCharacteristic
+                                                                                                               .
+                                                                                                               MassFlowrate,
+                                                                                                           fsUnit.
+                                                                                                               KiloGrammePerHour)
+                                                                                                   });
+
+            public static fsScheme PilotIndustrialScale = new fsScheme("Pilot/Industrial Scale", new[]
+                                                                                                     {
+                                                                                                         new KeyValuePair
+                                                                                                             <
+                                                                                                             fsCharacteristic
+                                                                                                             , fsUnit>(
+                                                                                                             fsCharacteristic
+                                                                                                                 .Area,
+                                                                                                             fsUnit.
+                                                                                                                 SquareMeter)
+                                                                                                         ,
+                                                                                                         new KeyValuePair
+                                                                                                             <
+                                                                                                             fsCharacteristic
+                                                                                                             , fsUnit>(
+                                                                                                             fsCharacteristic
+                                                                                                                 .Mass,
+                                                                                                             fsUnit.
+                                                                                                                 KiloGramme)
+                                                                                                         ,
+                                                                                                         new KeyValuePair
+                                                                                                             <
+                                                                                                             fsCharacteristic
+                                                                                                             , fsUnit>(
+                                                                                                             fsCharacteristic
+                                                                                                                 .Volume,
+                                                                                                             fsUnit.
+                                                                                                                 Liter),
+                                                                                                         new KeyValuePair
+                                                                                                             <
+                                                                                                             fsCharacteristic
+                                                                                                             , fsUnit>(
+                                                                                                             fsCharacteristic
+                                                                                                                 .
+                                                                                                                 MassFlowrate,
+                                                                                                             fsUnit.
+                                                                                                                 KiloGrammePerMin)
+                                                                                                     });
+
+            private fsScheme(string name, params KeyValuePair<fsCharacteristic, fsUnit>[] characteristicToUnit)
+            {
+                CharacteristicToUnit = new Dictionary<fsCharacteristic, fsUnit>();
+                Name = name;
+                foreach (var pair in characteristicToUnit)
+                {
+                    CharacteristicToUnit.Add(pair.Key, pair.Value);
+                }
+            }
+
+            public Dictionary<fsCharacteristic, fsUnit> CharacteristicToUnit { get; private set; }
+
+            public string Name { get; private set; }
+        }
+
+        #endregion
     }
 }

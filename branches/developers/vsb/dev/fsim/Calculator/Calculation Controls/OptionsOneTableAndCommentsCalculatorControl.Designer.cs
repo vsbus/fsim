@@ -145,7 +145,7 @@
             this.showHideCommnetsButton.TabIndex = 0;
             this.showHideCommnetsButton.Text = ">";
             this.showHideCommnetsButton.UseVisualStyleBackColor = true;
-            this.showHideCommnetsButton.Click += new System.EventHandler(this.button1_Click);
+            this.showHideCommnetsButton.Click += new System.EventHandler(this.Button1Click);
             // 
             // rightPanel
             // 

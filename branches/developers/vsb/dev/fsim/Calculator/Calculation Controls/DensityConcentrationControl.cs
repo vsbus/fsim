@@ -9,18 +9,14 @@ namespace Calculator.Calculation_Controls
     {
         #region Calculation Option
 
-        enum fsCalculationOption
+        private enum fsCalculationOption
         {
-            [Description("Filtrate Density")]
-            CalcFiltrateDensity,
-            [Description("Solids Density")]
-            CalcSolidsDensity,
-            [Description("Suspension Density")]
-            CalcSuspensionDensity,
-            [Description("Concentrations")]
-            CalcConcentrations
+            [Description("Filtrate Density")] CalcFiltrateDensity,
+            [Description("Solids Density")] CalcSolidsDensity,
+            [Description("Suspension Density")] CalcSuspensionDensity,
+            [Description("Concentrations")] CalcConcentrations
         }
-       
+
         #endregion
 
         public fsDensityConcentrationControl()
@@ -29,13 +25,13 @@ namespace Calculator.Calculation_Controls
 
             Calculators.Add(new fsDensityConcentrationCalculator());
 
-            var filtrateGroup = AddGroup(
+            fsParametersGroup filtrateGroup = AddGroup(
                 fsParameterIdentifier.FiltrateDensity);
-            var solidsGroup = AddGroup(
+            fsParametersGroup solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity);
-            var suspensionGroup = AddGroup(
+            fsParametersGroup suspensionGroup = AddGroup(
                 fsParameterIdentifier.SuspensionDensity);
-            var concentrationGroup = AddGroup(
+            fsParametersGroup concentrationGroup = AddGroup(
                 fsParameterIdentifier.SuspensionSolidsMassFraction,
                 fsParameterIdentifier.SolidsVolumeFraction,
                 fsParameterIdentifier.SolidsConcentration);
@@ -45,7 +41,7 @@ namespace Calculator.Calculation_Controls
             AddGroupToUI(dataGrid, suspensionGroup, Color.FromArgb(255, 255, 230));
             AddGroupToUI(dataGrid, concentrationGroup, Color.FromArgb(230, 230, 230));
 
-            fsMisc.FillList(calculateSelectionComboBox.Items, typeof(fsCalculationOption));
+            fsMisc.FillList(calculateSelectionComboBox.Items, typeof (fsCalculationOption));
             EstablishCalculationOption(fsCalculationOption.CalcSuspensionDensity);
             AssignCalculationOptionAndControl(typeof (fsCalculationOption), calculateSelectionComboBox);
 
@@ -60,7 +56,7 @@ namespace Calculator.Calculation_Controls
 
         protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)];
+            var calculationOption = (fsCalculationOption) CalculationOptions[typeof (fsCalculationOption)];
             fsParametersGroup calculateGroup = null;
             switch (calculationOption)
             {
@@ -77,7 +73,7 @@ namespace Calculator.Calculation_Controls
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.SuspensionSolidsMassFraction];
                     break;
             }
-            foreach (var group in ParameterToGroup.Values)
+            foreach (fsParametersGroup group in ParameterToGroup.Values)
             {
                 SetGroupInput(group, group != calculateGroup);
             }
