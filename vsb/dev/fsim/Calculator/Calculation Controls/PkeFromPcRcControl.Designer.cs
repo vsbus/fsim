@@ -105,7 +105,6 @@
 
         private System.Windows.Forms.ComboBox inputCakeComboBox;
         private System.Windows.Forms.Label inputCake;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn;
         private System.Windows.Forms.ComboBox enterSolidsDensityComboBox;
         private System.Windows.Forms.Label enterSolidsDensityLabel;
     }

@@ -81,6 +81,5 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox calculationOptionComboBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn parameterColumn;
     }
 }
