@@ -206,6 +206,10 @@
       <DependentUpon>UnitsDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\fsDiagramWithTable.resx">
+      <DependentUpon>fsDiagramWithTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="User Controls\fsTableAndChart.resx">
       <DependentUpon>fsTableAndChart.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -229,6 +233,12 @@
     </Compile>
     <Compile Include="UnitsDialog.Designer.cs">
       <DependentUpon>UnitsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\fsDiagramWithTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\fsDiagramWithTable.Designer.cs">
+      <DependentUpon>fsDiagramWithTable.cs</DependentUpon>
     </Compile>
     <Compile Include="User Controls\fsTableAndChart.cs">
       <SubType>UserControl</SubType>

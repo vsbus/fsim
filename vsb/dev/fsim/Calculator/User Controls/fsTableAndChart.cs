@@ -10,6 +10,7 @@ using StepCalculators;
 using Units;
 using Value;
 using ZedGraph;
+using System.Threading;
 
 namespace Calculator.User_Controls
 {
@@ -18,7 +19,6 @@ namespace Calculator.User_Controls
         private readonly List<fsFunction> m_functions = new List<fsFunction>();
         private List<fsCalculator> m_calculators;
         private List<List<fsMeasuredParameter>> m_data;
-        private bool m_diagramUpdate;
         private List<fsParametersGroup> m_groups;
         private Dictionary<fsParameterIdentifier, fsParametersGroup> m_parameterToGroup;
         private Dictionary<fsParameterIdentifier, fsMeasuredParameter> m_values;
@@ -30,11 +30,13 @@ namespace Calculator.User_Controls
             m_values = new Dictionary<fsParameterIdentifier, fsMeasuredParameter>();
         }
 
+        private bool m_reprocessWorks;
+
         public void Reprocess()
         {
-            if (!m_diagramUpdate)
+            if (!m_reprocessWorks)
             {
-                m_diagramUpdate = true;
+                m_reprocessWorks = true;
 
                 RefreshXAxisList();
                 RefreshYAxisList();
@@ -45,24 +47,39 @@ namespace Calculator.User_Controls
                     detalizationBox.Text = @"50";
                 }
 
-                m_diagramUpdate = false;
+                m_reprocessWorks = false;
 
-                UpdateDiagram();
+                RecalculateAndUpdateDiagram();
             }
         }
 
-        private void UpdateDiagram()
+        private delegate void VoidMethod();
+
+        private Thread m_recalculateAndUpdateDiagramThread;
+
+        private void RecalculateAndUpdateDiagram()
         {
-            if (!m_diagramUpdate)
+            if (!m_reprocessWorks)
             {
-                m_diagramUpdate = true;
+                if (m_recalculateAndUpdateDiagramThread != null)
+                {
+                    m_recalculateAndUpdateDiagramThread.Abort();
+                    m_recalculateAndUpdateDiagramThread = null;
+                }
+                fsParameterIdentifier xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
+                m_recalculateAndUpdateDiagramThread = new Thread(BuildDataAndRefreshPlot);
+                m_recalculateAndUpdateDiagramThread.Start(xAxisParameter);
+            }
+        }
 
-                BuildData();
-                BuildFunctions();
-                RefreshCurves();
-                RefreshTable();
+        private void BuildDataAndRefreshPlot(object xAxisParameter)
+        {
+            BuildData((fsParameterIdentifier) xAxisParameter);
+            BuildFunctions();
 
-                m_diagramUpdate = false;
+            if (Visible)
+            {
+                Invoke(new VoidMethod(RefreshDiagramAndTable));
             }
         }
 
@@ -90,66 +107,26 @@ namespace Calculator.User_Controls
             }
         }
 
-        private void RefreshCurves()
+        private void RefreshDiagramAndTable()
         {
-            if (m_functions.Count > 1)
+            var xAxis = new fsDiagramWithTable.fsNamedArray();
+            xAxis.Name = m_functions[0].ParameterIdentifier.Name + "(" + m_functions[0].Unit.Name + ")";
+            xAxis.Array = m_functions[0].Values.ToArray();
+            fsDiagramWithTable1.SetXAxis(xAxis);
+
+            fsDiagramWithTable1.ClearYAxis();
+            for (int i = 1; i < m_functions.Count; ++i)
             {
-                fmZedGraphControl1.GraphPane.CurveList.Clear();
-
-                var xValues = new double[m_data.Count];
-                for (int row = 0; row < m_data.Count; ++row)
-                {
-                    xValues[row] = m_functions[0].Values[row].Value;
-                }
-                for (int col = 1; col < m_functions.Count; ++col)
-                {
-                    string name = m_functions[col].ParameterIdentifier.Name;
-                    string unitName = m_functions[col].Unit.Name;
-                    var yValues = new double[m_functions[col].Values.Count];
-                    for (int row = 0; row < m_data.Count; ++row)
-                    {
-                        yValues[row] = m_functions[col].Values[row].Value;
-                    }
-                    LineItem curve = fmZedGraphControl1.GraphPane.AddCurve(name + " (" + unitName + ")",
-                                                                           xValues,
-                                                                           yValues,
-                                                                           Color.Black,
-                                                                           SymbolType.None);
-                    curve.Line.IsAntiAlias = true;
-                }
-
-                fmZedGraphControl1.GraphPane.AxisChange();
-                fmZedGraphControl1.Refresh();
+                var yAxis = new fsDiagramWithTable.fsNamedArray();
+                yAxis.Name = m_functions[i].ParameterIdentifier.Name + "(" + m_functions[i].Unit.Name + ")";
+                yAxis.Array = m_functions[i].Values.ToArray();
+                fsDiagramWithTable1.AddYAxis(yAxis);
             }
+            fsDiagramWithTable1.Redraw();
         }
 
-        private void RefreshTable()
+        private void BuildData(fsParameterIdentifier xParameter)
         {
-            table.Rows.Clear();
-            table.Columns.Clear();
-            if (m_functions.Count > 0)
-            {
-                table.ColumnCount = m_functions.Count;
-                if (m_functions[0].Values.Count > 0)
-                {
-                    table.RowCount = m_functions[0].Values.Count;
-                    for (int col = 0; col < table.ColumnCount; ++col)
-                    {
-                        table.Columns[col].HeaderCell.Value = m_functions[col].ParameterIdentifier.Name;
-                        for (int row = 0; row < table.RowCount; ++row)
-                        {
-                            table[col, row].Value = m_functions[col].Values[row];
-                        }
-                    }
-                }
-            }
-        }
-
-        private void BuildData()
-        {
-            fsParameterIdentifier xParameter =
-                m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
-
             int detalization = Convert.ToInt32(detalizationBox.Text);
             m_data = new List<List<fsMeasuredParameter>>();
             for (int i = 0; i < detalization; ++i)
@@ -231,27 +208,27 @@ namespace Calculator.User_Controls
 
         private void XAxisListSelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateDiagram();
+            RecalculateAndUpdateDiagram();
         }
 
         private void YAxisListMouseUp(object sender, MouseEventArgs e)
         {
-            UpdateDiagram();
+            RecalculateAndUpdateDiagram();
         }
 
         private void RangeFromTextChanged(object sender, EventArgs e)
         {
-            UpdateDiagram();
+            RecalculateAndUpdateDiagram();
         }
 
         private void RangeToTextChanged(object sender, EventArgs e)
         {
-            UpdateDiagram();
+            RecalculateAndUpdateDiagram();
         }
 
         private void DetalizationBoxTextChanged(object sender, EventArgs e)
         {
-            UpdateDiagram();
+            RecalculateAndUpdateDiagram();
         }
 
         #region Nested type: fsFunction
