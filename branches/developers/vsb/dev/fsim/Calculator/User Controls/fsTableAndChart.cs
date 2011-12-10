@@ -16,12 +16,21 @@ namespace Calculator.User_Controls
 {
     public partial class fsTableAndChart : UserControl
     {
+        #region Private Data
+
         private readonly List<fsFunction> m_functions = new List<fsFunction>();
         private List<fsCalculator> m_calculators;
         private List<List<fsMeasuredParameter>> m_data;
         private List<fsParametersGroup> m_groups;
         private Dictionary<fsParameterIdentifier, fsParametersGroup> m_parameterToGroup;
         private Dictionary<fsParameterIdentifier, fsMeasuredParameter> m_values;
+        private bool m_reprocessWorks;
+        private delegate void VoidMethod();
+        private Thread m_recalculateAndUpdateDiagramThread;
+
+        #endregion
+
+        #region Constructor
 
         public fsTableAndChart()
         {
@@ -30,7 +39,9 @@ namespace Calculator.User_Controls
             m_values = new Dictionary<fsParameterIdentifier, fsMeasuredParameter>();
         }
 
-        private bool m_reprocessWorks;
+        #endregion
+
+        #region Reprocessing
 
         public void Reprocess()
         {
@@ -52,10 +63,6 @@ namespace Calculator.User_Controls
                 RecalculateAndUpdateDiagram();
             }
         }
-
-        private delegate void VoidMethod();
-
-        private Thread m_recalculateAndUpdateDiagramThread;
 
         private void RecalculateAndUpdateDiagram()
         {
@@ -136,10 +143,17 @@ namespace Calculator.User_Controls
 
                 fsValue from = fsValue.StringToValue(rangeFrom.Text);
                 fsValue to = fsValue.StringToValue(rangeTo.Text);
-                currentValues[xParameter].SetValueInUnits(from + (to - from) * i / detalization);
 
+                fsParametersGroup xInitialgroup = m_parameterToGroup[xParameter];
+                fsParametersGroup xNewGroup = new fsParametersGroup(xInitialgroup);
+                xNewGroup.Representator = xParameter;
+                SubstituteGroup(m_parameterToGroup, xInitialgroup, xNewGroup);
+
+                currentValues[xParameter].SetValueInUnits(from + (to - from) * i / detalization);
                 fsCalculationProcessor.ProcessCalculatorParameters(currentValues, m_parameterToGroup, m_calculators);
 
+                SubstituteGroup(m_parameterToGroup, xNewGroup, xInitialgroup); 
+                
                 var calculations = new List<fsMeasuredParameter>();
                 foreach (var pair in currentValues)
                 {
@@ -153,6 +167,14 @@ namespace Calculator.User_Controls
                     }
                 }
                 m_data.Add(calculations);
+            }
+        }
+
+        private void SubstituteGroup(Dictionary<fsParameterIdentifier, fsParametersGroup> parameterToGroup, fsParametersGroup initialGroup, fsParametersGroup newGroup)
+        {
+            foreach (fsParameterIdentifier parameter in initialGroup.Parameters)
+            {
+                parameterToGroup[parameter] = newGroup;
             }
         }
 
@@ -181,7 +203,10 @@ namespace Calculator.User_Controls
             {
                 if (group.IsInput)
                 {
-                    xAxisList.Items.Add(group.Representator.Name);
+                    foreach (fsParameterIdentifier parameter in group.Parameters)
+                    {
+                        xAxisList.Items.Add(parameter.Name);
+                    }
                 }
             }
             if (xAxisList.Items.Contains(currentText))
@@ -194,17 +219,21 @@ namespace Calculator.User_Controls
             }
         }
 
+        #endregion
+
         public void AssignCalculatorData(
             Dictionary<fsParameterIdentifier, fsMeasuredParameter> values,
             List<fsParametersGroup> groups,
             Dictionary<fsParameterIdentifier, fsParametersGroup> parameterToGroup,
             List<fsCalculator> calculators)
         {
-            m_values = values;
-            m_groups = groups;
-            m_parameterToGroup = parameterToGroup;
-            m_calculators = calculators;
+            m_values = new Dictionary<fsParameterIdentifier,fsMeasuredParameter>(values);
+            m_groups = new List<fsParametersGroup> (groups);
+            m_parameterToGroup = new Dictionary<fsParameterIdentifier,fsParametersGroup>(parameterToGroup);
+            m_calculators = new List<fsCalculator>(calculators);
         }
+
+        #region UI Event
 
         private void XAxisListSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -230,6 +259,8 @@ namespace Calculator.User_Controls
         {
             RecalculateAndUpdateDiagram();
         }
+
+        #endregion
 
         #region Nested type: fsFunction
 
