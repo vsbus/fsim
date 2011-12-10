@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,14 +38,8 @@
             this.rangeFrom = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.xAxisList = new System.Windows.Forms.ComboBox();
-            this.fmZedGraphControl1 = new fmZedGraph.fmZedGraphControl();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.table = new fmDataGrid.fmDataGrid();
+            this.fsDiagramWithTable1 = new Calculator.User_Controls.fsDiagramWithTable();
             this.panel1.SuspendLayout();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -149,66 +142,24 @@
             this.xAxisList.TabIndex = 0;
             this.xAxisList.SelectedIndexChanged += new System.EventHandler(this.XAxisListSelectedIndexChanged);
             // 
-            // fmZedGraphControl1
+            // fsDiagramWithTable1
             // 
-            this.fmZedGraphControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fmZedGraphControl1.IsAntiAlias = true;
-            this.fmZedGraphControl1.Location = new System.Drawing.Point(0, 0);
-            this.fmZedGraphControl1.Name = "fmZedGraphControl1";
-            this.fmZedGraphControl1.ScrollGrace = 0;
-            this.fmZedGraphControl1.ScrollMaxX = 0;
-            this.fmZedGraphControl1.ScrollMaxY = 0;
-            this.fmZedGraphControl1.ScrollMaxY2 = 0;
-            this.fmZedGraphControl1.ScrollMinX = 0;
-            this.fmZedGraphControl1.ScrollMinY = 0;
-            this.fmZedGraphControl1.ScrollMinY2 = 0;
-            this.fmZedGraphControl1.Size = new System.Drawing.Size(327, 171);
-            this.fmZedGraphControl1.TabIndex = 0;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(128, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.fmZedGraphControl1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.table);
-            this.splitContainer1.Size = new System.Drawing.Size(327, 251);
-            this.splitContainer1.SplitterDistance = 171;
-            this.splitContainer1.TabIndex = 3;
-            // 
-            // table
-            // 
-            this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.table.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.table.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.table.HighLightCurrentRow = false;
-            this.table.Location = new System.Drawing.Point(0, 0);
-            this.table.Name = "table";
-            this.table.RowTemplate.Height = 18;
-            this.table.Size = new System.Drawing.Size(327, 76);
-            this.table.TabIndex = 0;
+            this.fsDiagramWithTable1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fsDiagramWithTable1.Location = new System.Drawing.Point(128, 0);
+            this.fsDiagramWithTable1.Name = "fsDiagramWithTable1";
+            this.fsDiagramWithTable1.Size = new System.Drawing.Size(327, 251);
+            this.fsDiagramWithTable1.TabIndex = 1;
             // 
             // fsTableAndChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.fsDiagramWithTable1);
             this.Controls.Add(this.panel1);
             this.Name = "fsTableAndChart";
             this.Size = new System.Drawing.Size(455, 251);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -225,8 +176,6 @@
         private System.Windows.Forms.TextBox rangeTo;
         private System.Windows.Forms.TextBox rangeFrom;
         private System.Windows.Forms.Label label1;
-        private fmDataGrid.fmDataGrid table;
-        private fmZedGraph.fmZedGraphControl fmZedGraphControl1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private fsDiagramWithTable fsDiagramWithTable1;
     }
 }
