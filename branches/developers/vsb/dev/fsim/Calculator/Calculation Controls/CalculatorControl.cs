@@ -255,6 +255,7 @@ namespace Calculator.Calculation_Controls
                     valueCell.Value = parameter.GetValueInUnits();
                 }
             }
+            Recalculate();
         }
     }
 }

@@ -94,23 +94,53 @@ namespace Calculator.User_Controls
         private void RefreshCurves()
         {
             fmZedGraphControl1.GraphPane.CurveList.Clear();
-            foreach (fsNamedArray curve in m_yAxis)
-            {
-                string name = curve.Name;
-                PointPairList pointList = new ZedGraph.PointPairList();
-                for (int i = 0; i < curve.Array.Length; ++i)
-                {
-                    if (curve.Array[i].Defined)
-                    {
-                        pointList.Add(m_xAxis.Array[i].Value, curve.Array[i].Value);
-                    }
-                }
-                LineItem zedCurve = fmZedGraphControl1.GraphPane.AddCurve(name, pointList, Color.Black, SymbolType.None);
-                zedCurve.Line.IsAntiAlias = true;
-            }
+            fmZedGraphControl1.GraphPane.XAxis.Title.Text = m_xAxis.Name;
+            fmZedGraphControl1.GraphPane.YAxis.IsVisible = false;
+            fmZedGraphControl1.GraphPane.Y2Axis.IsVisible = false;
 
+            RefreshYAxis(m_yAxis, false);
+            RefreshYAxis(m_y2Axis, true);
+            
             fmZedGraphControl1.GraphPane.AxisChange();
             fmZedGraphControl1.Refresh();
+        }
+
+        private void RefreshYAxis(List<fsNamedArray> yAxis, bool isY2Axis)
+        {
+            if (yAxis.Count > 0)
+            {
+                Color color = Color.Black;
+                Axis graphYAxis;
+                if (isY2Axis)
+                {
+                    color = Color.Green;
+                    graphYAxis = fmZedGraphControl1.GraphPane.Y2Axis;
+                }
+                else
+                {
+                    color = Color.Blue;
+                    graphYAxis = fmZedGraphControl1.GraphPane.YAxis;
+                }
+                graphYAxis.IsVisible = true;
+                graphYAxis.Color = color;
+                graphYAxis.Title.Text = "";
+
+                foreach (fsNamedArray curve in yAxis)
+                {
+                    string name = curve.Name;
+                    PointPairList pointList = new ZedGraph.PointPairList();
+                    for (int i = 0; i < curve.Array.Length; ++i)
+                    {
+                        if (curve.Array[i].Defined)
+                        {
+                            pointList.Add(m_xAxis.Array[i].Value, curve.Array[i].Value);
+                        }
+                    }
+                    LineItem zedCurve = fmZedGraphControl1.GraphPane.AddCurve(name, pointList, color, SymbolType.None);
+                    zedCurve.IsY2Axis = isY2Axis;
+                    zedCurve.Line.IsAntiAlias = true;
+                }
+            }
         }
 
     }

@@ -182,6 +182,9 @@ namespace fmZedGraph
                     continue;
                 }
 
+                if (curve.Points.Count == 0)
+                    continue;
+
                 PointPair bestPoint = curve.Points[0];
                 const double eps = 1e-9;
                 for (int i = 1; i < curve.Points.Count; i++)
