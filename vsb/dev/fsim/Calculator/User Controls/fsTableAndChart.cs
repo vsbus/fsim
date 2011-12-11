@@ -19,6 +19,7 @@ namespace Calculator.User_Controls
         #region Private Data
 
         private readonly List<fsFunction> m_functions = new List<fsFunction>();
+        private readonly List<fsFunction> m_functions2 = new List<fsFunction>();
         private List<fsCalculator> m_calculators;
         private List<List<fsMeasuredParameter>> m_data;
         private List<fsParametersGroup> m_groups;
@@ -50,7 +51,8 @@ namespace Calculator.User_Controls
                 m_reprocessWorks = true;
 
                 RefreshXAxisList();
-                RefreshYAxisList();
+                RefreshYAxisList(yAxisList);
+                RefreshYAxisList(y2AxisList);
                 rangeFrom.Text = @"0";
                 rangeTo.Text = @"100";
                 if (detalizationBox.Text == "")
@@ -82,7 +84,8 @@ namespace Calculator.User_Controls
         private void BuildDataAndRefreshPlot(object xAxisParameter)
         {
             BuildData((fsParameterIdentifier) xAxisParameter);
-            BuildFunctions();
+            BuildFunctions(m_functions, yAxisList);
+            BuildFunctions(m_functions2, y2AxisList);
 
             if (Visible)
             {
@@ -90,15 +93,15 @@ namespace Calculator.User_Controls
             }
         }
 
-        private void BuildFunctions()
+        private void BuildFunctions(List<fsFunction> functions, CheckedListBox yAxisList)
         {
-            m_functions.Clear();
+            functions.Clear();
             var fx = new fsFunction(m_data[0][0].Identifier, m_data[0][0].Unit);
             foreach (var t in m_data)
             {
                 fx.Values.Add(t[0].GetValueInUnits());
             }
-            m_functions.Add(fx);
+            functions.Add(fx);
             for (int col = 1; col < m_data[0].Count; ++col)
             {
                 fsParameterIdentifier parameter = m_data[0][col].Identifier;
@@ -109,7 +112,7 @@ namespace Calculator.User_Controls
                     {
                         fy.Values.Add(t[col].GetValueInUnits());
                     }
-                    m_functions.Add(fy);
+                    functions.Add(fy);
                 }
             }
         }
@@ -129,6 +132,16 @@ namespace Calculator.User_Controls
                 yAxis.Array = m_functions[i].Values.ToArray();
                 fsDiagramWithTable1.AddYAxis(yAxis);
             }
+
+            fsDiagramWithTable1.ClearY2Axis();
+            for (int i = 1; i < m_functions2.Count; ++i)
+            {
+                var yAxis = new fsDiagramWithTable.fsNamedArray();
+                yAxis.Name = m_functions2[i].ParameterIdentifier.Name + "(" + m_functions2[i].Unit.Name + ")";
+                yAxis.Array = m_functions2[i].Values.ToArray();
+                fsDiagramWithTable1.AddY2Axis(yAxis);
+            }
+
             fsDiagramWithTable1.Redraw();
         }
 
@@ -178,7 +191,7 @@ namespace Calculator.User_Controls
             }
         }
 
-        private void RefreshYAxisList()
+        private void RefreshYAxisList(CheckedListBox yAxisList)
         {
             var newList = new List<KeyValuePair<string, bool>>();
             foreach (fsParametersGroup group in m_groups)
@@ -279,5 +292,20 @@ namespace Calculator.User_Controls
         }
 
         #endregion
+
+        private void y2AxisList_MouseUp(object sender, MouseEventArgs e)
+        {
+            RecalculateAndUpdateDiagram();
+        }
+
+        private void yAxisList_KeyUp(object sender, KeyEventArgs e)
+        {
+            RecalculateAndUpdateDiagram();
+        }
+
+        private void y2AxisList_KeyUp(object sender, KeyEventArgs e)
+        {
+            RecalculateAndUpdateDiagram();
+        }
     }
 }
