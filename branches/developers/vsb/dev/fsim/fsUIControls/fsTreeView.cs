@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Calculator
+namespace fsUIControls
 {
     public class fsTreeView : TreeView
     {
