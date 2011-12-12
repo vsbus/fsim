@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Calculator.Calculation_Controls;
+using CalculatorModules;
 
 namespace Calculator
 {
