@@ -1,4 +1,6 @@
-﻿namespace Calculator
+﻿using fsUIControls;
+
+namespace Calculator
 {
     partial class fsModulesForm
     {
@@ -30,10 +32,10 @@
         {
             this.OKButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.modulePanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.treeView1 = new Calculator.fsTreeView();
+            this.treeView1 = new fsUIControls.fsTreeView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.currentModuleTitleLabel = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
@@ -63,13 +65,13 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
-            // panel1
+            // modulePanel
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(327, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(345, 447);
-            this.panel1.TabIndex = 3;
+            this.modulePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.modulePanel.Location = new System.Drawing.Point(327, 28);
+            this.modulePanel.Name = "modulePanel";
+            this.modulePanel.Size = new System.Drawing.Size(345, 447);
+            this.modulePanel.TabIndex = 3;
             // 
             // panel2
             // 
@@ -124,7 +126,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(672, 538);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.modulePanel);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
@@ -143,7 +145,7 @@
 
         private System.Windows.Forms.Button OKButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel modulePanel;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         fsTreeView treeView1;

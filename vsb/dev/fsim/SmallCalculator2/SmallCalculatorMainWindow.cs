@@ -4,36 +4,21 @@ using System.Drawing;
 using System.Windows.Forms;
 using Calculator.Calculation_Controls;
 
-namespace Calculator
+namespace SmallCalculator2
 {
-    public partial class fsModulesForm : Form
+    public partial class SmallCalculatorMainWindow : Form
     {
         private readonly Dictionary<string, fsCalculatorControl> m_modules =
             new Dictionary<string, fsCalculatorControl>();
 
-        public fsModulesForm()
+        public fsCalculatorControl SelectedCalculatorControl { get; private set; }
+
+        public SmallCalculatorMainWindow()
         {
             InitializeComponent();
-            SelectedCalculatorControl = null;
         }
 
-        public fsCalculatorControl SelectedCalculatorControl { get; private set; }
-        public string SelectedCalculatorControlName { get; private set; }
-
-        private void CancelButtonClick(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        private void OkButtonClick(object sender, EventArgs e)
-        {
-            SelectedCalculatorControl.Dock = DockStyle.None;
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void ModulesFormLoad(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
             AddGroupToTree("Suspension", new[]
                                              {
@@ -83,7 +68,7 @@ namespace Calculator
         }
 
         private void AddGroupToTree(string nodeName,
-                                    IEnumerable<KeyValuePair<string, fsCalculatorControl>> calculationControls)
+                            IEnumerable<KeyValuePair<string, fsCalculatorControl>> calculationControls)
         {
             var node = new TreeNode(nodeName);
             foreach (var pair in calculationControls)
@@ -106,12 +91,12 @@ namespace Calculator
             treeNode.Nodes.Add(moduleName).NodeFont = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular);
         }
 
-        private void TreeView1AfterSelect(object sender, TreeViewEventArgs e)
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (!m_modules.ContainsKey(treeView1.SelectedNode.Text))
                 return;
 
-            SelectedCalculatorControlName = treeView1.SelectedNode.Text;
+            string SelectedCalculatorControlName = treeView1.SelectedNode.Text;
             currentModuleTitleLabel.Text = SelectedCalculatorControlName;
 
             if (SelectedCalculatorControl != null)
@@ -123,5 +108,6 @@ namespace Calculator
             SelectedCalculatorControl.Parent = modulePanel;
             SelectedCalculatorControl.Dock = DockStyle.Fill;
         }
+
     }
 }

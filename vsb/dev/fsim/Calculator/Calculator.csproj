@@ -246,14 +246,15 @@
     <Compile Include="User Controls\fsTableAndChart.Designer.cs">
       <DependentUpon>fsTableAndChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Controls\fsTreeView.cs">
-      <SubType>Component</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\fmZedControl\fmZedGraph.csproj">
       <Project>{6AA10204-B802-462B-AC8B-D012081866BA}</Project>
       <Name>fmZedGraph</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\fsUIControls\fsUIControls.csproj">
+      <Project>{D2C13C87-0D9A-416E-8091-58DDDEE2BCEA}</Project>
+      <Name>fsUIControls</Name>
     </ProjectReference>
     <ProjectReference Include="..\Parameters\Parameters.csproj">
       <Project>{67A1D000-12E6-439C-BC89-23C4059BC855}</Project>
