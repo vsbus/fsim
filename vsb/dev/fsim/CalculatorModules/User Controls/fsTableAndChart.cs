@@ -50,6 +50,7 @@ namespace CalculatorModules.User_Controls
                 RefreshXAxisList();
                 RefreshYAxisList(yAxisList);
                 RefreshYAxisList(y2AxisList);
+                RefreshInputsBox();
                 rangeFrom.Text = @"0";
                 rangeTo.Text = @"100";
                 if (detalizationBox.Text == "")
@@ -61,6 +62,21 @@ namespace CalculatorModules.User_Controls
 
                 RecalculateAndUpdateDiagram();
             }
+        }
+
+        private void RefreshInputsBox()
+        {
+            List<string> inputData = new List<string>();
+            foreach (fsParametersGroup group in m_groups)
+            {
+                if (group.IsInput)
+                {
+                    fsParameterIdentifier parameter = group.Representator;
+                    inputData.Add(parameter.Name + ":\t" + m_values[parameter].GetValueInUnits() + " " + m_values[parameter].Unit.Name);
+                }
+            }
+
+            textBox1.Lines = inputData.ToArray();
         }
 
         private void RecalculateAndUpdateDiagram()
