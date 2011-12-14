@@ -42,18 +42,24 @@
             this.detalizationBox = new System.Windows.Forms.TextBox();
             this.rangeTo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.fsDiagramWithTable1 = new CalculatorModules.User_Controls.fsDiagramWithTable();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AllowDrop = true;
-            this.panel1.Controls.Add(this.splitContainer1);
+            this.panel1.Controls.Add(this.splitContainer2);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -64,7 +70,8 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 91);
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -76,7 +83,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.y2AxisList);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
-            this.splitContainer1.Size = new System.Drawing.Size(151, 160);
+            this.splitContainer1.Size = new System.Drawing.Size(151, 98);
             this.splitContainer1.SplitterDistance = 73;
             this.splitContainer1.TabIndex = 9;
             // 
@@ -87,7 +94,7 @@
             this.yAxisList.FormattingEnabled = true;
             this.yAxisList.Location = new System.Drawing.Point(0, 13);
             this.yAxisList.Name = "yAxisList";
-            this.yAxisList.Size = new System.Drawing.Size(73, 139);
+            this.yAxisList.Size = new System.Drawing.Size(73, 79);
             this.yAxisList.TabIndex = 6;
             this.yAxisList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.YAxisListMouseUp);
             this.yAxisList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.yAxisList_KeyUp);
@@ -109,7 +116,7 @@
             this.y2AxisList.FormattingEnabled = true;
             this.y2AxisList.Location = new System.Drawing.Point(0, 13);
             this.y2AxisList.Name = "y2AxisList";
-            this.y2AxisList.Size = new System.Drawing.Size(74, 139);
+            this.y2AxisList.Size = new System.Drawing.Size(74, 79);
             this.y2AxisList.TabIndex = 1;
             this.y2AxisList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.y2AxisList_MouseUp);
             this.y2AxisList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.y2AxisList_KeyUp);
@@ -200,6 +207,37 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Range";
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 91);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.splitContainer1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.textBox1);
+            this.splitContainer2.Panel2.Controls.Add(this.label6);
+            this.splitContainer2.Size = new System.Drawing.Size(151, 160);
+            this.splitContainer2.SplitterDistance = 98;
+            this.splitContainer2.TabIndex = 11;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(0, 13);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(151, 45);
+            this.textBox1.TabIndex = 1;
+            // 
             // fsDiagramWithTable1
             // 
             this.fsDiagramWithTable1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -207,6 +245,16 @@
             this.fsDiagramWithTable1.Name = "fsDiagramWithTable1";
             this.fsDiagramWithTable1.Size = new System.Drawing.Size(304, 251);
             this.fsDiagramWithTable1.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label6.Location = new System.Drawing.Point(0, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(39, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Inputs:";
             // 
             // fsTableAndChart
             // 
@@ -224,6 +272,10 @@
             this.splitContainer1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -245,5 +297,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckedListBox y2AxisList;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label6;
     }
 }
