@@ -147,8 +147,8 @@ namespace Units
         public static fsCharacteristic Mass = new fsCharacteristic(
             "Mass",
             new[] {
-                fsUnit.Ton,
                 fsUnit.KiloGramme,
+                fsUnit.Ton,
                 fsUnit.Gramme
             }
         );

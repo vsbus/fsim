@@ -30,8 +30,8 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label4 = new System.Windows.Forms.Label();
             this.yAxisList = new System.Windows.Forms.CheckedListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.y2AxisList = new System.Windows.Forms.CheckedListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -42,7 +42,7 @@
             this.detalizationBox = new System.Windows.Forms.TextBox();
             this.rangeTo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.fsDiagramWithTable1 = new fsDiagramWithTable();
+            this.fsDiagramWithTable1 = new CalculatorModules.User_Controls.fsDiagramWithTable();
             this.panel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,7 +58,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(128, 251);
+            this.panel1.Size = new System.Drawing.Size(151, 251);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer1
@@ -66,50 +66,50 @@
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 91);
             this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.yAxisList);
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.y2AxisList);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
-            this.splitContainer1.Size = new System.Drawing.Size(128, 160);
-            this.splitContainer1.SplitterDistance = 78;
+            this.splitContainer1.Size = new System.Drawing.Size(151, 160);
+            this.splitContainer1.SplitterDistance = 73;
             this.splitContainer1.TabIndex = 9;
+            // 
+            // yAxisList
+            // 
+            this.yAxisList.CheckOnClick = true;
+            this.yAxisList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.yAxisList.FormattingEnabled = true;
+            this.yAxisList.Location = new System.Drawing.Point(0, 13);
+            this.yAxisList.Name = "yAxisList";
+            this.yAxisList.Size = new System.Drawing.Size(73, 139);
+            this.yAxisList.TabIndex = 6;
+            this.yAxisList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.YAxisListMouseUp);
+            this.yAxisList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.yAxisList_KeyUp);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 3);
+            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 8;
             this.label4.Text = "Y axis";
             // 
-            // yAxisList
-            // 
-            this.yAxisList.CheckOnClick = true;
-            this.yAxisList.Dock = System.Windows.Forms.DockStyle.Right;
-            this.yAxisList.FormattingEnabled = true;
-            this.yAxisList.Location = new System.Drawing.Point(48, 0);
-            this.yAxisList.Name = "yAxisList";
-            this.yAxisList.Size = new System.Drawing.Size(80, 64);
-            this.yAxisList.TabIndex = 6;
-            this.yAxisList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.YAxisListMouseUp);
-            this.yAxisList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.yAxisList_KeyUp);
-            // 
             // y2AxisList
             // 
             this.y2AxisList.CheckOnClick = true;
-            this.y2AxisList.Dock = System.Windows.Forms.DockStyle.Right;
+            this.y2AxisList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.y2AxisList.FormattingEnabled = true;
-            this.y2AxisList.Location = new System.Drawing.Point(48, 0);
+            this.y2AxisList.Location = new System.Drawing.Point(0, 13);
             this.y2AxisList.Name = "y2AxisList";
-            this.y2AxisList.Size = new System.Drawing.Size(80, 64);
+            this.y2AxisList.Size = new System.Drawing.Size(74, 139);
             this.y2AxisList.TabIndex = 1;
             this.y2AxisList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.y2AxisList_MouseUp);
             this.y2AxisList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.y2AxisList_KeyUp);
@@ -117,7 +117,8 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 13);
             this.label5.TabIndex = 0;
@@ -135,7 +136,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(128, 91);
+            this.panel2.Size = new System.Drawing.Size(151, 91);
             this.panel2.TabIndex = 10;
             // 
             // label1
@@ -153,7 +154,7 @@
             this.xAxisList.FormattingEnabled = true;
             this.xAxisList.Location = new System.Drawing.Point(48, 7);
             this.xAxisList.Name = "xAxisList";
-            this.xAxisList.Size = new System.Drawing.Size(72, 21);
+            this.xAxisList.Size = new System.Drawing.Size(97, 21);
             this.xAxisList.TabIndex = 0;
             this.xAxisList.SelectedIndexChanged += new System.EventHandler(this.XAxisListSelectedIndexChanged);
             // 
@@ -170,23 +171,23 @@
             // 
             this.rangeFrom.Location = new System.Drawing.Point(48, 34);
             this.rangeFrom.Name = "rangeFrom";
-            this.rangeFrom.Size = new System.Drawing.Size(32, 20);
+            this.rangeFrom.Size = new System.Drawing.Size(44, 20);
             this.rangeFrom.TabIndex = 2;
             this.rangeFrom.TextChanged += new System.EventHandler(this.RangeFromTextChanged);
             // 
             // detalizationBox
             // 
-            this.detalizationBox.Location = new System.Drawing.Point(88, 60);
+            this.detalizationBox.Location = new System.Drawing.Point(101, 60);
             this.detalizationBox.Name = "detalizationBox";
-            this.detalizationBox.Size = new System.Drawing.Size(32, 20);
+            this.detalizationBox.Size = new System.Drawing.Size(44, 20);
             this.detalizationBox.TabIndex = 5;
             this.detalizationBox.TextChanged += new System.EventHandler(this.DetalizationBoxTextChanged);
             // 
             // rangeTo
             // 
-            this.rangeTo.Location = new System.Drawing.Point(88, 34);
+            this.rangeTo.Location = new System.Drawing.Point(101, 34);
             this.rangeTo.Name = "rangeTo";
-            this.rangeTo.Size = new System.Drawing.Size(32, 20);
+            this.rangeTo.Size = new System.Drawing.Size(44, 20);
             this.rangeTo.TabIndex = 3;
             this.rangeTo.TextChanged += new System.EventHandler(this.RangeToTextChanged);
             // 
@@ -202,9 +203,9 @@
             // fsDiagramWithTable1
             // 
             this.fsDiagramWithTable1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fsDiagramWithTable1.Location = new System.Drawing.Point(128, 0);
+            this.fsDiagramWithTable1.Location = new System.Drawing.Point(151, 0);
             this.fsDiagramWithTable1.Name = "fsDiagramWithTable1";
-            this.fsDiagramWithTable1.Size = new System.Drawing.Size(327, 251);
+            this.fsDiagramWithTable1.Size = new System.Drawing.Size(304, 251);
             this.fsDiagramWithTable1.TabIndex = 1;
             // 
             // fsTableAndChart
