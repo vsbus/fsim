@@ -131,7 +131,7 @@ namespace fmDataGrid
                 var cell = Rows[e.RowIndex].Cells[e.ColumnIndex] as fmDataGridViewNumericalTextBoxCell;
                 if (cell.EditBox != null)
                 {
-                    var cellText = cell.Value.ToString();
+                    var cellText = cell.Value == null ? "" : cell.Value.ToString();
                     var cellValue = fsValue.StringToValue(cellText);
                     var editBoxValue = fsValue.StringToValue(cell.EditBox.Text);
                     if (editBoxValue != cellValue)
