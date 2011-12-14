@@ -55,7 +55,6 @@ namespace CalculatorModules
             // 
             // leftPanel
             // 
-            this.leftPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.leftPanel.Controls.Add(this.tablesPanel);
             this.leftPanel.Controls.Add(this.leftTopPanel);
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -70,7 +69,7 @@ namespace CalculatorModules
             this.tablesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tablesPanel.Location = new System.Drawing.Point(0, 48);
             this.tablesPanel.Name = "tablesPanel";
-            this.tablesPanel.Size = new System.Drawing.Size(265, 250);
+            this.tablesPanel.Size = new System.Drawing.Size(267, 252);
             this.tablesPanel.TabIndex = 1;
             // 
             // dataGrid
@@ -91,7 +90,7 @@ namespace CalculatorModules
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.RowHeadersVisible = false;
             this.dataGrid.RowTemplate.Height = 18;
-            this.dataGrid.Size = new System.Drawing.Size(265, 250);
+            this.dataGrid.Size = new System.Drawing.Size(267, 252);
             this.dataGrid.TabIndex = 0;
             // 
             // ParameterColumn
@@ -116,7 +115,7 @@ namespace CalculatorModules
             this.leftTopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.leftTopPanel.Location = new System.Drawing.Point(0, 0);
             this.leftTopPanel.Name = "leftTopPanel";
-            this.leftTopPanel.Size = new System.Drawing.Size(265, 48);
+            this.leftTopPanel.Size = new System.Drawing.Size(267, 48);
             this.leftTopPanel.TabIndex = 0;
             // 
             // calculationOptionsPanel
@@ -124,14 +123,14 @@ namespace CalculatorModules
             this.calculationOptionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.calculationOptionsPanel.Location = new System.Drawing.Point(0, 0);
             this.calculationOptionsPanel.Name = "calculationOptionsPanel";
-            this.calculationOptionsPanel.Size = new System.Drawing.Size(214, 48);
+            this.calculationOptionsPanel.Size = new System.Drawing.Size(216, 48);
             this.calculationOptionsPanel.TabIndex = 0;
             // 
             // showHideCommentsPanel
             // 
             this.showHideCommentsPanel.Controls.Add(this.showHideCommnetsButton);
             this.showHideCommentsPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.showHideCommentsPanel.Location = new System.Drawing.Point(214, 0);
+            this.showHideCommentsPanel.Location = new System.Drawing.Point(216, 0);
             this.showHideCommentsPanel.Name = "showHideCommentsPanel";
             this.showHideCommentsPanel.Size = new System.Drawing.Size(51, 48);
             this.showHideCommentsPanel.TabIndex = 1;
@@ -152,7 +151,6 @@ namespace CalculatorModules
             // 
             // rightPanel
             // 
-            this.rightPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rightPanel.Controls.Add(this.fsTableAndChart1);
             this.rightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightPanel.Location = new System.Drawing.Point(0, 0);
@@ -166,7 +164,7 @@ namespace CalculatorModules
             this.fsTableAndChart1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fsTableAndChart1.Location = new System.Drawing.Point(0, 0);
             this.fsTableAndChart1.Name = "fsTableAndChart1";
-            this.fsTableAndChart1.Size = new System.Drawing.Size(514, 298);
+            this.fsTableAndChart1.Size = new System.Drawing.Size(516, 300);
             this.fsTableAndChart1.TabIndex = 1;
             // 
             // splitContainer1
