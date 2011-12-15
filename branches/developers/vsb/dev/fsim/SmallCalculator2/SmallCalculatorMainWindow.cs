@@ -109,5 +109,10 @@ namespace SmallCalculator2
             SelectedCalculatorControl.Dock = DockStyle.Fill;
         }
 
+        private void unitsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
