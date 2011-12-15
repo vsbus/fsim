@@ -72,7 +72,7 @@ namespace Parameters
         public static fsParameterIdentifier DryCakeMass = new fsParameterIdentifier("Mcd", "Dry Cake Mass", fsCharacteristic.Mass);
         public static fsParameterIdentifier SuspensionMass = new fsParameterIdentifier("Msus", "Suspension Mass", fsCharacteristic.Mass);
         public static fsParameterIdentifier FiltrateMass = new fsParameterIdentifier("Mf", "Fitrate Mass", fsCharacteristic.Mass);
-        public static fsParameterIdentifier LiquidMass = new fsParameterIdentifier("Ml", "Liquid Mass", fsCharacteristic.Mass);
+        public static fsParameterIdentifier LiquidMassForResuspension = new fsParameterIdentifier("Ml", "Liquid Mass for Resuspension", fsCharacteristic.Mass);
         public static fsParameterIdentifier SolidsMass = new fsParameterIdentifier("Ms", "Solids Mass", fsCharacteristic.Mass);
         public static fsParameterIdentifier CakeMass = new fsParameterIdentifier("Mc", "Cake Mass", fsCharacteristic.Mass);
 
@@ -109,8 +109,8 @@ namespace Parameters
         public static fsParameterIdentifier SolutesMassFractionInMotherLiquid = new fsParameterIdentifier("Cm_sol", "Solutes Mass Fraction in Mother Liquid", fsCharacteristic.Concentration);
         public static fsParameterIdentifier SolutesConcentrationInCakeLiquid = new fsParameterIdentifier("C_sol", "Solutes Concentration in Cake Liquid", fsCharacteristic.SolidsConcentration);
         public static fsParameterIdentifier SolutesMassFractionInLiquid = new fsParameterIdentifier("Cm_sol", "Solutes Mass Fraction in Liquid", fsCharacteristic.Concentration);
-        public static fsParameterIdentifier WashOutMassFraction = new fsParameterIdentifier("Cwm", "Wash Out Mass Fration", fsCharacteristic.Concentration);
-        public static fsParameterIdentifier WashOutConcentration = new fsParameterIdentifier("Cw", "Wash Out Concentration", fsCharacteristic.SolidsConcentration);
+        public static fsParameterIdentifier LiquidWashOutMassFraction = new fsParameterIdentifier("Cwm", "Liquid Wash Out Mass Fraction", fsCharacteristic.Concentration);
+        public static fsParameterIdentifier LiquidWashOutConcentration = new fsParameterIdentifier("Cw", "Liquid Wash Out Concentration", fsCharacteristic.SolidsConcentration);
         public static fsParameterIdentifier CakeSaturation = new fsParameterIdentifier("S", "Cake Saturation", fsCharacteristic.Concentration);
         public static fsParameterIdentifier CakeMoistureContent = new fsParameterIdentifier("RF", "Cake Moisture Content", fsCharacteristic.Concentration);
         public static fsParameterIdentifier CakeWashOutContent = new fsParameterIdentifier("X", "Cake Wash Out Content", fsCharacteristic.CakeWashOutContent);

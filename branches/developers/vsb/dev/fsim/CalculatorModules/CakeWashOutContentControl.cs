@@ -15,10 +15,10 @@ namespace CalculatorModules
             Calculators.Add(m_calculator);
 
             fsParametersGroup wetMassGroup = AddGroup(fsParameterIdentifier.WetCakeMass);
-            fsParametersGroup liquidGroup = AddGroup(fsParameterIdentifier.LiquidMass);
-            fsParametersGroup cwmGroup = AddGroup(fsParameterIdentifier.WashOutMassFraction);
+            fsParametersGroup liquidGroup = AddGroup(fsParameterIdentifier.LiquidMassForResuspension);
+            fsParametersGroup cwmGroup = AddGroup(fsParameterIdentifier.LiquidWashOutMassFraction);
             fsParametersGroup rholGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
-            fsParametersGroup cwGroup = AddGroup(fsParameterIdentifier.WashOutConcentration);
+            fsParametersGroup cwGroup = AddGroup(fsParameterIdentifier.LiquidWashOutConcentration);
             fsParametersGroup phGroup = AddGroup(fsParameterIdentifier.Ph);
             fsParametersGroup dryMassGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
             fsParametersGroup outGroup = AddGroup(
@@ -104,9 +104,9 @@ namespace CalculatorModules
             bool isCmInput = washOutContentOption ==
                              fsCalculationOptions.fsWashOutContentOption.AsMassFraction;
 
-            ParameterToCell[fsParameterIdentifier.WashOutMassFraction].OwningRow.Visible = isFromWashOutConcentration &&
+            ParameterToCell[fsParameterIdentifier.LiquidWashOutMassFraction].OwningRow.Visible = isFromWashOutConcentration &&
                                                                                            isCmInput;
-            ParameterToCell[fsParameterIdentifier.WashOutConcentration].OwningRow.Visible =
+            ParameterToCell[fsParameterIdentifier.LiquidWashOutConcentration].OwningRow.Visible =
                 isFromWashOutConcentration && !isCmInput;
             ParameterToCell[fsParameterIdentifier.LiquidDensity].OwningRow.Visible = !isFromWashOutConcentration ||
                                                                                      !isCmInput;

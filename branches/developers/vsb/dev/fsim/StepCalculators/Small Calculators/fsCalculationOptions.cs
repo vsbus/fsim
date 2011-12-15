@@ -26,7 +26,7 @@ namespace StepCalculators
 
         public enum fsFromCalculationOption
         {
-            [Description("Wash Out Content")]
+            [Description("Cake Wash Out Content X")]
             WashOutContent,
             [Description("pH")]
             Ph
@@ -34,9 +34,9 @@ namespace StepCalculators
 
         public enum fsWashOutContentOption
         {
-            [Description("As Concentration Cw(g/l)")]
+            [Description("Concentration Cw(g/l)")]
             AsConcentration,
-            [Description("As Mass Fraction Cwm(%)")]
+            [Description("Mass Fraction Cwm(%)")]
             AsMassFraction
         }
 

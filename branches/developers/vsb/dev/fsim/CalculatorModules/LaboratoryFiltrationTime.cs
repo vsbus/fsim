@@ -47,7 +47,7 @@ namespace CalculatorModules
                 fsParameterIdentifier.SuspensionMass);
             fsParametersGroup resultsGroup = AddGroup(
                 fsParameterIdentifier.SolidsMass,
-                fsParameterIdentifier.LiquidMass);
+                fsParameterIdentifier.LiquidMassForResuspension);
 
 
             var groups = new[]
@@ -79,7 +79,7 @@ namespace CalculatorModules
             }
             resultsGroup.IsInput = false;
             ParameterToCell[fsParameterIdentifier.SolidsMass].ReadOnly = true;
-            ParameterToCell[fsParameterIdentifier.LiquidMass].ReadOnly = true;
+            ParameterToCell[fsParameterIdentifier.LiquidMassForResuspension].ReadOnly = true;
 
             UpdateGroupsInputInfoFromCalculationOptions();
             UpdateEquationsFromCalculationOptions();
