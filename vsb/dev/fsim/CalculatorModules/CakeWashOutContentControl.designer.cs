@@ -72,21 +72,21 @@
             // 
             this.washOutContentLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.washOutContentLabel.AutoSize = true;
-            this.washOutContentLabel.Location = new System.Drawing.Point(20, 41);
+            this.washOutContentLabel.Location = new System.Drawing.Point(-25, 41);
             this.washOutContentLabel.Name = "washOutContentLabel";
-            this.washOutContentLabel.Size = new System.Drawing.Size(98, 13);
+            this.washOutContentLabel.Size = new System.Drawing.Size(143, 13);
             this.washOutContentLabel.TabIndex = 1;
-            this.washOutContentLabel.Text = "Wash Out Content:";
+            this.washOutContentLabel.Text = "Liquid Wash Out Content as:";
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 9);
+            this.label1.Location = new System.Drawing.Point(64, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 13);
+            this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Measured Parameter:";
+            this.label1.Text = "Calculate:";
             // 
             // fsCakeWashOutContentControl
             // 

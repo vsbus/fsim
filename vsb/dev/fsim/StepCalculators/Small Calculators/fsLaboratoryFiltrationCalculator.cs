@@ -42,7 +42,7 @@ namespace StepCalculators
             m_hc = AddVariable(fsParameterIdentifier.CakeHeight);
             m_formationTime = AddVariable(fsParameterIdentifier.FiltrationTime);
             m_solidsMass = AddVariable(fsParameterIdentifier.SolidsMass);
-            m_liquidMass = AddVariable(fsParameterIdentifier.LiquidMass);
+            m_liquidMass = AddVariable(fsParameterIdentifier.LiquidMassForResuspension);
             m_suspensionMass = AddVariable(fsParameterIdentifier.SuspensionMass);
 
             #endregion
