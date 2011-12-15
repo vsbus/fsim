@@ -43,7 +43,7 @@ namespace SmallCalculator2
             AddGroupToTree("Cake Formation", new[]
                                                  {
                                                      new KeyValuePair<string, fsCalculatorControl>(
-                                                         "Calculation Cake Formation", new fsLaboratoryFiltrationTime())
+                                                         "Calculations Cake Formation", new fsLaboratoryFiltrationTime())
                                                  });
             AddGroupToTree("Cake Deliquoring", new[]
                                                    {

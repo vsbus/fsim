@@ -27,8 +27,8 @@ namespace StepCalculators
         {
             #region Parameters Initialization
 
-            m_hce0 = AddConstant(fsParameterIdentifier.Hce0);
-            m_viscosity = AddConstant(fsParameterIdentifier.FiltrateViscosity);
+            m_hce0 = AddConstant(fsParameterIdentifier.FilterMediumResistance0);
+            m_viscosity = AddConstant(fsParameterIdentifier.ViscosityFiltrate);
             m_pc0 = AddConstant(fsParameterIdentifier.CakePermeability0);
             m_kappa0 = AddConstant(fsParameterIdentifier.Kappa0);
             m_pressure = AddConstant(fsParameterIdentifier.PressureDifference);
@@ -40,7 +40,7 @@ namespace StepCalculators
             m_cm = AddConstant(fsParameterIdentifier.SuspensionSolidsMassFraction);
             m_pc = AddVariable(fsParameterIdentifier.CakePermeability);
             m_hc = AddVariable(fsParameterIdentifier.CakeHeight);
-            m_formationTime = AddVariable(fsParameterIdentifier.FormationTime);
+            m_formationTime = AddVariable(fsParameterIdentifier.FiltrationTime);
             m_solidsMass = AddVariable(fsParameterIdentifier.SolidsMass);
             m_liquidMass = AddVariable(fsParameterIdentifier.LiquidMass);
             m_suspensionMass = AddVariable(fsParameterIdentifier.SuspensionMass);

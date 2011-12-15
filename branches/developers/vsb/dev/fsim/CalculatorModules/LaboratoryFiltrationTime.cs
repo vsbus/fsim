@@ -28,7 +28,7 @@ namespace CalculatorModules
                 fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0);
             fsParametersGroup viscosityGroup = AddGroup(
-                fsParameterIdentifier.FiltrateViscosity);
+                fsParameterIdentifier.ViscosityFiltrate);
             fsParametersGroup pc0Rc0Alpha0Group = AddGroup(
                 fsParameterIdentifier.CakePermeability0,
                 fsParameterIdentifier.CakeResistance0,
@@ -36,14 +36,14 @@ namespace CalculatorModules
             fsParametersGroup ncGroup = AddGroup(
                 fsParameterIdentifier.CakeCompressibility);
             fsParametersGroup hceGroup = AddGroup(
-                fsParameterIdentifier.Hce0);
+                fsParameterIdentifier.FilterMediumResistance0);
             fsParametersGroup pressureGroup = AddGroup(
                 fsParameterIdentifier.PressureDifference);
             fsParametersGroup areaGroup = AddGroup(
                 fsParameterIdentifier.FilterArea);
             fsParametersGroup cakeFormationGroup = AddGroup(
                 fsParameterIdentifier.CakeHeight,
-                fsParameterIdentifier.FormationTime,
+                fsParameterIdentifier.FiltrationTime,
                 fsParameterIdentifier.SuspensionMass);
             fsParametersGroup resultsGroup = AddGroup(
                 fsParameterIdentifier.SolidsMass,

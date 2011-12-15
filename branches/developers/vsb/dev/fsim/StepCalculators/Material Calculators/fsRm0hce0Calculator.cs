@@ -13,7 +13,7 @@ namespace StepCalculators
         {
             #region Parameters Initialization
 
-            m_hce0 = AddVariable(fsParameterIdentifier.Hce0);
+            m_hce0 = AddVariable(fsParameterIdentifier.FilterMediumResistance0);
             m_rm0 = AddVariable(fsParameterIdentifier.Rm0);
             m_pc0 = AddConstant(fsParameterIdentifier.CakePermeability0);
 
