@@ -48,7 +48,7 @@ namespace Calculator
                                               {
                                                   new KeyValuePair<string, fsCalculatorControl>(
                                                       "Filter Cake & Suspension Relations", new fsMsusAndHcControl()),
-                                                  new KeyValuePair<string, fsCalculatorControl>("Cake Porosity",
+                                                  new KeyValuePair<string, fsCalculatorControl>("Cake Porosity from Test Data",
                                                                                                 new fsCakePorossityControl
                                                                                                     ()),
                                                   new KeyValuePair<string, fsCalculatorControl>(

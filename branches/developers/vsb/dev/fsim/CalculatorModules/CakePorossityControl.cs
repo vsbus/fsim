@@ -15,8 +15,8 @@ namespace CalculatorModules
             Calculators.Add(m_calculator);
 
             fsParametersGroup machineDiameterGroup = AddGroup(fsParameterIdentifier.MachineDiameter);
-            fsParametersGroup areaBGroup = AddGroup(fsParameterIdentifier.FilterB,
-                                                    fsParameterIdentifier.FilterBOverDiameter,
+            fsParametersGroup areaBGroup = AddGroup(fsParameterIdentifier.MachineWidth,
+                                                    fsParameterIdentifier.WidthOverDiameterRatio,
                                                     fsParameterIdentifier.FilterArea);
             fsParametersGroup filterElementDiameterGroup = AddGroup(fsParameterIdentifier.FilterElementDiameter);
             fsParametersGroup cakeHeightGroup = AddGroup(fsParameterIdentifier.CakeHeight);
@@ -57,8 +57,8 @@ namespace CalculatorModules
 
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterArea].RowIndex,
                         Color.FromArgb(255, 230, 230));
-            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterB].RowIndex, Color.FromArgb(255, 230, 230));
-            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].RowIndex,
+            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.MachineWidth].RowIndex, Color.FromArgb(255, 230, 230));
+            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.WidthOverDiameterRatio].RowIndex,
                         Color.FromArgb(255, 230, 230));
 
             fsMisc.FillList(saturationComboBox.Items, typeof (fsCakePorosityCalculator.fsSaturationOption));
@@ -139,8 +139,8 @@ namespace CalculatorModules
                                                                                        machineDiameterVisible;
             ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = geometryVisible &&
                                                                                              filterElementDiameterVisible;
-            ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = geometryVisible && bAndBOverDVisible;
-            ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = geometryVisible &&
+            ParameterToCell[fsParameterIdentifier.MachineWidth].OwningRow.Visible = geometryVisible && bAndBOverDVisible;
+            ParameterToCell[fsParameterIdentifier.WidthOverDiameterRatio].OwningRow.Visible = geometryVisible &&
                                                                                            bAndBOverDVisible;
 
             ParameterToCell[fsParameterIdentifier.SaltConcentrationInTheCakeLiquid].OwningRow.Visible =

@@ -58,8 +58,8 @@ namespace Parameters
         public static fsParameterIdentifier FilterArea = new fsParameterIdentifier("A", "Filter Area", fsCharacteristic.Area);
         public static fsParameterIdentifier MachineDiameter = new fsParameterIdentifier("D", "Machine Diameter", fsCharacteristic.Length);
         public static fsParameterIdentifier FilterElementDiameter = new fsParameterIdentifier("d", "Filter Element Diameter", fsCharacteristic.Length);
-        public static fsParameterIdentifier FilterB = new fsParameterIdentifier("b", fsCharacteristic.Length);
-        public static fsParameterIdentifier FilterBOverDiameter = new fsParameterIdentifier("b/D", fsCharacteristic.NoUnits);
+        public static fsParameterIdentifier MachineWidth = new fsParameterIdentifier("b", "Machine Width", fsCharacteristic.Length);
+        public static fsParameterIdentifier WidthOverDiameterRatio = new fsParameterIdentifier("b/D", "Width/Diameter Ratio", fsCharacteristic.NoUnits);
 
         public static fsParameterIdentifier Pressure = new fsParameterIdentifier("Dp", fsCharacteristic.Pressure);
         public static fsParameterIdentifier CycleTime = new fsParameterIdentifier("tc", fsCharacteristic.Time);
@@ -107,7 +107,7 @@ namespace Parameters
 
         public static fsParameterIdentifier SolutesConcentrationInMotherLiquid = new fsParameterIdentifier("C_sol", "Solutes Concentration in Mother Liquid", fsCharacteristic.SolidsConcentration);
         public static fsParameterIdentifier SolutesMassFractionInMotherLiquid = new fsParameterIdentifier("Cm_sol", "Solutes Mass Fraction in Mother Liquid", fsCharacteristic.Concentration);
-        public static fsParameterIdentifier SaltConcentrationInTheCakeLiquid = new fsParameterIdentifier("Cw", "Salt concentration in the cake liquid", fsCharacteristic.SolidsConcentration);
+        public static fsParameterIdentifier SaltConcentrationInTheCakeLiquid = new fsParameterIdentifier("C_sol", "Solutes Concentration in Cake Liquid", fsCharacteristic.SolidsConcentration);
         public static fsParameterIdentifier SaltMassFractionInTheCakeLiquid = new fsParameterIdentifier("Cwm", "Salt Mass fraction in the cake liquid", fsCharacteristic.Concentration);
         public static fsParameterIdentifier WashOutMassFraction = new fsParameterIdentifier("Cwm", "Wash Out Mass Fration", fsCharacteristic.Concentration);
         public static fsParameterIdentifier WashOutConcentration = new fsParameterIdentifier("Cw", "Wash Out Concentration", fsCharacteristic.SolidsConcentration);

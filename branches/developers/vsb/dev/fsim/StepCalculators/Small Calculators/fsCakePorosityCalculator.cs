@@ -29,8 +29,8 @@ namespace StepCalculators
             m_machineDiameter = AddVariable(fsParameterIdentifier.MachineDiameter);
             m_filterElementDiameter = AddVariable(fsParameterIdentifier.FilterElementDiameter);
             m_cakeArea = AddVariable(new fsParameterIdentifier("cakeArea"));
-            m_b = AddVariable(fsParameterIdentifier.FilterB);
-            m_bOverD = AddVariable(fsParameterIdentifier.FilterBOverDiameter);
+            m_b = AddVariable(fsParameterIdentifier.MachineWidth);
+            m_bOverD = AddVariable(fsParameterIdentifier.WidthOverDiameterRatio);
             m_rhoL = AddConstant(fsParameterIdentifier.LiquidDensity);
             m_rhoS = AddConstant(fsParameterIdentifier.SolidsDensity);
             m_cakeHeight = AddConstant(fsParameterIdentifier.CakeHeight);
@@ -55,7 +55,7 @@ namespace StepCalculators
 
         public enum fsSaturationOption
         {
-            [Description("Cake not saturated")]
+            [Description("General Case")]
             NotSaturatedCake,
             [Description("Cake Saturated")]
             SaturatedCake

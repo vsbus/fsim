@@ -40,7 +40,7 @@
             // 
             // leftTopPanel
             // 
-            this.leftTopPanel.Size = new System.Drawing.Size(313, 96);
+            this.leftTopPanel.Size = new System.Drawing.Size(371, 96);
             // 
             // calculationOptionsPanel
             // 
@@ -50,14 +50,14 @@
             this.calculationOptionsPanel.Controls.Add(this.saltContentComboBox);
             this.calculationOptionsPanel.Controls.Add(this.label3);
             this.calculationOptionsPanel.Controls.Add(this.label1);
-            this.calculationOptionsPanel.Size = new System.Drawing.Size(262, 96);
+            this.calculationOptionsPanel.Size = new System.Drawing.Size(320, 96);
             // 
             // saturationComboBox
             // 
             this.saturationComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saturationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.saturationComboBox.FormattingEnabled = true;
-            this.saturationComboBox.Location = new System.Drawing.Point(94, 6);
+            this.saturationComboBox.Location = new System.Drawing.Point(152, 6);
             this.saturationComboBox.Name = "saturationComboBox";
             this.saturationComboBox.Size = new System.Drawing.Size(162, 21);
             this.saturationComboBox.TabIndex = 6;
@@ -67,7 +67,7 @@
             this.machineTypeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.machineTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.machineTypeComboBox.FormattingEnabled = true;
-            this.machineTypeComboBox.Location = new System.Drawing.Point(94, 38);
+            this.machineTypeComboBox.Location = new System.Drawing.Point(152, 38);
             this.machineTypeComboBox.Name = "machineTypeComboBox";
             this.machineTypeComboBox.Size = new System.Drawing.Size(162, 21);
             this.machineTypeComboBox.TabIndex = 5;
@@ -77,7 +77,7 @@
             this.saltContentComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saltContentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.saltContentComboBox.FormattingEnabled = true;
-            this.saltContentComboBox.Location = new System.Drawing.Point(94, 70);
+            this.saltContentComboBox.Location = new System.Drawing.Point(152, 70);
             this.saltContentComboBox.Name = "saltContentComboBox";
             this.saltContentComboBox.Size = new System.Drawing.Size(162, 21);
             this.saltContentComboBox.TabIndex = 4;
@@ -86,17 +86,17 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 74);
+            this.label1.Location = new System.Drawing.Point(45, 73);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
+            this.label1.Size = new System.Drawing.Size(101, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Salt content:";
+            this.label1.Text = "Nonvolatile Solutes:";
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 42);
+            this.label3.Location = new System.Drawing.Point(68, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 13);
             this.label3.TabIndex = 3;
@@ -106,18 +106,18 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 10);
+            this.label2.Location = new System.Drawing.Point(68, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.Size = new System.Drawing.Size(78, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Saturation:";
+            this.label2.Text = "Cake Moisture:";
             // 
             // fsCakePorossityControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "fsCakePorossityControl";
-            this.Size = new System.Drawing.Size(313, 366);
+            this.Size = new System.Drawing.Size(371, 366);
             this.leftTopPanel.ResumeLayout(false);
             this.calculationOptionsPanel.ResumeLayout(false);
             this.calculationOptionsPanel.PerformLayout();

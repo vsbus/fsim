@@ -41,8 +41,8 @@ namespace StepCalculators
             
             m_filterArea = AddVariable(fsParameterIdentifier.FilterArea);
             m_filterDiameter = AddVariable(fsParameterIdentifier.MachineDiameter);
-            m_filterB = AddVariable(fsParameterIdentifier.FilterB);
-            m_filterBOverDiameter = AddVariable(fsParameterIdentifier.FilterBOverDiameter);
+            m_filterB = AddVariable(fsParameterIdentifier.MachineWidth);
+            m_filterBOverDiameter = AddVariable(fsParameterIdentifier.WidthOverDiameterRatio);
 
             m_cakeHeight = AddVariable(fsParameterIdentifier.CakeHeight);
             m_suspensionMass = AddVariable(fsParameterIdentifier.SuspensionMass);
