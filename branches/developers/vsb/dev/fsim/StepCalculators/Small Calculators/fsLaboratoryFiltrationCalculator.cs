@@ -31,7 +31,7 @@ namespace StepCalculators
             m_viscosity = AddConstant(fsParameterIdentifier.FiltrateViscosity);
             m_pc0 = AddConstant(fsParameterIdentifier.CakePermeability0);
             m_kappa0 = AddConstant(fsParameterIdentifier.Kappa0);
-            m_pressure = AddConstant(fsParameterIdentifier.Pressure);
+            m_pressure = AddConstant(fsParameterIdentifier.PressureDifference);
             m_area = AddConstant(fsParameterIdentifier.FilterArea);
             m_nc = AddConstant(fsParameterIdentifier.CakeCompressibility);
             AddConstant(fsParameterIdentifier.SuspensionDensity);

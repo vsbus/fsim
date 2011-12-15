@@ -52,7 +52,7 @@ namespace StepCalculators
 
             m_filterArea = AddVariable(fsParameterIdentifier.FilterArea);
 
-            m_pressure = AddVariable(fsParameterIdentifier.Pressure);
+            m_pressure = AddVariable(fsParameterIdentifier.PressureDifference);
 
             m_cycleTime = AddVariable(fsParameterIdentifier.CycleTime);
             m_rotationalSpeed = AddVariable(fsParameterIdentifier.RotationalSpeed);
