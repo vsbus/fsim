@@ -22,8 +22,8 @@ namespace StepCalculators
 
             m_wetMass = AddConstant(fsParameterIdentifier.WetCakeMass);
             m_dryMass = AddConstant(fsParameterIdentifier.DryCakeMass);
-            m_solidsMassFraction = AddConstant(fsParameterIdentifier.SaltMassFractionInTheCakeLiquid);
-            m_solidsConcentration = AddConstant(fsParameterIdentifier.SaltConcentrationInTheCakeLiquid);
+            m_solidsMassFraction = AddConstant(fsParameterIdentifier.SolutesMassFractionInLiquid);
+            m_solidsConcentration = AddConstant(fsParameterIdentifier.SolutesConcentrationInCakeLiquid);
             m_liquidDensity = AddConstant(fsParameterIdentifier.LiquidDensity);
             m_cakeMoistureContent = AddVariable(fsParameterIdentifier.CakeMoistureContent);
             m_internalC = AddVariable(new fsParameterIdentifier("internalC"));

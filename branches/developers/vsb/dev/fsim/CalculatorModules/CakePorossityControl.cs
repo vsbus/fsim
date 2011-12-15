@@ -22,7 +22,7 @@ namespace CalculatorModules
             fsParametersGroup cakeHeightGroup = AddGroup(fsParameterIdentifier.CakeHeight);
             fsParametersGroup wetGroup = AddGroup(fsParameterIdentifier.WetCakeMass);
             fsParametersGroup dryGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
-            fsParametersGroup concentrationGroup = AddGroup(fsParameterIdentifier.SaltConcentrationInTheCakeLiquid);
+            fsParametersGroup concentrationGroup = AddGroup(fsParameterIdentifier.SolutesConcentrationInCakeLiquid);
             fsParametersGroup liquidGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
             fsParametersGroup solidsGroup = AddGroup(fsParameterIdentifier.SolidsDensity);
             fsParametersGroup porosityGroup = AddGroup(fsParameterIdentifier.CakePorosity);
@@ -143,7 +143,7 @@ namespace CalculatorModules
             ParameterToCell[fsParameterIdentifier.WidthOverDiameterRatio].OwningRow.Visible = geometryVisible &&
                                                                                            bAndBOverDVisible;
 
-            ParameterToCell[fsParameterIdentifier.SaltConcentrationInTheCakeLiquid].OwningRow.Visible =
+            ParameterToCell[fsParameterIdentifier.SolutesConcentrationInCakeLiquid].OwningRow.Visible =
                 !isSaltContentNeglected;
             ParameterToCell[fsParameterIdentifier.WetCakeMass].OwningRow.Visible = !isSaltContentNeglected ||
                                                                                    isSaturated;
