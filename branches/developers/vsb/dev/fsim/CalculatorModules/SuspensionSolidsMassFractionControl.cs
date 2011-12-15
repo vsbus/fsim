@@ -17,8 +17,8 @@ namespace CalculatorModules
 
             fsParametersGroup wetMassGroup = AddGroup(fsParameterIdentifier.SuspensionMass);
             fsParametersGroup dryMassGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
-            fsParametersGroup cfmGroup = AddGroup(fsParameterIdentifier.SaltMassFractionInTheMotherLiquid);
-            fsParametersGroup cfGroup = AddGroup(fsParameterIdentifier.SaltConcentrationInTheMotherLiquid);
+            fsParametersGroup cfmGroup = AddGroup(fsParameterIdentifier.SolutesMassFractionInMotherLiquid);
+            fsParametersGroup cfGroup = AddGroup(fsParameterIdentifier.SolutesConcentrationInMotherLiquid);
             fsParametersGroup rhofGroup = AddGroup(fsParameterIdentifier.MotherLiquidDensity);
             fsParametersGroup cmGroup = AddGroup(fsParameterIdentifier.SuspensionSolidsMassFraction);
 
@@ -96,9 +96,9 @@ namespace CalculatorModules
             bool isCmInput = concentrationOption ==
                              fsCalculationOptions.fsConcentrationOption.SolidsMassFraction;
 
-            ParameterToCell[fsParameterIdentifier.SaltMassFractionInTheMotherLiquid].OwningRow.Visible =
+            ParameterToCell[fsParameterIdentifier.SolutesMassFractionInMotherLiquid].OwningRow.Visible =
                 isSaltContConsidered && isCmInput;
-            ParameterToCell[fsParameterIdentifier.SaltConcentrationInTheMotherLiquid].OwningRow.Visible =
+            ParameterToCell[fsParameterIdentifier.SolutesConcentrationInMotherLiquid].OwningRow.Visible =
                 isSaltContConsidered && !isCmInput;
             ParameterToCell[fsParameterIdentifier.MotherLiquidDensity].OwningRow.Visible = isSaltContConsidered &&
                                                                                            !isCmInput;

@@ -38,7 +38,7 @@
             // 
             // leftTopPanel
             // 
-            this.leftTopPanel.Size = new System.Drawing.Size(330, 72);
+            this.leftTopPanel.Size = new System.Drawing.Size(362, 72);
             // 
             // calculationOptionsPanel
             // 
@@ -46,53 +46,57 @@
             this.calculationOptionsPanel.Controls.Add(this.concentrationComboBox);
             this.calculationOptionsPanel.Controls.Add(this.label1);
             this.calculationOptionsPanel.Controls.Add(this.concentrationLabel);
-            this.calculationOptionsPanel.Size = new System.Drawing.Size(279, 72);
+            this.calculationOptionsPanel.Size = new System.Drawing.Size(311, 72);
             // 
             // saltContentComboBox
             // 
+            this.saltContentComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saltContentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.saltContentComboBox.FormattingEnabled = true;
             this.saltContentComboBox.Items.AddRange(new object[] {
             "Considered",
             "Neglected"});
-            this.saltContentComboBox.Location = new System.Drawing.Point(137, 6);
+            this.saltContentComboBox.Location = new System.Drawing.Point(169, 7);
             this.saltContentComboBox.Name = "saltContentComboBox";
             this.saltContentComboBox.Size = new System.Drawing.Size(136, 21);
             this.saltContentComboBox.TabIndex = 0;
             // 
             // concentrationComboBox
             // 
+            this.concentrationComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.concentrationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.concentrationComboBox.FormattingEnabled = true;
-            this.concentrationComboBox.Location = new System.Drawing.Point(137, 38);
+            this.concentrationComboBox.Location = new System.Drawing.Point(169, 39);
             this.concentrationComboBox.Name = "concentrationComboBox";
             this.concentrationComboBox.Size = new System.Drawing.Size(136, 21);
             this.concentrationComboBox.TabIndex = 3;
             // 
             // concentrationLabel
             // 
+            this.concentrationLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.concentrationLabel.AutoSize = true;
-            this.concentrationLabel.Location = new System.Drawing.Point(20, 42);
+            this.concentrationLabel.Location = new System.Drawing.Point(14, 42);
             this.concentrationLabel.Name = "concentrationLabel";
-            this.concentrationLabel.Size = new System.Drawing.Size(111, 13);
+            this.concentrationLabel.Size = new System.Drawing.Size(149, 13);
             this.concentrationLabel.TabIndex = 2;
-            this.concentrationLabel.Text = "Solved salt measured:";
+            this.concentrationLabel.Text = "Solutes Content Measured as:";
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 10);
+            this.label1.Location = new System.Drawing.Point(62, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 13);
+            this.label1.Size = new System.Drawing.Size(101, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Salt Content in dry cake:";
+            this.label1.Text = "Nonvolatile Solutes:";
             // 
             // SuspensionSolidsMassFractionControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "SuspensionSolidsMassFractionControl";
-            this.Size = new System.Drawing.Size(330, 224);
+            this.Size = new System.Drawing.Size(362, 224);
             this.leftTopPanel.ResumeLayout(false);
             this.calculationOptionsPanel.ResumeLayout(false);
             this.calculationOptionsPanel.PerformLayout();

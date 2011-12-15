@@ -12,7 +12,7 @@ namespace CalculatorModules
 
         public bool AllowCommentsView
         {
-            set { showHideCommnetsButton.Visible = value; }
+            set { showHideCommentsPanel.Visible = value; }
         }
 
         protected override void Recalculate()
