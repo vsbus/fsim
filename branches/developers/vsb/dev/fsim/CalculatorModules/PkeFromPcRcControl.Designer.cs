@@ -53,40 +53,40 @@
             this.enterSolidsDensityComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.enterSolidsDensityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.enterSolidsDensityComboBox.FormattingEnabled = true;
-            this.enterSolidsDensityComboBox.Location = new System.Drawing.Point(124, 38);
+            this.enterSolidsDensityComboBox.Location = new System.Drawing.Point(88, 38);
             this.enterSolidsDensityComboBox.Name = "enterSolidsDensityComboBox";
-            this.enterSolidsDensityComboBox.Size = new System.Drawing.Size(146, 21);
+            this.enterSolidsDensityComboBox.Size = new System.Drawing.Size(182, 21);
             this.enterSolidsDensityComboBox.TabIndex = 3;
             // 
             // enterSolidsDensityLabel
             // 
             this.enterSolidsDensityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.enterSolidsDensityLabel.AutoSize = true;
-            this.enterSolidsDensityLabel.Location = new System.Drawing.Point(14, 42);
+            this.enterSolidsDensityLabel.Location = new System.Drawing.Point(47, 41);
             this.enterSolidsDensityLabel.Name = "enterSolidsDensityLabel";
-            this.enterSolidsDensityLabel.Size = new System.Drawing.Size(104, 13);
+            this.enterSolidsDensityLabel.Size = new System.Drawing.Size(35, 13);
             this.enterSolidsDensityLabel.TabIndex = 2;
-            this.enterSolidsDensityLabel.Text = "Enter Solids Density:";
+            this.enterSolidsDensityLabel.Text = "Enter:";
             // 
             // inputCakeComboBox
             // 
             this.inputCakeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.inputCakeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputCakeComboBox.FormattingEnabled = true;
-            this.inputCakeComboBox.Location = new System.Drawing.Point(124, 6);
+            this.inputCakeComboBox.Location = new System.Drawing.Point(88, 6);
             this.inputCakeComboBox.Name = "inputCakeComboBox";
-            this.inputCakeComboBox.Size = new System.Drawing.Size(146, 21);
+            this.inputCakeComboBox.Size = new System.Drawing.Size(182, 21);
             this.inputCakeComboBox.TabIndex = 1;
             // 
             // inputCake
             // 
             this.inputCake.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.inputCake.AutoSize = true;
-            this.inputCake.Location = new System.Drawing.Point(56, 9);
+            this.inputCake.Location = new System.Drawing.Point(47, 9);
             this.inputCake.Name = "inputCake";
-            this.inputCake.Size = new System.Drawing.Size(62, 13);
+            this.inputCake.Size = new System.Drawing.Size(35, 13);
             this.inputCake.TabIndex = 0;
-            this.inputCake.Text = "Input Cake:";
+            this.inputCake.Text = "Enter:";
             // 
             // fsPkeFromPcRcControl
             // 

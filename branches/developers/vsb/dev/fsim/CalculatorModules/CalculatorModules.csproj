@@ -140,42 +140,55 @@
   <ItemGroup>
     <EmbeddedResource Include="CakeMoistureContentFromCakeSaturationControl.resx">
       <DependentUpon>CakeMoistureContentFromCakeSaturationControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CakeMoistureContentFromWetAndDryCakeMassControl.resx">
       <DependentUpon>CakeMoistureContentFromWetAndDryCakeMassControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CakePorossityControl.resx">
       <DependentUpon>CakePorossityControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CakeWashOutContentControl.resx">
       <DependentUpon>CakeWashOutContentControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DensityConcentrationControl.resx">
       <DependentUpon>DensityConcentrationControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LaboratoryFiltrationTime.resx">
       <DependentUpon>LaboratoryFiltrationTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MsusAndHcControl.resx">
       <DependentUpon>MsusAndHcControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="OptionsOneTableAndCommentsCalculatorControl.resx">
       <DependentUpon>OptionsOneTableAndCommentsCalculatorControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PermeabilityControl.resx">
       <DependentUpon>PermeabilityControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PkeFromPcRcControl.resx">
       <DependentUpon>PkeFromPcRcControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SuspensionSolidsMassFractionControl.resx">
       <DependentUpon>SuspensionSolidsMassFractionControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\fsDiagramWithTable.resx">
       <DependentUpon>fsDiagramWithTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="User Controls\fsTableAndChart.resx">
       <DependentUpon>fsTableAndChart.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

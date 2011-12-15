@@ -25,11 +25,11 @@ namespace CalculatorModules
             fsParametersGroup epsGroup = AddGroup(
                 fsParameterIdentifier.CakePorosity);
             fsParametersGroup rhosBulkGroup = AddGroup(
-                fsParameterIdentifier.BulkDensityDrySolids);
+                fsParameterIdentifier.DensityDryCake);
             fsParametersGroup sigmaGroup = AddGroup(
-                fsParameterIdentifier.SurfaceTensionLiquidOfCake);
+                fsParameterIdentifier.SurfaceTensionLiquidInCake);
             fsParametersGroup pkestGroup = AddGroup(
-                fsParameterIdentifier.StandartCapillaryPressure);
+                fsParameterIdentifier.StandardCapillaryPressure);
             fsParametersGroup pkeGroup = AddGroup(
                 fsParameterIdentifier.CapillaryPressure);
 
@@ -115,7 +115,7 @@ namespace CalculatorModules
                 (fsCalculationOptions.fsEnterSolidsDensity)
                 CalculationOptions[typeof (fsCalculationOptions.fsEnterSolidsDensity)];
             bool isBulk = enterSolidsDensityOption == fsCalculationOptions.fsEnterSolidsDensity.BulkDensityDrySolids;
-            ParameterToCell[fsParameterIdentifier.BulkDensityDrySolids].OwningRow.Visible = isAlpha && isBulk;
+            ParameterToCell[fsParameterIdentifier.DensityDryCake].OwningRow.Visible = isAlpha && isBulk;
             ParameterToCell[fsParameterIdentifier.SolidsDensity].OwningRow.Visible = isAlpha && !isBulk;
             ParameterToCell[fsParameterIdentifier.CakePorosity].OwningRow.Visible = isAlpha && !isBulk;
 

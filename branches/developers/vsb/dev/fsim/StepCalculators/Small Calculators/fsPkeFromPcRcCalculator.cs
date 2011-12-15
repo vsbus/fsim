@@ -32,9 +32,9 @@ namespace StepCalculators
             m_alpha = AddVariable(fsParameterIdentifier.CakeResistanceAlpha);
             m_rhos = AddConstant(fsParameterIdentifier.SolidsDensity);
             m_eps = AddConstant(fsParameterIdentifier.CakePorosity);
-            m_rhosBulk = AddConstant(fsParameterIdentifier.BulkDensityDrySolids);
-            m_sigma = AddConstant(fsParameterIdentifier.SurfaceTensionLiquidOfCake);
-            m_pkeSt = AddConstant(fsParameterIdentifier.StandartCapillaryPressure);
+            m_rhosBulk = AddConstant(fsParameterIdentifier.DensityDryCake);
+            m_sigma = AddConstant(fsParameterIdentifier.SurfaceTensionLiquidInCake);
+            m_pkeSt = AddConstant(fsParameterIdentifier.StandardCapillaryPressure);
             m_pke = AddVariable(fsParameterIdentifier.CapillaryPressure);
             m_localPc = AddVariable(new fsParameterIdentifier("local Pc"));
             m_localBulk = AddVariable(new fsParameterIdentifier("local Bulk"));
