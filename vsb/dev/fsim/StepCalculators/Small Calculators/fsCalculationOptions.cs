@@ -18,9 +18,9 @@ namespace StepCalculators
 
         public enum fsConcentrationOption
         {
-            [Description("Mass fraction Cm (%)")]
+            [Description("Mass fraction Cm_sol (%)")]
             SolidsMassFraction,
-            [Description("Concentration C (g/l)")]
+            [Description("Concentration C_sol (g/l)")]
             Concentration
         }
 

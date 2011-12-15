@@ -36,7 +36,7 @@ namespace StepCalculators
             m_cakeHeight = AddConstant(fsParameterIdentifier.CakeHeight);
             m_wetCakeMass = AddConstant(fsParameterIdentifier.WetCakeMass);
             m_dryCakeMass = AddConstant(fsParameterIdentifier.DryCakeMass);
-            m_c = AddConstant(fsParameterIdentifier.SaltConcentrationInTheCakeLiquid);
+            m_c = AddConstant(fsParameterIdentifier.SolutesConcentrationInCakeLiquid);
             m_eps = AddVariable(fsParameterIdentifier.CakePorosity);
 
             #endregion
