@@ -12,7 +12,7 @@ namespace CalculatorModules
         private enum fsCalculationOption
         {
             [Description("Pc0, rc0, alpha0")] CalcPc0Rc0Alpha0,
-            [Description("nc")] CalcNc,
+            [Description("Cake Compressibility nc")] CalcNc,
             [Description("Pressure (Dp)")] CalcPressure,
             [Description("Pc, rc, alpha")] CalcPcRcAlpha
         }
@@ -32,11 +32,11 @@ namespace CalculatorModules
             fsParametersGroup pc0Rc0A0Group = AddGroup(
                 fsParameterIdentifier.CakePermeability0,
                 fsParameterIdentifier.CakeResistance0,
-                fsParameterIdentifier.Alpha0);
+                fsParameterIdentifier.CakeResistanceAlpha0);
             fsParametersGroup ncGroup = AddGroup(
                 fsParameterIdentifier.CakeCompressibility);
             fsParametersGroup pressureGroup = AddGroup(
-                fsParameterIdentifier.Pressure);
+                fsParameterIdentifier.PressureDifference);
             fsParametersGroup pcRcAGroup = AddGroup(
                 fsParameterIdentifier.CakePermeability,
                 fsParameterIdentifier.CakeResistance,
@@ -78,7 +78,7 @@ namespace CalculatorModules
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.CakePermeability];
                     break;
                 case fsCalculationOption.CalcPressure:
-                    calculateGroup = ParameterToGroup[fsParameterIdentifier.Pressure];
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.PressureDifference];
                     break;
             }
             foreach (fsParametersGroup group in ParameterToGroup.Values)

@@ -26,9 +26,9 @@ namespace MapOrReflection
                 fsParameterIdentifier.CakePorosity,
                 fsParameterIdentifier.CakePermeability0,
                 fsParameterIdentifier.CakeResistance0,
-                fsParameterIdentifier.Alpha0,
+                fsParameterIdentifier.CakeResistanceAlpha0,
                 fsParameterIdentifier.CakeCompressibility,
-                fsParameterIdentifier.Pressure,
+                fsParameterIdentifier.PressureDifference,
                 fsParameterIdentifier.CakePermeability,
                 fsParameterIdentifier.CakeResistance,
                 fsParameterIdentifier.CakeResistanceAlpha
@@ -70,9 +70,9 @@ namespace MapOrReflection
                 fsParameterIdentifier.CakePorosity,
                 fsParameterIdentifier.CakePermeability0,
                 fsParameterIdentifier.CakeResistance0,
-                fsParameterIdentifier.Alpha0,
+                fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.CakeCompressibility,
-                fsParameterIdentifier.Pressure,
+                fsParameterIdentifier.PressureDifference,
                 fsParameterIdentifier.CakePermeability,
                 fsParameterIdentifier.CakeResistance,
                 fsParameterIdentifier.CakeResistanceAlpha

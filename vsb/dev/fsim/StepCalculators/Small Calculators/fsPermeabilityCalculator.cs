@@ -24,9 +24,9 @@ namespace StepCalculators
             m_eps = AddConstant(fsParameterIdentifier.CakePorosity);
             m_pc0 = AddVariable(fsParameterIdentifier.CakePermeability0);
             m_rc0 = AddVariable(fsParameterIdentifier.CakeResistance0);
-            m_alpha0 = AddVariable(fsParameterIdentifier.Alpha0);
+            m_alpha0 = AddVariable(fsParameterIdentifier.CakeResistanceAlpha0);
             m_nc = AddVariable(fsParameterIdentifier.CakeCompressibility);
-            m_pressure = AddVariable(fsParameterIdentifier.Pressure);
+            m_pressure = AddVariable(fsParameterIdentifier.PressureDifference);
             m_pc = AddVariable(fsParameterIdentifier.CakePermeability);
             m_rc = AddVariable(fsParameterIdentifier.CakeResistance);
             m_alpha = AddVariable(fsParameterIdentifier.CakeResistanceAlpha);

@@ -97,12 +97,12 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.Ne,
                 fsParameterIdentifier.CakePermeability0,
                 fsParameterIdentifier.CakeResistance0,
-                fsParameterIdentifier.Alpha0,
+                fsParameterIdentifier.CakeResistanceAlpha0,
                 fsParameterIdentifier.CakeCompressibility,
                 fsParameterIdentifier.Hce0,
                 fsParameterIdentifier.Rm0,
                 fsParameterIdentifier.FilterArea,
-                fsParameterIdentifier.Pressure,
+                fsParameterIdentifier.PressureDifference,
                 fsParameterIdentifier.CycleTime,
                 fsParameterIdentifier.RotationalSpeed,
                 fsParameterIdentifier.FormationRelativeTime,
@@ -113,7 +113,7 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.SuspensionMassFlowrate);
 
             cakeFormationData.m_parameterValue[fsParameterIdentifier.FilterArea].IsInput = true;
-            cakeFormationData.m_parameterValue[fsParameterIdentifier.Pressure].IsInput = true;
+            cakeFormationData.m_parameterValue[fsParameterIdentifier.PressureDifference].IsInput = true;
         }
 
         private void InitMaterialParameters()
@@ -190,7 +190,7 @@ namespace WinFormsCakeFormationSample
             UpdateInputs(cell,
                 fsParameterIdentifier.CakePermeability0,
                 fsParameterIdentifier.CakeResistance0,
-                fsParameterIdentifier.Alpha0);
+                fsParameterIdentifier.CakeResistanceAlpha0);
 
             UpdateInputs(cell,
                 fsParameterIdentifier.Rm0,
