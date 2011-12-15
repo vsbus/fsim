@@ -96,11 +96,11 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(68, 41);
+            this.label3.Location = new System.Drawing.Point(66, 43);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 13);
+            this.label3.Size = new System.Drawing.Size(80, 13);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Machine Type:";
+            this.label3.Text = "Filter Geometry:";
             // 
             // label2
             // 
