@@ -65,7 +65,7 @@ namespace Parameters
         public static fsParameterIdentifier CycleTime = new fsParameterIdentifier("tc", fsCharacteristic.Time);
         public static fsParameterIdentifier RotationalSpeed = new fsParameterIdentifier("n", fsCharacteristic.Frequency);
         public static fsParameterIdentifier FormationRelativeTime = new fsParameterIdentifier("sf", fsCharacteristic.Concentration);
-        public static fsParameterIdentifier FormationTime = new fsParameterIdentifier("tf", fsCharacteristic.Time);
+        public static fsParameterIdentifier FiltrationTime = new fsParameterIdentifier("tf", "Filtration Time", fsCharacteristic.Time);
         public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc", "Cake Height", fsCharacteristic.Length);
 
         public static fsParameterIdentifier WetCakeMass = new fsParameterIdentifier("Mcw", "Wet Cake Mass", fsCharacteristic.Mass);
@@ -80,8 +80,8 @@ namespace Parameters
 
         public static fsParameterIdentifier SuspensionMassFlowrate = new fsParameterIdentifier("Qmsus", fsCharacteristic.MassFlowrate);
 
-        
-        public static fsParameterIdentifier FiltrateViscosity = new fsParameterIdentifier("etaf", fsCharacteristic.Viscosity);
+
+        public static fsParameterIdentifier ViscosityFiltrate = new fsParameterIdentifier("etaf", "Viscosity Filtrate", fsCharacteristic.Viscosity);
         public static fsParameterIdentifier SurfaceTensionLiquidInCake = new fsParameterIdentifier("sigma", "Surface Tension Liquid in Cake", fsCharacteristic.SurfaceTension);
         public static fsParameterIdentifier StandardCapillaryPressure = new fsParameterIdentifier("pke_st", "Standard Capillary Pressure", fsCharacteristic.Pressure);
         public static fsParameterIdentifier CapillaryPressure = new fsParameterIdentifier("pke", "Capillary Pressure", fsCharacteristic.Pressure);
@@ -102,7 +102,7 @@ namespace Parameters
         public static fsParameterIdentifier CakeResistance0 = new fsParameterIdentifier("rc0", "Cake Resistance0", fsCharacteristic.CakeResistance);
         public static fsParameterIdentifier CakeCompressibility = new fsParameterIdentifier("nc", "Cake Compressibility");
         public static fsParameterIdentifier CakeResistanceAlpha0 = new fsParameterIdentifier("alpha0", "Cake Resistance0", fsCharacteristic.CakeResistanceAlpha);
-        public static fsParameterIdentifier Hce0 = new fsParameterIdentifier("hce0", fsCharacteristic.Length);
+        public static fsParameterIdentifier FilterMediumResistance0 = new fsParameterIdentifier("hce0", "Filter Medium Resistance0", fsCharacteristic.Length);
         public static fsParameterIdentifier Rm0 = new fsParameterIdentifier("Rm0", fsCharacteristic.FilterMediumResistance);
 
         public static fsParameterIdentifier SolutesConcentrationInMotherLiquid = new fsParameterIdentifier("C_sol", "Solutes Concentration in Mother Liquid", fsCharacteristic.SolidsConcentration);

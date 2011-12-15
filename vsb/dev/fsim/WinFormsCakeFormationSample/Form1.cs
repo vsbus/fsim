@@ -99,14 +99,14 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.CakeResistanceAlpha0,
                 fsParameterIdentifier.CakeCompressibility,
-                fsParameterIdentifier.Hce0,
+                fsParameterIdentifier.FilterMediumResistance0,
                 fsParameterIdentifier.Rm0,
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.PressureDifference,
                 fsParameterIdentifier.CycleTime,
                 fsParameterIdentifier.RotationalSpeed,
                 fsParameterIdentifier.FormationRelativeTime,
-                fsParameterIdentifier.FormationTime,
+                fsParameterIdentifier.FiltrationTime,
                 fsParameterIdentifier.CakeHeight,
                 fsParameterIdentifier.SuspensionMass,
                 fsParameterIdentifier.SuspensionVolume,
@@ -121,7 +121,7 @@ namespace WinFormsCakeFormationSample
             AddParameters(
                 MaterialParametersDataGrid,
                 materialData,
-                fsParameterIdentifier.FiltrateViscosity,
+                fsParameterIdentifier.ViscosityFiltrate,
                 fsParameterIdentifier.FiltrateDensity,
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity,
@@ -194,14 +194,14 @@ namespace WinFormsCakeFormationSample
 
             UpdateInputs(cell,
                 fsParameterIdentifier.Rm0,
-                fsParameterIdentifier.Hce0);
+                fsParameterIdentifier.FilterMediumResistance0);
 
             UpdateInputs(cell,
                 fsParameterIdentifier.CycleTime,
                 fsParameterIdentifier.RotationalSpeed);
 
             UpdateInputs(cell,
-                fsParameterIdentifier.FormationTime,
+                fsParameterIdentifier.FiltrationTime,
                 fsParameterIdentifier.FormationRelativeTime,
                 fsParameterIdentifier.CakeHeight,
                 fsParameterIdentifier.SuspensionMass,
