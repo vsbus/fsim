@@ -22,6 +22,11 @@ namespace CalculatorModules
             fsTableAndChart1.Reprocess();
         }
 
+        protected override void StopGridsEdit()
+        {
+            dataGrid.EndEdit();
+        }
+
         private void Button1Click(object sender, EventArgs e)
         {
             if (rightPanel.Visible)

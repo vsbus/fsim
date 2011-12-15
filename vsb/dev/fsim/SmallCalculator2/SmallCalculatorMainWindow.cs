@@ -8,15 +8,25 @@ namespace SmallCalculator2
 {
     public partial class fsSmallCalculatorMainWindow : Form
     {
+        #region Data
+
         private readonly Dictionary<string, fsCalculatorControl> m_modules =
             new Dictionary<string, fsCalculatorControl>();
 
         public fsCalculatorControl SelectedCalculatorControl { get; private set; }
 
+        #endregion
+
+        #region Constructor
+
         public fsSmallCalculatorMainWindow()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Form Load
 
         private void Form1Load(object sender, EventArgs e)
         {
@@ -91,6 +101,10 @@ namespace SmallCalculator2
             treeNode.Nodes.Add(moduleName).NodeFont = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular);
         }
 
+        #endregion
+
+        #region Events
+
         private void TreeView1AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (!m_modules.ContainsKey(treeView1.SelectedNode.Text))
@@ -125,6 +139,8 @@ namespace SmallCalculator2
                 }
             }
         }
+
+        #endregion
 
     }
 }

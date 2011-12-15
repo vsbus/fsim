@@ -213,10 +213,10 @@ namespace CalculatorModules
         protected System.Windows.Forms.Panel calculationOptionsPanel;
         private System.Windows.Forms.Panel showHideCommentsPanel;
         private System.Windows.Forms.Button showHideCommnetsButton;
-        protected fmDataGrid.fmDataGrid dataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn;
         private fmDataGrid.fmDataGridViewNumericalTextBoxColumn ValueColumn;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private fsTableAndChart fsTableAndChart1;
+        protected fmDataGrid.fmDataGrid dataGrid;
     }
 }

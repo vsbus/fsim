@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using Parameters;
 using ParametersIdentifiers.Interfaces;
@@ -10,7 +11,7 @@ using Value;
 
 namespace CalculatorModules
 {
-    public class fsCalculatorControl : UserControl
+    public abstract class fsCalculatorControl : UserControl
     {
         #region Calculation Data
 
@@ -242,6 +243,8 @@ namespace CalculatorModules
 
         public void SetUnits(Dictionary<fsCharacteristic, fsUnit> dictionary)
         {
+            StopGridsEdit();
+
             foreach (fsParameterIdentifier identifier in Values.Keys)
             {
                 fsMeasuredParameter parameter = Values[identifier];
@@ -257,5 +260,7 @@ namespace CalculatorModules
             }
             Recalculate();
         }
+
+        protected abstract void StopGridsEdit();
     }
 }
