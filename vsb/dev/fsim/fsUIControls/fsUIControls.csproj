@@ -50,7 +50,25 @@
     <Compile Include="fsTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="fsUnitsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="fsUnitsControl.Designer.cs">
+      <DependentUpon>fsUnitsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="fsUnitsControl.resx">
+      <DependentUpon>fsUnitsControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Units\Units.csproj">
+      <Project>{2687A39A-2905-4632-A57E-5F98C3142423}</Project>
+      <Name>Units</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
