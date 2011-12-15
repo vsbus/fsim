@@ -214,12 +214,13 @@ namespace SmallCalculator2
             return res;
         }
 
-        #endregion
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             CheckProtection();
         }
+
+        #endregion
+
 
     }
 }
