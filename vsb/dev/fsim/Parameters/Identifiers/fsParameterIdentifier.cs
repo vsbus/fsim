@@ -82,11 +82,11 @@ namespace Parameters
 
         
         public static fsParameterIdentifier FiltrateViscosity = new fsParameterIdentifier("etaf", fsCharacteristic.Viscosity);
-        public static fsParameterIdentifier SurfaceTensionLiquidOfCake = new fsParameterIdentifier("sigma", "Surface Tension Liquid of Cake", fsCharacteristic.SurfaceTension);
-        public static fsParameterIdentifier StandartCapillaryPressure = new fsParameterIdentifier("pke_st", "Standart Capillary Pressure", fsCharacteristic.Pressure);
+        public static fsParameterIdentifier SurfaceTensionLiquidInCake = new fsParameterIdentifier("sigma", "Surface Tension Liquid in Cake", fsCharacteristic.SurfaceTension);
+        public static fsParameterIdentifier StandardCapillaryPressure = new fsParameterIdentifier("pke_st", "Standard Capillary Pressure", fsCharacteristic.Pressure);
         public static fsParameterIdentifier CapillaryPressure = new fsParameterIdentifier("pke", "Capillary Pressure", fsCharacteristic.Pressure);
 
-        public static fsParameterIdentifier BulkDensityDrySolids = new fsParameterIdentifier("rhos_bulk", "Bulk Density Dry Solids", fsCharacteristic.Density);
+        public static fsParameterIdentifier DensityDryCake = new fsParameterIdentifier("rho_cd", "Density Dry Cake", fsCharacteristic.Density);
         public static fsParameterIdentifier MotherLiquidDensity = new fsParameterIdentifier("rho_f", "Density of Mother Liquid", fsCharacteristic.Density);
         public static fsParameterIdentifier FiltrateDensity = new fsParameterIdentifier("rho_f", "Filtrate Density", fsCharacteristic.Density);
         public static fsParameterIdentifier LiquidDensity = new fsParameterIdentifier("rho_l", "Liquid Density", fsCharacteristic.Density);

@@ -52,7 +52,7 @@ namespace StepCalculators
 
         public enum fsEnterSolidsDensity
         {
-            [Description("Bulk Density Dry Solids")]
+            [Description("Density Dry Cake")]
             BulkDensityDrySolids,
             [Description("Solids Density and Cake Porosity")]
             SolidsDensityAndCakePorosity
