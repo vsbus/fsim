@@ -30,6 +30,8 @@ namespace SmallCalculator2
 
         private void Form1Load(object sender, EventArgs e)
         {
+            CheckProtection();
+
             AddGroupToTree("Suspension", new[]
                                              {
                                                  new KeyValuePair<string, fsCalculatorControl>(
@@ -141,6 +143,83 @@ namespace SmallCalculator2
         }
 
         #endregion
+
+        #region Wibu Protection
+
+        bool m_checkProtectionWorks;
+
+        private void CheckProtection()
+        {
+            if (m_checkProtectionWorks)
+                return;
+
+            m_checkProtectionWorks = true;
+
+            var keys = new int[] {
+                301150,
+                701190,
+                901170
+            };
+
+            bool isKeyFound = false;
+
+            while (!isKeyFound)
+            {
+
+                foreach (int key in keys)
+                {
+                    if (ProtectionOK(key))
+                    {
+                        isKeyFound = true;
+                        break;
+                    }
+                }
+
+                if (!isKeyFound)
+                {
+                    DialogResult dialogResult = MessageBox.Show(null,
+                        "A suitable WIBU_BOX entry wasn't found.\n\nYou can't work with the calculator without a key.\nPlease insert the key and press retry button.\nOr press cancel button to close the program.",
+                        "Protection",
+                        MessageBoxButtons.RetryCancel);
+                    if (dialogResult == DialogResult.Cancel)
+                    {
+                        Close();
+                        break;
+                    }
+                }
+            }
+
+            m_checkProtectionWorks = false;
+        }
+        private bool ProtectionOK(int usercode)
+        {
+            bool res = false;
+            try
+            {
+                WIBUKEYLib.WibukeyClass wk = new WIBUKEYLib.WibukeyClass();
+                if (wk != null)
+                {
+                    wk.SetBoxEntryForEncryption();
+                    wk.WkBoxSimUsed = false;
+                    wk.FirmCode = 619;
+                    wk.UserCode = usercode;
+                    wk.Encrypt();
+                    res = wk.LastErrorCode == 0;
+                }
+            }
+            catch (Exception e)
+            {
+            }
+
+            return res;
+        }
+
+        #endregion
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            CheckProtection();
+        }
 
     }
 }
