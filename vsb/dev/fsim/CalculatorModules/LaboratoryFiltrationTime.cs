@@ -22,8 +22,8 @@ namespace CalculatorModules
                 fsParameterIdentifier.SuspensionDensity);
             fsParametersGroup concentrationGroup = AddGroup(
                 fsParameterIdentifier.SuspensionSolidsMassFraction,
-                fsParameterIdentifier.SolidsVolumeFraction,
-                fsParameterIdentifier.SolidsConcentration);
+                fsParameterIdentifier.SuspensionSolidsVolumeFraction,
+                fsParameterIdentifier.SuspensionSolidsConcentration);
             fsParametersGroup epsKappaGroup = AddGroup(
                 fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0);
