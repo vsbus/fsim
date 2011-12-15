@@ -59,8 +59,8 @@ namespace CalculatorModules
             fsParametersGroup machineDiameterGroup = AddGroup(
                 fsParameterIdentifier.MachineDiameter);
             m_areaBGroup = AddGroup(
-                fsParameterIdentifier.FilterB,
-                fsParameterIdentifier.FilterBOverDiameter,
+                fsParameterIdentifier.MachineWidth,
+                fsParameterIdentifier.WidthOverDiameterRatio,
                 fsParameterIdentifier.FilterArea);
             fsParametersGroup diameterFilterElementGroup = AddGroup(
                 fsParameterIdentifier.FilterElementDiameter);
@@ -95,8 +95,8 @@ namespace CalculatorModules
             }
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterArea].RowIndex,
                         Color.FromArgb(255, 230, 230));
-            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterB].RowIndex, Color.FromArgb(255, 230, 230));
-            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].RowIndex,
+            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.MachineWidth].RowIndex, Color.FromArgb(255, 230, 230));
+            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.WidthOverDiameterRatio].RowIndex,
                         Color.FromArgb(255, 230, 230));
 
             fsMisc.FillList(machineTypeComboBox.Items, typeof (fsCakePorosityCalculator.fsMachineTypeOption));
@@ -218,22 +218,22 @@ namespace CalculatorModules
             {
                 ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = false;
-                ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = false;
-                ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = false;
+                ParameterToCell[fsParameterIdentifier.MachineWidth].OwningRow.Visible = false;
+                ParameterToCell[fsParameterIdentifier.WidthOverDiameterRatio].OwningRow.Visible = false;
             }
             if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric)
             {
                 ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = false;
                 ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = true;
-                ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = false;
-                ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = false;
+                ParameterToCell[fsParameterIdentifier.MachineWidth].OwningRow.Visible = false;
+                ParameterToCell[fsParameterIdentifier.WidthOverDiameterRatio].OwningRow.Visible = false;
             }
             if (machineTypeOption == fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric)
             {
                 ParameterToCell[fsParameterIdentifier.MachineDiameter].OwningRow.Visible = true;
                 ParameterToCell[fsParameterIdentifier.FilterElementDiameter].OwningRow.Visible = false;
-                ParameterToCell[fsParameterIdentifier.FilterB].OwningRow.Visible = true;
-                ParameterToCell[fsParameterIdentifier.FilterBOverDiameter].OwningRow.Visible = true;
+                ParameterToCell[fsParameterIdentifier.MachineWidth].OwningRow.Visible = true;
+                ParameterToCell[fsParameterIdentifier.WidthOverDiameterRatio].OwningRow.Visible = true;
             }
 
             base.UpdateUIFromData();
