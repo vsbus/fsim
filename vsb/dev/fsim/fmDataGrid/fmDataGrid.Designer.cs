@@ -120,29 +120,6 @@ namespace fmDataGrid
             //base.OnCellPainting(e);
         }
 
-		// this method used for updating TextBox if cell value was changed outside.
-		// For instance the units were changed.
-        protected override void OnCellValueChanged(DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1
-                && e.ColumnIndex != -1
-                && Rows[e.RowIndex].Cells[e.ColumnIndex] is fmDataGridViewNumericalTextBoxCell)
-            {
-                var cell = Rows[e.RowIndex].Cells[e.ColumnIndex] as fmDataGridViewNumericalTextBoxCell;
-                if (cell.EditBox != null)
-                {
-                    var cellText = cell.Value == null ? "" : cell.Value.ToString();
-                    var cellValue = fsValue.StringToValue(cellText);
-                    var editBoxValue = fsValue.StringToValue(cell.EditBox.Text);
-                    if (editBoxValue != cellValue)
-                    {
-                        cell.EditBox.Text = cellText;
-                    }
-                }
-            }
-            base.OnCellValueChanged(e);
-        }
-
         override protected void OnCurrentCellChanged(EventArgs e)
         {
             foreach (DataGridViewRow row in Rows)
