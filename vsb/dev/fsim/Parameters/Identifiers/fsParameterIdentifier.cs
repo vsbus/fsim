@@ -66,7 +66,7 @@ namespace Parameters
         public static fsParameterIdentifier RotationalSpeed = new fsParameterIdentifier("n", fsCharacteristic.Frequency);
         public static fsParameterIdentifier FormationRelativeTime = new fsParameterIdentifier("sf", fsCharacteristic.Concentration);
         public static fsParameterIdentifier FormationTime = new fsParameterIdentifier("tf", fsCharacteristic.Time);
-        public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc", fsCharacteristic.Length);
+        public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc", "Cake Height", fsCharacteristic.Length);
 
         public static fsParameterIdentifier WetCakeMass = new fsParameterIdentifier("Mcw", "Wet Cake Mass", fsCharacteristic.Mass);
         public static fsParameterIdentifier DryCakeMass = new fsParameterIdentifier("Mcd", "Dry Cake Mass", fsCharacteristic.Mass);
@@ -75,8 +75,8 @@ namespace Parameters
         public static fsParameterIdentifier LiquidMass = new fsParameterIdentifier("Ml", "Liquid Mass", fsCharacteristic.Mass);
         public static fsParameterIdentifier SolidsMass = new fsParameterIdentifier("Ms", "Solids Mass", fsCharacteristic.Mass);
         public static fsParameterIdentifier CakeMass = new fsParameterIdentifier("Mc", "Cake Mass", fsCharacteristic.Mass);
-        
-        public static fsParameterIdentifier SuspensionVolume = new fsParameterIdentifier("Vsus", fsCharacteristic.Volume);
+
+        public static fsParameterIdentifier SuspensionVolume = new fsParameterIdentifier("Vsus", "Suspension Volume", fsCharacteristic.Volume);
 
         public static fsParameterIdentifier SuspensionMassFlowrate = new fsParameterIdentifier("Qmsus", fsCharacteristic.MassFlowrate);
 

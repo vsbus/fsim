@@ -47,7 +47,7 @@ namespace Calculator
             AddGroupToTree("Filter Cake", new[]
                                               {
                                                   new KeyValuePair<string, fsCalculatorControl>(
-                                                      "Suspension Amount and Cake Height", new fsMsusAndHcControl()),
+                                                      "Filter Cake & Suspension Relations", new fsMsusAndHcControl()),
                                                   new KeyValuePair<string, fsCalculatorControl>("Cake Porosity",
                                                                                                 new fsCakePorossityControl
                                                                                                     ()),
