@@ -14,7 +14,8 @@ namespace CalculatorModules
             [Description("Filtrate Density")] CalcFiltrateDensity,
             [Description("Solids Density")] CalcSolidsDensity,
             [Description("Suspension Density")] CalcSuspensionDensity,
-            [Description("Concentrations")] CalcConcentrations
+            [Description("Solids Content")]
+            CalcConcentrations
         }
 
         #endregion
@@ -33,8 +34,8 @@ namespace CalculatorModules
                 fsParameterIdentifier.SuspensionDensity);
             fsParametersGroup concentrationGroup = AddGroup(
                 fsParameterIdentifier.SuspensionSolidsMassFraction,
-                fsParameterIdentifier.SolidsVolumeFraction,
-                fsParameterIdentifier.SolidsConcentration);
+                fsParameterIdentifier.SuspensionSolidsVolumeFraction,
+                fsParameterIdentifier.SuspensionSolidsConcentration);
 
             AddGroupToUI(dataGrid, filtrateGroup, Color.FromArgb(230, 255, 255));
             AddGroupToUI(dataGrid, solidsGroup, Color.FromArgb(255, 230, 255));

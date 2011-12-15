@@ -93,8 +93,8 @@ namespace Parameters
         public static fsParameterIdentifier SolidsDensity = new fsParameterIdentifier("rho_s", "Solids Density", fsCharacteristic.Density);
         public static fsParameterIdentifier SuspensionDensity = new fsParameterIdentifier("rho_sus", "Suspension Density", fsCharacteristic.Density);
         public static fsParameterIdentifier SuspensionSolidsMassFraction = new fsParameterIdentifier("Cm", "Suspension Solids Mass Fraction", fsCharacteristic.Concentration);
-        public static fsParameterIdentifier SolidsVolumeFraction = new fsParameterIdentifier("Cv", "Solids Volume Fraction", fsCharacteristic.Concentration);
-        public static fsParameterIdentifier SolidsConcentration = new fsParameterIdentifier("C", "Solids Concentration", fsCharacteristic.SolidsConcentration);
+        public static fsParameterIdentifier SuspensionSolidsVolumeFraction = new fsParameterIdentifier("Cv", "Suspension Solids Volume Fraction", fsCharacteristic.Concentration);
+        public static fsParameterIdentifier SuspensionSolidsConcentration = new fsParameterIdentifier("C", "Suspension Solids Concentration", fsCharacteristic.SolidsConcentration);
         public static fsParameterIdentifier CakePorosity0 = new fsParameterIdentifier("eps0", "Cake Porosity 0", fsCharacteristic.Concentration);
         public static fsParameterIdentifier Kappa0 = new fsParameterIdentifier("kappa0");
         public static fsParameterIdentifier Ne = new fsParameterIdentifier("ne");

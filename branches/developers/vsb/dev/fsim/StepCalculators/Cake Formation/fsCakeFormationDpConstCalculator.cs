@@ -48,7 +48,7 @@ namespace StepCalculators
             m_pc0 = AddConstant(fsParameterIdentifier.CakePermeability0);
             m_ne = AddConstant(fsParameterIdentifier.Ne);
             m_nc = AddConstant(fsParameterIdentifier.CakeCompressibility);
-            m_volumeConcentration = AddConstant(fsParameterIdentifier.SolidsVolumeFraction);
+            m_volumeConcentration = AddConstant(fsParameterIdentifier.SuspensionSolidsVolumeFraction);
 
             m_filterArea = AddVariable(fsParameterIdentifier.FilterArea);
 

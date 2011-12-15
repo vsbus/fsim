@@ -15,7 +15,7 @@ namespace StepCalculators
 
             m_porosity0 = AddVariable(fsParameterIdentifier.CakePorosity0);
             m_kappa0 = AddVariable(fsParameterIdentifier.Kappa0);
-            m_volumeConcentration = AddConstant(fsParameterIdentifier.SolidsVolumeFraction);
+            m_volumeConcentration = AddConstant(fsParameterIdentifier.SuspensionSolidsVolumeFraction);
 
             #endregion
 
