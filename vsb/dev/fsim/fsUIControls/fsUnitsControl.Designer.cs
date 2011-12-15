@@ -41,38 +41,39 @@
             // 
             this.rightPanel.AutoScroll = true;
             this.rightPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.rightPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.rightPanel.Controls.Add(this.unitsPanel);
             this.rightPanel.Controls.Add(this.shemePanel);
-            this.rightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rightPanel.Location = new System.Drawing.Point(-1, 0);
+            this.rightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rightPanel.Location = new System.Drawing.Point(0, 0);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(296, 189);
+            this.rightPanel.Size = new System.Drawing.Size(293, 232);
             this.rightPanel.TabIndex = 1;
             // 
             // unitsPanel
             // 
             this.unitsPanel.AutoScroll = true;
             this.unitsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.unitsPanel.Location = new System.Drawing.Point(0, 55);
+            this.unitsPanel.Location = new System.Drawing.Point(0, 53);
             this.unitsPanel.Name = "unitsPanel";
-            this.unitsPanel.Size = new System.Drawing.Size(292, 130);
+            this.unitsPanel.Size = new System.Drawing.Size(293, 179);
             this.unitsPanel.TabIndex = 0;
             // 
             // shemePanel
             // 
+            this.shemePanel.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.shemePanel.Controls.Add(this.label1);
             this.shemePanel.Controls.Add(this.schemeBox);
             this.shemePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.shemePanel.Location = new System.Drawing.Point(0, 0);
             this.shemePanel.Name = "shemePanel";
-            this.shemePanel.Size = new System.Drawing.Size(292, 55);
+            this.shemePanel.Size = new System.Drawing.Size(293, 53);
             this.shemePanel.TabIndex = 1;
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 16);
+            this.label1.Location = new System.Drawing.Point(36, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 13);
             this.label1.TabIndex = 1;
@@ -80,9 +81,10 @@
             // 
             // schemeBox
             // 
+            this.schemeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.schemeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.schemeBox.FormattingEnabled = true;
-            this.schemeBox.Location = new System.Drawing.Point(94, 13);
+            this.schemeBox.Location = new System.Drawing.Point(112, 20);
             this.schemeBox.Name = "schemeBox";
             this.schemeBox.Size = new System.Drawing.Size(178, 21);
             this.schemeBox.TabIndex = 0;
@@ -94,7 +96,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.rightPanel);
             this.Name = "fsUnitsControl";
-            this.Size = new System.Drawing.Size(295, 189);
+            this.Size = new System.Drawing.Size(293, 232);
             this.Load += new System.EventHandler(this.UnitsDialogLoad);
             this.rightPanel.ResumeLayout(false);
             this.shemePanel.ResumeLayout(false);
