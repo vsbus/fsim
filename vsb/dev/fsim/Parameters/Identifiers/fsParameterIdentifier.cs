@@ -105,8 +105,8 @@ namespace Parameters
         public static fsParameterIdentifier Hce0 = new fsParameterIdentifier("hce0", fsCharacteristic.Length);
         public static fsParameterIdentifier Rm0 = new fsParameterIdentifier("Rm0", fsCharacteristic.FilterMediumResistance);
 
-        public static fsParameterIdentifier SaltConcentrationInTheMotherLiquid = new fsParameterIdentifier("Cf", "Salt concentration in the mother liquid", fsCharacteristic.SolidsConcentration);
-        public static fsParameterIdentifier SaltMassFractionInTheMotherLiquid = new fsParameterIdentifier("Cfm", "Salt Mass fraction in the mother liquid", fsCharacteristic.Concentration);
+        public static fsParameterIdentifier SolutesConcentrationInMotherLiquid = new fsParameterIdentifier("C_sol", "Solutes Concentration in Mother Liquid", fsCharacteristic.SolidsConcentration);
+        public static fsParameterIdentifier SolutesMassFractionInMotherLiquid = new fsParameterIdentifier("Cm_sol", "Solutes Mass Fraction in Mother Liquid", fsCharacteristic.Concentration);
         public static fsParameterIdentifier SaltConcentrationInTheCakeLiquid = new fsParameterIdentifier("Cw", "Salt concentration in the cake liquid", fsCharacteristic.SolidsConcentration);
         public static fsParameterIdentifier SaltMassFractionInTheCakeLiquid = new fsParameterIdentifier("Cwm", "Salt Mass fraction in the cake liquid", fsCharacteristic.Concentration);
         public static fsParameterIdentifier WashOutMassFraction = new fsParameterIdentifier("Cwm", "Wash Out Mass Fration", fsCharacteristic.Concentration);
