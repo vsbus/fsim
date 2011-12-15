@@ -193,25 +193,33 @@ namespace SmallCalculator2
         }
         private bool ProtectionOK(int usercode)
         {
-            bool res = false;
-            try
-            {
-                WIBUKEYLib.WibukeyClass wk = new WIBUKEYLib.WibukeyClass();
-                if (wk != null)
-                {
-                    wk.SetBoxEntryForEncryption();
-                    wk.WkBoxSimUsed = false;
-                    wk.FirmCode = 619;
-                    wk.UserCode = usercode;
-                    wk.Encrypt();
-                    res = wk.LastErrorCode == 0;
-                }
-            }
-            catch (Exception e)
-            {
-            }
+            // no protection
+            
+            return true;
 
-            return res;
+
+
+            // with protection
+
+            //bool res = false;
+            //try
+            //{
+            //    WIBUKEYLib.WibukeyClass wk = new WIBUKEYLib.WibukeyClass();
+            //    if (wk != null)
+            //    {
+            //        wk.SetBoxEntryForEncryption();
+            //        wk.WkBoxSimUsed = false;
+            //        wk.FirmCode = 619;
+            //        wk.UserCode = usercode;
+            //        wk.Encrypt();
+            //        res = wk.LastErrorCode == 0;
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //}
+
+            //return res;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
