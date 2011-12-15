@@ -15,7 +15,7 @@ namespace SmallCalculator2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SmallCalculatorMainWindow());
+            Application.Run(new fsSmallCalculatorMainWindow());
         }
     }
 }

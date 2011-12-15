@@ -6,19 +6,19 @@ using CalculatorModules;
 
 namespace SmallCalculator2
 {
-    public partial class SmallCalculatorMainWindow : Form
+    public partial class fsSmallCalculatorMainWindow : Form
     {
         private readonly Dictionary<string, fsCalculatorControl> m_modules =
             new Dictionary<string, fsCalculatorControl>();
 
         public fsCalculatorControl SelectedCalculatorControl { get; private set; }
 
-        public SmallCalculatorMainWindow()
+        public fsSmallCalculatorMainWindow()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1Load(object sender, EventArgs e)
         {
             AddGroupToTree("Suspension", new[]
                                              {
@@ -91,27 +91,39 @@ namespace SmallCalculator2
             treeNode.Nodes.Add(moduleName).NodeFont = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular);
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TreeView1AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (!m_modules.ContainsKey(treeView1.SelectedNode.Text))
                 return;
 
-            string SelectedCalculatorControlName = treeView1.SelectedNode.Text;
-            currentModuleTitleLabel.Text = SelectedCalculatorControlName;
+            string selectedCalculatorControlName = treeView1.SelectedNode.Text;
+            currentModuleTitleLabel.Text = selectedCalculatorControlName;
 
             if (SelectedCalculatorControl != null)
             {
                 SelectedCalculatorControl.Parent = null;
             }
 
-            SelectedCalculatorControl = m_modules[SelectedCalculatorControlName];
+            SelectedCalculatorControl = m_modules[selectedCalculatorControlName];
             SelectedCalculatorControl.Parent = modulePanel;
             SelectedCalculatorControl.Dock = DockStyle.Fill;
         }
 
-        private void unitsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UnitsToolStripMenuItemClick(object sender, EventArgs e)
         {
-
+            var unitsDialog = new fsUnitsDialog();
+            unitsDialog.ShowDialog();
+            if (unitsDialog.DialogResult == DialogResult.OK)
+            {
+                foreach (var module in m_modules.Values)
+                {
+                    module.SetUnits(unitsDialog.Characteristics);
+                }
+                foreach (var unit in unitsDialog.Characteristics)
+                {
+                    unit.Key.CurrentUnit = unit.Value;
+                }
+            }
         }
 
     }

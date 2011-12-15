@@ -1,6 +1,6 @@
 ﻿namespace SmallCalculator2
 {
-    partial class SmallCalculatorMainWindow
+    partial class fsSmallCalculatorMainWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -68,7 +68,7 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(331, 495);
             this.treeView1.TabIndex = 0;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeView1AfterSelect);
             // 
             // modulePanel
             // 
@@ -112,7 +112,7 @@
             this.unitsToolStripMenuItem.Name = "unitsToolStripMenuItem";
             this.unitsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.unitsToolStripMenuItem.Text = "Units";
-            this.unitsToolStripMenuItem.Click += new System.EventHandler(this.unitsToolStripMenuItem_Click);
+            this.unitsToolStripMenuItem.Click += new System.EventHandler(this.UnitsToolStripMenuItemClick);
             // 
             // SmallCalculatorMainWindow
             // 
@@ -122,9 +122,9 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "SmallCalculatorMainWindow";
+            this.Name = "fsSmallCalculatorMainWindow";
             this.Text = "Small Calculator 2.0";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Form1Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
