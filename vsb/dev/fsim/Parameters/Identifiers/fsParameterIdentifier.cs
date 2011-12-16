@@ -72,8 +72,8 @@ namespace Parameters
         public static fsParameterIdentifier DryCakeMass = new fsParameterIdentifier("Mcd", "Dry Cake Mass", fsCharacteristic.Mass);
         public static fsParameterIdentifier SuspensionMass = new fsParameterIdentifier("Msus", "Suspension Mass", fsCharacteristic.Mass);
         public static fsParameterIdentifier FiltrateMass = new fsParameterIdentifier("Mf", "Fitrate Mass", fsCharacteristic.Mass);
-        public static fsParameterIdentifier LiquidMassForResuspension = new fsParameterIdentifier("Ml", "Liquid Mass for Resuspension", fsCharacteristic.Mass);
-        public static fsParameterIdentifier SolidsMass = new fsParameterIdentifier("Ms", "Solids Mass", fsCharacteristic.Mass);
+        public static fsParameterIdentifier LiquidMassInSuspension = new fsParameterIdentifier("Ml", "Liquid Mass in Suspension", fsCharacteristic.Mass);
+        public static fsParameterIdentifier SolidsMassInSuspension = new fsParameterIdentifier("Ms", "Solids Mass in Suspension", fsCharacteristic.Mass);
         public static fsParameterIdentifier CakeMass = new fsParameterIdentifier("Mc", "Cake Mass", fsCharacteristic.Mass);
 
         public static fsParameterIdentifier SuspensionVolume = new fsParameterIdentifier("Vsus", "Suspension Volume", fsCharacteristic.Volume);

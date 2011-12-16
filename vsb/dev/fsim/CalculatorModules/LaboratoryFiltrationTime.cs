@@ -46,8 +46,8 @@ namespace CalculatorModules
                 fsParameterIdentifier.FiltrationTime,
                 fsParameterIdentifier.SuspensionMass);
             fsParametersGroup resultsGroup = AddGroup(
-                fsParameterIdentifier.SolidsMass,
-                fsParameterIdentifier.LiquidMassForResuspension);
+                fsParameterIdentifier.SolidsMassInSuspension,
+                fsParameterIdentifier.LiquidMassInSuspension);
 
 
             var groups = new[]
@@ -78,8 +78,8 @@ namespace CalculatorModules
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
             }
             resultsGroup.IsInput = false;
-            ParameterToCell[fsParameterIdentifier.SolidsMass].ReadOnly = true;
-            ParameterToCell[fsParameterIdentifier.LiquidMassForResuspension].ReadOnly = true;
+            ParameterToCell[fsParameterIdentifier.SolidsMassInSuspension].ReadOnly = true;
+            ParameterToCell[fsParameterIdentifier.LiquidMassInSuspension].ReadOnly = true;
 
             UpdateGroupsInputInfoFromCalculationOptions();
             UpdateEquationsFromCalculationOptions();
