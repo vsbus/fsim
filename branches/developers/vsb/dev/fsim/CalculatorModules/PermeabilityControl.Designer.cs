@@ -49,16 +49,16 @@
             this.calculationOptionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.calculationOptionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.calculationOptionComboBox.FormattingEnabled = true;
-            this.calculationOptionComboBox.Location = new System.Drawing.Point(70, 9);
+            this.calculationOptionComboBox.Location = new System.Drawing.Point(40, 8);
             this.calculationOptionComboBox.Name = "calculationOptionComboBox";
-            this.calculationOptionComboBox.Size = new System.Drawing.Size(150, 21);
+            this.calculationOptionComboBox.Size = new System.Drawing.Size(180, 21);
             this.calculationOptionComboBox.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 12);
+            this.label1.Location = new System.Drawing.Point(-20, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 0;

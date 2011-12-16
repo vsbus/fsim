@@ -49,16 +49,16 @@
             this.calculateSelectionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.calculateSelectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.calculateSelectionComboBox.FormattingEnabled = true;
-            this.calculateSelectionComboBox.Location = new System.Drawing.Point(76, 9);
+            this.calculateSelectionComboBox.Location = new System.Drawing.Point(46, 8);
             this.calculateSelectionComboBox.Name = "calculateSelectionComboBox";
-            this.calculateSelectionComboBox.Size = new System.Drawing.Size(150, 21);
+            this.calculateSelectionComboBox.Size = new System.Drawing.Size(180, 21);
             this.calculateSelectionComboBox.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 12);
+            this.label1.Location = new System.Drawing.Point(-14, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 4;

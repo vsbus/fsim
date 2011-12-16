@@ -56,9 +56,9 @@
             this.saltContentComboBox.Items.AddRange(new object[] {
             "Considered",
             "Neglected"});
-            this.saltContentComboBox.Location = new System.Drawing.Point(169, 7);
+            this.saltContentComboBox.Location = new System.Drawing.Point(125, 8);
             this.saltContentComboBox.Name = "saltContentComboBox";
-            this.saltContentComboBox.Size = new System.Drawing.Size(136, 21);
+            this.saltContentComboBox.Size = new System.Drawing.Size(180, 21);
             this.saltContentComboBox.TabIndex = 0;
             // 
             // concentrationComboBox
@@ -66,16 +66,16 @@
             this.concentrationComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.concentrationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.concentrationComboBox.FormattingEnabled = true;
-            this.concentrationComboBox.Location = new System.Drawing.Point(169, 39);
+            this.concentrationComboBox.Location = new System.Drawing.Point(125, 40);
             this.concentrationComboBox.Name = "concentrationComboBox";
-            this.concentrationComboBox.Size = new System.Drawing.Size(136, 21);
+            this.concentrationComboBox.Size = new System.Drawing.Size(180, 21);
             this.concentrationComboBox.TabIndex = 3;
             // 
             // concentrationLabel
             // 
             this.concentrationLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.concentrationLabel.AutoSize = true;
-            this.concentrationLabel.Location = new System.Drawing.Point(14, 42);
+            this.concentrationLabel.Location = new System.Drawing.Point(-30, 43);
             this.concentrationLabel.Name = "concentrationLabel";
             this.concentrationLabel.Size = new System.Drawing.Size(149, 13);
             this.concentrationLabel.TabIndex = 2;
@@ -85,7 +85,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 10);
+            this.label1.Location = new System.Drawing.Point(18, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 13);
             this.label1.TabIndex = 1;
