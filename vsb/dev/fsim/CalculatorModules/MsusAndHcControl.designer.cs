@@ -52,7 +52,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 41);
+            this.label1.Location = new System.Drawing.Point(-2, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 0;
@@ -63,9 +63,9 @@
             this.calculationOptionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.calculationOptionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.calculationOptionComboBox.FormattingEnabled = true;
-            this.calculationOptionComboBox.Location = new System.Drawing.Point(92, 38);
+            this.calculationOptionComboBox.Location = new System.Drawing.Point(58, 40);
             this.calculationOptionComboBox.Name = "calculationOptionComboBox";
-            this.calculationOptionComboBox.Size = new System.Drawing.Size(146, 21);
+            this.calculationOptionComboBox.Size = new System.Drawing.Size(180, 21);
             this.calculationOptionComboBox.TabIndex = 5;
             // 
             // machineTypeComboBox
@@ -73,16 +73,16 @@
             this.machineTypeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.machineTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.machineTypeComboBox.FormattingEnabled = true;
-            this.machineTypeComboBox.Location = new System.Drawing.Point(92, 6);
+            this.machineTypeComboBox.Location = new System.Drawing.Point(58, 8);
             this.machineTypeComboBox.Name = "machineTypeComboBox";
-            this.machineTypeComboBox.Size = new System.Drawing.Size(146, 21);
+            this.machineTypeComboBox.Size = new System.Drawing.Size(180, 21);
             this.machineTypeComboBox.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 9);
+            this.label2.Location = new System.Drawing.Point(-26, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 13);
             this.label2.TabIndex = 0;

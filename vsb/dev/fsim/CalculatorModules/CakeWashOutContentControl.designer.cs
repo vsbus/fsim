@@ -53,9 +53,9 @@
             this.washOutContentComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.washOutContentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.washOutContentComboBox.FormattingEnabled = true;
-            this.washOutContentComboBox.Location = new System.Drawing.Point(124, 38);
+            this.washOutContentComboBox.Location = new System.Drawing.Point(80, 40);
             this.washOutContentComboBox.Name = "washOutContentComboBox";
-            this.washOutContentComboBox.Size = new System.Drawing.Size(136, 21);
+            this.washOutContentComboBox.Size = new System.Drawing.Size(180, 21);
             this.washOutContentComboBox.TabIndex = 3;
             // 
             // fromComboBox
@@ -63,16 +63,16 @@
             this.fromComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fromComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fromComboBox.FormattingEnabled = true;
-            this.fromComboBox.Location = new System.Drawing.Point(124, 6);
+            this.fromComboBox.Location = new System.Drawing.Point(80, 8);
             this.fromComboBox.Name = "fromComboBox";
-            this.fromComboBox.Size = new System.Drawing.Size(136, 21);
+            this.fromComboBox.Size = new System.Drawing.Size(180, 21);
             this.fromComboBox.TabIndex = 2;
             // 
             // washOutContentLabel
             // 
             this.washOutContentLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.washOutContentLabel.AutoSize = true;
-            this.washOutContentLabel.Location = new System.Drawing.Point(-25, 41);
+            this.washOutContentLabel.Location = new System.Drawing.Point(-69, 43);
             this.washOutContentLabel.Name = "washOutContentLabel";
             this.washOutContentLabel.Size = new System.Drawing.Size(143, 13);
             this.washOutContentLabel.TabIndex = 1;
@@ -82,7 +82,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 9);
+            this.label1.Location = new System.Drawing.Point(20, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 0;
