@@ -10,7 +10,7 @@ namespace StepCalculators
     {
         readonly fsCalculatorConstant m_wetMass;
         readonly fsCalculatorConstant m_dryMass;
-        readonly fsCalculatorConstant m_liquidMass;
+        readonly fsCalculatorConstant m_liquidMassForResuspension;
         readonly fsCalculatorConstant m_solidsMassFraction;
         readonly fsCalculatorConstant m_solidsConcentration;
         readonly fsCalculatorVariable m_internalC;
@@ -26,7 +26,7 @@ namespace StepCalculators
 
             m_wetMass = AddConstant(fsParameterIdentifier.WetCakeMass);
             m_dryMass = AddConstant(fsParameterIdentifier.DryCakeMass);
-            m_liquidMass = AddConstant(fsParameterIdentifier.LiquidMassInSuspension);
+            m_liquidMassForResuspension = AddConstant(fsParameterIdentifier.LiquidMassForResuspension);
             m_solidsMassFraction = AddConstant(fsParameterIdentifier.LiquidWashOutMassFraction);
             m_solidsConcentration = AddConstant(fsParameterIdentifier.LiquidWashOutConcentration);
             m_internalC = AddVariable(new fsParameterIdentifier("internalC"));
@@ -60,21 +60,21 @@ namespace StepCalculators
             {
                 if (WashOutContentOption == fsCalculationOptions.fsWashOutContentOption.AsMassFraction)
                 {
-                    AddEquation(new fsCakeWashOutContentEquation(m_cakeWashOutContent, m_dryMass, m_wetMass, m_liquidMass, m_solidsMassFraction));
+                    AddEquation(new fsCakeWashOutContentEquation(m_cakeWashOutContent, m_dryMass, m_wetMass, m_liquidMassForResuspension, m_solidsMassFraction));
                 }
                 else
                 {
                     m_internalC.IsInput = false;
                     AddEquation(new fsProductEquation(m_solidsConcentration, m_internalC, m_liquidDensity));
-                    AddEquation(new fsCakeWashOutContentEquation(m_cakeWashOutContent, m_dryMass, m_wetMass, m_liquidMass, m_internalC));
+                    AddEquation(new fsCakeWashOutContentEquation(m_cakeWashOutContent, m_dryMass, m_wetMass, m_liquidMassForResuspension, m_internalC));
                 }
             }
             else
             {
                 m_internalC.IsInput = false;
-                AddEquation(new fsPhCakeEquation(m_pHcake, m_pH, m_wetMass, m_dryMass, m_liquidMass));
+                AddEquation(new fsPhCakeEquation(m_pHcake, m_pH, m_wetMass, m_dryMass, m_liquidMassForResuspension));
                 AddEquation(new fsConcentrationFromPhEquation(m_internalC, m_pH, m_liquidDensity));
-                AddEquation(new fsCakeWashOutContentEquation(m_cakeWashOutContent, m_dryMass, m_wetMass, m_liquidMass, m_internalC));
+                AddEquation(new fsCakeWashOutContentEquation(m_cakeWashOutContent, m_dryMass, m_wetMass, m_liquidMassForResuspension, m_internalC));
             }
         }
     }
