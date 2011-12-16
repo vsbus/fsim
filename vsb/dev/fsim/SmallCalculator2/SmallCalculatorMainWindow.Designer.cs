@@ -131,7 +131,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "fsSmallCalculatorMainWindow";
-            this.Text = "Small Calculator 2.0";
+            this.Text = "Filtration Calculator";
             this.Load += new System.EventHandler(this.Form1Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
