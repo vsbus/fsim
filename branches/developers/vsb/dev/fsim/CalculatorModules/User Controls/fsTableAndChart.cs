@@ -90,8 +90,7 @@ namespace CalculatorModules.User_Controls
                     m_recalculateAndUpdateDiagramThread = null;
                 }
                 fsParameterIdentifier xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
-                m_recalculateAndUpdateDiagramThread = new Thread(BuildDataAndRefreshPlot);
-                m_recalculateAndUpdateDiagramThread.Start(xAxisParameter);
+                BuildDataAndRefreshPlot(xAxisParameter);
             }
         }
 
