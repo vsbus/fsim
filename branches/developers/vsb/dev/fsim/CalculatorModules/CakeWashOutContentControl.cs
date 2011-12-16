@@ -15,7 +15,7 @@ namespace CalculatorModules
             Calculators.Add(m_calculator);
 
             fsParametersGroup wetMassGroup = AddGroup(fsParameterIdentifier.WetCakeMass);
-            fsParametersGroup liquidGroup = AddGroup(fsParameterIdentifier.LiquidMassInSuspension);
+            fsParametersGroup liquidGroup = AddGroup(fsParameterIdentifier.LiquidMassForResuspension);
             fsParametersGroup cwmGroup = AddGroup(fsParameterIdentifier.LiquidWashOutMassFraction);
             fsParametersGroup rholGroup = AddGroup(fsParameterIdentifier.LiquidDensity);
             fsParametersGroup cwGroup = AddGroup(fsParameterIdentifier.LiquidWashOutConcentration);

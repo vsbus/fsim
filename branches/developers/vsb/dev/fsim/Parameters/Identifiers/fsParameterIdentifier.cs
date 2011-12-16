@@ -114,6 +114,7 @@ namespace Parameters
         public static fsParameterIdentifier CakeSaturation = new fsParameterIdentifier("S", "Cake Saturation", fsCharacteristic.Concentration);
         public static fsParameterIdentifier CakeMoistureContent = new fsParameterIdentifier("RF", "Cake Moisture Content", fsCharacteristic.Concentration);
         public static fsParameterIdentifier CakeWashOutContent = new fsParameterIdentifier("X", "Cake Wash Out Content", fsCharacteristic.CakeWashOutContent);
+        public static fsParameterIdentifier LiquidMassForResuspension = new fsParameterIdentifier("Ml", "Liquid Mass for Resuspension", fsCharacteristic.Mass);
         public static fsParameterIdentifier Ph = new fsParameterIdentifier("pH", "pH of liquid after resuspension", fsCharacteristic.NoUnits);
         public static fsParameterIdentifier PHcake = new fsParameterIdentifier("pH_c", "pH of liquid in the cake", fsCharacteristic.NoUnits);
 
