@@ -63,10 +63,9 @@ namespace Units
         public static fsCharacteristic Area = new fsCharacteristic(
             "Area",
             new[] {
-                fsUnit.SquareMeter,
-                fsUnit.SquareDeciMeter,
                 fsUnit.SquareSantiMeter,
-                //fsUnit.SquareMilliMeter
+                fsUnit.SquareDeciMeter,
+                fsUnit.SquareMeter,
             }
         );
 
@@ -147,17 +146,17 @@ namespace Units
         public static fsCharacteristic Mass = new fsCharacteristic(
             "Mass",
             new[] {
+                fsUnit.Gramme,
                 fsUnit.KiloGramme,
-                fsUnit.Ton,
-                fsUnit.Gramme
+                fsUnit.Ton
             }
         );
 
         public static fsCharacteristic Volume = new fsCharacteristic(
             "Volume",
             new[] {
-                fsUnit.Liter,
                 fsUnit.MilliLiter,
+                fsUnit.Liter,
                 fsUnit.CubicMeter
             }
         );
