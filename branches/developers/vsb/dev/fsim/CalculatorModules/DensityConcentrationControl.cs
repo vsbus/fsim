@@ -14,8 +14,7 @@ namespace CalculatorModules
             [Description("Filtrate Density")] CalcFiltrateDensity,
             [Description("Solids Density")] CalcSolidsDensity,
             [Description("Suspension Density")] CalcSuspensionDensity,
-            [Description("Solids Content")]
-            CalcConcentrations
+            [Description("Solids Content")] CalcConcentrations
         }
 
         #endregion

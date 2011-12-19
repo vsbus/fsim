@@ -104,8 +104,9 @@ namespace CalculatorModules
             bool isCmInput = washOutContentOption ==
                              fsCalculationOptions.fsWashOutContentOption.AsMassFraction;
 
-            ParameterToCell[fsParameterIdentifier.LiquidWashOutMassFraction].OwningRow.Visible = isFromWashOutConcentration &&
-                                                                                           isCmInput;
+            ParameterToCell[fsParameterIdentifier.LiquidWashOutMassFraction].OwningRow.Visible =
+                isFromWashOutConcentration &&
+                isCmInput;
             ParameterToCell[fsParameterIdentifier.LiquidWashOutConcentration].OwningRow.Visible =
                 isFromWashOutConcentration && !isCmInput;
             ParameterToCell[fsParameterIdentifier.LiquidDensity].OwningRow.Visible = !isFromWashOutConcentration ||
