@@ -73,6 +73,10 @@ namespace CalculatorModules.User_Controls
             {
                 AddArrayToTable(curve);
             }
+            foreach (fsNamedArray curve in m_y2Axis)
+            {
+                AddArrayToTable(curve);
+            }
         }
 
         private void AddArrayToTable(fsNamedArray curve)
