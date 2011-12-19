@@ -9,30 +9,14 @@ namespace CalculatorModules.User_Controls
 {
     public partial class fsDiagramWithTable : UserControl
     {
+        private readonly List<fsNamedArray> m_yAxis = new List<fsNamedArray>();
+        private readonly List<fsNamedArray> m_y2Axis = new List<fsNamedArray>();
+        private fsNamedArray m_xAxis;
+
         public fsDiagramWithTable()
         {
             InitializeComponent();
         }
-
-        public class fsNamedArray
-        {
-            public string Name { get; set; }
-            public fsValue [] Array { get; set; }
-
-            public double[] GetDoublesArray()
-            {
-                var result = new double[Array.Length];
-                for (int i = 0; i < result.Length; ++i)
-                {
-                    result[i] = Array[i].Value;
-                }
-                return result;
-            }
-        }
-
-        private fsNamedArray m_xAxis;
-        private List<fsNamedArray> m_yAxis = new List<fsNamedArray>();
-        private List<fsNamedArray> m_y2Axis = new List<fsNamedArray>();
 
         public void SetXAxis(fsNamedArray xAxis)
         {
@@ -83,7 +67,7 @@ namespace CalculatorModules.User_Controls
         {
             table.ColumnCount++;
             table.RowCount = Math.Max(table.RowCount, curve.Array.Length);
-            var column = table.Columns[table.ColumnCount - 1];
+            DataGridViewColumn column = table.Columns[table.ColumnCount - 1];
             column.HeaderCell.Value = curve.Name;
             for (int row = 0; row < curve.Array.Length; ++row)
             {
@@ -100,7 +84,7 @@ namespace CalculatorModules.User_Controls
 
             RefreshYAxis(m_yAxis, false);
             RefreshYAxis(m_y2Axis, true);
-            
+
             fmZedGraphControl1.GraphPane.AxisChange();
             fmZedGraphControl1.Refresh();
         }
@@ -128,7 +112,7 @@ namespace CalculatorModules.User_Controls
                 foreach (fsNamedArray curve in yAxis)
                 {
                     string name = curve.Name;
-                    PointPairList pointList = new ZedGraph.PointPairList();
+                    var pointList = new PointPairList();
                     for (int i = 0; i < curve.Array.Length; ++i)
                     {
                         if (curve.Array[i].Defined)
@@ -143,5 +127,24 @@ namespace CalculatorModules.User_Controls
             }
         }
 
+        #region Nested type: fsNamedArray
+
+        public class fsNamedArray
+        {
+            public string Name { get; set; }
+            public fsValue[] Array { get; set; }
+
+            public double[] GetDoublesArray()
+            {
+                var result = new double[Array.Length];
+                for (int i = 0; i < result.Length; ++i)
+                {
+                    result[i] = Array[i].Value;
+                }
+                return result;
+            }
+        }
+
+        #endregion
     }
 }

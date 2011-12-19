@@ -57,7 +57,8 @@ namespace CalculatorModules
 
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.FilterArea].RowIndex,
                         Color.FromArgb(255, 230, 230));
-            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.MachineWidth].RowIndex, Color.FromArgb(255, 230, 230));
+            SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.MachineWidth].RowIndex,
+                        Color.FromArgb(255, 230, 230));
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.WidthOverDiameterRatio].RowIndex,
                         Color.FromArgb(255, 230, 230));
 
@@ -141,7 +142,7 @@ namespace CalculatorModules
                                                                                              filterElementDiameterVisible;
             ParameterToCell[fsParameterIdentifier.MachineWidth].OwningRow.Visible = geometryVisible && bAndBOverDVisible;
             ParameterToCell[fsParameterIdentifier.WidthOverDiameterRatio].OwningRow.Visible = geometryVisible &&
-                                                                                           bAndBOverDVisible;
+                                                                                              bAndBOverDVisible;
 
             ParameterToCell[fsParameterIdentifier.SolutesConcentrationInCakeLiquid].OwningRow.Visible =
                 !isSaltContentNeglected;
