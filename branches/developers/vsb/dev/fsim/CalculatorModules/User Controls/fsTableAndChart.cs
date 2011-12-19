@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using Parameters;
 using ParametersIdentifiers.Interfaces;
 using StepCalculators;
-using System.Threading;
 using Units;
 using Value;
 
@@ -23,9 +22,6 @@ namespace CalculatorModules.User_Controls
         private List<fsParametersGroup> m_groups;
         private Dictionary<fsParameterIdentifier, fsParametersGroup> m_parameterToGroup;
         private Dictionary<fsParameterIdentifier, fsMeasuredParameter> m_values;
-        private bool m_reprocessWorks;
-        private delegate void fsVoidMethod();
-        private Thread m_recalculateAndUpdateDiagramThread;
 
         #endregion
 
@@ -56,23 +52,16 @@ namespace CalculatorModules.User_Controls
 
         public void Reprocess()
         {
-            if (!m_reprocessWorks)
+            RefreshXAxisList();
+            RefreshInputsBox();
+            rangeFrom.Text = @"0";
+            rangeTo.Text = @"100";
+            if (detalizationBox.Text == "")
             {
-                m_reprocessWorks = true;
-
-                RefreshXAxisList();
-                RefreshInputsBox();
-                rangeFrom.Text = @"0";
-                rangeTo.Text = @"100";
-                if (detalizationBox.Text == "")
-                {
-                    detalizationBox.Text = @"50";
-                }
-
-                m_reprocessWorks = false;
-
-                RecalculateAndUpdateYAxisAndDiagram();
+                detalizationBox.Text = @"50";
             }
+
+            RecalculateAndUpdateYAxisAndDiagram();
         }
 
         #region RefreshInputs
@@ -141,7 +130,6 @@ namespace CalculatorModules.User_Controls
 
                 SubstituteGroup(m_parameterToGroup, xNewGroup, xInitialgroup);
 
-                var calculations = new List<fsMeasuredParameter>();
                 foreach (var pair in currentValues)
                 {
                     if (m_data.ContainsKey(pair.Key) == false)
@@ -162,28 +150,16 @@ namespace CalculatorModules.User_Controls
         private void UpdateDiagram()
         {
             BuildCurves();
-            BuildTable();
             RefreshDiagramAndTable();
         }
 
         private void RecalculateAndUpdateYaxis()
         {
-            if (!m_reprocessWorks)
-            {
-                if (m_recalculateAndUpdateDiagramThread != null)
-                {
-                    m_recalculateAndUpdateDiagramThread.Abort();
-                    m_recalculateAndUpdateDiagramThread = null;
-                }
-                fsParameterIdentifier xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
-                CalculateData((fsParameterIdentifier)xAxisParameter);
+            fsParameterIdentifier xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
+            CalculateData(xAxisParameter);
 
-                RefreshYAxisList(yAxisList);
-                RefreshYAxisList(y2AxisList);
-            }
-        }
-        private void BuildTable()
-        {
+            RefreshYAxisList(yAxisList);
+            RefreshYAxisList(y2AxisList);
         }
 
         private void BuildCurves()
@@ -192,20 +168,15 @@ namespace CalculatorModules.User_Controls
             BuildCurves(m_y2Curves, y2AxisList);
         }
 
-        private void BuildCurves(List<fsDiagramWithTable.fsNamedArray> curves, ListView yAxisList)
+        private void BuildCurves(List<fsDiagramWithTable.fsNamedArray> curves, ListView yAxisListView)
         {
             if (m_data == null)
                 return;
             
             curves.Clear();
-            foreach (var pair in m_data)
-            {
-                fsParameterIdentifier parameter = pair.Key;
-                if (IsContains(yAxisList.CheckedItems, parameter.Name))
-                {
-                    curves.Add(GetArray(parameter));
-                }
-            }
+            curves.AddRange(from pair in m_data
+                            select pair.Key
+                            into parameter where IsContains(yAxisListView.CheckedItems, parameter.Name) select GetArray(parameter));
         }
 
         private fsDiagramWithTable.fsNamedArray GetArray(fsParameterIdentifier parameter)
@@ -252,22 +223,19 @@ namespace CalculatorModules.User_Controls
                     }
                 }
             }
-            List<ListViewItem> newList = new List<ListViewItem>();
-            foreach (var keyValuePair in variableResultsList)
-            {
-                var item = new ListViewItem(keyValuePair.Key) { Checked = keyValuePair.Value, ForeColor = Color.Black };
-                newList.Add(item);
-            }
-            foreach (var keyValuePair in constResultsList)
-            {
-                var item = new ListViewItem(keyValuePair.Key) { Checked = keyValuePair.Value, ForeColor = Color.LightGray };
-                newList.Add(item);
-            }
-            foreach (var keyValuePair in inputList)
-            {
-                var item = new ListViewItem(keyValuePair.Key) { Checked = keyValuePair.Value, ForeColor = Color.Blue };
-                newList.Add(item);
-            }
+            var newList = new List<ListViewItem>();
+            newList.AddRange(
+                variableResultsList.Select(
+                    keyValuePair =>
+                    new ListViewItem(keyValuePair.Key) {Checked = keyValuePair.Value, ForeColor = Color.Black}));
+            newList.AddRange(
+                constResultsList.Select(
+                    keyValuePair =>
+                    new ListViewItem(keyValuePair.Key) {Checked = keyValuePair.Value, ForeColor = Color.LightGray}));
+            newList.AddRange(
+                inputList.Select(
+                    keyValuePair =>
+                    new ListViewItem(keyValuePair.Key) {Checked = keyValuePair.Value, ForeColor = Color.Blue}));
             bool different = false;
             if (yAxisListView.Items.Count != newList.Count)
             {
@@ -275,15 +243,9 @@ namespace CalculatorModules.User_Controls
             }
             else
             {
-                for (int i = 0; i < newList.Count; ++i)
+                if (newList.Where((t, i) => t.Text != yAxisListView.Items[i].Text || t.Checked != yAxisListView.Items[i].Checked || t.ForeColor != yAxisListView.Items[i].ForeColor).Any())
                 {
-                    if (newList[i].Text != yAxisListView.Items[i].Text
-                        || newList[i].Checked != yAxisListView.Items[i].Checked
-                        || newList[i].ForeColor != yAxisListView.Items[i].ForeColor)
-                    {
-                        different = true;
-                        break;
-                    }
+                    different = true;
                 }
             }
             if (different)
@@ -294,7 +256,7 @@ namespace CalculatorModules.User_Controls
             }
         }
 
-        private bool IsConstantList(List<fsMeasuredParameter> list)
+        private static bool IsConstantList(List<fsMeasuredParameter> list)
         {
             if (list.Count <= 1)
             {
@@ -390,24 +352,6 @@ namespace CalculatorModules.User_Controls
         private void YAxisListItemChecked(object sender, ItemCheckedEventArgs e)
         {
             UpdateDiagram();
-        }
-
-        #endregion
-
-        #region Nested type: fsFunction
-
-        private class fsFunction
-        {
-            public readonly fsParameterIdentifier ParameterIdentifier;
-            public readonly List<fsValue> Values;
-            public fsUnit Unit;
-
-            public fsFunction(fsParameterIdentifier parameterIdentifier, fsUnit unit)
-            {
-                ParameterIdentifier = parameterIdentifier;
-                Unit = unit;
-                Values = new List<fsValue>();
-            }
         }
 
         #endregion
