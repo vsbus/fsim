@@ -35,7 +35,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.y2AxisList = new System.Windows.Forms.ListView();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.inputsTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -80,7 +80,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.textBox1);
+            this.splitContainer2.Panel2.Controls.Add(this.inputsTextBox);
             this.splitContainer2.Panel2.Controls.Add(this.label6);
             this.splitContainer2.Size = new System.Drawing.Size(151, 160);
             this.splitContainer2.SplitterDistance = 98;
@@ -151,16 +151,17 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Y2 Axis";
             // 
-            // textBox1
+            // inputsTextBox
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 13);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(151, 45);
-            this.textBox1.TabIndex = 1;
+            this.inputsTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputsTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.inputsTextBox.Location = new System.Drawing.Point(0, 13);
+            this.inputsTextBox.Multiline = true;
+            this.inputsTextBox.Name = "inputsTextBox";
+            this.inputsTextBox.ReadOnly = true;
+            this.inputsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.inputsTextBox.Size = new System.Drawing.Size(151, 45);
+            this.inputsTextBox.TabIndex = 1;
             // 
             // label6
             // 
@@ -296,7 +297,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox inputsTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListView y2AxisList;
         private System.Windows.Forms.ListView yAxisList;

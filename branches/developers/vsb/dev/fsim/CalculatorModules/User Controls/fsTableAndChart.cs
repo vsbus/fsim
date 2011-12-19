@@ -22,7 +22,8 @@ namespace CalculatorModules.User_Controls
         private List<fsParametersGroup> m_groups;
         private Dictionary<fsParameterIdentifier, fsParametersGroup> m_parameterToGroup;
         private Dictionary<fsParameterIdentifier, fsMeasuredParameter> m_values;
-
+        fsParameterIdentifier m_xAxisParameter;
+            
         #endregion
 
         #region Constructor
@@ -52,16 +53,40 @@ namespace CalculatorModules.User_Controls
 
         public void Reprocess()
         {
-            RefreshXAxisList();
-            RefreshInputsBox();
-            rangeFrom.Text = @"0";
-            rangeTo.Text = @"100";
-            if (detalizationBox.Text == "")
-            {
-                detalizationBox.Text = @"50";
-            }
+            RefreshInput();
+            CalculateData();
+            RefreshOutput();
+        }
 
-            RecalculateAndUpdateYAxisAndDiagram();
+        private void RefreshOutput()
+        {
+            RefreshYAxisList(yAxisList);
+            RefreshYAxisList(y2AxisList);
+
+            UpdateDiagram();
+        }
+
+        private bool m_inputRefreshing = false;
+
+        private void RefreshInput()
+        {
+            if (!m_inputRefreshing)
+            {
+                m_inputRefreshing = true;
+
+                RefreshXAxisList();
+                RefreshInputsBox();
+                rangeFrom.Text = @"0";
+                rangeTo.Text = @"100";
+                if (detalizationBox.Text == "")
+                {
+                    detalizationBox.Text = @"50";
+                }
+
+                m_xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
+
+                m_inputRefreshing = false;
+            }
         }
 
         #region RefreshInputs
@@ -78,7 +103,8 @@ namespace CalculatorModules.User_Controls
                 }
             }
 
-            textBox1.Lines = inputData.ToArray();
+            inputsTextBox.ForeColor = Color.Blue;
+            inputsTextBox.Lines = inputData.ToArray();
         }
 
         private void RefreshXAxisList()
@@ -109,8 +135,11 @@ namespace CalculatorModules.User_Controls
 
         #region Calculations
 
-        private void CalculateData(fsParameterIdentifier xParameter)
+        private void CalculateData()
         {
+            if (m_inputRefreshing)
+                return;
+
             int detalization = Convert.ToInt32(detalizationBox.Text);
             fsValue from = fsValue.StringToValue(rangeFrom.Text);
             fsValue to = fsValue.StringToValue(rangeTo.Text);
@@ -121,11 +150,11 @@ namespace CalculatorModules.User_Controls
                 Dictionary<fsParameterIdentifier, fsMeasuredParameter> currentValues =
                     m_values.ToDictionary(pair => pair.Key, pair => new fsMeasuredParameter(pair.Value));
 
-                fsParametersGroup xInitialgroup = m_parameterToGroup[xParameter];
-                var xNewGroup = new fsParametersGroup(xInitialgroup) { Representator = xParameter };
+                fsParametersGroup xInitialgroup = m_parameterToGroup[m_xAxisParameter];
+                var xNewGroup = new fsParametersGroup(xInitialgroup) { Representator = m_xAxisParameter };
                 SubstituteGroup(m_parameterToGroup, xInitialgroup, xNewGroup);
 
-                currentValues[xParameter].SetValueInUnits(from + (to - from) * i / detalization);
+                currentValues[m_xAxisParameter].SetValueInUnits(from + (to - from) * i / detalization);
                 fsCalculationProcessor.ProcessCalculatorParameters(currentValues, m_parameterToGroup, m_calculators);
 
                 SubstituteGroup(m_parameterToGroup, xNewGroup, xInitialgroup);
@@ -141,25 +170,13 @@ namespace CalculatorModules.User_Controls
             }
         }
 
-        private void RecalculateAndUpdateYAxisAndDiagram()
-        {
-            RecalculateAndUpdateYaxis();
-            UpdateDiagram();
-        }
-
         private void UpdateDiagram()
         {
+            if (m_inputRefreshing)
+                return;
+
             BuildCurves();
             RefreshDiagramAndTable();
-        }
-
-        private void RecalculateAndUpdateYaxis()
-        {
-            fsParameterIdentifier xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
-            CalculateData(xAxisParameter);
-
-            RefreshYAxisList(yAxisList);
-            RefreshYAxisList(y2AxisList);
         }
 
         private void BuildCurves()
@@ -197,6 +214,9 @@ namespace CalculatorModules.User_Controls
 
         private void RefreshYAxisList(ListView yAxisListView)
         {
+            if (m_inputRefreshing)
+                return;
+
             var inputList = new List<KeyValuePair<string, bool>>();
             var constResultsList = new List<KeyValuePair<string, bool>>();
             var variableResultsList = new List<KeyValuePair<string, bool>>();
@@ -236,23 +256,33 @@ namespace CalculatorModules.User_Controls
                 inputList.Select(
                     keyValuePair =>
                     new ListViewItem(keyValuePair.Key) {Checked = keyValuePair.Value, ForeColor = Color.Blue}));
-            bool different = false;
             if (yAxisListView.Items.Count != newList.Count)
-            {
-                different = true;
-            }
-            else
-            {
-                if (newList.Where((t, i) => t.Text != yAxisListView.Items[i].Text || t.Checked != yAxisListView.Items[i].Checked || t.ForeColor != yAxisListView.Items[i].ForeColor).Any())
-                {
-                    different = true;
-                }
-            }
-            if (different)
             {
                 var array = newList.ToArray();
                 yAxisListView.Items.Clear();
                 yAxisListView.Items.AddRange(array);
+            }
+            else
+            {
+                bool different = false;
+                if (newList.Where((t, i) => t.Text != yAxisListView.Items[i].Text || t.Checked != yAxisListView.Items[i].Checked || t.ForeColor != yAxisListView.Items[i].ForeColor).Any())
+                {
+                    different = true;
+                }
+                if (different)
+                {
+                    for (int i = 0; i < newList.Count; ++i)
+                    {
+                        if (yAxisListView.Items[i].Text != newList[i].Text)
+                            yAxisListView.Items[i].Text = newList[i].Text;
+
+                        if (yAxisListView.Items[i].Checked != newList[i].Checked)
+                            yAxisListView.Items[i].Checked = newList[i].Checked;
+
+                        if (yAxisListView.Items[i].ForeColor != newList[i].ForeColor)
+                            yAxisListView.Items[i].ForeColor = newList[i].ForeColor;
+                    }
+                }
             }
         }
 
@@ -288,8 +318,7 @@ namespace CalculatorModules.User_Controls
             if (m_data.Count == 0)
                 return;
 
-            fsParameterIdentifier xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
-            fsDiagramWithTable1.SetXAxis(GetArray(xAxisParameter));
+            fsDiagramWithTable1.SetXAxis(GetArray(m_xAxisParameter));
 
             fsDiagramWithTable1.ClearYAxis();
             foreach (fsDiagramWithTable.fsNamedArray curve in m_yCurves)
@@ -331,22 +360,27 @@ namespace CalculatorModules.User_Controls
 
         private void XAxisListSelectedIndexChanged(object sender, EventArgs e)
         {
-            RecalculateAndUpdateYAxisAndDiagram();
+            m_xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
+            CalculateData();
+            RefreshOutput();
         }
 
         private void RangeFromTextChanged(object sender, EventArgs e)
         {
-            RecalculateAndUpdateYAxisAndDiagram();
+            CalculateData();
+            RefreshOutput();
         }
 
         private void RangeToTextChanged(object sender, EventArgs e)
         {
-            RecalculateAndUpdateYAxisAndDiagram();
+            CalculateData();
+            RefreshOutput();
         }
 
         private void DetalizationBoxTextChanged(object sender, EventArgs e)
         {
-            RecalculateAndUpdateYAxisAndDiagram();
+            CalculateData();
+            RefreshOutput();
         }
 
         private void YAxisListItemChecked(object sender, ItemCheckedEventArgs e)
