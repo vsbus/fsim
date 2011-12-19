@@ -268,9 +268,30 @@ namespace CalculatorModules.User_Controls
                 var item = new ListViewItem(keyValuePair.Key) { Checked = keyValuePair.Value, ForeColor = Color.Blue };
                 newList.Add(item);
             }
-            var array = newList.ToArray();
-            yAxisListView.Items.Clear();
-            yAxisListView.Items.AddRange(array);
+            bool different = false;
+            if (yAxisListView.Items.Count != newList.Count)
+            {
+                different = true;
+            }
+            else
+            {
+                for (int i = 0; i < newList.Count; ++i)
+                {
+                    if (newList[i].Text != yAxisListView.Items[i].Text
+                        || newList[i].Checked != yAxisListView.Items[i].Checked
+                        || newList[i].ForeColor != yAxisListView.Items[i].ForeColor)
+                    {
+                        different = true;
+                        break;
+                    }
+                }
+            }
+            if (different)
+            {
+                var array = newList.ToArray();
+                yAxisListView.Items.Clear();
+                yAxisListView.Items.AddRange(array);
+            }
         }
 
         private bool IsConstantList(List<fsMeasuredParameter> list)
@@ -283,8 +304,17 @@ namespace CalculatorModules.User_Controls
             fsValue maxValue = list[0].GetValueInUnits();
             for (int i = 1; i < list.Count; ++i)
             {
-                minValue = fsValue.Min(minValue, list[i].GetValueInUnits());
-                maxValue = fsValue.Max(maxValue, list[i].GetValueInUnits());
+                fsValue currentValue = list[i].GetValueInUnits();
+                if (!minValue.Defined
+                    || currentValue.Defined && minValue.Value > currentValue.Value)
+                {
+                    minValue = currentValue;
+                }
+                if (!maxValue.Defined
+                    || currentValue.Defined && maxValue.Value < currentValue.Value)
+                {
+                    maxValue = currentValue;
+                }
             }
             fsValue delta = maxValue - minValue;
             fsValue deviation = delta / fsValue.Max(fsValue.Abs(minValue), fsValue.Abs(maxValue));
