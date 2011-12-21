@@ -22,7 +22,7 @@
         "Entry"
         {
         "MsmKey" = "8:_0676165F5DEDDF1F3C0476AB9D1A552B"
-        "OwnerKey" = "8:_A1B56CC4869A42A3BA193124D55C5088"
+        "OwnerKey" = "8:_4D99F7418AE3474580F82D46E96E29ED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,6 +39,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4D99F7418AE3474580F82D46E96E29ED"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_54FDCB4F547792BBD9B16D6BE6F7A4FB"
         "OwnerKey" = "8:_5768C781B2CA89457D5001A9C79784EB"
         "MsmSig" = "8:_UNDEFINED"
@@ -46,7 +52,7 @@
         "Entry"
         {
         "MsmKey" = "8:_54FDCB4F547792BBD9B16D6BE6F7A4FB"
-        "OwnerKey" = "8:_A1B56CC4869A42A3BA193124D55C5088"
+        "OwnerKey" = "8:_4D99F7418AE3474580F82D46E96E29ED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -87,14 +93,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A1B56CC4869A42A3BA193124D55C5088"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A9835D9DE3412A51950B8FED2DFE621A"
-        "OwnerKey" = "8:_A1B56CC4869A42A3BA193124D55C5088"
+        "OwnerKey" = "8:_4D99F7418AE3474580F82D46E96E29ED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -142,7 +142,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A1B56CC4869A42A3BA193124D55C5088"
+        "OwnerKey" = "8:_81861E38B9E841AD6F3D16630014E039"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4D99F7418AE3474580F82D46E96E29ED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -205,12 +211,6 @@
         "OwnerKey" = "8:_435B7D3FE5DC1B51F1CE0F4F346DD6C7"
         "MsmSig" = "8:_UNDEFINED"
         }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_81861E38B9E841AD6F3D16630014E039"
-        "MsmSig" = "8:_UNDEFINED"
-        }
     }
     "Configurations"
     {
@@ -219,7 +219,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\FilterCalculatorSetup.msi"
+        "OutputFilename" = "8:Debug\\FiltrationCalculatorSetup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -268,6 +268,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+                    {
+                    "Name" = "8:.NET Framework 3.5"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -391,6 +404,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4D99F7418AE3474580F82D46E96E29ED"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:FiltrationCalculator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_4D99F7418AE3474580F82D46E96E29ED"
+                    {
+                    "Name" = "8:FiltrationCalculator.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\SmallCalculator2\\bin\\Debug\\FiltrationCalculator.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D23BAEA3D87845B1BCF5D3A6383930EF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_54FDCB4F547792BBD9B16D6BE6F7A4FB"
             {
             "AssemblyRegister" = "3:1"
@@ -482,37 +526,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A1B56CC4869A42A3BA193124D55C5088"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:FilterCalculator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_A1B56CC4869A42A3BA193124D55C5088"
-                    {
-                    "Name" = "8:FilterCalculator.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\SmallCalculator2\\bin\\Debug\\FilterCalculator.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_D23BAEA3D87845B1BCF5D3A6383930EF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A9835D9DE3412A51950B8FED2DFE621A"
@@ -696,6 +709,17 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_76E9E139FBF640A6931DC6A6D36D1A99"
+                    {
+                    "Name" = "8:Filtration Calculator"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_B921A726652848A6BD779B3A25CEC345"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_D23BAEA3D87845B1BCF5D3A6383930EF"
@@ -725,21 +749,21 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Filter Calculator"
+        "ProductName" = "8:Filtration Calculator"
         "ProductCode" = "8:{9E176241-A6C2-4491-91D8-DC7176951E53}"
-        "PackageCode" = "8:{8B58CE2C-2478-4DFF-83B3-C138C019348F}"
+        "PackageCode" = "8:{68EF0CD4-79EC-4223-B5C1-828E5744C1D4}"
         "UpgradeCode" = "8:{8B920692-1F1E-48C4-933F-53C84A741B92}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:NICIFOS"
+        "Manufacturer" = "8: "
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Filter Calculator"
+        "Title" = "8:Filtration Calculator"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:NICIFOS"
+        "ARPCONTACT" = "8:"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -846,6 +870,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4DB0B3CC57BB46D583F6A15CC5AD2D22"
+            {
+            "Name" = "8:Filtration Calculator"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_4D99F7418AE3474580F82D46E96E29ED"
+            "Folder" = "8:_76E9E139FBF640A6931DC6A6D36D1A99"
+            "WorkingFolder" = "8:_D23BAEA3D87845B1BCF5D3A6383930EF"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
