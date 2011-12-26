@@ -19,14 +19,14 @@ namespace WinFormsCakeFormationSample
         {
             public Dictionary<fsParameterIdentifier, DataGridViewCell> m_parameterCell;
             public Dictionary<DataGridViewCell, fsParameterIdentifier> m_cellParameter;
-            public Dictionary<fsParameterIdentifier, fsSimulationParameter> m_parameterValue;
+            public Dictionary<fsParameterIdentifier, fsCalculatorParameter> m_parameterValue;
             public List<fsCalculator> m_calculatorList;
 
             public DataContainer()
             {
                 m_parameterCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
                 m_cellParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
-                m_parameterValue = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
+                m_parameterValue = new Dictionary<fsParameterIdentifier, fsCalculatorParameter>();
                 m_calculatorList = new List<fsCalculator>();
             }
         }
@@ -53,7 +53,7 @@ namespace WinFormsCakeFormationSample
                 var cell = dataGrid.Rows[dataGrid.Rows.Count - 1].Cells[1];
                 dataContainer.m_parameterCell[p] = cell;
                 dataContainer.m_cellParameter[cell] = p;
-                dataContainer.m_parameterValue[p] = new fsSimulationParameter(p);
+                dataContainer.m_parameterValue[p] = new fsCalculatorParameter(p);
             }
         }
 
@@ -231,12 +231,12 @@ namespace WinFormsCakeFormationSample
             var uh = new fsCalculatorUpdateHandler(fsLabeledProgressBar1);
             errorMessageTextBox.Text = "";
 
-            var calcsList = new List<KeyValuePair<fsCalculator, Dictionary<fsParameterIdentifier, fsSimulationParameter>>>();
+            var calcsList = new List<KeyValuePair<fsCalculator, Dictionary<fsParameterIdentifier, fsCalculatorParameter>>>();
             foreach (var dataContainer in dataContainers)
             {
                 foreach (var calculator in dataContainer.m_calculatorList)
                 {
-                    calcsList.Add(new KeyValuePair<fsCalculator,Dictionary<fsParameterIdentifier,fsSimulationParameter>>(
+                    calcsList.Add(new KeyValuePair<fsCalculator,Dictionary<fsParameterIdentifier,fsCalculatorParameter>>(
                         calculator,
                         dataContainer.m_parameterValue));
                 }
@@ -273,7 +273,7 @@ namespace WinFormsCakeFormationSample
                 }
             }
         }
-        private void ApplyCalculator(fsCalculator calculator, Dictionary<fsParameterIdentifier, fsSimulationParameter> parameterValue)
+        private void ApplyCalculator(fsCalculator calculator, Dictionary<fsParameterIdentifier, fsCalculatorParameter> parameterValue)
         {
             foreach (var dataContainer in dataContainers)
             {

@@ -39,13 +39,13 @@
     <Compile Include="For Calculators\fsCalculatorConstant.cs" />
     <Compile Include="For Calculators\fsCalculatorVariable.cs" />
     <Compile Include="fsJustValueParameter.cs" />
+    <Compile Include="fsMeasuredParameter.cs" />
     <Compile Include="Identifiers\fsParameterIdentifier.cs" />
     <Compile Include="fsSimulationParameter.cs" />
     <Compile Include="fsNamedValueParameter.cs" />
     <Compile Include="Interfaces\fsIEquationParameter.cs" />
     <Compile Include="Interfaces\fsIProcessedParameter.cs" />
     <Compile Include="Interfaces\fsIValuedParameter.cs" />
-    <Compile Include="Interfaces\fsMeasuredParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

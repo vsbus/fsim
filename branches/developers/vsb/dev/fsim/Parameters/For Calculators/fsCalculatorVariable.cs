@@ -1,6 +1,6 @@
 ﻿namespace Parameters
 {
-    public class fsCalculatorVariable : fsSimulationParameter, IEquationParameter
+    public class fsCalculatorVariable : fsCalculatorParameter, IEquationParameter
     {
         public bool IsProcessed { get; set; }
 

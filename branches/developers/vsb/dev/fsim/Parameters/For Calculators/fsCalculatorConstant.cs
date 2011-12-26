@@ -2,7 +2,7 @@
 
 namespace Parameters
 {
-    public class fsCalculatorConstant : fsSimulationParameter, IEquationParameter
+    public class fsCalculatorConstant : fsCalculatorParameter, IEquationParameter
     {
         public bool IsProcessed
         {

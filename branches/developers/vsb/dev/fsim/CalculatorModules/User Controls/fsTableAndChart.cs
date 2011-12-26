@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Parameters;
-using ParametersIdentifiers.Interfaces;
+using ParametersIdentifiers;
 using StepCalculators;
 using Value;
 
@@ -18,12 +18,12 @@ namespace CalculatorModules.User_Controls
         private readonly List<fsDiagramWithTable.fsNamedArray> m_y2Curves = new List<fsDiagramWithTable.fsNamedArray>();
         private List<fsCalculator> m_calculators;
 
-        private Dictionary<fsParameterIdentifier, List<fsMeasuredParameter>> m_data =
-            new Dictionary<fsParameterIdentifier, List<fsMeasuredParameter>>();
+        private Dictionary<fsParameterIdentifier, List<fsSimulationModuleParameter>> m_data =
+            new Dictionary<fsParameterIdentifier, List<fsSimulationModuleParameter>>();
 
         private List<fsParametersGroup> m_groups;
         private Dictionary<fsParameterIdentifier, fsParametersGroup> m_parameterToGroup;
-        private Dictionary<fsParameterIdentifier, fsMeasuredParameter> m_values;
+        private Dictionary<fsParameterIdentifier, fsSimulationModuleParameter> m_values;
         private fsParameterIdentifier m_xAxisParameter;
 
         #endregion
@@ -34,18 +34,18 @@ namespace CalculatorModules.User_Controls
         {
             InitializeComponent();
 
-            m_values = new Dictionary<fsParameterIdentifier, fsMeasuredParameter>();
+            m_values = new Dictionary<fsParameterIdentifier, fsSimulationModuleParameter>();
         }
 
         #endregion
 
         public void AssignCalculatorData(
-            Dictionary<fsParameterIdentifier, fsMeasuredParameter> values,
+            Dictionary<fsParameterIdentifier, fsSimulationModuleParameter> values,
             List<fsParametersGroup> groups,
             Dictionary<fsParameterIdentifier, fsParametersGroup> parameterToGroup,
             List<fsCalculator> calculators)
         {
-            m_values = new Dictionary<fsParameterIdentifier, fsMeasuredParameter>(values);
+            m_values = new Dictionary<fsParameterIdentifier, fsSimulationModuleParameter>(values);
             m_groups = new List<fsParametersGroup>(groups);
             m_parameterToGroup = new Dictionary<fsParameterIdentifier, fsParametersGroup>(parameterToGroup);
             m_calculators = new List<fsCalculator>(calculators);
@@ -147,11 +147,11 @@ namespace CalculatorModules.User_Controls
             fsValue from = fsValue.StringToValue(rangeFrom.Text);
             fsValue to = fsValue.StringToValue(rangeTo.Text);
 
-            m_data = new Dictionary<fsParameterIdentifier, List<fsMeasuredParameter>>();
+            m_data = new Dictionary<fsParameterIdentifier, List<fsSimulationModuleParameter>>();
             for (int i = 0; i < detalization; ++i)
             {
-                Dictionary<fsParameterIdentifier, fsMeasuredParameter> currentValues =
-                    m_values.ToDictionary(pair => pair.Key, pair => new fsMeasuredParameter(pair.Value));
+                Dictionary<fsParameterIdentifier, fsSimulationModuleParameter> currentValues =
+                    m_values.ToDictionary(pair => pair.Key, pair => new fsSimulationModuleParameter(pair.Value));
 
                 fsParametersGroup xInitialgroup = m_parameterToGroup[m_xAxisParameter];
                 var xNewGroup = new fsParametersGroup(xInitialgroup) {Representator = m_xAxisParameter};
@@ -166,7 +166,7 @@ namespace CalculatorModules.User_Controls
                 {
                     if (m_data.ContainsKey(pair.Key) == false)
                     {
-                        m_data.Add(pair.Key, new List<fsMeasuredParameter>());
+                        m_data.Add(pair.Key, new List<fsSimulationModuleParameter>());
                     }
                     m_data[pair.Key].Add(pair.Value);
                 }
@@ -202,7 +202,7 @@ namespace CalculatorModules.User_Controls
 
         private fsDiagramWithTable.fsNamedArray GetArray(fsParameterIdentifier parameter)
         {
-            List<fsMeasuredParameter> values = m_data[parameter];
+            List<fsSimulationModuleParameter> values = m_data[parameter];
             var array = new fsDiagramWithTable.fsNamedArray
                             {Name = parameter.Name, Array = new fsValue[values.Count]};
             for (int i = 0; i < values.Count; ++i)
@@ -294,7 +294,7 @@ namespace CalculatorModules.User_Controls
             }
         }
 
-        private static bool IsConstantList(List<fsMeasuredParameter> list)
+        private static bool IsConstantList(List<fsSimulationModuleParameter> list)
         {
             if (list.Count <= 1)
             {

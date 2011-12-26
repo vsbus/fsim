@@ -2,29 +2,34 @@
 
 namespace Parameters
 {
-    public class fsSimulationParameter : fsNamedValueParameter
+    /*
+     * This class is used in Calculators, 
+     * where we need value and isInput flag
+     * 
+     * */
+    public class fsCalculatorParameter : fsNamedValueParameter
     {
         public bool IsInput { get; set; }
 
-        public fsSimulationParameter(fsParameterIdentifier identifier)
+        public fsCalculatorParameter(fsParameterIdentifier identifier)
             : base(identifier)
         {
             IsInput = false;
         }
 
-        public fsSimulationParameter(fsParameterIdentifier identifier, bool isInput)
+        public fsCalculatorParameter(fsParameterIdentifier identifier, bool isInput)
             : base(identifier)
         {
             IsInput = isInput;
         }
 
-        public fsSimulationParameter(fsParameterIdentifier identifier, fsValue value)
+        public fsCalculatorParameter(fsParameterIdentifier identifier, fsValue value)
             : base(identifier, value)
         {
             IsInput = false;
         }
 
-        public fsSimulationParameter(fsParameterIdentifier identifier, bool isInput, fsValue value)
+        public fsCalculatorParameter(fsParameterIdentifier identifier, bool isInput, fsValue value)
             : base(identifier, value)
         {
             IsInput = isInput;

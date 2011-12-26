@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Parameters;
-using ParametersIdentifiers.Interfaces;
+using ParametersIdentifiers;
 using StepCalculators;
 using Units;
 using Value;
@@ -15,7 +15,7 @@ namespace CalculatorModules
         #region Calculation Data
 
         protected Dictionary<Type, Enum> CalculationOptions = new Dictionary<Type, Enum>();
-        protected Dictionary<fsParameterIdentifier, fsMeasuredParameter> Values { get; private set; }
+        protected Dictionary<fsParameterIdentifier, fsSimulationModuleParameter> Values { get; private set; }
 
         #endregion
 
@@ -34,7 +34,7 @@ namespace CalculatorModules
 
         public fsCalculatorControl()
         {
-            Values = new Dictionary<fsParameterIdentifier, fsMeasuredParameter>();
+            Values = new Dictionary<fsParameterIdentifier, fsSimulationModuleParameter>();
             ParameterToCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();
             CellToParameter = new Dictionary<DataGridViewCell, fsParameterIdentifier>();
             Calculators = new List<fsCalculator>();
@@ -150,7 +150,7 @@ namespace CalculatorModules
         {
             foreach (fsParameterIdentifier p in group.Parameters)
             {
-                var parameter = new fsMeasuredParameter(p);
+                var parameter = new fsSimulationModuleParameter(p);
                 Values.Add(p, parameter);
                 AddRow(dataGrid, parameter, color);
             }
@@ -170,7 +170,7 @@ namespace CalculatorModules
             WriteValuesToDataGrid();
         }
 
-        protected void AddRow(DataGridView dataGrid, fsMeasuredParameter parameter, Color color)
+        protected void AddRow(DataGridView dataGrid, fsSimulationModuleParameter parameter, Color color)
         {
             int ind = dataGrid.Rows.Add(new[] {parameter.ToString(), ""});
             SetRowColor(dataGrid, ind, color);
@@ -234,7 +234,7 @@ namespace CalculatorModules
 
         protected void ReadEnteredValue(DataGridViewCell cell, fsParameterIdentifier parameter)
         {
-            fsMeasuredParameter value = Values[parameter];
+            fsSimulationModuleParameter value = Values[parameter];
             value.SetValueInUnits(fsValue.ObjectToValue(cell.Value));
         }
 
@@ -246,7 +246,7 @@ namespace CalculatorModules
 
             foreach (fsParameterIdentifier identifier in Values.Keys)
             {
-                fsMeasuredParameter parameter = Values[identifier];
+                fsSimulationModuleParameter parameter = Values[identifier];
                 if (dictionary.ContainsKey(identifier.MeasurementCharacteristic))
                 {
                     parameter.Unit = dictionary[identifier.MeasurementCharacteristic];

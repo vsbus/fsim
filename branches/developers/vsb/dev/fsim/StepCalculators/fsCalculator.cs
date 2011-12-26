@@ -135,7 +135,7 @@ namespace StepCalculators
 
         #region Get/Set Values Data
 
-        public void CopyValuesToStorage(Dictionary<fsParameterIdentifier, fsSimulationParameter> target)
+        public void CopyValuesToStorage(Dictionary<fsParameterIdentifier, fsCalculatorParameter> target)
         {
             foreach (fsParameterIdentifier p in target.Keys)
             {
@@ -146,7 +146,7 @@ namespace StepCalculators
             }
         }
 
-        public void ReadDataFromStorage(Dictionary<fsParameterIdentifier, fsSimulationParameter> source)
+        public void ReadDataFromStorage(Dictionary<fsParameterIdentifier, fsCalculatorParameter> source)
         {
             foreach (fsParameterIdentifier p in source.Keys)
             {
