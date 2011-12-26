@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Parameters;
 using ParametersIdentifiers;
+using ParametersIdentifiers.Ranges;
 using StepCalculators;
 using Value;
 
@@ -77,20 +78,27 @@ namespace CalculatorModules.User_Controls
                 m_inputRefreshing = true;
 
                 RefreshXAxisList();
-                RefreshInputsBox();
-                rangeFrom.Text = @"0";
-                rangeTo.Text = @"100";
+
+                m_xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
+                
+                RefreshRangesBoxes();
+
                 if (detalizationBox.Text == "")
                 {
                     detalizationBox.Text = @"50";
                 }
 
-                m_xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
+                RefreshInputsBox();
 
                 m_inputRefreshing = false;
             }
         }
 
+        private void RefreshRangesBoxes()
+        {
+            rangeFrom.Text = m_values[m_xAxisParameter].Range.From.ToString();
+            rangeTo.Text = m_values[m_xAxisParameter].Range.To.ToString();
+        }
         #region RefreshInputs
 
         private void RefreshInputsBox()
@@ -370,6 +378,7 @@ namespace CalculatorModules.User_Controls
         private void XAxisListSelectedIndexChanged(object sender, EventArgs e)
         {
             m_xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
+            RefreshRangesBoxes();
             CalculateData();
             RefreshOutput();
         }
@@ -398,5 +407,15 @@ namespace CalculatorModules.User_Controls
         }
 
         #endregion
+
+        private void rangeFrom_TextChanged(object sender, EventArgs e)
+        {
+            m_values[m_xAxisParameter].Range.From = fsValue.StringToValue(rangeFrom.Text);
+        }
+
+        private void rangeTo_TextChanged(object sender, EventArgs e)
+        {
+            m_values[m_xAxisParameter].Range.To = fsValue.StringToValue(rangeTo.Text);
+        }
     }
 }

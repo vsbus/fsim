@@ -1,4 +1,5 @@
 ﻿using Parameters;
+using ParametersIdentifiers.Ranges;
 using Units;
 using Value;
 
@@ -12,6 +13,7 @@ namespace ParametersIdentifiers
     public class fsSimulationModuleParameter : fsNamedValueParameter
     {
         public fsUnit Unit { get; set; }
+        public fsRange Range { get; set; }
 
         #region Constructors
 
@@ -19,18 +21,21 @@ namespace ParametersIdentifiers
             : base(other)
         {
             Unit = other.Unit;
+            Range = new fsRange(new fsValue(0), new fsValue(100));
         }
 
         public fsSimulationModuleParameter(fsParameterIdentifier identifier)
             : base(identifier)
         {
             Unit = identifier.MeasurementCharacteristic.CurrentUnit;
+            Range = new fsRange(new fsValue(0), new fsValue(100));
         }
 
         public fsSimulationModuleParameter(fsParameterIdentifier identifier, fsValue value)
             : base(identifier, value)
         {
             Unit = identifier.MeasurementCharacteristic.CurrentUnit;
+            Range = new fsRange(new fsValue(0), new fsValue(100));
         }
 
         #endregion

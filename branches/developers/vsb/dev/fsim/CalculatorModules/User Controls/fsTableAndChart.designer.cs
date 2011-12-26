@@ -41,10 +41,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.xAxisList = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.rangeFrom = new System.Windows.Forms.TextBox();
-            this.detalizationBox = new System.Windows.Forms.TextBox();
-            this.rangeTo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.rangeFrom = new fmDataGrid.fmNumericalTextBox();
+            this.rangeTo = new fmDataGrid.fmNumericalTextBox();
+            this.detalizationBox = new fmDataGrid.fmNumericalTextBox();
             this.fsDiagramWithTable1 = new CalculatorModules.User_Controls.fsDiagramWithTable();
             this.panel1.SuspendLayout();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -175,12 +175,12 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.detalizationBox);
+            this.panel2.Controls.Add(this.rangeTo);
+            this.panel2.Controls.Add(this.rangeFrom);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.xAxisList);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.rangeFrom);
-            this.panel2.Controls.Add(this.detalizationBox);
-            this.panel2.Controls.Add(this.rangeTo);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -216,30 +216,6 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Detalization";
             // 
-            // rangeFrom
-            // 
-            this.rangeFrom.Location = new System.Drawing.Point(48, 34);
-            this.rangeFrom.Name = "rangeFrom";
-            this.rangeFrom.Size = new System.Drawing.Size(44, 20);
-            this.rangeFrom.TabIndex = 2;
-            this.rangeFrom.TextChanged += new System.EventHandler(this.RangeFromTextChanged);
-            // 
-            // detalizationBox
-            // 
-            this.detalizationBox.Location = new System.Drawing.Point(101, 60);
-            this.detalizationBox.Name = "detalizationBox";
-            this.detalizationBox.Size = new System.Drawing.Size(44, 20);
-            this.detalizationBox.TabIndex = 5;
-            this.detalizationBox.TextChanged += new System.EventHandler(this.DetalizationBoxTextChanged);
-            // 
-            // rangeTo
-            // 
-            this.rangeTo.Location = new System.Drawing.Point(101, 34);
-            this.rangeTo.Name = "rangeTo";
-            this.rangeTo.Size = new System.Drawing.Size(44, 20);
-            this.rangeTo.TabIndex = 3;
-            this.rangeTo.TextChanged += new System.EventHandler(this.RangeToTextChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -248,6 +224,35 @@
             this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Range";
+            // 
+            // rangeFrom
+            // 
+            this.rangeFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.rangeFrom.ForeColor = System.Drawing.Color.Red;
+            this.rangeFrom.Location = new System.Drawing.Point(48, 34);
+            this.rangeFrom.Name = "rangeFrom";
+            this.rangeFrom.Size = new System.Drawing.Size(44, 20);
+            this.rangeFrom.TabIndex = 8;
+            this.rangeFrom.TextChanged += new System.EventHandler(this.rangeFrom_TextChanged);
+            // 
+            // rangeTo
+            // 
+            this.rangeTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.rangeTo.ForeColor = System.Drawing.Color.Red;
+            this.rangeTo.Location = new System.Drawing.Point(101, 34);
+            this.rangeTo.Name = "rangeTo";
+            this.rangeTo.Size = new System.Drawing.Size(44, 20);
+            this.rangeTo.TabIndex = 9;
+            this.rangeTo.TextChanged += new System.EventHandler(this.rangeTo_TextChanged);
+            // 
+            // detalizationBox
+            // 
+            this.detalizationBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.detalizationBox.ForeColor = System.Drawing.Color.Red;
+            this.detalizationBox.Location = new System.Drawing.Point(71, 60);
+            this.detalizationBox.Name = "detalizationBox";
+            this.detalizationBox.Size = new System.Drawing.Size(74, 20);
+            this.detalizationBox.TabIndex = 10;
             // 
             // fsDiagramWithTable1
             // 
@@ -287,10 +292,7 @@
         private System.Windows.Forms.ComboBox xAxisList;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox detalizationBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox rangeTo;
-        private System.Windows.Forms.TextBox rangeFrom;
         private System.Windows.Forms.Label label1;
         private fsDiagramWithTable fsDiagramWithTable1;
         private System.Windows.Forms.SplitContainer yAxisSplitContainer;
@@ -301,5 +303,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListView y2AxisList;
         private System.Windows.Forms.ListView yAxisList;
+        private fmDataGrid.fmNumericalTextBox detalizationBox;
+        private fmDataGrid.fmNumericalTextBox rangeTo;
+        private fmDataGrid.fmNumericalTextBox rangeFrom;
     }
 }
