@@ -2,27 +2,32 @@
 using Units;
 using Value;
 
-namespace ParametersIdentifiers.Interfaces
+namespace ParametersIdentifiers
 {
-    public class fsMeasuredParameter : fsNamedValueParameter
+    /*
+     * This class is used in Calculator modules,
+     * where we need to know parameter Value, Unit and Range
+     * 
+     * */
+    public class fsSimulationModuleParameter : fsNamedValueParameter
     {
         public fsUnit Unit { get; set; }
 
         #region Constructors
 
-        public fsMeasuredParameter(fsMeasuredParameter other)
+        public fsSimulationModuleParameter(fsSimulationModuleParameter other)
             : base(other)
         {
             Unit = other.Unit;
         }
 
-        public fsMeasuredParameter(fsParameterIdentifier identifier)
+        public fsSimulationModuleParameter(fsParameterIdentifier identifier)
             : base(identifier)
         {
             Unit = identifier.MeasurementCharacteristic.CurrentUnit;
         }
 
-        public fsMeasuredParameter(fsParameterIdentifier identifier, fsValue value)
+        public fsSimulationModuleParameter(fsParameterIdentifier identifier, fsValue value)
             : base(identifier, value)
         {
             Unit = identifier.MeasurementCharacteristic.CurrentUnit;

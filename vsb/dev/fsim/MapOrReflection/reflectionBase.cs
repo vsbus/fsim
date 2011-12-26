@@ -8,14 +8,14 @@ namespace MapOrReflection
 {
     public class reflectionBase
     {
-        public void CopyValuesToStorage(Dictionary<fsParameterIdentifier, fsSimulationParameter> target)
+        public void CopyValuesToStorage(Dictionary<fsParameterIdentifier, fsCalculatorParameter> target)
         {
             foreach (var propertie in this.GetType().GetProperties())
             {
                 object obj = propertie.GetValue(this, null);
                 if (obj is fsCalculatorVariable)
                 {
-                    fsSimulationParameter parameter = (fsCalculatorVariable)obj;
+                    fsCalculatorParameter parameter = (fsCalculatorVariable)obj;
                     if (target.ContainsKey(parameter.Identifier))
                     {
                         target[parameter.Identifier].Value = parameter.Value;
@@ -25,14 +25,14 @@ namespace MapOrReflection
             }
         }
 
-        public void ReadDataFromStorage(Dictionary<fsParameterIdentifier, fsSimulationParameter> source)
+        public void ReadDataFromStorage(Dictionary<fsParameterIdentifier, fsCalculatorParameter> source)
         {
             foreach (var propertie in this.GetType().GetProperties())
             {
                 object obj = propertie.GetValue(this, null);
-                if (obj is fsSimulationParameter)
+                if (obj is fsCalculatorParameter)
                 {
-                    fsSimulationParameter parameter = (fsSimulationParameter)obj;
+                    fsCalculatorParameter parameter = (fsCalculatorParameter)obj;
                     if (source.ContainsKey(parameter.Identifier))
                     {
                         parameter.Value = source[parameter.Identifier].Value;

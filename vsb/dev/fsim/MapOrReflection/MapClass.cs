@@ -41,7 +41,7 @@ namespace MapOrReflection
             return p;
         }
 
-        public void CopyValuesToStorage(Dictionary<fsParameterIdentifier, fsSimulationParameter> target)
+        public void CopyValuesToStorage(Dictionary<fsParameterIdentifier, fsCalculatorParameter> target)
         {
             foreach (fsParameterIdentifier p in target.Keys)
             {
@@ -52,7 +52,7 @@ namespace MapOrReflection
             }
         }
 
-        public void ReadDataFromStorage(Dictionary<fsParameterIdentifier, fsSimulationParameter> source)
+        public void ReadDataFromStorage(Dictionary<fsParameterIdentifier, fsCalculatorParameter> source)
         {
             foreach (fsParameterIdentifier p in source.Keys)
             {

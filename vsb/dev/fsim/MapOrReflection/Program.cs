@@ -19,7 +19,7 @@ namespace MapOrReflection
 
         private static void DictionaryTest()
         {
-            Dictionary<fsParameterIdentifier, fsSimulationParameter> m_variables = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
+            Dictionary<fsParameterIdentifier, fsCalculatorParameter> m_variables = new Dictionary<fsParameterIdentifier, fsCalculatorParameter>();
 
             var list = new[] {
                 fsParameterIdentifier.SolidsDensity,
@@ -63,7 +63,7 @@ namespace MapOrReflection
 
         private static void ReflectionTest()
         {
-            Dictionary<fsParameterIdentifier, fsSimulationParameter> m_variables = new Dictionary<fsParameterIdentifier, fsSimulationParameter>();
+            Dictionary<fsParameterIdentifier, fsCalculatorParameter> m_variables = new Dictionary<fsParameterIdentifier, fsCalculatorParameter>();
 
             var list = new[] {
                 fsParameterIdentifier.SolidsDensity,
