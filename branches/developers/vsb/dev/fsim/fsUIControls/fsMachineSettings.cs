@@ -15,22 +15,22 @@ namespace fsUIControls
         private void MachineSettingsLoad(object sender, EventArgs e)
         {
             var parameters = new[]
-            {
-                fsParameterIdentifier.ViscosityFiltrate,
-                fsParameterIdentifier.MotherLiquidDensity,
-                fsParameterIdentifier.SolidsDensity,
-                fsParameterIdentifier.SuspensionSolidsMassFraction,
-                fsParameterIdentifier.SuspensionSolidsVolumeFraction,
-                fsParameterIdentifier.CakePorosity0,
-                fsParameterIdentifier.FilterArea,
-                fsParameterIdentifier.PressureDifference,
-                fsParameterIdentifier.FiltrationTime
-            };
+                                 {
+                                     fsParameterIdentifier.ViscosityFiltrate,
+                                     fsParameterIdentifier.MotherLiquidDensity,
+                                     fsParameterIdentifier.SolidsDensity,
+                                     fsParameterIdentifier.SuspensionSolidsMassFraction,
+                                     fsParameterIdentifier.SuspensionSolidsVolumeFraction,
+                                     fsParameterIdentifier.CakePorosity0,
+                                     fsParameterIdentifier.FilterArea,
+                                     fsParameterIdentifier.PressureDifference,
+                                     fsParameterIdentifier.FiltrationTime
+                                 };
 
             foreach (fsParameterIdentifier parameter in parameters)
             {
                 int index = dataGrid.Rows.Add();
-                
+
                 dataGrid.Rows[index].Cells[0].Value = parameter.FullName;
 
                 var comboBoxCell = (DataGridViewComboBoxCell) dataGrid.Rows[index].Cells[1];
@@ -43,9 +43,9 @@ namespace fsUIControls
                 }
                 comboBoxCell.Items.AddRange(unitsNames);
                 comboBoxCell.Value = parameter.MeasurementCharacteristic.CurrentUnit.Name;
-                
+
                 dataGrid.Rows[index].Cells[2].Value = 0;
-                
+
                 dataGrid.Rows[index].Cells[3].Value = 100;
             }
         }
@@ -55,7 +55,7 @@ namespace fsUIControls
             if (e.RowIndex >= 0 && e.ColumnIndex == UnitsColumn.Index)
             {
                 dataGrid.BeginEdit(true);
-                var comboBox = (ComboBox)dataGrid.EditingControl;
+                var comboBox = (ComboBox) dataGrid.EditingControl;
                 comboBox.DroppedDown = true;
             }
         }

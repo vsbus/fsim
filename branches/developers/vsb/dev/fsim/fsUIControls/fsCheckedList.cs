@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace fsUIControls
 {
     public partial class fsCheckedList : UserControl
     {
+        public fsCheckedList()
+        {
+            InitializeComponent();
+        }
+
         public void AssignList(List<string> list)
         {
             listView1.Items.Clear();
@@ -15,12 +21,7 @@ namespace fsUIControls
             listView1.Columns[0].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
-        public fsCheckedList()
-        {
-            InitializeComponent();
-        }
-
-        private void selectAllCheckBox_CheckedChanged(object sender, System.EventArgs e)
+        private void selectAllCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             for (int index = 0; index < listView1.Items.Count; ++index)
             {
