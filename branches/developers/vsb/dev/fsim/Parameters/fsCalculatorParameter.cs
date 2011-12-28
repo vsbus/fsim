@@ -7,10 +7,9 @@ namespace Parameters
      * where we need value and isInput flag
      * 
      * */
+
     public class fsCalculatorParameter : fsNamedValueParameter
     {
-        public bool IsInput { get; set; }
-
         public fsCalculatorParameter(fsParameterIdentifier identifier)
             : base(identifier)
         {
@@ -34,6 +33,8 @@ namespace Parameters
         {
             IsInput = isInput;
         }
+
+        public bool IsInput { get; set; }
 
         public string ValueToStringWithCurrentUnits()
         {
