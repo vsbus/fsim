@@ -10,13 +10,22 @@ namespace fsUIControls
     public partial class fsUnitsControl : UserControl
     {
         private const string CustomSchemeTitle = "Custom";
-        private bool m_schemeApplyingInProcess;
+
         private readonly Dictionary<fsCharacteristic, ComboBox> m_characteristicToComboBox =
-         new Dictionary<fsCharacteristic, ComboBox>();
+            new Dictionary<fsCharacteristic, ComboBox>();
 
         private readonly Dictionary<fsCharacteristic, Label> m_characteristicToLabel =
             new Dictionary<fsCharacteristic, Label>();
+
         public Dictionary<fsCharacteristic, fsUnit> Characteristics = new Dictionary<fsCharacteristic, fsUnit>();
+        private bool m_schemeApplyingInProcess;
+
+        public fsUnitsControl()
+        {
+            InitializeComponent();
+            InitializeShemeBox();
+        }
+
         private static IEnumerable<fsCharacteristic> GetSecondaryCharacteristics()
         {
             return new[]
@@ -41,21 +50,15 @@ namespace fsUIControls
                            fsCharacteristic.MassFlowrate
                        };
         }
-     
-        public fsUnitsControl()
-        {
-            InitializeComponent();
-            InitializeShemeBox();
-        }
 
         private void InitializeShemeBox()
         {
             schemeBox.Items.Add(CustomSchemeTitle);
             schemeBox.SelectedItem = schemeBox.Items[0];
 
-            foreach (FieldInfo field in typeof(fsScheme).GetFields())
+            foreach (FieldInfo field in typeof (fsScheme).GetFields())
             {
-                var scheme = ((fsScheme)field.GetValue(null));
+                var scheme = ((fsScheme) field.GetValue(null));
                 schemeBox.Items.Add(scheme.Name);
             }
         }
@@ -74,6 +77,7 @@ namespace fsUIControls
                 m_characteristicToLabel[characteristic].Visible = isVisible;
             }
         }
+
         private void InitializeUnitsPanel()
         {
             IEnumerable<fsCharacteristic> primaryCharacteristics = GetPrimaryCharacteristics();
@@ -92,7 +96,7 @@ namespace fsUIControls
 
             foreach (fsCharacteristic characteristic in allCharacteristics)
             {
-                var characteristicLabel = new Label { Text = characteristic.Name, AutoSize = true, Parent = unitsPanel };
+                var characteristicLabel = new Label {Text = characteristic.Name, AutoSize = true, Parent = unitsPanel};
 
                 var unitsComboBox = new ComboBox();
 
@@ -170,7 +174,7 @@ namespace fsUIControls
                 Characteristics[pair.Key] = fsUnit.UnitFromText(pair.Value.Text);
             }
         }
-        
+
         private void UpdateSchemeBox(Dictionary<fsCharacteristic, fsUnit> dictionary)
         {
             m_schemeApplyingInProcess = true;
