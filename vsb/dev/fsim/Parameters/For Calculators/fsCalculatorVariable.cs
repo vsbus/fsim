@@ -2,8 +2,6 @@
 {
     public class fsCalculatorVariable : fsCalculatorParameter, IEquationParameter
     {
-        public bool IsProcessed { get; set; }
-
         public fsCalculatorVariable(fsParameterIdentifier identifier)
             : base(identifier)
         {
@@ -15,5 +13,11 @@
         {
             IsProcessed = false;
         }
+
+        #region IEquationParameter Members
+
+        public bool IsProcessed { get; set; }
+
+        #endregion
     }
 }
