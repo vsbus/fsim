@@ -150,5 +150,12 @@ namespace Calculator
                 }
             }
         }
+
+        private void machineTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var machineDialog = new fsMachineDialog();
+            machineDialog.AssignModulesList(m_modules);
+            DialogResult dialogResult = machineDialog.ShowDialog();
+        }
     }
 }

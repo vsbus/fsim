@@ -44,6 +44,7 @@
             this.WindowNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.addModuleButton = new System.Windows.Forms.Button();
+            this.machineTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsDataGrid)).BeginInit();
@@ -123,7 +124,8 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.unitsToolStripMenuItem});
+            this.unitsToolStripMenuItem,
+            this.machineTypeToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "&Options";
@@ -131,7 +133,7 @@
             // unitsToolStripMenuItem
             // 
             this.unitsToolStripMenuItem.Name = "unitsToolStripMenuItem";
-            this.unitsToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.unitsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.unitsToolStripMenuItem.Text = "&Units";
             this.unitsToolStripMenuItem.Click += new System.EventHandler(this.UnitsToolStripMenuItemClick);
             // 
@@ -191,6 +193,13 @@
             this.addModuleButton.UseVisualStyleBackColor = true;
             this.addModuleButton.Click += new System.EventHandler(this.AddModuleButtonClick);
             // 
+            // machineTypeToolStripMenuItem
+            // 
+            this.machineTypeToolStripMenuItem.Name = "machineTypeToolStripMenuItem";
+            this.machineTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.machineTypeToolStripMenuItem.Text = "&Machine Type";
+            this.machineTypeToolStripMenuItem.Click += new System.EventHandler(this.machineTypeToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,6 +240,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn WindowNameColumn;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unitsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem machineTypeToolStripMenuItem;
 
     }
 }
