@@ -97,6 +97,10 @@
       <Project>{2687A39A-2905-4632-A57E-5F98C3142423}</Project>
       <Name>Units</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Value\Value.csproj">
+      <Project>{CD1BD2A7-AB61-4A58-B1F9-9A3DF9A0E9F2}</Project>
+      <Name>Value</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

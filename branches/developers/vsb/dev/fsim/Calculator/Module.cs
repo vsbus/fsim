@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using CalculatorModules;
+using Parameters;
+using ParametersIdentifiers.Ranges;
 using Units;
 
 namespace Calculator
@@ -33,6 +35,11 @@ namespace Calculator
         internal void SetUnits(Dictionary<fsCharacteristic, fsUnit> dictionary)
         {
             m_calculatorControl.SetUnits(dictionary);
+        }
+
+        internal void SetRanges(Dictionary<fsParameterIdentifier, fsRange> dictionary)
+        {
+            m_calculatorControl.SetRanges(dictionary);
         }
     }
 }

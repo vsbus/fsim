@@ -34,7 +34,7 @@
             this.BottomPanel = new System.Windows.Forms.Panel();
             this.dataGrid = new fmDataGrid.fmDataGrid();
             this.ParameterColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitsColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.UnitsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RangeFromColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
             this.RangeToColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
             this.TopPanel.SuspendLayout();
@@ -99,6 +99,7 @@
             this.dataGrid.Size = new System.Drawing.Size(319, 344);
             this.dataGrid.TabIndex = 0;
             this.dataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridCellClick);
+            this.dataGrid.CellValueChangedByUser += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridCellValueChangedByUser);
             // 
             // ParameterColumn
             // 
@@ -111,6 +112,9 @@
             // 
             this.UnitsColumn.HeaderText = "Units";
             this.UnitsColumn.Name = "UnitsColumn";
+            this.UnitsColumn.ReadOnly = true;
+            this.UnitsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.UnitsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.UnitsColumn.Width = 80;
             // 
             // RangeFromColumn
@@ -150,7 +154,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn UnitsColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsColumn;
         private fmDataGrid.fmDataGridViewNumericalTextBoxColumn RangeFromColumn;
         private fmDataGrid.fmDataGridViewNumericalTextBoxColumn RangeToColumn;
     }

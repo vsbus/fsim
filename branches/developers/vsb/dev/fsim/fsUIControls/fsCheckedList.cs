@@ -28,5 +28,10 @@ namespace fsUIControls
                 listView1.Items[index].Checked = selectAllCheckBox.Checked;
             }
         }
+
+        public ListView.CheckedListViewItemCollection GetCheckedItems()
+        {
+            return listView1.CheckedItems;
+        }
     }
 }
