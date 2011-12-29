@@ -156,6 +156,13 @@ namespace Calculator
             var machineDialog = new fsMachineDialog();
             machineDialog.AssignModulesList(m_modules);
             DialogResult dialogResult = machineDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                foreach (fsModule module in machineDialog.GetModifiedModules())
+                {
+                    module.SetRanges(machineDialog.Ranges);
+                }
+            }
         }
     }
 }

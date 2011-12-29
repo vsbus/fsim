@@ -16,6 +16,12 @@ namespace ParametersIdentifiers.Ranges
             To = to;
         }
 
+        public fsRange(double from, double to)
+        {
+            From = new fsValue(from);
+            To = new fsValue(to);
+        }
+
         public fsValue From { get; set; }
         public fsValue To { get; set; }
     }

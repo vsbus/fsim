@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Parameters;
 using ParametersIdentifiers;
+using ParametersIdentifiers.Ranges;
 using StepCalculators;
 using Units;
 using Value;
@@ -261,5 +262,18 @@ namespace CalculatorModules
         }
 
         protected abstract void StopGridsEdit();
+
+        public void SetRanges(Dictionary<fsParameterIdentifier, fsRange> dictionary)
+        {
+            foreach (fsParameterIdentifier identifier in Values.Keys)
+            {
+                fsSimulationModuleParameter parameter = Values[identifier];
+                if (dictionary.ContainsKey(identifier))
+                {
+                    parameter.Range = dictionary[identifier];
+                }
+            }
+            Recalculate();
+        }
     }
 }

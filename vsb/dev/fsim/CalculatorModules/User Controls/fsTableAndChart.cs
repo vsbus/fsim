@@ -411,11 +411,15 @@ namespace CalculatorModules.User_Controls
         private void rangeFrom_TextChanged(object sender, EventArgs e)
         {
             m_values[m_xAxisParameter].Range.From = fsValue.StringToValue(rangeFrom.Text);
+            CalculateData();
+            RefreshOutput();
         }
 
         private void rangeTo_TextChanged(object sender, EventArgs e)
         {
             m_values[m_xAxisParameter].Range.To = fsValue.StringToValue(rangeTo.Text);
+            CalculateData();
+            RefreshOutput();
         }
     }
 }
