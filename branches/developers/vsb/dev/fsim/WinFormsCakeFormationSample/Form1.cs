@@ -99,13 +99,13 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.CakeResistanceAlpha0,
                 fsParameterIdentifier.CakeCompressibility,
-                fsParameterIdentifier.FilterMediumResistance0,
-                fsParameterIdentifier.Rm0,
+                fsParameterIdentifier.FilterMediumResistanceHce0,
+                fsParameterIdentifier.FilterMediumResistanceRm0,
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.PressureDifference,
                 fsParameterIdentifier.CycleTime,
                 fsParameterIdentifier.RotationalSpeed,
-                fsParameterIdentifier.FormationRelativeTime,
+                fsParameterIdentifier.SpecificFiltrationTime,
                 fsParameterIdentifier.FiltrationTime,
                 fsParameterIdentifier.CakeHeight,
                 fsParameterIdentifier.SuspensionMass,
@@ -193,8 +193,8 @@ namespace WinFormsCakeFormationSample
                 fsParameterIdentifier.CakeResistanceAlpha0);
 
             UpdateInputs(cell,
-                fsParameterIdentifier.Rm0,
-                fsParameterIdentifier.FilterMediumResistance0);
+                fsParameterIdentifier.FilterMediumResistanceRm0,
+                fsParameterIdentifier.FilterMediumResistanceHce0);
 
             UpdateInputs(cell,
                 fsParameterIdentifier.CycleTime,
@@ -202,7 +202,7 @@ namespace WinFormsCakeFormationSample
 
             UpdateInputs(cell,
                 fsParameterIdentifier.FiltrationTime,
-                fsParameterIdentifier.FormationRelativeTime,
+                fsParameterIdentifier.SpecificFiltrationTime,
                 fsParameterIdentifier.CakeHeight,
                 fsParameterIdentifier.SuspensionMass,
                 fsParameterIdentifier.SuspensionVolume);

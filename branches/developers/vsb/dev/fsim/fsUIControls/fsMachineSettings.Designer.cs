@@ -63,11 +63,15 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(118, 14);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(198, 21);
             this.comboBox1.TabIndex = 0;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1SelectedIndexChanged);
             // 
             // BottomPanel
             // 
@@ -98,7 +102,6 @@
             this.dataGrid.RowTemplate.Height = 18;
             this.dataGrid.Size = new System.Drawing.Size(319, 344);
             this.dataGrid.TabIndex = 0;
-            this.dataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridCellClick);
             this.dataGrid.CellValueChangedByUser += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridCellValueChangedByUser);
             // 
             // ParameterColumn

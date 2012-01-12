@@ -21,7 +21,7 @@ namespace Calculator
             fsCharacteristic.Mass.CurrentUnit = fsUnit.Gramme;
             fsCharacteristic.Volume.CurrentUnit = fsUnit.MilliLiter;
 
-            Application.Run(new MainWindow());
+            Application.Run(new fsMainWindow());
         }
     }
 }

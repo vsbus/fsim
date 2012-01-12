@@ -33,7 +33,7 @@ namespace CalculatorModules
 
         #endregion
 
-        public fsCalculatorControl()
+        protected fsCalculatorControl()
         {
             Values = new Dictionary<fsParameterIdentifier, fsSimulationModuleParameter>();
             ParameterToCell = new Dictionary<fsParameterIdentifier, DataGridViewCell>();

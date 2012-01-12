@@ -36,7 +36,7 @@ namespace CalculatorModules
             fsParametersGroup ncGroup = AddGroup(
                 fsParameterIdentifier.CakeCompressibility);
             fsParametersGroup hceGroup = AddGroup(
-                fsParameterIdentifier.FilterMediumResistance0);
+                fsParameterIdentifier.FilterMediumResistanceHce0);
             fsParametersGroup pressureGroup = AddGroup(
                 fsParameterIdentifier.PressureDifference);
             fsParametersGroup areaGroup = AddGroup(

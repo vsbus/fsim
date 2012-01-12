@@ -1,6 +1,6 @@
 ﻿namespace Calculator
 {
-    partial class MainWindow
+    partial class fsMainWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -198,7 +198,7 @@
             this.machineTypeToolStripMenuItem.Name = "machineTypeToolStripMenuItem";
             this.machineTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.machineTypeToolStripMenuItem.Text = "&Machine Type";
-            this.machineTypeToolStripMenuItem.Click += new System.EventHandler(this.machineTypeToolStripMenuItem_Click);
+            this.machineTypeToolStripMenuItem.Click += new System.EventHandler(this.MachineTypeToolStripMenuItemClick);
             // 
             // MainWindow
             // 
@@ -209,7 +209,7 @@
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "MainWindow";
+            this.Name = "fsMainWindow";
             this.Text = "Calculator";
             this.Load += new System.EventHandler(this.MainWindowLoad);
             this.menuStrip1.ResumeLayout(false);

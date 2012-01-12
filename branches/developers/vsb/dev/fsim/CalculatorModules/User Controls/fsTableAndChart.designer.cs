@@ -205,7 +205,7 @@
             this.rangeTo.Name = "rangeTo";
             this.rangeTo.Size = new System.Drawing.Size(44, 20);
             this.rangeTo.TabIndex = 9;
-            this.rangeTo.TextChanged += new System.EventHandler(this.rangeTo_TextChanged);
+            this.rangeTo.TextChanged += new System.EventHandler(this.RangeToTextChanged);
             // 
             // rangeFrom
             // 
@@ -215,7 +215,7 @@
             this.rangeFrom.Name = "rangeFrom";
             this.rangeFrom.Size = new System.Drawing.Size(44, 20);
             this.rangeFrom.TabIndex = 8;
-            this.rangeFrom.TextChanged += new System.EventHandler(this.rangeFrom_TextChanged);
+            this.rangeFrom.TextChanged += new System.EventHandler(this.RangeFromTextChanged);
             // 
             // label1
             // 

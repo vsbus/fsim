@@ -15,8 +15,8 @@ namespace CalculatorModules.User_Controls
     {
         #region Private Data
 
-        private readonly List<fsDiagramWithTable.fsNamedArray> m_yCurves = new List<fsDiagramWithTable.fsNamedArray>();
         private readonly List<fsDiagramWithTable.fsNamedArray> m_y2Curves = new List<fsDiagramWithTable.fsNamedArray>();
+        private readonly List<fsDiagramWithTable.fsNamedArray> m_yCurves = new List<fsDiagramWithTable.fsNamedArray>();
         private List<fsCalculator> m_calculators;
 
         private Dictionary<fsParameterIdentifier, List<fsSimulationModuleParameter>> m_data =
@@ -80,7 +80,7 @@ namespace CalculatorModules.User_Controls
                 RefreshXAxisList();
 
                 m_xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
-                
+
                 RefreshRangesBoxes();
 
                 if (detalizationBox.Text == "")
@@ -96,9 +96,12 @@ namespace CalculatorModules.User_Controls
 
         private void RefreshRangesBoxes()
         {
-            rangeFrom.Text = m_values[m_xAxisParameter].Range.From.ToString();
-            rangeTo.Text = m_values[m_xAxisParameter].Range.To.ToString();
+            fsRange range = m_values[m_xAxisParameter].Range;
+            double factor = m_values[m_xAxisParameter].Unit.Coefficient;
+            rangeFrom.Text = (range.From / factor).ToString();
+            rangeTo.Text = (range.To / factor).ToString();
         }
+
         #region RefreshInputs
 
         private void RefreshInputsBox()
@@ -152,8 +155,9 @@ namespace CalculatorModules.User_Controls
                 return;
 
             int detalization = Convert.ToInt32(detalizationBox.Text);
-            fsValue from = fsValue.StringToValue(rangeFrom.Text);
-            fsValue to = fsValue.StringToValue(rangeTo.Text);
+            double factor = m_values[m_xAxisParameter].Unit.Coefficient;
+            fsValue from = fsValue.StringToValue(rangeFrom.Text) * factor;
+            fsValue to = fsValue.StringToValue(rangeTo.Text) * factor;
 
             m_data = new Dictionary<fsParameterIdentifier, List<fsSimulationModuleParameter>>();
             for (int i = 0; i < detalization; ++i)
@@ -289,14 +293,9 @@ namespace CalculatorModules.User_Controls
                 {
                     for (int i = 0; i < newList.Count; ++i)
                     {
-                        if (yAxisListView.Items[i].Text != newList[i].Text)
-                            yAxisListView.Items[i].Text = newList[i].Text;
-
-                        if (yAxisListView.Items[i].Checked != newList[i].Checked)
-                            yAxisListView.Items[i].Checked = newList[i].Checked;
-
-                        if (yAxisListView.Items[i].ForeColor != newList[i].ForeColor)
-                            yAxisListView.Items[i].ForeColor = newList[i].ForeColor;
+                        yAxisListView.Items[i].Text = newList[i].Text;
+                        yAxisListView.Items[i].Checked = newList[i].Checked;
+                        yAxisListView.Items[i].ForeColor = newList[i].ForeColor;
                     }
                 }
             }
@@ -383,43 +382,27 @@ namespace CalculatorModules.User_Controls
             RefreshOutput();
         }
 
+        private void YAxisListItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            UpdateDiagram();
+        }
+
         private void RangeFromTextChanged(object sender, EventArgs e)
         {
+            m_values[m_xAxisParameter].Range.From = fsValue.StringToValue(rangeFrom.Text) *
+                                                    m_values[m_xAxisParameter].Unit.Coefficient;
             CalculateData();
             RefreshOutput();
         }
 
         private void RangeToTextChanged(object sender, EventArgs e)
         {
+            m_values[m_xAxisParameter].Range.To = fsValue.StringToValue(rangeTo.Text) *
+                                                  m_values[m_xAxisParameter].Unit.Coefficient;
             CalculateData();
             RefreshOutput();
-        }
-
-        private void DetalizationBoxTextChanged(object sender, EventArgs e)
-        {
-            CalculateData();
-            RefreshOutput();
-        }
-
-        private void YAxisListItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            UpdateDiagram();
         }
 
         #endregion
-
-        private void rangeFrom_TextChanged(object sender, EventArgs e)
-        {
-            m_values[m_xAxisParameter].Range.From = fsValue.StringToValue(rangeFrom.Text);
-            CalculateData();
-            RefreshOutput();
-        }
-
-        private void rangeTo_TextChanged(object sender, EventArgs e)
-        {
-            m_values[m_xAxisParameter].Range.To = fsValue.StringToValue(rangeTo.Text);
-            CalculateData();
-            RefreshOutput();
-        }
     }
 }

@@ -54,6 +54,10 @@ namespace Parameters
 
         public static fsParameterIdentifier Kappa = new fsParameterIdentifier("kappa");
 
+        public static fsParameterIdentifier CakeDrySolidsDensity = new fsParameterIdentifier("pcs",
+                                                                                             "Cake Dry Solids Density",
+                                                                                             fsCharacteristic.Density);
+
         public static fsParameterIdentifier CakePermeability = new fsParameterIdentifier("Pc", "Cake Permeability",
                                                                                          fsCharacteristic.
                                                                                              CakePermeability);
@@ -88,15 +92,15 @@ namespace Parameters
         public static fsParameterIdentifier CycleTime = new fsParameterIdentifier("tc", fsCharacteristic.Time);
         public static fsParameterIdentifier RotationalSpeed = new fsParameterIdentifier("n", fsCharacteristic.Frequency);
 
-        public static fsParameterIdentifier FormationRelativeTime = new fsParameterIdentifier("sf",
-                                                                                              fsCharacteristic.
-                                                                                                  Concentration);
+        public static fsParameterIdentifier SpecificFiltrationTime = new fsParameterIdentifier("sf", "Specific Filtration Time", fsCharacteristic.Concentration);
 
-        public static fsParameterIdentifier FiltrationTime = new fsParameterIdentifier("tf", "Filtration Time",
-                                                                                       fsCharacteristic.Time);
+        public static fsParameterIdentifier SpecificResidualTime = new fsParameterIdentifier("sr", "Specific Residual Time", fsCharacteristic.Concentration);
 
-        public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc", "Cake Height",
-                                                                                   fsCharacteristic.Length);
+        public static fsParameterIdentifier FiltrationTime = new fsParameterIdentifier("tf", "Filtration Time", fsCharacteristic.Time);
+
+        public static fsParameterIdentifier ResidualTime = new fsParameterIdentifier("tr", "Residual Time", fsCharacteristic.Time);
+
+        public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc", "Cake Height", fsCharacteristic.Length);
 
         public static fsParameterIdentifier WetCakeMass = new fsParameterIdentifier("Mcw", "Wet Cake Mass",
                                                                                     fsCharacteristic.Mass);
@@ -200,11 +204,11 @@ namespace Parameters
                                                                                              fsCharacteristic.
                                                                                                  CakeResistanceAlpha);
 
-        public static fsParameterIdentifier FilterMediumResistance0 = new fsParameterIdentifier("hce0",
-                                                                                                "Filter Medium Resistance0",
+        public static fsParameterIdentifier FilterMediumResistanceHce0 = new fsParameterIdentifier("hce0",
+                                                                                                "Filter Medium Resistance hce0",
                                                                                                 fsCharacteristic.Length);
 
-        public static fsParameterIdentifier Rm0 = new fsParameterIdentifier("Rm0",
+        public static fsParameterIdentifier FilterMediumResistanceRm0 = new fsParameterIdentifier("Rm0",
                                                                             fsCharacteristic.FilterMediumResistance);
 
         public static fsParameterIdentifier SolutesConcentrationInMotherLiquid = new fsParameterIdentifier("C_sol",
