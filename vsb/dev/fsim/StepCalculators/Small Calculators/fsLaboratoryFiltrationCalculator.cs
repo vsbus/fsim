@@ -27,7 +27,7 @@ namespace StepCalculators
         {
             #region Parameters Initialization
 
-            m_hce0 = AddConstant(fsParameterIdentifier.FilterMediumResistance0);
+            m_hce0 = AddConstant(fsParameterIdentifier.FilterMediumResistanceHce0);
             m_viscosity = AddConstant(fsParameterIdentifier.ViscosityFiltrate);
             m_pc0 = AddConstant(fsParameterIdentifier.CakePermeability0);
             m_kappa0 = AddConstant(fsParameterIdentifier.Kappa0);

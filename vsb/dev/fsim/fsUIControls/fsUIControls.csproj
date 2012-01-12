@@ -72,6 +72,7 @@
     <Compile Include="fsUnitsControl.Designer.cs">
       <DependentUpon>fsUnitsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Machine Ranges\fsMachineRanges.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

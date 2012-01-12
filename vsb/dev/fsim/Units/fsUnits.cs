@@ -63,6 +63,7 @@ namespace Units
         public static fsUnit PerTen13SquareMeter = new fsUnit("10-13m2", 1e-13);
         public static fsUnit Ten13PerSquareMeter = new fsUnit("10+13m-2", 1e13);
         public static fsUnit Ten10MeterPerKiloGramme = new fsUnit("10+10m/kg", 1e10);
+        public static fsUnit Ten10PerMeter = new fsUnit("10^10/m", 1e10);
 
         #endregion
 

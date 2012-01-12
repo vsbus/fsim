@@ -5,12 +5,12 @@ using CalculatorModules;
 
 namespace Calculator
 {
-    public partial class MainWindow : Form
+    public partial class fsMainWindow : Form
     {
         private readonly List<fsModule> m_modules = new List<fsModule>();
         private int m_counter;
 
-        public MainWindow()
+        public fsMainWindow()
         {
             InitializeComponent();
         }
@@ -151,7 +151,7 @@ namespace Calculator
             }
         }
 
-        private void machineTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MachineTypeToolStripMenuItemClick(object sender, EventArgs e)
         {
             var machineDialog = new fsMachineDialog();
             machineDialog.AssignModulesList(m_modules);

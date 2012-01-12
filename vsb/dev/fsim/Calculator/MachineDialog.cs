@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Parameters;
 using ParametersIdentifiers.Ranges;
@@ -7,17 +9,22 @@ namespace Calculator
 {
     public partial class fsMachineDialog : Form
     {
-        public Dictionary<fsParameterIdentifier, fsRange> Ranges
-        {
-            get { return fsMachineSettings1.Ranges; }
-        }
+        private Dictionary<string, fsModule> m_modules;
 
         public fsMachineDialog()
         {
             InitializeComponent();
         }
 
-        private Dictionary<string, fsModule> m_modules;
+        public Dictionary<fsParameterIdentifier, fsRange> Ranges
+        {
+            get
+            {
+                return
+                    fsMachineSettings1.ParameterRanges.Values.ToDictionary(parameterRange => parameterRange.Identifier,
+                                                                           parameterRange => parameterRange.Range);
+            }
+        }
 
         internal void AssignModulesList(List<fsModule> modules)
         {
@@ -31,26 +38,25 @@ namespace Calculator
             fsCheckedList1.AssignList(list);
         }
 
-        private void cancelButton_Click(object sender, System.EventArgs e)
+        internal IEnumerable<fsModule> GetModifiedModules()
+        {
+            return (from ListViewItem item in fsCheckedList1.GetCheckedItems() select m_modules[item.Text]).ToList();
+        }
+
+        #region Buttons Events
+
+        private void CancelButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void OKButton_Click(object sender, System.EventArgs e)
+        private void OkButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        internal IEnumerable<fsModule> GetModifiedModules()
-        {
-            List<fsModule> checkedModules = new List<fsModule>();
-            foreach (ListViewItem item in fsCheckedList1.GetCheckedItems())
-            {
-                checkedModules.Add(m_modules[item.Text]);
-            }
-            return checkedModules;
-        }
+        #endregion
     }
 }

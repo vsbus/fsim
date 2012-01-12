@@ -195,7 +195,7 @@ namespace Units
         public static fsCharacteristic FilterMediumResistance = new fsCharacteristic(
             "Filter medium resistance",
             new[] {
-                fsUnit.Ten10MeterPerKiloGramme
+                fsUnit.Ten10PerMeter
             }
         );
 

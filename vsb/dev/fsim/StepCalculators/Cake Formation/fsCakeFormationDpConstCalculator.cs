@@ -42,7 +42,7 @@ namespace StepCalculators
             m_suspensionDensity = AddConstant(fsParameterIdentifier.SuspensionDensity);
             m_solidsDensity = AddConstant(fsParameterIdentifier.SolidsDensity);
             m_etaf = AddConstant(fsParameterIdentifier.ViscosityFiltrate);
-            m_hce0 = AddConstant(fsParameterIdentifier.FilterMediumResistance0);
+            m_hce0 = AddConstant(fsParameterIdentifier.FilterMediumResistanceHce0);
             m_porosity0 = AddConstant(fsParameterIdentifier.CakePorosity0);
             AddConstant(fsParameterIdentifier.Kappa0);
             m_pc0 = AddConstant(fsParameterIdentifier.CakePermeability0);
@@ -57,7 +57,7 @@ namespace StepCalculators
             m_cycleTime = AddVariable(fsParameterIdentifier.CycleTime);
             m_rotationalSpeed = AddVariable(fsParameterIdentifier.RotationalSpeed);
 
-            m_formationRelativeTime = AddVariable(fsParameterIdentifier.FormationRelativeTime);
+            m_formationRelativeTime = AddVariable(fsParameterIdentifier.SpecificFiltrationTime);
             m_formationTime = AddVariable(fsParameterIdentifier.FiltrationTime);
             m_cakeHeight = AddVariable(fsParameterIdentifier.CakeHeight);
             m_suspensionMass = AddVariable(fsParameterIdentifier.SuspensionMass);
