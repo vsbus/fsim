@@ -29,7 +29,7 @@ namespace CalculatorModules.Machine_Ranges
     {
         #region Constructor
 
-        public fsMachineRanges(string name, params fsParameterRange[] ranges)
+        public fsMachineRanges(string name, IEnumerable<fsParameterRange> ranges)
         {
             Name = name;
             Ranges = CreateDefaultRanges();
@@ -37,6 +37,11 @@ namespace CalculatorModules.Machine_Ranges
             if (ranges == null)
                 return;
 
+            SetRanges(ranges);
+        }
+
+        private void SetRanges(IEnumerable<fsParameterRange> ranges)
+        {
             foreach (fsParameterRange parameterRange in ranges)
             {
                 if (Ranges.ContainsKey(parameterRange.Identifier))
