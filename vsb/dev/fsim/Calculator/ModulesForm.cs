@@ -35,7 +35,23 @@ namespace Calculator
 
         private void ModulesFormLoad(object sender, EventArgs e)
         {
-            AddGroupToTree("Suspension", new[]
+            AddGroupToTree("Help Modules", treeView1.Nodes);
+
+            treeView1.ExpandAll();
+
+            treeView1.SelectedNode = treeView1.Nodes[0];
+            while (treeView1.SelectedNode.Nodes.Count > 0)
+            {
+                treeView1.SelectedNode = treeView1.SelectedNode.Nodes[0];
+            }
+        }
+
+        private void AddGroupToTree(
+            string name,
+            TreeNodeCollection treeNodeCollection)
+        {
+            TreeNode node = treeNodeCollection.Add(name);
+            AddGroupToTree("Suspension", node.Nodes, new[]
                                              {
                                                  new KeyValuePair<string, fsCalculatorControl>(
                                                      "Densities and Suspension Solids Content",
@@ -44,7 +60,7 @@ namespace Calculator
                                                      "Suspension Solids Mass Fraction",
                                                      new SuspensionSolidsMassFractionControl())
                                              });
-            AddGroupToTree("Filter Cake", new[]
+            AddGroupToTree("Filter Cake", node.Nodes, new[]
                                               {
                                                   new KeyValuePair<string, fsCalculatorControl>(
                                                       "Filter Cake & Suspension Relations", new fsMsusAndHcControl()),
@@ -56,12 +72,12 @@ namespace Calculator
                                                       "Cake Permeability/Resistance and Cake Compressibility",
                                                       new fsPermeabilityControl())
                                               });
-            AddGroupToTree("Cake Formation", new[]
+            AddGroupToTree("Cake Formation", node.Nodes, new[]
                                                  {
                                                      new KeyValuePair<string, fsCalculatorControl>(
                                                          "Calculations Cake Formation", new fsLaboratoryFiltrationTime())
                                                  });
-            AddGroupToTree("Cake Deliquoring", new[]
+            AddGroupToTree("Cake Deliquoring", node.Nodes, new[]
                                                    {
                                                        new KeyValuePair<string, fsCalculatorControl>(
                                                            "Cake Moisture Content from Wet and Dry Cake Mass",
@@ -73,18 +89,17 @@ namespace Calculator
                                                            "Capillary Pressure pke from Cake Permeability/Resistance",
                                                            new fsPkeFromPcRcControl())
                                                    });
-            AddGroupToTree("Cake Washing", new[]
+            AddGroupToTree("Cake Washing", node.Nodes, new[]
                                                {
                                                    new KeyValuePair<string, fsCalculatorControl>(
                                                        "Cake Wash Out Content X", new fsCakeWashOutContentControl())
                                                });
-
-            treeView1.ExpandAll();
-            treeView1.SelectedNode = treeView1.Nodes[0].Nodes[0];
         }
 
-        private void AddGroupToTree(string nodeName,
-                                    IEnumerable<KeyValuePair<string, fsCalculatorControl>> calculationControls)
+        private void AddGroupToTree(
+            string nodeName,
+            TreeNodeCollection treeNodeCollection,
+            IEnumerable<KeyValuePair<string, fsCalculatorControl>> calculationControls)
         {
             var node = new TreeNode(nodeName);
             foreach (var pair in calculationControls)
@@ -96,7 +111,7 @@ namespace Calculator
                     (calculatorControl as fsOptionsOneTableAndCommentsCalculatorControl).AllowCommentsView = false;
                 }
             }
-            treeView1.Nodes.Add(node);
+            treeNodeCollection.Add(node);
         }
 
         private void AddModuleToTree(TreeNode treeNode, string moduleName, fsCalculatorControl control)
