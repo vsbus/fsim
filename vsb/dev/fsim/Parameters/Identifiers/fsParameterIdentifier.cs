@@ -6,6 +6,8 @@ namespace Parameters
     {
         #region fsParameterIdentifier
 
+        #region Constructors
+
         public fsParameterIdentifier(string name)
         {
             Name = name;
@@ -33,6 +35,8 @@ namespace Parameters
             FullName = fullName;
             MeasurementCharacteristic = fsCharacteristic.NoUnits;
         }
+
+        #endregion
 
         public string Name { get; private set; }
 
@@ -92,15 +96,24 @@ namespace Parameters
         public static fsParameterIdentifier CycleTime = new fsParameterIdentifier("tc", fsCharacteristic.Time);
         public static fsParameterIdentifier RotationalSpeed = new fsParameterIdentifier("n", fsCharacteristic.Frequency);
 
-        public static fsParameterIdentifier SpecificFiltrationTime = new fsParameterIdentifier("sf", "Specific Filtration Time", fsCharacteristic.Concentration);
+        public static fsParameterIdentifier SpecificFiltrationTime = new fsParameterIdentifier("sf",
+                                                                                               "Specific Filtration Time",
+                                                                                               fsCharacteristic.
+                                                                                                   Concentration);
 
-        public static fsParameterIdentifier SpecificResidualTime = new fsParameterIdentifier("sr", "Specific Residual Time", fsCharacteristic.Concentration);
+        public static fsParameterIdentifier SpecificResidualTime = new fsParameterIdentifier("sr",
+                                                                                             "Specific Residual Time",
+                                                                                             fsCharacteristic.
+                                                                                                 Concentration);
 
-        public static fsParameterIdentifier FiltrationTime = new fsParameterIdentifier("tf", "Filtration Time", fsCharacteristic.Time);
+        public static fsParameterIdentifier FiltrationTime = new fsParameterIdentifier("tf", "Filtration Time",
+                                                                                       fsCharacteristic.Time);
 
-        public static fsParameterIdentifier ResidualTime = new fsParameterIdentifier("tr", "Residual Time", fsCharacteristic.Time);
+        public static fsParameterIdentifier ResidualTime = new fsParameterIdentifier("tr", "Residual Time",
+                                                                                     fsCharacteristic.Time);
 
-        public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc", "Cake Height", fsCharacteristic.Length);
+        public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc", "Cake Height",
+                                                                                   fsCharacteristic.Length);
 
         public static fsParameterIdentifier WetCakeMass = new fsParameterIdentifier("Mcw", "Wet Cake Mass",
                                                                                     fsCharacteristic.Mass);
@@ -128,10 +141,44 @@ namespace Parameters
         public static fsParameterIdentifier SuspensionVolume = new fsParameterIdentifier("Vsus", "Suspension Volume",
                                                                                          fsCharacteristic.Volume);
 
-        public static fsParameterIdentifier SuspensionMassFlowrate = new fsParameterIdentifier("Qmsus",
-                                                                                               fsCharacteristic.
-                                                                                                   MassFlowrate);
+        public static fsParameterIdentifier SuspensionMassFlowrate = 
+            new fsParameterIdentifier("Qmsus", fsCharacteristic.MassFlowrate);
 
+        public static fsParameterIdentifier Qms =
+            new fsParameterIdentifier("Qms", fsCharacteristic.MassFlowrate);
+
+        public static fsParameterIdentifier Qsus =
+            new fsParameterIdentifier("Qsus", fsCharacteristic.VolumeFlowrate);
+
+        public static fsParameterIdentifier ns =
+            new fsParameterIdentifier("ns", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier ls_over_b =
+            new fsParameterIdentifier("ls_over_b", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier l_over_b =
+            new fsParameterIdentifier("l_over_b", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier ls =
+            new fsParameterIdentifier("ls", fsCharacteristic.Length);
+
+        public static fsParameterIdentifier ttech0 =
+            new fsParameterIdentifier("ttech0", fsCharacteristic.Time);
+
+        public static fsParameterIdentifier u =
+            new fsParameterIdentifier("u", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier nsf =
+            new fsParameterIdentifier("nsf", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier nsr =
+            new fsParameterIdentifier("nsr", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier qft =
+            new fsParameterIdentifier("qft", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier qmft =
+            new fsParameterIdentifier("qmft", fsCharacteristic.NoUnits);
 
         public static fsParameterIdentifier ViscosityFiltrate = new fsParameterIdentifier("etaf", "Viscosity Filtrate",
                                                                                           fsCharacteristic.Viscosity);
@@ -205,11 +252,13 @@ namespace Parameters
                                                                                                  CakeResistanceAlpha);
 
         public static fsParameterIdentifier FilterMediumResistanceHce0 = new fsParameterIdentifier("hce0",
-                                                                                                "Filter Medium Resistance hce0",
-                                                                                                fsCharacteristic.Length);
+                                                                                                   "Filter Medium Resistance hce0",
+                                                                                                   fsCharacteristic.
+                                                                                                       Length);
 
         public static fsParameterIdentifier FilterMediumResistanceRm0 = new fsParameterIdentifier("Rm0",
-                                                                            fsCharacteristic.FilterMediumResistance);
+                                                                                                  fsCharacteristic.
+                                                                                                      FilterMediumResistance);
 
         public static fsParameterIdentifier SolutesConcentrationInMotherLiquid = new fsParameterIdentifier("C_sol",
                                                                                                            "Solutes Concentration in Mother Liquid",
@@ -269,3 +318,4 @@ namespace Parameters
         #endregion
     }
 }
+

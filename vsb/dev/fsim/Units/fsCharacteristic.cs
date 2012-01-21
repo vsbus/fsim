@@ -27,7 +27,7 @@ namespace Units
             get { return m_currentUnit; }
             set { m_currentUnit = value; }
         }
-        private fsCharacteristic(string name, params fsUnit[] units)
+        private fsCharacteristic(string name, fsUnit[] units)
         {
             m_name = name;
             m_units = new fsUnit[units.Length];
@@ -168,6 +168,13 @@ namespace Units
                 fsUnit.KiloGrammePerMin,
                 fsUnit.KiloGrammePerHour,
                 fsUnit.TonPerHour
+            }
+        );
+
+        public static fsCharacteristic VolumeFlowrate = new fsCharacteristic(
+            "Volume flowrate",
+            new[] {
+                fsUnit.CubicMeterPerSecond
             }
         );
 

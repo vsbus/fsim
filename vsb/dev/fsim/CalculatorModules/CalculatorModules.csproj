@@ -51,6 +51,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeltFiltersWithReversibleTrays\BeltFilterWithReversibleTrayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BeltFiltersWithReversibleTrays\BeltFilterWithReversibleTrayControl.Designer.cs">
+      <DependentUpon>BeltFilterWithReversibleTrayControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CakeMoistureContentFromCakeSaturationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BeltFiltersWithReversibleTrays\BeltFilterWithReversibleTrayControl.resx">
+      <DependentUpon>BeltFilterWithReversibleTrayControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CakeMoistureContentFromCakeSaturationControl.resx">
       <DependentUpon>CakeMoistureContentFromCakeSaturationControl.cs</DependentUpon>
       <SubType>Designer</SubType>
