@@ -60,6 +60,7 @@ namespace Units
         public static fsUnit KiloGrammePerHour = new fsUnit("kg/h", 1 / 3600.0);
         public static fsUnit KiloGrammePerMin = new fsUnit("kg/min", 1 / 60.0);
         public static fsUnit KiloGrammePerSec = new fsUnit("kg/s", 1.0);
+        public static fsUnit CubicMeterPerSecond = new fsUnit("m3/s", 1.0);
         public static fsUnit PerTen13SquareMeter = new fsUnit("10-13m2", 1e-13);
         public static fsUnit Ten13PerSquareMeter = new fsUnit("10+13m-2", 1e13);
         public static fsUnit Ten10MeterPerKiloGramme = new fsUnit("10+10m/kg", 1e10);

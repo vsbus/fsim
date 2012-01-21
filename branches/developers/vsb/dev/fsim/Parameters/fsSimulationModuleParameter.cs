@@ -53,7 +53,7 @@ namespace ParametersIdentifiers
 
         public override string ToString()
         {
-            return Identifier.FullName + " (" + Identifier.Name + ") [" + Unit.Name + "]";
+            return Identifier + " [" + Unit.Name + "]";
         }
     }
 }

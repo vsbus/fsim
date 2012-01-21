@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using CalculatorModules;
+using CalculatorModules.BeltFiltersWithReversibleTrays;
 
 namespace Calculator
 {
@@ -35,7 +36,8 @@ namespace Calculator
 
         private void ModulesFormLoad(object sender, EventArgs e)
         {
-            AddGroupToTree("Help Modules", treeView1.Nodes);
+            AddSimulationGroup(treeView1.Nodes);
+            AddHelpGroup(treeView1.Nodes);
 
             treeView1.ExpandAll();
 
@@ -46,10 +48,9 @@ namespace Calculator
             }
         }
 
-        private void AddGroupToTree(
-            string name,
-            TreeNodeCollection treeNodeCollection)
+        private void AddHelpGroup(TreeNodeCollection treeNodeCollection)
         {
+            string name = "Help Modules";
             TreeNode node = treeNodeCollection.Add(name);
             AddGroupToTree("Suspension", node.Nodes, new[]
                                              {
@@ -94,6 +95,18 @@ namespace Calculator
                                                    new KeyValuePair<string, fsCalculatorControl>(
                                                        "Cake Wash Out Content X", new fsCakeWashOutContentControl())
                                                });
+        }
+
+        private void AddSimulationGroup(TreeNodeCollection treeNodeCollection)
+        {
+            string name = "Simulation Modules";
+            TreeNode node = treeNodeCollection.Add(name);
+            AddGroupToTree("Belt Filters with Reversible Trays", node.Nodes, new[]
+                                             {
+                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                     "Belt Filters with Reversible Trays",
+                                                     new fsBeltFilterWithReversibleTrayControl()),
+                                             });
         }
 
         private void AddGroupToTree(
