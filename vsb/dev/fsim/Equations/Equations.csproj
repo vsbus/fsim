@@ -42,6 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Belt Filters with Reversible Trays\fsAreaOfBeltWithReversibleTraysEquation.cs" />
     <Compile Include="Cake Formation\fsCakeHeightFrom_Dp_tfEquation.cs" />
     <Compile Include="Material\fsCakeWashOutContentEquation.cs" />
     <Compile Include="Material\fsConcentrationFromPhEquation.cs" />
