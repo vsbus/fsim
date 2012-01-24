@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
 using Parameters;
+using StepCalculators.Simulation_Calculators;
 
 namespace CalculatorModules.BeltFiltersWithReversibleTrays
 {
@@ -22,8 +23,10 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
         {
             InitializeComponent();
 
-            //Calculators.Add(new fsDensityConcentrationCalculator());
+            Calculators.Add(new fsBeltFiltersWithReversibleTraysCalculator());
 
+            fsParametersGroup tempGroup = AddGroup(
+                fsParameterIdentifier.DensityDryCake);
             fsParametersGroup qsusGroup = AddGroup(
                 fsParameterIdentifier.Qms,
                 fsParameterIdentifier.Qsus,
@@ -52,16 +55,20 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.FiltrationTime,
                 fsParameterIdentifier.qft,
                 fsParameterIdentifier.qmft);
+            fsParametersGroup resultsGroup = AddGroup(
+                fsParameterIdentifier.FilterArea);
 
             var groups = new[]
                              {
+                                tempGroup,
                                 qsusGroup,
                                 nsGroup,
                                 geometryGroup,
                                 timeGroup,
                                 dpGroup,
                                 cycleGroup,
-                                filtrationGroup
+                                filtrationGroup,
+                                resultsGroup
                              };
 
             var colors = new[]
@@ -75,7 +82,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
                 SetGroupInput(groups[i], true);
             }
-            SetGroupInput(filtrationGroup, false);
+            SetGroupInput(resultsGroup, false);
 
             fsMisc.FillList(calculationComboBox.Items, typeof(fsCalculationOption));
             EstablishCalculationOption(fsCalculationOption.Design);
