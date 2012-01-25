@@ -58,7 +58,7 @@ namespace Parameters
 
         public static fsParameterIdentifier Kappa = new fsParameterIdentifier("kappa");
 
-        public static fsParameterIdentifier CakeDrySolidsDensity = new fsParameterIdentifier("pcs",
+        public static fsParameterIdentifier CakeDrySolidsDensity = new fsParameterIdentifier("rho_cs",
                                                                                              "Cake Dry Solids Density",
                                                                                              fsCharacteristic.Density);
 
@@ -183,34 +183,35 @@ namespace Parameters
         public static fsParameterIdentifier ViscosityFiltrate = new fsParameterIdentifier("etaf", "Viscosity Filtrate",
                                                                                           fsCharacteristic.Viscosity);
 
-        public static fsParameterIdentifier SurfaceTensionLiquidInCake = new fsParameterIdentifier("sigma",
-                                                                                                   "Surface Tension Liquid in Cake",
-                                                                                                   fsCharacteristic.
-                                                                                                       SurfaceTension);
+        public static fsParameterIdentifier SurfaceTensionLiquidInCake = 
+            new fsParameterIdentifier("sigma", "Surface Tension Liquid in Cake", fsCharacteristic.SurfaceTension);
 
-        public static fsParameterIdentifier StandardCapillaryPressure = new fsParameterIdentifier("pke_st",
-                                                                                                  "Standard Capillary Pressure",
-                                                                                                  fsCharacteristic.
-                                                                                                      Pressure);
+        public static fsParameterIdentifier StandardCapillaryPressure = 
+            new fsParameterIdentifier("pke_st", "Standard Capillary Pressure", fsCharacteristic.Pressure);
 
-        public static fsParameterIdentifier CapillaryPressure = new fsParameterIdentifier("pke", "Capillary Pressure",
-                                                                                          fsCharacteristic.Pressure);
+        public static fsParameterIdentifier CapillaryPressure = 
+            new fsParameterIdentifier("pke", "Capillary Pressure", fsCharacteristic.Pressure);
 
-        public static fsParameterIdentifier DensityDryCake = new fsParameterIdentifier("rho_cd", "Density Dry Cake",
-                                                                                       fsCharacteristic.Density);
+        public static fsParameterIdentifier DensityDryCake =
+            new fsParameterIdentifier("rho_cd", "Density Dry Cake", fsCharacteristic.Density);
 
-        public static fsParameterIdentifier MotherLiquidDensity = new fsParameterIdentifier("rho_f",
-                                                                                            "Density of Mother Liquid",
-                                                                                            fsCharacteristic.Density);
+        public static fsParameterIdentifier CakeDrySolidsDensity0 =
+            new fsParameterIdentifier("rho_cd0", "Cake dry solids density", fsCharacteristic.Density);
 
-        public static fsParameterIdentifier FiltrateDensity = new fsParameterIdentifier("rho_f", "Filtrate Density",
-                                                                                        fsCharacteristic.Density);
+        public static fsParameterIdentifier CakeWetDensity0 =
+            new fsParameterIdentifier("rho_cw0", "Cake wet density", fsCharacteristic.Density);
 
-        public static fsParameterIdentifier LiquidDensity = new fsParameterIdentifier("rho_l", "Liquid Density",
-                                                                                      fsCharacteristic.Density);
+        public static fsParameterIdentifier MotherLiquidDensity = 
+            new fsParameterIdentifier("rho_f", "Density of Mother Liquid", fsCharacteristic.Density);
 
-        public static fsParameterIdentifier SolidsDensity = new fsParameterIdentifier("rho_s", "Solids Density",
-                                                                                      fsCharacteristic.Density);
+        public static fsParameterIdentifier FiltrateDensity = 
+            new fsParameterIdentifier("rho_f", "Filtrate Density", fsCharacteristic.Density);
+
+        public static fsParameterIdentifier LiquidDensity = 
+            new fsParameterIdentifier("rho_l", "Liquid Density", fsCharacteristic.Density);
+
+        public static fsParameterIdentifier SolidsDensity = 
+            new fsParameterIdentifier("rho_s", "Solids Density", fsCharacteristic.Density);
 
         public static fsParameterIdentifier SuspensionDensity = new fsParameterIdentifier("rho_sus",
                                                                                           "Suspension Density",
@@ -296,14 +297,17 @@ namespace Parameters
         public static fsParameterIdentifier CakeSaturation = new fsParameterIdentifier("S", "Cake Saturation",
                                                                                        fsCharacteristic.Concentration);
 
-        public static fsParameterIdentifier CakeMoistureContent = new fsParameterIdentifier("RF",
-                                                                                            "Cake Moisture Content",
-                                                                                            fsCharacteristic.
-                                                                                                Concentration);
+        public static fsParameterIdentifier CakeMoistureContent =
+            new fsParameterIdentifier("RF", "Cake Moisture Content", fsCharacteristic.Concentration);
 
-        public static fsParameterIdentifier CakeWashOutContent = new fsParameterIdentifier("X", "Cake Wash Out Content",
-                                                                                           fsCharacteristic.
-                                                                                               CakeWashOutContent);
+        public static fsParameterIdentifier CakeMoistureContentRf0 = 
+            new fsParameterIdentifier("Rf0", "Cake Moisture Content", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier CakeWetMassSolidsFractionRs0 = 
+            new fsParameterIdentifier("Rs0", "Cake wet mass solids fraction", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier CakeWashOutContent = 
+            new fsParameterIdentifier("X", "Cake Wash Out Content", fsCharacteristic.CakeWashOutContent);
 
         public static fsParameterIdentifier LiquidMassForResuspension = new fsParameterIdentifier("Ml",
                                                                                                   "Liquid Mass for Resuspension",

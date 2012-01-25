@@ -25,8 +25,32 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             Calculators.Add(new fsBeltFiltersWithReversibleTraysCalculator());
 
-            fsParametersGroup tempGroup = AddGroup(
-                fsParameterIdentifier.DensityDryCake);
+            fsParametersGroup etafGroup = AddGroup(
+                fsParameterIdentifier.ViscosityFiltrate);
+            fsParametersGroup rhofGroup = AddGroup(
+                fsParameterIdentifier.FiltrateDensity);
+            fsParametersGroup densitiesGroup = AddGroup(
+                fsParameterIdentifier.SolidsDensity,
+                fsParameterIdentifier.SuspensionDensity);
+            fsParametersGroup epsGroup = AddGroup(
+                fsParameterIdentifier.CakePorosity0,
+                fsParameterIdentifier.Kappa0,
+                fsParameterIdentifier.CakeWetDensity0,
+                fsParameterIdentifier.CakeDrySolidsDensity0);
+            fsParametersGroup rGroup = AddGroup(
+                fsParameterIdentifier.CakeWetMassSolidsFractionRs0,
+                fsParameterIdentifier.CakeMoistureContentRf0);
+            fsParametersGroup neGroup = AddGroup(
+                fsParameterIdentifier.Ne);
+            fsParametersGroup pcrcGroup = AddGroup(
+                fsParameterIdentifier.CakePermeability0,
+                fsParameterIdentifier.CakeResistance0,
+                fsParameterIdentifier.CakeResistanceAlpha0);
+            fsParametersGroup ncGroup = AddGroup(
+                fsParameterIdentifier.CakeCompressibility);
+            fsParametersGroup hce0Group = AddGroup(
+                fsParameterIdentifier.FilterMediumResistanceHce0,
+                fsParameterIdentifier.FilterMediumResistanceRm0);
             fsParametersGroup qsusGroup = AddGroup(
                 fsParameterIdentifier.Qms,
                 fsParameterIdentifier.Qsus,
@@ -60,7 +84,15 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             var groups = new[]
                              {
-                                tempGroup,
+                                etafGroup,
+                                rhofGroup,
+                                densitiesGroup,
+                                epsGroup,
+                                rGroup,
+                                neGroup,
+                                pcrcGroup,
+                                ncGroup,
+                                hce0Group, 
                                 qsusGroup,
                                 nsGroup,
                                 geometryGroup,
