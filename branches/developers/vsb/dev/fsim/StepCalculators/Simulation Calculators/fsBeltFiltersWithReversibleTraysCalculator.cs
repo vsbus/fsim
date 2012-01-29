@@ -9,9 +9,11 @@ namespace StepCalculators.Simulation_Calculators
         readonly fsCalculatorVariable m_ns;
         readonly fsCalculatorVariable m_Qms;
         readonly fsCalculatorVariable m_lsOverB;
-        readonly fsCalculatorConstant m_rhoCs;
         readonly fsCalculatorVariable m_u;
         readonly fsCalculatorVariable m_cakeHeigth;
+
+        readonly fsCalculatorConstant m_rho_s;
+        readonly fsCalculatorConstant m_eps0;
         
         public fsBeltFiltersWithReversibleTraysCalculator()
         {
@@ -24,7 +26,8 @@ namespace StepCalculators.Simulation_Calculators
             m_u = AddVariable(fsParameterIdentifier.u);
             m_cakeHeigth = AddVariable(fsParameterIdentifier.CakeHeight);
 
-            m_rhoCs = AddConstant(fsParameterIdentifier.DensityDryCake);
+            m_rho_s = AddConstant(fsParameterIdentifier.SolidsDensity);
+            m_eps0 = AddConstant(fsParameterIdentifier.CakePorosity0);
 
             #endregion
 
@@ -35,7 +38,7 @@ namespace StepCalculators.Simulation_Calculators
                 m_lsOverB,
                 m_ns,
                 m_Qms,
-                m_rhoCs,
+                m_rho_s,
                 m_u,
                 m_cakeHeigth));
 

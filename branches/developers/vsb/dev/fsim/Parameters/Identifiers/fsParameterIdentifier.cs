@@ -154,10 +154,10 @@ namespace Parameters
             new fsParameterIdentifier("ns", fsCharacteristic.NoUnits);
 
         public static fsParameterIdentifier ls_over_b =
-            new fsParameterIdentifier("ls_over_b", fsCharacteristic.NoUnits);
+            new fsParameterIdentifier("ls/b", fsCharacteristic.NoUnits);
 
         public static fsParameterIdentifier l_over_b =
-            new fsParameterIdentifier("l_over_b", fsCharacteristic.NoUnits);
+            new fsParameterIdentifier("l/b", fsCharacteristic.NoUnits);
 
         public static fsParameterIdentifier ls =
             new fsParameterIdentifier("ls", fsCharacteristic.Length);
@@ -191,9 +191,6 @@ namespace Parameters
 
         public static fsParameterIdentifier CapillaryPressure = 
             new fsParameterIdentifier("pke", "Capillary Pressure", fsCharacteristic.Pressure);
-
-        public static fsParameterIdentifier DensityDryCake =
-            new fsParameterIdentifier("rho_cd", "Density Dry Cake", fsCharacteristic.Density);
 
         public static fsParameterIdentifier CakeDrySolidsDensity0 =
             new fsParameterIdentifier("rho_cd0", "Cake dry solids density", fsCharacteristic.Density);
