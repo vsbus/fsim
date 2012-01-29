@@ -43,9 +43,9 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             fsParametersGroup epsGroup = AddGroup(
                 fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0,
-                fsParameterIdentifier.CakeWetDensity0,
                 fsParameterIdentifier.CakeDrySolidsDensity0);
             fsParametersGroup rGroup = AddGroup(
+                fsParameterIdentifier.CakeWetDensity0,
                 fsParameterIdentifier.CakeWetMassSolidsFractionRs0,
                 fsParameterIdentifier.CakeMoistureContentRf0);
             fsParametersGroup neGroup = AddGroup(
