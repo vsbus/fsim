@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
 using Parameters;
+using StepCalculators;
 using StepCalculators.Simulation_Calculators;
 
 namespace CalculatorModules.BeltFiltersWithReversibleTrays
@@ -23,6 +24,9 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
         {
             InitializeComponent();
 
+            Calculators.Add(new fsDensityConcentrationCalculator());
+            Calculators.Add(new fsEps0Kappa0Calculator());
+            Calculators.Add(new fsPc0Rc0Alpha0Calculator());
             Calculators.Add(new fsBeltFiltersWithReversibleTraysCalculator());
 
             fsParametersGroup etafGroup = AddGroup(
@@ -32,6 +36,10 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             fsParametersGroup densitiesGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity);
+            fsParametersGroup cGroup = AddGroup(
+                fsParameterIdentifier.SuspensionSolidsMassFraction,
+                fsParameterIdentifier.SuspensionSolidsVolumeFraction,
+                fsParameterIdentifier.SuspensionSolidsConcentration);
             fsParametersGroup epsGroup = AddGroup(
                 fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0,
@@ -87,6 +95,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                                 etafGroup,
                                 rhofGroup,
                                 densitiesGroup,
+                                cGroup,
                                 epsGroup,
                                 rGroup,
                                 neGroup,
