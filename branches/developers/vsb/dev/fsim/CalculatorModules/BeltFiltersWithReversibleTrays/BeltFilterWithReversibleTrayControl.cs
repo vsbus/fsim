@@ -3,6 +3,7 @@ using System.Drawing;
 using Parameters;
 using StepCalculators;
 using StepCalculators.Simulation_Calculators;
+using StepCalculators.Simulation_Calculators.Simulation_Help_Calculators;
 
 namespace CalculatorModules.BeltFiltersWithReversibleTrays
 {
@@ -26,28 +27,36 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             Calculators.Add(new fsDensityConcentrationCalculator());
             Calculators.Add(new fsEps0Kappa0Calculator());
+            Calculators.Add(new fsEps0Kappa0Calculator());
+            Calculators.Add(new fsRf0Rs0RhoCw0FromDensitiesAndCakePorosity0Calculator());
             Calculators.Add(new fsPc0Rc0Alpha0Calculator());
             Calculators.Add(new fsBeltFiltersWithReversibleTraysCalculator());
 
             fsParametersGroup etafGroup = AddGroup(
                 fsParameterIdentifier.ViscosityFiltrate);
+
             fsParametersGroup rhofGroup = AddGroup(
                 fsParameterIdentifier.FiltrateDensity);
+
             fsParametersGroup densitiesGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity);
+
             fsParametersGroup cGroup = AddGroup(
                 fsParameterIdentifier.SuspensionSolidsMassFraction,
                 fsParameterIdentifier.SuspensionSolidsVolumeFraction,
                 fsParameterIdentifier.SuspensionSolidsConcentration);
+
             fsParametersGroup epsGroup = AddGroup(
                 fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0,
                 fsParameterIdentifier.CakeDrySolidsDensity0);
+
             fsParametersGroup rGroup = AddGroup(
                 fsParameterIdentifier.CakeWetDensity0,
                 fsParameterIdentifier.CakeWetMassSolidsFractionRs0,
                 fsParameterIdentifier.CakeMoistureContentRf0);
+
             fsParametersGroup neGroup = AddGroup(
                 fsParameterIdentifier.Ne);
             fsParametersGroup pcrcGroup = AddGroup(
@@ -123,6 +132,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
                 SetGroupInput(groups[i], true);
             }
+            SetGroupInput(rGroup, false);
             SetGroupInput(resultsGroup, false);
 
             fsMisc.FillList(calculationComboBox.Items, typeof(fsCalculationOption));
