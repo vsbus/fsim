@@ -150,6 +150,9 @@ namespace Parameters
         public static fsParameterIdentifier Qsus =
             new fsParameterIdentifier("Qsus", fsCharacteristic.VolumeFlowrate);
 
+        public static fsParameterIdentifier Qs =
+            new fsParameterIdentifier("Qs", fsCharacteristic.VolumeFlowrate);
+
         public static fsParameterIdentifier ns =
             new fsParameterIdentifier("ns", fsCharacteristic.NoUnits);
 

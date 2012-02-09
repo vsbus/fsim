@@ -69,10 +69,13 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             fsParametersGroup hce0Group = AddGroup(
                 fsParameterIdentifier.FilterMediumResistanceHce0,
                 fsParameterIdentifier.FilterMediumResistanceRm0);
+            
             fsParametersGroup qsusGroup = AddGroup(
+                fsParameterIdentifier.Qs,
                 fsParameterIdentifier.Qms,
                 fsParameterIdentifier.Qsus,
                 fsParameterIdentifier.SuspensionMassFlowrate);
+            
             fsParametersGroup nsGroup = AddGroup(
                 fsParameterIdentifier.ns);
             fsParametersGroup geometryGroup = AddGroup(
