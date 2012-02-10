@@ -26,13 +26,32 @@ namespace Equations
 
         #endregion
 
-        protected fsCalculatorEquation(params IEquationParameter[] parameters)
+        #region Constructors
+
+        protected fsCalculatorEquation(
+            params IEquationParameter[] parameters)
         {
             foreach (IEquationParameter p in parameters)
             {
                 m_parameters.Add(p);
             }
         }
+
+        protected fsCalculatorEquation(
+            IEnumerable<IEquationParameter> leftPart,
+            IEnumerable<IEquationParameter> rightPart)
+        {
+            foreach (IEquationParameter p in leftPart)
+            {
+                m_parameters.Add(p);
+            }
+            foreach (IEquationParameter p in rightPart)
+            {
+                m_parameters.Add(p);
+            }
+        }
+
+        #endregion
 
         #region Calculate
 
@@ -68,7 +87,7 @@ namespace Equations
             {
                 if (f.Key == result)
                 {
-                    f.Value();
+                    f.Value();  // run formula that calculates key == result
                     return true;
                 }
             }
