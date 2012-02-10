@@ -12,6 +12,7 @@ namespace StepCalculators.Simulation_Calculators
         readonly fsCalculatorVariable m_Qs;
         readonly fsCalculatorVariable m_Qmsus;
         readonly fsCalculatorVariable m_Qsus;
+        readonly fsCalculatorVariable m_ls;
         readonly fsCalculatorVariable m_lsOverB;
         readonly fsCalculatorVariable m_u;
         readonly fsCalculatorVariable m_cakeHeigth;
@@ -19,6 +20,7 @@ namespace StepCalculators.Simulation_Calculators
         readonly fsCalculatorConstant m_rho_s;
         readonly fsCalculatorConstant m_rho_sus;
         readonly fsCalculatorConstant m_cv;
+        readonly fsCalculatorConstant m_rho_cd0;
         readonly fsCalculatorConstant m_eps0;
         
         public fsBeltFiltersWithReversibleTraysCalculator()
@@ -31,6 +33,7 @@ namespace StepCalculators.Simulation_Calculators
             m_Qs = AddVariable(fsParameterIdentifier.Qs);
             m_Qmsus = AddVariable(fsParameterIdentifier.SuspensionMassFlowrate);
             m_Qsus = AddVariable(fsParameterIdentifier.Qsus);
+            m_ls = AddVariable(fsParameterIdentifier.ls);
             m_lsOverB = AddVariable(fsParameterIdentifier.ls_over_b);
             m_u = AddVariable(fsParameterIdentifier.u);
             m_cakeHeigth = AddVariable(fsParameterIdentifier.CakeHeight);
@@ -38,6 +41,7 @@ namespace StepCalculators.Simulation_Calculators
             m_rho_s = AddConstant(fsParameterIdentifier.SolidsDensity);
             m_rho_sus = AddConstant(fsParameterIdentifier.SuspensionDensity);
             m_cv = AddConstant(fsParameterIdentifier.SuspensionSolidsVolumeFraction);
+            m_rho_cd0 = AddConstant(fsParameterIdentifier.CakeDrySolidsDensity0);
             m_eps0 = AddConstant(fsParameterIdentifier.CakePorosity0);
 
             #endregion
@@ -56,6 +60,8 @@ namespace StepCalculators.Simulation_Calculators
             Equations.Add(new fsProductEquation(m_Qms, m_rho_s, m_Qs));
             Equations.Add(new fsProductEquation(m_Qmsus, m_rho_sus, m_Qsus));
             Equations.Add(new fsProductEquation(m_Qs, m_Qsus, m_cv));
+            Equations.Add(new fsProductsEquation(new IEquationParameter[] {m_ls, m_rho_cd0, m_u, m_cakeHeigth},
+                                                new IEquationParameter[] {m_lsOverB, m_Qms}));
 
             #endregion
         }
