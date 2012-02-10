@@ -9,6 +9,10 @@ namespace Equations.Belt_Filters_with_Reversible_Trays
 {
     public class fsSfFromEtafHcHceKappaPcDpNsLsUTtechEquation : fsCalculatorEquation
     {
+        //               etaf * hc * (hc + 2 * hce)
+        // sf = ---------------------------------------------
+        //       2 * kappa * pc * Dp * ns * (ls / u - ttech)
+
         #region Parameters
 
         private readonly IEquationParameter m_sf;
@@ -55,6 +59,7 @@ namespace Equations.Belt_Filters_with_Reversible_Trays
         protected override void InitFormulas()
         {
             AddFormula(m_sf, SfFormula);
+            AddFormula(m_u, UFormula);
         }
 
         #region Formulas
@@ -65,6 +70,13 @@ namespace Equations.Belt_Filters_with_Reversible_Trays
             fsValue den = 2 * m_kappa.Value * m_Pc.Value * m_Dp.Value * m_ns.Value *
                           (m_ls.Value / m_u.Value - m_ttech.Value);
             m_sf.Value = nom / den;
+        }
+
+        private void UFormula()
+        {
+            fsValue nom = 2 * m_sf.Value * m_kappa.Value * m_Pc.Value * m_Dp.Value * m_ns.Value;
+            fsValue den = m_etaf.Value * m_hc.Value * (m_hc.Value + 2 * m_hce.Value);
+            m_u.Value = m_ls.Value / (nom / den + m_ttech.Value);
         }
 
         #endregion

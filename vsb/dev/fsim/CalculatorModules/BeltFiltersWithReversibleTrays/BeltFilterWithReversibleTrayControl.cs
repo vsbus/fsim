@@ -60,12 +60,15 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             fsParametersGroup neGroup = AddGroup(
                 fsParameterIdentifier.Ne);
+
             fsParametersGroup pcrcGroup = AddGroup(
                 fsParameterIdentifier.CakePermeability0,
                 fsParameterIdentifier.CakeResistance0,
                 fsParameterIdentifier.CakeResistanceAlpha0);
+
             fsParametersGroup ncGroup = AddGroup(
                 fsParameterIdentifier.CakeCompressibility);
+
             fsParametersGroup hce0Group = AddGroup(
                 fsParameterIdentifier.FilterMediumResistanceHce0,
                 fsParameterIdentifier.FilterMediumResistanceRm0);
@@ -78,14 +81,18 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             
             fsParametersGroup nsGroup = AddGroup(
                 fsParameterIdentifier.ns);
+
             fsParametersGroup geometryGroup = AddGroup(
                 fsParameterIdentifier.ls_over_b,
                 fsParameterIdentifier.l_over_b,
                 fsParameterIdentifier.ls);
+            
             fsParametersGroup timeGroup = AddGroup(
                 fsParameterIdentifier.ttech0);
+            
             fsParametersGroup dpGroup = AddGroup(
                 fsParameterIdentifier.PressureDifference);
+            
             fsParametersGroup cycleGroup = AddGroup(
                 fsParameterIdentifier.u,
                 fsParameterIdentifier.RotationalSpeed,
@@ -95,13 +102,20 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.SpecificFiltrationTime,
                 fsParameterIdentifier.SpecificResidualTime,
                 fsParameterIdentifier.ResidualTime);
+            
             fsParametersGroup filtrationGroup = AddGroup(
                 fsParameterIdentifier.CakeHeight,
                 fsParameterIdentifier.FiltrationTime,
                 fsParameterIdentifier.qft,
                 fsParameterIdentifier.qmft);
+            
+            fsParametersGroup lambdaGroup = AddGroup(
+                fsParameterIdentifier.lambda);
+            
             fsParametersGroup resultsGroup = AddGroup(
-                fsParameterIdentifier.FilterArea);
+                fsParameterIdentifier.FilterArea,
+                fsParameterIdentifier.As,
+                fsParameterIdentifier.FilterLength);
 
             var groups = new[]
                              {
@@ -122,6 +136,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                                 dpGroup,
                                 cycleGroup,
                                 filtrationGroup,
+                                lambdaGroup,
                                 resultsGroup
                              };
 

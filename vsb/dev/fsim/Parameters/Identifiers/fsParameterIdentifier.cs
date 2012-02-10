@@ -73,8 +73,13 @@ namespace Parameters
                                                                                             fsCharacteristic.
                                                                                                 CakeResistanceAlpha);
 
-        public static fsParameterIdentifier FilterArea = new fsParameterIdentifier("A", "Filter Area",
-                                                                                   fsCharacteristic.Area);
+        public static fsParameterIdentifier FilterArea = 
+            new fsParameterIdentifier("A", "Filter Area", fsCharacteristic.Area);
+
+        public static fsParameterIdentifier FilterLength =
+            new fsParameterIdentifier("l", "Filter Length", fsCharacteristic.Length);
+
+        public static fsParameterIdentifier As = new fsParameterIdentifier("As", fsCharacteristic.Area);
 
         public static fsParameterIdentifier MachineDiameter = new fsParameterIdentifier("D", "Machine Diameter",
                                                                                         fsCharacteristic.Length);
@@ -167,6 +172,12 @@ namespace Parameters
 
         public static fsParameterIdentifier ttech0 =
             new fsParameterIdentifier("ttech0", fsCharacteristic.Time);
+
+        public static fsParameterIdentifier lambda =
+            new fsParameterIdentifier("lambda", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier TechnicalTime =
+            new fsParameterIdentifier("ttech", "Technical Time", fsCharacteristic.Time);
 
         public static fsParameterIdentifier u =
             new fsParameterIdentifier("u", fsCharacteristic.NoUnits);
