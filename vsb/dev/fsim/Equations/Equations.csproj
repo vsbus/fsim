@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Belt Filters with Reversible Trays\fsAreaOfBeltWithReversibleTraysEquation.cs" />
+    <Compile Include="Belt Filters with Reversible Trays\fsSfFromEtafHcHceKappaPcDpNsLsUTtechEquation.cs" />
     <Compile Include="Cake Formation\fsCakeHeightFrom_Dp_tfEquation.cs" />
     <Compile Include="Material\Cake Moisture Content Rf Equations\fsMoistureContentEquation.cs" />
     <Compile Include="Material\Cake Moisture Content Rf Equations\fsMoistureContentFromCakeSaturationEquation.cs" />
