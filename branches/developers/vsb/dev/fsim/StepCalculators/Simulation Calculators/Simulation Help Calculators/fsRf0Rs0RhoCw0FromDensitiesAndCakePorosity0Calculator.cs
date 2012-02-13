@@ -16,7 +16,7 @@ namespace StepCalculators.Simulation_Calculators.Simulation_Help_Calculators
         readonly fsCalculatorConstant m_solidsDensity;
         readonly fsCalculatorConstant m_cakePorosity0;
         readonly fsCalculatorConstant m_cakeDrySolidsDensity0;
-        readonly fsCalculatorConstant m_suspensionSolidsVolumeFraction;
+        readonly fsCalculatorConstant m_suspensionSolidsMassFraction;
         readonly fsCalculatorConstant m_kappa0;
         readonly fsCalculatorVariable m_cakeMoistureContentRf0;
         readonly fsCalculatorVariable m_cakeWetMassSolidsFractionRs0;
@@ -30,7 +30,7 @@ namespace StepCalculators.Simulation_Calculators.Simulation_Help_Calculators
             m_solidsDensity = AddConstant(fsParameterIdentifier.SolidsDensity);
             m_cakePorosity0 = AddConstant(fsParameterIdentifier.CakePorosity0);
             m_cakeDrySolidsDensity0 = AddConstant(fsParameterIdentifier.CakeDrySolidsDensity0);
-            m_suspensionSolidsVolumeFraction = AddConstant(fsParameterIdentifier.SuspensionSolidsVolumeFraction);
+            m_suspensionSolidsMassFraction = AddConstant(fsParameterIdentifier.SuspensionSolidsMassFraction);
             m_kappa0 = AddConstant(fsParameterIdentifier.Kappa0);
             m_cakeMoistureContentRf0 = AddVariable(fsParameterIdentifier.CakeMoistureContentRf0);
             m_cakeWetMassSolidsFractionRs0 = AddVariable(fsParameterIdentifier.CakeWetMassSolidsFractionRs0);
@@ -53,7 +53,7 @@ namespace StepCalculators.Simulation_Calculators.Simulation_Help_Calculators
                 m_cakeWetDensity0,
                 m_cakeDrySolidsDensity0,
                 m_filtrateDensity,
-                m_suspensionSolidsVolumeFraction,
+                m_suspensionSolidsMassFraction,
                 m_kappa0));
 
             #endregion

@@ -180,7 +180,7 @@ namespace Parameters
             new fsParameterIdentifier("ttech", "Technical Time", fsCharacteristic.Time);
 
         public static fsParameterIdentifier u =
-            new fsParameterIdentifier("u", fsCharacteristic.NoUnits);
+            new fsParameterIdentifier("u", fsCharacteristic.Speed);
 
         public static fsParameterIdentifier nsf =
             new fsParameterIdentifier("nsf", fsCharacteristic.NoUnits);

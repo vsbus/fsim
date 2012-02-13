@@ -38,6 +38,8 @@ namespace Units
         public static fsUnit Second = new fsUnit("s", 1);
         public static fsUnit Minute = new fsUnit("min", 60);
         public static fsUnit Hour = new fsUnit("h", 3600);
+        public static fsUnit MeterPerSecond = new fsUnit("m/s", 1.0);
+        public static fsUnit MeterPerMinute = new fsUnit("m/min", 1.0 / 60);
         public static fsUnit PerSecond = new fsUnit("1/s", 1);
         public static fsUnit PerMinute = new fsUnit("1/min", 1.0 / 60);
         public static fsUnit Percent = new fsUnit("%", 1e-2);
@@ -61,6 +63,11 @@ namespace Units
         public static fsUnit KiloGrammePerMin = new fsUnit("kg/min", 1 / 60.0);
         public static fsUnit KiloGrammePerSec = new fsUnit("kg/s", 1.0);
         public static fsUnit CubicMeterPerSecond = new fsUnit("m3/s", 1.0);
+        public static fsUnit CubicMeterPerMinute = new fsUnit("m3/m", 1.0 / 60);
+        public static fsUnit CubicMeterPerHour = new fsUnit("m3/h", 1.0 / 3600);
+        public static fsUnit LiterPerSecond = new fsUnit("l/s", 1.0e-3);
+        public static fsUnit LiterPerMinute = new fsUnit("l/m", 1.0e-3 / 60);
+        public static fsUnit LiterPerHour = new fsUnit("l/h", 1.0e-3 / 3600);
         public static fsUnit PerTen13SquareMeter = new fsUnit("10-13m2", 1e-13);
         public static fsUnit Ten13PerSquareMeter = new fsUnit("10+13m-2", 1e13);
         public static fsUnit Ten10MeterPerKiloGramme = new fsUnit("10+10m/kg", 1e10);

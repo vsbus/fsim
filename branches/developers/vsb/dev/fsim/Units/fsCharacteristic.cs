@@ -86,6 +86,14 @@ namespace Units
             }
         );
 
+        public static fsCharacteristic Speed = new fsCharacteristic(
+            "Speed",
+            new[] {
+                fsUnit.MeterPerMinute,
+                fsUnit.MeterPerSecond
+            }
+        );
+
         public static fsCharacteristic Frequency = new fsCharacteristic(
             "Frequency",
             new[] {
@@ -174,7 +182,12 @@ namespace Units
         public static fsCharacteristic VolumeFlowrate = new fsCharacteristic(
             "Volume flowrate",
             new[] {
-                fsUnit.CubicMeterPerSecond
+                fsUnit.CubicMeterPerSecond,
+                fsUnit.CubicMeterPerMinute,
+                fsUnit.CubicMeterPerHour,
+                fsUnit.LiterPerSecond,
+                fsUnit.LiterPerMinute,
+                fsUnit.LiterPerHour
             }
         );
 
