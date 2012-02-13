@@ -74,7 +74,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.FilterMediumResistanceRm0);
             
             fsParametersGroup qsusGroup = AddGroup(
-                fsParameterIdentifier.Qs,
                 fsParameterIdentifier.Qms,
                 fsParameterIdentifier.Qsus,
                 fsParameterIdentifier.SuspensionMassFlowrate);
@@ -115,6 +114,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             fsParametersGroup resultsGroup = AddGroup(
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.As,
+                fsParameterIdentifier.MachineWidth,
                 fsParameterIdentifier.FilterLength);
 
             var groups = new[]

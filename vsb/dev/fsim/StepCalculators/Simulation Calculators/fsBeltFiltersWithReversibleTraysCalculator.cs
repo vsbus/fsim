@@ -56,6 +56,7 @@ namespace StepCalculators.Simulation_Calculators
 
             IEquationParameter filterArea = AddVariable(fsParameterIdentifier.FilterArea);
             IEquationParameter As = AddVariable(fsParameterIdentifier.As);
+            IEquationParameter machineWidth = AddVariable(fsParameterIdentifier.MachineWidth);
             IEquationParameter filterLength = AddVariable(fsParameterIdentifier.FilterLength);
             
             var constantOne = new fsCalculatorConstant(new fsParameterIdentifier("1")) {Value = fsValue.One};
@@ -88,6 +89,7 @@ namespace StepCalculators.Simulation_Calculators
             Equations.Add(new fsSumEquation(ns, nsf, nsr));
             Equations.Add(new fsSumEquation(constantOne, sr, sf));
             Equations.Add(new fsProductEquation(tr, tc, sr));
+            Equations.Add(new fsProductEquation(ls, lsOverB, machineWidth));
             Equations.Add(new fsSfFromEtafHcHceKappaPcDpNsLsUTtechEquation(
                 sf, etaf, cakeHeigth, hce0, kappa, Pc, Dp, ns, ls, u, ttech));
             #endregion

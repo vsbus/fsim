@@ -47,7 +47,8 @@ namespace fsUIControls
                            fsCharacteristic.Area,
                            fsCharacteristic.Mass,
                            fsCharacteristic.Volume,
-                           fsCharacteristic.MassFlowrate
+                           fsCharacteristic.MassFlowrate,
+                           fsCharacteristic.VolumeFlowrate
                        };
         }
 
@@ -189,111 +190,38 @@ namespace fsUIControls
 
         private class fsScheme
         {
-            public static readonly fsScheme InternationalSystemOfUnits = new fsScheme("International System of Units",
-                                                                                      new[]
-                                                                                          {
-                                                                                              new KeyValuePair
-                                                                                                  <fsCharacteristic,
-                                                                                                  fsUnit>(
-                                                                                                  fsCharacteristic.Area,
-                                                                                                  fsUnit.SquareMeter),
-                                                                                              new KeyValuePair
-                                                                                                  <fsCharacteristic,
-                                                                                                  fsUnit>(
-                                                                                                  fsCharacteristic.Mass,
-                                                                                                  fsUnit.KiloGramme),
-                                                                                              new KeyValuePair
-                                                                                                  <fsCharacteristic,
-                                                                                                  fsUnit>(
-                                                                                                  fsCharacteristic.
-                                                                                                      Volume,
-                                                                                                  fsUnit.CubicMeter),
-                                                                                              new KeyValuePair
-                                                                                                  <fsCharacteristic,
-                                                                                                  fsUnit>(
-                                                                                                  fsCharacteristic.
-                                                                                                      MassFlowrate,
-                                                                                                  fsUnit.
-                                                                                                      KiloGrammePerSec)
-                                                                                          });
+            public static readonly fsScheme InternationalSystemOfUnits =
+                new fsScheme("International System of Units",
+                    new[]
+                    {
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareMeter),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.CubicMeter),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerSec),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.VolumeFlowrate, fsUnit.CubicMeterPerSecond)
+                    });
 
-            public static readonly fsScheme LaboratoryScale = new fsScheme("Laboratory Scale", new[]
-                                                                                                   {
-                                                                                                       new KeyValuePair
-                                                                                                           <
-                                                                                                           fsCharacteristic
-                                                                                                           , fsUnit>(
-                                                                                                           fsCharacteristic
-                                                                                                               .Area,
-                                                                                                           fsUnit.
-                                                                                                               SquareSantiMeter)
-                                                                                                       ,
-                                                                                                       new KeyValuePair
-                                                                                                           <
-                                                                                                           fsCharacteristic
-                                                                                                           , fsUnit>(
-                                                                                                           fsCharacteristic
-                                                                                                               .Mass,
-                                                                                                           fsUnit.Gramme)
-                                                                                                       ,
-                                                                                                       new KeyValuePair
-                                                                                                           <
-                                                                                                           fsCharacteristic
-                                                                                                           , fsUnit>(
-                                                                                                           fsCharacteristic
-                                                                                                               .Volume,
-                                                                                                           fsUnit.
-                                                                                                               MilliLiter)
-                                                                                                       ,
-                                                                                                       new KeyValuePair
-                                                                                                           <
-                                                                                                           fsCharacteristic
-                                                                                                           , fsUnit>(
-                                                                                                           fsCharacteristic
-                                                                                                               .
-                                                                                                               MassFlowrate,
-                                                                                                           fsUnit.
-                                                                                                               KiloGrammePerHour)
-                                                                                                   });
+            public static readonly fsScheme LaboratoryScale =
+                new fsScheme("Laboratory Scale",
+                    new[]
+                    {
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareSantiMeter),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.Gramme),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.MilliLiter),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerHour),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.VolumeFlowrate, fsUnit.CubicMeterPerSecond)
+                    });
 
-            public static fsScheme PilotIndustrialScale = new fsScheme("Pilot/Industrial Scale", new[]
-                                                                                                     {
-                                                                                                         new KeyValuePair
-                                                                                                             <
-                                                                                                             fsCharacteristic
-                                                                                                             , fsUnit>(
-                                                                                                             fsCharacteristic
-                                                                                                                 .Area,
-                                                                                                             fsUnit.
-                                                                                                                 SquareMeter)
-                                                                                                         ,
-                                                                                                         new KeyValuePair
-                                                                                                             <
-                                                                                                             fsCharacteristic
-                                                                                                             , fsUnit>(
-                                                                                                             fsCharacteristic
-                                                                                                                 .Mass,
-                                                                                                             fsUnit.
-                                                                                                                 KiloGramme)
-                                                                                                         ,
-                                                                                                         new KeyValuePair
-                                                                                                             <
-                                                                                                             fsCharacteristic
-                                                                                                             , fsUnit>(
-                                                                                                             fsCharacteristic
-                                                                                                                 .Volume,
-                                                                                                             fsUnit.
-                                                                                                                 Liter),
-                                                                                                         new KeyValuePair
-                                                                                                             <
-                                                                                                             fsCharacteristic
-                                                                                                             , fsUnit>(
-                                                                                                             fsCharacteristic
-                                                                                                                 .
-                                                                                                                 MassFlowrate,
-                                                                                                             fsUnit.
-                                                                                                                 KiloGrammePerMin)
-                                                                                                     });
+            public static fsScheme PilotIndustrialScale =
+                new fsScheme("Pilot/Industrial Scale",
+                    new[]
+                    {
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareMeter),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.Liter),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerMin),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.VolumeFlowrate, fsUnit.CubicMeterPerSecond)
+                    });
 
             private fsScheme(string name, params KeyValuePair<fsCharacteristic, fsUnit>[] characteristicToUnit)
             {
