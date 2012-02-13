@@ -29,10 +29,7 @@
         private void InitializeComponent()
         {
             this.rightPanel = new System.Windows.Forms.Panel();
-            this.unitsPanel = new System.Windows.Forms.Panel();
-            this.shemePanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.schemeBox = new System.Windows.Forms.ComboBox();
+            this.fsUnitsControl1 = new fsUIControls.fsUnitsControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,7 +39,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.rightPanel.SuspendLayout();
-            this.shemePanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -53,51 +49,20 @@
             this.rightPanel.AutoScroll = true;
             this.rightPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.rightPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.rightPanel.Controls.Add(this.unitsPanel);
-            this.rightPanel.Controls.Add(this.shemePanel);
+            this.rightPanel.Controls.Add(this.fsUnitsControl1);
             this.rightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rightPanel.Location = new System.Drawing.Point(263, 0);
+            this.rightPanel.Location = new System.Drawing.Point(233, 0);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(296, 377);
+            this.rightPanel.Size = new System.Drawing.Size(326, 377);
             this.rightPanel.TabIndex = 0;
             // 
-            // unitsPanel
+            // fsUnitsControl1
             // 
-            this.unitsPanel.AutoScroll = true;
-            this.unitsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.unitsPanel.Location = new System.Drawing.Point(0, 55);
-            this.unitsPanel.Name = "unitsPanel";
-            this.unitsPanel.Size = new System.Drawing.Size(292, 318);
-            this.unitsPanel.TabIndex = 0;
-            // 
-            // shemePanel
-            // 
-            this.shemePanel.Controls.Add(this.label1);
-            this.shemePanel.Controls.Add(this.schemeBox);
-            this.shemePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.shemePanel.Location = new System.Drawing.Point(0, 0);
-            this.shemePanel.Name = "shemePanel";
-            this.shemePanel.Size = new System.Drawing.Size(292, 55);
-            this.shemePanel.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Units Sceme:";
-            // 
-            // schemeBox
-            // 
-            this.schemeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.schemeBox.FormattingEnabled = true;
-            this.schemeBox.Location = new System.Drawing.Point(94, 13);
-            this.schemeBox.Name = "schemeBox";
-            this.schemeBox.Size = new System.Drawing.Size(178, 21);
-            this.schemeBox.TabIndex = 0;
-            this.schemeBox.SelectedIndexChanged += new System.EventHandler(this.SchemeBoxSelectedIndexChanged);
+            this.fsUnitsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fsUnitsControl1.Location = new System.Drawing.Point(0, 0);
+            this.fsUnitsControl1.Name = "fsUnitsControl1";
+            this.fsUnitsControl1.Size = new System.Drawing.Size(322, 373);
+            this.fsUnitsControl1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -151,7 +116,7 @@
             this.listingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listingPanel.Location = new System.Drawing.Point(0, 0);
             this.listingPanel.Name = "listingPanel";
-            this.listingPanel.Size = new System.Drawing.Size(263, 377);
+            this.listingPanel.Size = new System.Drawing.Size(233, 377);
             this.listingPanel.TabIndex = 2;
             // 
             // m_futureCheckBox
@@ -200,8 +165,6 @@
             this.Text = "UnitsDialog";
             this.Load += new System.EventHandler(this.UnitsDialogLoad);
             this.rightPanel.ResumeLayout(false);
-            this.shemePanel.ResumeLayout(false);
-            this.shemePanel.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -221,10 +184,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.CheckBox m_showSecondaryCheckbox;
-        private System.Windows.Forms.Panel unitsPanel;
-        private System.Windows.Forms.Panel shemePanel;
-        private System.Windows.Forms.ComboBox schemeBox;
-        private System.Windows.Forms.Label label1;
+        private fsUIControls.fsUnitsControl fsUnitsControl1;
 
     }
 }
