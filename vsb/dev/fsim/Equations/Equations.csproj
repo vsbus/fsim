@@ -47,6 +47,7 @@
     <Compile Include="Belt Filters with Reversible Trays\fsAreaOfBeltWithReversibleTraysEquation.cs" />
     <Compile Include="Belt Filters with Reversible Trays\fsSfFromEtafHcHceKappaPcDpNsLsUTtechEquation.cs" />
     <Compile Include="Belt Filters with Reversible Trays\fsTechnicalTimeFrom0Equation.cs" />
+    <Compile Include="Belt Filters with Reversible Trays\fsUFromLsOverBQmsHcDpTtech0LambdaNsfMaterialEquation.cs" />
     <Compile Include="Cake Formation\fsCakeHeightFrom_Dp_tfEquation.cs" />
     <Compile Include="Material\Cake Moisture Content Rf Equations\fsMoistureContentEquation.cs" />
     <Compile Include="Material\Cake Moisture Content Rf Equations\fsMoistureContentFromCakeSaturationEquation.cs" />
@@ -86,6 +87,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\fsNumericalMethods\fsNumericalMethods.csproj">
+      <Project>{F52D1A38-87C6-4071-BFEA-1822512A4C0F}</Project>
+      <Name>fsNumericalMethods</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Parameters\Parameters.csproj">
       <Project>{67A1D000-12E6-439C-BC89-23C4059BC855}</Project>
       <Name>Parameters</Name>
