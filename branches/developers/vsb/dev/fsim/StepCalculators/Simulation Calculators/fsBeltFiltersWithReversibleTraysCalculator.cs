@@ -92,6 +92,8 @@ namespace StepCalculators.Simulation_Calculators
             Equations.Add(new fsProductEquation(ls, lsOverB, machineWidth));
             Equations.Add(new fsSfFromEtafHcHceKappaPcDpNsLsUTtechEquation(
                 sf, etaf, cakeHeigth, hce0, kappa, Pc, Dp, ns, ls, u, ttech));
+            Equations.Add(new fsUFromLsOverBQmsHcDpTtech0LambdaNsfMaterialEquation(
+                u, lambda, nsf, lsOverB, Qms, rho_cd0, cakeHeigth, etaf, hce0, kappa, Pc, Dp, ttech0));
             #endregion
         }
     }
