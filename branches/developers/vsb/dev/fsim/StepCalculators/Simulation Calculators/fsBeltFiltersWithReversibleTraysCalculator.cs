@@ -87,8 +87,10 @@ namespace StepCalculators.Simulation_Calculators
             Equations.Add(new fsDivisionInverseEquation(tc, n));
             Equations.Add(new fsCakeHeightFromDpTf(cakeHeigth, hce0, Pc, kappa, Dp, filtrationTime, etaf));
             Equations.Add(new fsSumEquation(ns, nsf, nsr));
+            Equations.Add(new fsSumEquation(tc, tr, filtrationTime));
             Equations.Add(new fsSumEquation(constantOne, sr, sf));
             Equations.Add(new fsProductEquation(tr, tc, sr));
+            Equations.Add(new fsProductEquation(filtrationTime, tc, sf));
             Equations.Add(new fsProductEquation(ls, lsOverB, machineWidth));
             Equations.Add(new fsSfFromEtafHcHceKappaPcDpNsLsUTtechEquation(
                 sf, etaf, cakeHeigth, hce0, kappa, Pc, Dp, ns, ls, u, ttech));
