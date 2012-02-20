@@ -65,7 +65,7 @@ namespace StepCalculators.Simulation_Calculators
 
             #region Equations Initialization
 
-            Equations.Add(new fsAreaOfBeltWithReversibleTraysEquation(filterArea, lsOverB, ns, Qms, rho_s, u, cakeHeigth));
+            Equations.Add(new fsAreaOfBeltWithReversibleTraysEquation(filterArea, lsOverB, ns, Qms, rho_cd0, u, cakeHeigth));
 
             Equations.Add(new fsProductEquation(Qms, rho_s, Qs));
             Equations.Add(new fsProductEquation(Qmsus, rho_sus, Qsus));
