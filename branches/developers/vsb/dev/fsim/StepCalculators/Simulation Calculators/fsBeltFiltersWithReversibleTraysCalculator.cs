@@ -11,6 +11,19 @@ namespace StepCalculators.Simulation_Calculators
         {
             #region Parameters Initialization
 
+            IEquationParameter etaf = AddConstant(fsParameterIdentifier.ViscosityFiltrate);
+            IEquationParameter rho_s = AddConstant(fsParameterIdentifier.SolidsDensity);
+            IEquationParameter rho_f = AddConstant(fsParameterIdentifier.FiltrateDensity);
+            IEquationParameter rho_sus = AddConstant(fsParameterIdentifier.SuspensionDensity);
+            IEquationParameter cv = AddConstant(fsParameterIdentifier.SuspensionSolidsVolumeFraction);
+            IEquationParameter eps0 = AddConstant(fsParameterIdentifier.CakePorosity0);
+            IEquationParameter Pc0 = AddConstant(fsParameterIdentifier.CakePermeability0);
+            IEquationParameter ne = AddConstant(fsParameterIdentifier.Ne);
+            IEquationParameter nc = AddConstant(fsParameterIdentifier.CakeCompressibility);
+            IEquationParameter hce0 = AddConstant(fsParameterIdentifier.FilterMediumResistanceHce0);
+            IEquationParameter ttech0 = AddConstant(fsParameterIdentifier.ttech0);
+            IEquationParameter lambda = AddConstant(fsParameterIdentifier.lambda);
+
             IEquationParameter ns = AddVariable(fsParameterIdentifier.ns);
             IEquationParameter Qms = AddVariable(fsParameterIdentifier.Qms);
             IEquationParameter Qs = AddVariable(fsParameterIdentifier.Qs);
@@ -40,24 +53,15 @@ namespace StepCalculators.Simulation_Calculators
             IEquationParameter kappa = AddVariable(fsParameterIdentifier.Kappa);
             IEquationParameter Pc = AddVariable(fsParameterIdentifier.CakePermeability);
 
-            IEquationParameter etaf = AddConstant(fsParameterIdentifier.ViscosityFiltrate);
-            IEquationParameter rho_s = AddConstant(fsParameterIdentifier.SolidsDensity);
-            IEquationParameter rho_sus = AddConstant(fsParameterIdentifier.SuspensionDensity);
-            IEquationParameter cv = AddConstant(fsParameterIdentifier.SuspensionSolidsVolumeFraction);
-            IEquationParameter eps0 = AddConstant(fsParameterIdentifier.CakePorosity0);
-            IEquationParameter Pc0 = AddConstant(fsParameterIdentifier.CakePermeability0);
-            IEquationParameter ne = AddConstant(fsParameterIdentifier.Ne);
-            IEquationParameter nc = AddConstant(fsParameterIdentifier.CakeCompressibility);
-            IEquationParameter hce0 = AddConstant(fsParameterIdentifier.FilterMediumResistanceHce0);
-            IEquationParameter ttech0 = AddConstant(fsParameterIdentifier.ttech0);
-            IEquationParameter lambda = AddConstant(fsParameterIdentifier.lambda);
-
             IEquationParameter ttech = AddVariable(fsParameterIdentifier.TechnicalTime);
 
             IEquationParameter filterArea = AddVariable(fsParameterIdentifier.FilterArea);
             IEquationParameter As = AddVariable(fsParameterIdentifier.As);
             IEquationParameter machineWidth = AddVariable(fsParameterIdentifier.MachineWidth);
             IEquationParameter filterLength = AddVariable(fsParameterIdentifier.FilterLength);
+
+            IEquationParameter qft = AddVariable(fsParameterIdentifier.qft);
+            IEquationParameter qmft = AddVariable(fsParameterIdentifier.qmft);
             
             var constantOne = new fsCalculatorConstant(new fsParameterIdentifier("1")) {Value = fsValue.One};
             
@@ -97,6 +101,12 @@ namespace StepCalculators.Simulation_Calculators
                 sf, etaf, cakeHeigth, hce0, kappa, Pc, Dp, ns, ls, u, ttech));
             Equations.Add(new fsUFromLsOverBQmsHcDpTtech0LambdaNsfMaterialEquation(
                 u, lambda, nsf, lsOverB, Qms, rho_cd, cakeHeigth, etaf, hce0, kappa, Pc, Dp, ttech0));
+            
+            Equations.Add(new fsProductsEquation(
+                new IEquationParameter[] { qft, kappa, filtrationTime },
+                new IEquationParameter[] { cakeHeigth }));
+            Equations.Add(new fsProductEquation(qmft, qft, rho_f));
+
             #endregion
         }
     }
