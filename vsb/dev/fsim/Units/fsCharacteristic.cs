@@ -60,6 +60,26 @@ namespace Units
             }
         );
 
+        public static fsCharacteristic CakeHeight = new fsCharacteristic(
+            "Cake Height",
+            new[] {
+                fsUnit.MilliMeter,
+                fsUnit.SantiMeter,
+                fsUnit.DeciMeter,
+                fsUnit.Meter
+            }
+        );
+
+        public static fsCharacteristic MachineGeometryLength = new fsCharacteristic(
+            "Machine Geometry Length",
+            new[] {
+                fsUnit.Meter,
+                fsUnit.DeciMeter,
+                fsUnit.SantiMeter,
+                fsUnit.MilliMeter
+            }
+        );
+
         public static fsCharacteristic Area = new fsCharacteristic(
             "Area",
             new[] {

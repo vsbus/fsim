@@ -73,19 +73,19 @@ namespace Parameters
             new fsParameterIdentifier("A", "Filter Area", fsCharacteristic.Area);
 
         public static fsParameterIdentifier FilterLength =
-            new fsParameterIdentifier("l", "Filter Length", fsCharacteristic.Length);
+            new fsParameterIdentifier("l", "Filter Length", fsCharacteristic.MachineGeometryLength);
 
         public static fsParameterIdentifier As = new fsParameterIdentifier("As", fsCharacteristic.Area);
 
         public static fsParameterIdentifier MachineDiameter = new fsParameterIdentifier("D", "Machine Diameter",
-                                                                                        fsCharacteristic.Length);
+                                                                                        fsCharacteristic.MachineGeometryLength);
 
         public static fsParameterIdentifier FilterElementDiameter = new fsParameterIdentifier("d",
                                                                                               "Filter Element Diameter",
-                                                                                              fsCharacteristic.Length);
+                                                                                              fsCharacteristic.MachineGeometryLength);
 
         public static fsParameterIdentifier MachineWidth = new fsParameterIdentifier("b", "Machine Width",
-                                                                                     fsCharacteristic.Length);
+                                                                                     fsCharacteristic.MachineGeometryLength);
 
         public static fsParameterIdentifier WidthOverDiameterRatio = new fsParameterIdentifier("b/D",
                                                                                                "Width/Diameter Ratio",
@@ -114,7 +114,7 @@ namespace Parameters
                                                                                      fsCharacteristic.Time);
 
         public static fsParameterIdentifier CakeHeight = new fsParameterIdentifier("hc", "Cake Height",
-                                                                                   fsCharacteristic.Length);
+                                                                                   fsCharacteristic.CakeHeight);
 
         public static fsParameterIdentifier WetCakeMass = new fsParameterIdentifier("Mcw", "Wet Cake Mass",
                                                                                     fsCharacteristic.Mass);
@@ -164,7 +164,7 @@ namespace Parameters
             new fsParameterIdentifier("l/b", fsCharacteristic.NoUnits);
 
         public static fsParameterIdentifier ls =
-            new fsParameterIdentifier("ls", fsCharacteristic.Length);
+            new fsParameterIdentifier("ls", fsCharacteristic.MachineGeometryLength);
 
         public static fsParameterIdentifier ttech0 =
             new fsParameterIdentifier("ttech0", fsCharacteristic.Time);
@@ -260,25 +260,17 @@ namespace Parameters
 
         public static fsParameterIdentifier CakeCompressibility = new fsParameterIdentifier("nc", "Cake Compressibility");
 
-        public static fsParameterIdentifier CakeResistanceAlpha0 = new fsParameterIdentifier("alpha0",
-                                                                                             "Cake Resistance0",
-                                                                                             fsCharacteristic.
-                                                                                                 CakeResistanceAlpha);
+        public static fsParameterIdentifier CakeResistanceAlpha0 = 
+            new fsParameterIdentifier("alpha0", "Cake Resistance0", fsCharacteristic.CakeResistanceAlpha);
 
-        public static fsParameterIdentifier FilterMediumResistanceHce0 = new fsParameterIdentifier("hce0",
-                                                                                                   "Filter Medium Resistance hce0",
-                                                                                                   fsCharacteristic.
-                                                                                                       Length);
+        public static fsParameterIdentifier FilterMediumResistanceHce0 = 
+            new fsParameterIdentifier("hce0", "Filter Medium Resistance hce0", fsCharacteristic.CakeHeight);
 
-        public static fsParameterIdentifier FilterMediumResistanceRm0 = new fsParameterIdentifier("Rm0",
-                                                                                                  fsCharacteristic.
-                                                                                                      FilterMediumResistance);
+        public static fsParameterIdentifier FilterMediumResistanceRm0 = 
+            new fsParameterIdentifier("Rm0", fsCharacteristic.FilterMediumResistance);
 
-        public static fsParameterIdentifier SolutesConcentrationInMotherLiquid = new fsParameterIdentifier("C_sol",
-                                                                                                           "Solutes Concentration in Mother Liquid",
-                                                                                                           fsCharacteristic
-                                                                                                               .
-                                                                                                               SolidsConcentration);
+        public static fsParameterIdentifier SolutesConcentrationInMotherLiquid = 
+            new fsParameterIdentifier("C_sol", "Solutes Concentration in Mother Liquid", fsCharacteristic.SolidsConcentration);
 
         public static fsParameterIdentifier SolutesMassFractionInMotherLiquid = new fsParameterIdentifier("Cm_sol",
                                                                                                           "Solutes Mass Fraction in Mother Liquid",

@@ -16,7 +16,8 @@ namespace Calculator
             Application.SetCompatibleTextRenderingDefault(false);
 
             fsCharacteristic.Time.CurrentUnit = fsUnit.Second;
-            fsCharacteristic.Length.CurrentUnit = fsUnit.MilliMeter;
+            fsCharacteristic.CakeHeight.CurrentUnit = fsUnit.MilliMeter;
+            fsCharacteristic.MachineGeometryLength.CurrentUnit = fsUnit.Meter;
             fsCharacteristic.Area.CurrentUnit = fsUnit.SquareSantiMeter;
             fsCharacteristic.Mass.CurrentUnit = fsUnit.Gramme;
             fsCharacteristic.Volume.CurrentUnit = fsUnit.MilliLiter;
