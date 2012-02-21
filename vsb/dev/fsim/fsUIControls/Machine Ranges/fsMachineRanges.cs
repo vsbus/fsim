@@ -77,7 +77,7 @@ namespace CalculatorModules.Machine_Ranges
                                                              fsUnit.Percent, 30, 90),
                                         new fsParameterRange(fsParameterIdentifier.Kappa,
                                                              fsUnit.NoUnit, 0.01, 1.2),
-                                        new fsParameterRange(fsParameterIdentifier.CakeDrySolidsDensity,
+                                        new fsParameterRange(fsParameterIdentifier.DryCakeDensity,
                                                              fsUnit.KiloGrammePerCubicMeter, 500, 5000),
                                         new fsParameterRange(fsParameterIdentifier.CakePermeability0,
                                                              fsUnit.PerTen13SquareMeter, 0.01, 20),
