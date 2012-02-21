@@ -36,6 +36,7 @@ namespace StepCalculators.Simulation_Calculators
             IEquationParameter Dp = AddVariable(fsParameterIdentifier.PressureDifference);
 
             IEquationParameter eps = AddVariable(fsParameterIdentifier.CakePorosity);
+            IEquationParameter rho_cd = AddVariable(fsParameterIdentifier.CakeDrySolidsDensity);
             IEquationParameter kappa = AddVariable(fsParameterIdentifier.Kappa);
             IEquationParameter Pc = AddVariable(fsParameterIdentifier.CakePermeability);
 
@@ -43,7 +44,6 @@ namespace StepCalculators.Simulation_Calculators
             IEquationParameter rho_s = AddConstant(fsParameterIdentifier.SolidsDensity);
             IEquationParameter rho_sus = AddConstant(fsParameterIdentifier.SuspensionDensity);
             IEquationParameter cv = AddConstant(fsParameterIdentifier.SuspensionSolidsVolumeFraction);
-            IEquationParameter rho_cd0 = AddConstant(fsParameterIdentifier.CakeDrySolidsDensity0);
             IEquationParameter eps0 = AddConstant(fsParameterIdentifier.CakePorosity0);
             IEquationParameter Pc0 = AddConstant(fsParameterIdentifier.CakePermeability0);
             IEquationParameter ne = AddConstant(fsParameterIdentifier.Ne);
@@ -65,19 +65,20 @@ namespace StepCalculators.Simulation_Calculators
 
             #region Equations Initialization
 
-            Equations.Add(new fsAreaOfBeltWithReversibleTraysEquation(filterArea, lsOverB, ns, Qms, rho_cd0, u, cakeHeigth));
+            Equations.Add(new fsAreaOfBeltWithReversibleTraysEquation(filterArea, lsOverB, ns, Qms, rho_cd, u, cakeHeigth));
 
             Equations.Add(new fsProductEquation(Qms, rho_s, Qs));
             Equations.Add(new fsProductEquation(Qmsus, rho_sus, Qsus));
             Equations.Add(new fsProductEquation(Qs, Qsus, cv));
             Equations.Add(new fsProductsEquation(
-                new IEquationParameter[] {ls, rho_cd0, u, cakeHeigth},
+                new IEquationParameter[] {ls, rho_cd, u, cakeHeigth},
                 new IEquationParameter[] {lsOverB, Qms}));
             Equations.Add(new fsProductEquation(lOverB, ns, lsOverB));
             Equations.Add(new fsProductEquation(nsf, ns, sf));
             Equations.Add(new fsFrom0AndDpEquation(eps, eps0, Dp, ne));
             Equations.Add(new fsFrom0AndDpEquation(Pc, Pc0, Dp, nc));
             Equations.Add(new fsEpsKappaCvEquation(eps, kappa, cv));
+            Equations.Add(new fsCakeDrySolidsDensityEquation(rho_cd, eps, rho_s));
             Equations.Add(new fsTechnicalTimeFrom0Equation(ttech, ttech0, As, lambda));
             Equations.Add(new fsProductsEquation(
                 new IEquationParameter[] { As, lsOverB },
@@ -95,7 +96,7 @@ namespace StepCalculators.Simulation_Calculators
             Equations.Add(new fsSfFromEtafHcHceKappaPcDpNsLsUTtechEquation(
                 sf, etaf, cakeHeigth, hce0, kappa, Pc, Dp, ns, ls, u, ttech));
             Equations.Add(new fsUFromLsOverBQmsHcDpTtech0LambdaNsfMaterialEquation(
-                u, lambda, nsf, lsOverB, Qms, rho_cd0, cakeHeigth, etaf, hce0, kappa, Pc, Dp, ttech0));
+                u, lambda, nsf, lsOverB, Qms, rho_cd, cakeHeigth, etaf, hce0, kappa, Pc, Dp, ttech0));
             #endregion
         }
     }
