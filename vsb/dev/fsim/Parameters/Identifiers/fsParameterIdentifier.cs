@@ -58,10 +58,6 @@ namespace Parameters
 
         public static fsParameterIdentifier Kappa = new fsParameterIdentifier("kappa");
 
-        public static fsParameterIdentifier CakeDrySolidsDensity = new fsParameterIdentifier("rho_cs",
-                                                                                             "Cake Dry Solids Density",
-                                                                                             fsCharacteristic.Density);
-
         public static fsParameterIdentifier CakePermeability = new fsParameterIdentifier("Pc", "Cake Permeability",
                                                                                          fsCharacteristic.
                                                                                              CakePermeability);
@@ -211,6 +207,9 @@ namespace Parameters
 
         public static fsParameterIdentifier CakeDrySolidsDensity0 =
             new fsParameterIdentifier("rho_cd0", "Cake dry solids density", fsCharacteristic.Density);
+
+        public static fsParameterIdentifier CakeDrySolidsDensity =
+            new fsParameterIdentifier("rho_cs", "Cake dry solids density", fsCharacteristic.Density);
 
         public static fsParameterIdentifier CakeWetDensity0 =
             new fsParameterIdentifier("rho_cw0", "Cake wet density", fsCharacteristic.Density);

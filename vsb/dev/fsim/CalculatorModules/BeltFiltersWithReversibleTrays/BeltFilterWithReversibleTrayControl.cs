@@ -27,7 +27,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             Calculators.Add(new fsDensityConcentrationCalculator());
             Calculators.Add(new fsEps0Kappa0Calculator());
-            Calculators.Add(new fsEps0Kappa0Calculator());
             Calculators.Add(new fsRf0Rs0RhoCw0FromDensitiesAndCakePorosity0Calculator());
             Calculators.Add(new fsPc0Rc0Alpha0Calculator());
             Calculators.Add(new fsRm0Hce0Calculator());
@@ -115,7 +114,11 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.As,
                 fsParameterIdentifier.MachineWidth,
-                fsParameterIdentifier.FilterLength);
+                fsParameterIdentifier.FilterLength,
+                fsParameterIdentifier.CakePorosity,
+                fsParameterIdentifier.Kappa,
+                fsParameterIdentifier.CakeDrySolidsDensity,
+                fsParameterIdentifier.TechnicalTime);
 
             var groups = new[]
                              {
