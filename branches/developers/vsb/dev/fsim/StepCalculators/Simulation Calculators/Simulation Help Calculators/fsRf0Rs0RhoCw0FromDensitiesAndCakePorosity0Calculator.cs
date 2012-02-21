@@ -29,7 +29,7 @@ namespace StepCalculators.Simulation_Calculators.Simulation_Help_Calculators
             m_filtrateDensity = AddConstant(fsParameterIdentifier.FiltrateDensity);
             m_solidsDensity = AddConstant(fsParameterIdentifier.SolidsDensity);
             m_cakePorosity0 = AddConstant(fsParameterIdentifier.CakePorosity0);
-            m_cakeDrySolidsDensity0 = AddConstant(fsParameterIdentifier.CakeDrySolidsDensity0);
+            m_cakeDrySolidsDensity0 = AddConstant(fsParameterIdentifier.DryCakeDensity0);
             m_suspensionSolidsMassFraction = AddConstant(fsParameterIdentifier.SuspensionSolidsMassFraction);
             m_kappa0 = AddConstant(fsParameterIdentifier.Kappa0);
             m_cakeMoistureContentRf0 = AddVariable(fsParameterIdentifier.CakeMoistureContentRf0);

@@ -49,7 +49,7 @@ namespace StepCalculators.Simulation_Calculators
             IEquationParameter Dp = AddVariable(fsParameterIdentifier.PressureDifference);
 
             IEquationParameter eps = AddVariable(fsParameterIdentifier.CakePorosity);
-            IEquationParameter rhoCd = AddVariable(fsParameterIdentifier.CakeDrySolidsDensity);
+            IEquationParameter rhoCd = AddVariable(fsParameterIdentifier.DryCakeDensity);
             IEquationParameter kappa = AddVariable(fsParameterIdentifier.Kappa);
             IEquationParameter Pc = AddVariable(fsParameterIdentifier.CakePermeability);
 

@@ -20,7 +20,7 @@ namespace StepCalculators
 
             m_porosity0 = AddVariable(fsParameterIdentifier.CakePorosity0);
             m_kappa0 = AddVariable(fsParameterIdentifier.Kappa0);
-            m_cakeDrySolidsDensity0 = AddVariable(fsParameterIdentifier.CakeDrySolidsDensity0);
+            m_cakeDrySolidsDensity0 = AddVariable(fsParameterIdentifier.DryCakeDensity0);
             m_volumeConcentration = AddConstant(fsParameterIdentifier.SuspensionSolidsVolumeFraction);
             m_solidsDensity = AddConstant(fsParameterIdentifier.SolidsDensity);
             m_oneMinusPorosity = AddVariable(new fsParameterIdentifier("1-eps"));

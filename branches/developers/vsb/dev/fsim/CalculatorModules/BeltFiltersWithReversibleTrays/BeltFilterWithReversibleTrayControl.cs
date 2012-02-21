@@ -50,7 +50,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             fsParametersGroup epsGroup = AddGroup(
                 fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0,
-                fsParameterIdentifier.CakeDrySolidsDensity0);
+                fsParameterIdentifier.DryCakeDensity0);
 
             fsParametersGroup rGroup = AddGroup(
                 fsParameterIdentifier.CakeWetDensity0,
@@ -117,7 +117,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.FilterLength,
                 fsParameterIdentifier.CakePorosity,
                 fsParameterIdentifier.Kappa,
-                fsParameterIdentifier.CakeDrySolidsDensity,
+                fsParameterIdentifier.DryCakeDensity,
                 fsParameterIdentifier.TechnicalTime);
 
             var groups = new[]

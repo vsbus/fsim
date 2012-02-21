@@ -202,14 +202,11 @@ namespace Parameters
         public static fsParameterIdentifier CapillaryPressure = 
             new fsParameterIdentifier("pke", "Capillary Pressure", fsCharacteristic.Pressure);
 
-        public static fsParameterIdentifier DensityDryCake =
-            new fsParameterIdentifier("rho_cd", "Density Dry Cake", fsCharacteristic.Density);
+        public static fsParameterIdentifier DryCakeDensity0 =
+            new fsParameterIdentifier("rho_cd0", "Dry cake density (Dp=1 bar)", fsCharacteristic.Density);
 
-        public static fsParameterIdentifier CakeDrySolidsDensity0 =
-            new fsParameterIdentifier("rho_cd0", "Cake dry solids density", fsCharacteristic.Density);
-
-        public static fsParameterIdentifier CakeDrySolidsDensity =
-            new fsParameterIdentifier("rho_cs", "Cake dry solids density", fsCharacteristic.Density);
+        public static fsParameterIdentifier DryCakeDensity =
+            new fsParameterIdentifier("rho_cd", "Dry cake density", fsCharacteristic.Density);
 
         public static fsParameterIdentifier CakeWetDensity0 =
             new fsParameterIdentifier("rho_cw0", "Cake wet density", fsCharacteristic.Density);
