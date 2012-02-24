@@ -30,19 +30,33 @@
         {
             this.calculationComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.materialParametersDisplayCheckBox = new System.Windows.Forms.CheckBox();
+            this.tablesSplitContainer.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
             this.calculationOptionsPanel.SuspendLayout();
+            this.tablesPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tablesSplitContainer
+            // 
+            this.tablesSplitContainer.Size = new System.Drawing.Size(287, 226);
+            this.tablesSplitContainer.SplitterDistance = 140;
             // 
             // leftTopPanel
             // 
-            this.leftTopPanel.Size = new System.Drawing.Size(287, 48);
+            this.leftTopPanel.Size = new System.Drawing.Size(287, 74);
             // 
             // calculationOptionsPanel
             // 
+            this.calculationOptionsPanel.Controls.Add(this.materialParametersDisplayCheckBox);
             this.calculationOptionsPanel.Controls.Add(this.label1);
             this.calculationOptionsPanel.Controls.Add(this.calculationComboBox);
-            this.calculationOptionsPanel.Size = new System.Drawing.Size(236, 48);
+            this.calculationOptionsPanel.Size = new System.Drawing.Size(236, 74);
+            // 
+            // tablesPanel
+            // 
+            this.tablesPanel.Location = new System.Drawing.Point(0, 74);
+            this.tablesPanel.Size = new System.Drawing.Size(287, 226);
             // 
             // calculationComboBox
             // 
@@ -62,15 +76,30 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Calculation:";
             // 
-            // BeltFilterWithReversibleTrayControl
+            // materialParametersDisplayCheckBox
+            // 
+            this.materialParametersDisplayCheckBox.AutoSize = true;
+            this.materialParametersDisplayCheckBox.Checked = true;
+            this.materialParametersDisplayCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.materialParametersDisplayCheckBox.Location = new System.Drawing.Point(3, 51);
+            this.materialParametersDisplayCheckBox.Name = "materialParametersDisplayCheckBox";
+            this.materialParametersDisplayCheckBox.Size = new System.Drawing.Size(149, 17);
+            this.materialParametersDisplayCheckBox.TabIndex = 2;
+            this.materialParametersDisplayCheckBox.Text = "Show Material Parameters";
+            this.materialParametersDisplayCheckBox.UseVisualStyleBackColor = true;
+            this.materialParametersDisplayCheckBox.CheckedChanged += new System.EventHandler(this.materialParametersDisplayCheckBox_CheckedChanged);
+            // 
+            // fsBeltFilterWithReversibleTrayControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "fsBeltFilterWithReversibleTrayControl";
             this.Size = new System.Drawing.Size(287, 300);
+            this.tablesSplitContainer.ResumeLayout(false);
             this.leftTopPanel.ResumeLayout(false);
             this.calculationOptionsPanel.ResumeLayout(false);
             this.calculationOptionsPanel.PerformLayout();
+            this.tablesPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -79,5 +108,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox calculationComboBox;
+        private System.Windows.Forms.CheckBox materialParametersDisplayCheckBox;
     }
 }
