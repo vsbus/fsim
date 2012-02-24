@@ -60,18 +60,23 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.SuspensionSolidsVolumeFraction,
                 fsParameterIdentifier.SuspensionSolidsConcentration);
 
-            fsParametersGroup epsGroup = AddGroup(
+            fsParametersGroup eps0Group = AddGroup(
                 fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0,
                 fsParameterIdentifier.DryCakeDensity0);
+
+            fsParametersGroup epsGroup = AddGroup(
+                fsParameterIdentifier.CakePorosity,
+                fsParameterIdentifier.Kappa,
+                fsParameterIdentifier.DryCakeDensity);
+
+            fsParametersGroup neGroup = AddGroup(
+                fsParameterIdentifier.Ne);
 
             fsParametersGroup rGroup = AddGroup(
                 fsParameterIdentifier.CakeWetDensity0,
                 fsParameterIdentifier.CakeWetMassSolidsFractionRs0,
                 fsParameterIdentifier.CakeMoistureContentRf0);
-
-            fsParametersGroup neGroup = AddGroup(
-                fsParameterIdentifier.Ne);
 
             fsParametersGroup pcrcGroup = AddGroup(
                 fsParameterIdentifier.CakePermeability0,
@@ -91,9 +96,10 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                                 rhofGroup,
                                 densitiesGroup,
                                 cGroup,
+                                eps0Group,
+                                neGroup,
                                 epsGroup,
                                 rGroup,
-                                neGroup,
                                 pcrcGroup,
                                 ncGroup,
                                 hce0Group, 
@@ -104,6 +110,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 AddGroupToUI(materialParametersDataGrid, materialGroups[i], colors[i % colors.Length]);
                 SetGroupInput(materialGroups[i], true);
             }
+            SetGroupInput(epsGroup, false);
 
             #endregion
 
@@ -152,9 +159,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.As,
                 fsParameterIdentifier.MachineWidth,
                 fsParameterIdentifier.FilterLength,
-                fsParameterIdentifier.CakePorosity,
-                fsParameterIdentifier.Kappa,
-                fsParameterIdentifier.DryCakeDensity,
                 fsParameterIdentifier.TechnicalTime);
 
             var groups = new[]
