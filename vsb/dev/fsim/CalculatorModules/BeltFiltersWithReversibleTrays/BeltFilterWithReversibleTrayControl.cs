@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
 using StepCalculators.Simulation_Calculators;
@@ -7,7 +8,7 @@ using StepCalculators.Simulation_Calculators.Simulation_Help_Calculators;
 
 namespace CalculatorModules.BeltFiltersWithReversibleTrays
 {
-    public sealed partial class fsBeltFilterWithReversibleTrayControl : fsOptionsOneTableAndCommentsCalculatorControl
+    public sealed partial class fsBeltFilterWithReversibleTrayControl : fsOptionsDoubleTableAndCommentsCalculatorControl
     {
         #region Calculation Option
 
@@ -25,12 +26,24 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
         {
             InitializeComponent();
 
+            #region Calculators
+            
             Calculators.Add(new fsDensityConcentrationCalculator());
             Calculators.Add(new fsEps0Kappa0Calculator());
             Calculators.Add(new fsRf0Rs0RhoCw0FromDensitiesAndCakePorosity0Calculator());
             Calculators.Add(new fsPc0Rc0Alpha0Calculator());
             Calculators.Add(new fsRm0Hce0Calculator());
             Calculators.Add(new fsBeltFiltersWithReversibleTraysCalculator());
+
+            #endregion
+
+            var colors = new[]
+                             {
+                                 Color.FromArgb(255, 255, 230),
+                                 Color.FromArgb(255, 230, 255)
+                             };
+
+            #region Material groups
 
             fsParametersGroup etafGroup = AddGroup(
                 fsParameterIdentifier.ViscosityFiltrate);
@@ -72,11 +85,35 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.FilterMediumResistanceHce0,
                 fsParameterIdentifier.FilterMediumResistanceRm0);
             
+            var materialGroups = new[]
+                             {
+                                etafGroup,
+                                rhofGroup,
+                                densitiesGroup,
+                                cGroup,
+                                epsGroup,
+                                rGroup,
+                                neGroup,
+                                pcrcGroup,
+                                ncGroup,
+                                hce0Group, 
+                             };
+
+            for (int i = 0; i < materialGroups.Length; ++i)
+            {
+                AddGroupToUI(materialParametersDataGrid, materialGroups[i], colors[i % colors.Length]);
+                SetGroupInput(materialGroups[i], true);
+            }
+
+            #endregion
+
+            #region Fitration groups
+
             fsParametersGroup qsusGroup = AddGroup(
                 fsParameterIdentifier.Qms,
                 fsParameterIdentifier.Qsus,
                 fsParameterIdentifier.SuspensionMassFlowrate);
-            
+
             fsParametersGroup nsGroup = AddGroup(
                 fsParameterIdentifier.ns);
 
@@ -84,13 +121,13 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.ls_over_b,
                 fsParameterIdentifier.l_over_b,
                 fsParameterIdentifier.ls);
-            
+
             fsParametersGroup timeGroup = AddGroup(
                 fsParameterIdentifier.ttech0);
-            
+
             fsParametersGroup dpGroup = AddGroup(
                 fsParameterIdentifier.PressureDifference);
-            
+
             fsParametersGroup cycleGroup = AddGroup(
                 fsParameterIdentifier.u,
                 fsParameterIdentifier.RotationalSpeed,
@@ -100,16 +137,16 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.SpecificFiltrationTime,
                 fsParameterIdentifier.SpecificResidualTime,
                 fsParameterIdentifier.ResidualTime);
-            
+
             fsParametersGroup filtrationGroup = AddGroup(
                 fsParameterIdentifier.CakeHeight,
                 fsParameterIdentifier.FiltrationTime,
                 fsParameterIdentifier.qft,
                 fsParameterIdentifier.qmft);
-            
+
             fsParametersGroup lambdaGroup = AddGroup(
                 fsParameterIdentifier.lambda);
-            
+
             fsParametersGroup resultsGroup = AddGroup(
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.As,
@@ -122,16 +159,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             var groups = new[]
                              {
-                                etafGroup,
-                                rhofGroup,
-                                densitiesGroup,
-                                cGroup,
-                                epsGroup,
-                                rGroup,
-                                neGroup,
-                                pcrcGroup,
-                                ncGroup,
-                                hce0Group, 
                                 qsusGroup,
                                 nsGroup,
                                 geometryGroup,
@@ -143,12 +170,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                                 resultsGroup
                              };
 
-            var colors = new[]
-                             {
-                                 Color.FromArgb(255, 255, 230),
-                                 Color.FromArgb(255, 230, 255)
-                             };
-
             for (int i = 0; i < groups.Length; ++i)
             {
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
@@ -156,6 +177,8 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             }
             SetGroupInput(rGroup, false);
             SetGroupInput(resultsGroup, false);
+
+            #endregion
 
             fsMisc.FillList(calculationComboBox.Items, typeof(fsCalculationOption));
             EstablishCalculationOption(fsCalculationOption.Design);
@@ -165,7 +188,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             UpdateEquationsFromCalculationOptions();
             Recalculate();
             UpdateUIFromData();
-            ConnectUIWithDataUpdating(dataGrid, calculationComboBox);
+            ConnectUIWithDataUpdating(materialParametersDataGrid, dataGrid, calculationComboBox);
         }
 
         #region Routine Methods
@@ -217,6 +240,11 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
         }
 
         #endregion
+
+        private void materialParametersDisplayCheckBox_CheckedChanged(object sender, System.EventArgs e)
+        {
+            tablesSplitContainer.Panel1Collapsed = !materialParametersDisplayCheckBox.Checked;
+        }
     }
 }
 

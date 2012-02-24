@@ -57,6 +57,10 @@ namespace fmDataGrid
             #region Setup font and row heights
             RowTemplate.Height = 18;
             Font = new Font(Font.FontFamily, 8.25f, FontStyle.Regular);
+            AllowUserToAddRows = false;
+            AllowUserToDeleteRows = false;
+            AllowUserToResizeRows = false;
+            RowHeadersVisible = false;
             #endregion
         }
 

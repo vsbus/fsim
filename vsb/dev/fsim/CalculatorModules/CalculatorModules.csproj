@@ -51,6 +51,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base Controls\CalculatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Base Controls\OptionsAndCommentsCalculatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Base Controls\OptionsAndCommentsCalculatorControl.Designer.cs">
+      <DependentUpon>OptionsAndCommentsCalculatorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base Controls\OptionsDoubleTableAndCommentsCalculatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Base Controls\OptionsDoubleTableAndCommentsCalculatorControl.designer.cs">
+      <DependentUpon>OptionsDoubleTableAndCommentsCalculatorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base Controls\OptionsOneTableAndCommentsCalculatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Base Controls\OptionsOneTableAndCommentsCalculatorControl.designer.cs">
+      <DependentUpon>OptionsOneTableAndCommentsCalculatorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base Controls\OptionsSingleTableAndCommentsCalculatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Base Controls\OptionsSingleTableAndCommentsCalculatorControl.Designer.cs">
+      <DependentUpon>OptionsSingleTableAndCommentsCalculatorControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="BeltFiltersWithReversibleTrays\BeltFilterWithReversibleTrayControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -83,9 +110,6 @@
     </Compile>
     <Compile Include="CalculationProcessor\CalculationProcessor.cs" />
     <Compile Include="CalculationProcessor\ParametersGroup.cs" />
-    <Compile Include="CalculatorControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="DensityConcentrationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -104,12 +128,6 @@
     </Compile>
     <Compile Include="MsusAndHcControl.designer.cs">
       <DependentUpon>MsusAndHcControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OptionsOneTableAndCommentsCalculatorControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="OptionsOneTableAndCommentsCalculatorControl.Designer.cs">
-      <DependentUpon>OptionsOneTableAndCommentsCalculatorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PermeabilityControl.cs">
       <SubType>UserControl</SubType>
@@ -144,6 +162,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Base Controls\OptionsAndCommentsCalculatorControl.resx">
+      <DependentUpon>OptionsAndCommentsCalculatorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base Controls\OptionsDoubleTableAndCommentsCalculatorControl.resx">
+      <DependentUpon>OptionsDoubleTableAndCommentsCalculatorControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base Controls\OptionsOneTableAndCommentsCalculatorControl.resx">
+      <DependentUpon>OptionsOneTableAndCommentsCalculatorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base Controls\OptionsSingleTableAndCommentsCalculatorControl.resx">
+      <DependentUpon>OptionsSingleTableAndCommentsCalculatorControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="BeltFiltersWithReversibleTrays\BeltFilterWithReversibleTrayControl.resx">
       <DependentUpon>BeltFilterWithReversibleTrayControl.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -174,10 +206,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MsusAndHcControl.resx">
       <DependentUpon>MsusAndHcControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsOneTableAndCommentsCalculatorControl.resx">
-      <DependentUpon>OptionsOneTableAndCommentsCalculatorControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PermeabilityControl.resx">
