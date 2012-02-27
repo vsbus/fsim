@@ -3,6 +3,7 @@ using System.Drawing;
 using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
+using StepCalculators.Material_Calculators;
 using StepCalculators.Simulation_Calculators;
 using StepCalculators.Simulation_Calculators.Simulation_Help_Calculators;
 
@@ -29,7 +30,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             #region Calculators
             
             Calculators.Add(new fsDensityConcentrationCalculator());
-            Calculators.Add(new fsEps0Kappa0Calculator());
+            Calculators.Add(new fsEpsKappaNeDpCalculator());
             Calculators.Add(new fsRf0Rs0RhoCw0FromDensitiesAndCakePorosity0Calculator());
             Calculators.Add(new fsPc0Rc0Alpha0Calculator());
             Calculators.Add(new fsRm0Hce0Calculator());
@@ -60,18 +61,16 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.SuspensionSolidsVolumeFraction,
                 fsParameterIdentifier.SuspensionSolidsConcentration);
 
-            fsParametersGroup eps0Group = AddGroup(
-                fsParameterIdentifier.CakePorosity0,
-                fsParameterIdentifier.Kappa0,
-                fsParameterIdentifier.DryCakeDensity0);
+            fsParametersGroup neGroup = AddGroup(
+                fsParameterIdentifier.Ne);
 
             fsParametersGroup epsGroup = AddGroup(
+                fsParameterIdentifier.CakePorosity0,
+                fsParameterIdentifier.Kappa0,
+                fsParameterIdentifier.DryCakeDensity0,
                 fsParameterIdentifier.CakePorosity,
                 fsParameterIdentifier.Kappa,
                 fsParameterIdentifier.DryCakeDensity);
-
-            fsParametersGroup neGroup = AddGroup(
-                fsParameterIdentifier.Ne);
 
             fsParametersGroup rGroup = AddGroup(
                 fsParameterIdentifier.CakeWetDensity0,
@@ -96,7 +95,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                                 rhofGroup,
                                 densitiesGroup,
                                 cGroup,
-                                eps0Group,
                                 neGroup,
                                 epsGroup,
                                 rGroup,
@@ -110,7 +108,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 AddGroupToUI(materialParametersDataGrid, materialGroups[i], colors[i % colors.Length]);
                 SetGroupInput(materialGroups[i], true);
             }
-            SetGroupInput(epsGroup, false);
             SetGroupInput(rGroup, false);
 
             #endregion
@@ -245,7 +242,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
         #endregion
 
-        private void materialParametersDisplayCheckBox_CheckedChanged(object sender, System.EventArgs e)
+        private void MaterialParametersDisplayCheckBoxCheckedChanged(object sender, System.EventArgs e)
         {
             tablesSplitContainer.Panel1Collapsed = !materialParametersDisplayCheckBox.Checked;
         }
