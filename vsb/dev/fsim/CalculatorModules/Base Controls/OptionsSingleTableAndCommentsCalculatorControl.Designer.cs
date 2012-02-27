@@ -1,4 +1,6 @@
-﻿namespace CalculatorModules.Base_Controls
+﻿using System;
+
+namespace CalculatorModules.Base_Controls
 {
     partial class fsOptionsSingleTableAndCommentsCalculatorControl
     {

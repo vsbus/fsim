@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
+using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
 
 namespace CalculatorModules
 {
-    public partial class SuspensionSolidsMassFractionControl : fsOptionsOneTableAndCommentsCalculatorControl
+    public partial class SuspensionSolidsMassFractionControl : fsOptionsSingleTableAndCommentsCalculatorControl
     {
         private readonly fsSuspensionSolidsMassFractionCalculator m_calculator =
             new fsSuspensionSolidsMassFractionCalculator();

@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
+using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
 
 namespace CalculatorModules
 {
-    public sealed partial class fsLaboratoryFiltrationTime : fsOptionsOneTableAndCommentsCalculatorControl
+    public sealed partial class fsLaboratoryFiltrationTime : fsOptionsSingleTableAndCommentsCalculatorControl
     {
         public fsLaboratoryFiltrationTime()
         {

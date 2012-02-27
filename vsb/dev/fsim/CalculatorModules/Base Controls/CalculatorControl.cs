@@ -11,7 +11,7 @@ using Value;
 
 namespace CalculatorModules
 {
-    public class fsCalculatorControl : UserControl
+    public abstract class fsCalculatorControl : UserControl
     {
         #region Calculation Data
 
@@ -261,10 +261,7 @@ namespace CalculatorModules
             Recalculate();
         }
 
-        protected virtual void StopGridsEdit()
-        {
-            throw new Exception("StopGridsEdit not implemented in derivative class.");
-        }
+        protected abstract void StopGridsEdit();
 
         public void SetRanges(Dictionary<fsParameterIdentifier, fsRange> dictionary)
         {

@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
+using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
 
 namespace CalculatorModules
 {
-    public sealed partial class fsPkeFromPcRcControl : fsOptionsOneTableAndCommentsCalculatorControl
+    public sealed partial class fsPkeFromPcRcControl : fsOptionsSingleTableAndCommentsCalculatorControl
     {
         private readonly fsPkeFromPcRcCalculator m_calculator = new fsPkeFromPcRcCalculator();
 

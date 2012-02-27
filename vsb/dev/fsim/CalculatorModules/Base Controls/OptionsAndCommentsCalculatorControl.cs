@@ -2,7 +2,7 @@
 
 namespace CalculatorModules
 {
-    public partial class fsOptionsAndCommentsCalculatorControl : fsCalculatorControl
+    public abstract partial class fsOptionsAndCommentsCalculatorControl : fsCalculatorControl
     {
         public fsOptionsAndCommentsCalculatorControl()
         {
@@ -21,6 +21,8 @@ namespace CalculatorModules
             fsTableAndChart1.AssignCalculatorData(Values, Groups, ParameterToGroup, Calculators);
             fsTableAndChart1.Reprocess();
         }
+
+        protected override abstract void StopGridsEdit();
 
         private void Button1Click(object sender, EventArgs e)
         {

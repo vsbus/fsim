@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using CalculatorModules;
+using CalculatorModules.Base_Controls;
 
 namespace SmallCalculator2
 {
@@ -87,9 +88,9 @@ namespace SmallCalculator2
             {
                 fsCalculatorControl calculatorControl = pair.Value;
                 AddModuleToTree(node, pair.Key, calculatorControl);
-                if (calculatorControl is fsOptionsOneTableAndCommentsCalculatorControl)
+                if (calculatorControl is fsOptionsSingleTableAndCommentsCalculatorControl)
                 {
-                    (calculatorControl as fsOptionsOneTableAndCommentsCalculatorControl).AllowCommentsView = false;
+                    (calculatorControl as fsOptionsSingleTableAndCommentsCalculatorControl).AllowCommentsView = false;
                 }
             }
             treeView1.Nodes.Add(node);

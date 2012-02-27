@@ -1,11 +1,12 @@
 ﻿using System.Drawing;
+using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
 
 namespace CalculatorModules
 {
     public sealed partial class fsCakeMoistureContentFromWetAndDryCakeMassControl :
-        fsOptionsOneTableAndCommentsCalculatorControl
+        fsOptionsSingleTableAndCommentsCalculatorControl
     {
         private readonly fsRfFromWetDryCakeCalculator m_calculator = new fsRfFromWetDryCakeCalculator();
 

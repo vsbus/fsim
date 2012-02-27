@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using CalculatorModules;
+using CalculatorModules.Base_Controls;
 
 namespace Calculator
 {
@@ -70,9 +71,9 @@ namespace Calculator
             modulesForm.ShowDialog();
             if (modulesForm.DialogResult == DialogResult.OK)
             {
-                if (modulesForm.SelectedCalculatorControl is fsOptionsOneTableAndCommentsCalculatorControl)
+                if (modulesForm.SelectedCalculatorControl is fsOptionsSingleTableAndCommentsCalculatorControl)
                 {
-                    (modulesForm.SelectedCalculatorControl as fsOptionsOneTableAndCommentsCalculatorControl).
+                    (modulesForm.SelectedCalculatorControl as fsOptionsSingleTableAndCommentsCalculatorControl).
                         AllowCommentsView = true;
                 }
                 ++m_counter;
