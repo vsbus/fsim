@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
 
 namespace CalculatorModules
 {
     public sealed partial class fsCakeMoistureContentFromCakeSaturationControl :
-        fsOptionsOneTableAndCommentsCalculatorControl
+        fsOptionsSingleTableAndCommentsCalculatorControl
     {
         #region Calculation Option
 

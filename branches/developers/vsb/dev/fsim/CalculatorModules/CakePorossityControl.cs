@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
+using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
 
 namespace CalculatorModules
 {
-    public sealed partial class fsCakePorossityControl : fsOptionsOneTableAndCommentsCalculatorControl
+    public sealed partial class fsCakePorossityControl : fsOptionsSingleTableAndCommentsCalculatorControl
     {
         private readonly fsCakePorosityCalculator m_calculator = new fsCakePorosityCalculator();
 

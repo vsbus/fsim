@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
+using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
 
 namespace CalculatorModules
 {
-    public sealed partial class fsCakeWashOutContentControl : fsOptionsOneTableAndCommentsCalculatorControl
+    public sealed partial class fsCakeWashOutContentControl : fsOptionsSingleTableAndCommentsCalculatorControl
     {
         private readonly fsCakeWashOutContentCalculator m_calculator = new fsCakeWashOutContentCalculator();
 

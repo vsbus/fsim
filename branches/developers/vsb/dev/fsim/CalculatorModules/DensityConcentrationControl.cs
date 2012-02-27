@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
 
 namespace CalculatorModules
 {
-    public sealed partial class fsDensityConcentrationControl : fsOptionsOneTableAndCommentsCalculatorControl
+    public sealed partial class fsDensityConcentrationControl : fsOptionsSingleTableAndCommentsCalculatorControl
     {
         #region Calculation Option
 

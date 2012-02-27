@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
 
 namespace CalculatorModules
 {
-    public sealed partial class fsMsusAndHcControl : fsOptionsOneTableAndCommentsCalculatorControl
+    public sealed partial class fsMsusAndHcControl : fsOptionsSingleTableAndCommentsCalculatorControl
     {
         #region Calculation Data
 

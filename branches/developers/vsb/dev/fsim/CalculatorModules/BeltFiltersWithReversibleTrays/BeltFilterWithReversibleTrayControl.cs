@@ -111,6 +111,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 SetGroupInput(materialGroups[i], true);
             }
             SetGroupInput(epsGroup, false);
+            SetGroupInput(rGroup, false);
 
             #endregion
 
@@ -179,7 +180,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
                 SetGroupInput(groups[i], true);
             }
-            SetGroupInput(rGroup, false);
             SetGroupInput(resultsGroup, false);
 
             #endregion

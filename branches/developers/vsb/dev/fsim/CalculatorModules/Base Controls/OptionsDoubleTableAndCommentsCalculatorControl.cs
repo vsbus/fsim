@@ -15,5 +15,11 @@ namespace CalculatorModules.Base_Controls
         {
             InitializeComponent();
         }
+
+        protected override void StopGridsEdit()
+        {
+            dataGrid.EndEdit();
+            materialParametersDataGrid.EndEdit();
+        }
     }
 }
