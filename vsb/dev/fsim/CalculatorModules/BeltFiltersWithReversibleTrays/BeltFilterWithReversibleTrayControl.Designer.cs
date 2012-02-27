@@ -87,7 +87,7 @@
             this.materialParametersDisplayCheckBox.TabIndex = 2;
             this.materialParametersDisplayCheckBox.Text = "Show Material Parameters";
             this.materialParametersDisplayCheckBox.UseVisualStyleBackColor = true;
-            this.materialParametersDisplayCheckBox.CheckedChanged += new System.EventHandler(this.materialParametersDisplayCheckBox_CheckedChanged);
+            this.materialParametersDisplayCheckBox.CheckedChanged += new System.EventHandler(this.MaterialParametersDisplayCheckBoxCheckedChanged);
             // 
             // fsBeltFilterWithReversibleTrayControl
             // 
