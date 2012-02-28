@@ -16,6 +16,7 @@ namespace Calculator
             get { return fsUnitsControl1.Characteristics; }
         }
         private List<fsModule> m_modules;
+        private fsModule m_initiallyCheckedModule;
 
         public fsUnitsDialog()
         {
@@ -76,6 +77,10 @@ namespace Calculator
                                    Checked = isChecked,
                                    AutoSize = true
                                };
+            if (module == m_initiallyCheckedModule)
+            {
+                checkBox.Checked = true;
+            }
             m_moduleToCheckBox[module] = checkBox;
         }
         
@@ -95,6 +100,11 @@ namespace Calculator
         private void ParametersDisplayCheckedChanged(object sender, EventArgs e)
         {
             fsUnitsControl1.ShowHideSecondaryCharacteristics(m_showSecondaryCheckbox.Checked);
+        }
+
+        internal void SetInitiallyCheckedModule(fsModule module)
+        {
+            m_initiallyCheckedModule = module;
         }
     }
 }
