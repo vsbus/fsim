@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Calculator.Dialogs;
 using CalculatorModules;
 using CalculatorModules.Base_Controls;
 
@@ -133,8 +134,19 @@ namespace Calculator
 
         private void UnitsToolStripMenuItemClick(object sender, EventArgs e)
         {
+            DataGridViewCell cell = windowsDataGrid.CurrentCell;
+            string currentWindowName = cell == null || cell.Value == null
+                                           ? ""
+                                           : cell.Value.ToString();
             var unitsDialog = new fsUnitsDialog();
             unitsDialog.AssignModulesList(m_modules);
+            foreach (fsModule module in m_modules)
+            {
+                if (module.Name == currentWindowName)
+                {
+                    unitsDialog.SetInitiallyCheckedModule(module);
+                }
+            }
             unitsDialog.ShowDialog();
             if (unitsDialog.DialogResult == DialogResult.OK)
             {
@@ -164,6 +176,12 @@ namespace Calculator
                     module.SetRanges(machineDialog.Ranges);
                 }
             }
+        }
+
+        private void showHideParametersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new fsShowHideParametersDialog();
+            form.ShowDialog();
         }
     }
 }

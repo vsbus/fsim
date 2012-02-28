@@ -39,12 +39,13 @@
             this.windowTilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.machineTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.windowsDataGrid = new fmDataGrid.fmDataGrid();
             this.WindowNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.addModuleButton = new System.Windows.Forms.Button();
-            this.machineTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showHideParametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsDataGrid)).BeginInit();
@@ -125,7 +126,8 @@
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.unitsToolStripMenuItem,
-            this.machineTypeToolStripMenuItem});
+            this.machineTypeToolStripMenuItem,
+            this.showHideParametersToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "&Options";
@@ -136,6 +138,13 @@
             this.unitsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.unitsToolStripMenuItem.Text = "&Units";
             this.unitsToolStripMenuItem.Click += new System.EventHandler(this.UnitsToolStripMenuItemClick);
+            // 
+            // machineTypeToolStripMenuItem
+            // 
+            this.machineTypeToolStripMenuItem.Name = "machineTypeToolStripMenuItem";
+            this.machineTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.machineTypeToolStripMenuItem.Text = "&Machine Type";
+            this.machineTypeToolStripMenuItem.Click += new System.EventHandler(this.MachineTypeToolStripMenuItemClick);
             // 
             // panel1
             // 
@@ -193,14 +202,14 @@
             this.addModuleButton.UseVisualStyleBackColor = true;
             this.addModuleButton.Click += new System.EventHandler(this.AddModuleButtonClick);
             // 
-            // machineTypeToolStripMenuItem
+            // showHideParametersToolStripMenuItem
             // 
-            this.machineTypeToolStripMenuItem.Name = "machineTypeToolStripMenuItem";
-            this.machineTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.machineTypeToolStripMenuItem.Text = "&Machine Type";
-            this.machineTypeToolStripMenuItem.Click += new System.EventHandler(this.MachineTypeToolStripMenuItemClick);
+            this.showHideParametersToolStripMenuItem.Name = "showHideParametersToolStripMenuItem";
+            this.showHideParametersToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.showHideParametersToolStripMenuItem.Text = "&Show/Hide Parameters";
+            this.showHideParametersToolStripMenuItem.Click += new System.EventHandler(this.showHideParametersToolStripMenuItem_Click);
             // 
-            // MainWindow
+            // fsMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -241,6 +250,7 @@
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unitsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem machineTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showHideParametersToolStripMenuItem;
 
     }
 }
