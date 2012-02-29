@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fsCheckBoxesTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="fsCheckedList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -62,6 +65,12 @@
     </Compile>
     <Compile Include="fsMachineSettings.Designer.cs">
       <DependentUpon>fsMachineSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fsParametersCheckBoxesTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="fsParametersCheckBoxesTree.Designer.cs">
+      <DependentUpon>fsParametersCheckBoxesTree.cs</DependentUpon>
     </Compile>
     <Compile Include="fsTreeView.cs">
       <SubType>Component</SubType>
@@ -82,6 +91,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fsMachineSettings.resx">
       <DependentUpon>fsMachineSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fsParametersCheckBoxesTree.resx">
+      <DependentUpon>fsParametersCheckBoxesTree.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="fsUnitsControl.resx">

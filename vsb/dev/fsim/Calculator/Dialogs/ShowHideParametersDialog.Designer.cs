@@ -28,22 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.CancelButton = new System.Windows.Forms.Button();
             this.OKButton = new System.Windows.Forms.Button();
+            this.fsParametersCheckBoxesTree1 = new fsUIControls.fsParametersCheckBoxesTree();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // treeView1
-            // 
-            this.treeView1.CheckBoxes = true;
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(296, 287);
-            this.treeView1.TabIndex = 0;
-            this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeView1AfterCheck);
             // 
             // panel1
             // 
@@ -52,7 +42,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 287);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(296, 41);
+            this.panel1.Size = new System.Drawing.Size(432, 41);
             this.panel1.TabIndex = 1;
             // 
             // CancelButton
@@ -75,16 +65,22 @@
             this.OKButton.UseVisualStyleBackColor = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
+            // fsParametersCheckBoxesTree1
+            // 
+            this.fsParametersCheckBoxesTree1.Location = new System.Drawing.Point(12, 12);
+            this.fsParametersCheckBoxesTree1.Name = "fsParametersCheckBoxesTree1";
+            this.fsParametersCheckBoxesTree1.Size = new System.Drawing.Size(283, 269);
+            this.fsParametersCheckBoxesTree1.TabIndex = 3;
+            // 
             // fsShowHideParametersDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 328);
-            this.Controls.Add(this.treeView1);
+            this.ClientSize = new System.Drawing.Size(432, 328);
+            this.Controls.Add(this.fsParametersCheckBoxesTree1);
             this.Controls.Add(this.panel1);
             this.Name = "fsShowHideParametersDialog";
             this.Text = "ShowHideParametersDialog";
-            this.Load += new System.EventHandler(this.ShowHideParametersDialogLoad);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -92,9 +88,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button OKButton;
+        private fsUIControls.fsParametersCheckBoxesTree fsParametersCheckBoxesTree1;
     }
 }
