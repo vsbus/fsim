@@ -30,8 +30,8 @@
         {
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.OKButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.OKButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,15 +55,6 @@
             this.panel1.Size = new System.Drawing.Size(296, 41);
             this.panel1.TabIndex = 1;
             // 
-            // OKButton
-            // 
-            this.OKButton.Location = new System.Drawing.Point(128, 6);
-            this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(75, 23);
-            this.OKButton.TabIndex = 0;
-            this.OKButton.Text = "OK";
-            this.OKButton.UseVisualStyleBackColor = true;
-            // 
             // CancelButton
             // 
             this.CancelButton.Location = new System.Drawing.Point(209, 6);
@@ -72,6 +63,17 @@
             this.CancelButton.TabIndex = 1;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
+            // OKButton
+            // 
+            this.OKButton.Location = new System.Drawing.Point(128, 6);
+            this.OKButton.Name = "OKButton";
+            this.OKButton.Size = new System.Drawing.Size(75, 23);
+            this.OKButton.TabIndex = 0;
+            this.OKButton.Text = "OK";
+            this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // fsShowHideParametersDialog
             // 

@@ -7,9 +7,37 @@ namespace Calculator.Dialogs
 {
     public partial class fsShowHideParametersDialog : Form
     {
+        private Dictionary<TreeNode, fsParameterIdentifier> m_nodesToParameters = new Dictionary<TreeNode, fsParameterIdentifier>();
+        private List<fsParameterIdentifier> m_initiallyCheckedParameters = new List<fsParameterIdentifier>();
+
         public fsShowHideParametersDialog()
         {
             InitializeComponent();
+        }
+
+        public Dictionary<fsParameterIdentifier, bool> GetParametersToShowAndHide()
+        {
+            var parametersToShowAndHide = new Dictionary<fsParameterIdentifier, bool>();
+            foreach (TreeNode node in treeView1.Nodes)
+            {
+                AddCheckedParametersToList(node, parametersToShowAndHide);
+            }
+            return parametersToShowAndHide;
+        }
+
+        private void AddCheckedParametersToList(TreeNode node, Dictionary<fsParameterIdentifier, bool> checkedParameters)
+        {
+            if (node.Nodes.Count == 0)
+            {
+                checkedParameters.Add(m_nodesToParameters[node], node.Checked);
+            }
+            else
+            {
+                foreach (TreeNode subNode in node.Nodes)
+                {
+                    AddCheckedParametersToList(subNode, checkedParameters);
+                }
+            }
         }
 
         private void ShowHideParametersDialogLoad(object sender, EventArgs e)
@@ -29,9 +57,10 @@ namespace Calculator.Dialogs
                     fsParameterIdentifier.Kappa,
                     fsParameterIdentifier.DryCakeDensity
                 });
+            treeView1.ExpandAll();
         }
 
-        private static void AddGroupToTree(
+        private void AddGroupToTree(
             string nodeName,
             TreeNodeCollection treeNodeCollection,
             IEnumerable<fsParameterIdentifier> parameters)
@@ -39,11 +68,15 @@ namespace Calculator.Dialogs
             var node = new TreeNode(nodeName);
             foreach (var parameter in parameters)
             {
-                node.Nodes.Add(parameter.ToString());
+                TreeNode leaf = node.Nodes.Add(parameter.ToString());
+                leaf.Checked = m_initiallyCheckedParameters.Contains(parameter);
+                m_nodesToParameters.Add(leaf, parameter);
             }
             treeNodeCollection.Add(node);
         }
 
+
+        #region UI Events
 
         private static void CheckSubtree(TreeNode treeNode, bool isChecked)
         {
@@ -59,6 +92,28 @@ namespace Calculator.Dialogs
             foreach (TreeNode node in e.Node.Nodes)
             {
                 CheckSubtree(node, e.Node.Checked);
+            }
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void OKButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        #endregion
+
+        internal void CheckParameters(List<fsParameterIdentifier> list)
+        {
+            foreach (fsParameterIdentifier parameterIdentifier in list)
+            {
+                m_initiallyCheckedParameters.Add(parameterIdentifier);
             }
         }
     }
