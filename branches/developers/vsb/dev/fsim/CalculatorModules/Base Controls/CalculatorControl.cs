@@ -23,10 +23,8 @@ namespace CalculatorModules
         #region UI data
 
         protected Dictionary<Type, Control> CalculationOptionToControl = new Dictionary<Type, Control>();
-
         protected Dictionary<object, fsParametersGroup> CalculationOptionToGroup =
             new Dictionary<object, fsParametersGroup>();
-
         protected Dictionary<Control, Type> ControlToCalculationOption = new Dictionary<Control, Type>();
         protected Dictionary<fsParameterIdentifier, DataGridViewCell> ParameterToCell { get; private set; }
         protected Dictionary<DataGridViewCell, fsParameterIdentifier> CellToParameter { get; private set; }
@@ -275,5 +273,30 @@ namespace CalculatorModules
             }
             Recalculate();
         }
+
+        #region Show/Hide parameters
+
+        public void ShowAndHideParameters(Dictionary<fsParameterIdentifier, bool> parametersToShowAndHide)
+        {
+            foreach (fsParameterIdentifier identifier in parametersToShowAndHide.Keys)
+            {
+                ParameterToCell[identifier].OwningRow.Visible = parametersToShowAndHide[identifier];
+            }
+        }
+
+        public List<fsParameterIdentifier> GetVisibleParameters()
+        {
+            var visibleParameters = new List<fsParameterIdentifier>();
+            foreach (var pair in ParameterToCell)
+            {
+                if (pair.Value.OwningRow.Visible)
+                {
+                    visibleParameters.Add(pair.Key);
+                }
+            }
+            return visibleParameters;
+        }
+
+        #endregion
     }
 }

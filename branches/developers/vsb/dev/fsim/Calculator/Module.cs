@@ -41,5 +41,19 @@ namespace Calculator
         {
             m_calculatorControl.SetRanges(dictionary);
         }
+
+        #region Show/Hide parameters
+
+        internal void ShowAndHideParameters(Dictionary<fsParameterIdentifier, bool> parametersToShowAndHide)
+        {
+            m_calculatorControl.ShowAndHideParameters(parametersToShowAndHide);
+        }
+
+        internal List<fsParameterIdentifier> GetVisibleParameters()
+        {
+            return m_calculatorControl.GetVisibleParameters();
+        }
+
+        #endregion
     }
 }

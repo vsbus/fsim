@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Calculator.Dialogs;
 using CalculatorModules;
 using CalculatorModules.Base_Controls;
+using Parameters;
 
 namespace Calculator
 {
@@ -134,19 +136,9 @@ namespace Calculator
 
         private void UnitsToolStripMenuItemClick(object sender, EventArgs e)
         {
-            DataGridViewCell cell = windowsDataGrid.CurrentCell;
-            string currentWindowName = cell == null || cell.Value == null
-                                           ? ""
-                                           : cell.Value.ToString();
             var unitsDialog = new fsUnitsDialog();
             unitsDialog.AssignModulesList(m_modules);
-            foreach (fsModule module in m_modules)
-            {
-                if (module.Name == currentWindowName)
-                {
-                    unitsDialog.SetInitiallyCheckedModule(module);
-                }
-            }
+            unitsDialog.SetInitiallyCheckedModule(GetCurrentActiveModule());
             unitsDialog.ShowDialog();
             if (unitsDialog.DialogResult == DialogResult.OK)
             {
@@ -162,6 +154,15 @@ namespace Calculator
                     }
                 }
             }
+        }
+
+        private fsModule GetCurrentActiveModule()
+        {
+            DataGridViewCell cell = windowsDataGrid.CurrentCell;
+            string currentWindowName = cell == null || cell.Value == null
+                                           ? ""
+                                           : cell.Value.ToString();
+            return m_modules.FirstOrDefault(module => module.Name == currentWindowName);
         }
 
         private void MachineTypeToolStripMenuItemClick(object sender, EventArgs e)
@@ -181,7 +182,10 @@ namespace Calculator
         private void showHideParametersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new fsShowHideParametersDialog();
+            form.CheckParameters(GetCurrentActiveModule().GetVisibleParameters());
             form.ShowDialog();
+            Dictionary<fsParameterIdentifier, bool> parametersToShowAndHide = form.GetParametersToShowAndHide();
+            GetCurrentActiveModule().ShowAndHideParameters(parametersToShowAndHide);
         }
     }
 }
