@@ -284,17 +284,14 @@ namespace CalculatorModules
             }
         }
 
-        public List<fsParameterIdentifier> GetVisibleParameters()
+        public Dictionary<fsParameterIdentifier, bool> GetInvolvedParametersWithVisibleStatus()
         {
-            var visibleParameters = new List<fsParameterIdentifier>();
+            var involvedParameters = new Dictionary<fsParameterIdentifier, bool>();
             foreach (var pair in ParameterToCell)
             {
-                if (pair.Value.OwningRow.Visible)
-                {
-                    visibleParameters.Add(pair.Key);
-                }
+                involvedParameters.Add(pair.Key, pair.Value.OwningRow.Visible);
             }
-            return visibleParameters;
+            return involvedParameters;
         }
 
         #endregion

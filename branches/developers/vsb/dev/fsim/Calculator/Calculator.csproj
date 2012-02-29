@@ -35,7 +35,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\fmDataGrid\obj\Debug\fmDataGrid.dll</HintPath>
     </Reference>
-    <Reference Include="Skybound.VisualStyles, Version=1.2.0.0, Culture=neutral, PublicKeyToken=f2d73a45b3e75a83" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -52,10 +51,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TriStateTreeView, Version=1.0.4440.28792, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TriStateTreeView\obj\Debug\TriStateTreeView.dll</HintPath>
-    </Reference>
     <Reference Include="ZedGraph, Version=5.1.5.23178, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\fmZedControl\ZedGraph.dll</HintPath>

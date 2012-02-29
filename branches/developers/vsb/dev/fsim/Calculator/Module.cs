@@ -49,9 +49,9 @@ namespace Calculator
             m_calculatorControl.ShowAndHideParameters(parametersToShowAndHide);
         }
 
-        internal List<fsParameterIdentifier> GetVisibleParameters()
+        internal Dictionary<fsParameterIdentifier, bool> GetInvolvedParametersWithVisibleStatus()
         {
-            return m_calculatorControl.GetVisibleParameters();
+            return m_calculatorControl.GetInvolvedParametersWithVisibleStatus();
         }
 
         #endregion
