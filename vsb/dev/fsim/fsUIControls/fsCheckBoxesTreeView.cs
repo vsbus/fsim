@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace fsUIControls
 {
     public class fsCheckBoxesTreeView : TreeView
     {
-        public fsCheckBoxesTreeView() : base()
+        public fsCheckBoxesTreeView()
         {
             CheckBoxes = true;
-            AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewAfterCheck);
+            AfterCheck += TreeViewAfterCheck;
         }
+
+        private bool m_isTreeUpdating = false;
 
         private static void CheckSubtree(TreeNode treeNode, bool isChecked)
         {
@@ -25,10 +23,33 @@ namespace fsUIControls
 
         private void TreeViewAfterCheck(object sender, TreeViewEventArgs e)
         {
+            if (m_isTreeUpdating)
+                return;
+
+            m_isTreeUpdating = true;
             foreach (TreeNode node in e.Node.Nodes)
             {
                 CheckSubtree(node, e.Node.Checked);
             }
+            UpdateParentCheckStatus(e.Node.Parent);
+            m_isTreeUpdating = false;
+        }
+
+        private void UpdateParentCheckStatus(TreeNode treeNode)
+        {
+            if (treeNode == null)
+                return;
+
+            int checkedCount = 0;
+            foreach (TreeNode node in treeNode.Nodes)
+            {
+                if (node.Checked)
+                {
+                    ++checkedCount;
+                }
+            }
+            treeNode.Checked = checkedCount == treeNode.Nodes.Count;
+            UpdateParentCheckStatus(treeNode.Parent);
         }
 
     }
