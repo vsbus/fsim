@@ -84,6 +84,7 @@
     <Compile Include="Math\fsProductEquation.cs" />
     <Compile Include="Math\fsSumEquation.cs" />
     <Compile Include="Math\GeneralEquations\fsProductsEquation.cs" />
+    <Compile Include="Math\GeneralEquations\fsSumsEquation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

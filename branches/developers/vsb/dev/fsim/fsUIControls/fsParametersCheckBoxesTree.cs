@@ -12,7 +12,7 @@ namespace fsUIControls
 {
     public partial class fsParametersCheckBoxesTree : UserControl
     {
-        private Dictionary<TreeNode, fsParameterIdentifier> m_nodesToParameters = new Dictionary<TreeNode, fsParameterIdentifier>();
+        private Dictionary<TreeNode, fsParameterIdentifier> m_leafsToParameters = new Dictionary<TreeNode, fsParameterIdentifier>();
         private Dictionary<fsParameterIdentifier, bool> m_involvedParametersWithCheckStatus = new Dictionary<fsParameterIdentifier, bool>();
 
         public fsParametersCheckBoxesTree()
@@ -28,6 +28,23 @@ namespace fsUIControls
             m_involvedParametersWithCheckStatus = involvedParametersWithCheckStatus;
 
             treeView1.Nodes.Clear();
+
+            AddGroupToTree("Densities", treeView1.Nodes,
+                new[]
+                {
+                    fsParameterIdentifier.FiltrateDensity,
+                    fsParameterIdentifier.LiquidDensity,
+                    fsParameterIdentifier.SolidsDensity,
+                    fsParameterIdentifier.SuspensionDensity
+                });
+
+            AddGroupToTree("Concentrations", treeView1.Nodes,
+                new[]
+                {
+                    fsParameterIdentifier.SuspensionSolidsMassFraction,
+                    fsParameterIdentifier.SuspensionSolidsVolumeFraction,
+                    fsParameterIdentifier.SuspensionSolidsConcentration
+                });
 
             AddGroupToTree("eps0, kappa0 (Dp = 1)", treeView1.Nodes,
                 new[]
@@ -46,6 +63,14 @@ namespace fsUIControls
                     fsParameterIdentifier.DryCakeDensity
                 });
 
+            AddGroupToTree("Pc0, rc0, alpha0", treeView1.Nodes,
+                new[]
+                {
+                    fsParameterIdentifier.CakePermeability0,
+                    fsParameterIdentifier.CakeResistance0,
+                    fsParameterIdentifier.CakeResistanceAlpha0
+                });
+
             treeView1.ExpandAll();
         }
 
@@ -54,19 +79,25 @@ namespace fsUIControls
             TreeNodeCollection treeNodeCollection,
             IEnumerable<fsParameterIdentifier> parameters)
         {
-            var node = new TreeNode(nodeName);
-            foreach (var parameter in parameters)
+            var groupNode = new TreeNode(nodeName);
+            int checkedLeafsCount = 0;
+            foreach (var parameterIdentifier in parameters)
             {
-                if (m_involvedParametersWithCheckStatus.ContainsKey(parameter))
+                if (m_involvedParametersWithCheckStatus.ContainsKey(parameterIdentifier))
                 {
-                    TreeNode leaf = node.Nodes.Add(parameter.ToString());
-                    leaf.Checked = m_involvedParametersWithCheckStatus[parameter];
-                    m_nodesToParameters.Add(leaf, parameter);
+                    TreeNode leaf = groupNode.Nodes.Add(parameterIdentifier.ToString());
+                    if (m_involvedParametersWithCheckStatus[parameterIdentifier])
+                    {
+                        leaf.Checked = true;
+                        ++checkedLeafsCount;
+                    }
+                    m_leafsToParameters.Add(leaf, parameterIdentifier);
                 }
             }
-            if (node.Nodes.Count > 0)
+            if (groupNode.Nodes.Count > 0)
             {
-                treeNodeCollection.Add(node);
+                groupNode.Checked = groupNode.Nodes.Count == checkedLeafsCount;
+                treeNodeCollection.Add(groupNode);
             }
         }
 
@@ -86,7 +117,7 @@ namespace fsUIControls
         {
             if (node.Nodes.Count == 0)
             {
-                checkedParameters.Add(m_nodesToParameters[node], node.Checked);
+                checkedParameters.Add(m_leafsToParameters[node], node.Checked);
             }
             else
             {

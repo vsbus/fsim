@@ -42,12 +42,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 287);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(432, 41);
+            this.panel1.Size = new System.Drawing.Size(310, 41);
             this.panel1.TabIndex = 1;
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(209, 6);
+            this.CancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CancelButton.Location = new System.Drawing.Point(223, 6);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 1;
@@ -57,7 +58,8 @@
             // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(128, 6);
+            this.OKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.OKButton.Location = new System.Drawing.Point(142, 6);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 23);
             this.OKButton.TabIndex = 0;
@@ -67,16 +69,19 @@
             // 
             // fsParametersCheckBoxesTree1
             // 
+            this.fsParametersCheckBoxesTree1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.fsParametersCheckBoxesTree1.Location = new System.Drawing.Point(12, 12);
             this.fsParametersCheckBoxesTree1.Name = "fsParametersCheckBoxesTree1";
-            this.fsParametersCheckBoxesTree1.Size = new System.Drawing.Size(283, 269);
+            this.fsParametersCheckBoxesTree1.Size = new System.Drawing.Size(286, 269);
             this.fsParametersCheckBoxesTree1.TabIndex = 3;
             // 
             // fsShowHideParametersDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 328);
+            this.ClientSize = new System.Drawing.Size(310, 328);
             this.Controls.Add(this.fsParametersCheckBoxesTree1);
             this.Controls.Add(this.panel1);
             this.Name = "fsShowHideParametersDialog";

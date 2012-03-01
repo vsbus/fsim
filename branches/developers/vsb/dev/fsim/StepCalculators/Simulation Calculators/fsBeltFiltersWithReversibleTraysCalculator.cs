@@ -60,9 +60,15 @@ namespace StepCalculators.Simulation_Calculators
 
             IEquationParameter qft = AddVariable(fsParameterIdentifier.qft);
             IEquationParameter qmft = AddVariable(fsParameterIdentifier.qmft);
-            
+
+            #region Help Parameters and Constants
+
             var constantOne = new fsCalculatorConstant(new fsParameterIdentifier("1")) {Value = fsValue.One};
-            
+            var constantTwo = new fsCalculatorConstant(new fsParameterIdentifier("1")) {Value = new fsValue(2)};
+            IEquationParameter hcAdd2Hce = AddVariable(new fsParameterIdentifier("hc + 2 hce"));
+
+            #endregion
+
             #endregion
 
             #region Equations Initialization
@@ -96,10 +102,12 @@ namespace StepCalculators.Simulation_Calculators
                 sf, etaf, cakeHeigth, hce0, kappa, Pc, pressureDifference, ns, ls, u, ttech));
             Equations.Add(new fsUFromLsOverBQmsHcDpTtech0LambdaNsfMaterialEquation(
                 u, lambda, nsf, lsOverB, Qms, rhoCd, cakeHeigth, etaf, hce0, kappa, Pc, pressureDifference, ttech0));
-            
+            Equations.Add(new fsSumsEquation(
+                new[] { hcAdd2Hce },
+                new[] { cakeHeigth, hce0, hce0 }));
             Equations.Add(new fsProductsEquation(
-                new[] { qft, kappa, filtrationTime },
-                new[] { cakeHeigth }));
+                new[] { qft, etaf, hcAdd2Hce },
+                new[] { constantTwo, Pc, pressureDifference }));
             Equations.Add(new fsProductEquation(qmft, qft, rhoF));
 
             #endregion
