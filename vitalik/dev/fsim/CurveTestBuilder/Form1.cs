@@ -17,36 +17,6 @@ namespace CurveTestBuilder
             InitializeComponent();
         }
 
-        private double sin(double x)
-        {
-            if (x == 0)
-            {
-                return 1;
-            }
-
-            return Math.Sin(x);
-        }
-
-        private double cos(double x)
-        {
-            if (x == 0)
-            {
-                return 1;
-            }
-
-            return Math.Cos(x);
-        }
-
-        private double sqrt(double x)
-        {
-            if (x == 0)
-            {
-                return 1;
-            }
-
-            return Math.Sqrt(x);
-        }
-
         private void DrawGraph()
         {
             GraphPane pane = fmZedGraphControlMain.GraphPane;
@@ -61,24 +31,19 @@ namespace CurveTestBuilder
                 if (listBoxGraficsChoose.SelectedIndex != -1)
                 {
                     if (listBoxGraficsChoose.SelectedIndex == 0)
-                        list.Add(x, sin(x));
+                        list.Add(x, Math.Sin(x));
                     if (listBoxGraficsChoose.SelectedIndex == 1)
-                        list.Add(x, cos(x));
+                        list.Add(x, Math.Sqrt(x));
                     if (listBoxGraficsChoose.SelectedIndex == 2)
-                        list.Add(x, sqrt(x));
+                        list.Add(x, Math.Pow(x, 2));
                 }
             }
 
-            LineItem myCurve = pane.AddCurve("Sinc", list, Color.Blue, SymbolType.None);
+            LineItem myCurve = pane.AddCurve("Curve", list, Color.Blue, SymbolType.None);
 
             fmZedGraphControlMain.AxisChange();
 
             fmZedGraphControlMain.Invalidate();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void listBoxGraficsChoose_SelectedIndexChanged(object sender, EventArgs e)
