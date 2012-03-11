@@ -185,10 +185,10 @@ namespace Parameters
             new fsParameterIdentifier("nsr", fsCharacteristic.NoUnits);
 
         public static fsParameterIdentifier qft =
-            new fsParameterIdentifier("qft", fsCharacteristic.NoUnits);
+            new fsParameterIdentifier("qft", fsCharacteristic.SpecificVolumeFlowrate);
 
         public static fsParameterIdentifier qmft =
-            new fsParameterIdentifier("qmft", fsCharacteristic.NoUnits);
+            new fsParameterIdentifier("qmft", fsCharacteristic.SpecificMassFlowrate);
 
         public static fsParameterIdentifier ViscosityFiltrate = new fsParameterIdentifier("etaf", "Viscosity Filtrate",
                                                                                           fsCharacteristic.Viscosity);
@@ -209,7 +209,10 @@ namespace Parameters
             new fsParameterIdentifier("rho_cd", "Dry cake density", fsCharacteristic.Density);
 
         public static fsParameterIdentifier CakeWetDensity0 =
-            new fsParameterIdentifier("rho_cw0", "Cake wet density", fsCharacteristic.Density);
+            new fsParameterIdentifier("rho_cw0", "Cake wet density 0", fsCharacteristic.Density);
+
+        public static fsParameterIdentifier CakeWetDensity =
+            new fsParameterIdentifier("rho_cw", "Cake wet density", fsCharacteristic.Density);
 
         public static fsParameterIdentifier MotherLiquidDensity = 
             new fsParameterIdentifier("rho_f", "Density of Mother Liquid", fsCharacteristic.Density);
@@ -302,11 +305,17 @@ namespace Parameters
         public static fsParameterIdentifier CakeMoistureContent =
             new fsParameterIdentifier("RF", "Cake Moisture Content", fsCharacteristic.Concentration);
 
-        public static fsParameterIdentifier CakeMoistureContentRf0 = 
-            new fsParameterIdentifier("Rf0", "Cake Moisture Content", fsCharacteristic.Concentration);
+        public static fsParameterIdentifier CakeMoistureContentRf0 =
+            new fsParameterIdentifier("Rf0", "Cake Moisture Content 0", fsCharacteristic.Concentration);
 
-        public static fsParameterIdentifier CakeWetMassSolidsFractionRs0 = 
-            new fsParameterIdentifier("Rs0", "Cake wet mass solids fraction", fsCharacteristic.Concentration);
+        public static fsParameterIdentifier CakeMoistureContentRf =
+            new fsParameterIdentifier("Rf", "Cake Moisture Content", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier CakeWetMassSolidsFractionRs0 =
+            new fsParameterIdentifier("Rs0", "Cake wet mass solids fraction 0", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier CakeWetMassSolidsFractionRs =
+            new fsParameterIdentifier("Rs", "Cake wet mass solids fraction", fsCharacteristic.Concentration);
 
         public static fsParameterIdentifier CakeWashOutContent = 
             new fsParameterIdentifier("X", "Cake Wash Out Content", fsCharacteristic.CakeWashOutContent);

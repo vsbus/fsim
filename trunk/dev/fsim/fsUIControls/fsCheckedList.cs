@@ -33,5 +33,16 @@ namespace fsUIControls
         {
             return listView1.CheckedItems;
         }
+
+        public void CheckItem(string toCheck)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                if (item.Text == toCheck)
+                {
+                    item.Checked = true;
+                }
+            }
+        }
     }
 }

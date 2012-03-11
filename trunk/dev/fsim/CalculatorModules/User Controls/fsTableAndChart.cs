@@ -169,7 +169,7 @@ namespace CalculatorModules.User_Controls
                 var xNewGroup = new fsParametersGroup(xInitialgroup) {Representator = m_xAxisParameter};
                 SubstituteGroup(m_parameterToGroup, xInitialgroup, xNewGroup);
 
-                currentValues[m_xAxisParameter].SetValueInUnits(from + (to - from) * i / detalization);
+                currentValues[m_xAxisParameter].Value = from + (to - from) * i / detalization;
                 fsCalculationProcessor.ProcessCalculatorParameters(currentValues, m_parameterToGroup, m_calculators);
 
                 SubstituteGroup(m_parameterToGroup, xNewGroup, xInitialgroup);
@@ -216,7 +216,7 @@ namespace CalculatorModules.User_Controls
         {
             List<fsSimulationModuleParameter> values = m_data[parameter];
             var array = new fsDiagramWithTable.fsNamedArray
-                            {Name = parameter.Name, Array = new fsValue[values.Count]};
+                            {Name = parameter.Name + " [" + m_data[parameter][0].Unit.Name + "]", Array = new fsValue[values.Count]};
             for (int i = 0; i < values.Count; ++i)
             {
                 array.Array[i] = values[i].GetValueInUnits();
