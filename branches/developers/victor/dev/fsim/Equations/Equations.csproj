@@ -53,7 +53,7 @@
     <Compile Include="Material\Cake Moisture Content Rf Equations\fsMoistureContentFromCakeSaturationEquation.cs" />
     <Compile Include="Material\Cake Moisture Content Rf Equations\fsMoistureContentFromDensitiesAndPorosityEquation.cs" />
     <Compile Include="Material\Eps Kappa Equations\fsCakeDrySolidsDensityEquation.cs" />
-    <Compile Include="Material\Eps Kappa Equations\fsCakeWetDensityFromKappaCvRhofRhocdEquation.cs" />
+    <Compile Include="Material\Eps Kappa Equations\fsCakeWetDensityFromRhofRhosPorosityEquation.cs" />
     <Compile Include="Material\fsCakeWashOutContentEquation.cs" />
     <Compile Include="Material\fsConcentrationFromPhEquation.cs" />
     <Compile Include="Material\fsPhCakeEquation.cs" />

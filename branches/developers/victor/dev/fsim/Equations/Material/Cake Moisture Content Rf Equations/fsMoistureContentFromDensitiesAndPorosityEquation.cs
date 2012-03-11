@@ -33,6 +33,7 @@ namespace Equations.Material.Cake_Moisture_Content_Rf_Equations
         protected override void InitFormulas()
         {
             AddFormula(m_moistureContent, MoistureContentFormula);
+            AddFormula(m_cakePorosity, CakePorosityFormula);
         }
 
         #region Formulas
@@ -41,6 +42,12 @@ namespace Equations.Material.Cake_Moisture_Content_Rf_Equations
         {
             m_moistureContent.Value = m_cakePorosity.Value * m_filtrateDensity.Value
                 / ((1 - m_cakePorosity.Value) * m_solidsDensity.Value + m_cakePorosity.Value * m_filtrateDensity.Value);
+        }
+
+        private void CakePorosityFormula()
+        {
+            m_cakePorosity.Value = m_moistureContent.Value * m_solidsDensity.Value
+                / (m_filtrateDensity.Value + m_moistureContent.Value * (m_solidsDensity.Value - m_filtrateDensity.Value));
         }
 
         #endregion

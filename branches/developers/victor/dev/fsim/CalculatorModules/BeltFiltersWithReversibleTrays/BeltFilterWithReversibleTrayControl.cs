@@ -5,7 +5,6 @@ using Parameters;
 using StepCalculators;
 using StepCalculators.Material_Calculators;
 using StepCalculators.Simulation_Calculators;
-using StepCalculators.Simulation_Calculators.Simulation_Help_Calculators;
 
 namespace CalculatorModules.BeltFiltersWithReversibleTrays
 {
@@ -31,7 +30,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             
             Calculators.Add(new fsDensityConcentrationCalculator());
             Calculators.Add(new fsEpsKappaNeDpCalculator());
-            Calculators.Add(new fsRf0Rs0RhoCw0FromDensitiesAndCakePorosity0Calculator());
             Calculators.Add(new fsPc0Rc0Alpha0Calculator());
             Calculators.Add(new fsRm0Hce0Calculator());
             Calculators.Add(new fsBeltFiltersWithReversibleTraysCalculator());
@@ -68,14 +66,12 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0,
                 fsParameterIdentifier.DryCakeDensity0,
+                fsParameterIdentifier.CakeWetDensity0,
+                fsParameterIdentifier.CakeWetMassSolidsFractionRs0,
+                fsParameterIdentifier.CakeMoistureContentRf0,
                 fsParameterIdentifier.CakePorosity,
                 fsParameterIdentifier.Kappa,
                 fsParameterIdentifier.DryCakeDensity);
-
-            fsParametersGroup rGroup = AddGroup(
-                fsParameterIdentifier.CakeWetDensity0,
-                fsParameterIdentifier.CakeWetMassSolidsFractionRs0,
-                fsParameterIdentifier.CakeMoistureContentRf0);
 
             fsParametersGroup pcrcGroup = AddGroup(
                 fsParameterIdentifier.CakePermeability0,
@@ -97,7 +93,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                                 cGroup,
                                 neGroup,
                                 epsGroup,
-                                rGroup,
                                 pcrcGroup,
                                 ncGroup,
                                 hce0Group, 
@@ -108,7 +103,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 AddGroupToUI(materialParametersDataGrid, materialGroups[i], colors[i % colors.Length]);
                 SetGroupInput(materialGroups[i], true);
             }
-            SetGroupInput(rGroup, false);
 
             #endregion
 
