@@ -31,6 +31,8 @@
             this.calculationComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.materialParametersDisplayCheckBox = new System.Windows.Forms.CheckBox();
+            this.tablesSplitContainer.Panel1.SuspendLayout();
+            this.tablesSplitContainer.Panel2.SuspendLayout();
             this.tablesSplitContainer.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
             this.calculationOptionsPanel.SuspendLayout();
@@ -39,8 +41,16 @@
             // 
             // tablesSplitContainer
             // 
-            this.tablesSplitContainer.Size = new System.Drawing.Size(287, 226);
+            this.tablesSplitContainer.Size = new System.Drawing.Size(287, 486);
             this.tablesSplitContainer.SplitterDistance = 140;
+            // 
+            // dataGrid
+            // 
+            this.dataGrid.Size = new System.Drawing.Size(143, 486);
+            // 
+            // materialParametersDataGrid
+            // 
+            this.materialParametersDataGrid.Size = new System.Drawing.Size(140, 486);
             // 
             // leftTopPanel
             // 
@@ -56,7 +66,7 @@
             // tablesPanel
             // 
             this.tablesPanel.Location = new System.Drawing.Point(0, 74);
-            this.tablesPanel.Size = new System.Drawing.Size(287, 226);
+            this.tablesPanel.Size = new System.Drawing.Size(287, 486);
             // 
             // calculationComboBox
             // 
@@ -94,7 +104,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "fsBeltFilterWithReversibleTrayControl";
-            this.Size = new System.Drawing.Size(287, 300);
+            this.Size = new System.Drawing.Size(287, 560);
+            this.tablesSplitContainer.Panel1.ResumeLayout(false);
+            this.tablesSplitContainer.Panel2.ResumeLayout(false);
             this.tablesSplitContainer.ResumeLayout(false);
             this.leftTopPanel.ResumeLayout(false);
             this.calculationOptionsPanel.ResumeLayout(false);
