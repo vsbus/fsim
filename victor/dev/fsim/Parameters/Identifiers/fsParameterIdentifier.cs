@@ -185,10 +185,10 @@ namespace Parameters
             new fsParameterIdentifier("nsr", fsCharacteristic.NoUnits);
 
         public static fsParameterIdentifier qft =
-            new fsParameterIdentifier("qft", fsCharacteristic.NoUnits);
+            new fsParameterIdentifier("qft", fsCharacteristic.SpecificVolumeFlowrate);
 
         public static fsParameterIdentifier qmft =
-            new fsParameterIdentifier("qmft", fsCharacteristic.NoUnits);
+            new fsParameterIdentifier("qmft", fsCharacteristic.SpecificMassFlowrate);
 
         public static fsParameterIdentifier ViscosityFiltrate = new fsParameterIdentifier("etaf", "Viscosity Filtrate",
                                                                                           fsCharacteristic.Viscosity);
