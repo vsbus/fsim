@@ -48,7 +48,9 @@ namespace fsUIControls
                            fsCharacteristic.Mass,
                            fsCharacteristic.Volume,
                            fsCharacteristic.MassFlowrate,
-                           fsCharacteristic.VolumeFlowrate
+                           fsCharacteristic.VolumeFlowrate,
+                           fsCharacteristic.SpecificMassFlowrate,
+                           fsCharacteristic.SpecificVolumeFlowrate
                        };
         }
 
@@ -194,6 +196,7 @@ namespace fsUIControls
                 new fsScheme("International System of Units",
                     new[]
                     {
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Frequency, fsUnit.PerSecond),
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareMeter),
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.CubicMeter),
@@ -205,6 +208,7 @@ namespace fsUIControls
                 new fsScheme("Laboratory Scale",
                     new[]
                     {
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Frequency, fsUnit.PerMinute),
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareSantiMeter),
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.Gramme),
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.MilliLiter),
@@ -216,6 +220,7 @@ namespace fsUIControls
                 new fsScheme("Pilot/Industrial Scale",
                     new[]
                     {
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Frequency, fsUnit.PerMinute),
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Area, fsUnit.SquareMeter),
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.Liter),

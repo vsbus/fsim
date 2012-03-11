@@ -119,5 +119,10 @@ namespace Calculator
         }
 
         #endregion
+
+        internal void SetInitiallyCheckedModule(fsModule fsModule)
+        {
+            fsCheckedList1.CheckItem(fsModule.Name);
+        }
     }
 }
