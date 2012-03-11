@@ -30,12 +30,9 @@ namespace CalculatorModules.Base_Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGrid = new fmDataGrid.fmDataGrid();
-            this.ParameterColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValueColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
+            this.dataGrid = new fsUIControls.fsParametersWithValuesTable();
             this.leftTopPanel.SuspendLayout();
             this.tablesPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // leftTopPanel
@@ -53,36 +50,11 @@ namespace CalculatorModules.Base_Controls
             // 
             // dataGrid
             // 
-            this.dataGrid.AllowUserToAddRows = false;
-            this.dataGrid.AllowUserToDeleteRows = false;
-            this.dataGrid.AllowUserToResizeRows = false;
-            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ParameterColumn,
-            this.ValueColumn});
             this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.dataGrid.HighLightCurrentRow = false;
             this.dataGrid.Location = new System.Drawing.Point(0, 0);
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.RowHeadersVisible = false;
-            this.dataGrid.RowTemplate.Height = 18;
             this.dataGrid.Size = new System.Drawing.Size(329, 252);
             this.dataGrid.TabIndex = 0;
-            // 
-            // ParameterColumn
-            // 
-            this.ParameterColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ParameterColumn.HeaderText = "Parameter";
-            this.ParameterColumn.Name = "ParameterColumn";
-            this.ParameterColumn.ReadOnly = true;
-            // 
-            // ValueColumn
-            // 
-            this.ValueColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ValueColumn.FillWeight = 50F;
-            this.ValueColumn.HeaderText = "Value";
-            this.ValueColumn.Name = "ValueColumn";
             // 
             // fsOptionsSingleTableAndCommentsCalculatorControl
             // 
@@ -92,16 +64,15 @@ namespace CalculatorModules.Base_Controls
             this.Size = new System.Drawing.Size(329, 300);
             this.leftTopPanel.ResumeLayout(false);
             this.tablesPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn;
-        private fmDataGrid.fmDataGridViewNumericalTextBoxColumn ValueColumn;
-        protected fmDataGrid.fmDataGrid dataGrid;
+        protected fsUIControls.fsParametersWithValuesTable dataGrid;
+
+
 
 
     }
