@@ -8,6 +8,7 @@ using ParametersIdentifiers.Ranges;
 using StepCalculators;
 using Units;
 using Value;
+using fsUIControls;
 
 namespace CalculatorModules
 {
@@ -86,9 +87,9 @@ namespace CalculatorModules
         {
             foreach (Control control in controls)
             {
-                if (control is DataGridView)
+                if (control is fsParametersWithValuesTable)
                 {
-                    var grid = control as fmDataGrid.fmDataGrid;
+                    var grid = control as fsParametersWithValuesTable;
                     grid.CellValueChangedByUser += DataGridCellValueChangedByUser;
                 }
                 else if (control is RadioButton)
@@ -145,7 +146,7 @@ namespace CalculatorModules
             return group;
         }
 
-        protected void AddGroupToUI(DataGridView dataGrid, fsParametersGroup group, Color color)
+        protected void AddGroupToUI(fsParametersWithValuesTable dataGrid, fsParametersGroup group, Color color)
         {
             foreach (fsParameterIdentifier p in group.Parameters)
             {
@@ -169,14 +170,16 @@ namespace CalculatorModules
             WriteValuesToDataGrid();
         }
 
-        protected void AddRow(DataGridView dataGrid, fsSimulationModuleParameter parameter, Color color)
+        protected void AddRow(fsParametersWithValuesTable dataGrid, fsSimulationModuleParameter parameter, Color color)
         {
-            int ind = dataGrid.Rows.Add(new[] {parameter.ToString(), ""});
-            SetRowColor(dataGrid, ind, color);
-            AssignParameterAndCell(parameter.Identifier, dataGrid.Rows[ind].Cells[1]);
+            int rowIndex = dataGrid.Rows.Add(new[] {parameter.Identifier.Name, parameter.Unit.Name, ""});
+            int valueColIndex = dataGrid.Rows[rowIndex].Cells.Count - 1;
+            SetRowColor(dataGrid, rowIndex, color);
+            AssignParameterAndCell(parameter.Identifier, dataGrid.Rows[rowIndex].Cells[valueColIndex]);
+            dataGrid.Rows[rowIndex].Cells[0].ToolTipText = parameter.Identifier.FullName + " (" + parameter.Identifier.Name + ")";
         }
 
-        protected void SetRowColor(DataGridView dataGrid, int ind, Color color)
+        protected void SetRowColor(fsParametersWithValuesTable dataGrid, int ind, Color color)
         {
             foreach (DataGridViewCell cell in dataGrid.Rows[ind].Cells)
             {
@@ -250,9 +253,8 @@ namespace CalculatorModules
                 {
                     parameter.Unit = dictionary[identifier.MeasurementCharacteristic];
                     DataGridViewCell valueCell = ParameterToCell[identifier];
-                    DataGridViewCell parameterNameCell =
-                        valueCell.DataGridView[valueCell.ColumnIndex - 1, valueCell.RowIndex];
-                    parameterNameCell.Value = parameter.ToString();
+                    DataGridViewCell unitsCell = valueCell.DataGridView[valueCell.ColumnIndex - 1, valueCell.RowIndex];
+                    unitsCell.Value = parameter.Unit.Name;
                     valueCell.Value = parameter.GetValueInUnits();
                 }
             }
