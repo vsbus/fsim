@@ -71,7 +71,10 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.CakeMoistureContentRf0,
                 fsParameterIdentifier.CakePorosity,
                 fsParameterIdentifier.Kappa,
-                fsParameterIdentifier.DryCakeDensity);
+                fsParameterIdentifier.DryCakeDensity,
+                fsParameterIdentifier.CakeWetDensity,
+                fsParameterIdentifier.CakeWetMassSolidsFractionRs,
+                fsParameterIdentifier.CakeMoistureContentRf);
 
             fsParametersGroup pcrcGroup = AddGroup(
                 fsParameterIdentifier.CakePermeability0,

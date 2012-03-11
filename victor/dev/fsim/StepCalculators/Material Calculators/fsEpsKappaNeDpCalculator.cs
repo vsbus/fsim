@@ -35,27 +35,31 @@ namespace StepCalculators.Material_Calculators
             fsCalculatorVariable cakeMoistureContentRf0 = AddVariable(fsParameterIdentifier.CakeMoistureContentRf0);
             fsCalculatorVariable cakeWetMassSolidsFractionRs0 = AddVariable(fsParameterIdentifier.CakeWetMassSolidsFractionRs0);
 
+            fsCalculatorVariable cakeWetDensity = AddVariable(fsParameterIdentifier.CakeWetDensity);
+            fsCalculatorVariable cakeMoistureContentRf = AddVariable(fsParameterIdentifier.CakeMoistureContentRf);
+            fsCalculatorVariable cakeWetMassSolidsFractionRs = AddVariable(fsParameterIdentifier.CakeWetMassSolidsFractionRs);
+
             #endregion
 
             #region Equations Initialization
 
+            var one = new fsCalculatorConstant(new fsParameterIdentifier("one")) { Value = fsValue.One };
+            
             AddEquation(new fsEpsKappaCvEquation(porosity0, kappa0, volumeConcentration));
             AddEquation(new fsCakeDrySolidsDensityEquation(cakeDrySolidsDensity0, porosity0, solidsDensity));
+
             AddEquation(new fsEpsKappaCvEquation(porosity, kappa, volumeConcentration));
             AddEquation(new fsCakeDrySolidsDensityEquation(cakeDrySolidsDensity, porosity, solidsDensity));
+
             AddEquation(new fsFrom0AndDpEquation(porosity, porosity0, pressureDifference, ne));
-            AddEquation(new fsMoistureContentFromDensitiesAndPorosityEquation(
-                cakeMoistureContentRf0,
-                porosity0,
-                filtrateDensity,
-                solidsDensity));
-            var one = new fsCalculatorConstant(new fsParameterIdentifier("one")) { Value = fsValue.One };
+
+            AddEquation(new fsMoistureContentFromDensitiesAndPorosityEquation(cakeMoistureContentRf0, porosity0, filtrateDensity, solidsDensity));
             AddEquation(new fsSumEquation(one, cakeMoistureContentRf0, cakeWetMassSolidsFractionRs0));
-            AddEquation(new fsCakeWetDensityFromRhofRhosPorosityEquation(
-                cakeWetDensity0,
-                filtrateDensity,
-                solidsDensity,
-                porosity0));
+            AddEquation(new fsCakeWetDensityFromRhofRhosPorosityEquation(cakeWetDensity0, filtrateDensity, solidsDensity, porosity0));
+
+            AddEquation(new fsMoistureContentFromDensitiesAndPorosityEquation(cakeMoistureContentRf, porosity, filtrateDensity, solidsDensity));
+            AddEquation(new fsSumEquation(one, cakeMoistureContentRf, cakeWetMassSolidsFractionRs));
+            AddEquation(new fsCakeWetDensityFromRhofRhosPorosityEquation(cakeWetDensity, filtrateDensity, solidsDensity, porosity));
 
             #endregion
         }
