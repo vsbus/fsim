@@ -131,8 +131,6 @@ namespace fmDataGrid
             base.OnCurrentCellChanged(e);
         }
 
-        
-
         public event DataGridViewCellEventHandler CellValueChangedByUser;
     }
 }
