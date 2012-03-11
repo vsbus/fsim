@@ -117,8 +117,8 @@ namespace Units
         public static fsCharacteristic Frequency = new fsCharacteristic(
             "Frequency",
             new[] {
-                fsUnit.PerSecond,
-                fsUnit.PerMinute
+                fsUnit.PerMinute,
+                fsUnit.PerSecond
             }
         );
 
@@ -208,6 +208,24 @@ namespace Units
                 fsUnit.LiterPerSecond,
                 fsUnit.LiterPerMinute,
                 fsUnit.LiterPerHour
+            }
+        );
+
+        public static fsCharacteristic SpecificMassFlowrate = new fsCharacteristic(
+            "Specific Mass flowrate",
+            new[] {
+                fsUnit.KiloGrammePerSquaredMeterPerSec,
+                fsUnit.KiloGrammePerSquaredMeterPerMin,
+                fsUnit.KiloGrammePerSquaredMeterPerHour,
+            }
+        );
+
+        public static fsCharacteristic SpecificVolumeFlowrate = new fsCharacteristic(
+            "Specific Volume flowrate",
+            new[] {
+                fsUnit.LiterPerSquaredMeterPerSec,
+                fsUnit.LiterPerSquaredMeterPerMin,
+                fsUnit.LiterPerSquaredMeterPerHour,
             }
         );
 
