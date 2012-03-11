@@ -18,6 +18,7 @@ namespace fsUIControls
             #region Assign CellValueChangedByUser
 
             this.fmDataGrid1.CellValueChangedByUser += ProcessThisValueChangedByUser;
+            this.fmDataGrid1.RowTemplate.Height = 16;
 
             #endregion
         }
