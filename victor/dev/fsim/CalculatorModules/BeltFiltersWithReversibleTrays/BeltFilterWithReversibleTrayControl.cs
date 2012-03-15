@@ -103,6 +103,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             for (int i = 0; i < materialGroups.Length; ++i)
             {
+                materialGroups[i].Kind = fsParametersGroup.ParametersGroupKind.MaterialParameters;
                 AddGroupToUI(materialParametersDataGrid, materialGroups[i], colors[i % colors.Length]);
                 SetGroupInput(materialGroups[i], true);
             }
@@ -171,6 +172,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             for (int i = 0; i < groups.Length; ++i)
             {
+                groups[i].Kind = fsParametersGroup.ParametersGroupKind.MachiningSettingsParameters;
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
                 SetGroupInput(groups[i], true);
             }

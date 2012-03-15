@@ -106,19 +106,37 @@ namespace CalculatorModules.User_Controls
 
         private void RefreshInputsBox()
         {
-            var inputData = new List<string>();
+            var materialInputData = new List<string>();
+            var machiningSettingsInputData = new List<string>();
             foreach (fsParametersGroup group in m_groups)
             {
+                if (group.Parameters.Contains(m_xAxisParameter))
+                    continue;
+
                 if (group.IsInput)
                 {
                     fsParameterIdentifier parameter = group.Representator;
-                    inputData.Add(parameter.Name + ":\t" + m_values[parameter].GetValueInUnits() + " " +
-                                  m_values[parameter].Unit.Name);
+                    string line = parameter.Name
+                        + "\t" + m_values[parameter].Unit.Name
+                        + "\t" + m_values[parameter].GetValueInUnits().ToString();
+                    if (group.Kind == fsParametersGroup.ParametersGroupKind.MaterialParameters)
+                    {
+                        materialInputData.Add(line);
+                    }
+                    else
+                    {
+                        machiningSettingsInputData.Add(line);
+                    }
                 }
             }
 
+            var lines = new List<string>();
+            lines.AddRange(materialInputData);
+            lines.Add("------------------------------------");
+            lines.AddRange(machiningSettingsInputData);
+            
             inputsTextBox.ForeColor = Color.Blue;
-            inputsTextBox.Lines = inputData.ToArray();
+            inputsTextBox.Lines = lines.ToArray();
         }
 
         private void RefreshXAxisList()
@@ -154,7 +172,11 @@ namespace CalculatorModules.User_Controls
             if (m_inputRefreshing)
                 return;
 
-            int detalization = Convert.ToInt32(detalizationBox.Text);
+            int detalization = (int)fsValue.StringToValue(detalizationBox.Text).Value;
+            if (detalization < 2)
+            {
+                detalization = 2;
+            }
             double factor = m_values[m_xAxisParameter].Unit.Coefficient;
             fsValue from = fsValue.StringToValue(rangeFrom.Text) * factor;
             fsValue to = fsValue.StringToValue(rangeTo.Text) * factor;
@@ -242,7 +264,11 @@ namespace CalculatorModules.User_Controls
                 {
                     var element = new KeyValuePair<string, bool>(parameter.Name,
                                                                  IsContains(yAxisListView.CheckedItems, parameter.Name));
-                    if (group.IsInput && parameter == group.Representator)
+                    if (parameter == m_xAxisParameter)
+                    {
+                        variableResultsList.Add(element);
+                    }
+                    else if (group.IsInput && parameter == group.Representator)
                     {
                         inputList.Add(element);
                     }
@@ -378,6 +404,7 @@ namespace CalculatorModules.User_Controls
         {
             m_xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
             RefreshRangesBoxes();
+            RefreshInputsBox();
             CalculateData();
             RefreshOutput();
         }
@@ -404,5 +431,11 @@ namespace CalculatorModules.User_Controls
         }
 
         #endregion
+
+        private void detalizationBox_TextChanged(object sender, EventArgs e)
+        {
+            CalculateData();
+            RefreshOutput();
+        }
     }
 }

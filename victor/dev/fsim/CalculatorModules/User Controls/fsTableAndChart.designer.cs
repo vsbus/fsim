@@ -196,6 +196,7 @@
             this.detalizationBox.Name = "detalizationBox";
             this.detalizationBox.Size = new System.Drawing.Size(74, 20);
             this.detalizationBox.TabIndex = 10;
+            this.detalizationBox.TextChanged += new System.EventHandler(this.detalizationBox_TextChanged);
             // 
             // rangeTo
             // 
