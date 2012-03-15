@@ -89,7 +89,22 @@ namespace Value
 
         public override string ToString()
         {
-            return ToString(OutputPrecision);
+            int precision = OutputPrecision;
+            if (Defined)
+            {
+                double x = 1;
+                int digitsBeforePoint = 0;
+                while (x < Value)
+                {
+                    x *= 10;
+                    ++digitsBeforePoint;
+                }
+                if (precision < digitsBeforePoint)
+                {
+                    precision = digitsBeforePoint;
+                }
+            }
+            return ToString(precision);
         }
 
         public string ToString(int precision)
