@@ -18,7 +18,11 @@ namespace CalculatorModules
         protected override void Recalculate()
         {
             base.Recalculate();
-            fsTableAndChart1.AssignCalculatorData(Values, Groups, ParameterToGroup, Calculators);
+            fsTableAndChart1.AssignCalculatorData(Values,
+                Groups,
+                ParameterToGroup,
+                Calculators,
+                AllowedParametersForTablesAndCharts);
             fsTableAndChart1.Reprocess();
         }
 
