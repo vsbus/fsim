@@ -13,6 +13,27 @@ namespace CalculatorModules.User_Controls
 {
     public partial class fsTableAndChart : UserControl
     {
+        public class fsAllowedParameters
+        {
+            public List<fsParameterIdentifier> xAxis { get; set; }
+            public List<fsParameterIdentifier> yAxis { get; set; }
+            public List<fsParameterIdentifier> y2Axis { get; set; }
+
+            public fsAllowedParameters()
+            {
+                xAxis = new List<fsParameterIdentifier>();
+                yAxis = new List<fsParameterIdentifier>();
+                y2Axis = new List<fsParameterIdentifier>();
+            }
+
+            public void Add(fsParameterIdentifier identifier)
+            {
+                xAxis.Add(identifier);
+                yAxis.Add(identifier);
+                y2Axis.Add(identifier);
+            }
+        }
+
         #region Private Data
 
         private readonly List<fsDiagramWithTable.fsNamedArray> m_y2Curves = new List<fsDiagramWithTable.fsNamedArray>();
@@ -26,8 +47,12 @@ namespace CalculatorModules.User_Controls
         private Dictionary<fsParameterIdentifier, fsParametersGroup> m_parameterToGroup;
         private Dictionary<fsParameterIdentifier, fsSimulationModuleParameter> m_values;
         private fsParameterIdentifier m_xAxisParameter;
+        private fsAllowedParameters m_allowedParameters = new fsAllowedParameters();
 
         #endregion
+
+        
+
 
         #region Constructor
 
@@ -44,12 +69,14 @@ namespace CalculatorModules.User_Controls
             Dictionary<fsParameterIdentifier, fsSimulationModuleParameter> values,
             List<fsParametersGroup> groups,
             Dictionary<fsParameterIdentifier, fsParametersGroup> parameterToGroup,
-            List<fsCalculator> calculators)
+            List<fsCalculator> calculators,
+            fsAllowedParameters allowedParameters)
         {
             m_values = new Dictionary<fsParameterIdentifier, fsSimulationModuleParameter>(values);
             m_groups = new List<fsParametersGroup>(groups);
             m_parameterToGroup = new Dictionary<fsParameterIdentifier, fsParametersGroup>(parameterToGroup);
             m_calculators = new List<fsCalculator>(calculators);
+            m_allowedParameters = allowedParameters;
         }
 
         #region Reprocessing
@@ -65,8 +92,8 @@ namespace CalculatorModules.User_Controls
 
         private void RefreshOutput()
         {
-            RefreshYAxisList(yAxisList);
-            RefreshYAxisList(y2AxisList);
+            RefreshYAxisList(m_allowedParameters.yAxis, yAxisList);
+            RefreshYAxisList(m_allowedParameters.y2Axis, y2AxisList);
 
             UpdateDiagram();
         }
@@ -250,7 +277,9 @@ namespace CalculatorModules.User_Controls
 
         #region Refresh Output
 
-        private void RefreshYAxisList(ListView yAxisListView)
+        private void RefreshYAxisList(
+            List<fsParameterIdentifier> allowedParameters,
+            ListView yAxisListView)
         {
             if (m_inputRefreshing)
                 return;
@@ -262,6 +291,9 @@ namespace CalculatorModules.User_Controls
             {
                 foreach (fsParameterIdentifier parameter in group.Parameters)
                 {
+                    if (!allowedParameters.Contains(parameter))
+                        continue;
+
                     var element = new KeyValuePair<string, bool>(parameter.Name,
                                                                  IsContains(yAxisListView.CheckedItems, parameter.Name));
                     if (parameter == m_xAxisParameter)
@@ -430,12 +462,12 @@ namespace CalculatorModules.User_Controls
             RefreshOutput();
         }
 
-        #endregion
-
         private void detalizationBox_TextChanged(object sender, EventArgs e)
         {
             CalculateData();
             RefreshOutput();
         }
+
+        #endregion
     }
 }

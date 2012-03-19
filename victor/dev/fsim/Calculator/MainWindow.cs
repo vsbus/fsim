@@ -188,5 +188,14 @@ namespace Calculator
             Dictionary<fsParameterIdentifier, bool> parametersToShowAndHide = form.GetParametersToShowAndHide();
             GetCurrentActiveModule().ShowAndHideParameters(parametersToShowAndHide);
         }
+
+        private void tablesAndChartsParametersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var tablesAndChartsParametersForm = new TablesAndChartsParametersDialog();
+            tablesAndChartsParametersForm.FillAxis(
+                GetCurrentActiveModule().GetInvolvedParametersWithVisibleStatus().Keys,
+                GetCurrentActiveModule().GetAllowedParametersForTablesAndCharts());
+            tablesAndChartsParametersForm.ShowDialog();
+        }
     }
 }

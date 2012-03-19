@@ -46,6 +46,7 @@
             this.WindowNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.addModuleButton = new System.Windows.Forms.Button();
+            this.tablesAndChartsParametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.windowsDataGrid)).BeginInit();
@@ -127,7 +128,8 @@
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.unitsToolStripMenuItem,
             this.machineTypeToolStripMenuItem,
-            this.showHideParametersToolStripMenuItem});
+            this.showHideParametersToolStripMenuItem,
+            this.tablesAndChartsParametersToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.optionsToolStripMenuItem.Text = "&Options";
@@ -135,21 +137,21 @@
             // unitsToolStripMenuItem
             // 
             this.unitsToolStripMenuItem.Name = "unitsToolStripMenuItem";
-            this.unitsToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.unitsToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.unitsToolStripMenuItem.Text = "&Units";
             this.unitsToolStripMenuItem.Click += new System.EventHandler(this.UnitsToolStripMenuItemClick);
             // 
             // machineTypeToolStripMenuItem
             // 
             this.machineTypeToolStripMenuItem.Name = "machineTypeToolStripMenuItem";
-            this.machineTypeToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.machineTypeToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.machineTypeToolStripMenuItem.Text = "&Machine Type";
             this.machineTypeToolStripMenuItem.Click += new System.EventHandler(this.MachineTypeToolStripMenuItemClick);
             // 
             // showHideParametersToolStripMenuItem
             // 
             this.showHideParametersToolStripMenuItem.Name = "showHideParametersToolStripMenuItem";
-            this.showHideParametersToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.showHideParametersToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.showHideParametersToolStripMenuItem.Text = "Show/&Hide Parameters";
             this.showHideParametersToolStripMenuItem.Click += new System.EventHandler(this.showHideParametersToolStripMenuItem_Click);
             // 
@@ -209,6 +211,13 @@
             this.addModuleButton.UseVisualStyleBackColor = true;
             this.addModuleButton.Click += new System.EventHandler(this.AddModuleButtonClick);
             // 
+            // tablesAndChartsParametersToolStripMenuItem
+            // 
+            this.tablesAndChartsParametersToolStripMenuItem.Name = "tablesAndChartsParametersToolStripMenuItem";
+            this.tablesAndChartsParametersToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.tablesAndChartsParametersToolStripMenuItem.Text = "Tables and Charts Parameters";
+            this.tablesAndChartsParametersToolStripMenuItem.Click += new System.EventHandler(this.tablesAndChartsParametersToolStripMenuItem_Click);
+            // 
             // fsMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,6 +260,7 @@
         private System.Windows.Forms.ToolStripMenuItem unitsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem machineTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showHideParametersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tablesAndChartsParametersToolStripMenuItem;
 
     }
 }
