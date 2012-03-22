@@ -64,7 +64,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(151, 251);
+            this.panel1.Size = new System.Drawing.Size(151, 457);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer2
@@ -82,8 +82,8 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.inputsTextBox);
             this.splitContainer2.Panel2.Controls.Add(this.label6);
-            this.splitContainer2.Size = new System.Drawing.Size(151, 160);
-            this.splitContainer2.SplitterDistance = 98;
+            this.splitContainer2.Size = new System.Drawing.Size(151, 366);
+            this.splitContainer2.SplitterDistance = 224;
             this.splitContainer2.TabIndex = 11;
             // 
             // yAxisSplitContainer
@@ -103,8 +103,8 @@
             // 
             this.yAxisSplitContainer.Panel2.Controls.Add(this.y2AxisList);
             this.yAxisSplitContainer.Panel2.Controls.Add(this.label5);
-            this.yAxisSplitContainer.Size = new System.Drawing.Size(151, 98);
-            this.yAxisSplitContainer.SplitterDistance = 47;
+            this.yAxisSplitContainer.Size = new System.Drawing.Size(151, 224);
+            this.yAxisSplitContainer.SplitterDistance = 107;
             this.yAxisSplitContainer.TabIndex = 9;
             // 
             // yAxisList
@@ -113,7 +113,7 @@
             this.yAxisList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.yAxisList.Location = new System.Drawing.Point(0, 13);
             this.yAxisList.Name = "yAxisList";
-            this.yAxisList.Size = new System.Drawing.Size(151, 34);
+            this.yAxisList.Size = new System.Drawing.Size(151, 94);
             this.yAxisList.TabIndex = 9;
             this.yAxisList.UseCompatibleStateImageBehavior = false;
             this.yAxisList.View = System.Windows.Forms.View.List;
@@ -135,7 +135,7 @@
             this.y2AxisList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.y2AxisList.Location = new System.Drawing.Point(0, 13);
             this.y2AxisList.Name = "y2AxisList";
-            this.y2AxisList.Size = new System.Drawing.Size(151, 34);
+            this.y2AxisList.Size = new System.Drawing.Size(151, 100);
             this.y2AxisList.TabIndex = 2;
             this.y2AxisList.UseCompatibleStateImageBehavior = false;
             this.y2AxisList.View = System.Windows.Forms.View.List;
@@ -160,7 +160,7 @@
             this.inputsTextBox.Name = "inputsTextBox";
             this.inputsTextBox.ReadOnly = true;
             this.inputsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputsTextBox.Size = new System.Drawing.Size(151, 45);
+            this.inputsTextBox.Size = new System.Drawing.Size(151, 125);
             this.inputsTextBox.TabIndex = 1;
             // 
             // label6
@@ -260,7 +260,7 @@
             this.fsDiagramWithTable1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fsDiagramWithTable1.Location = new System.Drawing.Point(151, 0);
             this.fsDiagramWithTable1.Name = "fsDiagramWithTable1";
-            this.fsDiagramWithTable1.Size = new System.Drawing.Size(304, 251);
+            this.fsDiagramWithTable1.Size = new System.Drawing.Size(304, 457);
             this.fsDiagramWithTable1.TabIndex = 1;
             // 
             // fsTableAndChart
@@ -270,7 +270,7 @@
             this.Controls.Add(this.fsDiagramWithTable1);
             this.Controls.Add(this.panel1);
             this.Name = "fsTableAndChart";
-            this.Size = new System.Drawing.Size(455, 251);
+            this.Size = new System.Drawing.Size(455, 457);
             this.panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);

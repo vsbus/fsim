@@ -21,8 +21,7 @@ namespace CalculatorModules
             fsTableAndChart1.AssignCalculatorData(Values,
                 Groups,
                 ParameterToGroup,
-                Calculators,
-                AllowedParametersForTablesAndCharts);
+                Calculators);
             fsTableAndChart1.Reprocess();
         }
 
