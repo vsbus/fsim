@@ -56,10 +56,5 @@ namespace Calculator
         }
 
         #endregion
-
-        internal fsTableAndChart.fsAllowedParameters GetAllowedParametersForTablesAndCharts()
-        {
-            return m_calculatorControl.GetAllowedParametersForTablesAndCharts();
-        }
     }
 }

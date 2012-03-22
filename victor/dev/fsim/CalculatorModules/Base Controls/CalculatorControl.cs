@@ -42,7 +42,6 @@ namespace CalculatorModules
             Calculators = new List<fsCalculator>();
             Groups = new List<fsParametersGroup>();
             ParameterToGroup = new Dictionary<fsParameterIdentifier, fsParametersGroup>();
-            AllowedParametersForTablesAndCharts = new fsTableAndChart.fsAllowedParameters();
         }
 
         #region Routines
@@ -50,7 +49,6 @@ namespace CalculatorModules
         protected List<fsCalculator> Calculators { get; set; }
         protected List<fsParametersGroup> Groups { get; private set; }
         protected Dictionary<fsParameterIdentifier, fsParametersGroup> ParameterToGroup { get; private set; }
-        protected fsTableAndChart.fsAllowedParameters AllowedParametersForTablesAndCharts { get; set; }
 
         protected void EstablishCalculationOption(Enum option)
         {
@@ -161,7 +159,6 @@ namespace CalculatorModules
                     parameter.Range = fsMachineRanges.DefaultMachineRanges.Ranges[identifier].Range;
                 }
                 Values.Add(identifier, parameter);
-                AllowedParametersForTablesAndCharts.Add(identifier);
                 AddRow(dataGrid, parameter, color);
             }
         }
@@ -310,10 +307,5 @@ namespace CalculatorModules
         }
 
         #endregion
-
-        public fsTableAndChart.fsAllowedParameters GetAllowedParametersForTablesAndCharts()
-        {
-            return AllowedParametersForTablesAndCharts;
-        }
     }
 }
