@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using CalculatorModules.User_Controls.Help_Dialogs;
 using Parameters;
 using ParametersIdentifiers;
 using ParametersIdentifiers.Ranges;
@@ -441,9 +442,10 @@ namespace CalculatorModules.User_Controls
 
         #endregion
 
-        private void button2_Click(object sender, EventArgs e)
+        private void yAxisConfigure_Click(object sender, EventArgs e)
         {
-
+            var selectionForm = new fsTablesAndChartsParametersSelectionDialog();
+            selectionForm.ShowDialog();
         }
     }
 }
