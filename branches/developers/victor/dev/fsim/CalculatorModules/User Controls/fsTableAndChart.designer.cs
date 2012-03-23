@@ -31,8 +31,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.yAxisSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.yAxisConfigure = new System.Windows.Forms.Button();
             this.yAxisList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.y2AxisConfigure = new System.Windows.Forms.Button();
             this.y2AxisList = new System.Windows.Forms.ListView();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.inputsTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -43,10 +47,6 @@
             this.xAxisList = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.yAxisConfigure = new System.Windows.Forms.Button();
-            this.y2AxisConfigure = new System.Windows.Forms.Button();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.fsDiagramWithTable1 = new CalculatorModules.User_Controls.fsDiagramWithTable();
             this.panel1.SuspendLayout();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -109,6 +109,16 @@
             this.yAxisSplitContainer.SplitterDistance = 107;
             this.yAxisSplitContainer.TabIndex = 9;
             // 
+            // yAxisConfigure
+            // 
+            this.yAxisConfigure.Location = new System.Drawing.Point(109, 3);
+            this.yAxisConfigure.Name = "yAxisConfigure";
+            this.yAxisConfigure.Size = new System.Drawing.Size(36, 23);
+            this.yAxisConfigure.TabIndex = 10;
+            this.yAxisConfigure.Text = "...";
+            this.yAxisConfigure.UseVisualStyleBackColor = true;
+            this.yAxisConfigure.Click += new System.EventHandler(this.yAxisConfigure_Click);
+            // 
             // yAxisList
             // 
             this.yAxisList.CheckBoxes = true;
@@ -123,6 +133,20 @@
             this.yAxisList.View = System.Windows.Forms.View.Details;
             this.yAxisList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.YAxisListItemChecked);
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Y Axis";
+            this.columnHeader1.Width = 78;
+            // 
+            // y2AxisConfigure
+            // 
+            this.y2AxisConfigure.Location = new System.Drawing.Point(109, 3);
+            this.y2AxisConfigure.Name = "y2AxisConfigure";
+            this.y2AxisConfigure.Size = new System.Drawing.Size(36, 23);
+            this.y2AxisConfigure.TabIndex = 3;
+            this.y2AxisConfigure.Text = "...";
+            this.y2AxisConfigure.UseVisualStyleBackColor = true;
+            // 
             // y2AxisList
             // 
             this.y2AxisList.CheckBoxes = true;
@@ -136,6 +160,11 @@
             this.y2AxisList.UseCompatibleStateImageBehavior = false;
             this.y2AxisList.View = System.Windows.Forms.View.Details;
             this.y2AxisList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.YAxisListItemChecked);
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Y2 Axis";
+            this.columnHeader2.Width = 81;
             // 
             // inputsTextBox
             // 
@@ -240,35 +269,6 @@
             this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Range";
-            // 
-            // yAxisConfigure
-            // 
-            this.yAxisConfigure.Location = new System.Drawing.Point(109, 3);
-            this.yAxisConfigure.Name = "yAxisConfigure";
-            this.yAxisConfigure.Size = new System.Drawing.Size(36, 23);
-            this.yAxisConfigure.TabIndex = 10;
-            this.yAxisConfigure.Text = "...";
-            this.yAxisConfigure.UseVisualStyleBackColor = true;
-            // 
-            // y2AxisConfigure
-            // 
-            this.y2AxisConfigure.Location = new System.Drawing.Point(109, 3);
-            this.y2AxisConfigure.Name = "y2AxisConfigure";
-            this.y2AxisConfigure.Size = new System.Drawing.Size(36, 23);
-            this.y2AxisConfigure.TabIndex = 3;
-            this.y2AxisConfigure.Text = "...";
-            this.y2AxisConfigure.UseVisualStyleBackColor = true;
-            this.y2AxisConfigure.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Y Axis";
-            this.columnHeader1.Width = 78;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Y2 Axis";
-            this.columnHeader2.Width = 81;
             // 
             // fsDiagramWithTable1
             // 
