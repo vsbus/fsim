@@ -2,7 +2,7 @@
 
 namespace CalculatorModules
 {
-    abstract partial class fsOptionsAndCommentsCalculatorControl
+    partial class fsOptionsAndCommentsCalculatorControl
     {
         /// <summary> 
         /// Required designer variable.
