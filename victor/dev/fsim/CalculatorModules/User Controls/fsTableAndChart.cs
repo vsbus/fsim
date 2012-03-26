@@ -28,10 +28,10 @@ namespace CalculatorModules.User_Controls
         private Dictionary<fsParameterIdentifier, fsSimulationModuleParameter> m_values;
         private fsParameterIdentifier m_xAxisParameter;
 
+        private List<fsParameterIdentifier> m_yAxisParameters = new List<fsParameterIdentifier>();
+        private List<fsParameterIdentifier> m_y2AxisParameters = new List<fsParameterIdentifier>();
+
         #endregion
-
-        
-
 
         #region Constructor
 
@@ -69,8 +69,8 @@ namespace CalculatorModules.User_Controls
 
         private void RefreshOutput()
         {
-            RefreshYAxisList(yAxisList);
-            RefreshYAxisList(y2AxisList);
+            RefreshYAxisList(m_yAxisParameters, yAxisList);
+            RefreshYAxisList(m_y2AxisParameters, y2AxisList);
 
             UpdateDiagram();
         }
@@ -122,7 +122,7 @@ namespace CalculatorModules.User_Controls
                     fsParameterIdentifier parameter = group.Representator;
                     string line = parameter.Name
                         + "\t" + m_values[parameter].Unit.Name
-                        + "\t" + m_values[parameter].GetValueInUnits().ToString();
+                        + "\t" + m_values[parameter].GetValueInUnits();
                     if (group.Kind == fsParametersGroup.ParametersGroupKind.MaterialParameters)
                     {
                         materialInputData.Add(line);
@@ -176,7 +176,7 @@ namespace CalculatorModules.User_Controls
             if (m_inputRefreshing)
                 return;
 
-            int detalization = (int)fsValue.StringToValue(detalizationBox.Text).Value;
+            var detalization = (int)fsValue.StringToValue(detalizationBox.Text).Value;
             if (detalization < 2)
             {
                 detalization = 2;
@@ -254,7 +254,7 @@ namespace CalculatorModules.User_Controls
 
         #region Refresh Output
 
-        private void RefreshYAxisList(ListView yAxisListView)
+        private void RefreshYAxisList(IEnumerable<fsParameterIdentifier> parameters, ListView yAxisListView)
         {
             if (m_inputRefreshing)
                 return;
@@ -262,33 +262,25 @@ namespace CalculatorModules.User_Controls
             var inputList = new List<KeyValuePair<string, bool>>();
             var constResultsList = new List<KeyValuePair<string, bool>>();
             var variableResultsList = new List<KeyValuePair<string, bool>>();
-            foreach (fsParametersGroup group in m_groups)
+
+            foreach (fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter selectionParameter in GetSelectionParameters(parameters))
             {
-                foreach (fsParameterIdentifier parameter in group.Parameters)
+                string parameterName = selectionParameter.Identifier.Name;
+                var pair = new KeyValuePair<string, bool>(parameterName, IsContains(yAxisListView.CheckedItems, parameterName));
+                if (selectionParameter.Kind == fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind.InputParameter)
                 {
-                    var element = new KeyValuePair<string, bool>(parameter.Name,
-                                                                 IsContains(yAxisListView.CheckedItems, parameter.Name));
-                    if (parameter == m_xAxisParameter)
-                    {
-                        variableResultsList.Add(element);
-                    }
-                    else if (group.IsInput && parameter == group.Representator)
-                    {
-                        inputList.Add(element);
-                    }
-                    else
-                    {
-                        if (IsConstantList(m_data[parameter]))
-                        {
-                            constResultsList.Add(element);
-                        }
-                        else
-                        {
-                            variableResultsList.Add(element);
-                        }
-                    }
+                    inputList.Add(pair);
+                }
+                if (selectionParameter.Kind == fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind.CalculatedConstantParameter)
+                {
+                    constResultsList.Add(pair);
+                }
+                if (selectionParameter.Kind == fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind.CalculatedVariableParameter)
+                {
+                    variableResultsList.Add(pair);
                 }
             }
+
             var newList = new List<ListViewItem>();
             newList.AddRange(
                 variableResultsList.Select(
@@ -391,6 +383,11 @@ namespace CalculatorModules.User_Controls
             return checkedListViewItemCollection.Cast<ListViewItem>().Any(item => item.Text == name);
         }
 
+        private static bool IsContains(ListView.ListViewItemCollection checkedListViewItemCollection, string name)
+        {
+            return checkedListViewItemCollection.Cast<ListViewItem>().Any(item => item.Text == name);
+        }
+
         private static void SubstituteGroup(Dictionary<fsParameterIdentifier, fsParametersGroup> parameterToGroup,
                                             fsParametersGroup initialGroup, fsParametersGroup newGroup)
         {
@@ -434,7 +431,7 @@ namespace CalculatorModules.User_Controls
             RefreshOutput();
         }
 
-        private void detalizationBox_TextChanged(object sender, EventArgs e)
+        private void DetalizationBoxTextChanged(object sender, EventArgs e)
         {
             CalculateData();
             RefreshOutput();
@@ -442,10 +439,67 @@ namespace CalculatorModules.User_Controls
 
         #endregion
 
-        private void yAxisConfigure_Click(object sender, EventArgs e)
+        private void YAxisConfigureClick(object sender, EventArgs e)
         {
             var selectionForm = new fsTablesAndChartsParametersSelectionDialog();
+            var selectionParameters = new List<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameterWithChecking>();
+            foreach (fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter yParameter in GetSelectionParameters(m_values.Keys))
+            {
+                selectionParameters.Add(
+                    new fsTablesAndChartsParametersSelectionDialog.fsYAxisParameterWithChecking(
+                        yParameter.Identifier,
+                        yParameter.Kind,
+                        IsContains(yAxisList.Items, yParameter.Identifier.Name)));
+            }
+            selectionForm.AssignParameters(selectionParameters);
             selectionForm.ShowDialog();
+            if (selectionForm.DialogResult == DialogResult.OK)
+            {
+                m_yAxisParameters = new List<fsParameterIdentifier>();
+                m_yAxisParameters.AddRange(selectionForm.GetCheckedParameters());
+                Reprocess();
+            }
+        }
+
+        private List<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter> GetSelectionParameters(IEnumerable<fsParameterIdentifier> parameters)
+        {
+            var selectionParameters = new List<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter>();
+            foreach (fsParameterIdentifier parameter in parameters)
+            {
+                fsParametersGroup group = m_parameterToGroup[parameter];
+                bool isChecked = IsContains(yAxisList.CheckedItems, parameter.Name);
+                fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind kind;
+                if (parameter == m_xAxisParameter)
+                {
+                    kind =
+                        fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind.
+                            CalculatedVariableParameter;
+                }
+                else if (group.IsInput && parameter == group.Representator)
+                {
+                    kind =
+                        fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind.
+                            InputParameter;
+                }
+                else
+                {
+                    if (IsConstantList(m_data[parameter]))
+                    {
+                        kind =
+                        fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind.
+                            CalculatedConstantParameter;
+                    }
+                    else
+                    {
+                        kind =
+                        fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind.
+                            CalculatedVariableParameter;
+                    }
+                }
+                selectionParameters.Add(
+                    new fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter(parameter, kind));
+            }
+            return selectionParameters;
         }
     }
 }
