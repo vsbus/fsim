@@ -321,15 +321,6 @@ namespace Parameters
         public static fsParameterIdentifier PHcake = new fsParameterIdentifier("pH_c", "pH of liquid in the cake",
                                                                                fsCharacteristic.NoUnits);
 
-        /*public static fsParameterIdentifier UnderflowVolumeRateToFeedParIdent = new fsParameterIdentifier("rf",
-                                                                                                      "Underflow volume rate to feed volume flow rate",
-                                                                                                      fsCharacteristic.
-                                                                                                          UnderflowVolumeRateToFeedVolumeFlowRate);
-        public static fsParameterIdentifier UnderflowVolumeRateToFeedParIdent = new fsParameterIdentifier("rf",
-                                                                                                     "Underflow solids mass fraction",
-                                                                                                     fsCharacteristic.
-                                                                                                         UnderflowVolumeRateToFeedVolumeFlowRate);
-        */
         #endregion
     }
 }
