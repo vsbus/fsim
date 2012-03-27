@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Parameters;
 
@@ -60,8 +57,8 @@ namespace CalculatorModules.User_Controls.Help_Dialogs
         }
 
         private List<fsYAxisParameterWithChecking> m_parameters;
-        private readonly Dictionary<fsYAxisParameter.fsYParameterKind, Color> m_kindToColor = new Dictionary<fsYAxisParameter.fsYParameterKind, Color>()
-        {
+        private readonly Dictionary<fsYAxisParameter.fsYParameterKind, Color> m_kindToColor = new Dictionary<fsYAxisParameter.fsYParameterKind, Color>
+                                                                                                  {
             {fsYAxisParameter.fsYParameterKind.InputParameter, Color.Blue},
             {fsYAxisParameter.fsYParameterKind.CalculatedConstantParameter, Color.Gray},
             {fsYAxisParameter.fsYParameterKind.CalculatedVariableParameter, Color.Black}
@@ -79,30 +76,96 @@ namespace CalculatorModules.User_Controls.Help_Dialogs
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CancelButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void OkButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void fsTablesAndChartsParametersSelectionDialog_Load(object sender, EventArgs e)
+        private void TablesAndChartsParametersSelectionDialogLoad(object sender, EventArgs e)
+        {
+            BuildLists();
+        }
+
+        private void BuildLists()
         {
             if (m_parameters != null)
             {
-                foreach (fsYAxisParameterWithChecking selectionParameter in m_parameters)
+                m_itemToParameter = new Dictionary<ListViewItem, fsYAxisParameterWithChecking>();
+                materialParametersListView.Items.Clear();
+                otherParametersListView.Items.Clear();
+
+                if (inputsCheckBox.Checked)
+                {
+                    AddParametersToLists(fsYAxisParameter.fsYParameterKind.InputParameter);
+                }
+                if (constantsCheckBox.Checked)
+                {
+                    AddParametersToLists(fsYAxisParameter.fsYParameterKind.CalculatedConstantParameter);
+                }
+                AddParametersToLists(fsYAxisParameter.fsYParameterKind.CalculatedVariableParameter);
+            }
+        }
+
+        private void AddParametersToLists(fsYAxisParameter.fsYParameterKind kindToAdd)
+        {
+            var materialParameters = new[]
+                                             {
+                                                 fsParameterIdentifier.ViscosityFiltrate,
+                                                 fsParameterIdentifier.FiltrateDensity,
+                                                 fsParameterIdentifier.LiquidDensity,
+                                                 fsParameterIdentifier.SolidsDensity,
+                                                 fsParameterIdentifier.SuspensionDensity,
+                                                 fsParameterIdentifier.SuspensionSolidsVolumeFraction,
+                                                 fsParameterIdentifier.SuspensionSolidsMassFraction,
+                                                 fsParameterIdentifier.SuspensionSolidsConcentration,
+                                                 fsParameterIdentifier.CakePorosity0,
+                                                 fsParameterIdentifier.CakePorosity,
+                                                 fsParameterIdentifier.Kappa0,
+                                                 fsParameterIdentifier.Kappa,
+                                                 fsParameterIdentifier.Ne,
+                                                 fsParameterIdentifier.CakePermeability0,
+                                                 fsParameterIdentifier.CakePermeability,
+                                                 fsParameterIdentifier.CakeResistance0,
+                                                 fsParameterIdentifier.CakeResistance,
+                                                 fsParameterIdentifier.CakeResistanceAlpha0,
+                                                 fsParameterIdentifier.CakeResistanceAlpha,
+                                                 fsParameterIdentifier.CakeCompressibility,
+                                                 fsParameterIdentifier.FilterMediumResistanceHce0,
+                                                 fsParameterIdentifier.DryCakeDensity0,
+                                                 fsParameterIdentifier.DryCakeDensity,
+                                                 fsParameterIdentifier.CakeWetDensity0,
+                                                 fsParameterIdentifier.CakeWetDensity,
+                                                 fsParameterIdentifier.CakeWetMassSolidsFractionRs0,
+                                                 fsParameterIdentifier.CakeWetMassSolidsFractionRs,
+                                                 fsParameterIdentifier.CakeMoistureContentRf0,
+                                                 fsParameterIdentifier.CakeMoistureContentRf,
+
+                                             };
+
+            foreach (fsYAxisParameterWithChecking selectionParameter in m_parameters)
+            {
+                if (selectionParameter.Kind == kindToAdd)
                 {
                     var newItem = new ListViewItem(selectionParameter.Identifier.Name)
                                       {
                                           Checked = selectionParameter.IsChecked,
                                           ForeColor = m_kindToColor[selectionParameter.Kind]
                                       };
-                    listView1.Items.Add(newItem);
+                    if (materialParameters.Contains(selectionParameter.Identifier))
+                    {
+                        materialParametersListView.Items.Add(newItem);
+                    }
+                    else
+                    {
+                        otherParametersListView.Items.Add(newItem);
+                    }
                     m_itemToParameter[newItem] = selectionParameter;
                 }
             }
@@ -110,23 +173,25 @@ namespace CalculatorModules.User_Controls.Help_Dialogs
 
         internal List<fsParameterIdentifier> GetCheckedParameters()
         {
-            var result = new List<fsParameterIdentifier>();
-            foreach (fsYAxisParameterWithChecking yParameter in m_parameters)
-            {
-                if (yParameter.IsChecked)
-                {
-                    result.Add(yParameter.Identifier);
-                }
-            }
-            return result;
+            return (from yParameter in m_parameters where yParameter.IsChecked select yParameter.Identifier).ToList();
         }
 
-        private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
+        private void ListView1ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (m_itemToParameter.ContainsKey(e.Item))
             {
                 m_itemToParameter[e.Item].IsChecked = e.Item.Checked;
             }
+        }
+
+        private void CheckBox1CheckedChanged(object sender, EventArgs e)
+        {
+            BuildLists();
+        }
+
+        private void CheckBox2CheckedChanged(object sender, EventArgs e)
+        {
+            BuildLists();
         }
     }
 }
