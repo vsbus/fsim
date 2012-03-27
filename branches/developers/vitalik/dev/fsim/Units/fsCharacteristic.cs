@@ -239,7 +239,7 @@ namespace Units
             }
         );
 
-        public static fsCharacteristic UnderflowVolumeRateToFeedVolumeFlowRate = new fsCharacteristic(
+        /*public static fsCharacteristic UnderflowVolumeRateToFeedVolumeFlowRate = new fsCharacteristic(
             "Underflow volume rate to feed volume flow rate",
             new[] {
                 fsUnit.Percent
@@ -259,7 +259,7 @@ namespace Units
                 fsUnit.Percent
             }
         );
-        
+        */
         #endregion
     }
 }
