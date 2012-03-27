@@ -46,8 +46,9 @@
             // 
             // calculationOptionsPanel
             // 
-            this.calculationOptionsPanel.Controls.Add(this.label1);
             this.calculationOptionsPanel.Controls.Add(this.comboBoxCalculationOption);
+            this.calculationOptionsPanel.Controls.Add(this.label1);
+            this.calculationOptionsPanel.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             // 
             // tablesPanel
             // 
@@ -118,15 +119,17 @@
             // 
             this.comboBoxCalculationOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCalculationOption.FormattingEnabled = true;
-            this.comboBoxCalculationOption.Location = new System.Drawing.Point(250, 23);
+            this.comboBoxCalculationOption.Location = new System.Drawing.Point(112, 14);
+            this.comboBoxCalculationOption.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxCalculationOption.Name = "comboBoxCalculationOption";
-            this.comboBoxCalculationOption.Size = new System.Drawing.Size(276, 24);
+            this.comboBoxCalculationOption.Size = new System.Drawing.Size(193, 24);
             this.comboBoxCalculationOption.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(175, 30);
+            this.label1.Location = new System.Drawing.Point(21, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 17);
             this.label1.TabIndex = 1;

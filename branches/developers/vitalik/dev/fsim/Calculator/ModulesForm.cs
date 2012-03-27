@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using CalculatorModules;
 using CalculatorModules.Base_Controls;
 using CalculatorModules.BeltFiltersWithReversibleTrays;
+using CalculatorModules.Hydrocyclone;
 
 namespace Calculator
 {
@@ -95,6 +96,11 @@ namespace Calculator
                                                {
                                                    new KeyValuePair<string, fsCalculatorControl>(
                                                        "Cake Wash Out Content X", new fsCakeWashOutContentControl())
+                                               });
+            AddGroupToTree("Hydrocyclone", node.Nodes, new[]
+                                               {
+                                                   new KeyValuePair<string, fsCalculatorControl>(
+                                                       "Hydrocyclone", new HydrocycloneControl())
                                                });
         }
 
