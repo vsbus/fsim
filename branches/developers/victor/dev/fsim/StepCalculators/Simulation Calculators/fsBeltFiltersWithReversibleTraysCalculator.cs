@@ -19,7 +19,6 @@ namespace StepCalculators.Simulation_Calculators
             IEquationParameter pc0 = AddConstant(fsParameterIdentifier.CakePermeability0);
             IEquationParameter nc = AddConstant(fsParameterIdentifier.CakeCompressibility);
             IEquationParameter hce0 = AddConstant(fsParameterIdentifier.FilterMediumResistanceHce0);
-            IEquationParameter ttech0 = AddConstant(fsParameterIdentifier.ttech0);
             IEquationParameter lambda = AddConstant(fsParameterIdentifier.lambda);
 
             IEquationParameter rhoCd = AddConstant(fsParameterIdentifier.DryCakeDensity);
@@ -51,6 +50,7 @@ namespace StepCalculators.Simulation_Calculators
 
             IEquationParameter Pc = AddVariable(fsParameterIdentifier.CakePermeability);
 
+            IEquationParameter ttech0 = AddVariable(fsParameterIdentifier.StandardTechnicalTime);
             IEquationParameter ttech = AddVariable(fsParameterIdentifier.TechnicalTime);
 
             IEquationParameter filterArea = AddVariable(fsParameterIdentifier.FilterArea);

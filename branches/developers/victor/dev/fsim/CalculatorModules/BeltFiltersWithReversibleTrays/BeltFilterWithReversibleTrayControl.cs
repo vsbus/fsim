@@ -126,7 +126,8 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.ls);
 
             fsParametersGroup timeGroup = AddGroup(
-                fsParameterIdentifier.ttech0);
+                fsParameterIdentifier.StandardTechnicalTime,
+                fsParameterIdentifier.TechnicalTime);
 
             fsParametersGroup dpGroup = AddGroup(
                 fsParameterIdentifier.PressureDifference);
@@ -155,7 +156,17 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.As,
                 fsParameterIdentifier.MachineWidth,
                 fsParameterIdentifier.FilterLength,
-                fsParameterIdentifier.TechnicalTime);
+                fsParameterIdentifier.MeanHeightRate,
+                fsParameterIdentifier.HcOverTc,
+                fsParameterIdentifier.DiffHeightRate,
+                fsParameterIdentifier.SuspensionMass,
+                fsParameterIdentifier.SuspensionVolume,
+                fsParameterIdentifier.SpecificSuspensionMass,
+                fsParameterIdentifier.SpecificSuspensionVolume,
+                fsParameterIdentifier.Qmsust,
+                fsParameterIdentifier.Qmsusd,
+                fsParameterIdentifier.Qsust,
+                fsParameterIdentifier.Qsusd);
 
             var groups = new[]
                              {

@@ -180,12 +180,27 @@ namespace Units
             }
         );
 
+        public static fsCharacteristic SpecificMass = new fsCharacteristic(
+            "Specific Mass",
+            new[] {
+                fsUnit.KiloGrammePerSquaredMeter
+            }
+        );
+
         public static fsCharacteristic Volume = new fsCharacteristic(
             "Volume",
             new[] {
                 fsUnit.MilliLiter,
                 fsUnit.Liter,
                 fsUnit.CubicMeter
+            }
+        );
+
+        public static fsCharacteristic SpecificVolume = new fsCharacteristic(
+            "Specific Volume",
+            new[] {
+                fsUnit.CubicMeterPerSquaredMeter,
+                fsUnit.LiterPerSquaredMeter
             }
         );
 
