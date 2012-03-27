@@ -78,6 +78,9 @@ namespace Units
         public static fsUnit Ten13PerSquareMeter = new fsUnit("10+13m-2", 1e13);
         public static fsUnit Ten10MeterPerKiloGramme = new fsUnit("10+10m/kg", 1e10);
         public static fsUnit Ten10PerMeter = new fsUnit("10^10/m", 1e10);
+        public static fsUnit KiloGrammePerSquaredMeter = new fsUnit("kg/m2", 1);
+        public static fsUnit CubicMeterPerSquaredMeter = new fsUnit("m3/m2", 1);
+        public static fsUnit LiterPerSquaredMeter = new fsUnit("l/m2", 1e-3);
 
         #endregion
 
