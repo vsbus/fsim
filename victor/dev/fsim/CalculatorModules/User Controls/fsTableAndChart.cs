@@ -69,8 +69,8 @@ namespace CalculatorModules.User_Controls
 
         private void RefreshOutput()
         {
-            RefreshYAxisList(m_yAxisParameters, yAxisList);
-            RefreshYAxisList(m_y2AxisParameters, y2AxisList);
+            RefreshYAxisList(m_yAxisParameters, m_yAxisList);
+            RefreshYAxisList(m_y2AxisParameters, m_y2AxisList);
 
             UpdateDiagram();
         }
@@ -222,8 +222,8 @@ namespace CalculatorModules.User_Controls
 
         private void BuildCurves()
         {
-            BuildCurves(m_yCurves, yAxisList);
-            BuildCurves(m_y2Curves, y2AxisList);
+            BuildCurves(m_yCurves, m_yAxisList);
+            BuildCurves(m_y2Curves, m_y2AxisList);
         }
 
         private void BuildCurves(List<fsDiagramWithTable.fsNamedArray> curves, ListView yAxisListView)
@@ -437,21 +437,10 @@ namespace CalculatorModules.User_Controls
             RefreshOutput();
         }
 
-        #endregion
-
         private void YAxisConfigureClick(object sender, EventArgs e)
         {
             var selectionForm = new fsTablesAndChartsParametersSelectionDialog();
-            var selectionParameters = new List<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameterWithChecking>();
-            foreach (fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter yParameter in GetSelectionParameters(m_values.Keys))
-            {
-                selectionParameters.Add(
-                    new fsTablesAndChartsParametersSelectionDialog.fsYAxisParameterWithChecking(
-                        yParameter.Identifier,
-                        yParameter.Kind,
-                        IsContains(yAxisList.Items, yParameter.Identifier.Name)));
-            }
-            selectionForm.AssignParameters(selectionParameters);
+            selectionForm.AssignParameters(GetSelectionParametersWithCheking(m_yAxisList));
             selectionForm.ShowDialog();
             if (selectionForm.DialogResult == DialogResult.OK)
             {
@@ -461,13 +450,45 @@ namespace CalculatorModules.User_Controls
             }
         }
 
+        private void Y2AxisConfigureClick(object sender, EventArgs e)
+        {
+            var selectionForm = new fsTablesAndChartsParametersSelectionDialog();
+            selectionForm.AssignParameters(GetSelectionParametersWithCheking(m_y2AxisList));
+            selectionForm.ShowDialog();
+            if (selectionForm.DialogResult == DialogResult.OK)
+            {
+                m_y2AxisParameters = new List<fsParameterIdentifier>();
+                m_y2AxisParameters.AddRange(selectionForm.GetCheckedParameters());
+                Reprocess();
+            }
+        }
+
+        #region Selection Parameters Help
+
+        private List<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameterWithChecking> GetSelectionParametersWithCheking(ListView yAxisList)
+        {
+            var selectionParameters =
+                   new List<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameterWithChecking>();
+            foreach (
+                fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter yParameter in
+                    GetSelectionParameters(m_values.Keys))
+            {
+                selectionParameters.Add(
+                    new fsTablesAndChartsParametersSelectionDialog.fsYAxisParameterWithChecking(
+                        yParameter.Identifier,
+                        yParameter.Kind,
+                        IsContains(yAxisList.Items, yParameter.Identifier.Name)));
+            }
+            return selectionParameters;
+        }
+
         private List<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter> GetSelectionParameters(IEnumerable<fsParameterIdentifier> parameters)
         {
             var selectionParameters = new List<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter>();
             foreach (fsParameterIdentifier parameter in parameters)
             {
                 fsParametersGroup group = m_parameterToGroup[parameter];
-                bool isChecked = IsContains(yAxisList.CheckedItems, parameter.Name);
+                bool isChecked = IsContains(m_yAxisList.CheckedItems, parameter.Name);
                 fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind kind;
                 if (parameter == m_xAxisParameter)
                 {
@@ -501,5 +522,9 @@ namespace CalculatorModules.User_Controls
             }
             return selectionParameters;
         }
+
+        #endregion
+
+        #endregion
     }
 }

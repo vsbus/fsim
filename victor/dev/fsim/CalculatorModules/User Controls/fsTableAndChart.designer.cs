@@ -32,10 +32,10 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.yAxisSplitContainer = new System.Windows.Forms.SplitContainer();
             this.yAxisConfigure = new System.Windows.Forms.Button();
-            this.yAxisList = new System.Windows.Forms.ListView();
+            this.m_yAxisList = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.y2AxisConfigure = new System.Windows.Forms.Button();
-            this.y2AxisList = new System.Windows.Forms.ListView();
+            this.m_y2AxisList = new System.Windows.Forms.ListView();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.inputsTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -99,12 +99,12 @@
             // yAxisSplitContainer.Panel1
             // 
             this.yAxisSplitContainer.Panel1.Controls.Add(this.yAxisConfigure);
-            this.yAxisSplitContainer.Panel1.Controls.Add(this.yAxisList);
+            this.yAxisSplitContainer.Panel1.Controls.Add(this.m_yAxisList);
             // 
             // yAxisSplitContainer.Panel2
             // 
             this.yAxisSplitContainer.Panel2.Controls.Add(this.y2AxisConfigure);
-            this.yAxisSplitContainer.Panel2.Controls.Add(this.y2AxisList);
+            this.yAxisSplitContainer.Panel2.Controls.Add(this.m_y2AxisList);
             this.yAxisSplitContainer.Size = new System.Drawing.Size(151, 224);
             this.yAxisSplitContainer.SplitterDistance = 107;
             this.yAxisSplitContainer.TabIndex = 9;
@@ -119,19 +119,19 @@
             this.yAxisConfigure.UseVisualStyleBackColor = true;
             this.yAxisConfigure.Click += new System.EventHandler(this.YAxisConfigureClick);
             // 
-            // yAxisList
+            // m_yAxisList
             // 
-            this.yAxisList.CheckBoxes = true;
-            this.yAxisList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.m_yAxisList.CheckBoxes = true;
+            this.m_yAxisList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            this.yAxisList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.yAxisList.Location = new System.Drawing.Point(0, 0);
-            this.yAxisList.Name = "yAxisList";
-            this.yAxisList.Size = new System.Drawing.Size(103, 107);
-            this.yAxisList.TabIndex = 9;
-            this.yAxisList.UseCompatibleStateImageBehavior = false;
-            this.yAxisList.View = System.Windows.Forms.View.Details;
-            this.yAxisList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.YAxisListItemChecked);
+            this.m_yAxisList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.m_yAxisList.Location = new System.Drawing.Point(0, 0);
+            this.m_yAxisList.Name = "m_yAxisList";
+            this.m_yAxisList.Size = new System.Drawing.Size(103, 107);
+            this.m_yAxisList.TabIndex = 9;
+            this.m_yAxisList.UseCompatibleStateImageBehavior = false;
+            this.m_yAxisList.View = System.Windows.Forms.View.Details;
+            this.m_yAxisList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.YAxisListItemChecked);
             // 
             // columnHeader1
             // 
@@ -146,20 +146,21 @@
             this.y2AxisConfigure.TabIndex = 3;
             this.y2AxisConfigure.Text = "...";
             this.y2AxisConfigure.UseVisualStyleBackColor = true;
+            this.y2AxisConfigure.Click += new System.EventHandler(this.Y2AxisConfigureClick);
             // 
-            // y2AxisList
+            // m_y2AxisList
             // 
-            this.y2AxisList.CheckBoxes = true;
-            this.y2AxisList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.m_y2AxisList.CheckBoxes = true;
+            this.m_y2AxisList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader2});
-            this.y2AxisList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.y2AxisList.Location = new System.Drawing.Point(0, 0);
-            this.y2AxisList.Name = "y2AxisList";
-            this.y2AxisList.Size = new System.Drawing.Size(103, 113);
-            this.y2AxisList.TabIndex = 2;
-            this.y2AxisList.UseCompatibleStateImageBehavior = false;
-            this.y2AxisList.View = System.Windows.Forms.View.Details;
-            this.y2AxisList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.YAxisListItemChecked);
+            this.m_y2AxisList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.m_y2AxisList.Location = new System.Drawing.Point(0, 0);
+            this.m_y2AxisList.Name = "m_y2AxisList";
+            this.m_y2AxisList.Size = new System.Drawing.Size(103, 113);
+            this.m_y2AxisList.TabIndex = 2;
+            this.m_y2AxisList.UseCompatibleStateImageBehavior = false;
+            this.m_y2AxisList.View = System.Windows.Forms.View.Details;
+            this.m_y2AxisList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.YAxisListItemChecked);
             // 
             // columnHeader2
             // 
@@ -313,8 +314,8 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TextBox inputsTextBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ListView y2AxisList;
-        private System.Windows.Forms.ListView yAxisList;
+        private System.Windows.Forms.ListView m_y2AxisList;
+        private System.Windows.Forms.ListView m_yAxisList;
         private fmDataGrid.fmNumericalTextBox detalizationBox;
         private fmDataGrid.fmNumericalTextBox rangeTo;
         private fmDataGrid.fmNumericalTextBox rangeFrom;
