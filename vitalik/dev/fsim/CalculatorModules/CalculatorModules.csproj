@@ -72,6 +72,12 @@
     <Compile Include="Base Controls\OptionsSingleTableAndCommentsCalculatorControl.Designer.cs">
       <DependentUpon>OptionsSingleTableAndCommentsCalculatorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Base Controls\OptionsSingleTableWithPanelAndCommentsCalculatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Base Controls\OptionsSingleTableWithPanelAndCommentsCalculatorControl.Designer.cs">
+      <DependentUpon>OptionsSingleTableWithPanelAndCommentsCalculatorControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="BeltFiltersWithReversibleTrays\BeltFilterWithReversibleTrayControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -239,6 +239,27 @@ namespace Units
             }
         );
 
+        public static fsCharacteristic UnderflowVolumeRateToFeedVolumeFlowRate = new fsCharacteristic(
+            "Underflow volume rate to feed volume flow rate",
+            new[] {
+                fsUnit.Percent
+            }
+        );
+
+        public static fsCharacteristic UnderflowSolidsMassFraction = new fsCharacteristic(
+            "Underflow solids mass fraction",
+            new[] {
+                fsUnit.Percent
+            }
+        );
+
+        public static fsCharacteristic UnderflowDiameterToCycloneDiameter = new fsCharacteristic(
+            "underflow diameter to cyclone diameter",
+            new[] {
+                fsUnit.Percent
+            }
+        );
+        
         #endregion
     }
 }
