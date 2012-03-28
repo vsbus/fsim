@@ -119,8 +119,11 @@ namespace Parameters
         public static fsParameterIdentifier WetCakeMass = new fsParameterIdentifier("Mcw", "Wet Cake Mass",
                                                                                     fsCharacteristic.Mass);
 
-        public static fsParameterIdentifier DryCakeMass = new fsParameterIdentifier("Mcd", "Dry Cake Mass",
-                                                                                    fsCharacteristic.Mass);
+        public static fsParameterIdentifier DryCakeMass =
+            new fsParameterIdentifier("Mcd", "Dry Cake Mass", fsCharacteristic.Mass);
+
+        public static fsParameterIdentifier SolidsMass =
+            new fsParameterIdentifier("Ms", "Solids Mass", fsCharacteristic.Mass);
 
         public static fsParameterIdentifier SuspensionMass =
             new fsParameterIdentifier("Msus", "Suspension Mass", fsCharacteristic.Mass);
@@ -131,16 +134,17 @@ namespace Parameters
         public static fsParameterIdentifier FiltrateMass =
             new fsParameterIdentifier("Mf", "Fitrate Mass", fsCharacteristic.Mass);
 
-        public static fsParameterIdentifier LiquidMassInSuspension = new fsParameterIdentifier("Ml",
-                                                                                               "Liquid Mass in Suspension",
-                                                                                               fsCharacteristic.Mass);
+        public static fsParameterIdentifier LiquidMassInSuspension =
+            new fsParameterIdentifier("Ml", "Liquid Mass in Suspension", fsCharacteristic.Mass);
 
-        public static fsParameterIdentifier SolidsMassInSuspension = new fsParameterIdentifier("Ms",
-                                                                                               "Solids Mass in Suspension",
-                                                                                               fsCharacteristic.Mass);
+        public static fsParameterIdentifier SolidsMassInSuspension =
+            new fsParameterIdentifier("Ms", "Solids Mass in Suspension", fsCharacteristic.Mass);
 
-        public static fsParameterIdentifier CakeMass = new fsParameterIdentifier("Mc", "Cake Mass",
-                                                                                 fsCharacteristic.Mass);
+        public static fsParameterIdentifier CakeMass =
+            new fsParameterIdentifier("Mc", "Cake Mass", fsCharacteristic.Mass);
+
+        public static fsParameterIdentifier SolidsVolume =
+            new fsParameterIdentifier("Vs", "Solids Volume", fsCharacteristic.Volume);
 
         public static fsParameterIdentifier SuspensionVolume = 
             new fsParameterIdentifier("Vsus", "Suspension Volume", fsCharacteristic.Volume);
@@ -201,6 +205,18 @@ namespace Parameters
 
         public static fsParameterIdentifier nsr =
             new fsParameterIdentifier("nsr", "Segment number for residual steps", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier qsust =
+            new fsParameterIdentifier("qsus,t", fsCharacteristic.SpecificVolumeFlowrate);
+
+        public static fsParameterIdentifier qsusd =
+            new fsParameterIdentifier("qsus,d", fsCharacteristic.SpecificVolumeFlowrate);
+
+        public static fsParameterIdentifier qmsust =
+            new fsParameterIdentifier("qmsus,t", fsCharacteristic.SpecificMassFlowrate);
+
+        public static fsParameterIdentifier qmsusd =
+            new fsParameterIdentifier("qmsus,d", fsCharacteristic.SpecificMassFlowrate);
 
         public static fsParameterIdentifier qft =
             new fsParameterIdentifier("qft", "Spec filtrate volume rel to time", fsCharacteristic.SpecificVolumeFlowrate);

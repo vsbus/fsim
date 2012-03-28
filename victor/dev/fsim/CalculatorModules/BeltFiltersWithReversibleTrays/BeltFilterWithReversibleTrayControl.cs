@@ -159,14 +159,20 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.MeanHeightRate,
                 fsParameterIdentifier.HcOverTc,
                 fsParameterIdentifier.DiffHeightRate,
+                fsParameterIdentifier.SolidsMass,
                 fsParameterIdentifier.SuspensionMass,
+                fsParameterIdentifier.SolidsVolume,
                 fsParameterIdentifier.SuspensionVolume,
                 fsParameterIdentifier.SpecificSuspensionMass,
                 fsParameterIdentifier.SpecificSuspensionVolume,
                 fsParameterIdentifier.Qmsust,
                 fsParameterIdentifier.Qmsusd,
                 fsParameterIdentifier.Qsust,
-                fsParameterIdentifier.Qsusd);
+                fsParameterIdentifier.Qsusd,
+                fsParameterIdentifier.qmsust,
+                fsParameterIdentifier.qmsusd,
+                fsParameterIdentifier.qsust,
+                fsParameterIdentifier.qsusd);
 
             var groups = new[]
                              {
