@@ -320,13 +320,6 @@ namespace Parameters
 
         public static fsParameterIdentifier PHcake = new fsParameterIdentifier("pH_c", "pH of liquid in the cake",
                                                                                fsCharacteristic.NoUnits);
-        //
-        public static fsParameterIdentifier LiquidViscosity =
-            new fsParameterIdentifier("eta", "Liquid viscosity", fsCharacteristic.Viscosity);
-
-        public static fsParameterIdentifier LiquidDensityRho =
-            new fsParameterIdentifier("rho", "Liquid density", fsCharacteristic.Density);
-        
         #endregion
     }
 }
