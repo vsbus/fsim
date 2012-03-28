@@ -34,7 +34,7 @@ namespace CalculatorModules.Hydrocyclone
 
             #region Region Calculators
 
-            // Calculators.Add(new fsRegionCalculators());
+            // Calculators.Add(new fsRegionCalculator1()); например
 
             #endregion
 
@@ -47,10 +47,10 @@ namespace CalculatorModules.Hydrocyclone
             #region region groups
 
             fsParametersGroup etaGroup = AddGroup(
-               fsParameterIdentifier.LiquidViscosity);
+               fsParameterIdentifier.ViscosityFiltrate);
 
             fsParametersGroup rhoGroup = AddGroup(
-                fsParameterIdentifier.LiquidDensityRho);
+                fsParameterIdentifier.LiquidDensity);
 
             fsParametersGroup densitiesGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity,
