@@ -17,7 +17,7 @@ namespace CalculatorModules
             Calculators.Add(new fsLaboratoryFiltrationCalculator());
 
             fsParametersGroup filtrateGroup = AddGroup(
-                fsParameterIdentifier.FiltrateDensity);
+                fsParameterIdentifier.MotherLiquidDensity);
             fsParametersGroup solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity);

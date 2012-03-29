@@ -122,14 +122,14 @@ namespace WinFormsCakeFormationSample
                 MaterialParametersDataGrid,
                 materialData,
                 fsParameterIdentifier.MotherLiquidViscosity,
-                fsParameterIdentifier.FiltrateDensity,
+                fsParameterIdentifier.MotherLiquidDensity,
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity,
                 fsParameterIdentifier.SuspensionSolidsMassFraction,
                 fsParameterIdentifier.SuspensionSolidsVolumeFraction,
                 fsParameterIdentifier.SuspensionSolidsConcentration);
 
-            materialData.m_parameterValue[fsParameterIdentifier.FiltrateDensity].IsInput = true;
+            materialData.m_parameterValue[fsParameterIdentifier.MotherLiquidDensity].IsInput = true;
             materialData.m_parameterValue[fsParameterIdentifier.SolidsDensity].IsInput = true;
             materialData.m_parameterValue[fsParameterIdentifier.SuspensionDensity].IsInput = true;
             materialData.m_parameterCell[fsParameterIdentifier.SuspensionSolidsMassFraction].ReadOnly = true;
