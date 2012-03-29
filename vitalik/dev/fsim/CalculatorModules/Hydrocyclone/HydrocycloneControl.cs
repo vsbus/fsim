@@ -8,6 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using Parameters;
 using StepCalculators;
+using StepCalculators.Material_Calculators;
+using StepCalculators.Simulation_Calculators.Simulation_Help_Calculators;
+using StepCalculators.Simulation_Calculators;
 
 
 namespace CalculatorModules.Hydrocyclone
@@ -16,7 +19,7 @@ namespace CalculatorModules.Hydrocyclone
     {
         #region Calculation Option
 
-        private enum fsRegionCalculationOption
+        private enum fsCalculationOption
         {
             [Description("Dp")]
             Dp,
@@ -34,7 +37,7 @@ namespace CalculatorModules.Hydrocyclone
 
             #region Calculators
 
-            // Calculators.Add(new fsRegionCalculator1()); например
+            Calculators.Add(new fsDensityConcentrationCalculator());
 
             #endregion
 
@@ -47,19 +50,19 @@ namespace CalculatorModules.Hydrocyclone
             #region Groups
 
             fsParametersGroup etaGroup = AddGroup(
-               fsParameterIdentifier.ViscosityFiltrate);
+               fsParameterIdentifier.ViscosityFiltrate);    //eta
 
             fsParametersGroup rhoGroup = AddGroup(
-                fsParameterIdentifier.LiquidDensity);
+                fsParameterIdentifier.FiltrateDensity);       //rho
 
             fsParametersGroup densitiesGroup = AddGroup(
-                fsParameterIdentifier.SolidsDensity,
-                fsParameterIdentifier.SuspensionDensity);
+                fsParameterIdentifier.SolidsDensity,        //rho_s
+                fsParameterIdentifier.SuspensionDensity);   //rho_sus
 
             fsParametersGroup cGroup = AddGroup(
-                fsParameterIdentifier.SuspensionSolidsMassFraction,
-                fsParameterIdentifier.SuspensionSolidsVolumeFraction,
-                fsParameterIdentifier.SuspensionSolidsConcentration);
+                fsParameterIdentifier.SuspensionSolidsMassFraction,     //cm
+                fsParameterIdentifier.SuspensionSolidsVolumeFraction,   //cv
+                fsParameterIdentifier.SuspensionSolidsConcentration);   //c
 
             var groups = new[]
                              {
@@ -78,9 +81,9 @@ namespace CalculatorModules.Hydrocyclone
 
             #endregion
 
-            fsMisc.FillList(comboBoxCalculationOption.Items, typeof(fsRegionCalculationOption));
-            EstablishCalculationOption(fsRegionCalculationOption.Dp);
-            AssignCalculationOptionAndControl(typeof(fsRegionCalculationOption), comboBoxCalculationOption);
+            fsMisc.FillList(comboBoxCalculationOption.Items, typeof(fsCalculationOption));
+            EstablishCalculationOption(fsCalculationOption.Dp);
+            AssignCalculationOptionAndControl(typeof(fsCalculationOption), comboBoxCalculationOption);
             UpdateUIFromData();
             ConnectUIWithDataUpdating(fmDataGrid, comboBoxCalculationOption);
 
