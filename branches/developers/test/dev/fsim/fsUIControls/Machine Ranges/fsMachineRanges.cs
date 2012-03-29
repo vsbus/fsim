@@ -59,7 +59,7 @@ namespace CalculatorModules.Machine_Ranges
         {
             var defaultRanges = new[]
                                     {
-                                        new fsParameterRange(fsParameterIdentifier.ViscosityFiltrate,
+                                        new fsParameterRange(fsParameterIdentifier.MotherLiquidViscosity,
                                                              fsUnit.MilliPascalSecond, 0.2, 100.0),
                                         new fsParameterRange(fsParameterIdentifier.FiltrateDensity,
                                                              fsUnit.KiloGrammePerCubicMeter, 500, 2000),

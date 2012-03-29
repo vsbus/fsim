@@ -121,7 +121,7 @@ namespace WinFormsCakeFormationSample
             AddParameters(
                 MaterialParametersDataGrid,
                 materialData,
-                fsParameterIdentifier.ViscosityFiltrate,
+                fsParameterIdentifier.MotherLiquidViscosity,
                 fsParameterIdentifier.FiltrateDensity,
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity,
