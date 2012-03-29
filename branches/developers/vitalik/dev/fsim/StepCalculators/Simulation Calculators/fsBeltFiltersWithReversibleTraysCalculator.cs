@@ -13,7 +13,7 @@ namespace StepCalculators.Simulation_Calculators
 
             IEquationParameter etaf = AddConstant(fsParameterIdentifier.MotherLiquidViscosity);
             IEquationParameter rhoS = AddConstant(fsParameterIdentifier.SolidsDensity);
-            IEquationParameter rhoF = AddConstant(fsParameterIdentifier.FiltrateDensity);
+            IEquationParameter rhoF = AddConstant(fsParameterIdentifier.MotherLiquidDensity);
             IEquationParameter rhoSus = AddConstant(fsParameterIdentifier.SuspensionDensity);
             IEquationParameter cv = AddConstant(fsParameterIdentifier.SuspensionSolidsVolumeFraction);
             IEquationParameter cm = AddConstant(fsParameterIdentifier.SuspensionSolidsMassFraction);

@@ -32,7 +32,7 @@ namespace fsUIControls
             AddGroupToTree("Densities", treeView1.Nodes,
                 new[]
                 {
-                    fsParameterIdentifier.FiltrateDensity,
+                    fsParameterIdentifier.MotherLiquidDensity,
                     fsParameterIdentifier.LiquidDensity,
                     fsParameterIdentifier.SolidsDensity,
                     fsParameterIdentifier.SuspensionDensity

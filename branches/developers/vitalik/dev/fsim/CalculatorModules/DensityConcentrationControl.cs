@@ -27,7 +27,7 @@ namespace CalculatorModules
             Calculators.Add(new fsDensityConcentrationCalculator());
 
             fsParametersGroup filtrateGroup = AddGroup(
-                fsParameterIdentifier.FiltrateDensity);
+                fsParameterIdentifier.MotherLiquidDensity);
             fsParametersGroup solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity);
             fsParametersGroup suspensionGroup = AddGroup(
@@ -62,7 +62,7 @@ namespace CalculatorModules
             switch (calculationOption)
             {
                 case fsCalculationOption.CalcFiltrateDensity:
-                    calculateGroup = ParameterToGroup[fsParameterIdentifier.FiltrateDensity];
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.MotherLiquidDensity];
                     break;
                 case fsCalculationOption.CalcSolidsDensity:
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.SolidsDensity];

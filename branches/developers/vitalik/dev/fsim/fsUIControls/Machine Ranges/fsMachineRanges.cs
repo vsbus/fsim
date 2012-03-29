@@ -61,7 +61,7 @@ namespace CalculatorModules.Machine_Ranges
                                     {
                                         new fsParameterRange(fsParameterIdentifier.MotherLiquidViscosity,
                                                              fsUnit.MilliPascalSecond, 0.2, 100.0),
-                                        new fsParameterRange(fsParameterIdentifier.FiltrateDensity,
+                                        new fsParameterRange(fsParameterIdentifier.MotherLiquidDensity,
                                                              fsUnit.KiloGrammePerCubicMeter, 500, 2000),
                                         new fsParameterRange(fsParameterIdentifier.SolidsDensity,
                                                              fsUnit.KiloGrammePerCubicMeter, 1000, 8000),

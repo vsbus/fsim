@@ -16,7 +16,7 @@ namespace StepCalculators
         {
             #region Parameters Initialization
 
-            m_filtrateDensity = AddVariable(fsParameterIdentifier.FiltrateDensity);
+            m_filtrateDensity = AddVariable(fsParameterIdentifier.MotherLiquidDensity);
             m_solidsDensity = AddVariable(fsParameterIdentifier.SolidsDensity);
             m_suspensionDensity = AddVariable(fsParameterIdentifier.SuspensionDensity);
             m_solidsMassFraction = AddVariable(fsParameterIdentifier.SuspensionSolidsMassFraction);
