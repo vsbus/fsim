@@ -190,8 +190,8 @@ namespace Parameters
         public static fsParameterIdentifier qmft =
             new fsParameterIdentifier("qmft", fsCharacteristic.SpecificMassFlowrate);
 
-        public static fsParameterIdentifier ViscosityFiltrate = new fsParameterIdentifier("etaf", "Viscosity Filtrate",
-                                                                                          fsCharacteristic.Viscosity);
+        public static fsParameterIdentifier MotherLiquidViscosity =
+            new fsParameterIdentifier("eta", "Mother Liquid Viscosity", fsCharacteristic.Viscosity);
 
         public static fsParameterIdentifier SurfaceTensionLiquidInCake = 
             new fsParameterIdentifier("sigma", "Surface Tension Liquid in Cake", fsCharacteristic.SurfaceTension);

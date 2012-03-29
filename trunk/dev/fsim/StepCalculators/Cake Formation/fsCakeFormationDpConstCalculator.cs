@@ -41,7 +41,7 @@ namespace StepCalculators
 
             m_suspensionDensity = AddConstant(fsParameterIdentifier.SuspensionDensity);
             m_solidsDensity = AddConstant(fsParameterIdentifier.SolidsDensity);
-            m_etaf = AddConstant(fsParameterIdentifier.ViscosityFiltrate);
+            m_etaf = AddConstant(fsParameterIdentifier.MotherLiquidViscosity);
             m_hce0 = AddConstant(fsParameterIdentifier.FilterMediumResistanceHce0);
             m_porosity0 = AddConstant(fsParameterIdentifier.CakePorosity0);
             AddConstant(fsParameterIdentifier.Kappa0);
