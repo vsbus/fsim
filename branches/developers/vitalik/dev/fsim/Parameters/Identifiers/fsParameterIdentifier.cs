@@ -373,6 +373,10 @@ namespace Parameters
         public static fsParameterIdentifier MedianParticleSizeOfTheFeed
             = new fsParameterIdentifier("xg", "Median particle size of the feed", fsCharacteristic.Length);
 
+        public static fsParameterIdentifier StandardDeviationOfTheFeedParticleSizeDistributiom
+            = new fsParameterIdentifier("sigma_g", "Standard deviation of the feed particle size distributiom", fsCharacteristic.NoUnits);
+
+        
         #endregion
     }
 }
