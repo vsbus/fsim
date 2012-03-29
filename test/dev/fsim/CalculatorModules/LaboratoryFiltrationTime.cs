@@ -29,7 +29,7 @@ namespace CalculatorModules
                 fsParameterIdentifier.CakePorosity0,
                 fsParameterIdentifier.Kappa0);
             fsParametersGroup viscosityGroup = AddGroup(
-                fsParameterIdentifier.ViscosityFiltrate);
+                fsParameterIdentifier.MotherLiquidViscosity);
             fsParametersGroup pc0Rc0Alpha0Group = AddGroup(
                 fsParameterIdentifier.CakePermeability0,
                 fsParameterIdentifier.CakeResistance0,

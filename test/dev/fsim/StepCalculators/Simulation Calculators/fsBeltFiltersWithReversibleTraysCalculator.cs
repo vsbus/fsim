@@ -11,7 +11,7 @@ namespace StepCalculators.Simulation_Calculators
         {
             #region Parameters Initialization
 
-            IEquationParameter etaf = AddConstant(fsParameterIdentifier.ViscosityFiltrate);
+            IEquationParameter etaf = AddConstant(fsParameterIdentifier.MotherLiquidViscosity);
             IEquationParameter rhoS = AddConstant(fsParameterIdentifier.SolidsDensity);
             IEquationParameter rhoF = AddConstant(fsParameterIdentifier.FiltrateDensity);
             IEquationParameter rhoSus = AddConstant(fsParameterIdentifier.SuspensionDensity);
