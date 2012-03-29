@@ -14,7 +14,7 @@ namespace CalculatorModules.Hydrocyclone
 {
     public partial class HydrocycloneControl : OptionsSingleTableWithPanelAndCommentsCalculatorControl
     {
-        #region Region Calculation Option
+        #region Calculation Option
 
         private enum fsRegionCalculationOption
         {
@@ -32,7 +32,7 @@ namespace CalculatorModules.Hydrocyclone
         {
             InitializeComponent();
 
-            #region Region Calculators
+            #region Calculators
 
             // Calculators.Add(new fsRegionCalculator1()); например
 
@@ -44,7 +44,7 @@ namespace CalculatorModules.Hydrocyclone
                                  Color.FromArgb(255, 230, 255)
                              };
 
-            #region region groups
+            #region Groups
 
             fsParametersGroup etaGroup = AddGroup(
                fsParameterIdentifier.ViscosityFiltrate);
@@ -61,7 +61,7 @@ namespace CalculatorModules.Hydrocyclone
                 fsParameterIdentifier.SuspensionSolidsVolumeFraction,
                 fsParameterIdentifier.SuspensionSolidsConcentration);
 
-            var regionGroups = new[]
+            var groups = new[]
                              {
                                 etaGroup,
                                 rhoGroup,
@@ -69,10 +69,10 @@ namespace CalculatorModules.Hydrocyclone
                                 cGroup,
                              };
 
-            for (int i = 0; i < regionGroups.Length; ++i)
+            for (int i = 0; i < groups.Length; ++i)
             {
-                AddGroupToUI(fmDataGrid, regionGroups[i], colors[i % colors.Length]);
-                SetGroupInput(regionGroups[i], true);
+                AddGroupToUI(fmDataGrid, groups[i], colors[i % colors.Length]);
+                SetGroupInput(groups[i], true);
             }
             
 
