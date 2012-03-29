@@ -45,7 +45,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             #region Material groups
 
             fsParametersGroup etafGroup = AddGroup(
-                fsParameterIdentifier.ViscosityFiltrate);
+                fsParameterIdentifier.MotherLiquidViscosity);
 
             fsParametersGroup rhofGroup = AddGroup(
                 fsParameterIdentifier.FiltrateDensity);
