@@ -118,7 +118,7 @@ namespace CalculatorModules.User_Controls.Help_Dialogs
             var materialParameters = new[]
                                              {
                                                  fsParameterIdentifier.MotherLiquidDensity,
-                                                 fsParameterIdentifier.FiltrateDensity,
+                                                 fsParameterIdentifier.MotherLiquidDensity,
                                                  fsParameterIdentifier.LiquidDensity,
                                                  fsParameterIdentifier.SolidsDensity,
                                                  fsParameterIdentifier.SuspensionDensity,

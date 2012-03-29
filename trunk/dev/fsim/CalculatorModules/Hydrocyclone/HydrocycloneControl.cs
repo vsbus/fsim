@@ -49,10 +49,10 @@ namespace CalculatorModules.Hydrocyclone
             #region Groups
 
             fsParametersGroup etaGroup = AddGroup(
-               fsParameterIdentifier.MotherLiquidDensity);    //eta
+               fsParameterIdentifier.MotherLiquidViscosity);    //eta
 
             fsParametersGroup rhoGroup = AddGroup(
-                fsParameterIdentifier.FiltrateDensity);       //rho
+                fsParameterIdentifier.MotherLiquidDensity);       //rho
 
             fsParametersGroup densitiesGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity,        //rho_s

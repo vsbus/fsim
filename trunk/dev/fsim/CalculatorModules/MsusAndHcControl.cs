@@ -46,7 +46,7 @@ namespace CalculatorModules
             Calculators = m_plainAreaCalculators;
 
             fsParametersGroup filtrateGroup = AddGroup(
-                fsParameterIdentifier.FiltrateDensity);
+                fsParameterIdentifier.MotherLiquidDensity);
             fsParametersGroup densitiesGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity);
