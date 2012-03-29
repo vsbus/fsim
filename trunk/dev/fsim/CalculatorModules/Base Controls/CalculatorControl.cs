@@ -9,6 +9,8 @@ using StepCalculators;
 using Units;
 using Value;
 using fsUIControls;
+using CalculatorModules.Machine_Ranges;
+using CalculatorModules.User_Controls;
 
 namespace CalculatorModules
 {
@@ -148,10 +150,15 @@ namespace CalculatorModules
 
         protected void AddGroupToUI(fsParametersWithValuesTable dataGrid, fsParametersGroup group, Color color)
         {
-            foreach (fsParameterIdentifier p in group.Parameters)
+            foreach (fsParameterIdentifier identifier in group.Parameters)
             {
-                var parameter = new fsSimulationModuleParameter(p);
-                Values.Add(p, parameter);
+                var parameter = new fsSimulationModuleParameter(identifier);
+                var defaultRanges = fsMachineRanges.DefaultMachineRanges.Ranges;
+                if (defaultRanges.ContainsKey(identifier))
+                {
+                    parameter.Range = fsMachineRanges.DefaultMachineRanges.Ranges[identifier].Range;
+                }
+                Values.Add(identifier, parameter);
                 AddRow(dataGrid, parameter, color);
             }
         }

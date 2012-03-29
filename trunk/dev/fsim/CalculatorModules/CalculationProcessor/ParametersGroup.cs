@@ -12,6 +12,7 @@ namespace CalculatorModules
             Parameters = new List<fsParameterIdentifier>();
             Representator = null;
             IsInput = false;
+            Kind = ParametersGroupKind.MachiningSettingsParameters;
         }
 
         public fsParametersGroup(fsParametersGroup other)
@@ -19,6 +20,7 @@ namespace CalculatorModules
             Parameters = new List<fsParameterIdentifier>(other.Parameters);
             Representator = other.Representator;
             IsInput = other.IsInput;
+            Kind = other.Kind;
         }
 
         #endregion
@@ -26,5 +28,13 @@ namespace CalculatorModules
         public List<fsParameterIdentifier> Parameters { get; private set; }
         public fsParameterIdentifier Representator { get; set; }
         public bool IsInput { get; set; }
+
+        public enum ParametersGroupKind
+        {
+            MaterialParameters,
+            MachiningSettingsParameters
+        }
+
+        public ParametersGroupKind Kind { get; set; }
     }
 }

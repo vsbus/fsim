@@ -103,6 +103,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             for (int i = 0; i < materialGroups.Length; ++i)
             {
+                materialGroups[i].Kind = fsParametersGroup.ParametersGroupKind.MaterialParameters;
                 AddGroupToUI(materialParametersDataGrid, materialGroups[i], colors[i % colors.Length]);
                 SetGroupInput(materialGroups[i], true);
             }
@@ -125,7 +126,8 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.ls);
 
             fsParametersGroup timeGroup = AddGroup(
-                fsParameterIdentifier.ttech0);
+                fsParameterIdentifier.StandardTechnicalTime,
+                fsParameterIdentifier.TechnicalTime);
 
             fsParametersGroup dpGroup = AddGroup(
                 fsParameterIdentifier.PressureDifference);
@@ -154,7 +156,23 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.As,
                 fsParameterIdentifier.MachineWidth,
                 fsParameterIdentifier.FilterLength,
-                fsParameterIdentifier.TechnicalTime);
+                fsParameterIdentifier.MeanHeightRate,
+                fsParameterIdentifier.HcOverTc,
+                fsParameterIdentifier.DiffHeightRate,
+                fsParameterIdentifier.SolidsMass,
+                fsParameterIdentifier.SuspensionMass,
+                fsParameterIdentifier.SolidsVolume,
+                fsParameterIdentifier.SuspensionVolume,
+                fsParameterIdentifier.SpecificSuspensionMass,
+                fsParameterIdentifier.SpecificSuspensionVolume,
+                fsParameterIdentifier.Qmsust,
+                fsParameterIdentifier.Qmsusd,
+                fsParameterIdentifier.Qsust,
+                fsParameterIdentifier.Qsusd,
+                fsParameterIdentifier.qmsust,
+                fsParameterIdentifier.qmsusd,
+                fsParameterIdentifier.qsust,
+                fsParameterIdentifier.qsusd);
 
             var groups = new[]
                              {
@@ -171,6 +189,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             for (int i = 0; i < groups.Length; ++i)
             {
+                groups[i].Kind = fsParametersGroup.ParametersGroupKind.MachiningSettingsParameters;
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
                 SetGroupInput(groups[i], true);
             }

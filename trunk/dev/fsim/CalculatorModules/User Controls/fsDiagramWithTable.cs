@@ -68,6 +68,7 @@ namespace CalculatorModules.User_Controls
             table.ColumnCount++;
             table.RowCount = Math.Max(table.RowCount, curve.Array.Length);
             DataGridViewColumn column = table.Columns[table.ColumnCount - 1];
+            column.SortMode = DataGridViewColumnSortMode.NotSortable;
             column.HeaderCell.Value = curve.Name;
             for (int row = 0; row < curve.Array.Length; ++row)
             {
@@ -93,7 +94,7 @@ namespace CalculatorModules.User_Controls
         {
             if (yAxis.Count > 0)
             {
-                Color color = Color.Black;
+                Color color;
                 Axis graphYAxis;
                 if (isY2Axis)
                 {

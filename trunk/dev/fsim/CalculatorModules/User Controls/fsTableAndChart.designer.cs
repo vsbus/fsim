@@ -31,10 +31,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.yAxisSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.yAxisList = new System.Windows.Forms.ListView();
-            this.label4 = new System.Windows.Forms.Label();
-            this.y2AxisList = new System.Windows.Forms.ListView();
-            this.label5 = new System.Windows.Forms.Label();
+            this.yAxisConfigure = new System.Windows.Forms.Button();
+            this.m_yAxisList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.y2AxisConfigure = new System.Windows.Forms.Button();
+            this.m_y2AxisList = new System.Windows.Forms.ListView();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.inputsTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -64,7 +66,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(151, 251);
+            this.panel1.Size = new System.Drawing.Size(151, 457);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer2
@@ -82,8 +84,8 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.inputsTextBox);
             this.splitContainer2.Panel2.Controls.Add(this.label6);
-            this.splitContainer2.Size = new System.Drawing.Size(151, 160);
-            this.splitContainer2.SplitterDistance = 98;
+            this.splitContainer2.Size = new System.Drawing.Size(151, 366);
+            this.splitContainer2.SplitterDistance = 224;
             this.splitContainer2.TabIndex = 11;
             // 
             // yAxisSplitContainer
@@ -96,60 +98,74 @@
             // 
             // yAxisSplitContainer.Panel1
             // 
-            this.yAxisSplitContainer.Panel1.Controls.Add(this.yAxisList);
-            this.yAxisSplitContainer.Panel1.Controls.Add(this.label4);
+            this.yAxisSplitContainer.Panel1.Controls.Add(this.yAxisConfigure);
+            this.yAxisSplitContainer.Panel1.Controls.Add(this.m_yAxisList);
             // 
             // yAxisSplitContainer.Panel2
             // 
-            this.yAxisSplitContainer.Panel2.Controls.Add(this.y2AxisList);
-            this.yAxisSplitContainer.Panel2.Controls.Add(this.label5);
-            this.yAxisSplitContainer.Size = new System.Drawing.Size(151, 98);
-            this.yAxisSplitContainer.SplitterDistance = 47;
+            this.yAxisSplitContainer.Panel2.Controls.Add(this.y2AxisConfigure);
+            this.yAxisSplitContainer.Panel2.Controls.Add(this.m_y2AxisList);
+            this.yAxisSplitContainer.Size = new System.Drawing.Size(151, 224);
+            this.yAxisSplitContainer.SplitterDistance = 107;
             this.yAxisSplitContainer.TabIndex = 9;
             // 
-            // yAxisList
+            // yAxisConfigure
             // 
-            this.yAxisList.CheckBoxes = true;
-            this.yAxisList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.yAxisList.Location = new System.Drawing.Point(0, 13);
-            this.yAxisList.Name = "yAxisList";
-            this.yAxisList.Size = new System.Drawing.Size(151, 34);
-            this.yAxisList.TabIndex = 9;
-            this.yAxisList.UseCompatibleStateImageBehavior = false;
-            this.yAxisList.View = System.Windows.Forms.View.List;
-            this.yAxisList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.YAxisListItemChecked);
+            this.yAxisConfigure.Location = new System.Drawing.Point(109, 3);
+            this.yAxisConfigure.Name = "yAxisConfigure";
+            this.yAxisConfigure.Size = new System.Drawing.Size(36, 23);
+            this.yAxisConfigure.TabIndex = 10;
+            this.yAxisConfigure.Text = "...";
+            this.yAxisConfigure.UseVisualStyleBackColor = true;
+            this.yAxisConfigure.Click += new System.EventHandler(this.YAxisConfigureClick);
             // 
-            // label4
+            // m_yAxisList
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Y axis";
+            this.m_yAxisList.CheckBoxes = true;
+            this.m_yAxisList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.m_yAxisList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.m_yAxisList.Location = new System.Drawing.Point(0, 0);
+            this.m_yAxisList.Name = "m_yAxisList";
+            this.m_yAxisList.Size = new System.Drawing.Size(103, 107);
+            this.m_yAxisList.TabIndex = 9;
+            this.m_yAxisList.UseCompatibleStateImageBehavior = false;
+            this.m_yAxisList.View = System.Windows.Forms.View.Details;
+            this.m_yAxisList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.YAxisListItemChecked);
             // 
-            // y2AxisList
+            // columnHeader1
             // 
-            this.y2AxisList.CheckBoxes = true;
-            this.y2AxisList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.y2AxisList.Location = new System.Drawing.Point(0, 13);
-            this.y2AxisList.Name = "y2AxisList";
-            this.y2AxisList.Size = new System.Drawing.Size(151, 34);
-            this.y2AxisList.TabIndex = 2;
-            this.y2AxisList.UseCompatibleStateImageBehavior = false;
-            this.y2AxisList.View = System.Windows.Forms.View.List;
-            this.y2AxisList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.YAxisListItemChecked);
+            this.columnHeader1.Text = "Y Axis";
+            this.columnHeader1.Width = 78;
             // 
-            // label5
+            // y2AxisConfigure
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label5.Location = new System.Drawing.Point(0, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Y2 Axis";
+            this.y2AxisConfigure.Location = new System.Drawing.Point(109, 3);
+            this.y2AxisConfigure.Name = "y2AxisConfigure";
+            this.y2AxisConfigure.Size = new System.Drawing.Size(36, 23);
+            this.y2AxisConfigure.TabIndex = 3;
+            this.y2AxisConfigure.Text = "...";
+            this.y2AxisConfigure.UseVisualStyleBackColor = true;
+            this.y2AxisConfigure.Click += new System.EventHandler(this.Y2AxisConfigureClick);
+            // 
+            // m_y2AxisList
+            // 
+            this.m_y2AxisList.CheckBoxes = true;
+            this.m_y2AxisList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2});
+            this.m_y2AxisList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.m_y2AxisList.Location = new System.Drawing.Point(0, 0);
+            this.m_y2AxisList.Name = "m_y2AxisList";
+            this.m_y2AxisList.Size = new System.Drawing.Size(103, 113);
+            this.m_y2AxisList.TabIndex = 2;
+            this.m_y2AxisList.UseCompatibleStateImageBehavior = false;
+            this.m_y2AxisList.View = System.Windows.Forms.View.Details;
+            this.m_y2AxisList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.YAxisListItemChecked);
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Y2 Axis";
+            this.columnHeader2.Width = 81;
             // 
             // inputsTextBox
             // 
@@ -160,7 +176,7 @@
             this.inputsTextBox.Name = "inputsTextBox";
             this.inputsTextBox.ReadOnly = true;
             this.inputsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.inputsTextBox.Size = new System.Drawing.Size(151, 45);
+            this.inputsTextBox.Size = new System.Drawing.Size(151, 125);
             this.inputsTextBox.TabIndex = 1;
             // 
             // label6
@@ -196,6 +212,7 @@
             this.detalizationBox.Name = "detalizationBox";
             this.detalizationBox.Size = new System.Drawing.Size(74, 20);
             this.detalizationBox.TabIndex = 10;
+            this.detalizationBox.TextChanged += new System.EventHandler(this.DetalizationBoxTextChanged);
             // 
             // rangeTo
             // 
@@ -259,7 +276,7 @@
             this.fsDiagramWithTable1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fsDiagramWithTable1.Location = new System.Drawing.Point(151, 0);
             this.fsDiagramWithTable1.Name = "fsDiagramWithTable1";
-            this.fsDiagramWithTable1.Size = new System.Drawing.Size(304, 251);
+            this.fsDiagramWithTable1.Size = new System.Drawing.Size(304, 457);
             this.fsDiagramWithTable1.TabIndex = 1;
             // 
             // fsTableAndChart
@@ -269,16 +286,14 @@
             this.Controls.Add(this.fsDiagramWithTable1);
             this.Controls.Add(this.panel1);
             this.Name = "fsTableAndChart";
-            this.Size = new System.Drawing.Size(455, 251);
+            this.Size = new System.Drawing.Size(455, 457);
             this.panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
             this.yAxisSplitContainer.Panel1.ResumeLayout(false);
-            this.yAxisSplitContainer.Panel1.PerformLayout();
             this.yAxisSplitContainer.Panel2.ResumeLayout(false);
-            this.yAxisSplitContainer.Panel2.PerformLayout();
             this.yAxisSplitContainer.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -290,21 +305,23 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox xAxisList;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private fsDiagramWithTable fsDiagramWithTable1;
         private System.Windows.Forms.SplitContainer yAxisSplitContainer;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TextBox inputsTextBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ListView y2AxisList;
-        private System.Windows.Forms.ListView yAxisList;
+        private System.Windows.Forms.ListView m_y2AxisList;
+        private System.Windows.Forms.ListView m_yAxisList;
         private fmDataGrid.fmNumericalTextBox detalizationBox;
         private fmDataGrid.fmNumericalTextBox rangeTo;
         private fmDataGrid.fmNumericalTextBox rangeFrom;
+        private System.Windows.Forms.Button yAxisConfigure;
+        private System.Windows.Forms.Button y2AxisConfigure;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

@@ -34,6 +34,7 @@ namespace Equations.Belt_Filters_with_Reversible_Trays
         protected override void InitFormulas()
         {
             AddFormula(m_ttech, TTechFormula);
+            AddFormula(m_ttech0, TTech0Formula);
         }
 
         #region Formulas
@@ -42,6 +43,12 @@ namespace Equations.Belt_Filters_with_Reversible_Trays
         {
             var Ast = new fsValue(1.0);
             m_ttech.Value = m_ttech0.Value * fsValue.Pow(m_As.Value / Ast, m_lambda.Value);
+        }
+
+        private void TTech0Formula()
+        {
+            var Ast = new fsValue(1.0);
+            m_ttech0.Value = m_ttech.Value / fsValue.Pow(m_As.Value / Ast, m_lambda.Value);
         }
 
         #endregion
