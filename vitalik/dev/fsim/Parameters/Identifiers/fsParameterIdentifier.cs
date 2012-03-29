@@ -369,6 +369,10 @@ namespace Parameters
         public static fsParameterIdentifier DiffHeightRate
             = new fsParameterIdentifier("dhc/dt", "Diff. height rate", fsCharacteristic.Speed);
 
+        //
+        public static fsParameterIdentifier MedianParticleSizeOfTheFeed
+            = new fsParameterIdentifier("xg", "Median particle size of the feed", fsCharacteristic.Length);
+
         #endregion
     }
 }
