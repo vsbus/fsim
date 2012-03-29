@@ -4,6 +4,7 @@ using CalculatorModules;
 using Parameters;
 using ParametersIdentifiers.Ranges;
 using Units;
+using CalculatorModules.User_Controls;
 
 namespace Calculator
 {

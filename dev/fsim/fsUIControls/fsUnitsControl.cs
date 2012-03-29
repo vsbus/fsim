@@ -225,7 +225,9 @@ namespace fsUIControls
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Mass, fsUnit.KiloGramme),
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.Volume, fsUnit.Liter),
                         new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.MassFlowrate, fsUnit.KiloGrammePerMin),
-                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.VolumeFlowrate, fsUnit.CubicMeterPerSecond)
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.VolumeFlowrate, fsUnit.LiterPerMinute),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.SpecificMassFlowrate, fsUnit.KiloGrammePerSquaredMeterPerMin),
+                        new KeyValuePair<fsCharacteristic, fsUnit>(fsCharacteristic.SpecificVolumeFlowrate, fsUnit.LiterPerSquaredMeterPerMin)
                     });
 
             private fsScheme(string name, params KeyValuePair<fsCharacteristic, fsUnit>[] characteristicToUnit)
