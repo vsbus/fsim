@@ -376,7 +376,10 @@ namespace Parameters
         public static fsParameterIdentifier StandardDeviationOfTheFeedParticleSizeDistributiom
             = new fsParameterIdentifier("sigma_g", "Standard deviation of the feed particle size distributiom", fsCharacteristic.NoUnits);
 
-        
+        public static fsParameterIdentifier SdandardDeviationOfTheGradeEfficiencyCurve
+            = new fsParameterIdentifier("sigma_s", "Sdandard deviation of the Grade efficiency curve", fsCharacteristic.NoUnits);
+
+
         #endregion
     }
 }
