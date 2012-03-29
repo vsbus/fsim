@@ -10,7 +10,6 @@ using Units;
 using Value;
 using fsUIControls;
 using CalculatorModules.Machine_Ranges;
-using CalculatorModules.User_Controls;
 
 namespace CalculatorModules
 {
@@ -270,7 +269,7 @@ namespace CalculatorModules
 
         protected virtual void StopGridsEdit()
         {
-            throw new Exception("StopGridsEdit have to call StopGridsEdit in derivative class.");
+            throw new Exception("You must implement StopGridsEdit in derivative class.");
         }
 
         public void SetRanges(Dictionary<fsParameterIdentifier, fsRange> dictionary)
