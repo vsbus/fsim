@@ -249,10 +249,7 @@ namespace Parameters
             new fsParameterIdentifier("rho_cw", "Cake wet density", fsCharacteristic.Density);
 
         public static fsParameterIdentifier MotherLiquidDensity = 
-            new fsParameterIdentifier("rho_f", "Density of Mother Liquid", fsCharacteristic.Density);
-
-        public static fsParameterIdentifier FiltrateDensity = 
-            new fsParameterIdentifier("rho_f", "Filtrate Density", fsCharacteristic.Density);
+            new fsParameterIdentifier("rho", "Density of Mother Liquid", fsCharacteristic.Density);
 
         public static fsParameterIdentifier LiquidDensity = 
             new fsParameterIdentifier("rho_l", "Liquid Density", fsCharacteristic.Density);

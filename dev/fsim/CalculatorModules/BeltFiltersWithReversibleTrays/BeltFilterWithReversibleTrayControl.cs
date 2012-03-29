@@ -48,7 +48,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.MotherLiquidViscosity);
 
             fsParametersGroup rhofGroup = AddGroup(
-                fsParameterIdentifier.FiltrateDensity);
+                fsParameterIdentifier.MotherLiquidDensity);
 
             fsParametersGroup densitiesGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity,

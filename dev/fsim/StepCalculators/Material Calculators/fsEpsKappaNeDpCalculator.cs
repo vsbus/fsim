@@ -21,7 +21,7 @@ namespace StepCalculators.Material_Calculators
             fsCalculatorConstant volumeConcentration = AddConstant(fsParameterIdentifier.SuspensionSolidsVolumeFraction);
             fsCalculatorConstant suspensionSolidsMassFraction = AddConstant(fsParameterIdentifier.SuspensionSolidsMassFraction);
             fsCalculatorConstant solidsDensity = AddConstant(fsParameterIdentifier.SolidsDensity);
-            fsCalculatorConstant filtrateDensity = AddConstant(fsParameterIdentifier.FiltrateDensity);
+            fsCalculatorConstant filtrateDensity = AddConstant(fsParameterIdentifier.MotherLiquidDensity);
 
             fsCalculatorVariable porosity0 = AddVariable(fsParameterIdentifier.CakePorosity0);
             fsCalculatorVariable kappa0 = AddVariable(fsParameterIdentifier.Kappa0);
