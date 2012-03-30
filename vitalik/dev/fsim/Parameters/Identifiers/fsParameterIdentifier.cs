@@ -476,6 +476,16 @@ namespace Parameters
 
         public static fsParameterIdentifier UnderflowDiameter
             = new fsParameterIdentifier("Du", "Underflow diameter", fsCharacteristic.Length);
+        //
+        public static fsParameterIdentifier OverflowVolumeFlowRate
+            = new fsParameterIdentifier("Qo", "Overflow volume flow rate", fsCharacteristic.VolumeFlowrate);
+
+        public static fsParameterIdentifier OverflowMassFlowRate
+            = new fsParameterIdentifier("Qmo", "Overflow mass flow rate", fsCharacteristic.MassFlowrate);
+
+        public static fsParameterIdentifier OverflowSolidsFlowRate
+            = new fsParameterIdentifier("Qmso", "Overflow solids flow rate", fsCharacteristic.MassFlowrate);
+
 
         #endregion
     }
