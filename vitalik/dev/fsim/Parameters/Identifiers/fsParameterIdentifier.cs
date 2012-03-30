@@ -476,7 +476,7 @@ namespace Parameters
 
         public static fsParameterIdentifier UnderflowDiameter
             = new fsParameterIdentifier("Du", "Underflow diameter", fsCharacteristic.Length);
-        //
+        
         public static fsParameterIdentifier OverflowVolumeFlowRate
             = new fsParameterIdentifier("Qo", "Overflow volume flow rate", fsCharacteristic.VolumeFlowrate);
 
@@ -485,7 +485,21 @@ namespace Parameters
 
         public static fsParameterIdentifier OverflowSolidsFlowRate
             = new fsParameterIdentifier("Qmso", "Overflow solids flow rate", fsCharacteristic.MassFlowrate);
+        //
+        public static fsParameterIdentifier UnderflowVolumeFlowRate
+            = new fsParameterIdentifier("Qu", "Underflow volume flow rate", fsCharacteristic.VolumeFlowrate);
 
+        public static fsParameterIdentifier UnderflowMassFlowRate
+            = new fsParameterIdentifier("Qmu", "Underflow mass flow rate", fsCharacteristic.MassFlowrate);
+
+        public static fsParameterIdentifier Qmsu
+            = new fsParameterIdentifier("Qmsu", "Underflow solids mass flow rate", fsCharacteristic.MassFlowrate);
+
+        public static fsParameterIdentifier OverflowMeanParticleSize
+            = new fsParameterIdentifier("x50,o", "Overflow mean particle size", fsCharacteristic.ParticleSize);
+
+        public static fsParameterIdentifier UnderflowMeanParticleSize
+            = new fsParameterIdentifier("x5o,u", "Underflow mean particle size", fsCharacteristic.ParticleSize);
 
         #endregion
     }
