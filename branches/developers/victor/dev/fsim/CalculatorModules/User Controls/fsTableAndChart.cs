@@ -266,7 +266,9 @@ namespace CalculatorModules.User_Controls
             foreach (fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter selectionParameter in GetSelectionParameters(parameters))
             {
                 string parameterName = selectionParameter.Identifier.Name;
-                var pair = new KeyValuePair<string, bool>(parameterName, IsContains(yAxisListView.CheckedItems, parameterName));
+                bool isChecked = IsContains(yAxisListView.CheckedItems, parameterName)
+                                 || !IsContains(yAxisListView.Items, parameterName);
+                var pair = new KeyValuePair<string, bool>(parameterName, isChecked);
                 if (selectionParameter.Kind == fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind.InputParameter)
                 {
                     inputList.Add(pair);
