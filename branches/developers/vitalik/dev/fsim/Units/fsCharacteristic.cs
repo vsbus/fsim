@@ -80,16 +80,6 @@ namespace Units
             }
         );
 
-        public static fsCharacteristic Diameter = new fsCharacteristic(
-            "Cyclone Diameter",
-            new[] {
-                fsUnit.MilliMeter,
-                fsUnit.SantiMeter,
-                fsUnit.DeciMeter,
-                fsUnit.Meter
-            }
-        );
-
         public static fsCharacteristic Area = new fsCharacteristic(
             "Area",
             new[] {
@@ -279,6 +269,13 @@ namespace Units
             "Filter medium resistance",
             new[] {
                 fsUnit.Ten10PerMeter
+            }
+        );
+
+        public static fsCharacteristic ParticleSize = new fsCharacteristic(
+            "Particle size",
+            new[] {
+                fsUnit.Micrometer
             }
         );
 
