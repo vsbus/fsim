@@ -73,15 +73,15 @@ namespace CalculatorModules.Hydrocyclone
                 fsParameterIdentifier.sigma_s);   //sigma_s
 
             fsParametersGroup underFlowGroup = AddGroup(
-                fsParameterIdentifier.rf,       //rf
-                fsParameterIdentifier.DuOverD,  //Du/D
-                fsParameterIdentifier.cm_u);    //cm_u
+                fsParameterIdentifier.rf,                              //rf
+                fsParameterIdentifier.DuOverD,                         //Du/D
+                fsParameterIdentifier.UnderflowSolidsMassFraction);    //cm_u
 
             fsParametersGroup cxdGroup = AddGroup(
                 fsParameterIdentifier.OverflowSolidsMassFraction,    //cmo
                 fsParameterIdentifier.OverflowParticleSize,          //x0_i
                 fsParameterIdentifier.ReducedCutSize,                //x’50
-                fsParameterIdentifier.CycloneDiameter);              //D
+                fsParameterIdentifier.MachineDiameter);              //D
             
             fsParametersGroup numCyclonesGroup = AddGroup(
                 fsParameterIdentifier.NumberOfCyclones);     //n
@@ -93,6 +93,8 @@ namespace CalculatorModules.Hydrocyclone
                 fsParameterIdentifier.FeedVolumeFlowRate,       //Q
                 fsParameterIdentifier.FeedSolidsMassFlowRate,   //Qm
                 fsParameterIdentifier.Qms);                     //Qms
+
+
 
             var groups = new[]
                              {
