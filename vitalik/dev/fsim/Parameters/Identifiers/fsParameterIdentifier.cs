@@ -388,6 +388,9 @@ namespace Parameters
         public static fsParameterIdentifier UnderflowDiameterToCycloneDiameter
                    = new fsParameterIdentifier("Du/D", "Underflow diameter to cyclone diameter", fsCharacteristic.Concentration);
 
+        public static fsParameterIdentifier ReducedCutSize
+                   = new fsParameterIdentifier("x’50", "Reduced cut size", fsCharacteristic.Length);
+
         #endregion
     }
 }
