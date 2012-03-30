@@ -383,7 +383,10 @@ namespace Parameters
             = new fsParameterIdentifier("rf", "Underflow volume rate to feed volume flow rate", fsCharacteristic.Concentration);
 
         public static fsParameterIdentifier UnderflowSolidsMassFraction
-                   = new fsParameterIdentifier("rf", "Underflow solids mass fraction", fsCharacteristic.Concentration);
+                   = new fsParameterIdentifier("cm_u", "Underflow solids mass fraction", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier UnderflowDiameterToCycloneDiameter
+                   = new fsParameterIdentifier("Du/D", "Underflow diameter to cyclone diameter", fsCharacteristic.Concentration);
 
         #endregion
     }
