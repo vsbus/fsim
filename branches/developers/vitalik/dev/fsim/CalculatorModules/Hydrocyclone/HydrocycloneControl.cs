@@ -133,7 +133,27 @@ namespace CalculatorModules.Hydrocyclone
 
             fsParametersGroup doOverDGroup = AddGroup(
                 fsParameterIdentifier.DoOverD);
-           
+
+            fsParametersGroup onlyCalculatedParametersGroup = AddGroup(
+                 fsParameterIdentifier.StokesNumber,
+                 fsParameterIdentifier.EulerNumber,
+                 fsParameterIdentifier.ReynoldsNumber,
+                 fsParameterIdentifier.AverageVelocity,
+                 fsParameterIdentifier.TotalEfficiency,
+                 fsParameterIdentifier.ReducedTotalEfficiency,
+                 fsParameterIdentifier.CycloneLength,
+                 fsParameterIdentifier.LengthOfCylindricalPart,
+                 fsParameterIdentifier.InletDiameter,
+                 fsParameterIdentifier.OutletDiameter,
+                 fsParameterIdentifier.UnderflowDiameter,
+                 fsParameterIdentifier.OverflowVolumeFlowRate,
+                 fsParameterIdentifier.OverflowMassFlowRate,
+                 fsParameterIdentifier.OverflowSolidsFlowRate,
+                 fsParameterIdentifier.UnderflowVolumeFlowRate,
+                 fsParameterIdentifier.UnderflowMassFlowRate,
+                 fsParameterIdentifier.Qmsu,
+                 fsParameterIdentifier.OverflowMeanParticleSize,
+                 fsParameterIdentifier.UnderflowMeanParticleSize);
             var groups = new[]
                              {
                                 etaGroup,
@@ -160,7 +180,8 @@ namespace CalculatorModules.Hydrocyclone
                                 bigLOverDGroup,
                                 smallLOverDGroup,
                                 diOverDGroup,
-                                doOverDGroup
+                                doOverDGroup,
+                                onlyCalculatedParametersGroup
                              };
 
             for (int i = 0; i < groups.Length; ++i)
