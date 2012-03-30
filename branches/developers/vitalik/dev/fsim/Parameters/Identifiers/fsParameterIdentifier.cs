@@ -381,8 +381,8 @@ namespace Parameters
         public static fsParameterIdentifier rf
             = new fsParameterIdentifier("rf", "Underflow volume rate to feed volume flow rate", fsCharacteristic.Concentration);
 
-        public static fsParameterIdentifier cm_u
-                   = new fsParameterIdentifier("cm_u", "Underflow solids mass fraction", fsCharacteristic.Concentration);
+        public static fsParameterIdentifier UnderflowSolidsMassFraction
+                   = new fsParameterIdentifier("cmu", "Underflow solids mass fraction", fsCharacteristic.Concentration);
 
         public static fsParameterIdentifier DuOverD
                    = new fsParameterIdentifier("Du/D", "Underflow diameter to cyclone diameter", fsCharacteristic.Concentration);
@@ -395,9 +395,6 @@ namespace Parameters
 
         public static fsParameterIdentifier OverflowSolidsMassFraction
                    = new fsParameterIdentifier("cmo", "Overflow solids mass fraction", fsCharacteristic.Concentration);
-
-        public static fsParameterIdentifier CycloneDiameter
-                   = new fsParameterIdentifier("D", "Cyclone Diameter", fsCharacteristic.MachineGeometryLength);
 
         public static fsParameterIdentifier NumberOfCyclones
             = new fsParameterIdentifier("n", "Number of Cyclones", fsCharacteristic.NoUnits);

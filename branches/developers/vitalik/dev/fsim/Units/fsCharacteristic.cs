@@ -275,7 +275,9 @@ namespace Units
         public static fsCharacteristic ParticleSize = new fsCharacteristic(
             "Particle size",
             new[] {
-                fsUnit.Micrometer
+                fsUnit.Micrometer,
+                fsUnit.MilliMeter,
+                fsUnit.Meter
             }
         );
 
