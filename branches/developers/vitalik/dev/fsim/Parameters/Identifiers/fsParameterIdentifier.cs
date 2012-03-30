@@ -447,7 +447,11 @@ namespace Parameters
         public static fsParameterIdentifier StokesNumber
             = new fsParameterIdentifier("Stk’", "Stokes number", fsCharacteristic.NoUnits);
 
+        public static fsParameterIdentifier EulerNumber
+            = new fsParameterIdentifier("Eu", "Euler number", fsCharacteristic.NoUnits);
 
+        public static fsParameterIdentifier ReynoldsNumber
+            = new fsParameterIdentifier("Re", "Reynolds number", fsCharacteristic.NoUnits);
         #endregion
     }
 }
