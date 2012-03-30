@@ -133,7 +133,7 @@ namespace CalculatorModules.Hydrocyclone
 
             fsParametersGroup doOverDGroup = AddGroup(
                 fsParameterIdentifier.DoOverD);
-
+           
             var groups = new[]
                              {
                                 etaGroup,
