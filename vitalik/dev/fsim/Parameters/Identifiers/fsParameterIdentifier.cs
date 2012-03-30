@@ -444,6 +444,10 @@ namespace Parameters
         public static fsParameterIdentifier DoOverD
             = new fsParameterIdentifier("Do/D", fsCharacteristic.NoUnits);
 
+        public static fsParameterIdentifier StokesNumber
+            = new fsParameterIdentifier("Stk’", "Stokes number", fsCharacteristic.NoUnits);
+
+
         #endregion
     }
 }
