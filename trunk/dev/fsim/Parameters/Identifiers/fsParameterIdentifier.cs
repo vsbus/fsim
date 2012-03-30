@@ -369,6 +369,138 @@ namespace Parameters
         public static fsParameterIdentifier DiffHeightRate
             = new fsParameterIdentifier("dhc/dt", "Diff. height rate", fsCharacteristic.Speed);
 
+        public static fsParameterIdentifier xg
+            = new fsParameterIdentifier("xg", "Median particle size of the feed", fsCharacteristic.ParticleSize);
+
+        public static fsParameterIdentifier sigma_g
+            = new fsParameterIdentifier("sigma_g", "Standard deviation of the feed particle size distribution", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier sigma_s
+            = new fsParameterIdentifier("sigma_s", "Sdandard deviation of the Grade efficiency curve", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier rf
+            = new fsParameterIdentifier("rf", "Underflow volume rate to feed volume flow rate", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier UnderflowSolidsMassFraction
+                   = new fsParameterIdentifier("cmu", "Underflow solids mass fraction", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier DuOverD
+                   = new fsParameterIdentifier("Du/D", "Underflow diameter to cyclone diameter", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier ReducedCutSize
+                   = new fsParameterIdentifier("x’50", "Reduced cut size", fsCharacteristic.ParticleSize);
+
+        public static fsParameterIdentifier OverflowParticleSize
+                   = new fsParameterIdentifier("x0i", "Overflow particle size", fsCharacteristic.ParticleSize);
+
+        public static fsParameterIdentifier OverflowSolidsMassFraction
+                   = new fsParameterIdentifier("cmo", "Overflow solids mass fraction", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier NumberOfCyclones
+            = new fsParameterIdentifier("n", "Number of Cyclones", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier FeedVolumeFlowRate
+            = new fsParameterIdentifier("Q", "Feed volume flow rate", fsCharacteristic.VolumeFlowrate);
+
+        public static fsParameterIdentifier FeedSolidsMassFlowRate
+            = new fsParameterIdentifier("Qm", "Feed solids mass flow rate", fsCharacteristic.MassFlowrate);
+
+        public static fsParameterIdentifier Alpha1
+            = new fsParameterIdentifier("alpha1", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Alpha2
+            = new fsParameterIdentifier("alpha2",  fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Alpha3
+            = new fsParameterIdentifier("alpha3",  fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Beta1
+            = new fsParameterIdentifier("Beta1",  fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Beta2
+            = new fsParameterIdentifier("Beta2",  fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Beta3
+            = new fsParameterIdentifier("Beta3",  fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Gamma1
+            = new fsParameterIdentifier("Gamma1", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Gamma2
+            = new fsParameterIdentifier("Gamma2", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Gamma3
+            = new fsParameterIdentifier("Gamma3", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier bigLOverD 
+            = new fsParameterIdentifier("L/D", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier smallLOverD  
+            = new fsParameterIdentifier("l/D", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier DiOverD
+            = new fsParameterIdentifier("Di/D", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier DoOverD
+            = new fsParameterIdentifier("Do/D", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier StokesNumber
+            = new fsParameterIdentifier("Stk’", "Stokes number", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier EulerNumber
+            = new fsParameterIdentifier("Eu", "Euler number", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier ReynoldsNumber
+            = new fsParameterIdentifier("Re", "Reynolds number", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier AverageVelocity
+            = new fsParameterIdentifier("v", "Average velocity", fsCharacteristic.Speed);
+
+        public static fsParameterIdentifier TotalEfficiency
+            = new fsParameterIdentifier("ET", "Total efficiency", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier ReducedTotalEfficiency
+            = new fsParameterIdentifier("E’T", "Reduced total efficiency", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier CycloneLength
+            = new fsParameterIdentifier("L", "Cyclone length", fsCharacteristic.Length);
+
+        public static fsParameterIdentifier LengthOfCylindricalPart
+            = new fsParameterIdentifier("l", "Length of cylindrical part", fsCharacteristic.Length);
+       
+        public static fsParameterIdentifier InletDiameter
+            = new fsParameterIdentifier("Di", "Inlet diameter", fsCharacteristic.Length);
+
+        public static fsParameterIdentifier OutletDiameter
+            = new fsParameterIdentifier("Do", "Outlet diameter", fsCharacteristic.Length);
+
+        public static fsParameterIdentifier UnderflowDiameter
+            = new fsParameterIdentifier("Du", "Underflow diameter", fsCharacteristic.Length);
+        
+        public static fsParameterIdentifier OverflowVolumeFlowRate
+            = new fsParameterIdentifier("Qo", "Overflow volume flow rate", fsCharacteristic.VolumeFlowrate);
+
+        public static fsParameterIdentifier OverflowMassFlowRate
+            = new fsParameterIdentifier("Qmo", "Overflow mass flow rate", fsCharacteristic.MassFlowrate);
+
+        public static fsParameterIdentifier OverflowSolidsFlowRate
+            = new fsParameterIdentifier("Qmso", "Overflow solids flow rate", fsCharacteristic.MassFlowrate);
+        
+        public static fsParameterIdentifier UnderflowVolumeFlowRate
+            = new fsParameterIdentifier("Qu", "Underflow volume flow rate", fsCharacteristic.VolumeFlowrate);
+
+        public static fsParameterIdentifier UnderflowMassFlowRate
+            = new fsParameterIdentifier("Qmu", "Underflow mass flow rate", fsCharacteristic.MassFlowrate);
+
+        public static fsParameterIdentifier Qmsu
+            = new fsParameterIdentifier("Qmsu", "Underflow solids mass flow rate", fsCharacteristic.MassFlowrate);
+
+        public static fsParameterIdentifier OverflowMeanParticleSize
+            = new fsParameterIdentifier("x50,o", "Overflow mean particle size", fsCharacteristic.ParticleSize);
+
+        public static fsParameterIdentifier UnderflowMeanParticleSize
+            = new fsParameterIdentifier("x50,u", "Underflow mean particle size", fsCharacteristic.ParticleSize);
+
         #endregion
     }
 }
