@@ -399,6 +399,10 @@ namespace Parameters
 
         public static fsParameterIdentifier CycloneDiameter
                    = new fsParameterIdentifier("D", "Cyclone Diameter", fsCharacteristic.Diameter);
+
+        public static fsParameterIdentifier NumberOfCyclones
+            = new fsParameterIdentifier("n", "Number of Cyclones", fsCharacteristic.NoUnits);
+
         #endregion
     }
 }
