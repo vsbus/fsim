@@ -403,6 +403,12 @@ namespace Parameters
         public static fsParameterIdentifier NumberOfCyclones
             = new fsParameterIdentifier("n", "Number of Cyclones", fsCharacteristic.NoUnits);
 
+        public static fsParameterIdentifier NumberOfCyclones
+            = new fsParameterIdentifier("n", "Number of Cyclones", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier FeedVolumeFlowRate
+            = new fsParameterIdentifier("Q", "Feed volume flow rate", fsCharacteristic.VolumeFlowrate);
+
         #endregion
     }
 }
