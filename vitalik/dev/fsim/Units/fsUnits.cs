@@ -82,6 +82,7 @@ namespace Units
         public static fsUnit CubicMeterPerSquaredMeter = new fsUnit("m3/m2", 1);
         public static fsUnit LiterPerSquaredMeter = new fsUnit("l/m2", 1e-3);
         public static fsUnit Micrometer = new fsUnit("um", 1e-6);
+        
         #endregion
 
         public static fsUnit UnitFromText(string unitName)
