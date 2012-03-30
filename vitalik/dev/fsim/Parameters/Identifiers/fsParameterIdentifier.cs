@@ -459,6 +459,14 @@ namespace Parameters
         public static fsParameterIdentifier TotalEfficiency
             = new fsParameterIdentifier("ET", "Total efficiency", fsCharacteristic.Concentration);
 
+        public static fsParameterIdentifier ReducedTotalEfficiency
+            = new fsParameterIdentifier("E’T", "Reduced total efficiency", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier CycloneLength
+            = new fsParameterIdentifier("L", "Cyclone length", fsCharacteristic.Length);
+
+        public static fsParameterIdentifier LengthOfCylindricalPart
+            = new fsParameterIdentifier("l", "Length of cylindrical part", fsCharacteristic.Length);
 
         #endregion
     }
