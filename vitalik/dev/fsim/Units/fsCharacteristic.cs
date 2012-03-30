@@ -80,6 +80,16 @@ namespace Units
             }
         );
 
+        public static fsCharacteristic Diameter = new fsCharacteristic(
+            "Cyclone Diameter",
+            new[] {
+                fsUnit.MilliMeter,
+                fsUnit.SantiMeter,
+                fsUnit.DeciMeter,
+                fsUnit.Meter
+            }
+        );
+
         public static fsCharacteristic Area = new fsCharacteristic(
             "Area",
             new[] {
