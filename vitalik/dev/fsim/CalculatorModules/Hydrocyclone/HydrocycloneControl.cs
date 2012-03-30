@@ -63,12 +63,51 @@ namespace CalculatorModules.Hydrocyclone
                 fsParameterIdentifier.SuspensionSolidsVolumeFraction,   //cv
                 fsParameterIdentifier.SuspensionSolidsConcentration);   //c
 
+            fsParametersGroup xgGroup = AddGroup(
+                fsParameterIdentifier.xg);   //xg
+
+            fsParametersGroup sigma_gGroup = AddGroup(
+                fsParameterIdentifier.sigma_g);   //sigma_g
+
+            fsParametersGroup sigma_sGroup = AddGroup(
+                fsParameterIdentifier.sigma_s);   //sigma_s
+
+            fsParametersGroup underFlowGroup = AddGroup(
+                fsParameterIdentifier.rf,       //rf
+                fsParameterIdentifier.DuOverD,  //Du/D
+                fsParameterIdentifier.cm_u);    //cm_u
+
+            fsParametersGroup cxdGroup = AddGroup(
+                fsParameterIdentifier.OverflowSolidsMassFraction,    //cmo
+                fsParameterIdentifier.OverflowParticleSize,          //x0_i
+                fsParameterIdentifier.ReducedCutSize,                //x’50
+                fsParameterIdentifier.CycloneDiameter);              //D
+            
+            fsParametersGroup numCyclonesGroup = AddGroup(
+                fsParameterIdentifier.NumberOfCyclones);     //n
+
+            fsParametersGroup pressureGroup = AddGroup(
+                fsParameterIdentifier.PressureDifference);   //Dp
+
+            fsParametersGroup qGroup = AddGroup(
+                fsParameterIdentifier.FeedVolumeFlowRate,       //Q
+                fsParameterIdentifier.FeedSolidsMassFlowRate,   //Qm
+                fsParameterIdentifier.Qms);                     //Qms
+
             var groups = new[]
                              {
                                 etaGroup,
                                 rhoGroup,
                                 densitiesGroup,
                                 cGroup,
+                                xgGroup,
+                                sigma_gGroup,
+                                sigma_sGroup,
+                                underFlowGroup,
+                                cxdGroup,
+                                numCyclonesGroup,
+                                pressureGroup,
+                                qGroup
                              };
 
             for (int i = 0; i < groups.Length; ++i)

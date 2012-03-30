@@ -391,13 +391,13 @@ namespace Parameters
                    = new fsParameterIdentifier("x’50", "Reduced cut size", fsCharacteristic.ParticleSize);
 
         public static fsParameterIdentifier OverflowParticleSize
-                   = new fsParameterIdentifier("x0_i", "Overflow particle size", fsCharacteristic.ParticleSize);
+                   = new fsParameterIdentifier("x0i", "Overflow particle size", fsCharacteristic.ParticleSize);
 
         public static fsParameterIdentifier OverflowSolidsMassFraction
                    = new fsParameterIdentifier("cmo", "Overflow solids mass fraction", fsCharacteristic.Concentration);
 
         public static fsParameterIdentifier CycloneDiameter
-                   = new fsParameterIdentifier("D", "Cyclone Diameter", fsCharacteristic.Length);
+                   = new fsParameterIdentifier("D", "Cyclone Diameter", fsCharacteristic.MachineGeometryLength);
 
         public static fsParameterIdentifier NumberOfCyclones
             = new fsParameterIdentifier("n", "Number of Cyclones", fsCharacteristic.NoUnits);
