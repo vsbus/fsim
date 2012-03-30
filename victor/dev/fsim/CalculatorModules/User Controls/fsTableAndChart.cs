@@ -56,6 +56,18 @@ namespace CalculatorModules.User_Controls
             m_calculators = new List<fsCalculator>(calculators);
         }
 
+        public void SetDefaultDiagram(
+            fsParameterIdentifier xAxisParameter,
+            fsParameterIdentifier yAxisParameter,
+            fsParameterIdentifier y2AxisParameter)
+        {
+            m_xAxisParameter = xAxisParameter;
+            m_yAxisParameters.Clear();
+            m_yAxisParameters.Add(yAxisParameter);
+            m_y2AxisParameters.Clear();
+            m_y2AxisParameters.Add(y2AxisParameter);
+        }
+
         #region Reprocessing
 
         private bool m_inputRefreshing;
@@ -145,7 +157,6 @@ namespace CalculatorModules.User_Controls
 
         private void RefreshXAxisList()
         {
-            string currentText = xAxisList.Text;
             xAxisList.Items.Clear();
             foreach (fsParametersGroup group in m_groups)
             {
@@ -157,9 +168,9 @@ namespace CalculatorModules.User_Controls
                     }
                 }
             }
-            if (xAxisList.Items.Contains(currentText))
+            if (m_xAxisParameter != null && xAxisList.Items.Contains(m_xAxisParameter.Name))
             {
-                xAxisList.SelectedIndex = xAxisList.Items.IndexOf(currentText);
+                xAxisList.SelectedIndex = xAxisList.Items.IndexOf(m_xAxisParameter.Name);
             }
             else
             {
@@ -446,7 +457,7 @@ namespace CalculatorModules.User_Controls
             selectionForm.ShowDialog();
             if (selectionForm.DialogResult == DialogResult.OK)
             {
-                m_yAxisParameters = new List<fsParameterIdentifier>();
+                m_yAxisParameters.Clear();
                 m_yAxisParameters.AddRange(selectionForm.GetCheckedParameters());
                 Reprocess();
             }
@@ -459,7 +470,7 @@ namespace CalculatorModules.User_Controls
             selectionForm.ShowDialog();
             if (selectionForm.DialogResult == DialogResult.OK)
             {
-                m_y2AxisParameters = new List<fsParameterIdentifier>();
+                m_y2AxisParameters.Clear();
                 m_y2AxisParameters.AddRange(selectionForm.GetCheckedParameters());
                 Reprocess();
             }

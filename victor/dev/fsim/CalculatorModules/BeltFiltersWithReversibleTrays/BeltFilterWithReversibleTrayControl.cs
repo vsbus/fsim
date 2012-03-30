@@ -203,6 +203,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             UpdateGroupsInputInfoFromCalculationOptions();
             UpdateEquationsFromCalculationOptions();
+            SetDefaultDiagram(fsParameterIdentifier.u, fsParameterIdentifier.FilterArea, fsParameterIdentifier.SpecificFiltrationTime);
             Recalculate();
             UpdateUIFromData();
             ConnectUIWithDataUpdating(materialParametersDataGrid, dataGrid, calculationComboBox);

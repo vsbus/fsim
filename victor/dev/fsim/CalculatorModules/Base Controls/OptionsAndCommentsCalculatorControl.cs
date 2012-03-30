@@ -1,4 +1,5 @@
 ﻿using System;
+using Parameters;
 
 namespace CalculatorModules
 {
@@ -23,6 +24,14 @@ namespace CalculatorModules
                 ParameterToGroup,
                 Calculators);
             fsTableAndChart1.Reprocess();
+        }
+
+        protected void SetDefaultDiagram(
+            fsParameterIdentifier xAxisParameter,
+            fsParameterIdentifier yAxisParameter,
+            fsParameterIdentifier y2AxisParameter)
+        {
+            fsTableAndChart1.SetDefaultDiagram(xAxisParameter, yAxisParameter, y2AxisParameter);
         }
 
         private void Button1Click(object sender, EventArgs e)
