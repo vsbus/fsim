@@ -175,6 +175,7 @@ namespace CalculatorModules.Hydrocyclone
             fsMisc.FillList(comboBoxCalculationOption.Items, typeof(fsCalculationOption));
             EstablishCalculationOption(fsCalculationOption.Dp);
             AssignCalculationOptionAndControl(typeof(fsCalculationOption), comboBoxCalculationOption);
+            Recalculate();
             UpdateUIFromData();
             ConnectUIWithDataUpdating(dataGrid, comboBoxCalculationOption);
 
