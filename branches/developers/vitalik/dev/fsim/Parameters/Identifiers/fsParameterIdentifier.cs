@@ -452,6 +452,14 @@ namespace Parameters
 
         public static fsParameterIdentifier ReynoldsNumber
             = new fsParameterIdentifier("Re", "Reynolds number", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier AverageVelocity
+            = new fsParameterIdentifier("v", "Average velocity", fsCharacteristic.Speed);
+
+        public static fsParameterIdentifier TotalEfficiency
+            = new fsParameterIdentifier("ET", "Total efficiency", fsCharacteristic.Concentration);
+
+
         #endregion
     }
 }
