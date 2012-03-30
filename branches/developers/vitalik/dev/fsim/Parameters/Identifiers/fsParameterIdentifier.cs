@@ -397,6 +397,8 @@ namespace Parameters
         public static fsParameterIdentifier OverflowSolidsMassFraction
                    = new fsParameterIdentifier("cmo", "Overflow solids mass fraction", fsCharacteristic.Concentration);
 
+        public static fsParameterIdentifier CycloneDiameter
+                   = new fsParameterIdentifier("D", "Cyclone Diameter", fsCharacteristic.Diameter);
         #endregion
     }
 }
