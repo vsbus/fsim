@@ -382,6 +382,9 @@ namespace Parameters
         public static fsParameterIdentifier UnderflowVolumeRateToFeedVolumeFlowRate
             = new fsParameterIdentifier("rf", "Underflow volume rate to feed volume flow rate", fsCharacteristic.Concentration);
 
+        public static fsParameterIdentifier UnderflowSolidsMassFraction
+                   = new fsParameterIdentifier("rf", "Underflow solids mass fraction", fsCharacteristic.Concentration);
+
         #endregion
     }
 }
