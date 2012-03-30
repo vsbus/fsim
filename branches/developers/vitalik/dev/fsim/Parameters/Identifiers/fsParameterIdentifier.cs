@@ -405,6 +405,45 @@ namespace Parameters
         public static fsParameterIdentifier FeedSolidsMassFlowRate
             = new fsParameterIdentifier("Qm", "Feed solids mass flow rate", fsCharacteristic.MassFlowrate);
 
+        public static fsParameterIdentifier Alpha1
+            = new fsParameterIdentifier("alpha1", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Alpha2
+            = new fsParameterIdentifier("alpha2",  fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Alpha3
+            = new fsParameterIdentifier("alpha3",  fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Beta1
+            = new fsParameterIdentifier("Beta1",  fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Beta2
+            = new fsParameterIdentifier("Beta2",  fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Beta3
+            = new fsParameterIdentifier("Beta3",  fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Gamma1
+            = new fsParameterIdentifier("Gamma1", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Gamma2
+            = new fsParameterIdentifier("Gamma2", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier Gamma3
+            = new fsParameterIdentifier("Gamma3", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier LoverD
+            = new fsParameterIdentifier("L/D", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier IoverD
+            = new fsParameterIdentifier("I/D", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier DiOverD
+            = new fsParameterIdentifier("Di/D", fsCharacteristic.NoUnits);
+
+        public static fsParameterIdentifier DoOverD
+            = new fsParameterIdentifier("Do/D", fsCharacteristic.NoUnits);
+
         #endregion
     }
 }
