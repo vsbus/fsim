@@ -94,44 +94,44 @@ namespace CalculatorModules.Hydrocyclone
                 fsParameterIdentifier.FeedSolidsMassFlowRate,   //Qm
                 fsParameterIdentifier.Qms);                     //Qms
 
-            fsParametersGroup Alpha1Group = AddGroup(
+            fsParametersGroup alpha1Group = AddGroup(
                 fsParameterIdentifier.Alpha1);
 
-            fsParametersGroup Alpha2Group = AddGroup(
+            fsParametersGroup alpha2Group = AddGroup(
                 fsParameterIdentifier.Alpha2);
 
-            fsParametersGroup Alpha3Group = AddGroup(
+            fsParametersGroup alpha3Group = AddGroup(
                 fsParameterIdentifier.Alpha3);
 
-            fsParametersGroup Beta1Group = AddGroup(
+            fsParametersGroup beta1Group = AddGroup(
                 fsParameterIdentifier.Beta1);
 
-            fsParametersGroup Beta2Group = AddGroup(
+            fsParametersGroup beta2Group = AddGroup(
                 fsParameterIdentifier.Beta2);
 
-            fsParametersGroup Beta3Group = AddGroup(
+            fsParametersGroup beta3Group = AddGroup(
                 fsParameterIdentifier.Beta3);
 
-            fsParametersGroup Gamma1Group = AddGroup(
+            fsParametersGroup gamma1Group = AddGroup(
                 fsParameterIdentifier.Gamma1);
 
-            fsParametersGroup Gamma2Group = AddGroup(
+            fsParametersGroup gamma2Group = AddGroup(
                 fsParameterIdentifier.Gamma2);
 
-            fsParametersGroup Gamma3Group = AddGroup(
+            fsParametersGroup gamma3Group = AddGroup(
                 fsParameterIdentifier.Gamma3);
 
 
-            fsParametersGroup LoverDGroup = AddGroup(
-                fsParameterIdentifier.LoverD);
+            fsParametersGroup lOverDGroup = AddGroup(
+                fsParameterIdentifier.LOverD);
 
-            fsParametersGroup IoverDGroup = AddGroup(
-                fsParameterIdentifier.IoverD);
+            fsParametersGroup iOverDGroup = AddGroup(
+                fsParameterIdentifier.IOverD);
 
-            fsParametersGroup DiOverDGroup = AddGroup(
+            fsParametersGroup diOverDGroup = AddGroup(
                 fsParameterIdentifier.DiOverD);
 
-            fsParametersGroup DoOverDGroup = AddGroup(
+            fsParametersGroup doOverDGroup = AddGroup(
                 fsParameterIdentifier.DoOverD);
 
             var groups = new[]
@@ -148,19 +148,19 @@ namespace CalculatorModules.Hydrocyclone
                                 numCyclonesGroup,
                                 pressureGroup,
                                 qGroup,
-                                Alpha1Group,
-                                Alpha2Group,
-                                Alpha3Group,
-                                Beta1Group,
-                                Beta2Group,
-                                Beta3Group,
-                                Gamma1Group,
-                                Gamma2Group,
-                                Gamma3Group,
-                                LoverDGroup,
-                                IoverDGroup,
-                                DiOverDGroup,
-                                DoOverDGroup
+                                alpha1Group,
+                                alpha2Group,
+                                alpha3Group,
+                                beta1Group,
+                                beta2Group,
+                                beta3Group,
+                                gamma1Group,
+                                gamma2Group,
+                                gamma3Group,
+                                lOverDGroup,
+                                iOverDGroup,
+                                diOverDGroup,
+                                doOverDGroup
                              };
 
             for (int i = 0; i < groups.Length; ++i)

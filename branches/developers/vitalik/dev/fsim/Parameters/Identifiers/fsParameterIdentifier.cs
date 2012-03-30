@@ -432,10 +432,10 @@ namespace Parameters
         public static fsParameterIdentifier Gamma3
             = new fsParameterIdentifier("Gamma3", fsCharacteristic.NoUnits);
 
-        public static fsParameterIdentifier LoverD
+        public static fsParameterIdentifier LOverD
             = new fsParameterIdentifier("L/D", fsCharacteristic.NoUnits);
 
-        public static fsParameterIdentifier IoverD
+        public static fsParameterIdentifier IOverD
             = new fsParameterIdentifier("I/D", fsCharacteristic.NoUnits);
 
         public static fsParameterIdentifier DiOverD
