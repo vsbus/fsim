@@ -409,6 +409,9 @@ namespace Parameters
         public static fsParameterIdentifier FeedVolumeFlowRate
             = new fsParameterIdentifier("Q", "Feed volume flow rate", fsCharacteristic.VolumeFlowrate);
 
+        public static fsParameterIdentifier FeedSolidsMassFlowRate
+            = new fsParameterIdentifier("Qm", "Feed solids mass flow rate", fsCharacteristic.MassFlowrate);
+
         #endregion
     }
 }
