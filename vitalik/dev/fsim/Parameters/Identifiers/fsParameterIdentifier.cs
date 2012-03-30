@@ -467,6 +467,15 @@ namespace Parameters
 
         public static fsParameterIdentifier LengthOfCylindricalPart
             = new fsParameterIdentifier("l", "Length of cylindrical part", fsCharacteristic.Length);
+       
+        public static fsParameterIdentifier InletDiameter
+            = new fsParameterIdentifier("Di", "Inlet diameter", fsCharacteristic.Length);
+
+        public static fsParameterIdentifier OutletDiameter
+            = new fsParameterIdentifier("Do", "Outlet diameter", fsCharacteristic.Length);
+
+        public static fsParameterIdentifier UnderflowDiameter
+            = new fsParameterIdentifier("Du", "Underflow diameter", fsCharacteristic.Length);
 
         #endregion
     }
