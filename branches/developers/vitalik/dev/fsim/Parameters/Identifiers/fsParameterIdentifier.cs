@@ -391,6 +391,8 @@ namespace Parameters
         public static fsParameterIdentifier ReducedCutSize
                    = new fsParameterIdentifier("x’50", "Reduced cut size", fsCharacteristic.Length);
 
+        public static fsParameterIdentifier OverflowParticleSize
+                   = new fsParameterIdentifier("x0_i", "Overflow particle size", fsCharacteristic.Length);
         #endregion
     }
 }
