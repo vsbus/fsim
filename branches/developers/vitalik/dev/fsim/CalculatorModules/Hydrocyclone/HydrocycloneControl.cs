@@ -122,11 +122,11 @@ namespace CalculatorModules.Hydrocyclone
                 fsParameterIdentifier.Gamma3);
 
 
-            fsParametersGroup lOverDGroup = AddGroup(
-                fsParameterIdentifier.LOverD);
+            fsParametersGroup bigLOverDGroup = AddGroup(
+                fsParameterIdentifier.bigLOverD);
 
-            fsParametersGroup iOverDGroup = AddGroup(
-                fsParameterIdentifier.IOverD);
+            fsParametersGroup smallLOverDGroup = AddGroup(
+                fsParameterIdentifier.smallLOverD);
 
             fsParametersGroup diOverDGroup = AddGroup(
                 fsParameterIdentifier.DiOverD);
@@ -157,8 +157,8 @@ namespace CalculatorModules.Hydrocyclone
                                 gamma1Group,
                                 gamma2Group,
                                 gamma3Group,
-                                lOverDGroup,
-                                iOverDGroup,
+                                bigLOverDGroup,
+                                smallLOverDGroup,
                                 diOverDGroup,
                                 doOverDGroup
                              };
