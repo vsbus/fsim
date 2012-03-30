@@ -393,6 +393,10 @@ namespace Parameters
 
         public static fsParameterIdentifier OverflowParticleSize
                    = new fsParameterIdentifier("x0_i", "Overflow particle size", fsCharacteristic.Length);
+
+        public static fsParameterIdentifier OverflowSolidsMassFraction
+                   = new fsParameterIdentifier("cmo", "Overflow solids mass fraction", fsCharacteristic.Concentration);
+
         #endregion
     }
 }
