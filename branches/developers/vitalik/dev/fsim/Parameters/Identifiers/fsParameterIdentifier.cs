@@ -379,6 +379,8 @@ namespace Parameters
         public static fsParameterIdentifier SdandardDeviationOfTheGradeEfficiencyCurve
             = new fsParameterIdentifier("sigma_s", "Sdandard deviation of the Grade efficiency curve", fsCharacteristic.NoUnits);
 
+        public static fsParameterIdentifier UnderflowVolumeRateToFeedVolumeFlowRate
+            = new fsParameterIdentifier("rf", "Underflow volume rate to feed volume flow rate", fsCharacteristic.Concentration);
 
         #endregion
     }
