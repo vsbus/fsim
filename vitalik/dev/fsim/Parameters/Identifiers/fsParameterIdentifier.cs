@@ -369,39 +369,35 @@ namespace Parameters
         public static fsParameterIdentifier DiffHeightRate
             = new fsParameterIdentifier("dhc/dt", "Diff. height rate", fsCharacteristic.Speed);
 
-        //
-        public static fsParameterIdentifier MedianParticleSizeOfTheFeed
-            = new fsParameterIdentifier("xg", "Median particle size of the feed", fsCharacteristic.Length);
+        public static fsParameterIdentifier xg
+            = new fsParameterIdentifier("xg", "Median particle size of the feed", fsCharacteristic.ParticleSize);
 
-        public static fsParameterIdentifier StandardDeviationOfTheFeedParticleSizeDistributiom
-            = new fsParameterIdentifier("sigma_g", "Standard deviation of the feed particle size distributiom", fsCharacteristic.NoUnits);
+        public static fsParameterIdentifier sigma_g
+            = new fsParameterIdentifier("sigma_g", "Standard deviation of the feed particle size distribution", fsCharacteristic.NoUnits);
 
-        public static fsParameterIdentifier SdandardDeviationOfTheGradeEfficiencyCurve
+        public static fsParameterIdentifier sigma_s
             = new fsParameterIdentifier("sigma_s", "Sdandard deviation of the Grade efficiency curve", fsCharacteristic.NoUnits);
 
-        public static fsParameterIdentifier UnderflowVolumeRateToFeedVolumeFlowRate
+        public static fsParameterIdentifier rf
             = new fsParameterIdentifier("rf", "Underflow volume rate to feed volume flow rate", fsCharacteristic.Concentration);
 
-        public static fsParameterIdentifier UnderflowSolidsMassFraction
+        public static fsParameterIdentifier cm_u
                    = new fsParameterIdentifier("cm_u", "Underflow solids mass fraction", fsCharacteristic.Concentration);
 
-        public static fsParameterIdentifier UnderflowDiameterToCycloneDiameter
+        public static fsParameterIdentifier DuOverD
                    = new fsParameterIdentifier("Du/D", "Underflow diameter to cyclone diameter", fsCharacteristic.Concentration);
 
         public static fsParameterIdentifier ReducedCutSize
-                   = new fsParameterIdentifier("x’50", "Reduced cut size", fsCharacteristic.Length);
+                   = new fsParameterIdentifier("x’50", "Reduced cut size", fsCharacteristic.ParticleSize);
 
         public static fsParameterIdentifier OverflowParticleSize
-                   = new fsParameterIdentifier("x0_i", "Overflow particle size", fsCharacteristic.Length);
+                   = new fsParameterIdentifier("x0_i", "Overflow particle size", fsCharacteristic.ParticleSize);
 
         public static fsParameterIdentifier OverflowSolidsMassFraction
                    = new fsParameterIdentifier("cmo", "Overflow solids mass fraction", fsCharacteristic.Concentration);
 
         public static fsParameterIdentifier CycloneDiameter
-                   = new fsParameterIdentifier("D", "Cyclone Diameter", fsCharacteristic.Diameter);
-
-        public static fsParameterIdentifier NumberOfCyclones
-            = new fsParameterIdentifier("n", "Number of Cyclones", fsCharacteristic.NoUnits);
+                   = new fsParameterIdentifier("D", "Cyclone Diameter", fsCharacteristic.Length);
 
         public static fsParameterIdentifier NumberOfCyclones
             = new fsParameterIdentifier("n", "Number of Cyclones", fsCharacteristic.NoUnits);
