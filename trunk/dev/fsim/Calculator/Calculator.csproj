@@ -93,6 +93,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialogs\MachineDialog.resx">
       <DependentUpon>MachineDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ShowHideParametersDialog.resx">
       <DependentUpon>ShowHideParametersDialog.cs</DependentUpon>
@@ -100,6 +101,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\UnitsDialog.resx">
       <DependentUpon>UnitsDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
