@@ -224,6 +224,7 @@ namespace CalculatorModules.Hydrocyclone
         #endregion
 
 
-        }
+
+    }
     }
 

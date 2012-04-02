@@ -31,31 +31,34 @@
             this.comboBoxCalculationOption = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView_Result3 = new System.Windows.Forms.DataGridView();
+            this.dataGridView_Result2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView_Result1 = new System.Windows.Forms.DataGridView();
+            this.splitContainerTwoTables = new System.Windows.Forms.SplitContainer();
+            this.ParameterColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitsColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValueColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ParameterColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitsColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValueColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ParameterColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitsColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FeedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnderflowColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OverflowColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView_Result2 = new System.Windows.Forms.DataGridView();
-            this.ParameterColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitsColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValueColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView_Result1 = new System.Windows.Forms.DataGridView();
-            this.ParameterColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitsColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValueColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelRight.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
             this.calculationOptionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result1)).BeginInit();
+            this.splitContainerTwoTables.Panel1.SuspendLayout();
+            this.splitContainerTwoTables.Panel2.SuspendLayout();
+            this.splitContainerTwoTables.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelRight
             // 
-            this.panelRight.Controls.Add(this.dataGridView_Result1);
-            this.panelRight.Controls.Add(this.dataGridView_Result2);
+            this.panelRight.Controls.Add(this.splitContainerTwoTables);
             this.panelRight.Controls.Add(this.dataGridView_Result3);
             // 
             // leftTopPanel
@@ -106,49 +109,10 @@
             this.dataGridView_Result3.Location = new System.Drawing.Point(0, 255);
             this.dataGridView_Result3.Name = "dataGridView_Result3";
             this.dataGridView_Result3.ReadOnly = true;
+            this.dataGridView_Result3.RowHeadersVisible = false;
             this.dataGridView_Result3.RowTemplate.Height = 24;
             this.dataGridView_Result3.Size = new System.Drawing.Size(472, 161);
             this.dataGridView_Result3.TabIndex = 5;
-            // 
-            // ParameterColumn3
-            // 
-            this.ParameterColumn3.HeaderText = "Parameter";
-            this.ParameterColumn3.Name = "ParameterColumn3";
-            this.ParameterColumn3.ReadOnly = true;
-            this.ParameterColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ParameterColumn3.Width = 50;
-            // 
-            // UnitsColumn3
-            // 
-            this.UnitsColumn3.HeaderText = "Units";
-            this.UnitsColumn3.Name = "UnitsColumn3";
-            this.UnitsColumn3.ReadOnly = true;
-            this.UnitsColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.UnitsColumn3.Width = 50;
-            // 
-            // FeedColumn
-            // 
-            this.FeedColumn.HeaderText = "Feed";
-            this.FeedColumn.Name = "FeedColumn";
-            this.FeedColumn.ReadOnly = true;
-            this.FeedColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FeedColumn.Width = 50;
-            // 
-            // UnderflowColumn
-            // 
-            this.UnderflowColumn.HeaderText = "Underflow";
-            this.UnderflowColumn.Name = "UnderflowColumn";
-            this.UnderflowColumn.ReadOnly = true;
-            this.UnderflowColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.UnderflowColumn.Width = 50;
-            // 
-            // OverflowColumn
-            // 
-            this.OverflowColumn.HeaderText = "Overflow";
-            this.OverflowColumn.Name = "OverflowColumn";
-            this.OverflowColumn.ReadOnly = true;
-            this.OverflowColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OverflowColumn.Width = 50;
             // 
             // dataGridView_Result2
             // 
@@ -159,37 +123,14 @@
             this.ParameterColumn2,
             this.UnitsColumn2,
             this.ValueColumn2});
-            this.dataGridView_Result2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView_Result2.Location = new System.Drawing.Point(259, 0);
+            this.dataGridView_Result2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_Result2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_Result2.Name = "dataGridView_Result2";
             this.dataGridView_Result2.ReadOnly = true;
+            this.dataGridView_Result2.RowHeadersVisible = false;
             this.dataGridView_Result2.RowTemplate.Height = 24;
-            this.dataGridView_Result2.Size = new System.Drawing.Size(213, 255);
+            this.dataGridView_Result2.Size = new System.Drawing.Size(232, 255);
             this.dataGridView_Result2.TabIndex = 4;
-            // 
-            // ParameterColumn2
-            // 
-            this.ParameterColumn2.HeaderText = "Parameter";
-            this.ParameterColumn2.Name = "ParameterColumn2";
-            this.ParameterColumn2.ReadOnly = true;
-            this.ParameterColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ParameterColumn2.Width = 50;
-            // 
-            // UnitsColumn2
-            // 
-            this.UnitsColumn2.HeaderText = "Units";
-            this.UnitsColumn2.Name = "UnitsColumn2";
-            this.UnitsColumn2.ReadOnly = true;
-            this.UnitsColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.UnitsColumn2.Width = 50;
-            // 
-            // ValueColumn2
-            // 
-            this.ValueColumn2.HeaderText = "Value";
-            this.ValueColumn2.Name = "ValueColumn2";
-            this.ValueColumn2.ReadOnly = true;
-            this.ValueColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ValueColumn2.Width = 50;
             // 
             // dataGridView_Result1
             // 
@@ -205,33 +146,115 @@
             this.dataGridView_Result1.MinimumSize = new System.Drawing.Size(100, 0);
             this.dataGridView_Result1.Name = "dataGridView_Result1";
             this.dataGridView_Result1.ReadOnly = true;
+            this.dataGridView_Result1.RowHeadersVisible = false;
             this.dataGridView_Result1.RowTemplate.Height = 24;
-            this.dataGridView_Result1.Size = new System.Drawing.Size(259, 255);
+            this.dataGridView_Result1.Size = new System.Drawing.Size(236, 255);
             this.dataGridView_Result1.TabIndex = 3;
+            // 
+            // splitContainerTwoTables
+            // 
+            this.splitContainerTwoTables.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerTwoTables.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerTwoTables.Name = "splitContainerTwoTables";
+            // 
+            // splitContainerTwoTables.Panel1
+            // 
+            this.splitContainerTwoTables.Panel1.Controls.Add(this.dataGridView_Result1);
+            // 
+            // splitContainerTwoTables.Panel2
+            // 
+            this.splitContainerTwoTables.Panel2.Controls.Add(this.dataGridView_Result2);
+            this.splitContainerTwoTables.Size = new System.Drawing.Size(472, 255);
+            this.splitContainerTwoTables.SplitterDistance = 236;
+            this.splitContainerTwoTables.TabIndex = 6;
             // 
             // ParameterColumn1
             // 
+            this.ParameterColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ParameterColumn1.HeaderText = "Parameter";
             this.ParameterColumn1.Name = "ParameterColumn1";
             this.ParameterColumn1.ReadOnly = true;
             this.ParameterColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ParameterColumn1.Width = 50;
             // 
             // UnitsColumn1
             // 
+            this.UnitsColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.UnitsColumn1.HeaderText = "Units";
             this.UnitsColumn1.Name = "UnitsColumn1";
             this.UnitsColumn1.ReadOnly = true;
             this.UnitsColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.UnitsColumn1.Width = 50;
             // 
             // ValueColumn1
             // 
+            this.ValueColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ValueColumn1.HeaderText = "Value";
             this.ValueColumn1.Name = "ValueColumn1";
             this.ValueColumn1.ReadOnly = true;
             this.ValueColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ValueColumn1.Width = 50;
+            // 
+            // ParameterColumn2
+            // 
+            this.ParameterColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ParameterColumn2.HeaderText = "Parameter";
+            this.ParameterColumn2.Name = "ParameterColumn2";
+            this.ParameterColumn2.ReadOnly = true;
+            this.ParameterColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // UnitsColumn2
+            // 
+            this.UnitsColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UnitsColumn2.HeaderText = "Units";
+            this.UnitsColumn2.Name = "UnitsColumn2";
+            this.UnitsColumn2.ReadOnly = true;
+            this.UnitsColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ValueColumn2
+            // 
+            this.ValueColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ValueColumn2.HeaderText = "Value";
+            this.ValueColumn2.Name = "ValueColumn2";
+            this.ValueColumn2.ReadOnly = true;
+            this.ValueColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ParameterColumn3
+            // 
+            this.ParameterColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ParameterColumn3.HeaderText = "Parameter";
+            this.ParameterColumn3.Name = "ParameterColumn3";
+            this.ParameterColumn3.ReadOnly = true;
+            this.ParameterColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // UnitsColumn3
+            // 
+            this.UnitsColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UnitsColumn3.HeaderText = "Units";
+            this.UnitsColumn3.Name = "UnitsColumn3";
+            this.UnitsColumn3.ReadOnly = true;
+            this.UnitsColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // FeedColumn
+            // 
+            this.FeedColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.FeedColumn.HeaderText = "Feed";
+            this.FeedColumn.Name = "FeedColumn";
+            this.FeedColumn.ReadOnly = true;
+            this.FeedColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // UnderflowColumn
+            // 
+            this.UnderflowColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UnderflowColumn.HeaderText = "Underflow";
+            this.UnderflowColumn.Name = "UnderflowColumn";
+            this.UnderflowColumn.ReadOnly = true;
+            this.UnderflowColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // OverflowColumn
+            // 
+            this.OverflowColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OverflowColumn.HeaderText = "Overflow";
+            this.OverflowColumn.Name = "OverflowColumn";
+            this.OverflowColumn.ReadOnly = true;
+            this.OverflowColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // HydrocycloneControl
             // 
@@ -245,6 +268,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result1)).EndInit();
+            this.splitContainerTwoTables.Panel1.ResumeLayout(false);
+            this.splitContainerTwoTables.Panel2.ResumeLayout(false);
+            this.splitContainerTwoTables.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -256,6 +282,7 @@
         private System.Windows.Forms.DataGridView dataGridView_Result3;
         private System.Windows.Forms.DataGridView dataGridView_Result2;
         private System.Windows.Forms.DataGridView dataGridView_Result1;
+        private System.Windows.Forms.SplitContainer splitContainerTwoTables;
         private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitsColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValueColumn1;
