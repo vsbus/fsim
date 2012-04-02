@@ -26,10 +26,10 @@ namespace CalculatorModules.User_Controls
         private List<fsParametersGroup> m_groups;
         private Dictionary<fsParameterIdentifier, fsParametersGroup> m_parameterToGroup;
         private Dictionary<fsParameterIdentifier, fsSimulationModuleParameter> m_values;
-        private fsParameterIdentifier m_xAxisParameter;
+        private fsParameterIdentifier m_iterationParameter;
 
-        private List<fsParameterIdentifier> m_yAxisParameters = new List<fsParameterIdentifier>();
-        private List<fsParameterIdentifier> m_y2AxisParameters = new List<fsParameterIdentifier>();
+        private readonly List<fsParameterIdentifier> m_yAxisParameters = new List<fsParameterIdentifier>();
+        private readonly List<fsParameterIdentifier> m_y2AxisParameters = new List<fsParameterIdentifier>();
 
         #endregion
 
@@ -57,11 +57,11 @@ namespace CalculatorModules.User_Controls
         }
 
         public void SetDefaultDiagram(
-            fsParameterIdentifier xAxisParameter,
+            fsParameterIdentifier iterationParameter,
             fsParameterIdentifier yAxisParameter,
             fsParameterIdentifier y2AxisParameter)
         {
-            m_xAxisParameter = xAxisParameter;
+            m_iterationParameter = iterationParameter;
             m_yAxisParameters.Clear();
             m_yAxisParameters.Add(yAxisParameter);
             m_y2AxisParameters.Clear();
@@ -81,6 +81,7 @@ namespace CalculatorModules.User_Controls
 
         private void RefreshOutput()
         {
+            RefreshXAxisList(m_xAxisComboBox);
             RefreshYAxisList(m_yAxisParameters, m_yAxisList);
             RefreshYAxisList(m_y2AxisParameters, m_y2AxisList);
 
@@ -93,9 +94,9 @@ namespace CalculatorModules.User_Controls
             {
                 m_inputRefreshing = true;
 
-                RefreshXAxisList();
+                RefreshIterationList();
 
-                m_xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
+                m_iterationParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == iterationList.Text);
 
                 RefreshRangesBoxes();
 
@@ -112,8 +113,8 @@ namespace CalculatorModules.User_Controls
 
         private void RefreshRangesBoxes()
         {
-            fsRange range = m_values[m_xAxisParameter].Range;
-            double factor = m_values[m_xAxisParameter].Unit.Coefficient;
+            fsRange range = m_values[m_iterationParameter].Range;
+            double factor = m_values[m_iterationParameter].Unit.Coefficient;
             rangeFrom.Text = (range.From / factor).ToString();
             rangeTo.Text = (range.To / factor).ToString();
         }
@@ -126,7 +127,7 @@ namespace CalculatorModules.User_Controls
             var machiningSettingsInputData = new List<string>();
             foreach (fsParametersGroup group in m_groups)
             {
-                if (group.Parameters.Contains(m_xAxisParameter))
+                if (group.Parameters.Contains(m_iterationParameter))
                     continue;
 
                 if (group.IsInput)
@@ -155,26 +156,26 @@ namespace CalculatorModules.User_Controls
             inputsTextBox.Lines = lines.ToArray();
         }
 
-        private void RefreshXAxisList()
+        private void RefreshIterationList()
         {
-            xAxisList.Items.Clear();
+            iterationList.Items.Clear();
             foreach (fsParametersGroup group in m_groups)
             {
                 if (group.IsInput)
                 {
                     foreach (fsParameterIdentifier parameter in group.Parameters)
                     {
-                        xAxisList.Items.Add(parameter.Name);
+                        iterationList.Items.Add(parameter.Name);
                     }
                 }
             }
-            if (m_xAxisParameter != null && xAxisList.Items.Contains(m_xAxisParameter.Name))
+            if (m_iterationParameter != null && iterationList.Items.Contains(m_iterationParameter.Name))
             {
-                xAxisList.SelectedIndex = xAxisList.Items.IndexOf(m_xAxisParameter.Name);
+                iterationList.SelectedIndex = iterationList.Items.IndexOf(m_iterationParameter.Name);
             }
             else
             {
-                xAxisList.SelectedItem = xAxisList.Items[0];
+                iterationList.SelectedItem = iterationList.Items[0];
             }
         }
 
@@ -192,7 +193,7 @@ namespace CalculatorModules.User_Controls
             {
                 detalization = 2;
             }
-            double factor = m_values[m_xAxisParameter].Unit.Coefficient;
+            double factor = m_values[m_iterationParameter].Unit.Coefficient;
             fsValue from = fsValue.StringToValue(rangeFrom.Text) * factor;
             fsValue to = fsValue.StringToValue(rangeTo.Text) * factor;
 
@@ -202,11 +203,11 @@ namespace CalculatorModules.User_Controls
                 Dictionary<fsParameterIdentifier, fsSimulationModuleParameter> currentValues =
                     m_values.ToDictionary(pair => pair.Key, pair => new fsSimulationModuleParameter(pair.Value));
 
-                fsParametersGroup xInitialgroup = m_parameterToGroup[m_xAxisParameter];
-                var xNewGroup = new fsParametersGroup(xInitialgroup) {Representator = m_xAxisParameter};
+                fsParametersGroup xInitialgroup = m_parameterToGroup[m_iterationParameter];
+                var xNewGroup = new fsParametersGroup(xInitialgroup) {Representator = m_iterationParameter};
                 SubstituteGroup(m_parameterToGroup, xInitialgroup, xNewGroup);
 
-                currentValues[m_xAxisParameter].Value = from + (to - from) * i / detalization;
+                currentValues[m_iterationParameter].Value = from + (to - from) * i / detalization;
                 fsCalculationProcessor.ProcessCalculatorParameters(currentValues, m_parameterToGroup, m_calculators);
 
                 SubstituteGroup(m_parameterToGroup, xNewGroup, xInitialgroup);
@@ -249,11 +250,11 @@ namespace CalculatorModules.User_Controls
                             select GetArray(parameter));
         }
 
-        private fsDiagramWithTable.fsNamedArray GetArray(fsParameterIdentifier parameter)
+        private fsDiagramWithTable.fsNamedArray GetArray(fsParameterIdentifier yParameter)
         {
-            List<fsSimulationModuleParameter> values = m_data[parameter];
+            List<fsSimulationModuleParameter> values = m_data[yParameter];
             var array = new fsDiagramWithTable.fsNamedArray
-                            {Name = parameter.Name + " [" + m_data[parameter][0].Unit.Name + "]", Array = new fsValue[values.Count]};
+                            {Name = yParameter.Name + " [" + m_data[yParameter][0].Unit.Name + "]", Array = new fsValue[values.Count]};
             for (int i = 0; i < values.Count; ++i)
             {
                 array.Array[i] = values[i].GetValueInUnits();
@@ -264,6 +265,25 @@ namespace CalculatorModules.User_Controls
         #endregion
 
         #region Refresh Output
+
+        private void RefreshXAxisList(ComboBox xAxisComboBox)
+        {
+            if (m_inputRefreshing)
+                return;
+
+            string oldText = xAxisComboBox.Text;
+            xAxisComboBox.Items.Clear();
+            IEnumerable<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter> classifyiedParameters =
+                GetSelectionParameters(m_values.Keys);
+            foreach (fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter classifyiedParameter in classifyiedParameters)
+            {
+                if (classifyiedParameter.Kind == fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind.CalculatedVariableParameter)
+                {
+                    xAxisComboBox.Items.Add(classifyiedParameter.Identifier.Name);
+                }
+            }
+            xAxisComboBox.Text = xAxisComboBox.Items.Contains(oldText) ? oldText : m_iterationParameter.Name;
+        }
 
         private void RefreshYAxisList(IEnumerable<fsParameterIdentifier> parameters, ListView yAxisListView)
         {
@@ -368,7 +388,16 @@ namespace CalculatorModules.User_Controls
             if (m_data.Count == 0)
                 return;
 
-            fsDiagramWithTable1.SetXAxis(GetArray(m_xAxisParameter));
+            fsParameterIdentifier xParameter = m_iterationParameter;
+            foreach (fsParameterIdentifier parameterIdentifier in m_values.Keys)
+            {
+                if (parameterIdentifier.Name == m_xAxisComboBox.Text)
+                {
+                    xParameter = parameterIdentifier;
+                    break;
+                }
+            }
+            fsDiagramWithTable1.SetXAxis(GetArray(xParameter));
 
             fsDiagramWithTable1.ClearYAxis();
             foreach (fsDiagramWithTable.fsNamedArray curve in m_yCurves)
@@ -414,9 +443,9 @@ namespace CalculatorModules.User_Controls
 
         #region UI Event
 
-        private void XAxisListSelectedIndexChanged(object sender, EventArgs e)
+        private void IterationListSelectedIndexChanged(object sender, EventArgs e)
         {
-            m_xAxisParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == xAxisList.Text);
+            m_iterationParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == iterationList.Text);
             RefreshRangesBoxes();
             RefreshInputsBox();
             CalculateData();
@@ -428,18 +457,23 @@ namespace CalculatorModules.User_Controls
             UpdateDiagram();
         }
 
+        private void XAxisComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateDiagram();
+        }
+
         private void RangeFromTextChanged(object sender, EventArgs e)
         {
-            m_values[m_xAxisParameter].Range.From = fsValue.StringToValue(rangeFrom.Text) *
-                                                    m_values[m_xAxisParameter].Unit.Coefficient;
+            m_values[m_iterationParameter].Range.From = fsValue.StringToValue(rangeFrom.Text) *
+                                                    m_values[m_iterationParameter].Unit.Coefficient;
             CalculateData();
             RefreshOutput();
         }
 
         private void RangeToTextChanged(object sender, EventArgs e)
         {
-            m_values[m_xAxisParameter].Range.To = fsValue.StringToValue(rangeTo.Text) *
-                                                  m_values[m_xAxisParameter].Unit.Coefficient;
+            m_values[m_iterationParameter].Range.To = fsValue.StringToValue(rangeTo.Text) *
+                                                  m_values[m_iterationParameter].Unit.Coefficient;
             CalculateData();
             RefreshOutput();
         }
@@ -495,15 +529,14 @@ namespace CalculatorModules.User_Controls
             return selectionParameters;
         }
 
-        private List<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter> GetSelectionParameters(IEnumerable<fsParameterIdentifier> parameters)
+        private IEnumerable<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter> GetSelectionParameters(IEnumerable<fsParameterIdentifier> parameters)
         {
             var selectionParameters = new List<fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter>();
             foreach (fsParameterIdentifier parameter in parameters)
             {
                 fsParametersGroup group = m_parameterToGroup[parameter];
-                bool isChecked = IsContains(m_yAxisList.CheckedItems, parameter.Name);
                 fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind kind;
-                if (parameter == m_xAxisParameter)
+                if (parameter == m_iterationParameter)
                 {
                     kind =
                         fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind.
