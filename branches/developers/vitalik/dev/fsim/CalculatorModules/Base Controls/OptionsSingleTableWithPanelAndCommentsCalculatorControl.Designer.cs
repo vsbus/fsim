@@ -38,13 +38,19 @@
             this.splitContainerMain.SuspendLayout();
             this.SuspendLayout();
             // 
+            // leftTopPanel
+            // 
+            this.leftTopPanel.Size = new System.Drawing.Size(837, 59);
+            // 
             // calculationOptionsPanel
             // 
             this.calculationOptionsPanel.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.calculationOptionsPanel.Size = new System.Drawing.Size(769, 59);
             // 
             // tablesPanel
             // 
             this.tablesPanel.Controls.Add(this.splitContainerMain);
+            this.tablesPanel.Size = new System.Drawing.Size(837, 416);
             // 
             // panelRight
             // 
@@ -52,7 +58,7 @@
             this.panelRight.Location = new System.Drawing.Point(0, 0);
             this.panelRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(520, 310);
+            this.panelRight.Size = new System.Drawing.Size(472, 416);
             this.panelRight.TabIndex = 1;
             // 
             // splitContainerMain
@@ -69,8 +75,8 @@
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.panelRight);
-            this.splitContainerMain.Size = new System.Drawing.Size(1049, 310);
-            this.splitContainerMain.SplitterDistance = 525;
+            this.splitContainerMain.Size = new System.Drawing.Size(837, 416);
+            this.splitContainerMain.SplitterDistance = 361;
             this.splitContainerMain.TabIndex = 2;
             // 
             // dataGrid
@@ -80,7 +86,7 @@
             this.dataGrid.Location = new System.Drawing.Point(0, 0);
             this.dataGrid.Margin = new System.Windows.Forms.Padding(4);
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(525, 310);
+            this.dataGrid.Size = new System.Drawing.Size(361, 416);
             this.dataGrid.TabIndex = 0;
             // 
             // OptionsSingleTableWithPanelAndCommentsCalculatorControl
@@ -89,6 +95,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "OptionsSingleTableWithPanelAndCommentsCalculatorControl";
+            this.Size = new System.Drawing.Size(837, 475);
             this.leftTopPanel.ResumeLayout(false);
             this.tablesPanel.ResumeLayout(false);
             this.splitContainerMain.Panel1.ResumeLayout(false);
