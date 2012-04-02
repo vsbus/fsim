@@ -31,26 +31,18 @@
             this.comboBoxCalculationOption = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView_Result3 = new System.Windows.Forms.DataGridView();
+            this.splitContainerTwoTables = new System.Windows.Forms.SplitContainer();
+            this.fsParametersWithValuesTable1 = new fsUIControls.fsParametersWithValuesTable();
+            this.fsParametersWithValuesTable2 = new fsUIControls.fsParametersWithValuesTable();
             this.ParameterColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitsColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FeedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnderflowColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OverflowColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView_Result2 = new System.Windows.Forms.DataGridView();
-            this.ParameterColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitsColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValueColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView_Result1 = new System.Windows.Forms.DataGridView();
-            this.ParameterColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitsColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValueColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.splitContainerTwoTables = new System.Windows.Forms.SplitContainer();
+            this.FeedColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
+            this.UnderflowColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
+            this.OverflowColumn = new fmDataGrid.fmDataGridViewNumericalTextBoxColumn();
             this.panelRight.SuspendLayout();
             this.leftTopPanel.SuspendLayout();
             this.calculationOptionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result1)).BeginInit();
             this.splitContainerTwoTables.Panel1.SuspendLayout();
             this.splitContainerTwoTables.Panel2.SuspendLayout();
             this.splitContainerTwoTables.SuspendLayout();
@@ -99,6 +91,7 @@
             this.dataGridView_Result3.AllowUserToAddRows = false;
             this.dataGridView_Result3.AllowUserToDeleteRows = false;
             this.dataGridView_Result3.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView_Result3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView_Result3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Result3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ParameterColumn3,
@@ -114,6 +107,41 @@
             this.dataGridView_Result3.RowTemplate.Height = 24;
             this.dataGridView_Result3.Size = new System.Drawing.Size(472, 161);
             this.dataGridView_Result3.TabIndex = 5;
+            // 
+            // splitContainerTwoTables
+            // 
+            this.splitContainerTwoTables.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerTwoTables.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerTwoTables.Name = "splitContainerTwoTables";
+            // 
+            // splitContainerTwoTables.Panel1
+            // 
+            this.splitContainerTwoTables.Panel1.Controls.Add(this.fsParametersWithValuesTable1);
+            // 
+            // splitContainerTwoTables.Panel2
+            // 
+            this.splitContainerTwoTables.Panel2.Controls.Add(this.fsParametersWithValuesTable2);
+            this.splitContainerTwoTables.Size = new System.Drawing.Size(472, 255);
+            this.splitContainerTwoTables.SplitterDistance = 236;
+            this.splitContainerTwoTables.TabIndex = 6;
+            // 
+            // fsParametersWithValuesTable1
+            // 
+            this.fsParametersWithValuesTable1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fsParametersWithValuesTable1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.fsParametersWithValuesTable1.Location = new System.Drawing.Point(0, 0);
+            this.fsParametersWithValuesTable1.Name = "fsParametersWithValuesTable1";
+            this.fsParametersWithValuesTable1.Size = new System.Drawing.Size(236, 255);
+            this.fsParametersWithValuesTable1.TabIndex = 4;
+            // 
+            // fsParametersWithValuesTable2
+            // 
+            this.fsParametersWithValuesTable2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fsParametersWithValuesTable2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.fsParametersWithValuesTable2.Location = new System.Drawing.Point(0, 0);
+            this.fsParametersWithValuesTable2.Name = "fsParametersWithValuesTable2";
+            this.fsParametersWithValuesTable2.Size = new System.Drawing.Size(232, 255);
+            this.fsParametersWithValuesTable2.TabIndex = 5;
             // 
             // ParameterColumn3
             // 
@@ -137,7 +165,7 @@
             this.FeedColumn.HeaderText = "Feed";
             this.FeedColumn.Name = "FeedColumn";
             this.FeedColumn.ReadOnly = true;
-            this.FeedColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FeedColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // UnderflowColumn
             // 
@@ -145,7 +173,7 @@
             this.UnderflowColumn.HeaderText = "Underflow";
             this.UnderflowColumn.Name = "UnderflowColumn";
             this.UnderflowColumn.ReadOnly = true;
-            this.UnderflowColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.UnderflowColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // OverflowColumn
             // 
@@ -153,109 +181,7 @@
             this.OverflowColumn.HeaderText = "Overflow";
             this.OverflowColumn.Name = "OverflowColumn";
             this.OverflowColumn.ReadOnly = true;
-            this.OverflowColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridView_Result2
-            // 
-            this.dataGridView_Result2.AllowUserToAddRows = false;
-            this.dataGridView_Result2.AllowUserToDeleteRows = false;
-            this.dataGridView_Result2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Result2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ParameterColumn2,
-            this.UnitsColumn2,
-            this.ValueColumn2});
-            this.dataGridView_Result2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_Result2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_Result2.Name = "dataGridView_Result2";
-            this.dataGridView_Result2.ReadOnly = true;
-            this.dataGridView_Result2.RowHeadersVisible = false;
-            this.dataGridView_Result2.RowTemplate.Height = 24;
-            this.dataGridView_Result2.Size = new System.Drawing.Size(232, 255);
-            this.dataGridView_Result2.TabIndex = 4;
-            // 
-            // ParameterColumn2
-            // 
-            this.ParameterColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ParameterColumn2.HeaderText = "Parameter";
-            this.ParameterColumn2.Name = "ParameterColumn2";
-            this.ParameterColumn2.ReadOnly = true;
-            this.ParameterColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // UnitsColumn2
-            // 
-            this.UnitsColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UnitsColumn2.HeaderText = "Units";
-            this.UnitsColumn2.Name = "UnitsColumn2";
-            this.UnitsColumn2.ReadOnly = true;
-            this.UnitsColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ValueColumn2
-            // 
-            this.ValueColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ValueColumn2.HeaderText = "Value";
-            this.ValueColumn2.Name = "ValueColumn2";
-            this.ValueColumn2.ReadOnly = true;
-            this.ValueColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridView_Result1
-            // 
-            this.dataGridView_Result1.AllowUserToAddRows = false;
-            this.dataGridView_Result1.AllowUserToDeleteRows = false;
-            this.dataGridView_Result1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Result1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ParameterColumn1,
-            this.UnitsColumn1,
-            this.ValueColumn1});
-            this.dataGridView_Result1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_Result1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_Result1.MinimumSize = new System.Drawing.Size(100, 0);
-            this.dataGridView_Result1.Name = "dataGridView_Result1";
-            this.dataGridView_Result1.ReadOnly = true;
-            this.dataGridView_Result1.RowHeadersVisible = false;
-            this.dataGridView_Result1.RowTemplate.Height = 24;
-            this.dataGridView_Result1.Size = new System.Drawing.Size(236, 255);
-            this.dataGridView_Result1.TabIndex = 3;
-            // 
-            // ParameterColumn1
-            // 
-            this.ParameterColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ParameterColumn1.HeaderText = "Parameter";
-            this.ParameterColumn1.Name = "ParameterColumn1";
-            this.ParameterColumn1.ReadOnly = true;
-            this.ParameterColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // UnitsColumn1
-            // 
-            this.UnitsColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UnitsColumn1.HeaderText = "Units";
-            this.UnitsColumn1.Name = "UnitsColumn1";
-            this.UnitsColumn1.ReadOnly = true;
-            this.UnitsColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ValueColumn1
-            // 
-            this.ValueColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ValueColumn1.HeaderText = "Value";
-            this.ValueColumn1.Name = "ValueColumn1";
-            this.ValueColumn1.ReadOnly = true;
-            this.ValueColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // splitContainerTwoTables
-            // 
-            this.splitContainerTwoTables.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerTwoTables.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerTwoTables.Name = "splitContainerTwoTables";
-            // 
-            // splitContainerTwoTables.Panel1
-            // 
-            this.splitContainerTwoTables.Panel1.Controls.Add(this.dataGridView_Result1);
-            // 
-            // splitContainerTwoTables.Panel2
-            // 
-            this.splitContainerTwoTables.Panel2.Controls.Add(this.dataGridView_Result2);
-            this.splitContainerTwoTables.Size = new System.Drawing.Size(472, 255);
-            this.splitContainerTwoTables.SplitterDistance = 236;
-            this.splitContainerTwoTables.TabIndex = 6;
+            this.OverflowColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // HydrocycloneControl
             // 
@@ -267,8 +193,6 @@
             this.calculationOptionsPanel.ResumeLayout(false);
             this.calculationOptionsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Result1)).EndInit();
             this.splitContainerTwoTables.Panel1.ResumeLayout(false);
             this.splitContainerTwoTables.Panel2.ResumeLayout(false);
             this.splitContainerTwoTables.ResumeLayout(false);
@@ -281,19 +205,13 @@
         private System.Windows.Forms.ComboBox comboBoxCalculationOption;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView_Result3;
-        private System.Windows.Forms.DataGridView dataGridView_Result2;
-        private System.Windows.Forms.DataGridView dataGridView_Result1;
         private System.Windows.Forms.SplitContainer splitContainerTwoTables;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ValueColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ValueColumn2;
+        private fsUIControls.fsParametersWithValuesTable fsParametersWithValuesTable1;
+        private fsUIControls.fsParametersWithValuesTable fsParametersWithValuesTable2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ParameterColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitsColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FeedColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnderflowColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OverflowColumn;
+        private fmDataGrid.fmDataGridViewNumericalTextBoxColumn FeedColumn;
+        private fmDataGrid.fmDataGridViewNumericalTextBoxColumn UnderflowColumn;
+        private fmDataGrid.fmDataGridViewNumericalTextBoxColumn OverflowColumn;
     }
 }
