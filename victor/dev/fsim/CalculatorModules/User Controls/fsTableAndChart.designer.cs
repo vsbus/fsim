@@ -97,6 +97,7 @@
             // yAxisSplitContainer
             // 
             this.yAxisSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.yAxisSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.yAxisSplitContainer.IsSplitterFixed = true;
             this.yAxisSplitContainer.Location = new System.Drawing.Point(0, 0);
             this.yAxisSplitContainer.Name = "yAxisSplitContainer";
@@ -286,8 +287,10 @@
             // 
             // iterationList
             // 
+            this.iterationList.DropDownHeight = 5000;
             this.iterationList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.iterationList.FormattingEnabled = true;
+            this.iterationList.IntegralHeight = false;
             this.iterationList.Location = new System.Drawing.Point(48, 7);
             this.iterationList.Name = "iterationList";
             this.iterationList.Size = new System.Drawing.Size(97, 21);
