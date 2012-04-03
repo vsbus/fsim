@@ -198,7 +198,7 @@ namespace CalculatorModules.User_Controls
             fsValue to = fsValue.StringToValue(rangeTo.Text) * factor;
 
             m_data = new Dictionary<fsParameterIdentifier, List<fsSimulationModuleParameter>>();
-            for (int i = 0; i < detalization; ++i)
+            for (int i = 0; i <= detalization; ++i)
             {
                 Dictionary<fsParameterIdentifier, fsSimulationModuleParameter> currentValues =
                     m_values.ToDictionary(pair => pair.Key, pair => new fsSimulationModuleParameter(pair.Value));
@@ -397,21 +397,111 @@ namespace CalculatorModules.User_Controls
                     break;
                 }
             }
-            fsDiagramWithTable1.SetXAxis(GetArray(xParameter));
+            fsDiagramWithTable.fsNamedArray xArray = GetArray(xParameter);
+            fsDiagramWithTable.fsNamedArray niceXArray = MakeIncreasingNiceNodes(xArray);
+
+            fsDiagramWithTable1.SetXAxis(niceXArray);
 
             fsDiagramWithTable1.ClearYAxis();
             foreach (fsDiagramWithTable.fsNamedArray curve in m_yCurves)
             {
-                fsDiagramWithTable1.AddYAxis(curve);
+                fsDiagramWithTable1.AddYAxis(CalculteWithLinearization(curve, xArray, niceXArray));
             }
 
             fsDiagramWithTable1.ClearY2Axis();
             foreach (fsDiagramWithTable.fsNamedArray curve in m_y2Curves)
             {
-                fsDiagramWithTable1.AddY2Axis(curve);
+                fsDiagramWithTable1.AddY2Axis(CalculteWithLinearization(curve, xArray, niceXArray));
             }
 
             fsDiagramWithTable1.Redraw();
+        }
+
+        private static fsDiagramWithTable.fsNamedArray MakeIncreasingNiceNodes(fsDiagramWithTable.fsNamedArray xArray)
+        {
+            double[] x = xArray.GetDoublesArray();
+            if (x[0] > x[x.Length - 1])
+            {
+                x = x.Reverse().ToArray();
+            }
+            double low = x[0];
+            double high = x[x.Length - 1];
+            if (high == low)
+            {
+                var result = new fsDiagramWithTable.fsNamedArray
+                                 {
+                                     Name = xArray.Name,
+                                     Array = new fsValue[xArray.Array.Length]
+                                 };
+                xArray.Array.CopyTo(result.Array, 0);
+                return result;
+            }
+            double eps = (high - low) * 1e-9;
+            var steps = new[]
+                            {
+                                1,
+                                2,
+                                2.5,
+                                5
+                            };
+            for (var deg = (int)Math.Ceiling(Math.Log10((high - low) / steps[steps.Length - 1])); ; --deg)
+            {
+                for (int i = steps.Length - 1; i >= 0; --i)
+                {
+                    double step = steps[i] * Math.Pow(10.0, deg);
+                    var nodesAmount = (int)(Math.Ceiling(high / step) - Math.Floor(low / step));
+                    if (nodesAmount >= x.Length)
+                    {
+                        var nodes = new List<fsValue> {new fsValue(low)};
+                        for (int j = 0; ; ++j)
+                        {
+                            double node = (Math.Ceiling(low / step + eps) + j) * step;
+                            if (node >= high)
+                            {
+                                break;
+                            }
+                            nodes.Add(new fsValue(node));
+                        }
+                        nodes.Add(new fsValue(high));
+                        var result = new fsDiagramWithTable.fsNamedArray {Name = xArray.Name, Array = nodes.ToArray()};
+                        return result;
+                    }
+                }
+            }
+        }
+
+        private static fsDiagramWithTable.fsNamedArray CalculteWithLinearization(
+            fsDiagramWithTable.fsNamedArray yArray,
+            fsDiagramWithTable.fsNamedArray xArray,
+            fsDiagramWithTable.fsNamedArray niceXArray)
+        {
+            double[] x = xArray.GetDoublesArray();
+            double[] y = yArray.GetDoublesArray();
+            if (x[0] > x[x.Length - 1])
+            {
+                x = x.Reverse().ToArray();
+                y = y.Reverse().ToArray();
+            }
+
+            var result = new fsDiagramWithTable.fsNamedArray
+                             {
+                                 Name = yArray.Name,
+                                 Array = new fsValue[niceXArray.Array.Length]
+                             };
+            for (int i = 0, j = 0; i < niceXArray.Array.Length; ++i)
+            {
+                double currentX = niceXArray.Array[i].Value;
+                while (x[j + 1] < currentX)
+                {
+                    ++j;
+                }
+                double xLow = x[j];
+                double xHigh = x[j + 1];
+                double yLow = y[j];
+                double yHigh = y[j + 1];
+                result.Array[i] = new fsValue(yLow + (currentX - xLow) / (xHigh - xLow) * (yHigh - yLow));
+            }
+            return result;
         }
 
         #endregion
