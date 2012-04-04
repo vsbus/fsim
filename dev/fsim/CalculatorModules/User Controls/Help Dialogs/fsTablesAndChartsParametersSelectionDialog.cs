@@ -98,17 +98,11 @@ namespace CalculatorModules.User_Controls.Help_Dialogs
             if (m_parameters != null)
             {
                 m_itemToParameter = new Dictionary<ListViewItem, fsYAxisParameterWithChecking>();
-                materialParametersListView.Items.Clear();
-                otherParametersListView.Items.Clear();
+                materialVariablesListView.Items.Clear();
+                otherVariablesListView.Items.Clear();
 
-                if (inputsCheckBox.Checked)
-                {
-                    AddParametersToLists(fsYAxisParameter.fsYParameterKind.InputParameter);
-                }
-                if (constantsCheckBox.Checked)
-                {
-                    AddParametersToLists(fsYAxisParameter.fsYParameterKind.CalculatedConstantParameter);
-                }
+                AddParametersToLists(fsYAxisParameter.fsYParameterKind.InputParameter);
+                AddParametersToLists(fsYAxisParameter.fsYParameterKind.CalculatedConstantParameter);
                 AddParametersToLists(fsYAxisParameter.fsYParameterKind.CalculatedVariableParameter);
             }
         }
@@ -158,14 +152,23 @@ namespace CalculatorModules.User_Controls.Help_Dialogs
                                           Checked = selectionParameter.IsChecked,
                                           ForeColor = m_kindToColor[selectionParameter.Kind]
                                       };
+                    ListView listView = null;
                     if (materialParameters.Contains(selectionParameter.Identifier))
                     {
-                        materialParametersListView.Items.Add(newItem);
+                        listView = selectionParameter.Kind ==
+                                   fsYAxisParameter.fsYParameterKind.CalculatedVariableParameter
+                                       ? materialVariablesListView
+                                       : materialConstantsListView;
                     }
                     else
                     {
-                        otherParametersListView.Items.Add(newItem);
+                        listView = selectionParameter.Kind ==
+                                   fsYAxisParameter.fsYParameterKind.CalculatedVariableParameter
+                                       ? otherVariablesListView
+                                       : otherConstantsListView;
                     }
+
+                    listView.Items.Add(newItem);
                     m_itemToParameter[newItem] = selectionParameter;
                 }
             }
