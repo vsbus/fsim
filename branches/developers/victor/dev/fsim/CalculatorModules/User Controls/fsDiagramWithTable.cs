@@ -110,18 +110,35 @@ namespace CalculatorModules.User_Controls
                 graphYAxis.Color = color;
                 graphYAxis.Title.Text = "";
 
-                foreach (fsNamedArray curve in yAxis)
+                var maxValues = new double[yAxis.Count];
+                for (int i = 0; i < maxValues.Length; ++i)
                 {
+                    maxValues[i] = 0;
+                    foreach (double value in yAxis[i].GetDoublesArray())
+                    {
+                        maxValues[i] = Math.Max(maxValues[i], Math.Abs(value));
+                    }
+                }
+
+                for (int i = 0; i < yAxis.Count; ++i)
+                {
+                    fsNamedArray curve = yAxis[i];
                     string name = curve.Name;
                     var pointList = new PointPairList();
-                    for (int i = 0; i < curve.Array.Length; ++i)
+                    double scale = Math.Pow(10, Math.Round(Math.Log10(maxValues[0] / maxValues[i])));
+                    for (int pointIndex = 0; pointIndex < curve.Array.Length; ++pointIndex)
                     {
-                        if (curve.Array[i].Defined)
+                        if (curve.Array[pointIndex].Defined)
                         {
-                            pointList.Add(m_xAxis.Array[i].Value, curve.Array[i].Value);
+                            pointList.Add(m_xAxis.Array[pointIndex].Value, curve.Array[pointIndex].Value * scale);
                         }
                     }
-                    LineItem zedCurve = fmZedGraphControl1.GraphPane.AddCurve(name, pointList, color, SymbolType.None);
+                    string curveName = name;
+                    if (scale != 1.0)
+                    {
+                        curveName += " * " + scale;
+                    }
+                    LineItem zedCurve = fmZedGraphControl1.GraphPane.AddCurve(curveName, pointList, color, SymbolType.None);
                     zedCurve.IsY2Axis = isY2Axis;
                     zedCurve.Line.IsAntiAlias = true;
                 }
