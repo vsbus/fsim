@@ -70,7 +70,6 @@
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(3, 16);
             this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
@@ -82,7 +81,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Size = new System.Drawing.Size(491, 377);
-            this.splitContainer1.SplitterDistance = 139;
+            this.splitContainer1.SplitterDistance = 158;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -91,6 +90,7 @@
             this.splitContainer2.IsSplitterFixed = true;
             this.splitContainer2.Location = new System.Drawing.Point(0, 23);
             this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer2.Panel1
             // 
@@ -99,8 +99,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.materialConstantsListView);
-            this.splitContainer2.Size = new System.Drawing.Size(491, 116);
-            this.splitContainer2.SplitterDistance = 231;
+            this.splitContainer2.Size = new System.Drawing.Size(158, 354);
+            this.splitContainer2.SplitterDistance = 163;
             this.splitContainer2.TabIndex = 2;
             // 
             // materialVariablesListView
@@ -109,7 +109,7 @@
             this.materialVariablesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialVariablesListView.Location = new System.Drawing.Point(0, 0);
             this.materialVariablesListView.Name = "materialVariablesListView";
-            this.materialVariablesListView.Size = new System.Drawing.Size(231, 116);
+            this.materialVariablesListView.Size = new System.Drawing.Size(158, 163);
             this.materialVariablesListView.TabIndex = 0;
             this.materialVariablesListView.UseCompatibleStateImageBehavior = false;
             this.materialVariablesListView.View = System.Windows.Forms.View.List;
@@ -121,7 +121,7 @@
             this.materialConstantsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialConstantsListView.Location = new System.Drawing.Point(0, 0);
             this.materialConstantsListView.Name = "materialConstantsListView";
-            this.materialConstantsListView.Size = new System.Drawing.Size(256, 116);
+            this.materialConstantsListView.Size = new System.Drawing.Size(158, 187);
             this.materialConstantsListView.TabIndex = 0;
             this.materialConstantsListView.UseCompatibleStateImageBehavior = false;
             this.materialConstantsListView.View = System.Windows.Forms.View.List;
@@ -131,7 +131,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(491, 23);
+            this.label1.Size = new System.Drawing.Size(158, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Material Parameters";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -142,6 +142,7 @@
             this.splitContainer3.IsSplitterFixed = true;
             this.splitContainer3.Location = new System.Drawing.Point(0, 23);
             this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer3.Panel1
             // 
@@ -150,8 +151,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.otherConstantsListView);
-            this.splitContainer3.Size = new System.Drawing.Size(491, 211);
-            this.splitContainer3.SplitterDistance = 231;
+            this.splitContainer3.Size = new System.Drawing.Size(329, 354);
+            this.splitContainer3.SplitterDistance = 163;
             this.splitContainer3.TabIndex = 2;
             // 
             // otherVariablesListView
@@ -160,7 +161,7 @@
             this.otherVariablesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.otherVariablesListView.Location = new System.Drawing.Point(0, 0);
             this.otherVariablesListView.Name = "otherVariablesListView";
-            this.otherVariablesListView.Size = new System.Drawing.Size(231, 211);
+            this.otherVariablesListView.Size = new System.Drawing.Size(329, 163);
             this.otherVariablesListView.TabIndex = 0;
             this.otherVariablesListView.UseCompatibleStateImageBehavior = false;
             this.otherVariablesListView.View = System.Windows.Forms.View.List;
@@ -172,7 +173,7 @@
             this.otherConstantsListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.otherConstantsListView.Location = new System.Drawing.Point(0, 0);
             this.otherConstantsListView.Name = "otherConstantsListView";
-            this.otherConstantsListView.Size = new System.Drawing.Size(256, 211);
+            this.otherConstantsListView.Size = new System.Drawing.Size(329, 187);
             this.otherConstantsListView.TabIndex = 0;
             this.otherConstantsListView.UseCompatibleStateImageBehavior = false;
             this.otherConstantsListView.View = System.Windows.Forms.View.List;
@@ -182,7 +183,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(491, 23);
+            this.label2.Size = new System.Drawing.Size(329, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "Machine Setting Parameters";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
