@@ -539,6 +539,7 @@ namespace CalculatorModules.User_Controls
             RefreshRangesBoxes();
             RefreshInputsBox();
             CalculateData();
+            m_xAxisComboBox.Text = m_iterationParameter.Name;  // set the same x axis parameter as iteration parameter
             RefreshOutput();
         }
 
