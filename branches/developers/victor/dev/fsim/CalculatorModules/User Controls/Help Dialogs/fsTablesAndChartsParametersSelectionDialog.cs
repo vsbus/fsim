@@ -84,6 +84,21 @@ namespace CalculatorModules.User_Controls.Help_Dialogs
 
         private void OkButtonClick(object sender, EventArgs e)
         {
+            var lists = new[]
+                            {
+                                materialVariablesListView,
+                                materialConstantsListView,
+                                otherVariablesListView,
+                                otherConstantsListView
+                            };
+            foreach (ListView listView in lists)
+            {
+                foreach (ListViewItem item in listView.Items)
+                {
+                    m_itemToParameter[item].IsChecked = item.Checked;
+                }
+            }
+
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -177,24 +192,6 @@ namespace CalculatorModules.User_Controls.Help_Dialogs
         internal List<fsParameterIdentifier> GetCheckedParameters()
         {
             return (from yParameter in m_parameters where yParameter.IsChecked select yParameter.Identifier).ToList();
-        }
-
-        private void ListView1ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            if (m_itemToParameter.ContainsKey(e.Item))
-            {
-                m_itemToParameter[e.Item].IsChecked = e.Item.Checked;
-            }
-        }
-
-        private void CheckBox1CheckedChanged(object sender, EventArgs e)
-        {
-            BuildLists();
-        }
-
-        private void CheckBox2CheckedChanged(object sender, EventArgs e)
-        {
-            BuildLists();
         }
     }
 }
