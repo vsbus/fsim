@@ -13,9 +13,6 @@ namespace Equations
         //
         // L1 * L2 * ... * Ln  ==  R1 * R2 * ... * Rm;
         // 
-        // But be careful with duplicate parameters. If you try to calculate parameter that
-        // appears several times in the equation then solution won't work.
-        // Actually it is possible to fix by adding counting and root of k-th degree.
 
         #region Parameters
 
@@ -42,17 +39,23 @@ namespace Equations
         {
             fsValue leftProduct = GetElementsProduct(m_leftElements, result);
             fsValue rightProduct = GetElementsProduct(m_rightElements, result);
-
-            if (m_leftElements.Contains(result))
+            int resultDegreeCount = Count(m_leftElements, result) - Count(m_rightElements, result);
+            if (resultDegreeCount == 0)
             {
-                result.Value = rightProduct / leftProduct;
+                return false;
             }
-            else
-            {
-                result.Value = leftProduct / rightProduct;
-            }
-
+            result.Value = fsValue.Pow(rightProduct / leftProduct, 1.0 / resultDegreeCount);
             return true;
+        }
+
+        private int Count(IEnumerable<IEquationParameter> parametersList, IEquationParameter parameter)
+        {
+            int result = 0;
+            foreach (IEquationParameter p in parametersList)
+            {
+                result += (p == parameter ? 1 : 0);
+            }
+            return result;
         }
 
         private static fsValue GetElementsProduct(
