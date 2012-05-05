@@ -10,6 +10,7 @@ using Parameters;
 using StepCalculators;
 using StepCalculators.Material_Calculators;
 using StepCalculators.Simulation_Calculators;
+using Value;
 
 
 namespace CalculatorModules.Hydrocyclone
@@ -37,6 +38,7 @@ namespace CalculatorModules.Hydrocyclone
             #region Calculators
 
             Calculators.Add(new fsDensityConcentrationCalculator());
+            Calculators.Add(new fsHydrocycloneCalculator());
 
             #endregion
 
@@ -148,12 +150,16 @@ namespace CalculatorModules.Hydrocyclone
                  fsParameterIdentifier.UnderflowDiameter,
                  fsParameterIdentifier.OverflowVolumeFlowRate,
                  fsParameterIdentifier.OverflowMassFlowRate,
-                 fsParameterIdentifier.OverflowSolidsFlowRate,
+                 fsParameterIdentifier.OverflowSolidsMassFlowRate,
                  fsParameterIdentifier.UnderflowVolumeFlowRate,
                  fsParameterIdentifier.UnderflowMassFlowRate,
-                 fsParameterIdentifier.Qmsu,
+                 fsParameterIdentifier.UnderflowSolidsMassFlowRate,
                  fsParameterIdentifier.OverflowMeanParticleSize,
-                 fsParameterIdentifier.UnderflowMeanParticleSize);
+                 fsParameterIdentifier.UnderflowMeanParticleSize,
+                 fsParameterIdentifier.OverflowSolidsVolumeFraction,
+                 fsParameterIdentifier.OverflowSolidsConcentration,
+                 fsParameterIdentifier.UnderflowSolidsVolumeFraction,
+                 fsParameterIdentifier.UnderflowSolidsConcentration);
             var groups = new[]
                              {
                                 etaGroup,
@@ -168,6 +174,7 @@ namespace CalculatorModules.Hydrocyclone
                                 numCyclonesGroup,
                                 pressureGroup,
                                 qGroup,
+                                onlyCalculatedParametersGroup,
                                 alpha1Group,
                                 alpha2Group,
                                 alpha3Group,
@@ -180,8 +187,7 @@ namespace CalculatorModules.Hydrocyclone
                                 bigLOverDGroup,
                                 smallLOverDGroup,
                                 diOverDGroup,
-                                doOverDGroup,
-                                onlyCalculatedParametersGroup
+                                doOverDGroup
                              };
 
             for (int i = 0; i < groups.Length; ++i)
@@ -189,24 +195,84 @@ namespace CalculatorModules.Hydrocyclone
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
                 SetGroupInput(groups[i], true);
             }
+            SetGroupInput(onlyCalculatedParametersGroup, false);
             
 
             #endregion
 
+            AssignDefaultValues();
+
             fsMisc.FillList(comboBoxCalculationOption.Items, typeof(fsCalculationOption));
             EstablishCalculationOption(fsCalculationOption.Dp);
             AssignCalculationOptionAndControl(typeof(fsCalculationOption), comboBoxCalculationOption);
+
+            UpdateGroupsInputInfoFromCalculationOptions();
             Recalculate();
             UpdateUIFromData();
             ConnectUIWithDataUpdating(dataGrid, comboBoxCalculationOption);
 
         }
 
+        private void AssignDefaultValues()
+        {
+            Values[fsParameterIdentifier.MotherLiquidViscosity].Value = new fsValue(16.6666e-3);
+            Values[fsParameterIdentifier.MotherLiquidDensity].Value = new fsValue(1052);
+            Values[fsParameterIdentifier.SolidsDensity].Value = new fsValue(1250);
+            Values[fsParameterIdentifier.SuspensionSolidsMassFraction].Value = new fsValue(0.0002e-2);
+
+            Values[fsParameterIdentifier.xg].Value = new fsValue(648e-6);
+            Values[fsParameterIdentifier.sigma_s].Value = new fsValue(2);
+            Values[fsParameterIdentifier.sigma_g].Value = new fsValue(2);
+            ParameterToGroup[fsParameterIdentifier.ReducedCutSize].Representator = fsParameterIdentifier.ReducedCutSize;
+            Values[fsParameterIdentifier.rf].Value = new fsValue(0.96e-2);
+            Values[fsParameterIdentifier.ReducedCutSize].Value = new fsValue(490e-6);
+            Values[fsParameterIdentifier.NumberOfCyclones].Value = new fsValue(3);
+            Values[fsParameterIdentifier.FeedVolumeFlowRate].Value = new fsValue(4695/3600.0);
+
+            Values[fsParameterIdentifier.Alpha1].Value = new fsValue(0.0474);
+            Values[fsParameterIdentifier.Alpha2].Value = new fsValue(0.742);
+            Values[fsParameterIdentifier.Alpha3].Value = new fsValue(8.96);
+            Values[fsParameterIdentifier.Beta1].Value = new fsValue(371.5);
+            Values[fsParameterIdentifier.Beta2].Value = new fsValue(0.116);
+            Values[fsParameterIdentifier.Beta3].Value = new fsValue(2.12);
+            Values[fsParameterIdentifier.Gamma1].Value = new fsValue(1218);
+            Values[fsParameterIdentifier.Gamma2].Value = new fsValue(4.75);
+            Values[fsParameterIdentifier.Gamma3].Value = new fsValue(0.3);
+
+            Values[fsParameterIdentifier.bigLOverD].Value = new fsValue(5);
+            Values[fsParameterIdentifier.smallLOverD].Value = new fsValue(3);
+            Values[fsParameterIdentifier.DiOverD].Value = new fsValue(0.2);
+            Values[fsParameterIdentifier.DoOverD].Value = new fsValue(0.3);
+        }
+
         #region Routine Methods
 
         protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            //override
+            var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)];
+            fsParametersGroup calculateGroup = null;
+            switch (calculationOption)
+            {
+                case fsCalculationOption.Dp:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.PressureDifference];
+                    break;
+                case fsCalculationOption.n:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.NumberOfCyclones];
+                    break;
+                case fsCalculationOption.Q:
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.FeedVolumeFlowRate];
+                    break;
+            }
+            var groups = new[]
+                {
+                    ParameterToGroup[fsParameterIdentifier.PressureDifference],
+                    ParameterToGroup[fsParameterIdentifier.NumberOfCyclones],
+                    ParameterToGroup[fsParameterIdentifier.FeedVolumeFlowRate]
+                };
+            foreach (fsParametersGroup group in groups)
+            {
+                SetGroupInput(group, group != calculateGroup);
+            }
         }
 
         protected override void UpdateEquationsFromCalculationOptions()

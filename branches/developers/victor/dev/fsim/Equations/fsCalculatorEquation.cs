@@ -60,11 +60,21 @@ namespace Equations
             IEquationParameter result = null;
             foreach (IEquationParameter p in m_parameters)
             {
+                if (p == result)  // Sometimes m_parameters may have duplications.
+                {                 // For example in product equations like x * x = a
+                    continue;
+                }
                 if (p.IsProcessed == false)
+                {
                     if (result == null)
+                    {
                         result = p;
+                    }
                     else
+                    {
                         return false;
+                    }
+                }
             }
             if (result == null)
                 return false;
