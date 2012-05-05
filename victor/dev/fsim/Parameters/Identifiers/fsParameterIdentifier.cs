@@ -483,23 +483,35 @@ namespace Parameters
         public static fsParameterIdentifier OverflowMassFlowRate
             = new fsParameterIdentifier("Qmo", "Overflow mass flow rate", fsCharacteristic.MassFlowrate);
 
-        public static fsParameterIdentifier OverflowSolidsFlowRate
-            = new fsParameterIdentifier("Qmso", "Overflow solids flow rate", fsCharacteristic.MassFlowrate);
-        
+        public static fsParameterIdentifier OverflowSolidsMassFlowRate
+            = new fsParameterIdentifier("Qmso", "Overflow solids mass flow rate", fsCharacteristic.MassFlowrate);
+
+        public static fsParameterIdentifier UnderflowSolidsMassFlowRate
+            = new fsParameterIdentifier("Qmsu", "Underflow solids mass flow rate", fsCharacteristic.MassFlowrate);
+
         public static fsParameterIdentifier UnderflowVolumeFlowRate
             = new fsParameterIdentifier("Qu", "Underflow volume flow rate", fsCharacteristic.VolumeFlowrate);
 
         public static fsParameterIdentifier UnderflowMassFlowRate
             = new fsParameterIdentifier("Qmu", "Underflow mass flow rate", fsCharacteristic.MassFlowrate);
 
-        public static fsParameterIdentifier Qmsu
-            = new fsParameterIdentifier("Qmsu", "Underflow solids mass flow rate", fsCharacteristic.MassFlowrate);
-
         public static fsParameterIdentifier OverflowMeanParticleSize
             = new fsParameterIdentifier("x50,o", "Overflow mean particle size", fsCharacteristic.ParticleSize);
 
         public static fsParameterIdentifier UnderflowMeanParticleSize
             = new fsParameterIdentifier("x50,u", "Underflow mean particle size", fsCharacteristic.ParticleSize);
+
+        public static fsParameterIdentifier OverflowSolidsVolumeFraction
+            = new fsParameterIdentifier("cvo", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier UnderflowSolidsVolumeFraction
+            = new fsParameterIdentifier("cvu", fsCharacteristic.Concentration);
+
+        public static fsParameterIdentifier OverflowSolidsConcentration
+            = new fsParameterIdentifier("Co", fsCharacteristic.SolidsConcentration);
+
+        public static fsParameterIdentifier UnderflowSolidsConcentration
+            = new fsParameterIdentifier("Cu", fsCharacteristic.SolidsConcentration);
 
         #endregion
     }

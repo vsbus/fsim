@@ -15,5 +15,10 @@ namespace CalculatorModules
         {
             InitializeComponent();
         }
+
+        protected override void StopGridsEdit()
+        {
+            dataGrid.EndEdit();
+        }
     }
 }
