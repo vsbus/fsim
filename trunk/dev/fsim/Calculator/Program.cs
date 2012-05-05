@@ -21,6 +21,8 @@ namespace Calculator
             fsCharacteristic.Area.CurrentUnit = fsUnit.SquareSantiMeter;
             fsCharacteristic.Mass.CurrentUnit = fsUnit.Gramme;
             fsCharacteristic.Volume.CurrentUnit = fsUnit.MilliLiter;
+            fsCharacteristic.MassFlowrate.CurrentUnit = fsUnit.TonPerHour;
+            fsCharacteristic.VolumeFlowrate.CurrentUnit = fsUnit.CubicMeterPerHour;
 
             Application.Run(new fsMainWindow());
         }

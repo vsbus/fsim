@@ -113,7 +113,6 @@
             this.materialVariablesListView.TabIndex = 0;
             this.materialVariablesListView.UseCompatibleStateImageBehavior = false;
             this.materialVariablesListView.View = System.Windows.Forms.View.List;
-            this.materialVariablesListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.ListView1ItemChecked);
             // 
             // materialConstantsListView
             // 
@@ -165,7 +164,6 @@
             this.otherVariablesListView.TabIndex = 0;
             this.otherVariablesListView.UseCompatibleStateImageBehavior = false;
             this.otherVariablesListView.View = System.Windows.Forms.View.List;
-            this.otherVariablesListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.ListView1ItemChecked);
             // 
             // otherConstantsListView
             // 
