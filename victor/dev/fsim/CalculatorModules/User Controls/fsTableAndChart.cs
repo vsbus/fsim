@@ -72,23 +72,22 @@ namespace CalculatorModules.User_Controls
 
         private bool m_inputRefreshing;
 
-        public void Reprocess()
+        public void RefreshAndRecalculateAll()
         {
-            RefreshInput();
+            RefreshInputAndReadIterationParameter();
             CalculateData();
-            RefreshOutput();
+            RefreshOutputAndReadXYParameters();
+            RedrawTableAndChart();
         }
 
-        private void RefreshOutput()
+        private void RefreshOutputAndReadXYParameters()
         {
             RefreshXAxisList(m_xAxisComboBox);
             RefreshYAxisList(m_yAxisParameters, m_yAxisList);
             RefreshYAxisList(m_y2AxisParameters, m_y2AxisList);
-
-            UpdateDiagram();
         }
 
-        private void RefreshInput()
+        private void RefreshInputAndReadIterationParameter()
         {
             if (!m_inputRefreshing)
             {
@@ -223,7 +222,7 @@ namespace CalculatorModules.User_Controls
             }
         }
 
-        private void UpdateDiagram()
+        private void RedrawTableAndChart()
         {
             if (m_inputRefreshing)
                 return;
@@ -535,22 +534,30 @@ namespace CalculatorModules.User_Controls
 
         private void IterationListSelectedIndexChanged(object sender, EventArgs e)
         {
-            m_iterationParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == iterationList.Text);
-            RefreshRangesBoxes();
-            RefreshInputsBox();
-            CalculateData();
-            m_xAxisComboBox.Text = m_iterationParameter.Name;  // set the same x axis parameter as iteration parameter
-            RefreshOutput();
+            fsParameterIdentifier newIterationParameter = m_values.Keys.FirstOrDefault(parameter => parameter.Name == iterationList.Text);
+            if (m_iterationParameter != newIterationParameter)
+            {
+                m_iterationParameter = newIterationParameter;
+                RefreshRangesBoxes();
+                RefreshInputsBox();
+                CalculateData();
+                RefreshOutputAndReadXYParameters();
+                m_xAxisComboBox.Text = m_iterationParameter.Name;  // set the same x axis parameter as iteration parameter
+                                                                // we should assign text after RefreshOutputAndReadXYParameters
+                                                                // because it may happen that before RefreshOutputAndReadXYParameters there are no
+                                                                // element with necessary value and assigning may fail
+                RedrawTableAndChart();
+            }
         }
 
         private void YAxisListItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            UpdateDiagram();
+            RedrawTableAndChart();
         }
 
         private void XAxisComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateDiagram();
+            RedrawTableAndChart();
         }
 
         private void RangeFromTextChanged(object sender, EventArgs e)
@@ -558,7 +565,8 @@ namespace CalculatorModules.User_Controls
             m_values[m_iterationParameter].Range.From = fsValue.StringToValue(rangeFrom.Text) *
                                                     m_values[m_iterationParameter].Unit.Coefficient;
             CalculateData();
-            RefreshOutput();
+            RefreshOutputAndReadXYParameters();
+            RedrawTableAndChart();
         }
 
         private void RangeToTextChanged(object sender, EventArgs e)
@@ -566,13 +574,15 @@ namespace CalculatorModules.User_Controls
             m_values[m_iterationParameter].Range.To = fsValue.StringToValue(rangeTo.Text) *
                                                   m_values[m_iterationParameter].Unit.Coefficient;
             CalculateData();
-            RefreshOutput();
+            RefreshOutputAndReadXYParameters();
+            RedrawTableAndChart();
         }
 
         private void DetalizationBoxTextChanged(object sender, EventArgs e)
         {
             CalculateData();
-            RefreshOutput();
+            RefreshOutputAndReadXYParameters();
+            RedrawTableAndChart();
         }
 
         private void YAxisConfigureClick(object sender, EventArgs e)
@@ -584,7 +594,7 @@ namespace CalculatorModules.User_Controls
             {
                 m_yAxisParameters.Clear();
                 m_yAxisParameters.AddRange(selectionForm.GetCheckedParameters());
-                Reprocess();
+                RefreshAndRecalculateAll();
             }
         }
 
@@ -597,7 +607,7 @@ namespace CalculatorModules.User_Controls
             {
                 m_y2AxisParameters.Clear();
                 m_y2AxisParameters.AddRange(selectionForm.GetCheckedParameters());
-                Reprocess();
+                RefreshAndRecalculateAll();
             }
         }
 
@@ -627,7 +637,7 @@ namespace CalculatorModules.User_Controls
             {
                 fsParametersGroup group = m_parameterToGroup[parameter];
                 fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind kind;
-                if (parameter == m_iterationParameter)
+                if (group == m_parameterToGroup[m_iterationParameter])
                 {
                     kind =
                         fsTablesAndChartsParametersSelectionDialog.fsYAxisParameter.fsYParameterKind.

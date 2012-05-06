@@ -44,6 +44,7 @@ namespace fsUIControls
             return new[]
                        {
                            fsCharacteristic.Time,
+                           fsCharacteristic.MachineGeometryLength,
                            fsCharacteristic.Area,
                            fsCharacteristic.Mass,
                            fsCharacteristic.Volume,

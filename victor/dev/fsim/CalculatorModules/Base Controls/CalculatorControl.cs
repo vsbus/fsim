@@ -306,5 +306,10 @@ namespace CalculatorModules
         }
 
         #endregion
+
+        public void RecalculateAndRedraw()
+        {
+            Recalculate();
+        }
     }
 }

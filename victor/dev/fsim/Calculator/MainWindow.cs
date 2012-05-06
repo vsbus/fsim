@@ -188,5 +188,12 @@ namespace Calculator
             Dictionary<fsParameterIdentifier, bool> parametersToShowAndHide = form.GetParametersToShowAndHide();
             GetCurrentActiveModule().ShowAndHideParameters(parametersToShowAndHide);
         }
+
+        private void precisionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var precisionDialog = new PrecisionDialog();
+            precisionDialog.ShowDialog();
+            GetCurrentActiveModule().RecalculateAndRedraw();
+        }
     }
 }
