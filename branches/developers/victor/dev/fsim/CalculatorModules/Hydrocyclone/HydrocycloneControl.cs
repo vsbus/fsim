@@ -215,19 +215,19 @@ namespace CalculatorModules.Hydrocyclone
 
         private void AssignDefaultValues()
         {
-            Values[fsParameterIdentifier.MotherLiquidViscosity].Value = new fsValue(16.6666e-3);
-            Values[fsParameterIdentifier.MotherLiquidDensity].Value = new fsValue(1052);
-            Values[fsParameterIdentifier.SolidsDensity].Value = new fsValue(1250);
-            Values[fsParameterIdentifier.SuspensionSolidsMassFraction].Value = new fsValue(0.0002e-2);
+            Values[fsParameterIdentifier.MotherLiquidViscosity].Value = new fsValue(1e-3);
+            Values[fsParameterIdentifier.MotherLiquidDensity].Value = new fsValue(1000);
+            Values[fsParameterIdentifier.SolidsDensity].Value = new fsValue(2000);
+            Values[fsParameterIdentifier.SuspensionSolidsMassFraction].Value = new fsValue(5e-2);
 
-            Values[fsParameterIdentifier.xg].Value = new fsValue(648e-6);
+            Values[fsParameterIdentifier.xg].Value = new fsValue(100e-6);
+            Values[fsParameterIdentifier.sigma_g].Value = new fsValue(3);
             Values[fsParameterIdentifier.sigma_s].Value = new fsValue(2);
-            Values[fsParameterIdentifier.sigma_g].Value = new fsValue(2);
             ParameterToGroup[fsParameterIdentifier.ReducedCutSize].Representator = fsParameterIdentifier.ReducedCutSize;
-            Values[fsParameterIdentifier.rf].Value = new fsValue(0.96e-2);
-            Values[fsParameterIdentifier.ReducedCutSize].Value = new fsValue(490e-6);
+            Values[fsParameterIdentifier.rf].Value = new fsValue(5e-2);
+            Values[fsParameterIdentifier.ReducedCutSize].Value = new fsValue(100e-6);
             Values[fsParameterIdentifier.NumberOfCyclones].Value = new fsValue(3);
-            Values[fsParameterIdentifier.FeedVolumeFlowRate].Value = new fsValue(4695/3600.0);
+            Values[fsParameterIdentifier.FeedVolumeFlowRate].Value = new fsValue(16900/3600.0);
 
             Values[fsParameterIdentifier.Alpha1].Value = new fsValue(0.0474);
             Values[fsParameterIdentifier.Alpha2].Value = new fsValue(0.742);
