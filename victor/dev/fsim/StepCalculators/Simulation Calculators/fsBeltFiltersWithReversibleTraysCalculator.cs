@@ -91,6 +91,9 @@ namespace StepCalculators.Simulation_Calculators
             Equations.Add(new fsProductsEquation(
                 new[] {ls, rhoCd, u, cakeHeigth},
                 new[] {lsOverB, Qms}));
+            Equations.Add(new fsProductsEquation(
+                new[] { Qms, tc },
+                new[] { rhoCd, filterArea, cakeHeigth }));
             Equations.Add(new fsProductEquation(lOverB, ns, lsOverB));
             Equations.Add(new fsProductEquation(nsf, ns, sf));
             Equations.Add(new fsFrom0AndDpEquation(Pc, pc0, pressureDifference, nc));

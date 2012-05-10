@@ -36,14 +36,36 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
             #endregion
 
-            var colors = new[]
-                             {
-                                 Color.FromArgb(255, 255, 230),
-                                 Color.FromArgb(255, 230, 255)
-                             };
+            fsMisc.FillList(calculationComboBox.Items, typeof(fsCalculationOption));
+            EstablishCalculationOption(fsCalculationOption.Design);
+            AssignCalculationOptionAndControl(typeof(fsCalculationOption), calculationComboBox);
 
-            #region Material groups
+            UpdateGroupsInputInfoFromCalculationOptions();
+            UpdateEquationsFromCalculationOptions();
+            SetDefaultDiagram(fsParameterIdentifier.u, fsParameterIdentifier.FilterArea, fsParameterIdentifier.SpecificFiltrationTime);
+            Recalculate();
+            UpdateUIFromData();
+            ConnectUIWithDataUpdating(materialParametersDataGrid, dataGrid, calculationComboBox);
+        }
 
+        #region Routine Methods
+
+        private void CreateStandardGourps()
+        {
+            Groups.Clear();
+            AddGroupsToUI(materialParametersDataGrid, MakeMaterialGroups());
+            AddGroupsToUI(dataGrid, MakeMachiningStandardGroups());
+        }
+
+        private void CreateDesignGroups()
+        {
+            Groups.Clear();
+            AddGroupsToUI(materialParametersDataGrid, MakeMaterialGroups());
+            AddGroupsToUI(dataGrid, MakeMachiningDesignGroups());
+        }
+
+        private fsParametersGroup[] MakeMaterialGroups()
+        {
             fsParametersGroup etafGroup = AddGroup(
                 fsParameterIdentifier.MotherLiquidViscosity);
 
@@ -87,31 +109,101 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             fsParametersGroup hce0Group = AddGroup(
                 fsParameterIdentifier.FilterMediumResistanceHce0,
                 fsParameterIdentifier.FilterMediumResistanceRm0);
-            
-            var materialGroups = new[]
-                             {
-                                etafGroup,
-                                rhofGroup,
-                                densitiesGroup,
-                                cGroup,
-                                neGroup,
-                                epsGroup,
-                                pcrcGroup,
-                                ncGroup,
-                                hce0Group, 
-                             };
 
-            for (int i = 0; i < materialGroups.Length; ++i)
-            {
-                materialGroups[i].Kind = fsParametersGroup.ParametersGroupKind.MaterialParameters;
-                AddGroupToUI(materialParametersDataGrid, materialGroups[i], colors[i % colors.Length]);
-                SetGroupInput(materialGroups[i], true);
-            }
+            return new[]
+                       {
+                           etafGroup,
+                           rhofGroup,
+                           densitiesGroup,
+                           cGroup,
+                           neGroup,
+                           epsGroup,
+                           pcrcGroup,
+                           ncGroup,
+                           hce0Group,
+                       };
+        }
 
-            #endregion
+        private fsParametersGroup[] MakeMachiningStandardGroups()
+        {
+            fsParametersGroup AbGroup = AddGroup(
+               fsParameterIdentifier.FilterArea,
+               fsParameterIdentifier.MachineWidth);
 
-            #region Fitration groups
+            fsParametersGroup nsGroup = AddGroup(
+                fsParameterIdentifier.ns);
 
+            fsParametersGroup geometryGroup = AddGroup(
+                fsParameterIdentifier.ls,
+                fsParameterIdentifier.ls_over_b,
+                fsParameterIdentifier.FilterLength,
+                fsParameterIdentifier.l_over_b,
+                fsParameterIdentifier.As);
+
+            fsParametersGroup timeGroup = AddGroup(
+                fsParameterIdentifier.StandardTechnicalTime,
+                fsParameterIdentifier.TechnicalTime);
+
+            fsParametersGroup dpGroup = AddGroup(
+                fsParameterIdentifier.PressureDifference);
+
+            fsParametersGroup specificTimeGroup = AddGroup(
+                fsParameterIdentifier.nsf,
+                fsParameterIdentifier.SpecificFiltrationTime,
+                fsParameterIdentifier.nsr,
+                fsParameterIdentifier.SpecificResidualTime,
+                fsParameterIdentifier.ResidualTime);
+
+            fsParametersGroup timeQGroup = AddGroup(
+                fsParameterIdentifier.u,
+                fsParameterIdentifier.RotationalSpeed,
+                fsParameterIdentifier.CycleTime,
+                fsParameterIdentifier.CakeHeight,
+                fsParameterIdentifier.FiltrationTime,
+                fsParameterIdentifier.qft,
+                fsParameterIdentifier.qmft,
+                fsParameterIdentifier.Qms,
+                fsParameterIdentifier.Qsus,
+                fsParameterIdentifier.SuspensionMassFlowrate);
+
+            fsParametersGroup lambdaGroup = AddGroup(
+                fsParameterIdentifier.lambda);
+
+            fsParametersGroup resultsGroup = AddOnlyCalculatedGroup(
+                fsParameterIdentifier.MeanHeightRate,
+                fsParameterIdentifier.HcOverTc,
+                fsParameterIdentifier.DiffHeightRate,
+                fsParameterIdentifier.SolidsMass,
+                fsParameterIdentifier.SuspensionMass,
+                fsParameterIdentifier.SolidsVolume,
+                fsParameterIdentifier.SuspensionVolume,
+                fsParameterIdentifier.SpecificSuspensionMass,
+                fsParameterIdentifier.SpecificSuspensionVolume,
+                fsParameterIdentifier.Qmsust,
+                fsParameterIdentifier.Qmsusd,
+                fsParameterIdentifier.Qsust,
+                fsParameterIdentifier.Qsusd,
+                fsParameterIdentifier.qmsust,
+                fsParameterIdentifier.qmsusd,
+                fsParameterIdentifier.qsust,
+                fsParameterIdentifier.qsusd);
+
+            return new[]
+                       {
+                           AbGroup,
+                           nsGroup,
+                           geometryGroup,
+                           timeGroup,
+                           dpGroup,
+                           specificTimeGroup,
+                           timeQGroup,
+                           lambdaGroup,
+                           resultsGroup
+                       };
+        }
+
+        private fsParametersGroup[] MakeMachiningDesignGroups()
+        {
             fsParametersGroup qsusGroup = AddGroup(
                 fsParameterIdentifier.Qms,
                 fsParameterIdentifier.Qsus,
@@ -151,7 +243,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             fsParametersGroup lambdaGroup = AddGroup(
                 fsParameterIdentifier.lambda);
 
-            fsParametersGroup resultsGroup = AddGroup(
+            fsParametersGroup resultsGroup = AddOnlyCalculatedGroup(
                 fsParameterIdentifier.FilterArea,
                 fsParameterIdentifier.As,
                 fsParameterIdentifier.MachineWidth,
@@ -174,46 +266,31 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.qsust,
                 fsParameterIdentifier.qsusd);
 
-            var groups = new[]
-                             {
-                                qsusGroup,
-                                nsGroup,
-                                geometryGroup,
-                                timeGroup,
-                                dpGroup,
-                                cycleGroup,
-                                filtrationGroup,
-                                lambdaGroup,
-                                resultsGroup
-                             };
-
-            for (int i = 0; i < groups.Length; ++i)
-            {
-                groups[i].Kind = fsParametersGroup.ParametersGroupKind.MachiningSettingsParameters;
-                AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
-                SetGroupInput(groups[i], true);
-            }
-            SetGroupInput(resultsGroup, false);
-
-            #endregion
-
-            fsMisc.FillList(calculationComboBox.Items, typeof(fsCalculationOption));
-            EstablishCalculationOption(fsCalculationOption.Design);
-            AssignCalculationOptionAndControl(typeof(fsCalculationOption), calculationComboBox);
-
-            UpdateGroupsInputInfoFromCalculationOptions();
-            UpdateEquationsFromCalculationOptions();
-            SetDefaultDiagram(fsParameterIdentifier.u, fsParameterIdentifier.FilterArea, fsParameterIdentifier.SpecificFiltrationTime);
-            Recalculate();
-            UpdateUIFromData();
-            ConnectUIWithDataUpdating(materialParametersDataGrid, dataGrid, calculationComboBox);
+            return new[]
+                       {
+                           qsusGroup,
+                           nsGroup,
+                           geometryGroup,
+                           timeGroup,
+                           dpGroup,
+                           cycleGroup,
+                           filtrationGroup,
+                           lambdaGroup,
+                           resultsGroup
+                       };
         }
-
-        #region Routine Methods
 
         protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            // for now we work only with design option so do nothing here
+            var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)]; 
+            if (calculationOption == fsCalculationOption.Design)
+            {
+                CreateDesignGroups();
+            }
+            else
+            {
+                CreateStandardGourps();
+            }
         }
 
         protected override void UpdateEquationsFromCalculationOptions()
