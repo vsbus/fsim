@@ -14,10 +14,10 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
 
         private enum fsCalculationOption
         {
-            [Description("Standard")]
-            Standard,
-            [Description("Design")]
-            Design
+            [Description("Standard Calculation")]
+            StandardCalculation,
+            [Description("Filter Design")]
+            FilterDesign
         }
 
         #endregion
@@ -37,7 +37,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
             #endregion
 
             fsMisc.FillList(calculationComboBox.Items, typeof(fsCalculationOption));
-            EstablishCalculationOption(fsCalculationOption.Design);
+            EstablishCalculationOption(fsCalculationOption.StandardCalculation);
             AssignCalculationOptionAndControl(typeof(fsCalculationOption), calculationComboBox);
 
             UpdateGroupsInputInfoFromCalculationOptions();
@@ -283,7 +283,7 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
         protected override void UpdateGroupsInputInfoFromCalculationOptions()
         {
             var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)]; 
-            if (calculationOption == fsCalculationOption.Design)
+            if (calculationOption == fsCalculationOption.FilterDesign)
             {
                 CreateDesignGroups();
             }
