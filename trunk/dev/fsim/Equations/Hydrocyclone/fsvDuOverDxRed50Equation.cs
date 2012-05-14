@@ -158,7 +158,8 @@ namespace Equations.Hydrocyclone
         private void vFormula()
         {
             var f = new Equation(m_DuOverD.Value, m_xRed50.Value, m_rhoS.Value, m_rhoF.Value, m_etaF.Value, m_Dp.Value, m_cv.Value, m_alpha1.Value, m_alpha2.Value, m_alpha3.Value, m_beta1.Value, m_beta2.Value, m_beta3.Value, m_gamma1.Value, m_gamma2.Value, m_gamma3.Value);
-            m_v.Value = fsBisectionMethod.FindRoot(f, new fsValue(0), new fsValue(1e3), 60);
+            fsValue upperBound = new fsValue(15); // 15 m/s we assume as maximal possible speed
+            m_v.Value = fsBisectionMethod.FindRoot(f, fsValue.Zero, upperBound, 60);
         }
 
         #endregion

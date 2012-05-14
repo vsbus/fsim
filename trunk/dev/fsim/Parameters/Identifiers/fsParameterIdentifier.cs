@@ -385,7 +385,7 @@ namespace Parameters
                    = new fsParameterIdentifier("cmu", "Underflow solids mass fraction", fsCharacteristic.Concentration);
 
         public static fsParameterIdentifier DuOverD
-                   = new fsParameterIdentifier("Du/D", "Underflow diameter to cyclone diameter", fsCharacteristic.Concentration);
+                   = new fsParameterIdentifier("Du/D", "Underflow diameter to cyclone diameter", fsCharacteristic.NoUnits);
 
         public static fsParameterIdentifier ReducedCutSize
                    = new fsParameterIdentifier("x’50", "Reduced cut size", fsCharacteristic.ParticleSize);

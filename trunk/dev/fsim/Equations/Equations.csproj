@@ -46,7 +46,9 @@
   <ItemGroup>
     <Compile Include="Belt Filters with Reversible Trays\fsAreaOfBeltWithReversibleTraysEquation.cs" />
     <Compile Include="Belt Filters with Reversible Trays\fsSfFromEtafHcHceKappaPcDpNsLsUTtechEquation.cs" />
+    <Compile Include="Belt Filters with Reversible Trays\fsTfSfTtechNsTcEquation.cs" />
     <Compile Include="Belt Filters with Reversible Trays\fsTechnicalTimeFrom0Equation.cs" />
+    <Compile Include="Belt Filters with Reversible Trays\fsTrSrTtechNsTcEquation.cs" />
     <Compile Include="Belt Filters with Reversible Trays\fsUFromLsOverBQmsHcDpTtech0LambdaNsfMaterialEquation.cs" />
     <Compile Include="Cake Formation\fsCakeHeightFrom_Dp_tfEquation.cs" />
     <Compile Include="Hydrocyclone\fsCOverflowEquation.cs" />
@@ -112,9 +114,6 @@
       <Project>{CD1BD2A7-AB61-4A58-B1F9-9A3DF9A0E9F2}</Project>
       <Name>Value</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Material\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

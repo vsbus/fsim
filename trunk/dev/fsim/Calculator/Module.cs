@@ -43,6 +43,11 @@ namespace Calculator
             m_calculatorControl.SetRanges(dictionary);
         }
 
+        internal void RecalculateAndRedraw()
+        {
+            m_calculatorControl.RecalculateAndRedraw();
+        }
+
         #region Show/Hide parameters
 
         internal void ShowAndHideParameters(Dictionary<fsParameterIdentifier, bool> parametersToShowAndHide)
