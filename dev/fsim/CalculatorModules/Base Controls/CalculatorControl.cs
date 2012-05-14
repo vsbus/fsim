@@ -128,9 +128,10 @@ namespace CalculatorModules
         protected void SetGroupInput(fsParametersGroup group, bool value)
         {
             group.IsInput = value;
+            bool isReadOnly = !group.IsInput || group.IsOnlyCalculated;
             foreach (fsParameterIdentifier parameter in group.Parameters)
             {
-                ParameterToCell[parameter].ReadOnly = !value;
+                ParameterToCell[parameter].ReadOnly = isReadOnly;
             }
         }
 
@@ -147,19 +148,52 @@ namespace CalculatorModules
             return group;
         }
 
+        public fsParametersGroup AddOnlyCalculatedGroup(params fsParameterIdentifier[] parameters)
+        {
+            fsParametersGroup group = AddGroup(parameters);
+            group.IsOnlyCalculated = true;
+            return group;
+        }
+
+        protected void AddGroupsToUI(fsParametersWithValuesTable dataGrid, fsParametersGroup[] groups)
+        {
+            var colors = new[]
+                             {
+                                 Color.FromArgb(255, 255, 230),
+                                 Color.FromArgb(255, 230, 255)
+                             };
+
+
+            dataGrid.Rows.Clear();
+            for (int i = 0; i < groups.Length; ++i)
+            {
+                groups[i].Kind = fsParametersGroup.ParametersGroupKind.MaterialParameters;
+                AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
+                SetGroupInput(groups[i], true);
+            }
+        }
+            
         protected void AddGroupToUI(fsParametersWithValuesTable dataGrid, fsParametersGroup group, Color color)
         {
             foreach (fsParameterIdentifier identifier in group.Parameters)
             {
-                var parameter = new fsSimulationModuleParameter(identifier);
-                var defaultRanges = fsMachineRanges.DefaultMachineRanges.Ranges;
-                if (defaultRanges.ContainsKey(identifier))
+                if (!Values.ContainsKey(identifier))
                 {
-                    parameter.Range = fsMachineRanges.DefaultMachineRanges.Ranges[identifier].Range;
+                    var parameter = new fsSimulationModuleParameter(identifier);
+                    var defaultRanges = fsMachineRanges.DefaultMachineRanges.Ranges;
+                    if (defaultRanges.ContainsKey(identifier))
+                    {
+                        parameter.Range = fsMachineRanges.DefaultMachineRanges.Ranges[identifier].Range;
+                    }
+                    Values.Add(identifier, parameter);
+                    AddRow(dataGrid, parameter, color);
                 }
-                Values.Add(identifier, parameter);
-                AddRow(dataGrid, parameter, color);
+                else
+                {
+                    AddRow(dataGrid, Values[identifier], color);
+                }
             }
+            
         }
 
         protected void DataGridCellValueChangedByUser(object sender, DataGridViewCellEventArgs e)
@@ -195,7 +229,16 @@ namespace CalculatorModules
 
         protected void AssignParameterAndCell(fsParameterIdentifier parameter, DataGridViewCell dataGridViewCell)
         {
+            if (ParameterToCell.ContainsKey(parameter))
+            {
+                ParameterToCell.Remove(parameter);
+            }
             ParameterToCell.Add(parameter, dataGridViewCell);
+
+            if (CellToParameter.ContainsKey(dataGridViewCell))
+            {
+                CellToParameter.Remove(dataGridViewCell);
+            }
             CellToParameter.Add(dataGridViewCell, parameter);
         }
 
@@ -217,7 +260,7 @@ namespace CalculatorModules
             foreach (var pair in ParameterToCell)
             {
                 fsParametersGroup group = ParameterToGroup[pair.Key];
-                if (group.IsInput)
+                if (!group.IsOnlyCalculated && group.IsInput)
                 {
                     pair.Value.Style.ForeColor = group.Representator == pair.Key
                                                      ? Color.Blue
@@ -306,5 +349,10 @@ namespace CalculatorModules
         }
 
         #endregion
+
+        public void RecalculateAndRedraw()
+        {
+            Recalculate();
+        }
     }
 }

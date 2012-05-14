@@ -23,7 +23,7 @@ namespace CalculatorModules
                 Groups,
                 ParameterToGroup,
                 Calculators);
-            fsTableAndChart1.Reprocess();
+            fsTableAndChart1.RefreshAndRecalculateAll();
         }
 
         protected void SetDefaultDiagram(
