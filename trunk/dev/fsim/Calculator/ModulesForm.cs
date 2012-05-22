@@ -7,6 +7,7 @@ using CalculatorModules.Base_Controls;
 using CalculatorModules.BeltFiltersWithReversibleTrays;
 using CalculatorModules.Hydrocyclone;
 using CalculatorModules.CakeWashing;
+using CalculatorModules.Cake_Fromation;
 
 namespace Calculator
 {
@@ -110,11 +111,20 @@ namespace Calculator
         {
             string name = "Simulation Modules";
             TreeNode node = treeNodeCollection.Add(name);
-            AddGroupToTree("Belt Filters with Reversible Trays", node.Nodes, new[]
+            AddGroupToTree("Cake Formation", node.Nodes, new[]
                                              {
                                                  new KeyValuePair<string, fsCalculatorControl>(
                                                      "Belt Filters with Reversible Trays",
                                                      new fsBeltFilterWithReversibleTrayControl()),
+                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                     "Continuous Belt Filters (modular)",
+                                                     new fsContinuousModularBeltFilterControl()),
+                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                     "Continuous Belt Filters (non modular)",
+                                                     new fsContinuousNonModularBeltFilterControl()),
+                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                     "Other",
+                                                     new fsCommonCakeFormationControl())
                                              });
         }
 
