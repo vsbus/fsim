@@ -1,19 +1,17 @@
-﻿using CalculatorModules.Cake_Fromation;
-using Parameters;
-using StepCalculators.Simulation_Calculators;
+﻿using Parameters;
 
-namespace CalculatorModules.BeltFiltersWithReversibleTrays
+namespace CalculatorModules.Cake_Fromation
 {
-    public sealed partial class fsBeltFilterWithReversibleTrayControl : fsCakeFormationBaseControl
+    public sealed partial class fsContinuousModularBeltFilterControl : fsCakeFormationBaseControl
     {
-        public fsBeltFilterWithReversibleTrayControl()
+        public fsContinuousModularBeltFilterControl()
         {
             InitializeComponent();
         }
 
         protected override void AddCakeFormationCalculator()
         {
-            Calculators.Add(new fsBeltFiltersWithReversibleTraysCalculator());
+            // nothing yet  Calculators.Add(new fsBeltFiltersWithReversibleTraysCalculator());
         }
 
         override protected fsParametersGroup[] MakeMachiningStandardGroups()
@@ -31,13 +29,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.FilterLength,
                 fsParameterIdentifier.l_over_b,
                 fsParameterIdentifier.As);
-
-            fsParametersGroup timeGroup = AddGroup(
-                fsParameterIdentifier.StandardTechnicalTime,
-                fsParameterIdentifier.TechnicalTime);
-
-            fsParametersGroup lambdaGroup = AddGroup(
-                fsParameterIdentifier.lambda);
 
             fsParametersGroup dpGroup = AddGroup(
                 fsParameterIdentifier.PressureDifference);
@@ -85,8 +76,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                            abGroup,
                            nsGroup,
                            geometryGroup,
-                           timeGroup,
-                           lambdaGroup,
                            dpGroup,
                            specificTimeGroup,
                            timeQGroup,
@@ -108,13 +97,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                 fsParameterIdentifier.ls_over_b,
                 fsParameterIdentifier.l_over_b,
                 fsParameterIdentifier.ls);
-
-            fsParametersGroup timeGroup = AddGroup(
-                fsParameterIdentifier.StandardTechnicalTime,
-                fsParameterIdentifier.TechnicalTime);
-
-            fsParametersGroup lambdaGroup = AddGroup(
-                fsParameterIdentifier.lambda);
 
             fsParametersGroup dpGroup = AddGroup(
                 fsParameterIdentifier.PressureDifference);
@@ -163,8 +145,6 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
                            qsusGroup,
                            nsGroup,
                            geometryGroup,
-                           timeGroup,
-                           lambdaGroup,
                            dpGroup,
                            cycleGroup,
                            filtrationGroup,
@@ -173,4 +153,3 @@ namespace CalculatorModules.BeltFiltersWithReversibleTrays
         }
     }
 }
-
