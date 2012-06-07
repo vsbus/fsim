@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using CalculatorModules;
-using CalculatorModules.Base_Controls;
 using CalculatorModules.BeltFiltersWithReversibleTrays;
 using CalculatorModules.Hydrocyclone;
 using CalculatorModules.CakeWashing;
@@ -52,9 +51,33 @@ namespace Calculator
             }
         }
 
+        private void AddSimulationGroup(TreeNodeCollection treeNodeCollection)
+        {
+            const string name = "Simulation Modules";
+            TreeNode node = treeNodeCollection.Add(name);
+            AddGroupToTree("Cake Formation", node.Nodes, new[]
+                                             {
+                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                     "Cake Formation Overmodule",
+                                                     new fsCakeFormationOvermoduleControl()),
+                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                     "Belt Filters with Reversible Trays",
+                                                     new fsBeltFilterWithReversibleTrayControl()),
+                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                     "Continuous Belt Filters (modular)",
+                                                     new fsContinuousModularBeltFilterControl()),
+                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                     "Continuous Belt Filters (non modular)",
+                                                     new fsContinuousNonModularBeltFilterControl()),
+                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                     "Other",
+                                                     new fsCommonCakeFormationControl())
+                                             });
+        }
+
         private void AddHelpGroup(TreeNodeCollection treeNodeCollection)
         {
-            string name = "Help Modules";
+            const string name = "Help Modules";
             TreeNode node = treeNodeCollection.Add(name);
             AddGroupToTree("Suspension", node.Nodes, new[]
                                              {
@@ -103,29 +126,8 @@ namespace Calculator
             AddGroupToTree("Hydrocyclone", node.Nodes, new[]
                                                {
                                                    new KeyValuePair<string, fsCalculatorControl>(
-                                                       "Hydrocyclone", new HydrocycloneControl())
+                                                       "Hydrocyclone", new fsHydrocycloneControl())
                                                });
-        }
-
-        private void AddSimulationGroup(TreeNodeCollection treeNodeCollection)
-        {
-            string name = "Simulation Modules";
-            TreeNode node = treeNodeCollection.Add(name);
-            AddGroupToTree("Cake Formation", node.Nodes, new[]
-                                             {
-                                                 new KeyValuePair<string, fsCalculatorControl>(
-                                                     "Belt Filters with Reversible Trays",
-                                                     new fsBeltFilterWithReversibleTrayControl()),
-                                                 new KeyValuePair<string, fsCalculatorControl>(
-                                                     "Continuous Belt Filters (modular)",
-                                                     new fsContinuousModularBeltFilterControl()),
-                                                 new KeyValuePair<string, fsCalculatorControl>(
-                                                     "Continuous Belt Filters (non modular)",
-                                                     new fsContinuousNonModularBeltFilterControl()),
-                                                 new KeyValuePair<string, fsCalculatorControl>(
-                                                     "Other",
-                                                     new fsCommonCakeFormationControl())
-                                             });
         }
 
         private void AddGroupToTree(
@@ -138,10 +140,6 @@ namespace Calculator
             {
                 fsCalculatorControl calculatorControl = pair.Value;
                 AddModuleToTree(node, pair.Key, calculatorControl);
-                if (calculatorControl is fsOptionsSingleTableAndCommentsCalculatorControl)
-                {
-                    (calculatorControl as fsOptionsSingleTableAndCommentsCalculatorControl).AllowCommentsView = false;
-                }
             }
             treeNodeCollection.Add(node);
         }
@@ -162,14 +160,14 @@ namespace Calculator
             SelectedCalculatorControlName = treeView1.SelectedNode.Text;
             currentModuleTitleLabel.Text = SelectedCalculatorControlName;
 
-            if (SelectedCalculatorControl != null)
-            {
-                SelectedCalculatorControl.Parent = null;
-            }
-
+            fsCalculatorControl prevCalculatorControl = SelectedCalculatorControl;
             SelectedCalculatorControl = m_modules[SelectedCalculatorControlName];
             SelectedCalculatorControl.Parent = modulePanel;
             SelectedCalculatorControl.Dock = DockStyle.Fill;
+            if (prevCalculatorControl != null)
+            {
+                prevCalculatorControl.Parent = null;
+            }
         }
     }
 }

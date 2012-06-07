@@ -43,10 +43,12 @@ namespace CalculatorModules
             ParameterToGroup = new Dictionary<fsParameterIdentifier, fsParametersGroup>();
         }
 
+        public virtual Control ControlToResizeForExpanding { get; set; }
+
         #region Routines
 
         protected List<fsCalculator> Calculators { get; set; }
-        public List<fsParametersGroup> Groups { get; private set; }
+        protected List<fsParametersGroup> Groups { get; private set; }
         protected Dictionary<fsParameterIdentifier, fsParametersGroup> ParameterToGroup { get; private set; }
 
         protected void EstablishCalculationOption(Enum option)
@@ -298,7 +300,7 @@ namespace CalculatorModules
 
         #endregion
 
-        public void SetUnits(Dictionary<fsCharacteristic, fsUnit> dictionary)
+        public virtual void SetUnits(Dictionary<fsCharacteristic, fsUnit> dictionary)
         {
             StopGridsEdit();
 
@@ -317,7 +319,7 @@ namespace CalculatorModules
             Recalculate();
         }
 
-        protected virtual void StopGridsEdit()
+        protected internal virtual void StopGridsEdit()
         {
             throw new Exception("You must implement StopGridsEdit in derivative class.");
         }

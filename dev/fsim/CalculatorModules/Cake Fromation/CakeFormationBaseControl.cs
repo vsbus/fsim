@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Forms;
 using CalculatorModules.Base_Controls;
 using Parameters;
+using ParametersIdentifiers;
 using StepCalculators;
 using Value;
 
@@ -11,7 +14,7 @@ namespace CalculatorModules.Cake_Fromation
     {
         #region Calculation Option
 
-        private enum fsCalculationOption
+        public enum fsCakeFormationCalculationOption
         {
             [Description("Standard Calculation")]
             StandardCalculation,
@@ -35,9 +38,9 @@ namespace CalculatorModules.Cake_Fromation
 
             #endregion
 
-            fsMisc.FillList(calculationComboBox.Items, typeof(fsCalculationOption));
-            EstablishCalculationOption(fsCalculationOption.StandardCalculation);
-            AssignCalculationOptionAndControl(typeof(fsCalculationOption), calculationComboBox);
+            fsMisc.FillList(calculationComboBox.Items, typeof(fsCakeFormationCalculationOption));
+            EstablishCalculationOption(fsCakeFormationCalculationOption.StandardCalculation);
+            AssignCalculationOptionAndControl(typeof(fsCakeFormationCalculationOption), calculationComboBox);
 
             UpdateGroupsInputInfoFromCalculationOptions();
 
@@ -67,38 +70,38 @@ namespace CalculatorModules.Cake_Fromation
 
         private void AssignDefaultValues()
         {
-            Values[fsParameterIdentifier.MotherLiquidViscosity].Value = new fsValue(1e-3);
-            Values[fsParameterIdentifier.MotherLiquidDensity].Value = new fsValue(1000);
-            Values[fsParameterIdentifier.SolidsDensity].Value = new fsValue(1500);
-            Values[fsParameterIdentifier.SuspensionSolidsMassFraction].Value = new fsValue(15e-2);
-            Values[fsParameterIdentifier.Ne].Value = new fsValue(0.05);
-            Values[fsParameterIdentifier.CakePorosity0].Value = new fsValue(55e-2);
-            Values[fsParameterIdentifier.CakeCompressibility].Value = new fsValue(0.3);
-            Values[fsParameterIdentifier.CakePermeability0].Value = new fsValue(1.5e-13);
-            Values[fsParameterIdentifier.FilterMediumResistanceHce0].Value = new fsValue(3e-3);
+            SetDefaultValue(fsParameterIdentifier.MotherLiquidViscosity, new fsValue(1e-3));
+            SetDefaultValue(fsParameterIdentifier.MotherLiquidDensity, new fsValue(1000));
+            SetDefaultValue(fsParameterIdentifier.SolidsDensity, new fsValue(1500));
+            SetDefaultValue(fsParameterIdentifier.SuspensionSolidsMassFraction, new fsValue(15e-2));
+            SetDefaultValue(fsParameterIdentifier.Ne, new fsValue(0.05));
+            SetDefaultValue(fsParameterIdentifier.CakePorosity0, new fsValue(55e-2));
+            SetDefaultValue(fsParameterIdentifier.CakeCompressibility, new fsValue(0.3));
+            SetDefaultValue(fsParameterIdentifier.CakePermeability0, new fsValue(1.5e-13));
+            SetDefaultValue(fsParameterIdentifier.FilterMediumResistanceHce0, new fsValue(3e-3));
 
-            Values[fsParameterIdentifier.FilterArea].Value = new fsValue(1);
-            Values[fsParameterIdentifier.PressureDifference].Value = new fsValue(0.7e5);
+            SetDefaultValue(fsParameterIdentifier.FilterArea, new fsValue(1));
+            SetDefaultValue(fsParameterIdentifier.PressureDifference, new fsValue(0.7e5));
             
-            // u
-            if (Values.ContainsKey(fsParameterIdentifier.u))
-            {
-                Values[fsParameterIdentifier.u].Value = new fsValue(2.0 / 60);
-            }
+            // tc (u)
+            SetDefaultValue(fsParameterIdentifier.CycleTime, new fsValue(72));
             
             // ttech0 and lambda
-            if (Values.ContainsKey(fsParameterIdentifier.StandardTechnicalTime))
-            {
-                Values[fsParameterIdentifier.StandardTechnicalTime].Value = new fsValue(2);
-                Values[fsParameterIdentifier.lambda].Value = new fsValue(0.1);
-            }
+            SetDefaultValue(fsParameterIdentifier.StandardTechnicalTime, new fsValue(2));
+            SetDefaultValue(fsParameterIdentifier.lambda, new fsValue(0.1));
 
             // ns, ls, nsf
-            if (Values.ContainsKey(fsParameterIdentifier.ns))
+            SetDefaultValue(fsParameterIdentifier.ns, new fsValue(12));
+            SetDefaultValue(fsParameterIdentifier.FilterLength, new fsValue(2.4));
+            SetDefaultValue(fsParameterIdentifier.SpecificFiltrationTime, new fsValue(0.25));
+        }
+
+        private void SetDefaultValue(fsParameterIdentifier identifier, fsValue value)
+        {
+            if (Values.ContainsKey(identifier))
             {
-                Values[fsParameterIdentifier.ns].Value = new fsValue(12);
-                Values[fsParameterIdentifier.ls].Value = new fsValue(0.2);
-                Values[fsParameterIdentifier.nsf].Value = new fsValue(3);
+                ParameterToGroup[identifier].Representator = identifier;
+                Values[identifier].Value = value;
             }
         }
 
@@ -193,8 +196,8 @@ namespace CalculatorModules.Cake_Fromation
         
         protected override sealed void UpdateGroupsInputInfoFromCalculationOptions()
         {
-            var calculationOption = (fsCalculationOption)CalculationOptions[typeof(fsCalculationOption)];
-            if (calculationOption == fsCalculationOption.FilterDesign)
+            var calculationOption = (fsCakeFormationCalculationOption)CalculationOptions[typeof(fsCakeFormationCalculationOption)];
+            if (calculationOption == fsCakeFormationCalculationOption.FilterDesign)
             {
                 CreateDesignGroups();
             }
@@ -209,5 +212,52 @@ namespace CalculatorModules.Cake_Fromation
         }
 
         #endregion
+
+        public fsCakeFormationCalculationOption GetCalculationOption()
+        {
+            return (fsCakeFormationCalculationOption) CalculationOptions[typeof (fsCakeFormationCalculationOption)];
+        }
+
+        internal void SetCalculationOption(fsCakeFormationCalculationOption cakeFormationCalculationOption)
+        {
+            if (GetCalculationOption() != cakeFormationCalculationOption)
+            {
+                EstablishCalculationOption(cakeFormationCalculationOption);
+                UpdateGroupsInputInfoFromCalculationOptions();
+                UpdateEquationsFromCalculationOptions();
+                Recalculate();
+                UpdateUIFromData();
+            }
+        }
+
+        internal bool GetMaterialParametersTableVisible()
+        {
+            return materialParametersDisplayCheckBox.Checked;
+        }
+
+        internal void SetMaterialParametersTableVisible(bool isVisible)
+        {
+            materialParametersDisplayCheckBox.Checked = isVisible;
+        }
+
+        internal ICollection<fsSimulationModuleParameter> GetValues()
+        {
+            return Values.Values;
+        }
+
+        internal void SetValues(ICollection<fsSimulationModuleParameter> collection)
+        {
+            foreach (fsSimulationModuleParameter parameter in collection)
+            {
+                if (Values.ContainsKey(parameter.Identifier))
+                {
+                    fsSimulationModuleParameter internalParameter = Values[parameter.Identifier];
+                    internalParameter.Value = parameter.Value;
+                }
+            }
+
+            Recalculate();
+            UpdateUIFromData();
+        }
     }
 }
