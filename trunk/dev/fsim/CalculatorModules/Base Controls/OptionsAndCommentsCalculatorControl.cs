@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using Parameters;
 
 namespace CalculatorModules
@@ -11,10 +12,66 @@ namespace CalculatorModules
             splitContainer1.Panel2Collapsed = true;
         }
 
-        public bool AllowCommentsView
+        private bool m_isDiagramVisible;
+
+        public bool GetDiagramVisible()
         {
-            set { showHideCommentsPanel.Visible = value; }
+            return m_isDiagramVisible;
         }
+
+        public void SetDiagramVisible(bool isVisible)
+        {
+            if (m_isDiagramVisible == isVisible)
+            {
+                return;
+            }
+
+            m_isDiagramVisible = isVisible;
+
+            Control controlToResize = ControlToResizeForExpanding ?? Parent;
+
+            if (isVisible)
+            {
+                rightPanel.Visible = true;
+                showHideCommnetsButton.Text = @"<";
+                if (controlToResize != null)
+                {
+                    splitContainer1.Panel2Collapsed = false;
+                    int w = splitContainer1.Width;
+                    int a = splitContainer1.Panel1.Width;
+                    int s = splitContainer1.SplitterWidth;
+                    int newWidth = (2 * w * w + s * a) / (2 * a);
+                    controlToResize.Width += newWidth - w;
+                }   
+            }
+            else
+            {
+                rightPanel.Visible = false;
+                showHideCommnetsButton.Text = @">";
+                if (controlToResize != null)
+                {
+                    controlToResize.Width -= splitContainer1.Panel2.Width + splitContainer1.SplitterWidth;
+                }
+                splitContainer1.Panel2Collapsed = true;
+                rightPanel.Width = 0;
+            }
+        }
+
+        // This property allows user to see 'expand' button
+        public bool AllowDiagramView
+        {
+            set { showHideDiagramPanel.Visible = value; }
+        }
+
+        protected void SetDefaultDiagram(
+            fsParameterIdentifier xAxisParameter,
+            fsParameterIdentifier yAxisParameter,
+            fsParameterIdentifier y2AxisParameter)
+        {
+            fsTableAndChart1.SetDefaultDiagram(xAxisParameter, yAxisParameter, y2AxisParameter);
+        }
+
+        #region Internal Routine
 
         protected override void Recalculate()
         {
@@ -26,41 +83,11 @@ namespace CalculatorModules
             fsTableAndChart1.RefreshAndRecalculateAll();
         }
 
-        protected void SetDefaultDiagram(
-            fsParameterIdentifier xAxisParameter,
-            fsParameterIdentifier yAxisParameter,
-            fsParameterIdentifier y2AxisParameter)
-        {
-            fsTableAndChart1.SetDefaultDiagram(xAxisParameter, yAxisParameter, y2AxisParameter);
-        }
-
         private void Button1Click(object sender, EventArgs e)
         {
-            if (rightPanel.Visible)
-            {
-                rightPanel.Visible = false;
-                showHideCommnetsButton.Text = @">";
-                if (Parent != null)
-                {
-                    Parent.Width -= splitContainer1.Panel2.Width + splitContainer1.SplitterWidth;
-                }
-                splitContainer1.Panel2Collapsed = true;
-                rightPanel.Width = 0;
-            }
-            else
-            {
-                rightPanel.Visible = true;
-                showHideCommnetsButton.Text = @"<";
-                if (Parent != null)
-                {
-                    splitContainer1.Panel2Collapsed = false;
-                    int w = splitContainer1.Width;
-                    int a = splitContainer1.Panel1.Width;
-                    int s = splitContainer1.SplitterWidth;
-                    int newWidth = (2 * w * w + s * a) / (2 * a);
-                    Parent.Width += newWidth - w;
-                }
-            }
+            SetDiagramVisible(!m_isDiagramVisible);
         }
+
+        #endregion
     }
 }
