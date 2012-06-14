@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
@@ -10,54 +11,24 @@ namespace CalculatorModules.CakeWashing
 {
     public partial class fsCakeWashingControl : fsOptionsDoubleTableAndCommentsCalculatorControl
     {
-        private void AssignDefaultValues()
-        {
-            Values[fsParameterIdentifier.MotherLiquidViscosity].Value = new fsValue(1e-3);
-            Values[fsParameterIdentifier.MotherLiquidDensity].Value = new fsValue(1000);
-            Values[fsParameterIdentifier.SolidsDensity].Value = new fsValue(2500);
-            Values[fsParameterIdentifier.CakePorosity0].Value = new fsValue(55e-2);
-            Values[fsParameterIdentifier.Ne].Value = new fsValue(0.02);
-            Values[fsParameterIdentifier.CakePermeability0].Value = new fsValue(1.5e-13);
-            Values[fsParameterIdentifier.CakeCompressibility].Value = new fsValue(0.3);
-            Values[fsParameterIdentifier.FilterMediumResistanceHce].Value = new fsValue(3e-3);
-            Values[fsParameterIdentifier.CakeSaturationSw0].Value = new fsValue(70e-2);
-            Values[fsParameterIdentifier.PredeliquorFlowRate].Value = new fsValue(0.5);
-            Values[fsParameterIdentifier.CakeWashOutConcentration].Value = new fsValue(50);
-            Values[fsParameterIdentifier.RemanentWashOutContent].Value = new fsValue(0.1e-2);
-            Values[fsParameterIdentifier.WashLiquidDensity].Value = new fsValue(900);
-            Values[fsParameterIdentifier.WashLiquidViscosity].Value = new fsValue(0.95e-3);
-            Values[fsParameterIdentifier.LiquidWashOutConcentration].Value = new fsValue(0.5);
-            Values[fsParameterIdentifier.WashIndexFor0].Value = new fsValue(2);
-            Values[fsParameterIdentifier.AdaptationPar1].Value = new fsValue(0.11);
-            Values[fsParameterIdentifier.AdaptationPar2].Value = new fsValue(0.09);
-
-            Values[fsParameterIdentifier.FilterArea].Value = new fsValue(7);
-            Values[fsParameterIdentifier.ns].Value = new fsValue(10);
-            Values[fsParameterIdentifier.ls].Value = new fsValue(0.7);
-            Values[fsParameterIdentifier.StandardTechnicalTime].Value = new fsValue(2);
-            Values[fsParameterIdentifier.lambda].Value = new fsValue(0.2);
-            Values[fsParameterIdentifier.u].Value = new fsValue(3.0 / 60);
-            Values[fsParameterIdentifier.CakeHeight].Value = new fsValue(20e-3);
-            Values[fsParameterIdentifier.PressureDifference].Value = new fsValue(0.6e5);          
-        }
 
         public fsCakeWashingControl()
         {
             InitializeComponent();
+        }
 
-            #region Calculators
-
+        protected override void InitializeCalculators()
+        {
             Calculators.Add(new fsCakeWashingCalculator());
+        }
 
-            #endregion
-
+        protected override void InitializeGroups()
+        {
             var colors = new[]
                              {
                                  Color.FromArgb(255, 255, 230),
                                  Color.FromArgb(255, 230, 255)
                              };
-
-            #region Material groups
 
             fsParametersGroup etafGroup = AddGroup(
                 fsParameterIdentifier.MotherLiquidViscosity);
@@ -158,8 +129,6 @@ namespace CalculatorModules.CakeWashing
                 SetGroupInput(materialGroups[i], true);
             }
 
-            #endregion
-
             #region Machine groups 
            
             fsParametersGroup abGroup = AddGroup(
@@ -258,30 +227,59 @@ namespace CalculatorModules.CakeWashing
             }
 
             #endregion
-
-            AssignDefaultValues();
-            
-            //SetDefaultDiagram(fsParameterIdentifier.WashTime, fsParameterIdentifier.WetCakeMass, fsParameterIdentifier.WashLiquidMassFlowRate);
-            Recalculate();
-            UpdateUIFromData();
-            ConnectUIWithDataUpdating(materialParametersDataGrid, dataGrid);
         }
 
-            #region Routine Methods
+        protected override void InitializeParametersValues()
+        {
+            Values[fsParameterIdentifier.MotherLiquidViscosity].Value = new fsValue(1e-3);
+            Values[fsParameterIdentifier.MotherLiquidDensity].Value = new fsValue(1000);
+            Values[fsParameterIdentifier.SolidsDensity].Value = new fsValue(2500);
+            Values[fsParameterIdentifier.CakePorosity0].Value = new fsValue(55e-2);
+            Values[fsParameterIdentifier.Ne].Value = new fsValue(0.02);
+            Values[fsParameterIdentifier.CakePermeability0].Value = new fsValue(1.5e-13);
+            Values[fsParameterIdentifier.CakeCompressibility].Value = new fsValue(0.3);
+            Values[fsParameterIdentifier.FilterMediumResistanceHce].Value = new fsValue(3e-3);
+            Values[fsParameterIdentifier.CakeSaturationSw0].Value = new fsValue(70e-2);
+            Values[fsParameterIdentifier.PredeliquorFlowRate].Value = new fsValue(0.5);
+            Values[fsParameterIdentifier.CakeWashOutConcentration].Value = new fsValue(50);
+            Values[fsParameterIdentifier.RemanentWashOutContent].Value = new fsValue(0.1e-2);
+            Values[fsParameterIdentifier.WashLiquidDensity].Value = new fsValue(900);
+            Values[fsParameterIdentifier.WashLiquidViscosity].Value = new fsValue(0.95e-3);
+            Values[fsParameterIdentifier.LiquidWashOutConcentration].Value = new fsValue(0.5);
+            Values[fsParameterIdentifier.WashIndexFor0].Value = new fsValue(2);
+            Values[fsParameterIdentifier.AdaptationPar1].Value = new fsValue(0.11);
+            Values[fsParameterIdentifier.AdaptationPar2].Value = new fsValue(0.09);
 
-            protected override void UpdateGroupsInputInfoFromCalculationOptions()
-            {
-            }
+            Values[fsParameterIdentifier.FilterArea].Value = new fsValue(7);
+            Values[fsParameterIdentifier.ns].Value = new fsValue(10);
+            Values[fsParameterIdentifier.ls].Value = new fsValue(0.7);
+            Values[fsParameterIdentifier.StandardTechnicalTime].Value = new fsValue(2);
+            Values[fsParameterIdentifier.lambda].Value = new fsValue(0.2);
+            Values[fsParameterIdentifier.u].Value = new fsValue(3.0 / 60);
+            Values[fsParameterIdentifier.CakeHeight].Value = new fsValue(20e-3);
+            Values[fsParameterIdentifier.PressureDifference].Value = new fsValue(0.6e5);  
+        }
 
-            protected override void UpdateEquationsFromCalculationOptions()
-            {
-            }
+        protected override Control[] GetUIControlsToConnectWithDataUpdating()
+        {
+            return new Control[] { materialParametersDataGrid, dataGrid };
+        }
 
-            protected override void UpdateUIFromData()
-            {
-                base.UpdateUIFromData();
-            }
+        #region Routine Methods
 
-            #endregion
+        protected override void UpdateGroupsInputInfoFromCalculationOptions()
+        {
+        }
+
+        protected override void UpdateEquationsFromCalculationOptions()
+        {
+        }
+
+        protected override void UpdateUIFromData()
+        {
+            base.UpdateUIFromData();
+        }
+
+        #endregion
     }
 }

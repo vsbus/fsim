@@ -1,7 +1,10 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
+using System.Windows.Forms;
+using Value;
 
 namespace CalculatorModules
 {
@@ -10,12 +13,13 @@ namespace CalculatorModules
         private readonly fsSuspensionSolidsMassFractionCalculator m_calculator =
             new fsSuspensionSolidsMassFractionCalculator();
 
-        public SuspensionSolidsMassFractionControl()
+        protected override void InitializeCalculators()
         {
-            InitializeComponent();
-
             Calculators.Add(m_calculator);
+        }
 
+        protected override void InitializeGroups()
+        {
             fsParametersGroup wetMassGroup = AddGroup(fsParameterIdentifier.SuspensionMass);
             fsParametersGroup dryMassGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
             fsParametersGroup cfmGroup = AddGroup(fsParameterIdentifier.SolutesMassFractionInMotherLiquid);
@@ -45,22 +49,87 @@ namespace CalculatorModules
                 SetGroupInput(groups[i], true);
             }
             SetGroupInput(cmGroup, false);
+        }
 
-            fsMisc.FillList(saltContentComboBox.Items, typeof (fsCalculationOptions.fsSaltContentOption));
+        protected override void InitializeCalculationOptionsUIControls()
+        {
+            fsMisc.FillList(saltContentComboBox.Items, typeof(fsCalculationOptions.fsSaltContentOption));
             EstablishCalculationOption(fsCalculationOptions.fsSaltContentOption.Neglected);
-            AssignCalculationOptionAndControl(typeof (fsCalculationOptions.fsSaltContentOption), saltContentComboBox);
+            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsSaltContentOption), saltContentComboBox);
 
-            fsMisc.FillList(concentrationComboBox.Items, typeof (fsCalculationOptions.fsConcentrationOption));
+            fsMisc.FillList(concentrationComboBox.Items, typeof(fsCalculationOptions.fsConcentrationOption));
             EstablishCalculationOption(fsCalculationOptions.fsConcentrationOption.SolidsMassFraction);
-            AssignCalculationOptionAndControl(typeof (fsCalculationOptions.fsConcentrationOption), concentrationComboBox);
+            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsConcentrationOption), concentrationComboBox);
+        }
 
-            UpdateGroupsInputInfoFromCalculationOptions();
-            UpdateEquationsFromCalculationOptions();
-            Recalculate();
-            UpdateUIFromData();
-            ConnectUIWithDataUpdating(dataGrid,
+        protected override void InitializeDefaultDiagrams()
+        {
+            var neglectedDiagram = new DiagramConfiguration(
+                fsParameterIdentifier.DryCakeMass,
+                new DiagramConfiguration.DiagramRange(0.001, 0.020),
+                new[] {fsParameterIdentifier.SuspensionSolidsMassFraction},
+                new fsParameterIdentifier[] {});
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCalculationOptions.fsSaltContentOption.Neglected,
+                        fsCalculationOptions.fsConcentrationOption.SolidsMassFraction
+                    },
+                neglectedDiagram);
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCalculationOptions.fsSaltContentOption.Neglected,
+                        fsCalculationOptions.fsConcentrationOption.Concentration
+                    },
+                neglectedDiagram);
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCalculationOptions.fsSaltContentOption.Considered,
+                        fsCalculationOptions.fsConcentrationOption.SolidsMassFraction
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.SolutesMassFractionInMotherLiquid,
+                    new DiagramConfiguration.DiagramRange(0, 0.2),
+                    new[] {fsParameterIdentifier.SuspensionSolidsMassFraction},
+                    new fsParameterIdentifier[] {}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCalculationOptions.fsSaltContentOption.Considered,
+                        fsCalculationOptions.fsConcentrationOption.Concentration
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.SolutesConcentrationInMotherLiquid,
+                    new DiagramConfiguration.DiagramRange(0, 100),
+                    new[] {fsParameterIdentifier.SuspensionSolidsMassFraction},
+                    new fsParameterIdentifier[] { }));
+        }
+
+        protected override void InitializeParametersValues()
+        {
+            SetDefaultValue(fsParameterIdentifier.SuspensionMass, new fsValue(0.050));
+            SetDefaultValue(fsParameterIdentifier.DryCakeMass, new fsValue(0.012));
+            SetDefaultValue(fsParameterIdentifier.SolutesMassFractionInMotherLiquid, new fsValue(0.05));
+            SetDefaultValue(fsParameterIdentifier.SolutesConcentrationInMotherLiquid, new fsValue(49.5));
+            SetDefaultValue(fsParameterIdentifier.MotherLiquidDensity, new fsValue(1000));
+        }
+
+        protected override Control[] GetUIControlsToConnectWithDataUpdating()
+        {
+            return new Control[] { dataGrid,
                                       saltContentComboBox,
-                                      concentrationComboBox);
+                                      concentrationComboBox };
+        }
+
+        public SuspensionSolidsMassFractionControl()
+        {
+            InitializeComponent();
         }
 
         #region Routine Methods

@@ -55,7 +55,7 @@ namespace CalculatorModules
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftPanel.Location = new System.Drawing.Point(0, 0);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(267, 300);
+            this.leftPanel.Size = new System.Drawing.Size(94, 400);
             this.leftPanel.TabIndex = 0;
             // 
             // tablesPanel
@@ -63,7 +63,7 @@ namespace CalculatorModules
             this.tablesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tablesPanel.Location = new System.Drawing.Point(0, 48);
             this.tablesPanel.Name = "tablesPanel";
-            this.tablesPanel.Size = new System.Drawing.Size(267, 252);
+            this.tablesPanel.Size = new System.Drawing.Size(94, 352);
             this.tablesPanel.TabIndex = 1;
             // 
             // leftTopPanel
@@ -73,7 +73,7 @@ namespace CalculatorModules
             this.leftTopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.leftTopPanel.Location = new System.Drawing.Point(0, 0);
             this.leftTopPanel.Name = "leftTopPanel";
-            this.leftTopPanel.Size = new System.Drawing.Size(267, 48);
+            this.leftTopPanel.Size = new System.Drawing.Size(94, 48);
             this.leftTopPanel.TabIndex = 0;
             // 
             // calculationOptionsPanel
@@ -81,15 +81,15 @@ namespace CalculatorModules
             this.calculationOptionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.calculationOptionsPanel.Location = new System.Drawing.Point(0, 0);
             this.calculationOptionsPanel.Name = "calculationOptionsPanel";
-            this.calculationOptionsPanel.Size = new System.Drawing.Size(216, 48);
+            this.calculationOptionsPanel.Size = new System.Drawing.Size(43, 48);
             this.calculationOptionsPanel.TabIndex = 0;
             // 
-            // showHideCommentsPanel
+            // showHideDiagramPanel
             // 
             this.showHideDiagramPanel.Controls.Add(this.showHideCommnetsButton);
             this.showHideDiagramPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.showHideDiagramPanel.Location = new System.Drawing.Point(216, 0);
-            this.showHideDiagramPanel.Name = "showHideCommentsPanel";
+            this.showHideDiagramPanel.Location = new System.Drawing.Point(43, 0);
+            this.showHideDiagramPanel.Name = "showHideDiagramPanel";
             this.showHideDiagramPanel.Size = new System.Drawing.Size(51, 48);
             this.showHideDiagramPanel.TabIndex = 1;
             // 
@@ -113,7 +113,7 @@ namespace CalculatorModules
             this.rightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightPanel.Location = new System.Drawing.Point(0, 0);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(516, 300);
+            this.rightPanel.Size = new System.Drawing.Size(180, 400);
             this.rightPanel.TabIndex = 1;
             this.rightPanel.Visible = false;
             // 
@@ -122,7 +122,7 @@ namespace CalculatorModules
             this.fsTableAndChart1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fsTableAndChart1.Location = new System.Drawing.Point(0, 0);
             this.fsTableAndChart1.Name = "fsTableAndChart1";
-            this.fsTableAndChart1.Size = new System.Drawing.Size(516, 300);
+            this.fsTableAndChart1.Size = new System.Drawing.Size(180, 400);
             this.fsTableAndChart1.TabIndex = 1;
             // 
             // splitContainer1
@@ -138,8 +138,8 @@ namespace CalculatorModules
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rightPanel);
-            this.splitContainer1.Size = new System.Drawing.Size(787, 300);
-            this.splitContainer1.SplitterDistance = 267;
+            this.splitContainer1.Size = new System.Drawing.Size(278, 400);
+            this.splitContainer1.SplitterDistance = 94;
             this.splitContainer1.TabIndex = 2;
             // 
             // fsOptionsAndCommentsCalculatorControl
@@ -148,7 +148,7 @@ namespace CalculatorModules
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Name = "fsOptionsAndCommentsCalculatorControl";
-            this.Size = new System.Drawing.Size(787, 300);
+            this.Size = new System.Drawing.Size(278, 400);
             this.leftPanel.ResumeLayout(false);
             this.leftTopPanel.ResumeLayout(false);
             this.showHideDiagramPanel.ResumeLayout(false);

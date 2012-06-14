@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using CalculatorModules;
 using CalculatorModules.BeltFiltersWithReversibleTrays;
+using CalculatorModules.Cake_Fromation.Other_Filters_Controls;
 using CalculatorModules.Hydrocyclone;
 using CalculatorModules.CakeWashing;
 using CalculatorModules.Cake_Fromation;
@@ -56,23 +57,57 @@ namespace Calculator
             const string name = "Simulation Modules";
             TreeNode node = treeNodeCollection.Add(name);
             AddGroupToTree("Cake Formation", node.Nodes, new[]
-                                             {
-                                                 new KeyValuePair<string, fsCalculatorControl>(
-                                                     "Cake Formation Overmodule",
-                                                     new fsCakeFormationOvermoduleControl()),
-                                                 new KeyValuePair<string, fsCalculatorControl>(
-                                                     "Belt Filters with Reversible Trays",
-                                                     new fsBeltFilterWithReversibleTrayControl()),
-                                                 new KeyValuePair<string, fsCalculatorControl>(
-                                                     "Continuous Belt Filters (modular)",
-                                                     new fsContinuousModularBeltFilterControl()),
-                                                 new KeyValuePair<string, fsCalculatorControl>(
-                                                     "Continuous Belt Filters (non modular)",
-                                                     new fsContinuousNonModularBeltFilterControl()),
-                                                 new KeyValuePair<string, fsCalculatorControl>(
-                                                     "Other",
-                                                     new fsCommonCakeFormationControl())
-                                             });
+                                                             {
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Belt Filters with Reversible Trays",
+                                                                     new fsBeltFilterWithReversibleTrayControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Continuous Belt Filters (modular)",
+                                                                     new fsContinuousModularBeltFilterControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Continuous Belt Filters (non modular)",
+                                                                     new fsContinuousNonModularBeltFilterControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Drum Filters",
+                                                                     new fsDrumFilterControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Disc Filters",
+                                                                     new fsDiscFilterControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Pan Filters",
+                                                                     new fsPanFilterControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Rotary Pressure Filters",
+                                                                     new fsRotaryPressureFilters()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Nutche Filters",
+                                                                     new fsNutcheFilters()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Pressure Leaf Filters",
+                                                                     new fsPressureLeafFilters()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Filter Presses",
+                                                                     new fsFilterPressesControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Filter Press Automats",
+                                                                     new fsFilterPressAutomatControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Pneuma Presses",
+                                                                     new fsPneumaPressControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Laboratory Pressure Nutsche Filters",
+                                                                     new fsLaboratoryPressureNutscheFilterControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Laboratory Vacuum Filters",
+                                                                     new fsLaboratoryVacuumFilterControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Other",
+                                                                     new fsCommonCakeFormationControl()),
+                                                                 new KeyValuePair<string, fsCalculatorControl>(
+                                                                     "Cake Formation Overmodule",
+                                                                     new fsCakeFormationOvermoduleControl())
+
+                                                             });
         }
 
         private void AddHelpGroup(TreeNodeCollection treeNodeCollection)
@@ -168,6 +203,13 @@ namespace Calculator
             {
                 prevCalculatorControl.Parent = null;
             }
+        }
+
+        private void treeView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (!m_modules.ContainsKey(treeView1.SelectedNode.Text))
+                return;
+            OkButtonClick(sender, e);
         }
     }
 }

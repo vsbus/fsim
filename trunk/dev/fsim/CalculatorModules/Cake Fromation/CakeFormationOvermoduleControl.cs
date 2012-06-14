@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using CalculatorModules.BeltFiltersWithReversibleTrays;
+using CalculatorModules.Cake_Fromation.Other_Filters_Controls;
+using Parameters;
 using Units;
 
 namespace CalculatorModules.Cake_Fromation
@@ -11,26 +13,42 @@ namespace CalculatorModules.Cake_Fromation
         private readonly Dictionary<string, fsCakeFormationBaseControl> m_moduleNameToControl = new Dictionary<string, fsCakeFormationBaseControl>();
         private fsCakeFormationBaseControl m_currentCalculatorControl;
 
-        public fsCakeFormationOvermoduleControl()
+        protected override void InitializeCalculators()
         {
-            InitializeComponent();
-
             AddCalculatorControl(new fsContinuousNonModularBeltFilterControl(), "Continuous Belt Filters (Non Modular)");
             AddCalculatorControl(new fsContinuousModularBeltFilterControl(), "Continuous Belt Filters (Modular)");
             AddCalculatorControl(new fsBeltFilterWithReversibleTrayControl(), "Belt Filter With Reversible Tray");
-            AddCalculatorControl(new fsCommonCakeFormationControl(),
-                "Drum Filters",
-                "Disc Filters",
-                "Pan Filters",
-                "Rotary Pressure Filters",
-                "Nutsche Filters",
-                "Pressure Leaf Filters",
-                "Filter Presses",
-                "Filter Press Automats",
-                "Pneuma Press",
-                "Laboratory Pressure Nutsche Filter",
-                "Laboratory Vacuum Filter");
+            AddCalculatorControl(new fsDrumFilterControl(), "Drum Filters");
+            AddCalculatorControl(new fsDiscFilterControl(), "Disc Filters");
+            AddCalculatorControl(new fsPanFilterControl(), "Pan Filters");
+            AddCalculatorControl(new fsRotaryPressureFilters(), "Rotary Pressure Filters");
+            AddCalculatorControl(new fsNutcheFilters(), "Nutsche Filters");
+            AddCalculatorControl(new fsPressureLeafFilters(), "Pressure Leaf Filters");
+            AddCalculatorControl(new fsFilterPressesControl(), "Filter Presses");
+            AddCalculatorControl(new fsFilterPressAutomatControl(), "Filter Press Automats");
+            AddCalculatorControl(new fsPneumaPressControl(), "Pneuma Presses");
+            AddCalculatorControl(new fsLaboratoryPressureNutscheFilterControl(), "Laboratory Pressure Nutsche Filters");
+            AddCalculatorControl(new fsLaboratoryVacuumFilterControl(), "Laboratory Vacuum Filters");
+        }
+
+        protected override void InitializeCalculationOptionsUIControls()
+        {
             ChangeAndShowCurrentCalculatorControl();
+        }
+
+        protected override void UpdateGroupsInputInfoFromCalculationOptions()
+        {
+            // no groups in this module
+        }
+
+        protected override void UpdateEquationsFromCalculationOptions()
+        {
+            // no equations in this module
+        }
+
+        public fsCakeFormationOvermoduleControl()
+        {
+            InitializeComponent();
         }
 
         public override Control ControlToResizeForExpanding
@@ -52,6 +70,16 @@ namespace CalculatorModules.Cake_Fromation
             {
                 calculatorControl.SetUnits(dictionary);
             }
+        }
+
+        public override Dictionary<fsParameterIdentifier, bool> GetInvolvedParametersWithVisibleStatus()
+        {
+            return m_currentCalculatorControl.GetInvolvedParametersWithVisibleStatus();
+        }
+
+        public override void ShowAndHideParameters(Dictionary<fsParameterIdentifier, bool> parametersToShowAndHide)
+        {
+            m_currentCalculatorControl.ShowAndHideParameters(parametersToShowAndHide);
         }
 
         #region Internal Routines
@@ -93,10 +121,14 @@ namespace CalculatorModules.Cake_Fromation
 
                 if (lastCalculatorControl != null)
                 {
-                    m_currentCalculatorControl.SetCalculationOption(lastCalculatorControl.GetCalculationOption());
+                    m_currentCalculatorControl.SetCalculationOptionAndRefreshCalculatorControl(lastCalculatorControl.GetCalculationOption());
                     m_currentCalculatorControl.SetMaterialParametersTableVisible(lastCalculatorControl.GetMaterialParametersTableVisible());
+                    m_currentCalculatorControl.SetValuesAndRefreshCalculatorControl(lastCalculatorControl.GetValues());
+
+                    Control owningControl = m_currentCalculatorControl.ControlToResizeForExpanding;
+                    m_currentCalculatorControl.ControlToResizeForExpanding = null;
                     m_currentCalculatorControl.SetDiagramVisible(lastCalculatorControl.GetDiagramVisible());
-                    m_currentCalculatorControl.SetValues(lastCalculatorControl.GetValues());
+                    m_currentCalculatorControl.ControlToResizeForExpanding = owningControl;
                 }
             }
 

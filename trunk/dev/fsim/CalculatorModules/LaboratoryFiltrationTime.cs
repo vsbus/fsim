@@ -3,25 +3,24 @@ using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
 using Value;
+using System.Windows.Forms;
 
 namespace CalculatorModules
 {
     public sealed partial class fsLaboratoryFiltrationTime : fsOptionsSingleTableAndCommentsCalculatorControl
     {
-        public fsLaboratoryFiltrationTime()
+        protected override void InitializeCalculators()
         {
-            InitializeComponent();
-
             Calculators.Add(new fsDensityConcentrationCalculator());
             Calculators.Add(new fsPorosityCalculator());
             Calculators.Add(new fsPermeabilityCalculator());
             Calculators.Add(new fsLaboratoryFiltrationCalculator());
+        }
 
-
-            #region Groups
-
+        protected override void InitializeGroups()
+        {
             fsParametersGroup filtrateGroup = AddGroup(
-                fsParameterIdentifier.MotherLiquidDensity);
+               fsParameterIdentifier.MotherLiquidDensity);
             fsParametersGroup solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity);
@@ -72,7 +71,7 @@ namespace CalculatorModules
                 fsParameterIdentifier.CakeVolume,
                 fsParameterIdentifier.SolidsVolume,
                 fsParameterIdentifier.qft);
-            
+
             var groups = new[]
                              {
                                  viscosityGroup,
@@ -100,25 +99,25 @@ namespace CalculatorModules
                 groups[i].SetIsInputFlag(true);
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
             }
-            
+
             ParameterToCell[fsParameterIdentifier.Ne].OwningRow.Visible = false;
             ParameterToCell[fsParameterIdentifier.CakePorosity0].OwningRow.Visible = false;
             ParameterToCell[fsParameterIdentifier.DryCakeDensity0].OwningRow.Visible = false;
             ParameterToCell[fsParameterIdentifier.Kappa0].OwningRow.Visible = false;
             ParameterToCell[fsParameterIdentifier.CakeMoistureContentRf0].OwningRow.Visible = false;
-
-            #endregion
-
-            AssignDefaultValues();
-
-            UpdateGroupsInputInfoFromCalculationOptions();
-            UpdateEquationsFromCalculationOptions();
-            Recalculate();
-            UpdateUIFromData();
-            ConnectUIWithDataUpdating(dataGrid);
         }
 
-        private void AssignDefaultValues()
+        protected override Control[] GetUIControlsToConnectWithDataUpdating()
+        {
+            return new Control[] { dataGrid };
+        }
+
+        public fsLaboratoryFiltrationTime()
+        {
+            InitializeComponent();
+        }
+
+        protected override void InitializeParametersValues()
         {
             Values[fsParameterIdentifier.Ne].Value = new fsValue(0);
         }

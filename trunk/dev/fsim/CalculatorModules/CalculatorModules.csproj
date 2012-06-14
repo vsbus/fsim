@@ -82,10 +82,10 @@
     <Compile Include="Base Controls\OptionsSingleTableWithPanelAndCommentsCalculatorControl.Designer.cs">
       <DependentUpon>OptionsSingleTableWithPanelAndCommentsCalculatorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="BeltFiltersWithReversibleTrays\BeltFilterWithReversibleTrayControl.cs">
+    <Compile Include="Cake Fromation\BeltFilterWithReversibleTrayControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BeltFiltersWithReversibleTrays\BeltFilterWithReversibleTrayControl.Designer.cs">
+    <Compile Include="Cake Fromation\BeltFilterWithReversibleTrayControl.designer.cs">
       <DependentUpon>BeltFilterWithReversibleTrayControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Cake Fromation\CakeFormationBaseControl.cs">
@@ -100,12 +100,6 @@
     <Compile Include="Cake Fromation\CakeFormationOvermoduleControl.Designer.cs">
       <DependentUpon>CakeFormationOvermoduleControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cake Fromation\CommonCakeFormationControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Cake Fromation\CommonCakeFormationControl.Designer.cs">
-      <DependentUpon>CommonCakeFormationControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Cake Fromation\ContinuousModularBeltFilterControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +111,78 @@
     </Compile>
     <Compile Include="Cake Fromation\ContinuousNonModularBeltFilterControl.Designer.cs">
       <DependentUpon>ContinuousNonModularBeltFilterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\CommonCakeFormationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\CommonCakeFormationControl.designer.cs">
+      <DependentUpon>CommonCakeFormationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\DiscFilterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\DiscFilterControl.Designer.cs">
+      <DependentUpon>DiscFilterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\DrumFilterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\DrumFilterControl.Designer.cs">
+      <DependentUpon>DrumFilterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\FilterPressAutomatControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\FilterPressAutomatControl.Designer.cs">
+      <DependentUpon>FilterPressAutomatControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\FilterPressesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\FilterPressesControl.Designer.cs">
+      <DependentUpon>FilterPressesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\LaboratoryPressureNutscheFilterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\LaboratoryPressureNutscheFilterControl.Designer.cs">
+      <DependentUpon>LaboratoryPressureNutscheFilterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\LaboratoryVacuumFilterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\LaboratoryVacuumFilterControl.Designer.cs">
+      <DependentUpon>LaboratoryVacuumFilterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\NutcheFilters.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\NutcheFilters.Designer.cs">
+      <DependentUpon>NutcheFilters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\PanFilterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\PanFilterControl.Designer.cs">
+      <DependentUpon>PanFilterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\PneumaPressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\PneumaPressControl.Designer.cs">
+      <DependentUpon>PneumaPressControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\PressureLeafFilters.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\PressureLeafFilters.Designer.cs">
+      <DependentUpon>PressureLeafFilters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\RotaryPressureFilters.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cake Fromation\Other Filters Controls\RotaryPressureFilters.Designer.cs">
+      <DependentUpon>RotaryPressureFilters.cs</DependentUpon>
     </Compile>
     <Compile Include="CakeMoistureContentFromCakeSaturationControl.cs">
       <SubType>UserControl</SubType>
@@ -222,6 +288,10 @@
     <Compile Include="User Controls\Help Dialogs\fsYAxisParameterWithChecking.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Base Controls\CalculatorControl.resx">
+      <DependentUpon>CalculatorControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base Controls\OptionsAndCommentsCalculatorControl.resx">
       <DependentUpon>OptionsAndCommentsCalculatorControl.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -238,9 +308,8 @@
       <DependentUpon>OptionsSingleTableWithPanelAndCommentsCalculatorControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="BeltFiltersWithReversibleTrays\BeltFilterWithReversibleTrayControl.resx">
+    <EmbeddedResource Include="Cake Fromation\BeltFilterWithReversibleTrayControl.resx">
       <DependentUpon>BeltFilterWithReversibleTrayControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Cake Fromation\CakeFormationBaseControl.resx">
       <DependentUpon>CakeFormationBaseControl.cs</DependentUpon>
@@ -249,16 +318,15 @@
     <EmbeddedResource Include="Cake Fromation\CakeFormationOvermoduleControl.resx">
       <DependentUpon>CakeFormationOvermoduleControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cake Fromation\CommonCakeFormationControl.resx">
-      <DependentUpon>CommonCakeFormationControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Cake Fromation\ContinuousModularBeltFilterControl.resx">
       <DependentUpon>ContinuousModularBeltFilterControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cake Fromation\ContinuousNonModularBeltFilterControl.resx">
       <DependentUpon>ContinuousNonModularBeltFilterControl.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cake Fromation\Other Filters Controls\CommonCakeFormationControl.resx">
+      <DependentUpon>CommonCakeFormationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CakeMoistureContentFromCakeSaturationControl.resx">
       <DependentUpon>CakeMoistureContentFromCakeSaturationControl.cs</DependentUpon>

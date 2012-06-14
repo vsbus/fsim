@@ -5,6 +5,8 @@ using System.Drawing;
 using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
+using System.Windows.Forms;
+using Value;
 
 namespace CalculatorModules
 {
@@ -14,7 +16,7 @@ namespace CalculatorModules
 
         private enum fsCalculationOption
         {
-            [Description("Densities")] DenisitiesCalculated,
+            [Description("Densities")] DensitiesCalculated,
             [Description("Concentrations")] ConcentreationsCalculated,
             [Description("Porosity / Kappa")] PorosityKappaCalculated,
             [Description("Machine Diameter")] MachineDiameterCalculated,
@@ -28,7 +30,7 @@ namespace CalculatorModules
 
         #region Routine Data
 
-        private readonly fsParametersGroup m_areaBGroup;
+        private fsParametersGroup m_areaBGroup;
 
         private readonly List<fsCalculator> m_concaveCylindricAreaCalculators = new List<fsCalculator>();
         private readonly List<fsCalculator> m_convexCylindricAreaCalculators = new List<fsCalculator>();
@@ -36,17 +38,18 @@ namespace CalculatorModules
 
         #endregion
 
-        public fsMsusAndHcControl()
+        protected override void InitializeCalculators()
         {
-            InitializeComponent();
-
             m_plainAreaCalculators.Add(new fsMsusHcPlainAreaCalculator());
             m_convexCylindricAreaCalculators.Add(new fsMsusHcConvexCylindricAreaCalculator());
             m_concaveCylindricAreaCalculators.Add(new fsMsusHcConcaveCylindricAreaCalculator());
             Calculators = m_plainAreaCalculators;
+        }
 
+        protected override void InitializeGroups()
+        {
             fsParametersGroup filtrateGroup = AddGroup(
-                fsParameterIdentifier.MotherLiquidDensity);
+               fsParameterIdentifier.MotherLiquidDensity);
             fsParametersGroup densitiesGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity,
                 fsParameterIdentifier.SuspensionDensity);
@@ -100,24 +103,283 @@ namespace CalculatorModules
                         Color.FromArgb(255, 230, 230));
             SetRowColor(dataGrid, ParameterToCell[fsParameterIdentifier.WidthOverDiameterRatio].RowIndex,
                         Color.FromArgb(255, 230, 230));
+        }
 
-            fsMisc.FillList(machineTypeComboBox.Items, typeof (fsCakePorosityCalculator.fsMachineTypeOption));
+        protected override void InitializeCalculationOptionsUIControls()
+        {
+            fsMisc.FillList(machineTypeComboBox.Items, typeof(fsCakePorosityCalculator.fsMachineTypeOption));
             EstablishCalculationOption(fsCakePorosityCalculator.fsMachineTypeOption.PlainArea);
-            AssignCalculationOptionAndControl(typeof (fsCakePorosityCalculator.fsMachineTypeOption), machineTypeComboBox);
+            AssignCalculationOptionAndControl(typeof(fsCakePorosityCalculator.fsMachineTypeOption), machineTypeComboBox);
 
             EstablishCalculationOption(fsCalculationOption.MassVolumeCalculated);
             FillCalculationComboBox();
 
             m_isBlockedCalculationOptionChanged = false;
-            AssignCalculationOptionAndControl(typeof (fsCalculationOption), calculationOptionComboBox);
+            AssignCalculationOptionAndControl(typeof(fsCalculationOption), calculationOptionComboBox);
+        }
 
-            UpdateGroupsInputInfoFromCalculationOptions();
-            UpdateEquationsFromCalculationOptions();
-            Recalculate();
-            UpdateUIFromData();
-            ConnectUIWithDataUpdating(dataGrid,
+        protected override Control[] GetUIControlsToConnectWithDataUpdating()
+        {
+            return new Control[] { dataGrid,
                                       machineTypeComboBox,
-                                      calculationOptionComboBox);
+                                      calculationOptionComboBox };
+        }
+
+        protected override void InitializeParametersValues()
+        {
+            SetDefaultValue(fsParameterIdentifier.MotherLiquidDensity, new fsValue(1000));
+            SetDefaultValue(fsParameterIdentifier.SolidsDensity, new fsValue(2000));
+            SetDefaultValue(fsParameterIdentifier.SuspensionSolidsMassFraction, new fsValue(0.15));
+            SetDefaultValue(fsParameterIdentifier.CakePorosity, new fsValue(0.5));
+            SetDefaultValue(fsParameterIdentifier.FilterArea, new fsValue(1));
+            SetDefaultValue(fsParameterIdentifier.CakeHeight, new fsValue(0.020));
+            SetDefaultValue(fsParameterIdentifier.FilterElementDiameter, new fsValue(0.050));
+            SetDefaultValue(fsParameterIdentifier.MachineDiameter, new fsValue(0.400));
+        }
+
+        protected override void InitializeDefaultDiagrams()
+        {
+            #region Plain Area
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {fsCakePorosityCalculator.fsMachineTypeOption.PlainArea, fsCalculationOption.MassVolumeCalculated},
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakeHeight,
+                    new DiagramConfiguration.DiagramRange(0.005, 0.100),
+                    new[] {fsParameterIdentifier.SuspensionMass},
+                    new[] {fsParameterIdentifier.SuspensionVolume}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {fsCakePorosityCalculator.fsMachineTypeOption.PlainArea, fsCalculationOption.CakeHeightCalculated},
+                new DiagramConfiguration(
+                    fsParameterIdentifier.SuspensionMass,
+                    new DiagramConfiguration.DiagramRange(10, 500),
+                    new[] {fsParameterIdentifier.CakeHeight},
+                    new[] {fsParameterIdentifier.SuspensionVolume}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {fsCakePorosityCalculator.fsMachineTypeOption.PlainArea, fsCalculationOption.MachineAreaBCalculated},
+                new DiagramConfiguration(
+                    fsParameterIdentifier.SuspensionSolidsMassFraction,
+                    new DiagramConfiguration.DiagramRange(0.05, 0.30),
+                    new[] {fsParameterIdentifier.FilterArea},
+                    new[] {fsParameterIdentifier.SuspensionMass}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.PlainArea,
+                        fsCalculationOption.PorosityKappaCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.SuspensionSolidsMassFraction,
+                    new DiagramConfiguration.DiagramRange(0.05, 0.30),
+                    new[] {fsParameterIdentifier.CakePorosity},
+                    new[] {fsParameterIdentifier.SuspensionMass}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.PlainArea,
+                        fsCalculationOption.ConcentreationsCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakePorosity,
+                    new DiagramConfiguration.DiagramRange(0.30, 0.80),
+                    new[] {fsParameterIdentifier.SuspensionSolidsMassFraction},
+                    new[] {fsParameterIdentifier.SuspensionMass}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {fsCakePorosityCalculator.fsMachineTypeOption.PlainArea, fsCalculationOption.DensitiesCalculated},
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakeHeight,
+                    new DiagramConfiguration.DiagramRange(0.100, 0.300),
+                    new[] {fsParameterIdentifier.SolidsDensity},
+                    new[] {fsParameterIdentifier.SuspensionDensity}));
+
+            #endregion
+
+            #region Convex Area
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric,
+                        fsCalculationOption.DensitiesCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakeHeight,
+                    new DiagramConfiguration.DiagramRange(0.005, 0.015),
+                    new[] {fsParameterIdentifier.SolidsDensity},
+                    new[] {fsParameterIdentifier.SuspensionDensity}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric,
+                        fsCalculationOption.ConcentreationsCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakePorosity,
+                    new DiagramConfiguration.DiagramRange(0.30, 0.80),
+                    new[] {fsParameterIdentifier.SuspensionSolidsMassFraction},
+                    new[] {fsParameterIdentifier.SuspensionVolume}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric,
+                        fsCalculationOption.PorosityKappaCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.SuspensionSolidsMassFraction,
+                    new DiagramConfiguration.DiagramRange(0.05, 0.30),
+                    new[] {fsParameterIdentifier.CakePorosity},
+                    new[] {fsParameterIdentifier.SuspensionMass}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric,
+                        fsCalculationOption.FilterElementDiameterCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.SuspensionVolume,
+                    new DiagramConfiguration.DiagramRange(0.600, 1.000),
+                    new[] {fsParameterIdentifier.FilterElementDiameter},
+                    new fsParameterIdentifier[] {}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric,
+                        fsCalculationOption.MachineAreaBCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.SuspensionMass,
+                    new DiagramConfiguration.DiagramRange(300, 1000),
+                    new[] {fsParameterIdentifier.FilterArea},
+                    new[] {fsParameterIdentifier.SuspensionVolume}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric,
+                        fsCalculationOption.CakeHeightCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.SuspensionMass,
+                    new DiagramConfiguration.DiagramRange(300, 1000),
+                    new[] {fsParameterIdentifier.CakeHeight},
+                    new[] {fsParameterIdentifier.SuspensionVolume}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConvexCylindric,
+                        fsCalculationOption.MassVolumeCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakeHeight,
+                    new DiagramConfiguration.DiagramRange(0.003, 0.030),
+                    new[] {fsParameterIdentifier.SuspensionVolume},
+                    new[] {fsParameterIdentifier.SuspensionMass}));
+
+            #endregion
+
+            #region Concave Area
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric,
+                        fsCalculationOption.MassVolumeCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakeHeight,
+                    new DiagramConfiguration.DiagramRange(0.010, 0.050),
+                    new[] {fsParameterIdentifier.SuspensionVolume},
+                    new[] {fsParameterIdentifier.SuspensionMass}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric,
+                        fsCalculationOption.CakeHeightCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.SuspensionMass,
+                    new DiagramConfiguration.DiagramRange(300, 1000),
+                    new[] {fsParameterIdentifier.CakeHeight},
+                    new[] {fsParameterIdentifier.SuspensionVolume}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric,
+                        fsCalculationOption.MachineAreaBCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.SuspensionMass,
+                    new DiagramConfiguration.DiagramRange(50, 100),
+                    new[] {fsParameterIdentifier.FilterArea},
+                    new[] {fsParameterIdentifier.WidthOverDiameterRatio}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric,
+                        fsCalculationOption.PorosityKappaCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakeHeight,
+                    new DiagramConfiguration.DiagramRange(0.050, 0.150),
+                    new[] {fsParameterIdentifier.CakePorosity},
+                    new[] {fsParameterIdentifier.Kappa}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric,
+                        fsCalculationOption.ConcentreationsCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakeHeight,
+                    new DiagramConfiguration.DiagramRange(0.050, 0.150),
+                    new[]
+                        {
+                            fsParameterIdentifier.SuspensionSolidsMassFraction,
+                            fsParameterIdentifier.SuspensionSolidsVolumeFraction,
+                            fsParameterIdentifier.SuspensionSolidsConcentration
+                        },
+                    new[] {fsParameterIdentifier.SuspensionVolume}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCakePorosityCalculator.fsMachineTypeOption.ConcaveCylindric,
+                        fsCalculationOption.DensitiesCalculated
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakeHeight,
+                    new DiagramConfiguration.DiagramRange(0.050, 0.150),
+                    new[]
+                        {
+                            fsParameterIdentifier.SolidsDensity,
+                            fsParameterIdentifier.SuspensionDensity
+                        },
+                    new[] { fsParameterIdentifier.SuspensionSolidsVolumeFraction }));
+
+            #endregion
+        }
+
+        public fsMsusAndHcControl()
+        {
+            InitializeComponent();
         }
 
         #region Routine Methods
@@ -165,7 +427,7 @@ namespace CalculatorModules
             fsParametersGroup calculateGroup = null;
             switch (calculationOption)
             {
-                case fsCalculationOption.DenisitiesCalculated:
+                case fsCalculationOption.DensitiesCalculated:
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.SolidsDensity];
                     break;
                 case fsCalculationOption.ConcentreationsCalculated:
