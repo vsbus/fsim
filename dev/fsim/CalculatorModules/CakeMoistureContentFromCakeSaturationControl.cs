@@ -1,8 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
+using System.Windows.Forms;
+using Value;
 
 namespace CalculatorModules
 {
@@ -20,14 +23,15 @@ namespace CalculatorModules
 
         #endregion
 
-        public fsCakeMoistureContentFromCakeSaturationControl()
+        protected override void InitializeCalculators()
         {
-            InitializeComponent();
-
             Calculators.Add(new fsRfFromCakeSaturationCalculator());
+        }
 
+        protected override void InitializeGroups()
+        {
             fsParametersGroup liquidGroup = AddGroup(
-                fsParameterIdentifier.LiquidDensity);
+               fsParameterIdentifier.LiquidDensity);
             fsParametersGroup solidsGroup = AddGroup(
                 fsParameterIdentifier.SolidsDensity);
             fsParametersGroup porosityGroup = AddGroup(
@@ -35,7 +39,7 @@ namespace CalculatorModules
             fsParametersGroup saturationGroup = AddGroup(
                 fsParameterIdentifier.CakeSaturation);
             fsParametersGroup rfGroup = AddGroup(
-                fsParameterIdentifier.CakeMoistureContent);
+                fsParameterIdentifier.CakeMoistureContentRf);
 
             var groups = new[]
                              {
@@ -58,17 +62,56 @@ namespace CalculatorModules
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
             }
             rfGroup.SetIsInputFlag(false);
-            ParameterToCell[fsParameterIdentifier.CakeMoistureContent].ReadOnly = true;
+            ParameterToCell[fsParameterIdentifier.CakeMoistureContentRf].ReadOnly = true;
+        }
 
-            fsMisc.FillList(calculationOptionComboBox.Items, typeof (fsCalculationOption));
+        protected override void InitializeCalculationOptionsUIControls()
+        {
+            fsMisc.FillList(calculationOptionComboBox.Items, typeof(fsCalculationOption));
             EstablishCalculationOption(fsCalculationOption.CakeMoistureContent);
-            AssignCalculationOptionAndControl(typeof (fsCalculationOption), calculationOptionComboBox);
+            AssignCalculationOptionAndControl(typeof(fsCalculationOption), calculationOptionComboBox);
+        }
 
-            UpdateGroupsInputInfoFromCalculationOptions();
-            UpdateEquationsFromCalculationOptions();
-            Recalculate();
-            UpdateUIFromData();
-            ConnectUIWithDataUpdating(dataGrid, calculationOptionComboBox);
+        protected override Control[] GetUIControlsToConnectWithDataUpdating()
+        {
+            return new Control[] { dataGrid, calculationOptionComboBox };
+        }
+
+        protected override void InitializeParametersValues()
+        {
+            SetDefaultValue(fsParameterIdentifier.LiquidDensity, new fsValue(1000));
+            SetDefaultValue(fsParameterIdentifier.SolidsDensity, new fsValue(2300));
+            SetDefaultValue(fsParameterIdentifier.CakePorosity, new fsValue(0.55));
+            SetDefaultValue(fsParameterIdentifier.CakeSaturation, new fsValue(1));
+        }
+
+        protected override void InitializeDefaultDiagrams()
+        {
+            m_defaultDiagrams.Add(
+                new Enum[] {fsCalculationOption.CakeMoistureContent},
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakeSaturation,
+                    new DiagramConfiguration.DiagramRange(0, 1),
+                    new[] {fsParameterIdentifier.CakeMoistureContentRf}));
+
+            m_defaultDiagrams.Add(
+                new Enum[] { fsCalculationOption.CakeSaturation },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakePorosity,
+                    new DiagramConfiguration.DiagramRange(0.50, 0.70),
+                    new[] { fsParameterIdentifier.CakeSaturation }));
+
+            m_defaultDiagrams.Add(
+                new Enum[] { fsCalculationOption.CakePorosity },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.CakeSaturation,
+                    new DiagramConfiguration.DiagramRange(0.10, 1),
+                    new[] { fsParameterIdentifier.CakePorosity }));
+        }
+
+        public fsCakeMoistureContentFromCakeSaturationControl()
+        {
+            InitializeComponent();
         }
 
         protected override void UpdateEquationsFromCalculationOptions()
@@ -83,7 +126,7 @@ namespace CalculatorModules
             switch (calculationOption)
             {
                 case fsCalculationOption.CakeMoistureContent:
-                    calculateGroup = ParameterToGroup[fsParameterIdentifier.CakeMoistureContent];
+                    calculateGroup = ParameterToGroup[fsParameterIdentifier.CakeMoistureContentRf];
                     break;
                 case fsCalculationOption.CakePorosity:
                     calculateGroup = ParameterToGroup[fsParameterIdentifier.CakePorosity];

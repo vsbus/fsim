@@ -37,23 +37,24 @@ namespace CalculatorModules.Base_Controls
             // 
             // leftTopPanel
             // 
-            this.leftTopPanel.Size = new System.Drawing.Size(329, 48);
+            this.leftTopPanel.Size = new System.Drawing.Size(278, 48);
             // 
             // calculationOptionsPanel
             // 
-            this.calculationOptionsPanel.Size = new System.Drawing.Size(278, 48);
+            this.calculationOptionsPanel.Size = new System.Drawing.Size(227, 48);
             // 
             // tablesPanel
             // 
             this.tablesPanel.Controls.Add(this.dataGrid);
-            this.tablesPanel.Size = new System.Drawing.Size(329, 252);
+            this.tablesPanel.Size = new System.Drawing.Size(278, 352);
             // 
             // dataGrid
             // 
             this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.dataGrid.Location = new System.Drawing.Point(0, 0);
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(329, 252);
+            this.dataGrid.Size = new System.Drawing.Size(278, 352);
             this.dataGrid.TabIndex = 0;
             // 
             // fsOptionsSingleTableAndCommentsCalculatorControl
@@ -61,7 +62,7 @@ namespace CalculatorModules.Base_Controls
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "fsOptionsSingleTableAndCommentsCalculatorControl";
-            this.Size = new System.Drawing.Size(329, 300);
+            this.Size = new System.Drawing.Size(278, 400);
             this.leftTopPanel.ResumeLayout(false);
             this.tablesPanel.ResumeLayout(false);
             this.ResumeLayout(false);

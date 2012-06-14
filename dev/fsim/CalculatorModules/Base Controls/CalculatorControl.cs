@@ -33,6 +33,83 @@ namespace CalculatorModules
 
         #endregion
 
+
+        #region CalculatorControl Initialization
+
+        protected bool IsCalculatorControlInitialized;
+
+        protected virtual Control[] GetUIControlsToConnectWithDataUpdating()
+        {
+            // This method should return array of Controls that may change
+            // data(values) or calculation options (like datagrids, checkboxes, radiobuttons)
+            return null;
+        }
+
+        void CalculatorControlLoad(object sender, EventArgs e)
+        {
+            InitializeCalculatorContorl();
+        }
+
+        protected virtual void InitializeCalculatorContorl()
+        {
+            if (IsCalculatorControlInitialized)
+                return;
+
+            IsCalculatorControlInitialized = true;
+
+            InitializeCalculators();
+            InitializeGroups();
+            InitializeCalculationOptionsUIControls();
+            UpdateGroupsInputInfoFromCalculationOptions();
+            InitializeParametersValues();
+            UpdateEquationsFromCalculationOptions();
+            RecalculateAndRedraw();
+            ConnectUIWithDataUpdating(GetUIControlsToConnectWithDataUpdating());
+        }
+
+        protected virtual void InitializeCalculators()
+        {
+            // This method should contain initialization of Calculators in derived class.
+        }
+
+        protected virtual void InitializeGroups()
+        {
+            // This method should contain initialization of Groups in derived class.
+        }
+
+        protected virtual void InitializeCalculationOptionsUIControls()
+        {
+            // This method should contain initialization of UI controls
+            // (like comboboxes) with data corresponding to possible calculation
+            // options in derived class.
+        }
+
+        protected virtual void InitializeParametersValues()
+        {
+            // This method should contain assigning values that will be used on startup of the module
+        }
+
+        #endregion
+
+        protected virtual void UpdateGroupsInputInfoFromCalculationOptions()
+        {
+            // You should set up groups input info in this method. Override this method in derived class
+        }
+
+        protected virtual void UpdateEquationsFromCalculationOptions()
+        {
+            // It should set up equations here. Override this method in derived class
+        }
+
+        protected void SetDefaultValue(fsParameterIdentifier identifier, fsValue value)
+        {
+            if (Values.ContainsKey(identifier))
+            {
+                ParameterToGroup[identifier].Representator = identifier;
+                Values[identifier].Value = value;
+            }
+        }
+
         protected fsCalculatorControl()
         {
             Values = new Dictionary<fsParameterIdentifier, fsSimulationModuleParameter>();
@@ -41,6 +118,8 @@ namespace CalculatorModules
             Calculators = new List<fsCalculator>();
             Groups = new List<fsParametersGroup>();
             ParameterToGroup = new Dictionary<fsParameterIdentifier, fsParametersGroup>();
+
+            Load += CalculatorControlLoad;
         }
 
         public virtual Control ControlToResizeForExpanding { get; set; }
@@ -82,12 +161,14 @@ namespace CalculatorModules
             UpdateCalculationOptionFromUI();
             UpdateGroupsInputInfoFromCalculationOptions();
             UpdateEquationsFromCalculationOptions();
-            Recalculate();
-            UpdateUIFromData();
+            RecalculateAndRedraw();
         }
 
         protected void ConnectUIWithDataUpdating(params Control[] controls)
         {
+            if (controls == null)
+                return;
+
             foreach (Control control in controls)
             {
                 if (control is fsParametersWithValuesTable)
@@ -107,16 +188,6 @@ namespace CalculatorModules
                     comboBox.SelectedIndexChanged += CalculationOptionChanged;
                 }
             }
-        }
-
-        protected virtual void UpdateGroupsInputInfoFromCalculationOptions()
-        {
-            throw new Exception("You should set up groups input info in this method. Override this method in your class.");
-        }
-
-        protected virtual void UpdateEquationsFromCalculationOptions()
-        {
-            throw new Exception("it should set up equations here. Override this method.");
         }
 
         protected void UpdateCalculationOptionFromUI()
@@ -166,6 +237,9 @@ namespace CalculatorModules
 
         protected void AddGroupsToUI(fsParametersWithValuesTable dataGrid, fsParametersGroup[] groups)
         {
+            if (groups == null)
+                return;
+
             var colors = new[]
                              {
                                  Color.FromArgb(255, 255, 230),
@@ -176,7 +250,6 @@ namespace CalculatorModules
             dataGrid.Rows.Clear();
             for (int i = 0; i < groups.Length; ++i)
             {
-                groups[i].Kind = fsParametersGroup.fsParametersGroupKind.MaterialParameters;
                 AddGroupToUI(dataGrid, groups[i], colors[i % colors.Length]);
                 SetGroupInput(groups[i], true);
             }
@@ -214,9 +287,7 @@ namespace CalculatorModules
             fsParameterIdentifier parameter = CellToParameter[cell];
             UpdateInputInGroup(parameter);
             ReadEnteredValue(cell, parameter);
-            Recalculate();
-            UpdateCellForeColors();
-            WriteValuesToDataGrid();
+            RecalculateAndRedraw();
         }
 
         protected void AddRow(fsParametersWithValuesTable dataGrid, fsSimulationModuleParameter parameter, Color color)
@@ -251,7 +322,7 @@ namespace CalculatorModules
             CellToParameter.Add(dataGridViewCell, parameter);
         }
 
-        protected virtual void Recalculate()
+        protected void Recalculate()
         {
             fsCalculationProcessor.ProcessCalculatorParameters(Values, ParameterToGroup, Calculators);
         }
@@ -298,7 +369,36 @@ namespace CalculatorModules
             value.SetValueInUnits(fsValue.ObjectToValue(cell.Value));
         }
 
+        protected internal virtual void StopGridsEdit()
+        {
+            throw new Exception("You must implement StopGridsEdit in derivative class.");
+        }
+
         #endregion
+
+        #region Show/Hide parameters methods
+
+        virtual public void ShowAndHideParameters(Dictionary<fsParameterIdentifier, bool> parametersToShowAndHide)
+        {
+            foreach (fsParameterIdentifier identifier in parametersToShowAndHide.Keys)
+            {
+                ParameterToCell[identifier].OwningRow.Visible = parametersToShowAndHide[identifier];
+            }
+        }
+
+        virtual public Dictionary<fsParameterIdentifier, bool> GetInvolvedParametersWithVisibleStatus()
+        {
+            var involvedParameters = new Dictionary<fsParameterIdentifier, bool>();
+            foreach (var pair in ParameterToCell)
+            {
+                involvedParameters.Add(pair.Key, pair.Value.OwningRow.Visible);
+            }
+            return involvedParameters;
+        }
+
+        #endregion
+
+        #region Methods to change/update view of the module
 
         public virtual void SetUnits(Dictionary<fsCharacteristic, fsUnit> dictionary)
         {
@@ -319,10 +419,15 @@ namespace CalculatorModules
             Recalculate();
         }
 
-        protected internal virtual void StopGridsEdit()
+        public virtual void RecalculateAndRedraw()
         {
-            throw new Exception("You must implement StopGridsEdit in derivative class.");
+            Recalculate();
+            UpdateUIFromData();
         }
+
+        #endregion
+
+        #region Methods to change internal data
 
         public void SetRanges(Dictionary<fsParameterIdentifier, fsRange> dictionary)
         {
@@ -337,49 +442,18 @@ namespace CalculatorModules
             Recalculate();
         }
 
-        #region Show/Hide parameters
-
-        public void ShowAndHideParameters(Dictionary<fsParameterIdentifier, bool> parametersToShowAndHide)
-        {
-            foreach (fsParameterIdentifier identifier in parametersToShowAndHide.Keys)
-            {
-                ParameterToCell[identifier].OwningRow.Visible = parametersToShowAndHide[identifier];
-            }
-        }
-
-        public Dictionary<fsParameterIdentifier, bool> GetInvolvedParametersWithVisibleStatus()
-        {
-            var involvedParameters = new Dictionary<fsParameterIdentifier, bool>();
-            foreach (var pair in ParameterToCell)
-            {
-                involvedParameters.Add(pair.Key, pair.Value.OwningRow.Visible);
-            }
-            return involvedParameters;
-        }
-
         #endregion
 
-        public void RecalculateAndRedraw()
+        private void InitializeComponent()
         {
-            Recalculate();
-        }
+            this.SuspendLayout();
+            // 
+            // fsCalculatorControl
+            // 
+            this.Name = "fsCalculatorControl";
+            this.Size = new System.Drawing.Size(278, 400);
+            this.ResumeLayout(false);
 
-        public fsValue GetValue(fsParameterIdentifier parameter)
-        {
-            return Values[parameter].Value;
-        }
-
-        public void SetValue(fsParameterIdentifier parameter, fsValue value)
-        {
-            Values[parameter].Value = value;
-        }
-
-        public void ChangeCalculationOption(Enum option)
-        {
-            EstablishCalculationOption(option);
-            UpdateGroupsInputInfoFromCalculationOptions();
-            Recalculate();
-            UpdateUIFromData();
         }
     }
 }

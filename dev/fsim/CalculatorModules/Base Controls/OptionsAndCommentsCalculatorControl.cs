@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Parameters;
+using Units;
+using Value;
 
 namespace CalculatorModules
 {
@@ -50,6 +54,14 @@ namespace CalculatorModules
                 showHideCommnetsButton.Text = @">";
                 if (controlToResize != null)
                 {
+                    if (controlToResize is Form)
+                    {
+                        var formToResize = (Form) controlToResize;
+                        if (formToResize.WindowState == FormWindowState.Maximized)
+                        {
+                            formToResize.WindowState = FormWindowState.Normal;
+                        }
+                    }
                     controlToResize.Width -= splitContainer1.Panel2.Width + splitContainer1.SplitterWidth;
                 }
                 splitContainer1.Panel2Collapsed = true;
@@ -63,19 +75,130 @@ namespace CalculatorModules
             set { showHideDiagramPanel.Visible = value; }
         }
 
-        protected void SetDefaultDiagram(
-            fsParameterIdentifier xAxisParameter,
-            fsParameterIdentifier yAxisParameter,
-            fsParameterIdentifier y2AxisParameter)
+        protected override void InitializeCalculatorContorl()
         {
-            fsTableAndChart1.SetDefaultDiagram(xAxisParameter, yAxisParameter, y2AxisParameter);
+            if (IsCalculatorControlInitialized)
+                return;
+
+            IsCalculatorControlInitialized = true;
+
+            InitializeCalculators();
+            InitializeGroups();
+            InitializeCalculationOptionsUIControls();
+            UpdateGroupsInputInfoFromCalculationOptions();
+            InitializeParametersValues();
+            UpdateEquationsFromCalculationOptions();
+            InitializeDefaultDiagrams();
+            SetDefaultDiagramFromCalculationOption();
+            RecalculateAndRedraw();
+            ConnectUIWithDataUpdating(GetUIControlsToConnectWithDataUpdating());
         }
+
+        protected override void CalculationOptionChanged(object sender, EventArgs e)
+        {
+            UpdateCalculationOptionFromUI();
+            UpdateGroupsInputInfoFromCalculationOptions();
+            UpdateEquationsFromCalculationOptions();
+            SetDefaultDiagramFromCalculationOption();
+            RecalculateAndRedraw();
+        }
+
+        #region Default Diagram For Every Calculation Option
+
+        protected class DiagramConfiguration
+        {
+            public class DiagramRange
+            {
+                public double From;
+                public double To;
+
+                public DiagramRange(double from, double to)
+                {
+                    From = from;
+                    To = to;
+                }
+            }
+
+            public fsParameterIdentifier xAxisParameter { get; set; }
+            public fsParameterIdentifier[] yAxisParameters { get; set; }
+            public fsParameterIdentifier[] y2AxisParameters { get; set; }
+            public DiagramRange range { get; set; }
+
+            public DiagramConfiguration(
+                fsParameterIdentifier xAxisParameter,
+                DiagramRange range,
+                fsParameterIdentifier [] yAxisParameters)
+            {
+                this.xAxisParameter = xAxisParameter;
+                this.range = range;
+                this.yAxisParameters = yAxisParameters;
+                this.y2AxisParameters = new fsParameterIdentifier[0];
+            }
+
+            public DiagramConfiguration(
+               fsParameterIdentifier xAxisParameter,
+               DiagramRange range,
+               fsParameterIdentifier[] yAxisParameters,
+               fsParameterIdentifier[] y2AxisParameters)
+            {
+                this.xAxisParameter = xAxisParameter;
+                this.range = range;
+                this.yAxisParameters = yAxisParameters;
+                this.y2AxisParameters = y2AxisParameters;
+            }
+
+        }
+
+        private class EqualityComparer : IEqualityComparer<ICollection<Enum>>
+        {
+
+            public bool Equals(ICollection<Enum> x, ICollection<Enum> y)
+            {
+                if (x.Count != y.Count)
+                {
+                    return false;
+                }
+                return x.All(y.Contains);
+            }
+
+            public int GetHashCode(ICollection<Enum> obj)
+            {
+                int key = 1;
+                foreach (Enum e in obj)
+                {
+                    key = key * e.GetHashCode();
+                }
+                return key;
+            }
+        }
+
+        protected Dictionary<ICollection<Enum>, DiagramConfiguration> m_defaultDiagrams = new Dictionary<ICollection<Enum>, DiagramConfiguration>(new EqualityComparer());
+
+        protected virtual void InitializeDefaultDiagrams()
+        {
+        }
+
+        private void SetDefaultDiagramFromCalculationOption()
+        {
+            if (m_defaultDiagrams.ContainsKey(CalculationOptions.Values))
+            {
+                DiagramConfiguration diagram = m_defaultDiagrams[CalculationOptions.Values];
+                fsTableAndChart1.SetDiagram(diagram.xAxisParameter, diagram.yAxisParameters, diagram.y2AxisParameters);
+                if (diagram.range != null)
+                {
+                    Values[diagram.xAxisParameter].Range.From = new fsValue(diagram.range.From);
+                    Values[diagram.xAxisParameter].Range.To = new fsValue(diagram.range.To);
+                }
+            }
+        }
+
+        #endregion
 
         #region Internal Routine
 
-        protected override void Recalculate()
+        public override void RecalculateAndRedraw()
         {
-            base.Recalculate();
+            base.RecalculateAndRedraw();
             fsTableAndChart1.AssignCalculatorData(Values,
                 Groups,
                 ParameterToGroup,

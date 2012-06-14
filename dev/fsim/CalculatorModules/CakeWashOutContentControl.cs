@@ -1,7 +1,10 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using CalculatorModules.Base_Controls;
 using Parameters;
 using StepCalculators;
+using System.Windows.Forms;
+using Value;
 
 namespace CalculatorModules
 {
@@ -9,12 +12,13 @@ namespace CalculatorModules
     {
         private readonly fsCakeWashOutContentCalculator m_calculator = new fsCakeWashOutContentCalculator();
 
-        public fsCakeWashOutContentControl()
+        protected override void InitializeCalculators()
         {
-            InitializeComponent();
-
             Calculators.Add(m_calculator);
+        }
 
+        protected override void InitializeGroups()
+        {
             fsParametersGroup wetMassGroup = AddGroup(fsParameterIdentifier.WetCakeMass);
             fsParametersGroup liquidGroup = AddGroup(fsParameterIdentifier.LiquidMassForResuspension);
             fsParametersGroup cwmGroup = AddGroup(fsParameterIdentifier.LiquidWashOutMassFraction);
@@ -24,7 +28,7 @@ namespace CalculatorModules
             fsParametersGroup dryMassGroup = AddGroup(fsParameterIdentifier.DryCakeMass);
             fsParametersGroup outGroup = AddGroup(
                 fsParameterIdentifier.PHcake,
-                fsParameterIdentifier.CakeMoistureContent,
+                fsParameterIdentifier.CakeMoistureContentRf,
                 fsParameterIdentifier.CakeWashOutContent);
 
             var groups = new[]
@@ -51,23 +55,85 @@ namespace CalculatorModules
                 SetGroupInput(groups[i], true);
             }
             SetGroupInput(outGroup, false);
+        }
 
-            fsMisc.FillList(fromComboBox.Items, typeof (fsCalculationOptions.fsFromCalculationOption));
+        protected override void InitializeCalculationOptionsUIControls()
+        {
+            fsMisc.FillList(fromComboBox.Items, typeof(fsCalculationOptions.fsFromCalculationOption));
             EstablishCalculationOption(fsCalculationOptions.fsFromCalculationOption.WashOutContent);
-            AssignCalculationOptionAndControl(typeof (fsCalculationOptions.fsFromCalculationOption), fromComboBox);
+            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsFromCalculationOption), fromComboBox);
 
-            fsMisc.FillList(washOutContentComboBox.Items, typeof (fsCalculationOptions.fsWashOutContentOption));
+            fsMisc.FillList(washOutContentComboBox.Items, typeof(fsCalculationOptions.fsWashOutContentOption));
             EstablishCalculationOption(fsCalculationOptions.fsWashOutContentOption.AsConcentration);
-            AssignCalculationOptionAndControl(typeof (fsCalculationOptions.fsWashOutContentOption),
+            AssignCalculationOptionAndControl(typeof(fsCalculationOptions.fsWashOutContentOption),
                                               washOutContentComboBox);
+        }
 
-            UpdateGroupsInputInfoFromCalculationOptions();
-            UpdateEquationsFromCalculationOptions();
-            Recalculate();
-            UpdateUIFromData();
-            ConnectUIWithDataUpdating(dataGrid,
+        protected override Control[] GetUIControlsToConnectWithDataUpdating()
+        {
+            return new Control[] { dataGrid,
                                       fromComboBox,
-                                      washOutContentComboBox);
+                                      washOutContentComboBox };
+        }
+
+        protected override void InitializeParametersValues()
+        {
+            SetDefaultValue(fsParameterIdentifier.WetCakeMass, new fsValue(0.056));
+            SetDefaultValue(fsParameterIdentifier.LiquidMassForResuspension, new fsValue(0.100));
+            SetDefaultValue(fsParameterIdentifier.LiquidDensity, new fsValue(1000));
+            SetDefaultValue(fsParameterIdentifier.LiquidWashOutConcentration, new fsValue(30));
+            SetDefaultValue(fsParameterIdentifier.DryCakeMass, new fsValue(0.043));
+            SetDefaultValue(fsParameterIdentifier.LiquidWashOutMassFraction, new fsValue(0.03));
+            SetDefaultValue(fsParameterIdentifier.Ph, new fsValue(5.2));
+        }
+
+        protected override void InitializeDefaultDiagrams()
+        {
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCalculationOptions.fsFromCalculationOption.WashOutContent,
+                        fsCalculationOptions.fsWashOutContentOption.AsConcentration
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.LiquidWashOutConcentration,
+                    new DiagramConfiguration.DiagramRange(0, 100),
+                    new[] {fsParameterIdentifier.CakeWashOutContent}));
+
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCalculationOptions.fsFromCalculationOption.WashOutContent,
+                        fsCalculationOptions.fsWashOutContentOption.AsMassFraction
+                    },
+                new DiagramConfiguration(
+                    fsParameterIdentifier.LiquidWashOutMassFraction,
+                    new DiagramConfiguration.DiagramRange(0, 0.05),
+                    new[] {fsParameterIdentifier.CakeWashOutContent}));
+
+            var pHDiagram = new DiagramConfiguration(
+                fsParameterIdentifier.Ph,
+                new DiagramConfiguration.DiagramRange(2, 14),
+                new[] {fsParameterIdentifier.PHcake}); 
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCalculationOptions.fsFromCalculationOption.Ph,
+                        fsCalculationOptions.fsWashOutContentOption.AsMassFraction
+                    },
+                pHDiagram);
+            m_defaultDiagrams.Add(
+                new Enum[]
+                    {
+                        fsCalculationOptions.fsFromCalculationOption.Ph,
+                        fsCalculationOptions.fsWashOutContentOption.AsConcentration
+                    },
+                pHDiagram);
+        }
+
+        public fsCakeWashOutContentControl()
+        {
+            InitializeComponent();
         }
 
         #region Routine Methods

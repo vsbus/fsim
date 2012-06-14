@@ -24,51 +24,28 @@ namespace CalculatorModules.Cake_Fromation
 
         #endregion
 
-        public fsCakeFormationBaseControl()
+        protected override void InitializeCalculators()
         {
-            InitializeComponent();
-
-            #region Calculators
-
             Calculators.Add(new fsDensityConcentrationCalculator());
             Calculators.Add(new fsPorosityCalculator());
             Calculators.Add(new fsPermeabilityCalculator());
             Calculators.Add(new fsRm0Hce0Calculator());
             AddCakeFormationCalculator();
+        }
 
-            #endregion
-
-            fsMisc.FillList(calculationComboBox.Items, typeof(fsCakeFormationCalculationOption));
+        protected override void InitializeCalculationOptionsUIControls()
+        {
+            fsMisc.FillList(calculationComboBox.Items, typeof (fsCakeFormationCalculationOption));
             EstablishCalculationOption(fsCakeFormationCalculationOption.StandardCalculation);
-            AssignCalculationOptionAndControl(typeof(fsCakeFormationCalculationOption), calculationComboBox);
-
-            UpdateGroupsInputInfoFromCalculationOptions();
-
-            AssignDefaultValues();
-
-            UpdateEquationsFromCalculationOptions();
-            SetDefaultDiagram(fsParameterIdentifier.u, fsParameterIdentifier.FilterArea, fsParameterIdentifier.SpecificFiltrationTime);
-            Recalculate();
-            UpdateUIFromData();
-            ConnectUIWithDataUpdating(materialParametersDataGrid, dataGrid, calculationComboBox);
+            AssignCalculationOptionAndControl(typeof (fsCakeFormationCalculationOption), calculationComboBox);
         }
 
-        protected override sealed void Recalculate()
+        protected override Control[] GetUIControlsToConnectWithDataUpdating()
         {
-            base.Recalculate();
+            return new Control[] { materialParametersDataGrid, dataGrid, calculationComboBox };
         }
 
-        protected virtual void AddCakeFormationCalculator()
-        {
-            throw new Exception("Implement AddCakeFormationCalculator with specific cake formation calculator in deriviative class.");
-        }
-
-        private void MaterialParametersDisplayCheckBoxCheckedChanged(object sender, EventArgs e)
-        {
-            tablesSplitContainer.Panel1Collapsed = !materialParametersDisplayCheckBox.Checked;
-        }
-
-        private void AssignDefaultValues()
+        protected override void InitializeParametersValues()
         {
             SetDefaultValue(fsParameterIdentifier.MotherLiquidViscosity, new fsValue(1e-3));
             SetDefaultValue(fsParameterIdentifier.MotherLiquidDensity, new fsValue(1000));
@@ -82,10 +59,10 @@ namespace CalculatorModules.Cake_Fromation
 
             SetDefaultValue(fsParameterIdentifier.FilterArea, new fsValue(1));
             SetDefaultValue(fsParameterIdentifier.PressureDifference, new fsValue(0.7e5));
-            
+
             // tc (u)
             SetDefaultValue(fsParameterIdentifier.CycleTime, new fsValue(72));
-            
+
             // ttech0 and lambda
             SetDefaultValue(fsParameterIdentifier.StandardTechnicalTime, new fsValue(2));
             SetDefaultValue(fsParameterIdentifier.lambda, new fsValue(0.1));
@@ -96,13 +73,19 @@ namespace CalculatorModules.Cake_Fromation
             SetDefaultValue(fsParameterIdentifier.SpecificFiltrationTime, new fsValue(0.25));
         }
 
-        private void SetDefaultValue(fsParameterIdentifier identifier, fsValue value)
+        public fsCakeFormationBaseControl()
         {
-            if (Values.ContainsKey(identifier))
-            {
-                ParameterToGroup[identifier].Representator = identifier;
-                Values[identifier].Value = value;
-            }
+            InitializeComponent();
+        }
+
+        protected virtual void AddCakeFormationCalculator()
+        {
+            // Implement AddCakeFormationCalculator with specific cake formation calculator in deriviative class.
+        }
+
+        private void MaterialParametersDisplayCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            tablesSplitContainer.Panel1Collapsed = !materialParametersDisplayCheckBox.Checked;
         }
 
         #region Routine Methods
@@ -123,7 +106,8 @@ namespace CalculatorModules.Cake_Fromation
 
         protected virtual fsParametersGroup[] MakeMachiningStandardGroups()
         {
-            throw new Exception("MakeMachiningStandardGroups should be implemented in deriviative class.");
+            // MakeMachiningStandardGroups should be implemented in derived class
+            return null;
         }
 
         protected virtual fsParametersGroup[] MakeMachiningDesignGroups()
@@ -180,7 +164,7 @@ namespace CalculatorModules.Cake_Fromation
                 fsParameterIdentifier.FilterMediumResistanceHce0,
                 fsParameterIdentifier.FilterMediumResistanceRm0);
 
-            return new[]
+            var materialGroups = new fsParametersGroup[]
                        {
                            etafGroup,
                            rhofGroup,
@@ -192,6 +176,11 @@ namespace CalculatorModules.Cake_Fromation
                            ncGroup,
                            hce0Group,
                        };
+            foreach (fsParametersGroup group in materialGroups)
+            {
+                group.Kind = fsParametersGroup.fsParametersGroupKind.MaterialParameters;
+            }
+            return materialGroups;
         }
         
         protected override sealed void UpdateGroupsInputInfoFromCalculationOptions()
@@ -218,15 +207,14 @@ namespace CalculatorModules.Cake_Fromation
             return (fsCakeFormationCalculationOption) CalculationOptions[typeof (fsCakeFormationCalculationOption)];
         }
 
-        internal void SetCalculationOption(fsCakeFormationCalculationOption cakeFormationCalculationOption)
+        internal void SetCalculationOptionAndRefreshCalculatorControl(fsCakeFormationCalculationOption cakeFormationCalculationOption)
         {
             if (GetCalculationOption() != cakeFormationCalculationOption)
             {
                 EstablishCalculationOption(cakeFormationCalculationOption);
                 UpdateGroupsInputInfoFromCalculationOptions();
                 UpdateEquationsFromCalculationOptions();
-                Recalculate();
-                UpdateUIFromData();
+                RecalculateAndRedraw();
             }
         }
 
@@ -245,7 +233,7 @@ namespace CalculatorModules.Cake_Fromation
             return Values.Values;
         }
 
-        internal void SetValues(ICollection<fsSimulationModuleParameter> collection)
+        internal void SetValuesAndRefreshCalculatorControl(ICollection<fsSimulationModuleParameter> collection)
         {
             foreach (fsSimulationModuleParameter parameter in collection)
             {
@@ -255,9 +243,7 @@ namespace CalculatorModules.Cake_Fromation
                     internalParameter.Value = parameter.Value;
                 }
             }
-
-            Recalculate();
-            UpdateUIFromData();
+            RecalculateAndRedraw();
         }
     }
 }

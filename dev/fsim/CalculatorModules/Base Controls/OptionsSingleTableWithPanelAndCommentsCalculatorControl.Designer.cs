@@ -40,32 +40,34 @@
             // 
             // leftTopPanel
             // 
-            this.leftTopPanel.Size = new System.Drawing.Size(837, 59);
+            this.leftTopPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.leftTopPanel.Size = new System.Drawing.Size(278, 48);
             // 
             // calculationOptionsPanel
             // 
-            this.calculationOptionsPanel.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.calculationOptionsPanel.Size = new System.Drawing.Size(769, 59);
+            this.calculationOptionsPanel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.calculationOptionsPanel.Size = new System.Drawing.Size(227, 48);
             // 
             // tablesPanel
             // 
             this.tablesPanel.Controls.Add(this.splitContainerMain);
-            this.tablesPanel.Size = new System.Drawing.Size(837, 416);
+            this.tablesPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tablesPanel.Size = new System.Drawing.Size(278, 352);
             // 
             // panelRight
             // 
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRight.Location = new System.Drawing.Point(0, 0);
-            this.panelRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(472, 416);
+            this.panelRight.Size = new System.Drawing.Size(156, 352);
             this.panelRight.TabIndex = 1;
             // 
             // splitContainerMain
             // 
             this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerMain.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitContainerMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainerMain.Name = "splitContainerMain";
             // 
             // splitContainerMain.Panel1
@@ -75,8 +77,9 @@
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.panelRight);
-            this.splitContainerMain.Size = new System.Drawing.Size(837, 416);
-            this.splitContainerMain.SplitterDistance = 361;
+            this.splitContainerMain.Size = new System.Drawing.Size(278, 352);
+            this.splitContainerMain.SplitterDistance = 119;
+            this.splitContainerMain.SplitterWidth = 3;
             this.splitContainerMain.TabIndex = 2;
             // 
             // dataGrid
@@ -84,18 +87,17 @@
             this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.dataGrid.Location = new System.Drawing.Point(0, 0);
-            this.dataGrid.Margin = new System.Windows.Forms.Padding(4);
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(361, 416);
+            this.dataGrid.Size = new System.Drawing.Size(119, 352);
             this.dataGrid.TabIndex = 0;
             // 
-            // OptionsSingleTableWithPanelAndCommentsCalculatorControl
+            // fsOptionsSingleTableWithPanelAndCommentsCalculatorControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "fsOptionsSingleTableWithPanelAndCommentsCalculatorControl";
-            this.Size = new System.Drawing.Size(837, 475);
+            this.Size = new System.Drawing.Size(278, 400);
             this.leftTopPanel.ResumeLayout(false);
             this.tablesPanel.ResumeLayout(false);
             this.splitContainerMain.Panel1.ResumeLayout(false);
