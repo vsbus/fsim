@@ -288,10 +288,6 @@
     <Compile Include="User Controls\Help Dialogs\fsYAxisParameterWithChecking.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Base Controls\CalculatorControl.resx">
-      <DependentUpon>CalculatorControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Base Controls\OptionsAndCommentsCalculatorControl.resx">
       <DependentUpon>OptionsAndCommentsCalculatorControl.cs</DependentUpon>
       <SubType>Designer</SubType>
