@@ -147,6 +147,14 @@ namespace Units
             }
         );
 
+        public static fsCharacteristic CakeWashOutConcentration = new fsCharacteristic(
+            "Cake wash out concentration",
+            new[]{
+                fsUnit.GrammePerLiter,
+                fsUnit.KiloGrammePerCubicMeter
+            }
+        );
+
         public static fsCharacteristic Density = new fsCharacteristic(
             "Density",
             new[] {
@@ -204,7 +212,7 @@ namespace Units
             }
         );
 
-        public static fsCharacteristic MassFlowrate = new fsCharacteristic(
+        public static fsCharacteristic MassFlowrate  = new fsCharacteristic(
             "Mass flowrate",
             new[] {
                 fsUnit.KiloGrammePerSec,
@@ -214,7 +222,7 @@ namespace Units
             }
         );
 
-        public static fsCharacteristic VolumeFlowrate = new fsCharacteristic(
+        public static fsCharacteristic VolumeFlowrate  = new fsCharacteristic(
             "Volume flowrate",
             new[] {
                 fsUnit.CubicMeterPerSecond,
@@ -251,6 +259,14 @@ namespace Units
             }
         );
 
+        public static fsCharacteristic PracticalCakePermeability = new fsCharacteristic(
+            "Practical Cake Permeability",
+            new[] {
+                fsUnit.SquaredSantiMeterPerBarPerMinute,
+                fsUnit.SquaredMeterPerPascalPerSecond
+            }
+        );
+
         public static fsCharacteristic CakeResistance = new fsCharacteristic(
             "Cake resistance",
             new[] {
@@ -281,11 +297,11 @@ namespace Units
             }
         );
 
-        public static fsCharacteristic PracticalCakePermeability = new fsCharacteristic(
-            "Practical Cake Permeability",
+        public static fsCharacteristic WashRatioWv = new fsCharacteristic(
+            "Wash ratio",
             new[] {
-                fsUnit.SquaredSantiMeterPerBarPerMinute,
-                fsUnit.SquaredMeterPerPascalPerSecond
+                fsUnit.LiterPerKiloGramme,
+                fsUnit.CubicMeterPerKiloGramme
             }
         );
 
