@@ -219,7 +219,13 @@ namespace Parameters
         public static fsParameterIdentifier qmft =
             new fsParameterIdentifier("qmft", fsCharacteristic.SpecificMassFlowrate);
 
-        public static fsParameterIdentifier SurfaceTensionLiquidInCake =
+        public static fsParameterIdentifier qf =
+            new fsParameterIdentifier("qf", "Spec filtrate volume rel to time", fsCharacteristic.SpecificVolumeFlowrate);
+
+        public static fsParameterIdentifier qmf =
+            new fsParameterIdentifier("qmf", fsCharacteristic.SpecificMassFlowrate);
+
+        public static fsParameterIdentifier SurfaceTensionLiquidInCake = 
             new fsParameterIdentifier("sigma", "Surface Tension Liquid in Cake", fsCharacteristic.SurfaceTension);
 
         public static fsParameterIdentifier StandardCapillaryPressure =
@@ -314,6 +320,14 @@ namespace Parameters
 
         public static fsParameterIdentifier CakeResistance0 =
             new fsParameterIdentifier("rc0", "Cake Resistance for Dp0 = 1 bar", fsCharacteristic.CakeResistance);
+        public static fsParameterIdentifier CakePlusMediumPermeability =
+           new fsParameterIdentifier("Pc*", "'Cake + Medium' Permeability", fsCharacteristic.CakePermeability);
+
+        public static fsParameterIdentifier CakePlusMediumResistance =
+            new fsParameterIdentifier("rc*", "'Cake + Medium' Resistance", fsCharacteristic.CakeResistance);
+
+        public static fsParameterIdentifier CakePlusMediumResistanceAlpha =
+            new fsParameterIdentifier("alpha*", "'Cake + Medium' Resistance", fsCharacteristic.CakeResistanceAlpha);
 
         public static fsParameterIdentifier CakeResistance =
             new fsParameterIdentifier("rc", "Cake Resistance", fsCharacteristic.CakeResistance);
@@ -521,6 +535,9 @@ namespace Parameters
 
         public static fsParameterIdentifier FeedVolumeFlowRate  =
             new fsParameterIdentifier("Q", "Volume Flow Rate", fsCharacteristic.VolumeFlowrate);
+
+        public static fsParameterIdentifier CycleFrequency
+            = new fsParameterIdentifier("n", "Cycle Frequency", fsCharacteristic.Frequency);
 
         public static fsParameterIdentifier FeedSolidsMassFlowRate  =
             new fsParameterIdentifier("Qm", "Mass Flow Rate", fsCharacteristic.MassFlowrate);

@@ -13,7 +13,6 @@ namespace CalculatorModules
         {
             Calculators.Add(new fsDensityConcentrationCalculator());
             Calculators.Add(new fsPorosityCalculator());
-            Calculators.Add(new fsPermeabilityCalculator());
             Calculators.Add(new fsLaboratoryFiltrationCalculator());
         }
 
@@ -52,8 +51,8 @@ namespace CalculatorModules
                 fsParameterIdentifier.CakeResistanceAlpha,
                 fsParameterIdentifier.PracticalCakePermeability);
             fsParametersGroup hceGroup = AddGroup(
-                fsParameterIdentifier.FilterMediumResistanceHce0,
-                fsParameterIdentifier.FilterMediumResistanceRm0);
+                fsParameterIdentifier.FilterMediumResistanceHce,
+                fsParameterIdentifier.FilterMediumResistanceRm);
             fsParametersGroup areaGroup = AddGroup(
                 fsParameterIdentifier.FilterArea);
             fsParametersGroup pressureGroup = AddGroup(
@@ -65,12 +64,12 @@ namespace CalculatorModules
                 fsParameterIdentifier.FiltrateMass,
                 fsParameterIdentifier.CakeMass,
                 fsParameterIdentifier.SolidsMass,
-                fsParameterIdentifier.qmft,
+                fsParameterIdentifier.qmf,
                 fsParameterIdentifier.SuspensionVolume,
                 fsParameterIdentifier.FiltrateVolume,
                 fsParameterIdentifier.CakeVolume,
                 fsParameterIdentifier.SolidsVolume,
-                fsParameterIdentifier.qft);
+                fsParameterIdentifier.qf);
 
             var groups = new[]
                              {
@@ -91,7 +90,8 @@ namespace CalculatorModules
             var colors = new[]
                              {
                                  Color.FromArgb(255, 255, 230),
-                                 Color.FromArgb(255, 230, 255)
+                                 Color.FromArgb(255, 230, 255),
+                                 Color.FromArgb(230, 255, 255)
                              };
 
             for (int i = 0; i < groups.Length; ++i)

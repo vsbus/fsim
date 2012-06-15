@@ -2,7 +2,7 @@
 
 namespace Equations
 {
-    public class fsKFromPcEquation: fsCalculatorEquation
+    public class fsKfromPcAndRmEquation: fsCalculatorEquation
     {
         #region Parameters
 
@@ -10,40 +10,46 @@ namespace Equations
         private readonly IEquationParameter hc;
         private readonly IEquationParameter pc;
         private readonly IEquationParameter eta;
-        private readonly IEquationParameter hce0;
+        private readonly IEquationParameter Rm;
 
         #endregion
 
-        //K = (hc*pc)/(eta*(hc+ hce0))
+        //K = (hc*pc)/(eta*(hc+ 2*Rm*pc))
 
-        public fsKFromPcEquation(
+        public fsKfromPcAndRmEquation(
             IEquationParameter PracticalCakePermeability,
             IEquationParameter CakeHeight,
             IEquationParameter CakePermeability,
             IEquationParameter MotherLiquidDensity,
-            IEquationParameter FilterMediumResistanceHce0)
+            IEquationParameter FilterMediumResistanceRm)
             : base(
                 PracticalCakePermeability,
                 CakeHeight,
                 CakePermeability,
                 MotherLiquidDensity,
-                FilterMediumResistanceHce0)
+                FilterMediumResistanceRm)
         {
             K = PracticalCakePermeability;
             hc = CakeHeight;
             pc = CakePermeability;
             eta = MotherLiquidDensity;
-            hce0 = FilterMediumResistanceHce0;
+            Rm = FilterMediumResistanceRm;
         }
 
         protected override void InitFormulas()
         {
             AddFormula(K, KFormula);
+            AddFormula(pc, PcFormula);
         }
 
         private void KFormula()
         {
-            K.Value = (hc.Value * pc.Value) / (eta.Value * (hc.Value + hce0.Value));
+            K.Value = (hc.Value * pc.Value) / (eta.Value * (hc.Value + 2 * Rm.Value * pc.Value));
+        }
+
+        private void PcFormula()
+        {
+            pc.Value = (K.Value * eta.Value * hc.Value) /(hc.Value - 2 * eta.Value * Rm.Value * K.Value);
         }
 
     }
