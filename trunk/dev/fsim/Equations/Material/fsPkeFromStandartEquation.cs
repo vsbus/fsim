@@ -1,9 +1,16 @@
 ﻿using Parameters;
+using Value;
 
 namespace Equations
 {
     public class fsPkeFromStandartEquation : fsCalculatorEquation
     {
+        /*
+         *               sigma        /  pc0  \
+         * pke = pke0 * -------- sqrt | ----- |
+         *               sigma0       \  pcd  /
+         * */
+
         #region Parameters
 
         private readonly IEquationParameter m_pc;
@@ -37,7 +44,7 @@ namespace Equations
         {
             const double sigmaSt = 72e-3;
             const double PcSt = 1e-13;
-            m_pke.Value = m_pkest.Value * m_sigma.Value / sigmaSt * PcSt / m_pc.Value;
+            m_pke.Value = m_pkest.Value * m_sigma.Value / sigmaSt * fsValue.Sqrt(PcSt / m_pc.Value);
         }
 
         #endregion
